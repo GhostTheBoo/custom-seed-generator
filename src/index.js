@@ -1,13 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import WorldSelect from './Components/WorldSelect'
-import RewardSelect from './Components/RewardSelect'
+import ChestPage from './ChestPage'
 
 ReactDOM.render(
 	<div>
-		<WorldSelect />
-		<RewardSelect />
+		<ChestPage />
 	</div>,
 	document.getElementById('root')
 )
