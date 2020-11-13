@@ -1,30 +1,22 @@
 import React from 'react'
 
-class WorldSelect extends React.Component {
-	render() {
+function WorldSelect(props) {
+	let optionlist = props.worldList.map((world, index) => {
 		return (
-			<select>
-				<option>Agrabah</option>
-				<option>Atlantica</option>
-				<option>Beast's Castle</option>
-				<option>Cavern of Remembrance</option>
-				<option>Disney Castle</option>
-				<option>Halloween Town</option>
-				<option>Hollow Bastion</option>
-				<option>Land of Dragons</option>
-				<option>Olympus Coliseum</option>
-				<option>Olympus Cups</option>
-				<option>100 Acre Wood</option>
-				<option>Port Royal</option>
-				<option>Pride Lands</option>
-				<option>Simulated Twilight Town</option>
-				<option>Space Paranoids</option>
-				<option>Timeless River</option>
-				<option>Twilight Town</option>
-				<option>The World That Never Was</option>
-			</select>
+			<option key={index} value={index}>{world}</option>
 		)
-	}
+	})
+	return (
+		<div>
+			<select
+				value={props.currentWorld}
+				name='currentWorld'
+				onChange={props.onChange}
+			>
+				{optionlist}
+			</select>
+		</div>
+	)
 }
 
 export default WorldSelect
