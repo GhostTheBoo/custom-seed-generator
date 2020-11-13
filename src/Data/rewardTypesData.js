@@ -1,4 +1,4 @@
-const rewardTypeData = [
+const rewardTypesData = [
 	'Abilities',
 	'Accessories',
 	'Armor',
@@ -18,4 +18,4 @@ const rewardTypeData = [
 	'Synth Materials',
 	'Empty']
 
-export default rewardTypeData
+export default rewardTypesData
