@@ -1,11 +1,10 @@
 import React from 'react'
 
-import worldsData from './Data/worldsData'
-import rewardTypesData from './Data/rewardTypesData'
+import {worldsData, rewardTypesData} from './Data/typesData'
 import rewardsData from './Data/rewardsData'
 import chestsData from './Data/chestsData'
 
-import WorldSelect from './Components/WorldSelect'
+import GenericSelect from './Components/GenericSelect'
 import RewardSelect from './Components/RewardSelect'
 import ChestTable from './Components/ChestTable'
 import Buttons from './Components/Buttons'
@@ -14,28 +13,15 @@ class ChestPage extends React.Component {
 	constructor() {
 		super()
 
-		let newChestArray = chestsData.map(worldChestList => {
-			let newWorldChestList = worldChestList.chests.map(chest => {
-				chest.toBeReplaced = false
-				chest.isReplaced = false
-				chest.replacementReward = ''
-				chest.replacementIndex = ''
-				return chest
-			})
-			return ({
-				world: worldChestList.world,
-				chests: newWorldChestList
-			})
-		})
-
 		this.state = {
 			currentWorld: 0,
 			currentRewardType: 0,
 			currentReward: 0,
-			allChests: newChestArray,
-			currentWorldChests: newChestArray[0].chests.slice(),
+			allChests: chestsData.slice(),
+			currentWorldChests: chestsData[0].chests.slice(),
 			pnachCodes: []
 		}
+
 		this.handleWorldChange = this.handleWorldChange.bind(this)
 		this.handleChange = this.handleChange.bind(this)
 		this.handleReplace = this.handleReplace.bind(this)
@@ -77,7 +63,6 @@ class ChestPage extends React.Component {
 	}
 
 	onRowCheck(event) {
-		// for each value checked, make new state where all chests indexed at those values are marked to be replaced
 		let toBeReplacedWorldChests = this.state.currentWorldChests.map((chest, index) => {
 			if (index === parseInt(event.target.value))
 				chest.toBeReplaced = !chest.toBeReplaced
@@ -121,8 +106,8 @@ class ChestPage extends React.Component {
 			let ret = '// ' + worldList.world + '\n'
 			worldList.chests.forEach(chest => {
 				if (chest.isReplaced) {
-					ret += 'patch=1,EE,' + chest.originalAddress + ',extended,0000' + chest.replacementIndex
-					ret += ' // ' + chest.room + ', ' + chest.originalReward + ' is now ' + chest.replacementReward + '\n'
+					ret += 'patch=1,EE,' + chest.vanillaAddress + ',extended,0000' + chest.replacementIndex
+					ret += ' // ' + chest.room + ', ' + chest.vanillaReward + ' is now ' + chest.replacementReward + '\n'
 				}
 			})
 			return ret
@@ -133,9 +118,10 @@ class ChestPage extends React.Component {
 	render() {
 		return (
 			<div>
-				<WorldSelect
-					worldList={worldsData}
-					currentWorld={this.state.currentWorld}
+				<GenericSelect
+					itemList={worldsData}
+					name={'currentWorld'}
+					currentItem={this.state.currentWorld}
 					onChange={this.handleWorldChange}
 				/>
 				<RewardSelect
