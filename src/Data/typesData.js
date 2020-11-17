@@ -45,8 +45,17 @@ export const formTypesData = [
 	'Master',
 	'Final']
 
-export const characterArray = [
+export const charactersData = [
 	'Sora',
 	'Donald',
 	'Goofy'
+]
+
+export const equipmentTypesData = [
+	'Keyblade',
+	'Donald Staff',
+	'Goofy Shield',
+	'Ally Weapon',
+	'Armor',
+	'Accessory'
 ]

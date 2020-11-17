@@ -1,6 +1,7 @@
 import React from 'react'
+import Form from 'react-bootstrap/Form'
 
-import { formTypesData, rewardTypesData } from './Data/typesData'
+import { formTypesData } from './Data/typesData'
 import rewardsData from './Data/rewardsData'
 import formsData from './Data/formsData'
 
@@ -117,11 +118,11 @@ class FormPage extends React.Component {
 			driveFormList.driveLevels.forEach(driveFormLevel => {
 				if (driveFormLevel.isRewardReplaced) {
 					ret += 'patch=1,EE,' + driveFormLevel.vanillaAddress + ',extended,0000' + driveFormLevel.replacementIndex
-					ret += ' // ' + driveFormLevel.level + ', ' + driveFormLevel.vanillaReward + ' is now ' + driveFormLevel.replacementReward + '\n';
+					ret += ' // ' + driveFormLevel.level + ', ' + driveFormLevel.vanillaReward + ' is now ' + driveFormLevel.replacementReward + '\n'
 				}
 				if (driveFormLevel.replacementEXP !== driveFormLevel.vanillaEXP) {
-					ret += 'patch=1,EE,' + driveFormLevel.EXPAddress + ',extended,' + driveFormLevel.replacementEXP.toString(16).padStart(8, 0);
-					ret += ' // ' + driveFormLevel.replacementEXP + ' experience is required to reach ' + driveFormLevel.level + '\n';
+					ret += 'patch=1,EE,' + driveFormLevel.EXPAddress + ',extended,' + driveFormLevel.replacementEXP.toString(16).toUpperCase().padStart(8, 0)
+					ret += ' // ' + driveFormLevel.replacementEXP + ' experience is required to reach ' + driveFormLevel.level + '\n'
 				}
 			})
 			return ret
@@ -132,24 +133,26 @@ class FormPage extends React.Component {
 	render() {
 		return (
 			<div>
-				<GenericSelect
-					itemList={formTypesData}
-					name={'currentDriveForm'}
-					currentItem={this.state.currentDriveForm}
-					onChange={this.handleFormChange}
-				/>
-				<RewardSelect
-					rewardTypeList={rewardTypesData}
-					currentRewardType={this.state.currentRewardType}
-					rewardList={rewardsData[this.state.currentRewardType].rewards}
-					currentReward={this.state.currentReward}
-					onChange={this.handleChange}
-				/>
-				<EXPSelect
-					currentEXP={this.state.currentEXP}
-					currentEXPMultiplier={this.state.currentEXPMultiplierValue}
-					onChange={this.handleChange}
-				/>
+				<Form>
+					<GenericSelect
+						selector={'Drive Form'}
+						itemList={formTypesData}
+						name={'currentDriveForm'}
+						currentItem={this.state.currentDriveForm}
+						onChange={this.handleFormChange}
+					/>
+					<RewardSelect
+						currentRewardType={this.state.currentRewardType}
+						rewardList={rewardsData[this.state.currentRewardType].rewards}
+						currentReward={this.state.currentReward}
+						onChange={this.handleChange}
+					/>
+					<EXPSelect
+						currentEXP={this.state.currentEXP}
+						currentEXPMultiplier={this.state.currentEXPMultiplierValue}
+						onChange={this.handleChange}
+					/>
+				</Form>
 				<FormTable
 					currentDriveForm={formTypesData[this.state.currentDriveForm]}
 					driveLevels={this.state.currentDriveFormLevels}

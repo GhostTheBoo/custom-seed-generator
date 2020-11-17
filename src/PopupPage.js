@@ -1,6 +1,7 @@
 import React from 'react'
+import Form from 'react-bootstrap/Form'
 
-import { worldsData, rewardTypesData } from './Data/typesData'
+import { worldsData} from './Data/typesData'
 import rewardsData from './Data/rewardsData'
 import popupsData from './Data/popupsData'
 
@@ -122,13 +123,13 @@ class PopupPage extends React.Component {
 		return (
 			<div>
 				<GenericSelect
+					selector={'World'}
 					itemList={worldsData}
 					name={'currentWorld'}
 					currentItem={this.state.currentWorld}
 					onChange={this.handleWorldChange}
 				/>
 				<RewardSelect
-					rewardTypeList={rewardTypesData}
 					currentRewardType={this.state.currentRewardType}
 					rewardList={rewardsData[this.state.currentRewardType].rewards}
 					currentReward={this.state.currentReward}
