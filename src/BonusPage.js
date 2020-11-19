@@ -10,7 +10,7 @@ import RewardSelect from './Components/RewardSelect'
 import BonusTable from './Components/BonusTable'
 import Buttons from './Components/Buttons'
 
-class EquipmentPage extends React.Component {
+class BonusPage extends React.Component {
 	constructor() {
 		super()
 
@@ -192,9 +192,9 @@ class EquipmentPage extends React.Component {
 			}
 			//reward count
 			bonus.rewardChangeCount = 0
-			if (bonus.replacementReward1 !== '')
+			if (bonus.replacementReward1 !== '' && bonus.replacementReward1 !== 'Empty')
 				bonus.rewardChangeCount++
-			if (bonus.replacementReward2 !== '')
+			if (bonus.replacementReward2 !== '' && bonus.replacementReward2 !== 'Empty')
 				bonus.rewardChangeCount++
 			//stat count
 			bonus.statChangeCount = 0
@@ -275,7 +275,6 @@ class EquipmentPage extends React.Component {
 						onChange={this.handleCharacterChange}
 					/>
 					<RewardSelect
-						index={1}
 						currentRewardType={this.state.currentRewardType1}
 						rewardList={rewardsData[this.state.currentRewardType1].rewards}
 						currentReward={this.state.currentReward1}
@@ -284,7 +283,6 @@ class EquipmentPage extends React.Component {
 						onChange={this.handleChange}
 					/>
 					<RewardSelect
-						index={2}
 						currentRewardType={this.state.currentRewardType2}
 						rewardList={rewardsData[this.state.currentRewardType2].rewards}
 						currentReward={this.state.currentReward2}
@@ -362,4 +360,4 @@ class EquipmentPage extends React.Component {
 	}
 }
 
-export default EquipmentPage
+export default BonusPage

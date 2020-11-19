@@ -15,10 +15,9 @@ function RewardSelect(props) {
 			<option key={index} value={index}>{rewardType}</option>
 		)
 	})
-	let suffix = props.index === 1 ? '' : '2'
 	return (
 		<div>
-			<Form.Group controlId={'rewardTypeSelector' + suffix}>
+			<Form.Group controlId={props.typeName}>
 				<Form.Label>Reward Type Selector:</Form.Label>
 				<Form.Control as='select'
 					value={props.currentRewardType}
@@ -28,7 +27,7 @@ function RewardSelect(props) {
 					{rewardTypeOptionList}
 				</Form.Control>
 			</Form.Group>
-			<Form.Group controlId={'rewardSelector' + suffix}>
+			<Form.Group controlId={props.name}>
 				<Form.Label>Reward Selector:</Form.Label>
 				<Form.Control as='select'
 					value={props.currentReward}

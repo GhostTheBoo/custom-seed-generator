@@ -1,7 +1,6 @@
 import React from 'react'
 
 function BonusTable(props) {
-	// console.log(props.bonuses)
 	let bonusList = props.bonuses.map((bonus, index) => {
 		return (
 			<tr
