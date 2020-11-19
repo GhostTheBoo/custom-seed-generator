@@ -8,7 +8,7 @@ function GenericSelect(props) {
 		)
 	})
 	return (
-		<Form.Group controlId='genericSelector'>
+		<Form.Group controlId={props.selector + 'Selector'}>
 			<Form.Label>{props.selector} Selector:</Form.Label>
 			<Form.Control as='select'
 				value={props.currentItem}

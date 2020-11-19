@@ -1,7 +1,6 @@
 import React from 'react'
-import Form from 'react-bootstrap/Form'
 
-import {worldsData} from './Data/typesData'
+import { worldsData } from './Data/typesData'
 import rewardsData from './Data/rewardsData'
 import chestsData from './Data/chestsData'
 
@@ -130,6 +129,8 @@ class ChestPage extends React.Component {
 					currentRewardType={this.state.currentRewardType}
 					rewardList={rewardsData[this.state.currentRewardType].rewards}
 					currentReward={this.state.currentReward}
+					typeName={'currentRewardType'}
+					name={'currentReward'}
 					onChange={this.handleChange}
 				/>
 				<ChestTable

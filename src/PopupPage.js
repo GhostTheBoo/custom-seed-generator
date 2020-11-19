@@ -1,7 +1,6 @@
 import React from 'react'
-import Form from 'react-bootstrap/Form'
 
-import { worldsData} from './Data/typesData'
+import { worldsData } from './Data/typesData'
 import rewardsData from './Data/rewardsData'
 import popupsData from './Data/popupsData'
 
@@ -133,6 +132,8 @@ class PopupPage extends React.Component {
 					currentRewardType={this.state.currentRewardType}
 					rewardList={rewardsData[this.state.currentRewardType].rewards}
 					currentReward={this.state.currentReward}
+					typeName={'currentRewardType'}
+					name={'currentReward'}
 					onChange={this.handleChange}
 				/>
 				<PopupTable

@@ -214,6 +214,8 @@ class EquipmentPage extends React.Component {
 						currentRewardType={this.state.currentRewardType}
 						rewardList={rewardsData[this.state.currentRewardType].rewards}
 						currentReward={this.state.currentReward}
+						typeName={'currentRewardType'}
+						name={'currentReward'}
 						onChange={this.handleChange}
 					/>
 					<Form.Group controlId='currentEquipmentStrength'>

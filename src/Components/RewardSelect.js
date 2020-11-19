@@ -15,24 +15,24 @@ function RewardSelect(props) {
 			<option key={index} value={index}>{rewardType}</option>
 		)
 	})
-
+	let suffix = props.index === 1 ? '' : '2'
 	return (
 		<div>
-			<Form.Group controlId='rewardTypeSelector'>
+			<Form.Group controlId={'rewardTypeSelector' + suffix}>
 				<Form.Label>Reward Type Selector:</Form.Label>
 				<Form.Control as='select'
 					value={props.currentRewardType}
-					name='currentRewardType'
+					name={props.typeName}
 					onChange={props.onChange}
 				>
 					{rewardTypeOptionList}
 				</Form.Control>
 			</Form.Group>
-			<Form.Group controlId='rewardSelector'>
+			<Form.Group controlId={'rewardSelector' + suffix}>
 				<Form.Label>Reward Selector:</Form.Label>
 				<Form.Control as='select'
 					value={props.currentReward}
-					name='currentReward'
+					name={props.name}
 					onChange={props.onChange}
 				>
 					{rewardOptionList}
