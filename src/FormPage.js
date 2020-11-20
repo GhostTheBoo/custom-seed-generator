@@ -56,7 +56,7 @@ class FormPage extends React.Component {
 
 	handleChange(event) {
 		const { name, value } = event.target
-		if (name !== 'currentReward')
+		if (name === 'currentRewardType')
 			this.setState({
 				currentReward: 0
 			})

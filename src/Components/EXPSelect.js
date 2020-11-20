@@ -1,4 +1,5 @@
 import React from 'react'
+import Form from 'react-bootstrap/Form'
 
 function EXPSelect(props) {
 	let multiplierList = []
@@ -8,19 +9,25 @@ function EXPSelect(props) {
 	}
 	return (
 		<div>
-			<select
-				value={props.currentEXPMultiplierValue}
-				name={'currentEXPMultiplierValue'}
-				onChange={props.onChange}
-			>
-				{multiplierList}
-			</select>
-			<input
-				type={'text'}
-				name={'currentEXP'}
-				value={props.currentEXP}
-				onChange={props.onChange}
-			/>
+			<Form.Group controlId='EXP Multiplier Value'>
+				<Form.Label>EXP Multiplier: </Form.Label>
+				<Form.Control as='select'
+					value={props.currentEXPMultiplierValue}
+					name={'currentEXPMultiplierValue'}
+					onChange={props.onChange}
+				>
+					{multiplierList}
+				</Form.Control>
+			</Form.Group>
+			<Form.Group controlId='Custom EXP Value'>
+				<Form.Label>Custom EXP: </Form.Label>
+				<Form.Control
+					name='currentEXP'
+					type='number'
+					value={props.currentEXP}
+					onChange={props.onChange}
+				/>
+			</Form.Group>
 		</div>
 	)
 }

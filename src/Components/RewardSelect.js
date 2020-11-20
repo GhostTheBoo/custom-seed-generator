@@ -15,10 +15,11 @@ function RewardSelect(props) {
 			<option key={index} value={index}>{rewardType}</option>
 		)
 	})
+	
 	return (
 		<div>
 			<Form.Group controlId={props.typeName}>
-				<Form.Label>Reward Type Selector:</Form.Label>
+				<Form.Label>{props.label} Reward Type Selector: </Form.Label>
 				<Form.Control as='select'
 					value={props.currentRewardType}
 					name={props.typeName}
@@ -28,7 +29,7 @@ function RewardSelect(props) {
 				</Form.Control>
 			</Form.Group>
 			<Form.Group controlId={props.name}>
-				<Form.Label>Reward Selector:</Form.Label>
+				<Form.Label>{props.label} Reward Selector: </Form.Label>
 				<Form.Control as='select'
 					value={props.currentReward}
 					name={props.name}

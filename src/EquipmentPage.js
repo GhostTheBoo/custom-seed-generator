@@ -67,7 +67,7 @@ class EquipmentPage extends React.Component {
 	handleInputChange(event) {
 		const { name, value } = event.target
 		this.setState({
-			[name]: value,
+			[name]: parseInt(value),
 		})
 	}
 

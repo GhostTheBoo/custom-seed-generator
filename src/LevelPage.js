@@ -45,9 +45,8 @@ class LevelPage extends React.Component {
 
 	handleInputChange(event) {
 		const { name, value } = event.target
-		console.log(value)
 		this.setState({
-			[name]: value,
+			[name]: parseInt(value),
 		})
 	}
 
@@ -110,7 +109,7 @@ class LevelPage extends React.Component {
 					l.criticalAP = this.crit(this.state.currentAP)
 					l.defense = this.state.currentDefense
 					l.magic = this.state.currentMagic
-					l.strength = this.state.strength
+					l.strength = this.state.currentStrength
 
 					if (l.standardAP !== l.vanillaAP || l.defense !== l.vanillaDefense || l.magic !== l.vanillaMagic || l.strength !== l.vanillaStrength)
 						l.isStatsReplaced = true
@@ -152,6 +151,7 @@ class LevelPage extends React.Component {
 			}
 			return l
 		})
+		// console.log(this.state.currentStrength)
 		this.setState({
 			allLevels: replacedLevels
 		})
@@ -170,7 +170,7 @@ class LevelPage extends React.Component {
 				}
 			}
 
-			if (l.statChange) {
+			if (l.isStatsReplaced) {
 				ret += 'patch=1,EE,' + l.statAddress + ',extended,'
 				ret += l.standardAP.toString(16).toUpperCase().padStart(2, '0') + l.defense.toString(16).toUpperCase().padStart(2, '0')
 				ret += l.magic.toString(16).toUpperCase().padStart(2, '0') + l.strength.toString(16).toUpperCase().padStart(2, '0')
@@ -203,6 +203,7 @@ class LevelPage extends React.Component {
 						currentReward={this.state.currentSwordReward}
 						typeName={'currentSwordRewardType'}
 						name={'currentSwordReward'}
+						label={'Sword'}
 						onChange={this.handleChange}
 					/>
 					<RewardSelect
@@ -211,6 +212,7 @@ class LevelPage extends React.Component {
 						currentReward={this.state.currentShieldReward}
 						typeName={'currentShieldRewardType'}
 						name={'currentShieldReward'}
+						label={'Shield'}
 						onChange={this.handleChange}
 					/>
 					<RewardSelect
@@ -219,6 +221,7 @@ class LevelPage extends React.Component {
 						currentReward={this.state.currentStaffReward}
 						typeName={'currentStaffRewardType'}
 						name={'currentStaffReward'}
+						label={'Staff'}
 						onChange={this.handleChange}
 					/>
 					<EXPSelect
