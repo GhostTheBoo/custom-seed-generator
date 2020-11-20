@@ -206,6 +206,7 @@ class EquipmentPage extends React.Component {
 				<Form>
 					<Form.Row>
 						<GenericSelect
+							class='equipment'
 							selector={'Equipment Type'}
 							itemList={equipmentTypesData}
 							name={'currentEquipmentType'}
@@ -214,6 +215,7 @@ class EquipmentPage extends React.Component {
 						/>
 					</Form.Row>
 					<RewardSelect
+						class='equipment'
 						currentRewardType={this.state.currentRewardType}
 						rewardList={rewardsData[this.state.currentRewardType].rewards}
 						currentReward={this.state.currentReward}

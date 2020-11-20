@@ -122,6 +122,7 @@ class ChestPage extends React.Component {
 				<Form>
 					<Form.Row>
 						<GenericSelect
+							class='chest'
 							selector={'World'}
 							itemList={worldsData}
 							name={'currentWorld'}
@@ -130,6 +131,7 @@ class ChestPage extends React.Component {
 						/>
 					</Form.Row>
 					<RewardSelect
+						class='chest'
 						currentRewardType={this.state.currentRewardType}
 						rewardList={rewardsData[this.state.currentRewardType].rewards}
 						currentReward={this.state.currentReward}

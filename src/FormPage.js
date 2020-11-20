@@ -136,6 +136,7 @@ class FormPage extends React.Component {
 				<Form>
 					<Form.Row>
 						<GenericSelect
+							class='form'
 							selector={'Drive Form'}
 							itemList={formTypesData}
 							name={'currentDriveForm'}
@@ -144,6 +145,7 @@ class FormPage extends React.Component {
 						/>
 					</Form.Row>
 					<RewardSelect
+						class='form'
 						currentRewardType={this.state.currentRewardType}
 						rewardList={rewardsData[this.state.currentRewardType].rewards}
 						currentReward={this.state.currentReward}
@@ -152,6 +154,7 @@ class FormPage extends React.Component {
 						onChange={this.handleChange}
 					/>
 					<EXPSelect
+						class='form'
 						currentEXP={this.state.currentEXP}
 						currentEXPMultiplier={this.state.currentEXPMultiplierValue}
 						onChange={this.handleChange}

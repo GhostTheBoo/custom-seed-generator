@@ -125,6 +125,7 @@ class PopupPage extends React.Component {
 				<Form>
 					<Form.Row>
 						<GenericSelect
+							class='popup'
 							selector={'World'}
 							itemList={worldsData}
 							name={'currentWorld'}
@@ -133,6 +134,7 @@ class PopupPage extends React.Component {
 						/>
 					</Form.Row>
 					<RewardSelect
+						class='popup'
 						currentRewardType={this.state.currentRewardType}
 						rewardList={rewardsData[this.state.currentRewardType].rewards}
 						currentReward={this.state.currentReward}

@@ -1,4 +1,5 @@
 import React from 'react'
+import Table from 'react-bootstrap/Table'
 
 function LevelTable(props) {
 	let levelList = props.allLevels.map((l, index) => {
@@ -50,7 +51,7 @@ function LevelTable(props) {
 	})
 
 	return (
-		<table>
+		<Table striped bordered hover size='sm' variant='dark'>
 			<thead>
 				<tr>
 					<th></th>
@@ -89,7 +90,7 @@ function LevelTable(props) {
 			<tbody>
 				{levelList}
 			</tbody>
-		</table>
+		</Table>
 	)
 }
 

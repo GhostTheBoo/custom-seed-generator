@@ -10,7 +10,7 @@ function GenericSelect(props) {
 	})
 	return (
 		<Col xs='auto'>
-			<Form.Group controlId={props.selector + 'Selector'}>
+			<Form.Group controlId={props.class + props.selector + 'Selector'}>
 				<Form.Label column='sm'>{props.selector} Selector:</Form.Label>
 				<Form.Control as='select'
 					size='sm'

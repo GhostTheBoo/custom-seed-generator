@@ -1,5 +1,6 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
 
 import rewardsData from './Data/rewardsData'
 import levelsData from './Data/levelsData'
@@ -198,6 +199,7 @@ class LevelPage extends React.Component {
 			<div>
 				<Form>
 					<RewardSelect
+						class='level'
 						currentRewardType={this.state.currentSwordRewardType}
 						rewardList={rewardsData[this.state.currentSwordRewardType].rewards}
 						currentReward={this.state.currentSwordReward}
@@ -207,6 +209,7 @@ class LevelPage extends React.Component {
 						onChange={this.handleChange}
 					/>
 					<RewardSelect
+						class='level'
 						currentRewardType={this.state.currentShieldRewardType}
 						rewardList={rewardsData[this.state.currentShieldRewardType].rewards}
 						currentReward={this.state.currentShieldReward}
@@ -216,6 +219,7 @@ class LevelPage extends React.Component {
 						onChange={this.handleChange}
 					/>
 					<RewardSelect
+						class='level'
 						currentRewardType={this.state.currentStaffRewardType}
 						rewardList={rewardsData[this.state.currentStaffRewardType].rewards}
 						currentReward={this.state.currentStaffReward}
@@ -225,46 +229,61 @@ class LevelPage extends React.Component {
 						onChange={this.handleChange}
 					/>
 					<EXPSelect
+						class='level'
 						currentEXP={this.state.currentEXP}
 						currentEXPMultiplier={this.state.currentEXPMultiplierValue}
 						onChange={this.handleChange}
 					/>
-					<Form.Group controlId='currentAP'>
-						<Form.Label>AP: </Form.Label>
-						<Form.Control
-							name='currentAP'
-							type='number'
-							value={this.state.currentAP}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
-					<Form.Group controlId='currentDefense'>
-						<Form.Label>Defense: </Form.Label>
-						<Form.Control
-							name='currentDefense'
-							type='number'
-							value={this.state.currentDefense}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
-					<Form.Group controlId='currentStrength'>
-						<Form.Label>Strength: </Form.Label>
-						<Form.Control
-							name='currentStrength'
-							type='number'
-							value={this.state.currentStrength}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
-					<Form.Group controlId='currentMagic'>
-						<Form.Label>Magic: </Form.Label>
-						<Form.Control
-							name='currentMagic'
-							type='number'
-							value={this.state.currentMagic}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
+					<Form.Row>
+						<Col xl='2'>
+							<Form.Group controlId='currentAP'>
+								<Form.Label column='sm'>AP: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentAP'
+									type='number'
+									value={this.state.currentAP}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+						<Col xl='2'>
+							<Form.Group controlId='currentDefense'>
+								<Form.Label column='sm'>Defense: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentDefense'
+									type='number'
+									value={this.state.currentDefense}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+						<Col xl='2'>
+							<Form.Group controlId='currentStrength'>
+								<Form.Label column='sm'>Strength: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentStrength'
+									type='number'
+									value={this.state.currentStrength}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+						<Col xl='2'>
+							<Form.Group controlId='currentMagic'>
+								<Form.Label column='sm'>Magic: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentMagic'
+									type='number'
+									value={this.state.currentMagic}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+					</Form.Row>
 				</Form>
 				<LevelTable
 					allLevels={this.state.allLevels}

@@ -1,5 +1,6 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
 
 import { worldsData, charactersData } from './Data/typesData'
 import rewardsData from './Data/rewardsData'
@@ -258,23 +259,26 @@ class BonusPage extends React.Component {
 		return (
 			<div>
 				<Form>
-					<GenericSelect
-						key={'worldSelector'}
-						selector={'world'}
-						itemList={worldsData}
-						name={'currentWorld'}
-						currentItem={this.state.currentWorld}
-						onChange={this.handleWorldChange}
-					/>
-					<GenericSelect
-						key={'characterSelector'}
-						selector={'character'}
-						itemList={charactersData}
-						name={'currentCharacter'}
-						currentItem={this.state.currentCharacter}
-						onChange={this.handleCharacterChange}
-					/>
+					<Form.Row>
+						<GenericSelect
+							class='bonus'
+							selector={'World'}
+							itemList={worldsData}
+							name={'currentWorld'}
+							currentItem={this.state.currentWorld}
+							onChange={this.handleWorldChange}
+						/>
+						<GenericSelect
+							class='bonus'
+							selector={'Character'}
+							itemList={charactersData}
+							name={'currentCharacter'}
+							currentItem={this.state.currentCharacter}
+							onChange={this.handleCharacterChange}
+						/>
+					</Form.Row>
 					<RewardSelect
+						class='bonus'
 						currentRewardType={this.state.currentRewardType1}
 						rewardList={rewardsData[this.state.currentRewardType1].rewards}
 						currentReward={this.state.currentReward1}
@@ -283,6 +287,7 @@ class BonusPage extends React.Component {
 						onChange={this.handleChange}
 					/>
 					<RewardSelect
+						class='bonus'
 						currentRewardType={this.state.currentRewardType2}
 						rewardList={rewardsData[this.state.currentRewardType2].rewards}
 						currentReward={this.state.currentReward2}
@@ -290,60 +295,82 @@ class BonusPage extends React.Component {
 						name={'currentReward2'}
 						onChange={this.handleChange}
 					/>
-					<Form.Group controlId='currentHP'>
-						<Form.Label>HP Increase: </Form.Label>
-						<Form.Control
-							name='currentHP'
-							type='number'
-							value={this.state.currentHP}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
-					<Form.Group controlId='currentMP'>
-						<Form.Label>MP Increase: </Form.Label>
-						<Form.Control
-							name='currentMP'
-							type='number'
-							value={this.state.currentMP}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
-					<Form.Group controlId='currentArmor'>
-						<Form.Label>Armor Slot Increase: </Form.Label>
-						<Form.Control
-							name='currentArmor'
-							type='number'
-							value={this.state.currentArmor}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
-					<Form.Group controlId='currentAccessory'>
-						<Form.Label>Accessory Slot Increase: </Form.Label>
-						<Form.Control
-							name='currentAccessory'
-							type='number'
-							value={this.state.currentAccessory}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
-					<Form.Group controlId='currentItem'>
-						<Form.Label>Item Slot Increase: </Form.Label>
-						<Form.Control
-							name='currentItem'
-							type='number'
-							value={this.state.currentItem}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
-					<Form.Group controlId='currentDrive'>
-						<Form.Label>Drive Gauge Increase: </Form.Label>
-						<Form.Control
-							name='currentDrive'
-							type='number'
-							value={this.state.currentDrive}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
+					<Form.Row>
+						<Col xl='2'>
+							<Form.Group controlId='currentHP'>
+								<Form.Label column='sm'>HP Increase: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentHP'
+									type='number'
+									value={this.state.currentHP}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+						<Col xl='2'>
+							<Form.Group controlId='currentMP'>
+								<Form.Label column='sm'>MP Increase: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentMP'
+									type='number'
+									value={this.state.currentMP}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+					</Form.Row>
+					<Form.Row>
+						<Col xl='2'>
+							<Form.Group controlId='currentArmor'>
+								<Form.Label column='sm'>Armor Slot Increase: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentArmor'
+									type='number'
+									value={this.state.currentArmor}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+						<Col xl='2'>
+							<Form.Group controlId='currentAccessory'>
+								<Form.Label column='sm'>Accessory Slot Increase: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentAccessory'
+									type='number'
+									value={this.state.currentAccessory}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+						<Col xl='2'>
+							<Form.Group controlId='currentItem'>
+								<Form.Label column='sm'>Item Slot Increase: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentItem'
+									type='number'
+									value={this.state.currentItem}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+						<Col xl='2'>
+							<Form.Group controlId='currentDrive'>
+								<Form.Label column='sm'>Drive Gauge Increase: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentDrive'
+									type='number'
+									value={this.state.currentDrive}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+					</Form.Row>
 				</Form>
 				<BonusTable
 					currentWorld={worldsData[this.state.currentWorld]}

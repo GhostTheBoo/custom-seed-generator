@@ -1,4 +1,5 @@
 import React from 'react'
+import Table from 'react-bootstrap/Table'
 
 function BonusTable(props) {
 	let bonusList = props.bonuses.map((bonus, index) => {
@@ -47,7 +48,7 @@ function BonusTable(props) {
 	})
 
 	return (
-		<table>
+		<Table striped bordered hover size='sm' variant='dark'>
 			<thead>
 				<tr>
 					<th></th>
@@ -83,7 +84,7 @@ function BonusTable(props) {
 			<tbody>
 				{bonusList}
 			</tbody>
-		</table>
+		</Table>
 	)
 }
 

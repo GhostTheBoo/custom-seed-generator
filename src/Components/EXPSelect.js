@@ -11,7 +11,7 @@ function EXPSelect(props) {
 	return (
 		<Form.Row>
 			<Col xl='2'>
-				<Form.Group controlId='EXP Multiplier Value'>
+				<Form.Group controlId={'EXP Multiplier Value' + props.class}>
 					<Form.Label column='sm'>EXP Multiplier: </Form.Label>
 					<Form.Control as='select'
 						size='sm'
@@ -24,7 +24,7 @@ function EXPSelect(props) {
 				</Form.Group>
 			</Col>
 			<Col xl='2'>
-				<Form.Group controlId='Custom EXP Value'>
+				<Form.Group controlId={'Custom EXP Value' + props.class}>
 					<Form.Label column='sm'>Custom EXP: </Form.Label>
 					<Form.Control
 						size='sm'
