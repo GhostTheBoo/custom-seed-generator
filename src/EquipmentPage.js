@@ -1,5 +1,6 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
 
 import { equipmentTypesData } from './Data/typesData'
 import rewardsData from './Data/rewardsData'
@@ -203,13 +204,15 @@ class EquipmentPage extends React.Component {
 		return (
 			<div>
 				<Form>
-					<GenericSelect
-						selector={'Equipment Type'}
-						itemList={equipmentTypesData}
-						name={'currentEquipmentType'}
-						currentItem={this.state.currentEquipmentType}
-						onChange={this.handleEquipmentTypeChange}
-					/>
+					<Form.Row>
+						<GenericSelect
+							selector={'Equipment Type'}
+							itemList={equipmentTypesData}
+							name={'currentEquipmentType'}
+							currentItem={this.state.currentEquipmentType}
+							onChange={this.handleEquipmentTypeChange}
+						/>
+					</Form.Row>
 					<RewardSelect
 						currentRewardType={this.state.currentRewardType}
 						rewardList={rewardsData[this.state.currentRewardType].rewards}
@@ -218,105 +221,144 @@ class EquipmentPage extends React.Component {
 						name={'currentReward'}
 						onChange={this.handleChange}
 					/>
-					<Form.Group controlId='currentEquipmentStrength'>
-						<Form.Label>Strength: </Form.Label>
-						<Form.Control
-							name='currentEquipmentStrength'
-							type='number'
-							value={this.state.currentEquipmentStrength}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
-					<Form.Group controlId='currentEquipmentMagic'>
-						<Form.Label>Magic: </Form.Label>
-						<Form.Control
-							name='currentEquipmentMagic'
-							type='number'
-							value={this.state.currentEquipmentMagic}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
-					<Form.Group controlId='currentEquipmentAP'>
-						<Form.Label>AP: </Form.Label>
-						<Form.Control
-							name='currentEquipmentAP'
-							type='number'
-							value={this.state.currentEquipmentAP}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
-					<Form.Group controlId='currentEquipmentDefense'>
-						<Form.Label>Defense: </Form.Label>
-						<Form.Control
-							name='currentEquipmentDefense'
-							type='number'
-							value={this.state.currentEquipmentDefense}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
-					<Form.Group controlId='currentEquipmentPhysical'>
-						<Form.Label>Physical Resistance: </Form.Label>
-						<Form.Control
-							name='currentEquipmentPhysical'
-							type='number'
-							value={this.state.currentEquipmentPhysical}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
-					<Form.Group controlId='currentEquipmentFire'>
-						<Form.Label>Fire Resistance: </Form.Label>
-						<Form.Control
-							name='currentEquipmentFire'
-							type='number'
-							value={this.state.currentEquipmentFire}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
-					<Form.Group controlId='currentEquipmentBlizzard'>
-						<Form.Label>Blizzard Resistance: </Form.Label>
-						<Form.Control
-							name='currentEquipmentBlizzard'
-							type='number'
-							value={this.state.currentEquipmentBlizzard}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
-					<Form.Group controlId='currentEquipmentThunder'>
-						<Form.Label>Thunder Resistance: </Form.Label>
-						<Form.Control
-							name='currentEquipmentThunder'
-							type='number'
-							value={this.state.currentEquipmentThunder}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
-					<Form.Group controlId='currentEquipmentDark'>
-						<Form.Label>Dark Resistance: </Form.Label>
-						<Form.Control
-							name='currentEquipmentDark'
-							type='number'
-							value={this.state.currentEquipmentDark}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
-					<Form.Group controlId='currentEquipmentLight'>
-						<Form.Label>Light Resistance: </Form.Label>
-						<Form.Control
-							name='currentEquipmentLight'
-							type='number'
-							value={this.state.currentEquipmentLight}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
-					<Form.Group controlId='currentEquipmentUniversal'>
-						<Form.Label>Universal Resistance: </Form.Label>
-						<Form.Control
-							name='currentEquipmentUniversal'
-							type='number'
-							value={this.state.currentEquipmentUniversal}
-							onChange={this.handleInputChange}
-						/>
-					</Form.Group>
+					<Form.Row>
+						<Col xl='2'>
+							<Form.Group controlId='currentEquipmentStrength'>
+								<Form.Label column='sm'>Strength: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentEquipmentStrength'
+									type='number'
+									value={this.state.currentEquipmentStrength}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+						<Col xl='2'>
+							<Form.Group controlId='currentEquipmentMagic'>
+								<Form.Label column='sm'>Magic: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentEquipmentMagic'
+									type='number'
+									value={this.state.currentEquipmentMagic}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+						<Col xl='2'>
+							<Form.Group controlId='currentEquipmentAP'>
+								<Form.Label column='sm'>AP: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentEquipmentAP'
+									type='number'
+									value={this.state.currentEquipmentAP}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+						<Col xl='2'>
+							<Form.Group controlId='currentEquipmentDefense'>
+								<Form.Label column='sm'>Defense: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentEquipmentDefense'
+									type='number'
+									value={this.state.currentEquipmentDefense}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+					</Form.Row>
+					<Form.Row>
+						<Col xl='2'>
+							<Form.Group controlId='currentEquipmentFire'>
+								<Form.Label column='sm'>Fire Resistance: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentEquipmentFire'
+									type='number'
+									value={this.state.currentEquipmentFire}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+						<Col xl='2'>
+							<Form.Group controlId='currentEquipmentBlizzard'>
+								<Form.Label column='sm'>Blizzard Resistance: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentEquipmentBlizzard'
+									type='number'
+									value={this.state.currentEquipmentBlizzard}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+						<Col xl='2'>
+							<Form.Group controlId='currentEquipmentThunder'>
+								<Form.Label column='sm'>Thunder Resistance: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentEquipmentThunder'
+									type='number'
+									value={this.state.currentEquipmentThunder}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+						<Col xl='2'>
+							<Form.Group controlId='currentEquipmentPhysical'>
+								<Form.Label column='sm'>Physical Resistance: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentEquipmentPhysical'
+									type='number'
+									value={this.state.currentEquipmentPhysical}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+					</Form.Row>
+					<Form.Row>
+						<Col xl='2'>
+							<Form.Group controlId='currentEquipmentDark'>
+								<Form.Label column='sm'>Dark Resistance: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentEquipmentDark'
+									type='number'
+									value={this.state.currentEquipmentDark}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+						<Col xl='2'>
+							<Form.Group controlId='currentEquipmentLight'>
+								<Form.Label column='sm'>Light Resistance: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentEquipmentLight'
+									type='number'
+									value={this.state.currentEquipmentLight}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+						<Col xl='2'>
+							<Form.Group controlId='currentEquipmentUniversal'>
+								<Form.Label column='sm'>Universal Resistance: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentEquipmentUniversal'
+									type='number'
+									value={this.state.currentEquipmentUniversal}
+									onChange={this.handleInputChange}
+								/>
+							</Form.Group>
+						</Col>
+					</Form.Row>
 				</Form>
 				<EquipmentTable
 					currentEquipmentType={equipmentTypesData[this.state.currentEquipmentType]}

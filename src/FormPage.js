@@ -1,4 +1,5 @@
 import React from 'react'
+import Form from 'react-bootstrap/Form'
 
 import { formTypesData } from './Data/typesData'
 import rewardsData from './Data/rewardsData'
@@ -132,26 +133,30 @@ class FormPage extends React.Component {
 	render() {
 		return (
 			<div>
-				<GenericSelect
-					selector={'Drive Form'}
-					itemList={formTypesData}
-					name={'currentDriveForm'}
-					currentItem={this.state.currentDriveForm}
-					onChange={this.handleFormChange}
-				/>
-				<RewardSelect
-					currentRewardType={this.state.currentRewardType}
-					rewardList={rewardsData[this.state.currentRewardType].rewards}
-					currentReward={this.state.currentReward}
-					typeName={'currentRewardType'}
-					name={'currentReward'}
-					onChange={this.handleChange}
-				/>
-				<EXPSelect
-					currentEXP={this.state.currentEXP}
-					currentEXPMultiplier={this.state.currentEXPMultiplierValue}
-					onChange={this.handleChange}
-				/>
+				<Form>
+					<Form.Row>
+						<GenericSelect
+							selector={'Drive Form'}
+							itemList={formTypesData}
+							name={'currentDriveForm'}
+							currentItem={this.state.currentDriveForm}
+							onChange={this.handleFormChange}
+						/>
+					</Form.Row>
+					<RewardSelect
+						currentRewardType={this.state.currentRewardType}
+						rewardList={rewardsData[this.state.currentRewardType].rewards}
+						currentReward={this.state.currentReward}
+						typeName={'currentRewardType'}
+						name={'currentReward'}
+						onChange={this.handleChange}
+					/>
+					<EXPSelect
+						currentEXP={this.state.currentEXP}
+						currentEXPMultiplier={this.state.currentEXPMultiplierValue}
+						onChange={this.handleChange}
+					/>
+				</Form>
 				<FormTable
 					currentDriveForm={formTypesData[this.state.currentDriveForm]}
 					driveLevels={this.state.currentDriveFormLevels}

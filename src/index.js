@@ -1,21 +1,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 // import ChestPage from './ChestPage'
 // import PopupPage from './PopupPage'
 // import FormPage from './FormPage'
-// import EquipmentPage from './EquipmentPage'
+import EquipmentPage from './EquipmentPage'
 // import BonusPage from './BonusPage'
-import LevelPage from './LevelPage'
+// import LevelPage from './LevelPage'
 
 ReactDOM.render(
 	<div>
 		{/* <ChestPage /> */}
 		{/* <PopupPage /> */}
 		{/* <FormPage /> */}
-		{/* <EquipmentPage /> */}
+		<EquipmentPage />
 		{/* <BonusPage /> */}
-		<LevelPage />
+		{/* <LevelPage /> */}
 	</div>,
 	document.getElementById('root')
 )

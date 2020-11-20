@@ -1,4 +1,5 @@
 import React from 'react'
+import Table from 'react-bootstrap/Table'
 
 function FormTable(props) {
 	let formList = props.driveLevels.map((driveLevel, index) => {
@@ -35,7 +36,7 @@ function FormTable(props) {
 	})
 
 	return (
-		<table>
+		<Table striped bordered hover size='sm' variant='dark'>
 			<thead>
 				<tr>
 					<th></th>
@@ -59,7 +60,7 @@ function FormTable(props) {
 			<tbody>
 				{formList}
 			</tbody>
-		</table>
+		</Table>
 	)
 }
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import Table from 'react-bootstrap/Table'
 
 function EquipmentTable(props) {
 	let equipmentList = props.equipments.map((equipment, index) => {
@@ -34,32 +35,32 @@ function EquipmentTable(props) {
 					{equipment.defense}
 				</td>
 				<td>
-					{equipment.fireResistance}
+					{equipment.fireResistance}%
 				</td>
 				<td>
-					{equipment.blizzardResistance}
+					{equipment.blizzardResistance}%
 				</td>
 				<td>
-					{equipment.thunderResistance}
+					{equipment.thunderResistance}%
 				</td>
 				<td>
-					{equipment.darkResistance}
+					{equipment.darkResistance}%
 				</td>
 				<td>
-					{equipment.physicalResistance}
+					{equipment.physicalResistance}%
 				</td>
 				<td>
-					{equipment.lightResistance}
+					{equipment.lightResistance}%
 				</td>
 				<td>
-					{equipment.universalResistance}
+					{equipment.universalResistance}%
 				</td>
 			</tr>
 		)
 	})
 
 	return (
-		<table>
+		<Table striped bordered hover size='sm' variant='dark'>
 			<thead>
 				<tr>
 					<th></th>
@@ -107,7 +108,7 @@ function EquipmentTable(props) {
 			<tbody>
 				{equipmentList}
 			</tbody>
-		</table>
+		</Table>
 	)
 }
 

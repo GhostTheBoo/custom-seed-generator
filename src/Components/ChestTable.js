@@ -1,4 +1,5 @@
 import React from 'react'
+import Table from 'react-bootstrap/Table'
 
 function ChestTable(props) {
 	let chestList = props.worldChests.map((chest, index) => {
@@ -29,7 +30,7 @@ function ChestTable(props) {
 		)
 	})
 	return (
-		<table>
+		<Table striped bordered hover size='sm' variant='dark'>
 			<thead>
 				<tr>
 					<th></th>
@@ -47,7 +48,7 @@ function ChestTable(props) {
 			<tbody>
 				{chestList}
 			</tbody>
-		</table>
+		</Table>
 	)
 }
 

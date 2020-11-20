@@ -1,5 +1,6 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
 
 function EXPSelect(props) {
 	let multiplierList = []
@@ -8,27 +9,33 @@ function EXPSelect(props) {
 		multiplierList.push(<option key={i} value={i / 2}>{i / 2}x</option>)
 	}
 	return (
-		<div>
-			<Form.Group controlId='EXP Multiplier Value'>
-				<Form.Label>EXP Multiplier: </Form.Label>
-				<Form.Control as='select'
-					value={props.currentEXPMultiplierValue}
-					name={'currentEXPMultiplierValue'}
-					onChange={props.onChange}
-				>
-					{multiplierList}
-				</Form.Control>
-			</Form.Group>
-			<Form.Group controlId='Custom EXP Value'>
-				<Form.Label>Custom EXP: </Form.Label>
-				<Form.Control
-					name='currentEXP'
-					type='number'
-					value={props.currentEXP}
-					onChange={props.onChange}
-				/>
-			</Form.Group>
-		</div>
+		<Form.Row>
+			<Col xl='2'>
+				<Form.Group controlId='EXP Multiplier Value'>
+					<Form.Label column='sm'>EXP Multiplier: </Form.Label>
+					<Form.Control as='select'
+						size='sm'
+						value={props.currentEXPMultiplierValue}
+						name={'currentEXPMultiplierValue'}
+						onChange={props.onChange}
+					>
+						{multiplierList}
+					</Form.Control>
+				</Form.Group>
+			</Col>
+			<Col xl='2'>
+				<Form.Group controlId='Custom EXP Value'>
+					<Form.Label column='sm'>Custom EXP: </Form.Label>
+					<Form.Control
+						size='sm'
+						name='currentEXP'
+						type='number'
+						value={props.currentEXP}
+						onChange={props.onChange}
+					/>
+				</Form.Group>
+			</Col>
+		</Form.Row>
 	)
 }
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import Table from 'react-bootstrap/Table'
 
 function PopupTable(props) {
 	let popupList = props.worldPopups.map((popup, index) => {
@@ -29,7 +30,7 @@ function PopupTable(props) {
 		)
 	})
 	return (
-		<table>
+		<Table striped bordered hover size='sm' variant='dark'>
 			<thead>
 				<tr>
 					<th></th>
@@ -47,7 +48,7 @@ function PopupTable(props) {
 			<tbody>
 				{popupList}
 			</tbody>
-		</table>
+		</Table>
 	)
 }
 
