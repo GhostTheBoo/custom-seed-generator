@@ -1,26 +1,29 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button'
 
 function Buttons(props) {
 	return (
 		<div>
-			<button
+			<Button variant='outline-dark'
 				name='replaceButton'
 				onClick={props.onClick}
 			>
 				REPLACE
-			</button>
-			<button
+			</Button>
+			{' '}
+			<Button variant='outline-dark'
 				name='vanillaButton'
 				onClick={props.onClick}
 			>
 				VANILLA
-			</button>
-			<button
+			</Button>
+			{' '}
+			<Button variant='outline-dark'
 				name='saveButton'
 				onClick={props.onSaveClick}
 			>
 				SAVE
-			</button>
+			</Button>
 		</div>
 	)
 }

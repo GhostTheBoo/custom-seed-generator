@@ -3,14 +3,14 @@ import Form from 'react-bootstrap/Form'
 
 import { worldsData } from './Data/typesData'
 import rewardsData from './Data/rewardsData'
-import chestsData from './Data/chestsData'
+import popupsData from './Data/popupsData'
 
 import GenericSelect from './Components/GenericSelect'
 import RewardSelect from './Components/RewardSelect'
-import ChestTable from './Components/ChestTable'
+import PopupTable from './Components/PopupTable'
 import Buttons from './Components/Buttons'
 
-class ChestPage extends React.Component {
+class PopupPage extends React.Component {
 	constructor() {
 		super()
 
@@ -18,8 +18,8 @@ class ChestPage extends React.Component {
 			currentWorld: 0,
 			currentRewardType: 0,
 			currentReward: 0,
-			allChests: chestsData.slice(),
-			currentWorldChests: chestsData[0].chests.slice(),
+			allPopups: popupsData.slice(),
+			currentWorldPopups: popupsData[0].popups.slice(),
 			pnachCodes: []
 		}
 
@@ -32,23 +32,23 @@ class ChestPage extends React.Component {
 
 	handleWorldChange(event) {
 		let nextWorld = event.target.value
-		let toBeReplacedChests = this.state.currentWorldChests.map(chest => {
-			chest.toBeReplaced = false
-			return chest
+		let toBeReplacedPopups = this.state.currentWorldPopups.map(popup => {
+			popup.toBeReplaced = false
+			return popup
 		})
-		let newAllChests = this.state.allChests.map((worldChestList, index) => {
+		let newAllPopups = this.state.allPopups.map((worldPopupList, index) => {
 			if (index === this.state.currentWorld)
 				return {
 					world: worldsData[index],
-					chests: toBeReplacedChests
+					popups: toBeReplacedPopups
 				}
-			return worldChestList
+			return worldPopupList
 		})
-		let nextWorldChests = newAllChests[nextWorld].chests.slice()
+		let nextWorldPopups = newAllPopups[nextWorld].popups.slice()
 		this.setState({
 			currentWorld: nextWorld,
-			allChests: newAllChests,
-			currentWorldChests: nextWorldChests
+			allPopups: newAllPopups,
+			currentWorldPopups: nextWorldPopups
 		})
 	}
 
@@ -64,51 +64,54 @@ class ChestPage extends React.Component {
 	}
 
 	onRowCheck(event) {
-		let toBeReplacedWorldChests = this.state.currentWorldChests.map((chest, index) => {
+		let toBeReplacedWorldPopups = this.state.currentWorldPopups.map((popup, index) => {
 			if (index === parseInt(event.target.value))
-				chest.toBeReplaced = !chest.toBeReplaced
-			return chest
+				popup.toBeReplaced = !popup.toBeReplaced
+			return popup
 		})
 		this.setState({
-			currentWorldChests: toBeReplacedWorldChests
+			currentWorldPopups: toBeReplacedWorldPopups
 		})
 	}
 
 	handleReplace(event) {
-		let replacedChests
+		let replacedPopups
 		if (event.target.name === 'replaceButton') {
-			replacedChests = this.state.currentWorldChests.map(chest => {
-				if (chest.toBeReplaced) {
-					chest.toBeReplaced = false
-					chest.isReplaced = true
-					chest.replacementReward = rewardsData[this.state.currentRewardType].rewards[this.state.currentReward].reward
-					chest.replacementIndex = rewardsData[this.state.currentRewardType].rewards[this.state.currentReward].index
+			replacedPopups = this.state.currentWorldPopups.map(popup => {
+				if (popup.toBeReplaced) {
+					if (this.state.currentRewardType === 0)
+						popup.isAbility = true
+					popup.toBeReplaced = false
+					popup.isReplaced = true
+					popup.replacementReward = rewardsData[this.state.currentRewardType].rewards[this.state.currentReward].reward
+					popup.replacementIndex = rewardsData[this.state.currentRewardType].rewards[this.state.currentReward].index
 				}
-				return chest
+				return popup
 			})
 		} else {
-			replacedChests = this.state.currentWorldChests.map(chest => {
-				if (chest.toBeReplaced) {
-					chest.toBeReplaced = false
-					chest.isReplaced = false
-					chest.replacementReward = ''
-					chest.replacementIndex = ''
+			replacedPopups = this.state.currentWorldPopups.map(popup => {
+				if (popup.toBeReplaced) {
+					popup.toBeReplaced = false
+					popup.isReplaced = false
+					popup.isAbility = false
+					popup.replacementReward = ''
+					popup.replacementIndex = ''
 				}
-				return chest
+				return popup
 			})
 		}
 		this.setState({
-			currentWorldChests: replacedChests
+			currentWorldPopups: replacedPopups
 		})
 	}
 
 	handleSave() {
-		let pnachCodes = this.state.allChests.map(worldList => {
+		let pnachCodes = this.state.allPopups.map(worldList => {
 			let ret = '// ' + worldList.world + '\n'
-			worldList.chests.forEach(chest => {
-				if (chest.isReplaced) {
-					ret += 'patch=1,EE,' + chest.vanillaAddress + ',extended,0000' + chest.replacementIndex
-					ret += ' // ' + chest.room + ', ' + chest.vanillaReward + ' is now ' + chest.replacementReward + '\n'
+			worldList.popups.forEach(popup => {
+				if (popup.isReplaced) {
+					ret += 'patch=1,EE,' + popup.vanillaAddress + ',extended,0000' + popup.replacementIndex
+					ret += ' // ' + popup.popup + ', ' + popup.vanillaReward + ' is now ' + popup.replacementReward + '\n'
 				}
 			})
 			return ret
@@ -122,7 +125,7 @@ class ChestPage extends React.Component {
 				<Form>
 					<Form.Row>
 						<GenericSelect
-							class='chest'
+							class='popup'
 							selector={'World'}
 							itemList={worldsData}
 							name={'currentWorld'}
@@ -131,7 +134,7 @@ class ChestPage extends React.Component {
 						/>
 					</Form.Row>
 					<RewardSelect
-						class='chest'
+						class='popup'
 						currentRewardType={this.state.currentRewardType}
 						rewardList={rewardsData[this.state.currentRewardType].rewards}
 						currentReward={this.state.currentReward}
@@ -140,9 +143,9 @@ class ChestPage extends React.Component {
 						onChange={this.handleChange}
 					/>
 				</Form>
-				<ChestTable
+				<PopupTable
 					currentWorld={worldsData[this.state.currentWorld]}
-					worldChests={this.state.currentWorldChests}
+					worldPopups={this.state.currentWorldPopups}
 					onRowCheck={this.onRowCheck}
 				/>
 				<Buttons
@@ -154,4 +157,4 @@ class ChestPage extends React.Component {
 	}
 }
 
-export default ChestPage
+export default PopupPage

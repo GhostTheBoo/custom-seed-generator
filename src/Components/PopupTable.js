@@ -1,8 +1,8 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table'
 
-function ChestTable(props) {
-	let chestList = props.worldChests.map((chest, index) => {
+function PopupTable(props) {
+	let popupList = props.worldPopups.map((popup, index) => {
 		let keyValue = props.currentWorld + index
 		return (
 			<tr
@@ -13,18 +13,18 @@ function ChestTable(props) {
 						type='checkbox'
 						name={props.currentWorld}
 						value={index}
-						checked={chest.toBeReplaced}
+						checked={popup.toBeReplaced}
 						onChange={props.onRowCheck}
 					/>
 				</td>
 				<td>
-					{chest.room}
+					{popup.popup}
 				</td>
 				<td>
-					{chest.vanillaReward}
+					{popup.vanillaReward}
 				</td>
 				<td>
-					{chest.replacementReward}
+					{popup.replacementReward}
 				</td>
 			</tr>
 		)
@@ -35,7 +35,7 @@ function ChestTable(props) {
 				<tr>
 					<th></th>
 					<th>
-						Room
+						Popup Description
 					</th>
 					<th>
 						Original Reward
@@ -46,10 +46,10 @@ function ChestTable(props) {
 				</tr>
 			</thead>
 			<tbody>
-				{chestList}
+				{popupList}
 			</tbody>
 		</Table>
 	)
 }
 
-export default ChestTable
+export default PopupTable

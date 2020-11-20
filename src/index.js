@@ -1,11 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
-import ChestPage from './ChestPage'
+import Navbar from './Components/Navbar.js'
 
 ReactDOM.render(
-	<div>
-		<ChestPage />
-	</div>,
+	<Navbar />,
 	document.getElementById('root')
 )
