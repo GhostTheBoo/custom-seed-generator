@@ -82,14 +82,30 @@ class FormPage extends React.Component {
 		if (event.target.name === 'replaceButton') {
 			replacedDriveFormLevels = this.state.currentDriveFormLevels.map(driveFormLevel => {
 				if (driveFormLevel.toBeReplaced) {
+					let reward = rewardsData[this.state.currentRewardType].rewards[this.state.currentReward].reward
+					let index = rewardsData[this.state.currentRewardType].rewards[this.state.currentReward].index
 					driveFormLevel.toBeReplaced = false
-					driveFormLevel.isRewardReplaced = true
-					driveFormLevel.replacementReward = rewardsData[this.state.currentRewardType].rewards[this.state.currentReward].reward
-					driveFormLevel.replacementIndex = rewardsData[this.state.currentRewardType].rewards[this.state.currentReward].index
+					if (reward !== driveFormLevel.replacementReward) {
+						if (reward === driveFormLevel.vanillaReward) {
+							driveFormLevel.isRewardReplaced = false
+							driveFormLevel.replacementReward = driveFormLevel.vanillaReward
+							driveFormLevel.replacementIndex = ''
+						} else {
+							driveFormLevel.isRewardReplaced = true
+							driveFormLevel.replacementReward = reward
+							driveFormLevel.replacementIndex = index
+						}
+					}
+
 					if (this.state.currentEXPMultiplierValue === 0)
 						driveFormLevel.replacementEXP = this.state.currentEXP
 					else
 						driveFormLevel.replacementEXP = Math.floor(driveFormLevel.vanillaEXP / this.state.currentEXPMultiplierValue)
+
+					if (driveFormLevel.replacementEXP !== driveFormLevel.vanillaEXP)
+						driveFormLevel.isEXPReplaced = true
+					else
+						driveFormLevel.isEXPReplaced = false
 				}
 				return driveFormLevel
 			})
@@ -98,7 +114,8 @@ class FormPage extends React.Component {
 				if (driveFormLevel.toBeReplaced) {
 					driveFormLevel.toBeReplaced = false
 					driveFormLevel.isRewardReplaced = false
-					driveFormLevel.replacementReward = ''
+					driveFormLevel.isEXPReplaced = false
+					driveFormLevel.replacementReward = driveFormLevel.vanillaReward
 					driveFormLevel.replacementIndex = ''
 					driveFormLevel.replacementEXP = driveFormLevel.vanillaEXP
 				}

@@ -3,8 +3,16 @@ import Table from 'react-bootstrap/Table'
 
 function BonusTable(props) {
 	let bonusList = props.bonuses.map((bonus, index) => {
+		let isReplaced = (bonus.isStatsReplaced || bonus.isSlotsReplaced || bonus.isRewardsReplaced)
+		let changeCount = (bonus.statChangeCount + bonus.slotChangeCount + bonus.rewardChangeCount)
+		let styles
+		if (isReplaced)
+			styles = { background: 'green' }
+		if (changeCount > 2)
+			styles = { background: 'red' }
 		return (
 			<tr
+				style={styles}
 				key={props.currentCharacter + ': ' + bonus.fight}
 			>
 				<td>

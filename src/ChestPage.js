@@ -79,10 +79,20 @@ class ChestPage extends React.Component {
 		if (event.target.name === 'replaceButton') {
 			replacedChests = this.state.currentWorldChests.map(chest => {
 				if (chest.toBeReplaced) {
+					let reward = rewardsData[this.state.currentRewardType].rewards[this.state.currentReward].reward
+					let index = rewardsData[this.state.currentRewardType].rewards[this.state.currentReward].index
 					chest.toBeReplaced = false
-					chest.isReplaced = true
-					chest.replacementReward = rewardsData[this.state.currentRewardType].rewards[this.state.currentReward].reward
-					chest.replacementIndex = rewardsData[this.state.currentRewardType].rewards[this.state.currentReward].index
+					if (reward !== chest.replacementReward) {
+						if (reward === chest.vanillaReward) {
+							chest.isReplaced = false
+							chest.replacementReward = chest.vanillaReward
+							chest.replacementIndex = ''
+						} else {
+							chest.isReplaced = true
+							chest.replacementReward = reward
+							chest.replacementIndex = index
+						}
+					}
 				}
 				return chest
 			})
@@ -91,7 +101,7 @@ class ChestPage extends React.Component {
 				if (chest.toBeReplaced) {
 					chest.toBeReplaced = false
 					chest.isReplaced = false
-					chest.replacementReward = ''
+					chest.replacementReward = chest.vanillaReward
 					chest.replacementIndex = ''
 				}
 				return chest

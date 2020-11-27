@@ -66,7 +66,8 @@ class EquipmentPage extends React.Component {
 	}
 
 	handleInputChange(event) {
-		const { name, value } = event.target
+		let { name, value, min, max } = event.target
+		value = Math.max(Number(min), Math.min(Number(max), Number(value)));
 		this.setState({
 			[name]: parseInt(value),
 		})
@@ -233,6 +234,8 @@ class EquipmentPage extends React.Component {
 									type='number'
 									value={this.state.currentEquipmentStrength}
 									onChange={this.handleInputChange}
+									min="0"
+									max="255"
 								/>
 							</Form.Group>
 						</Col>
@@ -245,6 +248,8 @@ class EquipmentPage extends React.Component {
 									type='number'
 									value={this.state.currentEquipmentMagic}
 									onChange={this.handleInputChange}
+									min="0"
+									max="255"
 								/>
 							</Form.Group>
 						</Col>
@@ -257,6 +262,8 @@ class EquipmentPage extends React.Component {
 									type='number'
 									value={this.state.currentEquipmentAP}
 									onChange={this.handleInputChange}
+									min="0"
+									max="255"
 								/>
 							</Form.Group>
 						</Col>
@@ -269,6 +276,8 @@ class EquipmentPage extends React.Component {
 									type='number'
 									value={this.state.currentEquipmentDefense}
 									onChange={this.handleInputChange}
+									min="0"
+									max="255"
 								/>
 							</Form.Group>
 						</Col>
@@ -283,6 +292,8 @@ class EquipmentPage extends React.Component {
 									type='number'
 									value={this.state.currentEquipmentFire}
 									onChange={this.handleInputChange}
+									min="-155"
+									max="100"
 								/>
 							</Form.Group>
 						</Col>
@@ -295,6 +306,8 @@ class EquipmentPage extends React.Component {
 									type='number'
 									value={this.state.currentEquipmentBlizzard}
 									onChange={this.handleInputChange}
+									min="-155"
+									max="100"
 								/>
 							</Form.Group>
 						</Col>
@@ -307,6 +320,8 @@ class EquipmentPage extends React.Component {
 									type='number'
 									value={this.state.currentEquipmentThunder}
 									onChange={this.handleInputChange}
+									min="-155"
+									max="100"
 								/>
 							</Form.Group>
 						</Col>
@@ -319,6 +334,8 @@ class EquipmentPage extends React.Component {
 									type='number'
 									value={this.state.currentEquipmentPhysical}
 									onChange={this.handleInputChange}
+									min="-155"
+									max="100"
 								/>
 							</Form.Group>
 						</Col>
@@ -333,6 +350,8 @@ class EquipmentPage extends React.Component {
 									type='number'
 									value={this.state.currentEquipmentDark}
 									onChange={this.handleInputChange}
+									min="-155"
+									max="100"
 								/>
 							</Form.Group>
 						</Col>
@@ -345,6 +364,8 @@ class EquipmentPage extends React.Component {
 									type='number'
 									value={this.state.currentEquipmentLight}
 									onChange={this.handleInputChange}
+									min="-155"
+									max="100"
 								/>
 							</Form.Group>
 						</Col>
@@ -357,6 +378,8 @@ class EquipmentPage extends React.Component {
 									type='number'
 									value={this.state.currentEquipmentUniversal}
 									onChange={this.handleInputChange}
+									min="-155"
+									max="100"
 								/>
 							</Form.Group>
 						</Col>

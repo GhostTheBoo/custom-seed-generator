@@ -4,8 +4,15 @@ import Table from 'react-bootstrap/Table'
 function ChestTable(props) {
 	let chestList = props.worldChests.map((chest, index) => {
 		let keyValue = props.currentWorld + index
+		let styles
+		let originalReward = ''
+		if (chest.isReplaced){
+			styles = { background: 'green' }
+			originalReward = chest.replacementReward
+		}
 		return (
 			<tr
+				style={styles}
 				key={keyValue}
 			>
 				<td>
@@ -24,7 +31,7 @@ function ChestTable(props) {
 					{chest.vanillaReward}
 				</td>
 				<td>
-					{chest.replacementReward}
+					{originalReward}
 				</td>
 			</tr>
 		)

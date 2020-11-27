@@ -4,8 +4,17 @@ import Table from 'react-bootstrap/Table'
 function PopupTable(props) {
 	let popupList = props.worldPopups.map((popup, index) => {
 		let keyValue = props.currentWorld + index
+		let styles
+		let originalReward = ''
+		if (popup.isReplaced){
+			styles = { background: 'green' }
+			originalReward = popup.replacementReward
+		}
+		if (popup.isAbility)
+			styles = { background: 'red' }
 		return (
 			<tr
+				style={styles}
 				key={keyValue}
 			>
 				<td>
@@ -24,7 +33,7 @@ function PopupTable(props) {
 					{popup.vanillaReward}
 				</td>
 				<td>
-					{popup.replacementReward}
+					{originalReward}
 				</td>
 			</tr>
 		)

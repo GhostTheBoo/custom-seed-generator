@@ -6,7 +6,7 @@ const chestsData = [
 				room: "Agrabah",
 				vanillaReward: "Dark Shard",
 				vanillaAddress: "11CDF826",
-				replacementReward: '',
+				replacementReward: "Dark Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -15,7 +15,7 @@ const chestsData = [
 				room: "Agrabah",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDF832",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -24,7 +24,7 @@ const chestsData = [
 				room: "Agrabah",
 				vanillaReward: "Hi-Potion",
 				vanillaAddress: "11CDF83E",
-				replacementReward: '',
+				replacementReward: "Hi-Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -33,7 +33,7 @@ const chestsData = [
 				room: "Agrabah",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDF84A",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -42,7 +42,7 @@ const chestsData = [
 				room: "Agrabah",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CDF856",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -51,7 +51,7 @@ const chestsData = [
 				room: "Agrabah",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDF862",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -60,7 +60,7 @@ const chestsData = [
 				room: "Agrabah",
 				vanillaReward: "Serenity Shard",
 				vanillaAddress: "11CDF86E",
-				replacementReward: '',
+				replacementReward: "Serenity Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -69,7 +69,7 @@ const chestsData = [
 				room: "Bazaar",
 				vanillaReward: "Mythril Gem",
 				vanillaAddress: "11CDF87A",
-				replacementReward: '',
+				replacementReward: "Mythril Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -78,7 +78,7 @@ const chestsData = [
 				room: "Bazaar",
 				vanillaReward: "Power Shard",
 				vanillaAddress: "11CDF886",
-				replacementReward: '',
+				replacementReward: "Power Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -87,7 +87,7 @@ const chestsData = [
 				room: "Bazaar",
 				vanillaReward: "Hi-Potion",
 				vanillaAddress: "11CDF892",
-				replacementReward: '',
+				replacementReward: "Hi-Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -96,7 +96,7 @@ const chestsData = [
 				room: "Bazaar",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDF89E",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -105,7 +105,7 @@ const chestsData = [
 				room: "Bazaar",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDF8AA",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -114,7 +114,7 @@ const chestsData = [
 				room: "Palace Walls",
 				vanillaReward: "Skill Ring",
 				vanillaAddress: "11CDF8B6",
-				replacementReward: '',
+				replacementReward: "Skill Ring",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -123,7 +123,7 @@ const chestsData = [
 				room: "Palace Walls",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CDF8C2",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -132,7 +132,7 @@ const chestsData = [
 				room: "The Cave of Wonders Entrance",
 				vanillaReward: "Power Stone",
 				vanillaAddress: "11CDF8CE",
-				replacementReward: '',
+				replacementReward: "Power Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -141,7 +141,7 @@ const chestsData = [
 				room: "The Cave of Wonders Entrance",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDF8DA",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -150,7 +150,7 @@ const chestsData = [
 				room: "Valley of Stone",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CDF8E6",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -159,7 +159,7 @@ const chestsData = [
 				room: "Valley of Stone",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDF8F2",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -168,7 +168,7 @@ const chestsData = [
 				room: "Valley of Stone",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDF8FE",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -177,7 +177,7 @@ const chestsData = [
 				room: "Valley of Stone",
 				vanillaReward: "Hi-Potion",
 				vanillaAddress: "11CDF90A",
-				replacementReward: '',
+				replacementReward: "Hi-Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -186,7 +186,7 @@ const chestsData = [
 				room: "Chasm of Challenges",
 				vanillaReward: "Cave of Wonders Map",
 				vanillaAddress: "11CDF916",
-				replacementReward: '',
+				replacementReward: "Cave of Wonders Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -195,7 +195,7 @@ const chestsData = [
 				room: "Chasm of Challenges",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDF922",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -204,7 +204,7 @@ const chestsData = [
 				room: "Treasure Room",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDF92E",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -213,7 +213,7 @@ const chestsData = [
 				room: "Treasure Room",
 				vanillaReward: "Serenity Gem",
 				vanillaAddress: "11CDF93A",
-				replacementReward: '',
+				replacementReward: "Serenity Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -222,7 +222,7 @@ const chestsData = [
 				room: "Ruined Chamber",
 				vanillaReward: "Torn Pages",
 				vanillaAddress: "11CDF946",
-				replacementReward: '',
+				replacementReward: "Torn Pages",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -231,7 +231,7 @@ const chestsData = [
 				room: "Ruined Chamber",
 				vanillaReward: "Ruins Map",
 				vanillaAddress: "11CDF952",
-				replacementReward: '',
+				replacementReward: "Ruins Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -249,7 +249,7 @@ const chestsData = [
 				room: "Courtyard",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFBF2",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -258,7 +258,7 @@ const chestsData = [
 				room: "Courtyard",
 				vanillaReward: "Hi-Potion",
 				vanillaAddress: "11CDFBFE",
-				replacementReward: '',
+				replacementReward: "Hi-Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -267,7 +267,7 @@ const chestsData = [
 				room: "Courtyard",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDFC0A",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -276,7 +276,7 @@ const chestsData = [
 				room: "Belle's Room",
 				vanillaReward: "Castle Map",
 				vanillaAddress: "11CDFC16",
-				replacementReward: '',
+				replacementReward: "Castle Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -285,7 +285,7 @@ const chestsData = [
 				room: "Belle's Room",
 				vanillaReward: "Mega Recipe",
 				vanillaAddress: "11CDFC22",
-				replacementReward: '',
+				replacementReward: "Mega Recipe",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -294,7 +294,7 @@ const chestsData = [
 				room: "The East Wing",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDFC2E",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -303,7 +303,7 @@ const chestsData = [
 				room: "The East Wing",
 				vanillaReward: "Tent",
 				vanillaAddress: "11CDFC3A",
-				replacementReward: '',
+				replacementReward: "Tent",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -312,7 +312,7 @@ const chestsData = [
 				room: "The West Hall",
 				vanillaReward: "Hi-Potion",
 				vanillaAddress: "11CDFC46",
-				replacementReward: '',
+				replacementReward: "Hi-Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -321,7 +321,7 @@ const chestsData = [
 				room: "The West Hall",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDFC52",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -330,7 +330,7 @@ const chestsData = [
 				room: "The West Hall",
 				vanillaReward: "Power Shard",
 				vanillaAddress: "11CDFC5E",
-				replacementReward: '',
+				replacementReward: "Power Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -339,7 +339,7 @@ const chestsData = [
 				room: "The West Hall",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDFC6A",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -348,7 +348,7 @@ const chestsData = [
 				room: "The West Hall",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFC76",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -357,7 +357,7 @@ const chestsData = [
 				room: "The West Hall",
 				vanillaReward: "Bright Stone",
 				vanillaAddress: "11CDFC82",
-				replacementReward: '',
+				replacementReward: "Bright Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -366,7 +366,7 @@ const chestsData = [
 				room: "Dungeon",
 				vanillaReward: "Basement Map",
 				vanillaAddress: "11CDFC8E",
-				replacementReward: '',
+				replacementReward: "Basement Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -375,7 +375,7 @@ const chestsData = [
 				room: "Dungeon",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFC9A",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -384,7 +384,7 @@ const chestsData = [
 				room: "Secret Passage",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDFCA6",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -393,7 +393,7 @@ const chestsData = [
 				room: "Secret Passage",
 				vanillaReward: "Hi-Potion",
 				vanillaAddress: "11CDFCB2",
-				replacementReward: '',
+				replacementReward: "Hi-Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -402,7 +402,7 @@ const chestsData = [
 				room: "Secret Passage",
 				vanillaReward: "Lucid Shard",
 				vanillaAddress: "11CDFCBE",
-				replacementReward: '',
+				replacementReward: "Lucid Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -411,7 +411,7 @@ const chestsData = [
 				room: "The West Wing",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDFCCA",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -420,7 +420,7 @@ const chestsData = [
 				room: "The West Wing",
 				vanillaReward: "Tent",
 				vanillaAddress: "11CDFCD6",
-				replacementReward: '',
+				replacementReward: "Tent",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -429,7 +429,7 @@ const chestsData = [
 				room: "The Beast's Room",
 				vanillaReward: "Blazing Shard",
 				vanillaAddress: "11CDFCE2",
-				replacementReward: '',
+				replacementReward: "Blazing Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -443,7 +443,7 @@ const chestsData = [
 				room: "Depths",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CE04E6",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -452,7 +452,7 @@ const chestsData = [
 				room: "Depths",
 				vanillaReward: "Power Crystal",
 				vanillaAddress: "11CE04F2",
-				replacementReward: '',
+				replacementReward: "Power Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -461,7 +461,7 @@ const chestsData = [
 				room: "Depths",
 				vanillaReward: "Frost Crystal",
 				vanillaAddress: "11CE04FE",
-				replacementReward: '',
+				replacementReward: "Frost Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -470,7 +470,7 @@ const chestsData = [
 				room: "Depths",
 				vanillaReward: "Manifest Illusion",
 				vanillaAddress: "11CE050A",
-				replacementReward: '',
+				replacementReward: "Manifest Illusion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -479,7 +479,7 @@ const chestsData = [
 				room: "Depths",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CE0516",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -488,7 +488,7 @@ const chestsData = [
 				room: "Depths Upper Level",
 				vanillaReward: "Remembrance Gem",
 				vanillaAddress: "11CE0522",
-				replacementReward: '',
+				replacementReward: "Remembrance Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -497,7 +497,7 @@ const chestsData = [
 				room: "Mining Area",
 				vanillaReward: "Serenity Gem",
 				vanillaAddress: "11CE052E",
-				replacementReward: '',
+				replacementReward: "Serenity Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -506,7 +506,7 @@ const chestsData = [
 				room: "Mining Area",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CE053A",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -515,7 +515,7 @@ const chestsData = [
 				room: "Mining Area",
 				vanillaReward: "Serenity Crystal",
 				vanillaAddress: "11CE0546",
-				replacementReward: '',
+				replacementReward: "Serenity Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -524,7 +524,7 @@ const chestsData = [
 				room: "Mining Area",
 				vanillaReward: "Manifest Illusion",
 				vanillaAddress: "11CE0552",
-				replacementReward: '',
+				replacementReward: "Manifest Illusion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -533,7 +533,7 @@ const chestsData = [
 				room: "Mining Area",
 				vanillaReward: "Serenity Gem",
 				vanillaAddress: "11CE055E",
-				replacementReward: '',
+				replacementReward: "Serenity Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -542,7 +542,7 @@ const chestsData = [
 				room: "Mining Area",
 				vanillaReward: "Dark Remembrance Map",
 				vanillaAddress: "11CE056A",
-				replacementReward: '',
+				replacementReward: "Dark Remembrance Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -551,7 +551,7 @@ const chestsData = [
 				room: "Engine Chamber",
 				vanillaReward: "Serenity Crystal",
 				vanillaAddress: "11CE0576",
-				replacementReward: '',
+				replacementReward: "Serenity Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -560,7 +560,7 @@ const chestsData = [
 				room: "Engine Chamber",
 				vanillaReward: "Remembrance Crystal",
 				vanillaAddress: "11CE0582",
-				replacementReward: '',
+				replacementReward: "Remembrance Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -569,7 +569,7 @@ const chestsData = [
 				room: "Engine Chamber",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CE058E",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -578,7 +578,7 @@ const chestsData = [
 				room: "Engine Chamber",
 				vanillaReward: "Manifest Illusion",
 				vanillaAddress: "11CE059A",
-				replacementReward: '',
+				replacementReward: "Manifest Illusion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -587,7 +587,7 @@ const chestsData = [
 				room: "Mineshaft Lower Level",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CE05A6",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -596,7 +596,7 @@ const chestsData = [
 				room: "Mineshaft Lower Level",
 				vanillaReward: "Depths of Remembrance Map",
 				vanillaAddress: "11CE05BE",
-				replacementReward: '',
+				replacementReward: "Depths of Remembrance Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -605,7 +605,7 @@ const chestsData = [
 				room: "Mineshaft Mid Level",
 				vanillaReward: "Power Boost",
 				vanillaAddress: "11CE05CA",
-				replacementReward: '',
+				replacementReward: "Power Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -614,7 +614,7 @@ const chestsData = [
 				room: "Mineshaft Upper Level",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CE05B2",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -623,7 +623,7 @@ const chestsData = [
 				room: "Mineshaft Upper Level",
 				vanillaReward: "Magic Boost",
 				vanillaAddress: "11CE05D6",
-				replacementReward: '',
+				replacementReward: "Magic Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -632,7 +632,7 @@ const chestsData = [
 				room: "Garden of Assemblage",
 				vanillaReward: "Garden of Assemblage Map",
 				vanillaAddress: "11CE05E2",
-				replacementReward: '',
+				replacementReward: "Garden of Assemblage Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -641,7 +641,7 @@ const chestsData = [
 				room: "Garden of Assemblage",
 				vanillaReward: "Lost Illusion",
 				vanillaAddress: "11CE05EE",
-				replacementReward: '',
+				replacementReward: "Lost Illusion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -650,7 +650,7 @@ const chestsData = [
 				room: "Garden of Assemblage",
 				vanillaReward: "Proof of Nonexistence",
 				vanillaAddress: "11CE05FA",
-				replacementReward: '',
+				replacementReward: "Proof of Nonexistence",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -664,7 +664,7 @@ const chestsData = [
 				room: "Courtyard",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDF9B2",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -673,7 +673,7 @@ const chestsData = [
 				room: "Courtyard",
 				vanillaReward: "Star Recipe",
 				vanillaAddress: "11CDF9BE",
-				replacementReward: '',
+				replacementReward: "Star Recipe",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -682,7 +682,7 @@ const chestsData = [
 				room: "Courtyard",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDF9CA",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -691,7 +691,7 @@ const chestsData = [
 				room: "Courtyard",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CDF9D6",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -700,7 +700,7 @@ const chestsData = [
 				room: "Courtyard",
 				vanillaReward: "Blazing Stone",
 				vanillaAddress: "11CDF9E2",
-				replacementReward: '',
+				replacementReward: "Blazing Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -709,7 +709,7 @@ const chestsData = [
 				room: "Courtyard",
 				vanillaReward: "Blazing Shard",
 				vanillaAddress: "11CDF9EE",
-				replacementReward: '',
+				replacementReward: "Blazing Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -718,7 +718,7 @@ const chestsData = [
 				room: "Courtyard",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDF9FA",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -727,7 +727,7 @@ const chestsData = [
 				room: "Library",
 				vanillaReward: "Torn Pages",
 				vanillaAddress: "11CDFA06",
-				replacementReward: '',
+				replacementReward: "Torn Pages",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -741,7 +741,7 @@ const chestsData = [
 				room: "Graveyard",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDFD96",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -750,7 +750,7 @@ const chestsData = [
 				room: "Graveyard",
 				vanillaReward: "Serenity Gem",
 				vanillaAddress: "11CDFDA2",
-				replacementReward: '',
+				replacementReward: "Serenity Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -759,7 +759,7 @@ const chestsData = [
 				room: "Dr. Finklestein's Lab",
 				vanillaReward: "Halloween Town Map",
 				vanillaAddress: "11CDFDAE",
-				replacementReward: '',
+				replacementReward: "Halloween Town Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -768,7 +768,7 @@ const chestsData = [
 				room: "Halloween Town Square",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CDFDBA",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -777,7 +777,7 @@ const chestsData = [
 				room: "Halloween Town Square",
 				vanillaReward: "Energy Shard",
 				vanillaAddress: "11CDFDC6",
-				replacementReward: '',
+				replacementReward: "Energy Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -786,7 +786,7 @@ const chestsData = [
 				room: "Hinterlands",
 				vanillaReward: "Lightning Shard",
 				vanillaAddress: "11CDFDD2",
-				replacementReward: '',
+				replacementReward: "Lightning Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -795,7 +795,7 @@ const chestsData = [
 				room: "Hinterlands",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CDFDDE",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -804,7 +804,7 @@ const chestsData = [
 				room: "Hinterlands",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFDEA",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -813,7 +813,7 @@ const chestsData = [
 				room: "Candy Cane Lane",
 				vanillaReward: "Mega Potion",
 				vanillaAddress: "11CDFDF6",
-				replacementReward: '',
+				replacementReward: "Mega Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -822,7 +822,7 @@ const chestsData = [
 				room: "Candy Cane Lane",
 				vanillaReward: "Mythril Gem",
 				vanillaAddress: "11CDFE02",
-				replacementReward: '',
+				replacementReward: "Mythril Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -831,7 +831,7 @@ const chestsData = [
 				room: "Candy Cane Lane",
 				vanillaReward: "Lightning Stone",
 				vanillaAddress: "11CDFE0E",
-				replacementReward: '',
+				replacementReward: "Lightning Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -840,7 +840,7 @@ const chestsData = [
 				room: "Candy Cane Lane",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CDFE1A",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -849,7 +849,7 @@ const chestsData = [
 				room: "Santa's House",
 				vanillaReward: "Christmas Town Map",
 				vanillaAddress: "11CDFE26",
-				replacementReward: '',
+				replacementReward: "Christmas Town Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -858,7 +858,7 @@ const chestsData = [
 				room: "Santa's House",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFE32",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -872,7 +872,7 @@ const chestsData = [
 				room: "Borough",
 				vanillaReward: "Drive Recovery",
 				vanillaAddress: "11CDFF3A",
-				replacementReward: '',
+				replacementReward: "Drive Recovery",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -881,7 +881,7 @@ const chestsData = [
 				room: "Borough",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFF46",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -890,7 +890,7 @@ const chestsData = [
 				room: "Borough",
 				vanillaReward: "Hi-Potion",
 				vanillaAddress: "11CDFF52",
-				replacementReward: '',
+				replacementReward: "Hi-Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -899,7 +899,7 @@ const chestsData = [
 				room: "Borough",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDFF5E",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -908,7 +908,7 @@ const chestsData = [
 				room: "Borough",
 				vanillaReward: "Dark Shard",
 				vanillaAddress: "11CDFF6A",
-				replacementReward: '',
+				replacementReward: "Dark Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -917,7 +917,7 @@ const chestsData = [
 				room: "Postern",
 				vanillaReward: "Castle Perimeter Map",
 				vanillaAddress: "11CDFF76",
-				replacementReward: '',
+				replacementReward: "Castle Perimeter Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -926,7 +926,7 @@ const chestsData = [
 				room: "Postern",
 				vanillaReward: "Mythril Gem",
 				vanillaAddress: "11CDFF82",
-				replacementReward: '',
+				replacementReward: "Mythril Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -935,7 +935,7 @@ const chestsData = [
 				room: "Postern",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFF8E",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -944,7 +944,7 @@ const chestsData = [
 				room: "Corridors",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CDFF9A",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -953,7 +953,7 @@ const chestsData = [
 				room: "Corridors",
 				vanillaReward: "Mythril Crystal",
 				vanillaAddress: "11CDFFA6",
-				replacementReward: '',
+				replacementReward: "Mythril Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -962,7 +962,7 @@ const chestsData = [
 				room: "Corridors",
 				vanillaReward: "Dark Crystal",
 				vanillaAddress: "11CDFFB2",
-				replacementReward: '',
+				replacementReward: "Dark Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -971,7 +971,7 @@ const chestsData = [
 				room: "Corridors",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFFBE",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -980,7 +980,7 @@ const chestsData = [
 				room: "Ansem's Study",
 				vanillaReward: "Skill Recipe",
 				vanillaAddress: "11CDFFCA",
-				replacementReward: '',
+				replacementReward: "Skill Recipe",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -989,7 +989,7 @@ const chestsData = [
 				room: "Ansem's Study",
 				vanillaReward: "Ukulele Charm",
 				vanillaAddress: "11CDFFD6",
-				replacementReward: '',
+				replacementReward: "Ukulele Charm",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -998,7 +998,7 @@ const chestsData = [
 				room: "Restoration Site",
 				vanillaReward: "Moon Recipe",
 				vanillaAddress: "11CDFFE2",
-				replacementReward: '',
+				replacementReward: "Moon Recipe",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1007,7 +1007,7 @@ const chestsData = [
 				room: "Restoration Site",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFFEE",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1016,7 +1016,7 @@ const chestsData = [
 				room: "Crystal Fissure",
 				vanillaReward: "Torn Pages",
 				vanillaAddress: "11CDFFFA",
-				replacementReward: '',
+				replacementReward: "Torn Pages",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1025,7 +1025,7 @@ const chestsData = [
 				room: "Crystal Fissure",
 				vanillaReward: "The Great Maw Map",
 				vanillaAddress: "11CE0006",
-				replacementReward: '',
+				replacementReward: "The Great Maw Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1034,7 +1034,7 @@ const chestsData = [
 				room: "Crystal Fissure",
 				vanillaReward: "Energy Crystal",
 				vanillaAddress: "11CE0012",
-				replacementReward: '',
+				replacementReward: "Energy Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1043,7 +1043,7 @@ const chestsData = [
 				room: "Crystal Fissure",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CE001E",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1052,7 +1052,7 @@ const chestsData = [
 				room: "Postern",
 				vanillaReward: "Gull Wing",
 				vanillaAddress: "11CE002A",
-				replacementReward: '',
+				replacementReward: "Gull Wing",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1061,7 +1061,7 @@ const chestsData = [
 				room: "Heartless Manufactory",
 				vanillaReward: "Cosmic Chain",
 				vanillaAddress: "11CE0036",
-				replacementReward: '',
+				replacementReward: "Cosmic Chain",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1075,7 +1075,7 @@ const chestsData = [
 				room: "Bamboo Grove",
 				vanillaReward: "Dark Shard",
 				vanillaAddress: "11CDF72A",
-				replacementReward: '',
+				replacementReward: "Dark Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1084,7 +1084,7 @@ const chestsData = [
 				room: "Bamboo Grove",
 				vanillaReward: "Ether",
 				vanillaAddress: "11CDF736",
-				replacementReward: '',
+				replacementReward: "Ether",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1093,7 +1093,7 @@ const chestsData = [
 				room: "Bamboo Grove",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDF742",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1102,7 +1102,7 @@ const chestsData = [
 				room: "Checkpoint",
 				vanillaReward: "Hi-Potion",
 				vanillaAddress: "11CDF74E",
-				replacementReward: '',
+				replacementReward: "Hi-Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1111,7 +1111,7 @@ const chestsData = [
 				room: "Checkpoint",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDF75A",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1120,7 +1120,7 @@ const chestsData = [
 				room: "Mountain Trail",
 				vanillaReward: "Lightning Shard",
 				vanillaAddress: "11CDF766",
-				replacementReward: '',
+				replacementReward: "Lightning Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1129,7 +1129,7 @@ const chestsData = [
 				room: "Mountain Trail",
 				vanillaReward: "Recovery Recipe",
 				vanillaAddress: "11CDF772",
-				replacementReward: '',
+				replacementReward: "Recovery Recipe",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1138,7 +1138,7 @@ const chestsData = [
 				room: "Mountain Trail",
 				vanillaReward: "Ether",
 				vanillaAddress: "11CDF77E",
-				replacementReward: '',
+				replacementReward: "Ether",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1147,7 +1147,7 @@ const chestsData = [
 				room: "Mountain Trail",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDF78A",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1156,7 +1156,7 @@ const chestsData = [
 				room: "Village Cave",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDF796",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1165,7 +1165,7 @@ const chestsData = [
 				room: "Village Cave",
 				vanillaReward: "Dark Shard",
 				vanillaAddress: "11CDF7A2",
-				replacementReward: '',
+				replacementReward: "Dark Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1174,7 +1174,7 @@ const chestsData = [
 				room: "Ridge",
 				vanillaReward: "Frost Shard",
 				vanillaAddress: "11CDF7AE",
-				replacementReward: '',
+				replacementReward: "Frost Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1183,7 +1183,7 @@ const chestsData = [
 				room: "Ridge",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDF7BA",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1192,7 +1192,7 @@ const chestsData = [
 				room: "Throne Room",
 				vanillaReward: "Torn Pages",
 				vanillaAddress: "11CDF7C6",
-				replacementReward: '',
+				replacementReward: "Torn Pages",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1201,7 +1201,7 @@ const chestsData = [
 				room: "Throne Room",
 				vanillaReward: "Palace Map",
 				vanillaAddress: "11CDF7D2",
-				replacementReward: '',
+				replacementReward: "Palace Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1210,7 +1210,7 @@ const chestsData = [
 				room: "Throne Room",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDF7DE",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1219,7 +1219,7 @@ const chestsData = [
 				room: "Throne Room",
 				vanillaReward: "Queen Recipe",
 				vanillaAddress: "11CDF7EA",
-				replacementReward: '',
+				replacementReward: "Queen Recipe",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1228,7 +1228,7 @@ const chestsData = [
 				room: "Throne Room",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDF7F6",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1237,7 +1237,7 @@ const chestsData = [
 				room: "Throne Room",
 				vanillaReward: "Ogre Shield",
 				vanillaAddress: "11CDF802",
-				replacementReward: '',
+				replacementReward: "Ogre Shield",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1246,7 +1246,7 @@ const chestsData = [
 				room: "Throne Room",
 				vanillaReward: "Mythril Crystal",
 				vanillaAddress: "11CDF80E",
-				replacementReward: '',
+				replacementReward: "Mythril Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1255,7 +1255,7 @@ const chestsData = [
 				room: "Throne Room",
 				vanillaReward: "Orichalcum",
 				vanillaAddress: "11CDF81A",
-				replacementReward: '',
+				replacementReward: "Orichalcum",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1269,7 +1269,7 @@ const chestsData = [
 				room: "Underworld Entrance",
 				vanillaReward: "Power Boost",
 				vanillaAddress: "11CDFB02",
-				replacementReward: '',
+				replacementReward: "Power Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1278,7 +1278,7 @@ const chestsData = [
 				room: "Passage",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDFB0E",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1287,7 +1287,7 @@ const chestsData = [
 				room: "Passage",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CDFB1A",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1296,7 +1296,7 @@ const chestsData = [
 				room: "Passage",
 				vanillaReward: "Ether",
 				vanillaAddress: "11CDFB26",
-				replacementReward: '',
+				replacementReward: "Ether",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1305,7 +1305,7 @@ const chestsData = [
 				room: "Passage",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFB32",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1314,7 +1314,7 @@ const chestsData = [
 				room: "Passage",
 				vanillaReward: "Hi-Potion",
 				vanillaAddress: "11CDFB3E",
-				replacementReward: '',
+				replacementReward: "Hi-Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1323,7 +1323,7 @@ const chestsData = [
 				room: "Inner Chamber",
 				vanillaReward: "Underworld Map",
 				vanillaAddress: "11CDFB4A",
-				replacementReward: '',
+				replacementReward: "Underworld Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1332,7 +1332,7 @@ const chestsData = [
 				room: "Inner Chamber",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDFB56",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1341,7 +1341,7 @@ const chestsData = [
 				room: "Caverns Entrance",
 				vanillaReward: "Lucid Shard",
 				vanillaAddress: "11CDFB62",
-				replacementReward: '',
+				replacementReward: "Lucid Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1350,7 +1350,7 @@ const chestsData = [
 				room: "Caverns Entrance",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFB6E",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1359,7 +1359,7 @@ const chestsData = [
 				room: "Caverns Entrance",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDFB7A",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1368,7 +1368,7 @@ const chestsData = [
 				room: "The Lost Road",
 				vanillaReward: "Bright Shard",
 				vanillaAddress: "11CDFB86",
-				replacementReward: '',
+				replacementReward: "Bright Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1377,7 +1377,7 @@ const chestsData = [
 				room: "The Lost Road",
 				vanillaReward: "Ether",
 				vanillaAddress: "11CDFB92",
-				replacementReward: '',
+				replacementReward: "Ether",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1386,7 +1386,7 @@ const chestsData = [
 				room: "The Lost Road",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDFB9E",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1395,7 +1395,7 @@ const chestsData = [
 				room: "The Lost Road",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CDFBAA",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1404,7 +1404,7 @@ const chestsData = [
 				room: "Atrium",
 				vanillaReward: "Lucid Stone",
 				vanillaAddress: "11CDFBB6",
-				replacementReward: '',
+				replacementReward: "Lucid Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1413,7 +1413,7 @@ const chestsData = [
 				room: "Atrium",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFBC2",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1422,7 +1422,7 @@ const chestsData = [
 				room: "The Lock",
 				vanillaReward: "Caverns Map",
 				vanillaAddress: "11CDFBCE",
-				replacementReward: '',
+				replacementReward: "Caverns Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1431,7 +1431,7 @@ const chestsData = [
 				room: "The Lock",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDFBDA",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1440,7 +1440,7 @@ const chestsData = [
 				room: "The Lock",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFBE6",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1458,7 +1458,7 @@ const chestsData = [
 				room: "Pooh Bear's House",
 				vanillaReward: "Hundred Acre Wood Map",
 				vanillaAddress: "11CDFA12",
-				replacementReward: '',
+				replacementReward: "Hundred Acre Wood Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1467,7 +1467,7 @@ const chestsData = [
 				room: "Pooh Bear's House",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFA1E",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1476,7 +1476,7 @@ const chestsData = [
 				room: "Pooh Bear's House",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CDFA2A",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1485,7 +1485,7 @@ const chestsData = [
 				room: "Piglet's House",
 				vanillaReward: "Defense Boost",
 				vanillaAddress: "11CDFA36",
-				replacementReward: '',
+				replacementReward: "Defense Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1494,7 +1494,7 @@ const chestsData = [
 				room: "Piglet's House",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFA42",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1503,7 +1503,7 @@ const chestsData = [
 				room: "Piglet's House",
 				vanillaReward: "Mythril Gem",
 				vanillaAddress: "11CDFA4E",
-				replacementReward: '',
+				replacementReward: "Mythril Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1512,7 +1512,7 @@ const chestsData = [
 				room: "Rabbit's House",
 				vanillaReward: "Draw Ring",
 				vanillaAddress: "11CDFA5A",
-				replacementReward: '',
+				replacementReward: "Draw Ring",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1521,7 +1521,7 @@ const chestsData = [
 				room: "Rabbit's House",
 				vanillaReward: "Mythril Crystal",
 				vanillaAddress: "11CDFA66",
-				replacementReward: '',
+				replacementReward: "Mythril Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1530,7 +1530,7 @@ const chestsData = [
 				room: "Rabbit's House",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFA72",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1539,7 +1539,7 @@ const chestsData = [
 				room: "Kanga's House",
 				vanillaReward: "Magic Boost",
 				vanillaAddress: "11CDFA7E",
-				replacementReward: '',
+				replacementReward: "Magic Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1548,7 +1548,7 @@ const chestsData = [
 				room: "Kanga's House",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFA8A",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1557,7 +1557,7 @@ const chestsData = [
 				room: "Kanga's House",
 				vanillaReward: "Orichalcum",
 				vanillaAddress: "11CDFA96",
-				replacementReward: '',
+				replacementReward: "Orichalcum",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1566,7 +1566,7 @@ const chestsData = [
 				room: "The Spooky Cave",
 				vanillaReward: "Mythril Gem",
 				vanillaAddress: "11CDFAA2",
-				replacementReward: '',
+				replacementReward: "Mythril Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1575,7 +1575,7 @@ const chestsData = [
 				room: "The Spooky Cave",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFAAE",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1584,7 +1584,7 @@ const chestsData = [
 				room: "The Spooky Cave",
 				vanillaReward: "Orichalcum",
 				vanillaAddress: "11CDFABA",
-				replacementReward: '',
+				replacementReward: "Orichalcum",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1593,7 +1593,7 @@ const chestsData = [
 				room: "The Spooky Cave",
 				vanillaReward: "Guard Recipe",
 				vanillaAddress: "11CDFAC6",
-				replacementReward: '',
+				replacementReward: "Guard Recipe",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1602,7 +1602,7 @@ const chestsData = [
 				room: "The Spooky Cave",
 				vanillaReward: "Mythril Crystal",
 				vanillaAddress: "11CDFAD2",
-				replacementReward: '',
+				replacementReward: "Mythril Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1611,7 +1611,7 @@ const chestsData = [
 				room: "The Spooky Cave",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFADE",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1620,7 +1620,7 @@ const chestsData = [
 				room: "Starry Hill",
 				vanillaReward: "Cosmic Ring",
 				vanillaAddress: "11CDFAEA",
-				replacementReward: '',
+				replacementReward: "Cosmic Ring",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1629,7 +1629,7 @@ const chestsData = [
 				room: "Starry Hill",
 				vanillaReward: "Style Recipe",
 				vanillaAddress: "11CDFAF6",
-				replacementReward: '',
+				replacementReward: "Style Recipe",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1643,7 +1643,7 @@ const chestsData = [
 				room: "Rampart",
 				vanillaReward: "Naval Map",
 				vanillaAddress: "11CDFE3E",
-				replacementReward: '',
+				replacementReward: "Naval Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1652,7 +1652,7 @@ const chestsData = [
 				room: "Rampart",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CDFE4A",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1661,7 +1661,7 @@ const chestsData = [
 				room: "Rampart",
 				vanillaReward: "Dark Shard",
 				vanillaAddress: "11CDFE56",
-				replacementReward: '',
+				replacementReward: "Dark Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1670,7 +1670,7 @@ const chestsData = [
 				room: "Town",
 				vanillaReward: "Dark Stone",
 				vanillaAddress: "11CDFE62",
-				replacementReward: '',
+				replacementReward: "Dark Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1679,7 +1679,7 @@ const chestsData = [
 				room: "Town",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFE6E",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1688,7 +1688,7 @@ const chestsData = [
 				room: "Town",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDFE7A",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1697,7 +1697,7 @@ const chestsData = [
 				room: "Town",
 				vanillaReward: "Mythril Gem",
 				vanillaAddress: "11CDFE86",
-				replacementReward: '',
+				replacementReward: "Mythril Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1706,7 +1706,7 @@ const chestsData = [
 				room: "Cave Mouth",
 				vanillaReward: "Bright Shard",
 				vanillaAddress: "11CDFE92",
-				replacementReward: '',
+				replacementReward: "Bright Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1715,7 +1715,7 @@ const chestsData = [
 				room: "Cave Mouth",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDFE9E",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1724,7 +1724,7 @@ const chestsData = [
 				room: "Powder Store",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFEAA",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1733,7 +1733,7 @@ const chestsData = [
 				room: "Powder Store",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFEB6",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1742,7 +1742,7 @@ const chestsData = [
 				room: "Moonlight Nook",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDFEC2",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1751,7 +1751,7 @@ const chestsData = [
 				room: "Moonlight Nook",
 				vanillaReward: "Serenity Gem",
 				vanillaAddress: "11CDFECE",
-				replacementReward: '',
+				replacementReward: "Serenity Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1760,7 +1760,7 @@ const chestsData = [
 				room: "Moonlight Nook",
 				vanillaReward: "Power Stone",
 				vanillaAddress: "11CDFEDA",
-				replacementReward: '',
+				replacementReward: "Power Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1769,7 +1769,7 @@ const chestsData = [
 				room: "The Interceptor's Hold",
 				vanillaReward: "Feather Charm",
 				vanillaAddress: "11CDFEE6",
-				replacementReward: '',
+				replacementReward: "Feather Charm",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1778,7 +1778,7 @@ const chestsData = [
 				room: "Seadrift Keep",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFEF2",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1787,7 +1787,7 @@ const chestsData = [
 				room: "Seadrift Keep",
 				vanillaReward: "Orichalcum",
 				vanillaAddress: "11CDFEFE",
-				replacementReward: '',
+				replacementReward: "Orichalcum",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1796,7 +1796,7 @@ const chestsData = [
 				room: "Seadrift Keep",
 				vanillaReward: "Meteor Staff",
 				vanillaAddress: "11CDFF0A",
-				replacementReward: '',
+				replacementReward: "Meteor Staff",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1805,7 +1805,7 @@ const chestsData = [
 				room: "Seadrift Row",
 				vanillaReward: "Serenity Gem",
 				vanillaAddress: "11CDFF16",
-				replacementReward: '',
+				replacementReward: "Serenity Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1814,7 +1814,7 @@ const chestsData = [
 				room: "Seadrift Row",
 				vanillaReward: "King Recipe",
 				vanillaAddress: "11CDFF22",
-				replacementReward: '',
+				replacementReward: "King Recipe",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1823,7 +1823,7 @@ const chestsData = [
 				room: "Seadrift Row",
 				vanillaReward: "Mythril Crystal",
 				vanillaAddress: "11CDFF2E",
-				replacementReward: '',
+				replacementReward: "Mythril Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1837,7 +1837,7 @@ const chestsData = [
 				room: "Gorge",
 				vanillaReward: "Savannah Map",
 				vanillaAddress: "11CE0042",
-				replacementReward: '',
+				replacementReward: "Savannah Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1846,7 +1846,7 @@ const chestsData = [
 				room: "Gorge",
 				vanillaReward: "Dark Gem",
 				vanillaAddress: "11CE004E",
-				replacementReward: '',
+				replacementReward: "Dark Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1855,7 +1855,7 @@ const chestsData = [
 				room: "Gorge",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CE005A",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1864,7 +1864,7 @@ const chestsData = [
 				room: "Elephant Graveyard",
 				vanillaReward: "Frost Gem",
 				vanillaAddress: "11CE0066",
-				replacementReward: '',
+				replacementReward: "Frost Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1873,7 +1873,7 @@ const chestsData = [
 				room: "Elephant Graveyard",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CE0072",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1882,7 +1882,7 @@ const chestsData = [
 				room: "Elephant Graveyard",
 				vanillaReward: "Bright Stone",
 				vanillaAddress: "11CE007E",
-				replacementReward: '',
+				replacementReward: "Bright Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1891,7 +1891,7 @@ const chestsData = [
 				room: "Elephant Graveyard",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CE008A",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1900,7 +1900,7 @@ const chestsData = [
 				room: "Elephant Graveyard",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CE0096",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1909,7 +1909,7 @@ const chestsData = [
 				room: "Pride Rock",
 				vanillaReward: "Pride Rock Map",
 				vanillaAddress: "11CE00A2",
-				replacementReward: '',
+				replacementReward: "Pride Rock Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1918,7 +1918,7 @@ const chestsData = [
 				room: "Pride Rock",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CE00AE",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1927,7 +1927,7 @@ const chestsData = [
 				room: "Pride Rock",
 				vanillaReward: "Serenity Crystal",
 				vanillaAddress: "11CE00BA",
-				replacementReward: '',
+				replacementReward: "Serenity Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1936,7 +1936,7 @@ const chestsData = [
 				room: "Wildebeest Valley",
 				vanillaReward: "Energy Stone",
 				vanillaAddress: "11CE00C6",
-				replacementReward: '',
+				replacementReward: "Energy Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1945,7 +1945,7 @@ const chestsData = [
 				room: "Wildebeest Valley",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CE00D2",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1954,7 +1954,7 @@ const chestsData = [
 				room: "Wildebeest Valley",
 				vanillaReward: "Mythril Gem",
 				vanillaAddress: "11CE00DE",
-				replacementReward: '',
+				replacementReward: "Mythril Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1963,7 +1963,7 @@ const chestsData = [
 				room: "Wildebeest Valley",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CE00EA",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1972,7 +1972,7 @@ const chestsData = [
 				room: "Wildebeest Valley",
 				vanillaReward: "Lucid Gem",
 				vanillaAddress: "11CE00F6",
-				replacementReward: '',
+				replacementReward: "Lucid Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1981,7 +1981,7 @@ const chestsData = [
 				room: "Wastelands",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CE0102",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1990,7 +1990,7 @@ const chestsData = [
 				room: "Wastelands",
 				vanillaReward: "Serenity Gem",
 				vanillaAddress: "11CE010E",
-				replacementReward: '',
+				replacementReward: "Serenity Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -1999,7 +1999,7 @@ const chestsData = [
 				room: "Wastelands",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CE011A",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2008,7 +2008,7 @@ const chestsData = [
 				room: "Jungle",
 				vanillaReward: "Serenity Gem",
 				vanillaAddress: "11CE0126",
-				replacementReward: '',
+				replacementReward: "Serenity Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2017,7 +2017,7 @@ const chestsData = [
 				room: "Jungle",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CE0132",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2026,7 +2026,7 @@ const chestsData = [
 				room: "Jungle",
 				vanillaReward: "Serenity Crystal",
 				vanillaAddress: "11CE013E",
-				replacementReward: '',
+				replacementReward: "Serenity Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2035,7 +2035,7 @@ const chestsData = [
 				room: "Oasis",
 				vanillaReward: "Oasis Map",
 				vanillaAddress: "11CE014A",
-				replacementReward: '',
+				replacementReward: "Oasis Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2044,7 +2044,7 @@ const chestsData = [
 				room: "Oasis",
 				vanillaReward: "Torn Pages",
 				vanillaAddress: "11CE0156",
-				replacementReward: '',
+				replacementReward: "Torn Pages",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2053,7 +2053,7 @@ const chestsData = [
 				room: "Oasis",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CE0162",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2067,7 +2067,7 @@ const chestsData = [
 				room: "Station of Serenity",
 				vanillaReward: "Potion",
 				vanillaAddress: "11CE016E",
-				replacementReward: '',
+				replacementReward: "Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2076,7 +2076,7 @@ const chestsData = [
 				room: "Station of Calling",
 				vanillaReward: "Potion",
 				vanillaAddress: "11CE017A",
-				replacementReward: '',
+				replacementReward: "Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2085,7 +2085,7 @@ const chestsData = [
 				room: "Central Station",
 				vanillaReward: "Potion",
 				vanillaAddress: "11CE0186",
-				replacementReward: '',
+				replacementReward: "Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2094,7 +2094,7 @@ const chestsData = [
 				room: "Central Station",
 				vanillaReward: "Hi-Potion",
 				vanillaAddress: "11CE0192",
-				replacementReward: '',
+				replacementReward: "Hi-Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2103,7 +2103,7 @@ const chestsData = [
 				room: "Central Station",
 				vanillaReward: "Potion",
 				vanillaAddress: "11CE019E",
-				replacementReward: '',
+				replacementReward: "Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2112,7 +2112,7 @@ const chestsData = [
 				room: "Sunset Terrace",
 				vanillaReward: "Ability Ring",
 				vanillaAddress: "11CE01AA",
-				replacementReward: '',
+				replacementReward: "Ability Ring",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2121,7 +2121,7 @@ const chestsData = [
 				room: "Sunset Terrace",
 				vanillaReward: "Hi-Potion",
 				vanillaAddress: "11CE01B6",
-				replacementReward: '',
+				replacementReward: "Hi-Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2130,7 +2130,7 @@ const chestsData = [
 				room: "Sunset Terrace",
 				vanillaReward: "Potion",
 				vanillaAddress: "11CE01C2",
-				replacementReward: '',
+				replacementReward: "Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2139,7 +2139,7 @@ const chestsData = [
 				room: "Sunset Terrace",
 				vanillaReward: "Potion",
 				vanillaAddress: "11CE01CE",
-				replacementReward: '',
+				replacementReward: "Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2148,7 +2148,7 @@ const chestsData = [
 				room: "Mansion Foyer",
 				vanillaReward: "Potion",
 				vanillaAddress: "11CE01DA",
-				replacementReward: '',
+				replacementReward: "Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2157,7 +2157,7 @@ const chestsData = [
 				room: "Mansion Foyer",
 				vanillaReward: "Potion",
 				vanillaAddress: "11CE01E6",
-				replacementReward: '',
+				replacementReward: "Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2166,7 +2166,7 @@ const chestsData = [
 				room: "Mansion Foyer",
 				vanillaReward: "Potion",
 				vanillaAddress: "11CE01F2",
-				replacementReward: '',
+				replacementReward: "Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2175,7 +2175,7 @@ const chestsData = [
 				room: "Mansion Dining Room",
 				vanillaReward: "Elven Bandana",
 				vanillaAddress: "11CE01FE",
-				replacementReward: '',
+				replacementReward: "Elven Bandana",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2184,7 +2184,7 @@ const chestsData = [
 				room: "Mansion Dining Room",
 				vanillaReward: "Potion",
 				vanillaAddress: "11CE020A",
-				replacementReward: '',
+				replacementReward: "Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2193,7 +2193,7 @@ const chestsData = [
 				room: "Mansion Library",
 				vanillaReward: "Hi-Potion",
 				vanillaAddress: "11CE0216",
-				replacementReward: '',
+				replacementReward: "Hi-Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2202,7 +2202,7 @@ const chestsData = [
 				room: "Mansion Basement Corridor",
 				vanillaReward: "Hi-Potion",
 				vanillaAddress: "11CE0222",
-				replacementReward: '',
+				replacementReward: "Hi-Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2216,7 +2216,7 @@ const chestsData = [
 				room: "Pit Cell",
 				vanillaReward: "Pit Cell Area Map",
 				vanillaAddress: "11CDFCEE",
-				replacementReward: '',
+				replacementReward: "Pit Cell Area Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2225,7 +2225,7 @@ const chestsData = [
 				room: "Pit Cell",
 				vanillaReward: "Mythril Crystal",
 				vanillaAddress: "11CDFCFA",
-				replacementReward: '',
+				replacementReward: "Mythril Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2234,7 +2234,7 @@ const chestsData = [
 				room: "Canyon",
 				vanillaReward: "Dark Crystal",
 				vanillaAddress: "11CDFD06",
-				replacementReward: '',
+				replacementReward: "Dark Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2243,7 +2243,7 @@ const chestsData = [
 				room: "Canyon",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CDFD12",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2252,7 +2252,7 @@ const chestsData = [
 				room: "Canyon",
 				vanillaReward: "Mythril Gem",
 				vanillaAddress: "11CDFD1E",
-				replacementReward: '',
+				replacementReward: "Mythril Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2261,7 +2261,7 @@ const chestsData = [
 				room: "Canyon",
 				vanillaReward: "Frost Crystal",
 				vanillaAddress: "11CDFD2A",
-				replacementReward: '',
+				replacementReward: "Frost Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2270,7 +2270,7 @@ const chestsData = [
 				room: "Hallway",
 				vanillaReward: "Power Crystal",
 				vanillaAddress: "11CDFD36",
-				replacementReward: '',
+				replacementReward: "Power Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2279,7 +2279,7 @@ const chestsData = [
 				room: "Hallway",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFD42",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2288,7 +2288,7 @@ const chestsData = [
 				room: "Communications Room",
 				vanillaReward: "I/O Tower Map",
 				vanillaAddress: "11CDFD4E",
-				replacementReward: '',
+				replacementReward: "I/O Tower Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2297,7 +2297,7 @@ const chestsData = [
 				room: "Communications Room",
 				vanillaReward: "Gaia Belt",
 				vanillaAddress: "11CDFD5A",
-				replacementReward: '',
+				replacementReward: "Gaia Belt",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2306,7 +2306,7 @@ const chestsData = [
 				room: "Central Computer Core",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDFD66",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2315,7 +2315,7 @@ const chestsData = [
 				room: "Central Computer Core",
 				vanillaReward: "Orichalcum+",
 				vanillaAddress: "11CDFD72",
-				replacementReward: '',
+				replacementReward: "Orichalcum+",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2324,7 +2324,7 @@ const chestsData = [
 				room: "Central Computer Core",
 				vanillaReward: "Cosmic Arts",
 				vanillaAddress: "11CDFD7E",
-				replacementReward: '',
+				replacementReward: "Cosmic Arts",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2333,7 +2333,7 @@ const chestsData = [
 				room: "Central Computer Core",
 				vanillaReward: "Central Computer Core Map",
 				vanillaAddress: "11CDFD8A",
-				replacementReward: '',
+				replacementReward: "Central Computer Core Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2347,7 +2347,7 @@ const chestsData = [
 				room: "Cornerstone Hill",
 				vanillaReward: "Cornerstone Hill Map",
 				vanillaAddress: "11CDF95E",
-				replacementReward: '',
+				replacementReward: "Cornerstone Hill Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2356,7 +2356,7 @@ const chestsData = [
 				room: "Cornerstone Hill",
 				vanillaReward: "Frost Shard",
 				vanillaAddress: "11CDF96A",
-				replacementReward: '',
+				replacementReward: "Frost Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2365,7 +2365,7 @@ const chestsData = [
 				room: "Pier",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CDF976",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2374,7 +2374,7 @@ const chestsData = [
 				room: "Pier",
 				vanillaReward: "Hi-Potion",
 				vanillaAddress: "11CDF982",
-				replacementReward: '',
+				replacementReward: "Hi-Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2383,7 +2383,7 @@ const chestsData = [
 				room: "Waterway",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CDF98E",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2392,7 +2392,7 @@ const chestsData = [
 				room: "Waterway",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CDF99A",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2401,7 +2401,7 @@ const chestsData = [
 				room: "Waterway",
 				vanillaReward: "Frost Stone",
 				vanillaAddress: "11CDF9A6",
-				replacementReward: '',
+				replacementReward: "Frost Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2415,7 +2415,7 @@ const chestsData = [
 				room: "The Old Mansion",
 				vanillaReward: "Potion",
 				vanillaAddress: "11CE022E",
-				replacementReward: '',
+				replacementReward: "Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2424,7 +2424,7 @@ const chestsData = [
 				room: "The Old Mansion",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CE023A",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2433,7 +2433,7 @@ const chestsData = [
 				room: "The Woods",
 				vanillaReward: "Potion",
 				vanillaAddress: "11CE0246",
-				replacementReward: '',
+				replacementReward: "Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2442,7 +2442,7 @@ const chestsData = [
 				room: "The Woods",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CE0252",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2451,7 +2451,7 @@ const chestsData = [
 				room: "The Woods",
 				vanillaReward: "Hi-Potion",
 				vanillaAddress: "11CE025E",
-				replacementReward: '',
+				replacementReward: "Hi-Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2460,7 +2460,7 @@ const chestsData = [
 				room: "Tram Common",
 				vanillaReward: "Hi-Potion",
 				vanillaAddress: "11CE026A",
-				replacementReward: '',
+				replacementReward: "Hi-Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2469,7 +2469,7 @@ const chestsData = [
 				room: "Tram Common",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CE0276",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2478,7 +2478,7 @@ const chestsData = [
 				room: "Tram Common",
 				vanillaReward: "Tent",
 				vanillaAddress: "11CE0282",
-				replacementReward: '',
+				replacementReward: "Tent",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2487,7 +2487,7 @@ const chestsData = [
 				room: "Tram Common",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CE028E",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2496,7 +2496,7 @@ const chestsData = [
 				room: "Tram Common",
 				vanillaReward: "Potion",
 				vanillaAddress: "11CE029A",
-				replacementReward: '',
+				replacementReward: "Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2505,7 +2505,7 @@ const chestsData = [
 				room: "Tram Common",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CE02A6",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2514,7 +2514,7 @@ const chestsData = [
 				room: "Tram Common",
 				vanillaReward: "Potion",
 				vanillaAddress: "11CE02B2",
-				replacementReward: '',
+				replacementReward: "Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2523,7 +2523,7 @@ const chestsData = [
 				room: "Central Station",
 				vanillaReward: "Tent",
 				vanillaAddress: "11CE02BE",
-				replacementReward: '',
+				replacementReward: "Tent",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2532,7 +2532,7 @@ const chestsData = [
 				room: "Central Station",
 				vanillaReward: "Hi-Potion",
 				vanillaAddress: "11CE02CA",
-				replacementReward: '',
+				replacementReward: "Hi-Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2541,7 +2541,7 @@ const chestsData = [
 				room: "Central Station",
 				vanillaReward: "Ether",
 				vanillaAddress: "11CE02D6",
-				replacementReward: '',
+				replacementReward: "Ether",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2550,7 +2550,7 @@ const chestsData = [
 				room: "The Tower",
 				vanillaReward: "Potion",
 				vanillaAddress: "11CE02E2",
-				replacementReward: '',
+				replacementReward: "Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2559,7 +2559,7 @@ const chestsData = [
 				room: "The Tower",
 				vanillaReward: "Hi-Potion",
 				vanillaAddress: "11CE02EE",
-				replacementReward: '',
+				replacementReward: "Hi-Potion",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2568,7 +2568,7 @@ const chestsData = [
 				room: "The Tower",
 				vanillaReward: "Ether",
 				vanillaAddress: "11CE02FA",
-				replacementReward: '',
+				replacementReward: "Ether",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2577,7 +2577,7 @@ const chestsData = [
 				room: "Tower Entryway",
 				vanillaReward: "Ether",
 				vanillaAddress: "11CE0306",
-				replacementReward: '',
+				replacementReward: "Ether",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2586,7 +2586,7 @@ const chestsData = [
 				room: "Tower Entryway",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CE0312",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2595,7 +2595,7 @@ const chestsData = [
 				room: "Sorcerer's Loft",
 				vanillaReward: "Tower Map",
 				vanillaAddress: "11CE031E",
-				replacementReward: '',
+				replacementReward: "Tower Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2604,7 +2604,7 @@ const chestsData = [
 				room: "Tower Wardrobe",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CE032A",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2613,7 +2613,7 @@ const chestsData = [
 				room: "Underground Concourse",
 				vanillaReward: "Mythril Gem",
 				vanillaAddress: "11CE0336",
-				replacementReward: '',
+				replacementReward: "Mythril Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2622,7 +2622,7 @@ const chestsData = [
 				room: "Underground Concourse",
 				vanillaReward: "Orichalcum",
 				vanillaAddress: "11CE0342",
-				replacementReward: '',
+				replacementReward: "Orichalcum",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2631,7 +2631,7 @@ const chestsData = [
 				room: "Underground Concourse",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CE034E",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2640,7 +2640,7 @@ const chestsData = [
 				room: "Underground Concourse",
 				vanillaReward: "Mythril Crystal",
 				vanillaAddress: "11CE035A",
-				replacementReward: '',
+				replacementReward: "Mythril Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2649,7 +2649,7 @@ const chestsData = [
 				room: "Tunnelway",
 				vanillaReward: "Orichalcum",
 				vanillaAddress: "11CE0366",
-				replacementReward: '',
+				replacementReward: "Orichalcum",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2658,7 +2658,7 @@ const chestsData = [
 				room: "Tunnelway",
 				vanillaReward: "Mythril Crystal",
 				vanillaAddress: "11CE0372",
-				replacementReward: '',
+				replacementReward: "Mythril Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2667,7 +2667,7 @@ const chestsData = [
 				room: "Sunset Terrace",
 				vanillaReward: "Orichalcum+",
 				vanillaAddress: "11CE037E",
-				replacementReward: '',
+				replacementReward: "Orichalcum+",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2676,7 +2676,7 @@ const chestsData = [
 				room: "Sunset Terrace",
 				vanillaReward: "Mythril Shard",
 				vanillaAddress: "11CE038A",
-				replacementReward: '',
+				replacementReward: "Mythril Shard",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2685,7 +2685,7 @@ const chestsData = [
 				room: "Sunset Terrace",
 				vanillaReward: "Mythril Crystal",
 				vanillaAddress: "11CE0396",
-				replacementReward: '',
+				replacementReward: "Mythril Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2694,7 +2694,7 @@ const chestsData = [
 				room: "Sunset Terrace",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CE03A2",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2703,7 +2703,7 @@ const chestsData = [
 				room: "Mansion Foyer",
 				vanillaReward: "Mythril Crystal",
 				vanillaAddress: "11CE03AE",
-				replacementReward: '',
+				replacementReward: "Mythril Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2712,7 +2712,7 @@ const chestsData = [
 				room: "Mansion Foyer",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CE03BA",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2721,7 +2721,7 @@ const chestsData = [
 				room: "Mansion Foyer",
 				vanillaReward: "Serenity Crystal",
 				vanillaAddress: "11CE03C6",
-				replacementReward: '',
+				replacementReward: "Serenity Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2730,7 +2730,7 @@ const chestsData = [
 				room: "Mansion Dining Room",
 				vanillaReward: "Mythril Crystal",
 				vanillaAddress: "11CE03D2",
-				replacementReward: '',
+				replacementReward: "Mythril Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2739,7 +2739,7 @@ const chestsData = [
 				room: "Mansion Dining Room",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CE03DE",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2748,7 +2748,7 @@ const chestsData = [
 				room: "Mansion Library",
 				vanillaReward: "Orichalcum",
 				vanillaAddress: "11CE03EA",
-				replacementReward: '',
+				replacementReward: "Orichalcum",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2757,7 +2757,7 @@ const chestsData = [
 				room: "Mansion Basement Corridor",
 				vanillaReward: "Ultimate Recipe",
 				vanillaAddress: "11CE03F6",
-				replacementReward: '',
+				replacementReward: "Ultimate Recipe",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2771,7 +2771,7 @@ const chestsData = [
 				room: "Fragment Crossing",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CE0402",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2780,7 +2780,7 @@ const chestsData = [
 				room: "Fragment Crossing",
 				vanillaReward: "Mythril Crystal",
 				vanillaAddress: "11CE040E",
-				replacementReward: '',
+				replacementReward: "Mythril Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2789,7 +2789,7 @@ const chestsData = [
 				room: "Fragment Crossing",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CE041A",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2798,7 +2798,7 @@ const chestsData = [
 				room: "Fragment Crossing",
 				vanillaReward: "Orichalcum",
 				vanillaAddress: "11CE0426",
-				replacementReward: '',
+				replacementReward: "Orichalcum",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2807,7 +2807,7 @@ const chestsData = [
 				room: "Memory's Skyscraper",
 				vanillaReward: "Mythril Crystal",
 				vanillaAddress: "11CE0432",
-				replacementReward: '',
+				replacementReward: "Mythril Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2816,7 +2816,7 @@ const chestsData = [
 				room: "Memory's Skyscraper",
 				vanillaReward: "AP Boost",
 				vanillaAddress: "11CE043E",
-				replacementReward: '',
+				replacementReward: "AP Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2825,7 +2825,7 @@ const chestsData = [
 				room: "Memory's Skyscraper",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CE044A",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2834,7 +2834,7 @@ const chestsData = [
 				room: "The Brink of Despair",
 				vanillaReward: "Dark City Map",
 				vanillaAddress: "11CE0456",
-				replacementReward: '',
+				replacementReward: "Dark City Map",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2843,7 +2843,7 @@ const chestsData = [
 				room: "The Brink of Despair",
 				vanillaReward: "Orichalum+",
 				vanillaAddress: "11CE0462",
-				replacementReward: '',
+				replacementReward: "Orichalum+",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2852,7 +2852,7 @@ const chestsData = [
 				room: "Nothing's Call",
 				vanillaReward: "Mythril Gem",
 				vanillaAddress: "11CE046E",
-				replacementReward: '',
+				replacementReward: "Mythril Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2861,7 +2861,7 @@ const chestsData = [
 				room: "Nothing's Call",
 				vanillaReward: "Orichalcum",
 				vanillaAddress: "11CE047A",
-				replacementReward: '',
+				replacementReward: "Orichalcum",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2870,7 +2870,7 @@ const chestsData = [
 				room: "Twilight's View",
 				vanillaReward: "Cosmic Belt",
 				vanillaAddress: "11CE0486",
-				replacementReward: '',
+				replacementReward: "Cosmic Belt",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2879,7 +2879,7 @@ const chestsData = [
 				room: "Naught's Skyway",
 				vanillaReward: "Mythril Gem",
 				vanillaAddress: "11CE0492",
-				replacementReward: '',
+				replacementReward: "Mythril Gem",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2888,7 +2888,7 @@ const chestsData = [
 				room: "Naught's Skyway",
 				vanillaReward: "Orichalcum",
 				vanillaAddress: "11CE049E",
-				replacementReward: '',
+				replacementReward: "Orichalcum",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2897,7 +2897,7 @@ const chestsData = [
 				room: "Naught's Skyway",
 				vanillaReward: "Mythril Crystal",
 				vanillaAddress: "11CE04AA",
-				replacementReward: '',
+				replacementReward: "Mythril Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2906,7 +2906,7 @@ const chestsData = [
 				room: "Ruin and Creation's Passage",
 				vanillaReward: "Mythril Stone",
 				vanillaAddress: "11CE04B6",
-				replacementReward: '',
+				replacementReward: "Mythril Stone",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2915,7 +2915,7 @@ const chestsData = [
 				room: "Ruin and Creation's Passage",
 				vanillaReward: "Ap Boost",
 				vanillaAddress: "11CE04C2",
-				replacementReward: '',
+				replacementReward: "Ap Boost",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2924,7 +2924,7 @@ const chestsData = [
 				room: "Ruin and Creation's Passage",
 				vanillaReward: "Mythril Crystal",
 				vanillaAddress: "11CE04CE",
-				replacementReward: '',
+				replacementReward: "Mythril Crystal",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false
@@ -2933,7 +2933,7 @@ const chestsData = [
 				room: "Ruin and Creation's Passage",
 				vanillaReward: "Orichalcum",
 				vanillaAddress: "11CE04DA",
-				replacementReward: '',
+				replacementReward: "Orichalcum",
 				replacementIndex: '',
 				toBeReplaced: false,
 				isReplaced: false

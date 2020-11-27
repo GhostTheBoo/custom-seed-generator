@@ -59,7 +59,7 @@ class PopupPage extends React.Component {
 				currentReward: 0
 			})
 		this.setState({
-			[name]: value,
+			[name]: parseInt(value),
 		})
 	}
 
@@ -79,12 +79,24 @@ class PopupPage extends React.Component {
 		if (event.target.name === 'replaceButton') {
 			replacedPopups = this.state.currentWorldPopups.map(popup => {
 				if (popup.toBeReplaced) {
-					if (this.state.currentRewardType === 0)
+					let reward = rewardsData[this.state.currentRewardType].rewards[this.state.currentReward].reward
+					let index = rewardsData[this.state.currentRewardType].rewards[this.state.currentReward].index
+					if (this.state.currentRewardType === 0 || this.state.currentRewardType === 4)
 						popup.isAbility = true
+					else
+						popup.isAbility = false
 					popup.toBeReplaced = false
-					popup.isReplaced = true
-					popup.replacementReward = rewardsData[this.state.currentRewardType].rewards[this.state.currentReward].reward
-					popup.replacementIndex = rewardsData[this.state.currentRewardType].rewards[this.state.currentReward].index
+					if (reward !== popup.replacementReward) {
+						if (reward === popup.vanillaReward) {
+							popup.isReplaced = false
+							popup.replacementReward = popup.vanillaReward
+							popup.replacementIndex = ''
+						} else {
+							popup.isReplaced = true
+							popup.replacementReward = reward
+							popup.replacementIndex = index
+						}
+					}
 				}
 				return popup
 			})
@@ -94,7 +106,7 @@ class PopupPage extends React.Component {
 					popup.toBeReplaced = false
 					popup.isReplaced = false
 					popup.isAbility = false
-					popup.replacementReward = ''
+					popup.replacementReward = popup.vanillaReward
 					popup.replacementIndex = ''
 				}
 				return popup
