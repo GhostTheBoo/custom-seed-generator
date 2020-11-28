@@ -81,7 +81,7 @@ class LevelPage extends React.Component {
 			})
 		else
 			this.setState({
-				[name]: value,
+				[name]: parseInt(value),
 			})
 	}
 

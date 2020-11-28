@@ -44,7 +44,7 @@ class EquipmentPage extends React.Component {
 	}
 
 	handleEquipmentTypeChange(event) {
-		let nextEquipmentType = event.target.value
+		let nextEquipmentType = parseInt(event.target.value)
 		let toBeReplacedEquipments = this.state.currentEquipments.map(equipment => {
 			equipment.toBeReplaced = false
 			return equipment
@@ -91,7 +91,7 @@ class EquipmentPage extends React.Component {
 				currentReward: 0
 			})
 		this.setState({
-			[name]: value,
+			[name]: parseInt(value),
 		})
 	}
 
@@ -100,15 +100,19 @@ class EquipmentPage extends React.Component {
 		if (event.target.name === 'replaceButton') {
 			replacedEquipments = this.state.currentEquipments.map(equipment => {
 				if (equipment.toBeReplaced) {
+					let reward = rewardsData[this.state.currentRewardType].rewards[this.state.currentReward].reward
+					let index = rewardsData[this.state.currentRewardType].rewards[this.state.currentReward].index
 					equipment.toBeReplaced = false
+					equipment.additionalLineCount = 0
 
-					equipment.ability = rewardsData[this.state.currentRewardType].rewards[this.state.currentReward].reward
+					equipment.ability = reward
 					if (equipment.ability === equipment.vanillaAbility) {
 						equipment.isAbilityReplaced = false
+						equipment.ability = equipment.vanillaAbility
 						equipment.replacementAbilityIndex = ''
 					} else {
 						equipment.isAbilityReplaced = true
-						equipment.replacementAbilityIndex = rewardsData[this.state.currentRewardType].rewards[this.state.currentReward].index
+						equipment.replacementAbilityIndex = index
 					}
 
 					equipment.strength = this.state.currentEquipmentStrength
@@ -117,6 +121,22 @@ class EquipmentPage extends React.Component {
 					equipment.defense = this.state.currentEquipmentDefense
 					equipment.isStatsReplaced = ((this.state.currentEquipmentStrength !== equipment.vanillaStrength) || (this.state.currentEquipmentMagic !== equipment.vanillaMagic) ||
 						(this.state.currentEquipmentDefense !== equipment.vanillaDefense) || (this.state.currentEquipmentAP !== equipment.vanillaAP))
+
+					if (equipment.isStatsReplaced) {
+						if (this.state.currentEquipmentType !== 5) {
+							if (equipment.ap !== 0)
+								equipment.additionalLineCount++
+						}
+						if (this.state.currentEquipmentType !== 4) {
+							if (equipment.defense !== 0)
+								equipment.additionalLineCount++
+						} else {
+							if (equipment.strength !== 0)
+								equipment.additionalLineCount++
+							if (equipment.magic !== 0)
+								equipment.additionalLineCount++
+						}
+					}
 
 					equipment.fireResistance = this.state.currentEquipmentFire
 					equipment.blizzardResistance = this.state.currentEquipmentBlizzard
@@ -130,6 +150,17 @@ class EquipmentPage extends React.Component {
 					equipment.universalResistance = this.state.currentEquipmentUniversal
 					equipment.isOtherResistanceChanged = ((this.state.currentEquipmentDark !== equipment.vanillaDarkResistance) || (this.state.currentEquipmentLight !== equipment.vanillaLightResistance) ||
 						(this.state.currentEquipmentUniversal !== equipment.vanillaUniversalResistance))
+
+					if (this.state.currentEquipmentType !== 4) {
+						if (equipment.fireResistance !== 0)
+							equipment.additionalLineCount++
+						if (equipment.blizzardResistance !== 0)
+							equipment.additionalLineCount++
+						if (equipment.thunderResistance !== 0)
+							equipment.additionalLineCount++
+						if (equipment.darkResistance !== 0)
+							equipment.additionalLineCount++
+					}
 				}
 				return equipment
 			})
@@ -154,6 +185,7 @@ class EquipmentPage extends React.Component {
 					equipment.darkResistance = equipment.vanillaDarkResistance
 					equipment.lightResistance = 0
 					equipment.universalResistance = 0
+					equipment.additionalLineCount = 0
 				}
 				return equipment
 			})

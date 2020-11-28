@@ -6,7 +6,7 @@ function ChestTable(props) {
 		let keyValue = props.currentWorld + index
 		let styles
 		let originalReward = ''
-		if (chest.isReplaced){
+		if (chest.isReplaced) {
 			styles = { background: 'green' }
 			originalReward = chest.replacementReward
 		}
@@ -40,7 +40,15 @@ function ChestTable(props) {
 		<Table striped bordered hover size='sm' variant='dark'>
 			<thead>
 				<tr>
-					<th></th>
+					<th>
+						{/* <input
+							type='checkbox'
+							name={props.currentWorld}
+							value={index}
+							checked={chest.toBeReplaced}
+							onChange={props.onRowCheck}
+						/> */}
+						</th>
 					<th>
 						Room
 					</th>

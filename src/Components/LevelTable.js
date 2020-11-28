@@ -3,8 +3,13 @@ import Table from 'react-bootstrap/Table'
 
 function LevelTable(props) {
 	let levelList = props.allLevels.map((l, index) => {
+		let styles
+		if (l.isEXPReplaced || l.isStatsReplaced || l.isSwordReplaced || l.isShieldReplaced || l.isStaffReplaced) {
+			styles = { background: 'green' }
+		}
 		return (
 			<tr
+				style={styles}
 				key={l.level}
 			>
 				<td>
