@@ -28,6 +28,7 @@ class BonusPage extends React.Component {
 			currentAccessory: 0,
 			currentItem: 0,
 			currentDrive: 0,
+			selectAll: false,
 			allBonuses: bonusData.slice(),
 			currentCharacterWorldBonus: bonusData[0].characterBonuses[0].worldBonuses.slice(),
 			pnachCodes: []
@@ -40,10 +41,11 @@ class BonusPage extends React.Component {
 		this.handleChange = this.handleChange.bind(this)
 		this.onRowCheck = this.onRowCheck.bind(this)
 		this.handleInputChange = this.handleInputChange.bind(this)
+		this.checkAll = this.checkAll.bind(this)
 	}
 
 	handleWorldChange(event) {
-		let nextWorld = event.target.value
+		let nextWorld = parseInt(event.target.value)
 		let newAllCharacterBonuses = this.state.allBonuses[this.state.currentCharacter].characterBonuses.map((worldBonusList, index) => {
 			if (index === this.state.currentWorld) {
 				let newWorldBonusList = {
@@ -66,6 +68,7 @@ class BonusPage extends React.Component {
 			return c
 		})
 		this.setState({
+			selectAll: false,
 			currentWorld: nextWorld,
 			allBonuses: newAllBonuses,
 			currentCharacterWorldBonus: newAllBonuses[this.state.currentCharacter].characterBonuses[nextWorld].worldBonuses.slice()
@@ -73,7 +76,7 @@ class BonusPage extends React.Component {
 	}
 
 	handleCharacterChange(event) {
-		let nextCharacter = event.target.value
+		let nextCharacter = parseInt(event.target.value)
 
 		let newAllCharacterBonuses = this.state.allBonuses[this.state.currentCharacter].characterBonuses.map((worldBonusList, index) => {
 			if (index === this.state.currentWorld) {
@@ -99,6 +102,7 @@ class BonusPage extends React.Component {
 		})
 
 		this.setState({
+			selectAll: false,
 			currentCharacter: nextCharacter,
 			allBonuses: newAllBonuses,
 			currentCharacterWorldBonus: newAllBonuses[nextCharacter].characterBonuses[this.state.currentWorld].worldBonuses.slice()
@@ -119,7 +123,19 @@ class BonusPage extends React.Component {
 			return bonus
 		})
 		this.setState({
-			currentEquipments: toBeReplacedBonuses
+			currentCharacterWorldBonuses: toBeReplacedBonuses
+		})
+	}
+
+	checkAll() {
+		let selectAll = !this.state.selectAll
+		let toBeReplacedBonuses = this.state.currentCharacterWorldBonus.map(bonus => {
+			bonus.toBeReplaced = selectAll
+			return bonus
+		})
+		this.setState({
+			selectAll: selectAll,
+			currentCharacterWorldBonuses: toBeReplacedBonuses
 		})
 	}
 
@@ -216,6 +232,7 @@ class BonusPage extends React.Component {
 			return bonus
 		})
 		this.setState({
+			selectAll: !this.state.selectAll,
 			currentCharacterWorldBonuses: replacedBonuses
 		})
 	}
@@ -377,6 +394,8 @@ class BonusPage extends React.Component {
 					currentCharacter={charactersData[this.state.currentCharacter]}
 					bonuses={this.state.currentCharacterWorldBonus}
 					onRowCheck={this.onRowCheck}
+					checkAll={this.checkAll}
+					selectAll={this.state.selectAll}
 				/>
 				<Buttons
 					onClick={this.handleReplace}

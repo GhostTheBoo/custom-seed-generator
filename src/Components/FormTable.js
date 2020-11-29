@@ -46,7 +46,14 @@ function FormTable(props) {
 		<Table striped bordered hover size='sm' variant='dark'>
 			<thead>
 				<tr>
-					<th></th>
+					<th>
+						<input
+							type='checkbox'
+							name={props.currentDriveForm + 'All'}
+							checked={props.selectAll}
+							onChange={props.checkAll}
+						/>
+					</th>
 					<th>
 						Level
 					</th>

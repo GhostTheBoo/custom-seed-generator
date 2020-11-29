@@ -18,6 +18,7 @@ class PopupPage extends React.Component {
 			currentWorld: 0,
 			currentRewardType: 0,
 			currentReward: 0,
+			selectAll: false,
 			allPopups: popupsData.slice(),
 			currentWorldPopups: popupsData[0].popups.slice(),
 			pnachCodes: []
@@ -28,10 +29,11 @@ class PopupPage extends React.Component {
 		this.handleReplace = this.handleReplace.bind(this)
 		this.handleSave = this.handleSave.bind(this)
 		this.onRowCheck = this.onRowCheck.bind(this)
+		this.checkAll = this.checkAll.bind(this)
 	}
 
 	handleWorldChange(event) {
-		let nextWorld = event.target.value
+		let nextWorld = parseInt(event.target.value)
 		let toBeReplacedPopups = this.state.currentWorldPopups.map(popup => {
 			popup.toBeReplaced = false
 			return popup
@@ -46,6 +48,7 @@ class PopupPage extends React.Component {
 		})
 		let nextWorldPopups = newAllPopups[nextWorld].popups.slice()
 		this.setState({
+			selectAll: false,
 			currentWorld: nextWorld,
 			allPopups: newAllPopups,
 			currentWorldPopups: nextWorldPopups
@@ -70,6 +73,18 @@ class PopupPage extends React.Component {
 			return popup
 		})
 		this.setState({
+			currentWorldPopups: toBeReplacedWorldPopups
+		})
+	}
+
+	checkAll() {
+		let selectAll = !this.state.selectAll
+		let toBeReplacedWorldPopups = this.state.currentWorldPopups.map(popup => {
+			popup.toBeReplaced = selectAll
+			return popup
+		})
+		this.setState({
+			selectAll: selectAll,
 			currentWorldPopups: toBeReplacedWorldPopups
 		})
 	}
@@ -113,6 +128,7 @@ class PopupPage extends React.Component {
 			})
 		}
 		this.setState({
+			selectAll: !this.state.selectAll,
 			currentWorldPopups: replacedPopups
 		})
 	}
@@ -159,6 +175,8 @@ class PopupPage extends React.Component {
 					currentWorld={worldsData[this.state.currentWorld]}
 					worldPopups={this.state.currentWorldPopups}
 					onRowCheck={this.onRowCheck}
+					checkAll={this.checkAll}
+					selectAll={this.state.selectAll}
 				/>
 				<Buttons
 					onClick={this.handleReplace}

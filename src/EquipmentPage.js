@@ -30,6 +30,7 @@ class EquipmentPage extends React.Component {
 			currentEquipmentDark: 0,
 			currentEquipmentLight: 0,
 			currentEquipmentUniversal: 0,
+			selectAll: false,
 			allEquipments: equipmentsData.slice(),
 			currentEquipments: equipmentsData[0].equipments.slice(),
 			pnachCodes: []
@@ -41,6 +42,7 @@ class EquipmentPage extends React.Component {
 		this.handleChange = this.handleChange.bind(this)
 		this.onRowCheck = this.onRowCheck.bind(this)
 		this.handleInputChange = this.handleInputChange.bind(this)
+		this.checkAll = this.checkAll.bind(this)
 	}
 
 	handleEquipmentTypeChange(event) {
@@ -59,6 +61,7 @@ class EquipmentPage extends React.Component {
 		})
 		let nextEquipments = newAllEquipments[nextEquipmentType].equipments.slice()
 		this.setState({
+			selectAll: false,
 			currentEquipmentType: nextEquipmentType,
 			allEquipments: newAllEquipments,
 			currentEquipments: nextEquipments
@@ -80,6 +83,18 @@ class EquipmentPage extends React.Component {
 			return equipment
 		})
 		this.setState({
+			currentEquipments: toBeReplacedEquipments
+		})
+	}
+
+	checkAll() {
+		let selectAll = !this.state.selectAll
+		let toBeReplacedEquipments = this.state.currentEquipments.map(equipment => {
+			equipment.toBeReplaced = selectAll
+			return equipment
+		})
+		this.setState({
+			selectAll: selectAll,
 			currentEquipments: toBeReplacedEquipments
 		})
 	}
@@ -191,6 +206,7 @@ class EquipmentPage extends React.Component {
 			})
 		}
 		this.setState({
+			selectAll: !this.state.selectAll,
 			currentEquipments: replacedEquipments
 		})
 	}
@@ -421,6 +437,8 @@ class EquipmentPage extends React.Component {
 					currentEquipmentType={equipmentTypesData[this.state.currentEquipmentType]}
 					equipments={this.state.currentEquipments}
 					onRowCheck={this.onRowCheck}
+					checkAll={this.checkAll}
+					selectAll={this.state.selectAll}
 				/>
 				<Buttons
 					onClick={this.handleReplace}

@@ -21,6 +21,7 @@ class FormPage extends React.Component {
 			currentReward: 0,
 			currentEXP: 0,
 			currentEXPMultiplierValue: 0,
+			selectAll: false,
 			allForms: formsData.slice(),
 			currentDriveFormLevels: formsData[0].driveLevels.slice(),
 			pnachCodes: []
@@ -31,6 +32,7 @@ class FormPage extends React.Component {
 		this.onRowCheck = this.onRowCheck.bind(this)
 		this.handleReplace = this.handleReplace.bind(this)
 		this.handleSave = this.handleSave.bind(this)
+		this.checkAll = this.checkAll.bind(this)
 	}
 
 	handleFormChange(event) {
@@ -49,6 +51,7 @@ class FormPage extends React.Component {
 		})
 		let nextDriveFormLevels = newAllForms[nextDriveForm].driveLevels.slice()
 		this.setState({
+			selectAll: false,
 			currentDriveForm: nextDriveForm,
 			allForms: newAllForms,
 			currentDriveFormLevels: nextDriveFormLevels
@@ -73,6 +76,18 @@ class FormPage extends React.Component {
 			return driveFormLevel
 		})
 		this.setState({
+			currentDriveFormLevels: toBeReplacedDriveFormLevels
+		})
+	}
+
+	checkAll() {
+		let selectAll = !this.state.selectAll
+		let toBeReplacedDriveFormLevels = this.state.currentDriveFormLevels.map(driveFormLevel => {
+			driveFormLevel.toBeReplaced = selectAll
+			return driveFormLevel
+		})
+		this.setState({
+			selectAll: selectAll,
 			currentDriveFormLevels: toBeReplacedDriveFormLevels
 		})
 	}
@@ -123,6 +138,7 @@ class FormPage extends React.Component {
 			})
 		}
 		this.setState({
+			selectAll: !this.state.selectAll,
 			currentDriveFormLevels: replacedDriveFormLevels
 		})
 	}
@@ -181,6 +197,8 @@ class FormPage extends React.Component {
 					currentDriveForm={formTypesData[this.state.currentDriveForm]}
 					driveLevels={this.state.currentDriveFormLevels}
 					onRowCheck={this.onRowCheck}
+					checkAll={this.checkAll}
+					selectAll={this.state.selectAll}
 				/>
 				<Buttons
 					onClick={this.handleReplace}

@@ -41,14 +41,13 @@ function ChestTable(props) {
 			<thead>
 				<tr>
 					<th>
-						{/* <input
+						<input
 							type='checkbox'
-							name={props.currentWorld}
-							value={index}
-							checked={chest.toBeReplaced}
-							onChange={props.onRowCheck}
-						/> */}
-						</th>
+							name={props.currentWorld + 'All'}
+							checked={props.selectAll}
+							onChange={props.checkAll}
+						/>
+					</th>
 					<th>
 						Room
 					</th>

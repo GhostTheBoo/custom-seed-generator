@@ -18,6 +18,7 @@ class ChestPage extends React.Component {
 			currentWorld: 0,
 			currentRewardType: 0,
 			currentReward: 0,
+			selectAll: false,
 			allChests: chestsData.slice(),
 			currentWorldChests: chestsData[0].chests.slice(),
 			pnachCodes: []
@@ -28,10 +29,11 @@ class ChestPage extends React.Component {
 		this.handleReplace = this.handleReplace.bind(this)
 		this.handleSave = this.handleSave.bind(this)
 		this.onRowCheck = this.onRowCheck.bind(this)
+		this.checkAll = this.checkAll.bind(this)
 	}
 
 	handleWorldChange(event) {
-		let nextWorld = event.target.value
+		let nextWorld = parseInt(event.target.value)
 		let toBeReplacedChests = this.state.currentWorldChests.map(chest => {
 			chest.toBeReplaced = false
 			return chest
@@ -46,6 +48,7 @@ class ChestPage extends React.Component {
 		})
 		let nextWorldChests = newAllChests[nextWorld].chests.slice()
 		this.setState({
+			selectAll: false,
 			currentWorld: nextWorld,
 			allChests: newAllChests,
 			currentWorldChests: nextWorldChests
@@ -70,6 +73,18 @@ class ChestPage extends React.Component {
 			return chest
 		})
 		this.setState({
+			currentWorldChests: toBeReplacedWorldChests
+		})
+	}
+
+	checkAll() {
+		let selectAll = !this.state.selectAll
+		let toBeReplacedWorldChests = this.state.currentWorldChests.map(chest => {
+			chest.toBeReplaced = selectAll
+			return chest
+		})
+		this.setState({
+			selectAll: selectAll,
 			currentWorldChests: toBeReplacedWorldChests
 		})
 	}
@@ -108,6 +123,7 @@ class ChestPage extends React.Component {
 			})
 		}
 		this.setState({
+			selectAll: !this.state.selectAll,
 			currentWorldChests: replacedChests
 		})
 	}
@@ -154,6 +170,8 @@ class ChestPage extends React.Component {
 					currentWorld={worldsData[this.state.currentWorld]}
 					worldChests={this.state.currentWorldChests}
 					onRowCheck={this.onRowCheck}
+					checkAll={this.checkAll}
+					selectAll={this.state.selectAll}
 				/>
 				<Buttons
 					onClick={this.handleReplace}

@@ -78,7 +78,14 @@ function EquipmentTable(props) {
 		<Table striped bordered hover size='sm' variant='dark'>
 			<thead>
 				<tr>
-					<th></th>
+					<th>
+						<input
+							type='checkbox'
+							name={props.currentEquipmentType + 'All'}
+							checked={props.selectAll}
+							onChange={props.checkAll}
+						/>
+					</th>
 					<th>
 						Name
 					</th>

@@ -29,6 +29,7 @@ class LevelPage extends React.Component {
 			currentStrength: 0,
 			currentEXP: 0,
 			currentEXPMultiplierValue: 0,
+			selectAll: false,
 			allLevels: levelsData.slice(),
 			pnachCodes: []
 		}
@@ -38,6 +39,7 @@ class LevelPage extends React.Component {
 		this.handleChange = this.handleChange.bind(this)
 		this.onRowCheck = this.onRowCheck.bind(this)
 		this.handleInputChange = this.handleInputChange.bind(this)
+		this.checkAll = this.checkAll.bind(this)
 	}
 
 	crit(ap) {
@@ -52,12 +54,24 @@ class LevelPage extends React.Component {
 	}
 
 	onRowCheck(event) {
-		let toBeReplacedLevels = this.state.allLevels.map((l, index) => {
+		let toBeReplacedLevels = this.state.allLevels.map((level, index) => {
 			if (index === parseInt(event.target.value))
-				l.toBeReplaced = !l.toBeReplaced
-			return l
+				level.toBeReplaced = !level.toBeReplaced
+			return level
 		})
 		this.setState({
+			allLevels: toBeReplacedLevels
+		})
+	}
+
+	checkAll() {
+		let selectAll = !this.state.selectAll
+		let toBeReplacedLevels = this.state.allLevels.map(level => {
+			level.toBeReplaced = selectAll
+			return level
+		})
+		this.setState({
+			selectAll: selectAll,
 			allLevels: toBeReplacedLevels
 		})
 	}
@@ -152,8 +166,8 @@ class LevelPage extends React.Component {
 			}
 			return l
 		})
-		// console.log(this.state.currentStrength)
 		this.setState({
+			selectAll: !this.state.selectAll,
 			allLevels: replacedLevels
 		})
 	}
@@ -288,6 +302,8 @@ class LevelPage extends React.Component {
 				<LevelTable
 					allLevels={this.state.allLevels}
 					onRowCheck={this.onRowCheck}
+					checkAll={this.checkAll}
+					selectAll={this.state.selectAll}
 				/>
 				<Buttons
 					onClick={this.handleReplace}
