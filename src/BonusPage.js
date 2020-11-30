@@ -8,6 +8,7 @@ import bonusData from './Data/bonusData'
 
 import GenericSelect from './Components/GenericSelect'
 import RewardSelect from './Components/RewardSelect'
+import RewardTypeSelect from './Components/RewardTypeSelect'
 import BonusTable from './Components/BonusTable'
 import Buttons from './Components/Buttons'
 
@@ -38,7 +39,8 @@ class BonusPage extends React.Component {
 		this.handleCharacterChange = this.handleCharacterChange.bind(this)
 		this.handleReplace = this.handleReplace.bind(this)
 		this.handleSave = this.handleSave.bind(this)
-		this.handleChange = this.handleChange.bind(this)
+		this.handleRewardChange = this.handleRewardChange.bind(this)
+		this.handleRewardTypeChange = this.handleRewardTypeChange.bind(this)
 		this.onRowCheck = this.onRowCheck.bind(this)
 		this.handleInputChange = this.handleInputChange.bind(this)
 		this.checkAll = this.checkAll.bind(this)
@@ -139,22 +141,26 @@ class BonusPage extends React.Component {
 		})
 	}
 
-	handleChange(event) {
+	handleRewardChange(event) {
 		const { name, value } = event.target
-		if (name === 'currentRewardType1')
+		this.setState({
+			[name]: value
+		})
+	}
+
+	handleRewardTypeChange(event) {
+		const { name, value } = event.target
+		if (name.slice(-1) === '1') {
 			this.setState({
 				currentReward1: 0,
 				currentRewardType1: value
 			})
-		else if (name === 'currentRewardType2')
+		} else {
 			this.setState({
 				currentReward2: 0,
 				currentRewardType2: value
 			})
-		else
-			this.setState({
-				[name]: value,
-			})
+		}
 	}
 
 	handleReplace(event) {
@@ -262,7 +268,7 @@ class BonusPage extends React.Component {
 
 					if (bonus.isRewardsReplaced) {
 						ret += 'patch=1,EE,' + bonus.rewardAddress + ',extended,' + bonus.replacementRewardIndex2.padStart(4, '0') + bonus.replacementRewardIndex1.padStart(4, '0');
-						ret += ' // Replacement Reward #2:' + bonus.replacementReward2 + ' Replacement Reward #1:' + bonus.replacementReward1 + '\n';
+						ret += ' // Replacement Reward #2:' + bonus.replacementReward2 + ', Replacement Reward #1:' + bonus.replacementReward1 + '\n';
 					}
 				})
 			})
@@ -294,24 +300,42 @@ class BonusPage extends React.Component {
 							onChange={this.handleCharacterChange}
 						/>
 					</Form.Row>
-					<RewardSelect
-						class='bonus'
-						currentRewardType={this.state.currentRewardType1}
-						rewardList={rewardsData[this.state.currentRewardType1].rewards}
-						currentReward={this.state.currentReward1}
-						typeName={'currentRewardType1'}
-						name={'currentReward1'}
-						onChange={this.handleChange}
-					/>
-					<RewardSelect
-						class='bonus'
-						currentRewardType={this.state.currentRewardType2}
-						rewardList={rewardsData[this.state.currentRewardType2].rewards}
-						currentReward={this.state.currentReward2}
-						typeName={'currentRewardType2'}
-						name={'currentReward2'}
-						onChange={this.handleChange}
-					/>
+					<Form.Row>
+						<Col>
+							<RewardTypeSelect
+								class='bonus'
+								currentRewardType={this.state.currentRewardType1}
+								name={'currentRewardType1'}
+								onChange={this.handleRewardTypeChange}
+							/>
+						</Col>
+						<Col>
+							<RewardSelect
+								class='bonus'
+								rewardList={rewardsData[this.state.currentRewardType1].rewards}
+								currentReward={this.state.currentReward1}
+								name={'currentReward1'}
+								onChange={this.handleRewardChange}
+							/>
+						</Col>
+						<Col>
+							<RewardTypeSelect
+								class='bonus'
+								currentRewardType={this.state.currentRewardType2}
+								name={'currentRewardType2'}
+								onChange={this.handleRewardTypeChange}
+							/>
+						</Col>
+						<Col>
+							<RewardSelect
+								class='bonus'
+								rewardList={rewardsData[this.state.currentRewardType2].rewards}
+								currentReward={this.state.currentReward2}
+								name={'currentReward2'}
+								onChange={this.handleRewardChange}
+							/>
+						</Col>
+					</Form.Row>
 					<Form.Row>
 						<Col xl='2'>
 							<Form.Group controlId='currentHP'>
@@ -337,8 +361,6 @@ class BonusPage extends React.Component {
 								/>
 							</Form.Group>
 						</Col>
-					</Form.Row>
-					<Form.Row>
 						<Col xl='2'>
 							<Form.Group controlId='currentArmor'>
 								<Form.Label column='sm'>Armor Slot Increase: </Form.Label>
