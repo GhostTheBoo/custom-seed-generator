@@ -16,7 +16,7 @@ function ChestPage(props) {
 			<Form>
 				<Form.Row>
 					<GenericSelect
-						class={props.page}
+						class={'chest'}
 						selector={'World'}
 						itemList={worldsData}
 						name={'currentWorld'}
@@ -27,19 +27,19 @@ function ChestPage(props) {
 				<Form.Row>
 					<Col>
 						<RewardTypeSelect
-							class={props.page}
+							class={'chest'}
 							currentRewardType={props.chestData.currentRewardType}
 							name={'currentRewardType'}
-							onChange={(event) => props.onRewardTypeChange(props.page, event)}
+							onChange={props.onRewardTypeChange}
 						/>
 					</Col>
 					<Col>
 						<RewardSelect
-							class={props.page}
+							class={'chest'}
 							rewardList={props.rewardList}
 							currentReward={props.chestData.currentReward}
 							name={'currentReward'}
-							onChange={(event) => props.onRewardChange(props.page, event)}
+							onChange={props.onRewardChange}
 						/>
 					</Col>
 				</Form.Row>
@@ -47,8 +47,8 @@ function ChestPage(props) {
 			<ChestTable
 				currentWorld={worldsData[props.chestData.currentWorld]}
 				worldChests={props.chestData.currentDisplayData}
-				onRowCheck={(event) => props.onRowCheck(props.page, event)}
-				checkAll={(event) => props.checkAll(props.page, event)}
+				onRowCheck={props.onRowCheck}
+				checkAll={props.checkAll}
 				selectAll={props.chestData.selectAll}
 			/>
 			<Buttons

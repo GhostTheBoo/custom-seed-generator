@@ -2,7 +2,7 @@ import React from 'react'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 
-import { worldsData, formTypesData } from './Data/typesData'
+import { worldsData, formTypesData, equipmentTypesData } from './Data/typesData'
 import rewardsData from './Data/rewardsData'
 
 import ChestPage from './ChestPage'
@@ -14,7 +14,8 @@ import popupsData from './Data/popupsData'
 import FormPage from './FormPage'
 import formsData from './Data/formsData'
 
-// import EquipmentPage from './EquipmentPage'
+import EquipmentPage from './EquipmentPage'
+import equipmentsData from './Data/equipmentsData'
 
 // import BonusPage from './BonusPage'
 
@@ -51,7 +52,25 @@ class App extends React.Component {
 				allForms: formsData.slice(),
 				currentDisplayData: formsData[0].driveLevels.slice(),
 			},
-			equipment: null,
+			equipment: {
+				currentEquipmentType: 0,
+				currentRewardType: 0,
+				currentReward: 0,
+				currentStrength: 0,
+				currentMagic: 0,
+				currentAP: 0,
+				currentDefense: 0,
+				currentPhysical: 0,
+				currentFire: 0,
+				currentBlizzard: 0,
+				currentThunder: 0,
+				currentDark: 0,
+				currentLight: 0,
+				currentUniversal: 0,
+				selectAll: false,
+				allEquipments: equipmentsData.slice(),
+				currentDisplayData: equipmentsData[0].equipments.slice()
+			},
 			bonus: null,
 			level: null
 		}
@@ -59,10 +78,12 @@ class App extends React.Component {
 		this.handleChestWorldChange = this.handleChestWorldChange.bind(this)
 		this.handlePopupWorldChange = this.handlePopupWorldChange.bind(this)
 		this.handleFormChange = this.handleFormChange.bind(this)
+		this.handleEquipmentTypeChange = this.handleEquipmentTypeChange.bind(this)
 
 		this.handleChestReplace = this.handleChestReplace.bind(this)
 		this.handlePopupReplace = this.handlePopupReplace.bind(this)
 		this.handleFormReplace = this.handleFormReplace.bind(this)
+		this.handleEquipmentReplace = this.handleEquipmentReplace.bind(this)
 
 		this.handleRewardTypeChange = this.handleRewardTypeChange.bind(this)
 		this.handleGenericChange = this.handleGenericChange.bind(this)
@@ -147,6 +168,32 @@ class App extends React.Component {
 				currentDriveForm: nextDriveForm,
 				allForms: newAllForms,
 				currentDisplayData: nextDriveFormLevels
+			}
+		}))
+	}
+
+	handleEquipmentTypeChange(event) {
+		let nextEquipmentType = parseInt(event.target.value)
+		let toBeReplacedEquipments = this.state.equipment.currentDisplayData.map(equipment => {
+			equipment.toBeReplaced = false
+			return equipment
+		})
+		let newAllEquipments = this.state.equipment.allEquipments.map((equipment, index) => {
+			if (index === this.state.equipment.currentEquipmentType)
+				return {
+					equipmentType: equipmentTypesData[index],
+					equipments: toBeReplacedEquipments
+				}
+			return equipment
+		})
+		let nextEquipments = newAllEquipments[nextEquipmentType].equipments.slice()
+		this.setState(prevState => ({
+			equipment: {
+				...prevState.equipment,
+				selectAll: false,
+				currentEquipmentType: nextEquipmentType,
+				allEquipments: newAllEquipments,
+				currentDisplayData: nextEquipments
 			}
 		}))
 	}
@@ -295,6 +342,109 @@ class App extends React.Component {
 			}
 		}))
 	}
+
+	handleEquipmentReplace(event) {
+		let replacedEquipments
+		if (event.target.name === 'replaceButton') {
+			replacedEquipments = this.state.equipment.currentDisplayData.map(equipment => {
+				if (equipment.toBeReplaced) {
+					let reward = rewardsData[this.state.equipment.currentRewardType].rewards[this.state.equipment.currentReward]
+					equipment.toBeReplaced = false
+					equipment.additionalLineCount = 0
+
+					if (reward.reward === equipment.vanillaAbility) {
+						equipment.isAbilityReplaced = false
+						equipment.ability = equipment.vanillaAbility
+						equipment.replacementAbilityIndex = ''
+					} else {
+						equipment.ability = reward.reward
+						equipment.isAbilityReplaced = true
+						equipment.replacementAbilityIndex = reward.index
+					}
+
+					equipment.strength = this.state.equipment.currentStrength
+					equipment.magic = this.state.equipment.currentMagic
+					equipment.ap = this.state.equipment.currentAP
+					equipment.defense = this.state.equipment.currentDefense
+					equipment.isStatsReplaced = ((this.state.equipment.currentStrength !== equipment.vanillaStrength) || (this.state.equipment.currentMagic !== equipment.vanillaMagic) ||
+						(this.state.equipment.currentDefense !== equipment.vanillaDefense) || (this.state.equipment.currentAP !== equipment.vanillaAP))
+
+					if (equipment.isStatsReplaced) {
+						if (this.state.equipment.currentEquipmentType !== 5) {
+							if (equipment.ap !== 0)
+								equipment.additionalLineCount++
+						}
+						if (this.state.equipment.currentEquipmentType !== 4) {
+							if (equipment.defense !== 0)
+								equipment.additionalLineCount++
+						} else {
+							if (equipment.strength !== 0)
+								equipment.additionalLineCount++
+							if (equipment.magic !== 0)
+								equipment.additionalLineCount++
+						}
+					}
+
+					equipment.fireResistance = this.state.equipment.currentFire
+					equipment.blizzardResistance = this.state.equipment.currentBlizzard
+					equipment.thunderResistance = this.state.equipment.currentThunder
+					equipment.physicalResistance = this.state.equipment.currentPhysical
+					equipment.isElementalResistanceChanged = ((this.state.equipment.currentFire !== equipment.vanillaFireResistance) || (this.state.equipment.currentBlizzard !== equipment.vanillaBlizzardResistance) ||
+						(this.state.equipment.currentThunder !== equipment.vanillaThunderResistance) || (this.state.equipment.currentPhysical !== equipment.vanillaPhysicalResistance))
+
+					equipment.darkResistance = this.state.equipment.currentDark
+					equipment.lightResistance = this.state.equipment.currentLight
+					equipment.universalResistance = this.state.equipment.currentUniversal
+					equipment.isOtherResistanceChanged = ((this.state.equipment.currentDark !== equipment.vanillaDarkResistance) || (this.state.equipment.currentLight !== equipment.vanillaLightResistance) ||
+						(this.state.equipment.currentUniversal !== equipment.vanillaUniversalResistance))
+
+					if (this.state.equipment.currentEquipmentType !== 4) {
+						if (equipment.fireResistance !== 0)
+							equipment.additionalLineCount++
+						if (equipment.blizzardResistance !== 0)
+							equipment.additionalLineCount++
+						if (equipment.thunderResistance !== 0)
+							equipment.additionalLineCount++
+						if (equipment.darkResistance !== 0)
+							equipment.additionalLineCount++
+					}
+				}
+				return equipment
+			})
+		} else {
+			replacedEquipments = this.state.equipment.currentDisplayData.map(equipment => {
+				if (equipment.toBeReplaced) {
+					equipment.toBeReplaced = false
+					equipment.isAbilityReplaced = false
+					equipment.isStatsReplaced = false
+					equipment.isElementalResistanceChanged = false
+					equipment.isOtherResistanceChanged = false
+					equipment.ability = equipment.vanillaAbility
+					equipment.replacementAbilityIndex = ''
+					equipment.strength = equipment.vanillaStrength
+					equipment.magic = equipment.vanillaMagic
+					equipment.ap = equipment.vanillaAP
+					equipment.defense = equipment.vanillaDefense
+					equipment.fireResistance = equipment.vanillaFireResistance
+					equipment.blizzardResistance = equipment.vanillaBlizzardResistance
+					equipment.thunderResistance = equipment.vanillaThunderResistance
+					equipment.physicalResistance = 0
+					equipment.darkResistance = equipment.vanillaDarkResistance
+					equipment.lightResistance = 0
+					equipment.universalResistance = 0
+					equipment.additionalLineCount = 0
+				}
+				return equipment
+			})
+		}
+		this.setState(prevState => ({
+			equipment: {
+				...prevState.equipment,
+				selectAll: false,
+				currentDisplayData: replacedEquipments
+			}
+		}))
+	}
 	//#endregion
 
 	//#region General Functions
@@ -427,16 +577,49 @@ class App extends React.Component {
 		})
 		//#endregion
 
-		//#region Equipment
+		//#region Equipment saving
+		let equipmentPnachCodes = this.state.equipment.allEquipments.map(equipment => {
+			let ret = '// ' + equipment.equipmentType + '\n'
+
+			equipment.equipments.forEach(eq => {
+				ret += '// ' + eq.name + '\n'
+
+				if (!eq.isAbilityReplaced)
+					ret += '//'
+				ret += 'patch=1,EE,' + eq.abilityAddress + ',extended,0000' + eq.replacementAbilityIndex.padStart(4, '0') + ' // Ability: ' + eq.ability + '\n'
+
+				if (!eq.isStatsReplaced)
+					ret += '//'
+				ret += 'patch=1,EE,' + eq.statAddress + ',extended,'
+				ret += eq.ap.toString(16).toUpperCase().padStart(2, '0') + eq.defense.toString(16).toUpperCase().padStart(2, '0')
+				ret += eq.magic.toString(16).toUpperCase().padStart(2, '0') + eq.strength.toString(16).toUpperCase().padStart(2, '0')
+				ret += ' // AP:' + eq.ap + ' Defense:' + eq.defense + ' Magic:' + eq.magic + ' Strength:' + eq.strength + '\n'
+
+				if (!eq.isElementalResistanceChanged)
+					ret += '//'
+				ret += 'patch=1,EE,' + eq.elementalResistanceAddress + ',extended,'
+				ret += (100 - eq.thunderResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - eq.blizzardResistance).toString(16).toUpperCase().padStart(2, '0')
+				ret += (100 - eq.fireResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - eq.physicalResistance).toString(16).toUpperCase().padStart(2, '0')
+				ret += ' // Thunder:' + eq.thunderResistance + '% Blizzard:' + eq.blizzardResistance
+				ret += '% Fire:' + eq.fireResistance + '% Physical:' + eq.physicalResistance + '%\n'
+
+				if (!eq.isOtherResistanceChanged)
+					ret += '//'
+				ret += 'patch=1,EE,' + eq.otherResistanceAddress + ',extended,00' + (100 - eq.universalResistance).toString(16).toUpperCase().padStart(2, '0')
+				ret += (100 - eq.lightResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - eq.darkResistance).toString(16).toUpperCase().padStart(2, '0')
+				ret += ' // Universal:' + eq.universalResistance + '% Light:' + eq.lightResistance + '% Dark:' + eq.darkResistance + '%\n'
+			})
+			return ret
+		})
 		//#endregion
 
-		//#region Bonus
+		//#region Bonus saving
 		//#endregion
 
-		//#region Level
+		//#region Level saving
 		//#endregion
 
-		let pnachCodes = chestPnachCodes.concat(popupPnachCodes, formPnachCodes)
+		let pnachCodes = chestPnachCodes.concat(popupPnachCodes, formPnachCodes, equipmentPnachCodes)
 		console.log(pnachCodes)
 	}
 	//#endregion
@@ -447,13 +630,12 @@ class App extends React.Component {
 				<Tab eventKey="chest" title="Chest">
 					<ChestPage
 						chestData={this.state.chest}
-						page={'chest'}
 						rewardList={rewardsData[this.state.chest.currentRewardType].rewards}
 						handleWorldChange={this.handleChestWorldChange}
-						onRewardTypeChange={this.handleRewardTypeChange}
-						onRewardChange={this.handleGenericChange}
-						onRowCheck={this.onRowCheck}
-						checkAll={this.checkAll}
+						onRewardTypeChange={(event) => this.handleRewardTypeChange('chest', event)}
+						onRewardChange={(event) => this.handleGenericChange('chest', event)}
+						onRowCheck={(event) => this.onRowCheck('chest', event)}
+						checkAll={(event) => this.checkAll('chest', event)}
 						handleReplace={this.handleChestReplace}
 						handleSave={this.handleSave}
 					/>
@@ -461,13 +643,12 @@ class App extends React.Component {
 				<Tab eventKey="popup" title="Popup">
 					<PopupPage
 						popupData={this.state.popup}
-						page={'popup'}
 						rewardList={rewardsData[this.state.popup.currentRewardType].rewards}
 						handleWorldChange={this.handlePopupWorldChange}
-						onRewardTypeChange={this.handleRewardTypeChange}
-						onRewardChange={this.handleGenericChange}
-						onRowCheck={this.onRowCheck}
-						checkAll={this.checkAll}
+						onRewardTypeChange={(event) => this.handleRewardTypeChange('popup', event)}
+						onRewardChange={(event) => this.handleGenericChange('popup', event)}
+						onRowCheck={(event) => this.onRowCheck('popup', event)}
+						checkAll={(event) => this.checkAll('popup', event)}
 						handleReplace={this.handlePopupReplace}
 						handleSave={this.handleSave}
 					/>
@@ -475,34 +656,39 @@ class App extends React.Component {
 				<Tab eventKey="form" title="Form">
 					<FormPage
 						formData={this.state.form}
-						page={'form'}
 						rewardList={rewardsData[this.state.form.currentRewardType].rewards}
 						handleFormChange={this.handleFormChange}
-						onRewardTypeChange={this.handleRewardTypeChange}
-						onRewardChange={this.handleGenericChange}
-						onInputChange={this.handleInputChange}
-						onRowCheck={this.onRowCheck}
-						checkAll={this.checkAll}
+						onRewardTypeChange={(event) => this.handleRewardTypeChange('form', event)}
+						onGenericChange={(event) => this.handleGenericChange('form', event)}
+						onInputChange={(event) => this.handleInputChange('form', event)}
+						onRowCheck={(event) => this.onRowCheck('form', event)}
+						checkAll={(event) => this.checkAll('form', event)}
 						handleReplace={this.handleFormReplace}
 						handleSave={this.handleSave}
 
 					/>
 				</Tab>
-				{/* <Tab eventKey="equipment" title="Equipment">
+				<Tab eventKey="equipment" title="Equipment">
 					<EquipmentPage
-						page={'equipment'}
-
+						equipmentData={this.state.equipment}
+						rewardList={rewardsData[this.state.equipment.currentRewardType].rewards}
+						handleEquipmentTypeChange={this.handleEquipmentTypeChange}
+						onRewardTypeChange={(event) => this.handleRewardTypeChange('equipment', event)}
+						onRewardChange={(event) => this.handleGenericChange('equipment', event)}
+						onInputChange={(event) => this.handleInputChange('equipment', event)}
+						onRowCheck={(event) => this.onRowCheck('equipment', event)}
+						checkAll={(event) => this.checkAll('equipment', event)}
+						handleReplace={this.handleEquipmentReplace}
+						handleSave={this.handleSave}
 					/>
-				</Tab> */}
+				</Tab>
 				{/* <Tab eventKey="bonus" title="Bonus">
 					<BonusPage
-						page={'bonus'}
 
 					/>
 				</Tab> */}
 				{/* <Tab eventKey="level" title="Level">
 					<LevelPage
-						page={'level'}
 
 					/>
 				</Tab> */}

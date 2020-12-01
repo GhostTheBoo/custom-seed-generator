@@ -16,7 +16,7 @@ function PopupPage(props) {
 			<Form>
 				<Form.Row>
 					<GenericSelect
-						class={props.page}
+						class={'popup'}
 						selector={'World'}
 						itemList={worldsData}
 						name={'currentWorld'}
@@ -27,19 +27,19 @@ function PopupPage(props) {
 				<Form.Row>
 					<Col>
 						<RewardTypeSelect
-							class={props.page}
+							class={'popup'}
 							currentRewardType={props.popupData.currentRewardType}
 							name={'currentRewardType'}
-							onChange={(event) => props.onRewardTypeChange(props.page, event)}
+							onChange={props.onRewardTypeChange}
 						/>
 					</Col>
 					<Col>
 						<RewardSelect
-							class={props.page}
+							class={'popup'}
 							rewardList={props.rewardList}
 							currentReward={props.popupData.currentReward}
 							name={'currentReward'}
-							onChange={(event) => props.onRewardChange(props.page, event)}
+							onChange={props.onRewardChange}
 						/>
 					</Col>
 				</Form.Row>
@@ -47,8 +47,8 @@ function PopupPage(props) {
 			<PopupTable
 				currentWorld={worldsData[props.popupData.currentWorld]}
 				worldPopups={props.popupData.currentDisplayData}
-				onRowCheck={(event) => props.onRowCheck(props.page, event)}
-				checkAll={(event) => props.checkAll(props.page, event)}
+				onRowCheck={props.onRowCheck}
+				checkAll={props.checkAll}
 				selectAll={props.popupData.selectAll}
 			/>
 			<Buttons

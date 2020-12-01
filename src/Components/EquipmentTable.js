@@ -4,9 +4,6 @@ import Table from 'react-bootstrap/Table'
 function EquipmentTable(props) {
 	let equipmentList = props.equipments.map((equipment, index) => {
 		let styles
-		let originalAbility = ''
-		if (equipment.isAbilityReplaced)
-			originalAbility = equipment.ability
 		if (equipment.isAbilityReplaced || equipment.isStatsReplaced || equipment.isElementalResistanceChanged || equipment.isOtherResistanceChanged) {
 			styles = { background: 'green' }
 		}
@@ -35,7 +32,7 @@ function EquipmentTable(props) {
 					{equipment.name}
 				</td>
 				<td>
-					{originalAbility}
+					{equipment.ability}
 				</td>
 				<td>
 					{equipment.strength}
