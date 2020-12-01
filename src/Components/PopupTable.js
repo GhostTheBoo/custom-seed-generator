@@ -23,7 +23,7 @@ function PopupTable(props) {
 						name={props.currentWorld}
 						value={index}
 						checked={popup.toBeReplaced}
-						onChange={(event) => props.onRowCheck('popup', event)}
+						onChange={props.onRowCheck}
 					/>
 				</td>
 				<td>
@@ -47,7 +47,7 @@ function PopupTable(props) {
 							type='checkbox'
 							name={props.currentWorld + 'All'}
 							checked={props.selectAll}
-							onChange={(event) => props.checkAll('popup', event)}
+							onChange={props.checkAll}
 						/>
 					</th>
 					<th>

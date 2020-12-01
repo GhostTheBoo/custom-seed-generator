@@ -47,8 +47,8 @@ function PopupPage(props) {
 			<PopupTable
 				currentWorld={worldsData[props.popupData.currentWorld]}
 				worldPopups={props.popupData.currentDisplayData}
-				onRowCheck={props.onRowCheck}
-				checkAll={props.checkAll}
+				onRowCheck={(event) => props.onRowCheck(props.page, event)}
+				checkAll={(event) => props.checkAll(props.page, event)}
 				selectAll={props.popupData.selectAll}
 			/>
 			<Buttons

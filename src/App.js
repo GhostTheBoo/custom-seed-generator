@@ -2,16 +2,22 @@ import React from 'react'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 
-import { worldsData } from './Data/typesData'
+import { worldsData, formTypesData } from './Data/typesData'
 import rewardsData from './Data/rewardsData'
 
 import ChestPage from './ChestPage'
 import chestsData from './Data/chestsData'
+
 import PopupPage from './PopupPage'
 import popupsData from './Data/popupsData'
-// import FormPage from './FormPage'
+
+import FormPage from './FormPage'
+import formsData from './Data/formsData'
+
 // import EquipmentPage from './EquipmentPage'
+
 // import BonusPage from './BonusPage'
+
 // import LevelPage from './LevelPage'
 
 class App extends React.Component {
@@ -35,7 +41,16 @@ class App extends React.Component {
 				allPopups: popupsData.slice(),
 				currentDisplayData: popupsData[0].popups.slice(),
 			},
-			form: null,
+			form: {
+				currentDriveForm: 0,
+				currentRewardType: 0,
+				currentReward: 0,
+				currentEXP: 0,
+				currentEXPMultiplierValue: 2,
+				selectAll: false,
+				allForms: formsData.slice(),
+				currentDisplayData: formsData[0].driveLevels.slice(),
+			},
 			equipment: null,
 			bonus: null,
 			level: null
@@ -43,18 +58,21 @@ class App extends React.Component {
 
 		this.handleChestWorldChange = this.handleChestWorldChange.bind(this)
 		this.handlePopupWorldChange = this.handlePopupWorldChange.bind(this)
+		this.handleFormChange = this.handleFormChange.bind(this)
 
 		this.handleChestReplace = this.handleChestReplace.bind(this)
 		this.handlePopupReplace = this.handlePopupReplace.bind(this)
+		this.handleFormReplace = this.handleFormReplace.bind(this)
 
 		this.handleRewardTypeChange = this.handleRewardTypeChange.bind(this)
-		this.handleRewardChange = this.handleRewardChange.bind(this)
+		this.handleGenericChange = this.handleGenericChange.bind(this)
+		this.handleInputChange = this.handleInputChange.bind(this)
 		this.onRowCheck = this.onRowCheck.bind(this)
 		this.checkAll = this.checkAll.bind(this)
 		this.handleSave = this.handleSave.bind(this)
 	}
 
-	//#region TableSelect Change
+	//#region Table Data Change
 	handleChestWorldChange(event) {
 		let nextWorld = parseInt(event.target.value)
 		let toBeReplacedChests = this.state.chest.currentDisplayData.map(chest => {
@@ -103,6 +121,32 @@ class App extends React.Component {
 				currentWorld: nextWorld,
 				allPopups: newAllPopups,
 				currentDisplayData: nextWorldPopups
+			}
+		}))
+	}
+
+	handleFormChange(event) {
+		let nextDriveForm = event.target.value
+		let toBeReplacedDriveFormLevels = this.state.form.currentDisplayData.map(driveFormLevel => {
+			driveFormLevel.toBeReplaced = false
+			return driveFormLevel
+		})
+		let newAllForms = this.state.form.allForms.map((driveFormList, index) => {
+			if (index === this.state.form.currentDriveForm)
+				return {
+					driveForm: formTypesData[index],
+					driveLevels: toBeReplacedDriveFormLevels
+				}
+			return driveFormList
+		})
+		let nextDriveFormLevels = newAllForms[nextDriveForm].driveLevels.slice()
+		this.setState(prevState => ({
+			form: {
+				...prevState.form,
+				selectAll: false,
+				currentDriveForm: nextDriveForm,
+				allForms: newAllForms,
+				currentDisplayData: nextDriveFormLevels
 			}
 		}))
 	}
@@ -198,6 +242,59 @@ class App extends React.Component {
 			}
 		}))
 	}
+
+	handleFormReplace(event) {
+		let replacedDriveFormLevels
+		if (event.target.name === 'replaceButton') {
+			replacedDriveFormLevels = this.state.form.currentDisplayData.map(driveFormLevel => {
+				if (driveFormLevel.toBeReplaced) {
+					let reward = rewardsData[this.state.form.currentRewardType].rewards[this.state.form.currentReward]
+					driveFormLevel.toBeReplaced = false
+					if (reward.reward !== driveFormLevel.replacementReward) {
+						if (reward.reward === driveFormLevel.vanillaReward) {
+							driveFormLevel.isRewardReplaced = false
+							driveFormLevel.replacementReward = driveFormLevel.vanillaReward
+							driveFormLevel.replacementIndex = ''
+						} else {
+							driveFormLevel.isRewardReplaced = true
+							driveFormLevel.replacementReward = reward.reward
+							driveFormLevel.replacementIndex = reward.index
+						}
+					}
+
+					if (this.state.form.currentEXPMultiplierValue === 0)
+						driveFormLevel.replacementEXP = this.state.form.currentEXP
+					else
+						driveFormLevel.replacementEXP = Math.floor(driveFormLevel.vanillaEXP / (this.state.form.currentEXPMultiplierValue / 2))
+
+					if (driveFormLevel.replacementEXP !== driveFormLevel.vanillaEXP)
+						driveFormLevel.isEXPReplaced = true
+					else
+						driveFormLevel.isEXPReplaced = false
+				}
+				return driveFormLevel
+			})
+		} else {
+			replacedDriveFormLevels = this.state.form.currentDisplayData.map(driveFormLevel => {
+				if (driveFormLevel.toBeReplaced) {
+					driveFormLevel.toBeReplaced = false
+					driveFormLevel.isRewardReplaced = false
+					driveFormLevel.isEXPReplaced = false
+					driveFormLevel.replacementReward = driveFormLevel.vanillaReward
+					driveFormLevel.replacementIndex = ''
+					driveFormLevel.replacementEXP = driveFormLevel.vanillaEXP
+				}
+				return driveFormLevel
+			})
+		}
+		this.setState(prevState => ({
+			form: {
+				...prevState.form,
+				selectAll: false,
+				currentDisplayData: replacedDriveFormLevels
+			}
+		}))
+	}
 	//#endregion
 
 	//#region General Functions
@@ -212,8 +309,19 @@ class App extends React.Component {
 		}))
 	}
 
-	handleRewardChange(page, event) {
+	handleGenericChange(page, event) {
 		const { name, value } = event.target
+		this.setState(prevState => ({
+			[page]: {
+				...prevState[page],
+				[name]: parseInt(value)
+			}
+		}))
+	}
+
+	handleInputChange(page, event) {
+		let { name, value, min, max } = event.target
+		value = Math.max(Number(min), Math.min(Number(max), Number(value)));
 		this.setState(prevState => ({
 			[page]: {
 				...prevState[page],
@@ -252,6 +360,7 @@ class App extends React.Component {
 	}
 
 	handleSave() {
+
 		//#region Chest saving
 		let chestPnachCodes = this.state.chest.allChests.map(worldList => {
 			let ret = '// ' + worldList.world + '\n'
@@ -288,7 +397,34 @@ class App extends React.Component {
 		})
 		//#endregion
 
-		//#region Form
+		//#region Form saving
+		let formPnachCodes = this.state.form.allForms.map(driveFormList => {
+			let ret = '// ' + driveFormList.driveForm + '\n'
+			let text
+			if (driveFormList.driveLevels.some(driveFormLevel => driveFormLevel.isRewardReplaced))
+				ret += driveFormList.removeGrowthJankCodes.join('')
+
+			driveFormList.driveLevels.forEach(driveFormLevel => {
+				if (!driveFormLevel.isRewardReplaced) {
+					ret += '//'
+					text = ' is still '
+				} else
+					text = ' is now '
+
+				ret += 'patch=1,EE,' + driveFormLevel.vanillaAddress + ',extended,0000' + driveFormLevel.replacementIndex.padStart(4, '0')
+				ret += ' // ' + driveFormLevel.level + ', ' + driveFormLevel.vanillaReward + text + driveFormLevel.replacementReward + '\n'
+
+				if (!driveFormLevel.isEXPReplaced) {
+					ret += '//'
+					text = ' is still '
+				} else
+					text = ' is '
+
+				ret += 'patch=1,EE,' + driveFormLevel.EXPAddress + ',extended,' + driveFormLevel.replacementEXP.toString(16).toUpperCase().padStart(8, 0)
+				ret += ' // ' + driveFormLevel.replacementEXP + ' experience' + text + 'required to reach ' + driveFormLevel.level + '\n'
+			})
+			return ret
+		})
 		//#endregion
 
 		//#region Equipment
@@ -300,7 +436,7 @@ class App extends React.Component {
 		//#region Level
 		//#endregion
 
-		let pnachCodes = chestPnachCodes.concat(popupPnachCodes)
+		let pnachCodes = chestPnachCodes.concat(popupPnachCodes, formPnachCodes)
 		console.log(pnachCodes)
 	}
 	//#endregion
@@ -315,7 +451,7 @@ class App extends React.Component {
 						rewardList={rewardsData[this.state.chest.currentRewardType].rewards}
 						handleWorldChange={this.handleChestWorldChange}
 						onRewardTypeChange={this.handleRewardTypeChange}
-						onRewardChange={this.handleRewardChange}
+						onRewardChange={this.handleGenericChange}
 						onRowCheck={this.onRowCheck}
 						checkAll={this.checkAll}
 						handleReplace={this.handleChestReplace}
@@ -329,19 +465,29 @@ class App extends React.Component {
 						rewardList={rewardsData[this.state.popup.currentRewardType].rewards}
 						handleWorldChange={this.handlePopupWorldChange}
 						onRewardTypeChange={this.handleRewardTypeChange}
-						onRewardChange={this.handleRewardChange}
+						onRewardChange={this.handleGenericChange}
 						onRowCheck={this.onRowCheck}
 						checkAll={this.checkAll}
 						handleReplace={this.handlePopupReplace}
 						handleSave={this.handleSave}
 					/>
 				</Tab>
-				{/* <Tab eventKey="form" title="Form">
+				<Tab eventKey="form" title="Form">
 					<FormPage
+						formData={this.state.form}
 						page={'form'}
+						rewardList={rewardsData[this.state.form.currentRewardType].rewards}
+						handleFormChange={this.handleFormChange}
+						onRewardTypeChange={this.handleRewardTypeChange}
+						onRewardChange={this.handleGenericChange}
+						onInputChange={this.handleInputChange}
+						onRowCheck={this.onRowCheck}
+						checkAll={this.checkAll}
+						handleReplace={this.handleFormReplace}
+						handleSave={this.handleSave}
 
 					/>
-				</Tab> */}
+				</Tab>
 				{/* <Tab eventKey="equipment" title="Equipment">
 					<EquipmentPage
 						page={'equipment'}

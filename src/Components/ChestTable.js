@@ -21,7 +21,7 @@ function ChestTable(props) {
 						name={props.currentWorld}
 						value={index}
 						checked={chest.toBeReplaced}
-						onChange={(event) => props.onRowCheck('chest', event)}
+						onChange={props.onRowCheck}
 					/>
 				</td>
 				<td>
@@ -45,7 +45,7 @@ function ChestTable(props) {
 							type='checkbox'
 							name={props.currentWorld + 'All'}
 							checked={props.selectAll}
-							onChange={(event) => props.checkAll('chest', event)}
+							onChange={props.checkAll}
 						/>
 					</th>
 					<th>

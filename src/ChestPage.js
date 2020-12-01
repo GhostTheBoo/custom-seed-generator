@@ -47,8 +47,8 @@ function ChestPage(props) {
 			<ChestTable
 				currentWorld={worldsData[props.chestData.currentWorld]}
 				worldChests={props.chestData.currentDisplayData}
-				onRowCheck={props.onRowCheck}
-				checkAll={props.checkAll}
+				onRowCheck={(event) => props.onRowCheck(props.page, event)}
+				checkAll={(event) => props.checkAll(props.page, event)}
 				selectAll={props.chestData.selectAll}
 			/>
 			<Buttons
