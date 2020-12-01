@@ -3,7 +3,6 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 
 import { worldsData } from './Data/typesData'
-import rewardsData from './Data/rewardsData'
 
 import GenericSelect from './Components/GenericSelect'
 import RewardSelect from './Components/RewardSelect'
@@ -37,7 +36,7 @@ function ChestPage(props) {
 					<Col>
 						<RewardSelect
 							class={props.page}
-							rewardList={rewardsData[props.chestData.currentRewardType].rewards}
+							rewardList={props.rewardList}
 							currentReward={props.chestData.currentReward}
 							name={'currentReward'}
 							onChange={(event) => props.onRewardChange(props.page, event)}
