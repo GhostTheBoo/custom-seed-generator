@@ -2,316 +2,147 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 
-import rewardsData from './Data/rewardsData'
-import levelsData from './Data/levelsData'
-
 import RewardSelect from './Components/RewardSelect'
+import RewardTypeSelect from './Components/RewardTypeSelect'
 import EXPSelect from './Components/EXPSelect'
 import LevelTable from './Components/LevelTable.js'
 import Buttons from './Components/Buttons'
 
-class LevelPage extends React.Component {
-	constructor() {
-		super()
-
-		this.state = {
-			currentWorld: 0,
-			currentCharacter: 0,
-			currentSwordRewardType: 0,
-			currentSwordReward: 0,
-			currentShieldRewardType: 0,
-			currentShieldReward: 0,
-			currentStaffRewardType: 0,
-			currentStaffReward: 0,
-			currentAP: 0,
-			currentDefense: 0,
-			currentMagic: 0,
-			currentStrength: 0,
-			currentEXP: 0,
-			currentEXPMultiplierValue: 0,
-			selectAll: false,
-			allLevels: levelsData.slice(),
-			pnachCodes: []
-		}
-
-		this.handleReplace = this.handleReplace.bind(this)
-		this.handleSave = this.handleSave.bind(this)
-		this.handleChange = this.handleChange.bind(this)
-		this.onRowCheck = this.onRowCheck.bind(this)
-		this.handleInputChange = this.handleInputChange.bind(this)
-		this.checkAll = this.checkAll.bind(this)
-	}
-
-	crit(ap) {
-		return Math.floor(((ap - 2) * 1.5) + 50);
-	}
-
-	handleInputChange(event) {
-		const { name, value } = event.target
-		this.setState({
-			[name]: parseInt(value),
-		})
-	}
-
-	onRowCheck(event) {
-		let toBeReplacedLevels = this.state.allLevels.map((level, index) => {
-			if (index === parseInt(event.target.value))
-				level.toBeReplaced = !level.toBeReplaced
-			return level
-		})
-		this.setState({
-			allLevels: toBeReplacedLevels
-		})
-	}
-
-	checkAll() {
-		let selectAll = !this.state.selectAll
-		let toBeReplacedLevels = this.state.allLevels.map(level => {
-			level.toBeReplaced = selectAll
-			return level
-		})
-		this.setState({
-			selectAll: selectAll,
-			allLevels: toBeReplacedLevels
-		})
-	}
-
-	handleChange(event) {
-		const { name, value } = event.target
-		if (name === 'currentSwordRewardType')
-			this.setState({
-				currentSwordReward: 0,
-				currentSwordRewardType: value
-			})
-		else if (name === 'currentShieldRewardType')
-			this.setState({
-				currentShieldReward: 0,
-				currentShieldRewardType: value
-			})
-		else if (name === 'currentStaffRewardType')
-			this.setState({
-				currentStaffReward: 0,
-				currentStaffRewardType: value
-			})
-		else
-			this.setState({
-				[name]: parseInt(value),
-			})
-	}
-
-	handleReplace(event) {
-		let replacedLevels = this.state.allLevels.map(l => {
-			if (event.target.name === 'replaceButton') {
-				if (l.toBeReplaced) {
-					l.toBeReplaced = false
-
-					l.swordReplacementReward = rewardsData[this.state.currentSwordRewardType].rewards[this.state.currentSwordReward].reward
-					l.swordReplacementIndex = rewardsData[this.state.currentSwordRewardType].rewards[this.state.currentSwordReward].index
-					if (l.swordReplacementReward !== l.vanillaSwordReward)
-						l.isSwordReplaced = true
-
-					l.shieldReplacementReward = rewardsData[this.state.currentShieldRewardType].rewards[this.state.currentShieldReward].reward
-					l.shieldReplacementIndex = rewardsData[this.state.currentShieldRewardType].rewards[this.state.currentShieldReward].index
-					if (l.shieldReplacementReward !== l.vanillaShieldReward)
-						l.isShieldReplaced = true
-
-					l.staffReplacementReward = rewardsData[this.state.currentStaffRewardType].rewards[this.state.currentStaffReward].reward
-					l.staffReplacementIndex = rewardsData[this.state.currentStaffRewardType].rewards[this.state.currentStaffReward].index
-					if (l.staffReplacementReward !== l.vanillaStaffReward)
-						l.isStaffReplaced = true
-
-					l.standardAP = this.state.currentAP
-					l.criticalAP = this.crit(this.state.currentAP)
-					l.defense = this.state.currentDefense
-					l.magic = this.state.currentMagic
-					l.strength = this.state.currentStrength
-
-					if (l.standardAP !== l.vanillaAP || l.defense !== l.vanillaDefense || l.magic !== l.vanillaMagic || l.strength !== l.vanillaStrength)
-						l.isStatsReplaced = true
-
-					if (this.state.currentEXPMultiplierValue === 0)
-						l.replacedEXP = this.state.currentEXP
-					else
-						l.replacedEXP = Math.floor(l.vanillaEXP / this.state.currentEXPMultiplierValue)
-
-					if (l.replacedEXP !== l.vanillaEXP)
-						l.isEXPReplaced = true
-				}
-			} else {
-				if (l.toBeReplaced) {
-					l.toBeReplaced = false
-
-					l.swordReplacementReward = l.vanillaSwordReward
-					l.swordReplacementIndex = ''
-					l.isSwordReplaced = false
-
-					l.shieldReplacementReward = l.vanillaShieldReward
-					l.shieldReplacementIndex = ''
-					l.isShieldReplaced = false
-
-					l.staffReplacementReward = l.vanillaStaffReward
-					l.staffReplacementIndex = ''
-					l.isStaffReplaced = false
-
-					l.standardAP = l.vanillaAP
-					l.criticalAP = this.crit(l.vanillaAP)
-					l.defense = l.vanillaDefense
-					l.magic = l.vanillaMagic
-					l.strength = l.vanillaStrength
-					l.isStatsReplaced = false
-
-					l.replacedEXP = l.vanillaEXP
-					l.isEXPReplaced = false
-				}
-			}
-			return l
-		})
-		this.setState({
-			selectAll: !this.state.selectAll,
-			allLevels: replacedLevels
-		})
-	}
-
-	handleSave() {
-		let pnachCodes = this.state.allLevels.map(l => {
-			let ret = '// Level: ' + l.level + '\n'
-
-			if (l.level === 99)
-				ret += '// Cannot Level to 100 so experience is not changed\n'
-			else {
-				if (l.isEXPReplaced) {
-					ret += 'patch=1,EE,' + l.expAddress + ',extended,' + l.replacedEXP.toString(16).toUpperCase().padStart(8, '0')
-					ret += ' // Level ' + l.level + ' at ' + l.replacedEXP + ' experience\n'
-				}
-			}
-
-			if (l.isStatsReplaced) {
-				ret += 'patch=1,EE,' + l.statAddress + ',extended,'
-				ret += l.standardAP.toString(16).toUpperCase().padStart(2, '0') + l.defense.toString(16).toUpperCase().padStart(2, '0')
-				ret += l.magic.toString(16).toUpperCase().padStart(2, '0') + l.strength.toString(16).toUpperCase().padStart(2, '0')
-				ret += ' // AP:' + l.standardAP.toString() + ' Magic:' + l.magic.toString() + ' Defense:' + l.defense.toString() + ' Strength:' + l.strength.toString() + '\n'
-			}
-
-			if (l.level === 1)
-				ret += '// No Level 1 Dream Weapon Rewards\n'
-			else {
-				if (l.isSwordReplaced)
-					ret += 'patch=1,EE,' + l.swordAddress + ',extended,0000' + l.swordReplacementIndex + ' // Sword Reward: ' + l.swordReplacementReward + '\n'
-				if (l.isShieldReplaced)
-					ret += 'patch=1,EE,' + l.shieldAddress + ',extended,0000' + l.shieldReplacementIndex + ' // Shield Reward: ' + l.shieldReplacementReward + '\n'
-				if (l.isStaffReplaced)
-					ret += 'patch=1,EE,' + l.staffAddress + ',extended,0000' + l.staffReplacementIndex + ' // Staff Reward: ' + l.staffReplacementReward + '\n'
-			}
-			return ret
-		})
-
-		console.log(pnachCodes)
-	}
-
-	render() {
-		return (
-			<div>
-				<Form>
-					<RewardSelect
-						class='level'
-						currentRewardType={this.state.currentSwordRewardType}
-						rewardList={rewardsData[this.state.currentSwordRewardType].rewards}
-						currentReward={this.state.currentSwordReward}
-						typeName={'currentSwordRewardType'}
-						name={'currentSwordReward'}
-						label={'Sword'}
-						onChange={this.handleChange}
-					/>
-					<RewardSelect
-						class='level'
-						currentRewardType={this.state.currentShieldRewardType}
-						rewardList={rewardsData[this.state.currentShieldRewardType].rewards}
-						currentReward={this.state.currentShieldReward}
-						typeName={'currentShieldRewardType'}
-						name={'currentShieldReward'}
-						label={'Shield'}
-						onChange={this.handleChange}
-					/>
-					<RewardSelect
-						class='level'
-						currentRewardType={this.state.currentStaffRewardType}
-						rewardList={rewardsData[this.state.currentStaffRewardType].rewards}
-						currentReward={this.state.currentStaffReward}
-						typeName={'currentStaffRewardType'}
-						name={'currentStaffReward'}
-						label={'Staff'}
-						onChange={this.handleChange}
-					/>
-					<EXPSelect
-						class='level'
-						currentEXP={this.state.currentEXP}
-						currentEXPMultiplier={this.state.currentEXPMultiplierValue}
-						onChange={this.handleChange}
-					/>
-					<Form.Row>
-						<Col xl='2'>
-							<Form.Group controlId='currentAP'>
-								<Form.Label column='sm'>AP: </Form.Label>
-								<Form.Control
-									size='sm'
-									name='currentAP'
-									type='number'
-									value={this.state.currentAP}
-									onChange={this.handleInputChange}
-								/>
-							</Form.Group>
-						</Col>
-						<Col xl='2'>
-							<Form.Group controlId='currentDefense'>
-								<Form.Label column='sm'>Defense: </Form.Label>
-								<Form.Control
-									size='sm'
-									name='currentDefense'
-									type='number'
-									value={this.state.currentDefense}
-									onChange={this.handleInputChange}
-								/>
-							</Form.Group>
-						</Col>
-						<Col xl='2'>
-							<Form.Group controlId='currentStrength'>
-								<Form.Label column='sm'>Strength: </Form.Label>
-								<Form.Control
-									size='sm'
-									name='currentStrength'
-									type='number'
-									value={this.state.currentStrength}
-									onChange={this.handleInputChange}
-								/>
-							</Form.Group>
-						</Col>
-						<Col xl='2'>
-							<Form.Group controlId='currentMagic'>
-								<Form.Label column='sm'>Magic: </Form.Label>
-								<Form.Control
-									size='sm'
-									name='currentMagic'
-									type='number'
-									value={this.state.currentMagic}
-									onChange={this.handleInputChange}
-								/>
-							</Form.Group>
-						</Col>
-					</Form.Row>
-				</Form>
-				<LevelTable
-					allLevels={this.state.allLevels}
-					onRowCheck={this.onRowCheck}
-					checkAll={this.checkAll}
-					selectAll={this.state.selectAll}
+function LevelPage(props) {
+	return (
+		<div>
+			<Form>
+				<Form.Row>
+					<Col>
+						<RewardTypeSelect
+							class={'level'}
+							currentRewardType={props.levelData.currentSwordRewardType}
+							name={'currentSwordRewardType'}
+							onChange={props.onRewardTypeChange}
+						/>
+					</Col>
+					<Col>
+						<RewardSelect
+							class={'level'}
+							rewardList={props.swordRewardList}
+							currentReward={props.levelData.currentSwordReward}
+							name={'currentSwordReward'}
+							onChange={props.onGenericChange}
+						/>
+					</Col>
+					<Col>
+						<RewardTypeSelect
+							class={'level'}
+							currentRewardType={props.levelData.currentShieldRewardType}
+							name={'currentShieldRewardType'}
+							onChange={props.onRewardTypeChange}
+						/>
+					</Col>
+					<Col>
+						<RewardSelect
+							class={'level'}
+							rewardList={props.shieldRewardList}
+							currentReward={props.levelData.currentShieldReward}
+							name={'currentShieldReward'}
+							onChange={props.onGenericChange}
+						/>
+					</Col>
+					<Col>
+						<RewardTypeSelect
+							class={'level'}
+							currentRewardType={props.levelData.currentStaffRewardType}
+							name={'currentStaffRewardType'}
+							onChange={props.onRewardTypeChange}
+						/>
+					</Col>
+					<Col>
+						<RewardSelect
+							class={'level'}
+							rewardList={props.staffRewardList}
+							currentReward={props.levelData.currentStaffReward}
+							name={'currentStaffReward'}
+							onChange={props.onGenericChange}
+						/>
+					</Col>
+				</Form.Row>
+				<EXPSelect
+					class={'level'}
+					currentEXP={props.levelData.currentEXP}
+					currentEXPMultiplier={props.levelData.currentEXPMultiplierValue}
+					onInputChange={props.onInputChange}
+					onMultiplierChange={props.onGenericChange}
 				/>
-				<Buttons
-					onClick={this.handleReplace}
-					onSaveClick={this.handleSave}
-				/>
-			</div >
-		)
-	}
+				<Form.Row>
+					<Col>
+						<Form.Group controlId='currentLevelAP'>
+							<Form.Label column='sm'>AP: </Form.Label>
+							<Form.Control
+								size='sm'
+								name='currentLevelAP'
+								type='number'
+								value={props.levelData.currentLevelAP}
+								onChange={props.onInputChange}
+								min="0"
+								max="255"
+							/>
+						</Form.Group>
+					</Col>
+					<Col>
+						<Form.Group controlId='currentLevelDefense'>
+							<Form.Label column='sm'>Defense: </Form.Label>
+							<Form.Control
+								size='sm'
+								name='currentLevelDefense'
+								type='number'
+								value={props.levelData.currentLevelDefense}
+								onChange={props.onInputChange}
+								min="0"
+								max="255"
+							/>
+						</Form.Group>
+					</Col>
+					<Col>
+						<Form.Group controlId='currentLevelStrength'>
+							<Form.Label column='sm'>Strength: </Form.Label>
+							<Form.Control
+								size='sm'
+								name='currentLevelStrength'
+								type='number'
+								value={props.levelData.currentLevelStrength}
+								onChange={props.onInputChange}
+								min="0"
+								max="255"
+							/>
+						</Form.Group>
+					</Col>
+					<Col>
+						<Form.Group controlId='currentLevelMagic'>
+							<Form.Label column='sm'>Magic: </Form.Label>
+							<Form.Control
+								size='sm'
+								name='currentLevelMagic'
+								type='number'
+								value={props.levelData.currentLevelMagic}
+								onChange={props.onInputChange}
+								min="0"
+								max="255"
+							/>
+						</Form.Group>
+					</Col>
+				</Form.Row>
+			</Form>
+			<LevelTable
+				allLevels={props.levelData.currentDisplayData}
+				onRowCheck={props.onRowCheck}
+				checkAll={props.checkAll}
+				selectAll={props.levelData.selectAll}
+			/>
+			<Buttons
+				onClick={props.handleReplace}
+				onSaveClick={props.handleSave}
+			/>
+		</div >
+	)
 }
 
 export default LevelPage

@@ -2,7 +2,7 @@ import React from 'react'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 
-import { worldsData, formTypesData, equipmentTypesData } from './Data/typesData'
+import { worldsData, formTypesData, equipmentTypesData, charactersData } from './Data/typesData'
 import rewardsData from './Data/rewardsData'
 
 import ChestPage from './ChestPage'
@@ -17,9 +17,11 @@ import formsData from './Data/formsData'
 import EquipmentPage from './EquipmentPage'
 import equipmentsData from './Data/equipmentsData'
 
-// import BonusPage from './BonusPage'
+import BonusPage from './BonusPage'
+import bonusData from './Data/bonusData'
 
-// import LevelPage from './LevelPage'
+import LevelPage from './LevelPage'
+import levelsData from './Data/levelsData'
 
 class App extends React.Component {
 	constructor() {
@@ -71,19 +73,56 @@ class App extends React.Component {
 				allEquipments: equipmentsData.slice(),
 				currentDisplayData: equipmentsData[0].equipments.slice()
 			},
-			bonus: null,
-			level: null
+			bonus: {
+				currentWorld: 0,
+				currentCharacter: 0,
+				currentARewardType: 0,
+				currentAReward: 0,
+				currentBRewardType: 0,
+				currentBReward: 0,
+				currentHP: 0,
+				currentMP: 0,
+				currentArmor: 0,
+				currentAccessory: 0,
+				currentItem: 0,
+				currentDrive: 0,
+				selectAll: false,
+				allBonuses: bonusData.slice(),
+				currentDisplayData: bonusData[0].characterBonuses[0].worldBonuses.slice()
+			},
+			level: {
+				currentWorld: 0,
+				currentCharacter: 0,
+				currentSwordRewardType: 0,
+				currentSwordReward: 0,
+				currentShieldRewardType: 0,
+				currentShieldReward: 0,
+				currentStaffRewardType: 0,
+				currentStaffReward: 0,
+				currentLevelAP: 0,
+				currentLevelDefense: 0,
+				currentLevelMagic: 0,
+				currentLevelStrength: 0,
+				currentEXP: 0,
+				currentEXPMultiplierValue: 2,
+				selectAll: false,
+				currentDisplayData: levelsData.slice(),
+			}
 		}
 
 		this.handleChestWorldChange = this.handleChestWorldChange.bind(this)
 		this.handlePopupWorldChange = this.handlePopupWorldChange.bind(this)
+		this.handleBonusWorldChange = this.handleBonusWorldChange.bind(this)
 		this.handleFormChange = this.handleFormChange.bind(this)
 		this.handleEquipmentTypeChange = this.handleEquipmentTypeChange.bind(this)
+		this.handleBonusCharacterChange = this.handleBonusCharacterChange.bind(this)
 
 		this.handleChestReplace = this.handleChestReplace.bind(this)
 		this.handlePopupReplace = this.handlePopupReplace.bind(this)
 		this.handleFormReplace = this.handleFormReplace.bind(this)
 		this.handleEquipmentReplace = this.handleEquipmentReplace.bind(this)
+		this.handleBonusReplace = this.handleBonusReplace.bind(this)
+		this.handleLevelReplace = this.handleLevelReplace.bind(this)
 
 		this.handleRewardTypeChange = this.handleRewardTypeChange.bind(this)
 		this.handleGenericChange = this.handleGenericChange.bind(this)
@@ -146,6 +185,40 @@ class App extends React.Component {
 		}))
 	}
 
+	handleBonusWorldChange(event) {
+		let nextWorld = parseInt(event.target.value)
+		let newAllCharacterBonuses = this.state.bonus.allBonuses[this.state.bonus.currentCharacter].characterBonuses.map((worldBonusList, index) => {
+			if (index === this.state.bonus.currentWorld) {
+				let newWorldBonusList = {
+					world: worldsData[index],
+					worldBonuses: worldBonusList.worldBonuses.map(bonus => {
+						bonus.toBeReplaced = false
+						return bonus
+					})
+				}
+				return newWorldBonusList
+			}
+			return worldBonusList
+		})
+		let newAllBonuses = this.state.bonus.allBonuses.map(c => {
+			if (c.character === charactersData[this.state.bonus.currentCharacter])
+				return {
+					character: c.character,
+					characterBonuses: newAllCharacterBonuses
+				}
+			return c
+		})
+		this.setState(prevState => ({
+			bonus: {
+				...prevState.bonus,
+				selectAll: false,
+				currentWorld: nextWorld,
+				allBonuses: newAllBonuses,
+				currentDisplayData: newAllBonuses[this.state.bonus.currentCharacter].characterBonuses[nextWorld].worldBonuses.slice()
+			}
+		}))
+	}
+
 	handleFormChange(event) {
 		let nextDriveForm = event.target.value
 		let toBeReplacedDriveFormLevels = this.state.form.currentDisplayData.map(driveFormLevel => {
@@ -194,6 +267,43 @@ class App extends React.Component {
 				currentEquipmentType: nextEquipmentType,
 				allEquipments: newAllEquipments,
 				currentDisplayData: nextEquipments
+			}
+		}))
+	}
+
+	handleBonusCharacterChange(event) {
+		let nextCharacter = parseInt(event.target.value)
+
+		let newAllCharacterBonuses = this.state.bonus.allBonuses[this.state.bonus.currentCharacter].characterBonuses.map((worldBonusList, index) => {
+			if (index === this.state.bonus.currentWorld) {
+				let newWorldBonusList = {
+					world: worldsData[index],
+					worldBonuses: worldBonusList.worldBonuses.map(bonus => {
+						bonus.toBeReplaced = false
+						return bonus
+					})
+				}
+				return newWorldBonusList
+			}
+			return worldBonusList
+		})
+
+		let newAllBonuses = this.state.bonus.allBonuses.map(c => {
+			if (c.character === charactersData[this.state.bonus.currentCharacter])
+				return {
+					character: c.character,
+					characterBonuses: newAllCharacterBonuses
+				}
+			return c
+		})
+
+		this.setState(prevState => ({
+			bonus: {
+				...prevState.bonus,
+				selectAll: false,
+				currentCharacter: nextCharacter,
+				allBonuses: newAllBonuses,
+				currentDisplayData: newAllBonuses[nextCharacter].characterBonuses[this.state.bonus.currentWorld].worldBonuses.slice()
 			}
 		}))
 	}
@@ -312,7 +422,7 @@ class App extends React.Component {
 					if (this.state.form.currentEXPMultiplierValue === 0)
 						driveFormLevel.replacementEXP = this.state.form.currentEXP
 					else
-						driveFormLevel.replacementEXP = Math.floor(driveFormLevel.vanillaEXP / (this.state.form.currentEXPMultiplierValue / 2))
+						driveFormLevel.replacementEXP = Math.floor((2 * driveFormLevel.vanillaEXP) / this.state.form.currentEXPMultiplierValue)
 
 					if (driveFormLevel.replacementEXP !== driveFormLevel.vanillaEXP)
 						driveFormLevel.isEXPReplaced = true
@@ -445,6 +555,172 @@ class App extends React.Component {
 			}
 		}))
 	}
+
+	handleBonusReplace(event) {
+		let replacedBonuses = this.state.bonus.currentDisplayData.map(bonus => {
+			if (event.target.name === 'replaceButton') {
+				if (bonus.toBeReplaced) {
+					let rewardA = rewardsData[this.state.bonus.currentARewardType].rewards[this.state.bonus.currentAReward]
+					let rewardB = rewardsData[this.state.bonus.currentBRewardType].rewards[this.state.bonus.currentBReward]
+					bonus.toBeReplaced = false
+
+					bonus.replacementReward1 = rewardA.reward
+					bonus.replacementRewardIndex1 = rewardA.index
+
+					bonus.replacementReward2 = rewardB.reward
+					bonus.replacementRewardIndex2 = rewardB.index
+
+					if (bonus.replacementReward1 !== bonus.vanillaReward1 || bonus.replacementReward2 !== bonus.vanillaReward2)
+						bonus.isRewardsReplaced = true
+
+					bonus.hpIncrease = this.state.bonus.currentHP
+					bonus.mpIncrease = this.state.bonus.currentMP
+
+					if (bonus.hpIncrease !== bonus.vanillaHpIncrease || bonus.mpIncrease !== bonus.vanillaMpIncrease)
+						bonus.isStatsReplaced = true
+
+					bonus.armorSlotIncrease = this.state.bonus.currentArmor
+					bonus.accessorySlotIncrease = this.state.bonus.currentAccessory
+					bonus.itemSlotIncrease = this.state.bonus.currentItem
+					bonus.driveGaugeIncrease = this.state.bonus.currentDrive
+
+					if (bonus.armorSlotIncrease !== bonus.vanillaArmorSlotIncrease || bonus.accessorySlotIncrease !== bonus.vanillaAccessorySlotIncrease ||
+						bonus.itemSlotIncrease !== bonus.vanillaItemSlotIncrease || bonus.driveGaugeIncrease !== bonus.vanillaDriveGaugeIncrease)
+						bonus.isSlotsReplaced = true
+				}
+			} else {
+				if (bonus.toBeReplaced) {
+					bonus.toBeReplaced = false
+
+					bonus.replacementReward1 = bonus.vanillaReward1
+					bonus.replacementRewardIndex1 = ''
+					bonus.replacementReward2 = bonus.vanillaReward2
+					bonus.replacementRewardIndex2 = ''
+					bonus.hpIncrease = bonus.vanillaHpIncrease
+					bonus.mpIncrease = bonus.vanillaMpIncrease
+					bonus.armorSlotIncrease = bonus.vanillaArmorSlotIncrease
+					bonus.accessorySlotIncrease = bonus.vanillaAccessorySlotIncrease
+					bonus.itemSlotIncrease = bonus.vanillaItemSlotIncrease
+					bonus.driveGaugeIncrease = bonus.vanillaDriveGaugeIncrease
+
+					bonus.isRewardsReplaced = false
+					bonus.isStatsReplaced = false
+					bonus.isSlotsReplaced = false
+				}
+			}
+			//reward count
+			bonus.rewardChangeCount = 0
+			if (bonus.replacementReward1 !== '' && bonus.replacementReward1 !== 'Empty')
+				bonus.rewardChangeCount++
+			if (bonus.replacementReward2 !== '' && bonus.replacementReward2 !== 'Empty')
+				bonus.rewardChangeCount++
+			//stat count
+			bonus.statChangeCount = 0
+			if (bonus.hpIncrease !== 0)
+				bonus.statChangeCount++
+			if (bonus.mpIncrease !== 0)
+				bonus.statChangeCount++
+			//slot count
+			bonus.slotChangeCount = 0
+			if (bonus.armorSlotIncrease !== 0)
+				bonus.slotChangeCount++
+			if (bonus.accessorySlotIncrease !== 0)
+				bonus.slotChangeCount++
+			if (bonus.itemSlotIncrease !== 0)
+				bonus.slotChangeCount++
+			if (bonus.driveGaugeIncrease !== 0)
+				bonus.slotChangeCount++
+			return bonus
+		})
+		this.setState(prevState => ({
+			bonus: {
+				...prevState.bonus,
+				selectAll: false,
+				currentDisplayDataes: replacedBonuses
+			}
+		}))
+	}
+
+	handleLevelReplace(event) {
+		let replacedLevels = this.state.level.currentDisplayData.map(l => {
+			if (event.target.name === 'replaceButton') {
+				if (l.toBeReplaced) {
+					l.toBeReplaced = false
+
+					let reward = rewardsData[this.state.level.currentSwordRewardType].rewards[this.state.level.currentSwordReward]
+					l.swordReplacementReward = reward.reward
+					l.swordReplacementIndex = reward.index
+					if (l.swordReplacementReward !== l.vanillaSwordReward)
+						l.isSwordReplaced = true
+
+					reward = rewardsData[this.state.level.currentShieldRewardType].rewards[this.state.level.currentShieldReward]
+					l.shieldReplacementReward = reward.reward
+					l.shieldReplacementIndex = reward.index
+					if (l.shieldReplacementReward !== l.vanillaShieldReward)
+						l.isShieldReplaced = true
+
+					reward = rewardsData[this.state.level.currentStaffRewardType].rewards[this.state.level.currentStaffReward]
+					l.staffReplacementReward = reward.reward
+					l.staffReplacementIndex = reward.index
+					if (l.staffReplacementReward !== l.vanillaStaffReward)
+						l.isStaffReplaced = true
+
+					l.standardAP = this.state.level.currentLevelAP
+					l.criticalAP = Math.floor(((this.state.level.currentLevelAP - 2) * 1.5) + 50)
+					l.defense = this.state.level.currentLevelDefense
+					l.magic = this.state.level.currentLevelMagic
+					l.strength = this.state.level.currentLevelStrength
+
+					if (l.standardAP !== l.vanillaAP || l.defense !== l.vanillaDefense || l.magic !== l.vanillaMagic || l.strength !== l.vanillaStrength)
+						l.isStatsReplaced = true
+
+					if (this.state.level.currentEXPMultiplierValue === 0)
+						l.replacedEXP = this.state.level.currentEXP
+					else
+						l.replacedEXP = Math.floor((2 * l.vanillaEXP) / this.state.level.currentEXPMultiplierValue)
+
+					if (l.replacedEXP !== l.vanillaEXP)
+						l.isEXPReplaced = true
+					else
+						l.isEXPReplaced = false
+				}
+			} else {
+				if (l.toBeReplaced) {
+					l.toBeReplaced = false
+
+					l.swordReplacementReward = l.vanillaSwordReward
+					l.swordReplacementIndex = ''
+					l.isSwordReplaced = false
+
+					l.shieldReplacementReward = l.vanillaShieldReward
+					l.shieldReplacementIndex = ''
+					l.isShieldReplaced = false
+
+					l.staffReplacementReward = l.vanillaStaffReward
+					l.staffReplacementIndex = ''
+					l.isStaffReplaced = false
+
+					l.standardAP = l.vanillaAP
+					l.criticalAP = Math.floor(((l.vanillaAP - 2) * 1.5) + 50)
+					l.defense = l.vanillaDefense
+					l.magic = l.vanillaMagic
+					l.strength = l.vanillaStrength
+					l.isStatsReplaced = false
+
+					l.replacedEXP = l.vanillaEXP
+					l.isEXPReplaced = false
+				}
+			}
+			return l
+		})
+		this.setState(prevState => ({
+			level: {
+				...prevState.level,
+				selectAll: false,
+				currentDisplayData: replacedLevels
+			}
+		}))
+	}
 	//#endregion
 
 	//#region General Functions
@@ -471,11 +747,11 @@ class App extends React.Component {
 
 	handleInputChange(page, event) {
 		let { name, value, min, max } = event.target
-		value = Math.max(Number(min), Math.min(Number(max), Number(value)));
+		value = Math.max(Number(min), Math.min(Number(max), Number(parseInt(value))))
 		this.setState(prevState => ({
 			[page]: {
 				...prevState[page],
-				[name]: value
+				[name]: parseInt(value)
 			}
 		}))
 	}
@@ -510,7 +786,6 @@ class App extends React.Component {
 	}
 
 	handleSave() {
-
 		//#region Chest saving
 		let chestPnachCodes = this.state.chest.allChests.map(worldList => {
 			let ret = '// ' + worldList.world + '\n'
@@ -614,12 +889,78 @@ class App extends React.Component {
 		//#endregion
 
 		//#region Bonus saving
+		let bonusPnachCodes = this.state.bonus.allBonuses.map(character => {
+			let ret = '// ' + character.character + '\n'
+			character.characterBonuses.forEach(world => {
+				ret += '// ' + world.world + '\n'
+				world.worldBonuses.forEach(bonus => {
+					// if (bonus.isRewardsReplaced || bonus.isStatsReplaced || bonus.isSlotsReplaced)
+					ret += '// ' + bonus.fight + '\n'
+
+					if (!bonus.isStatsReplaced)
+						ret += '//'
+					ret += 'patch=1,EE,' + bonus.statAddress + ',extended,0000';
+					ret += bonus.mpIncrease.toString(16).toUpperCase().padStart(2, '0') + bonus.hpIncrease.toString(16).toUpperCase().padStart(2, '0');
+					ret += ' // MP:' + bonus.mpIncrease + ' HP:' + bonus.hpIncrease + '\n';
+
+					if (!bonus.isSlotsReplaced)
+						ret += '//'
+					ret += 'patch=1,EE,' + bonus.slotAddress + ',extended,';
+					ret += bonus.armorSlotIncrease.toString(16).toUpperCase().padStart(2, '0') + bonus.accessorySlotIncrease.toString(16).toUpperCase().padStart(2, '0');
+					ret += bonus.itemSlotIncrease.toString(16).toUpperCase().padStart(2, '0') + bonus.driveGaugeIncrease.toString(16).toUpperCase().padStart(2, '0');
+					ret += ' // Armor Slot:+' + bonus.armorSlotIncrease + ' Accessory Slot:+' + bonus.accessorySlotIncrease;
+					ret += ' Item Slot:+' + bonus.itemSlotIncrease + ' Drive Gauge:+' + bonus.driveGaugeIncrease + '\n';
+
+					if (!bonus.isRewardsReplaced)
+						ret += '//'
+					ret += 'patch=1,EE,' + bonus.rewardAddress + ',extended,' + bonus.replacementRewardIndex2.padStart(4, '0') + bonus.replacementRewardIndex1.padStart(4, '0');
+					ret += ' // Replacement Reward #2:' + bonus.replacementReward2 + ', Replacement Reward #1:' + bonus.replacementReward1 + '\n';
+				})
+			})
+			return ret
+		})
 		//#endregion
 
 		//#region Level saving
+		let levelPnachCodes = this.state.level.currentDisplayData.map(l => {
+			let ret = '// Level: ' + l.level + '\n'
+
+			if (l.level === 99)
+				ret += '// Cannot Level to 100 so experience is not changed\n'
+			else {
+				if (!l.isEXPReplaced)
+					ret += '//'
+				ret += 'patch=1,EE,' + l.expAddress + ',extended,' + l.replacedEXP.toString(16).toUpperCase().padStart(8, '0')
+				ret += ' // Level ' + l.level + ' at ' + l.replacedEXP + ' experience\n'
+			}
+
+			if (!l.isStatsReplaced)
+				ret += '//'
+			ret += 'patch=1,EE,' + l.statAddress + ',extended,'
+			ret += l.standardAP.toString(16).toUpperCase().padStart(2, '0') + l.defense.toString(16).toUpperCase().padStart(2, '0')
+			ret += l.magic.toString(16).toUpperCase().padStart(2, '0') + l.strength.toString(16).toUpperCase().padStart(2, '0')
+			ret += ' // AP:' + l.standardAP.toString() + ' Magic:' + l.magic.toString() + ' Defense:' + l.defense.toString() + ' Strength:' + l.strength.toString() + '\n'
+
+			if (l.level === 1)
+				ret += '// No Level 1 Dream Weapon Rewards\n'
+			else {
+				if (!l.isSwordReplaced)
+					ret += '//'
+				ret += 'patch=1,EE,' + l.swordAddress + ',extended,0000' + l.swordReplacementIndex + ' // Sword Reward: ' + l.swordReplacementReward + '\n'
+
+				if (!l.isShieldReplaced)
+					ret += '//'
+				ret += 'patch=1,EE,' + l.shieldAddress + ',extended,0000' + l.shieldReplacementIndex + ' // Shield Reward: ' + l.shieldReplacementReward + '\n'
+
+				if (!l.isStaffReplaced)
+					ret += '//'
+				ret += 'patch=1,EE,' + l.staffAddress + ',extended,0000' + l.staffReplacementIndex + ' // Staff Reward: ' + l.staffReplacementReward + '\n'
+			}
+			return ret
+		})
 		//#endregion
 
-		let pnachCodes = chestPnachCodes.concat(popupPnachCodes, formPnachCodes, equipmentPnachCodes)
+		let pnachCodes = chestPnachCodes.concat(popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes)
 		console.log(pnachCodes)
 	}
 	//#endregion
@@ -682,16 +1023,37 @@ class App extends React.Component {
 						handleSave={this.handleSave}
 					/>
 				</Tab>
-				{/* <Tab eventKey="bonus" title="Bonus">
+				<Tab eventKey="bonus" title="Bonus">
 					<BonusPage
-
+						bonusData={this.state.bonus}
+						rewardListA={rewardsData[this.state.bonus.currentARewardType].rewards}
+						rewardListB={rewardsData[this.state.bonus.currentBRewardType].rewards}
+						handleWorldChange={this.handleBonusWorldChange}
+						handleCharacterChange={this.handleBonusCharacterChange}
+						onRewardTypeChange={(event) => this.handleRewardTypeChange('bonus', event)}
+						onRewardChange={(event) => this.handleGenericChange('bonus', event)}
+						onInputChange={(event) => this.handleInputChange('bonus', event)}
+						onRowCheck={(event) => this.onRowCheck('bonus', event)}
+						checkAll={(event) => this.checkAll('bonus', event)}
+						handleReplace={this.handleBonusReplace}
+						handleSave={this.handleSave}
 					/>
-				</Tab> */}
-				{/* <Tab eventKey="level" title="Level">
+				</Tab>
+				<Tab eventKey="level" title="Level">
 					<LevelPage
-
+						levelData={this.state.level}
+						swordRewardList={rewardsData[this.state.level.currentSwordRewardType].rewards}
+						shieldRewardList={rewardsData[this.state.level.currentShieldRewardType].rewards}
+						staffRewardList={rewardsData[this.state.level.currentStaffRewardType].rewards}
+						onRewardTypeChange={(event) => this.handleRewardTypeChange('level', event)}
+						onGenericChange={(event) => this.handleGenericChange('level', event)}
+						onInputChange={(event) => this.handleInputChange('level', event)}
+						onRowCheck={(event) => this.onRowCheck('level', event)}
+						checkAll={(event) => this.checkAll('level', event)}
+						handleReplace={this.handleLevelReplace}
+						handleSave={this.handleSave}
 					/>
-				</Tab> */}
+				</Tab>
 			</Tabs>
 		)
 	}
