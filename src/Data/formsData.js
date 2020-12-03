@@ -36,73 +36,79 @@ const formsData = [
 				level: "Valor LV2",
 				vanillaReward: "Auto Valor",
 				vanillaAddress: "11D1A22E",
-				replacementReward: "",
+				replacementReward: "Auto Valor",
 				replacementIndex: "",
 				vanillaEXP: 80,
 				replacementEXP: 80,
 				EXPAddress: "11D1A228",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Valor LV3",
 				vanillaReward: "High Jump LV 1",
 				vanillaAddress: "11D1A236",
-				replacementReward: "",
+				replacementReward: "High Jump LV 1",
 				replacementIndex: "",
 				vanillaEXP: 160,
 				replacementEXP: 160,
 				EXPAddress: "11D1A230",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Valor LV4",
 				vanillaReward: "Combo Plus",
 				vanillaAddress: "11D1A23E",
-				replacementReward: "",
+				replacementReward: "Combo Plus",
 				replacementIndex: "",
 				vanillaEXP: 280,
 				replacementEXP: 280,
 				EXPAddress: "11D1A238",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Valor LV5",
 				vanillaReward: "High Jump LV 2",
 				vanillaAddress: "11D1A246",
-				replacementReward: "",
+				replacementReward: "High Jump LV 2",
 				replacementIndex: "",
 				vanillaEXP: 448,
 				replacementEXP: 448,
 				EXPAddress: "11D1A240",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Valor LV6",
 				vanillaReward: "Combo Plus",
 				vanillaAddress: "11D1A24E",
-				replacementReward: "",
+				replacementReward: "Combo Plus",
 				replacementIndex: "",
 				vanillaEXP: 560,
 				replacementEXP: 560,
 				EXPAddress: "11D1A248",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Valor LV7",
 				vanillaReward: "High Jump LV 3",
 				vanillaAddress: "11D1A256",
-				replacementReward: "",
+				replacementReward: "High Jump LV 3",
 				replacementIndex: "",
 				vanillaEXP: 672,
 				replacementEXP: 672,
 				EXPAddress: "11D1A250",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			}
 		]
 	},
@@ -143,73 +149,79 @@ const formsData = [
 				level: "Wisdom LV2",
 				vanillaReward: "Auto Wisdom",
 				vanillaAddress: "11D1A266",
-				replacementReward: "",
+				replacementReward: "Auto Wisdom",
 				replacementIndex: "",
 				vanillaEXP: 20,
 				replacementEXP: 20,
 				EXPAddress: "11D1A260",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Wisdom LV3",
 				vanillaReward: "Quick Run LV 1",
 				vanillaAddress: "11D1A26E",
-				replacementReward: "",
+				replacementReward: "Quick Run LV 1",
 				replacementIndex: "",
 				vanillaEXP: 60,
 				replacementEXP: 60,
 				EXPAddress: "11D1A268",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Wisdom LV4",
 				vanillaReward: "MP Rage",
 				vanillaAddress: "11D1A276",
-				replacementReward: "",
+				replacementReward: "MP Rage",
 				replacementIndex: "",
 				vanillaEXP: 72,
 				replacementEXP: 72,
 				EXPAddress: "11D1A270",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Wisdom LV5",
 				vanillaReward: "Quick Run LV 2",
 				vanillaAddress: "11D1A27E",
-				replacementReward: "",
+				replacementReward: "Quick Run LV 2",
 				replacementIndex: "",
 				vanillaEXP: 90,
 				replacementEXP: 90,
 				EXPAddress: "11D1A278",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Wisdom LV6",
 				vanillaReward: "MP Haste",
 				vanillaAddress: "11D1A286",
-				replacementReward: "",
+				replacementReward: "MP Haste",
 				replacementIndex: "",
 				vanillaEXP: 108,
 				replacementEXP: 108,
 				EXPAddress: "11D1A280",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Wisdom LV7",
 				vanillaReward: "Quick Run LV 3",
 				vanillaAddress: "11D1A28E",
-				replacementReward: "",
+				replacementReward: "Quick Run LV 3",
 				replacementIndex: "",
 				vanillaEXP: 150,
 				replacementEXP: 150,
 				EXPAddress: "11D1A288",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			}
 		]
 	},
@@ -250,73 +262,79 @@ const formsData = [
 				level: "Limit LV2",
 				vanillaReward: "Auto Limit",
 				vanillaAddress: "11D1A29E",
-				replacementReward: "",
+				replacementReward: "Auto Limit",
 				replacementIndex: "",
 				vanillaEXP: 3,
 				replacementEXP: 3,
 				EXPAddress: "11D1A298",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Limit LV3",
 				vanillaReward: "Dodge Roll LV 1",
 				vanillaAddress: "11D1A2A6",
-				replacementReward: "",
+				replacementReward: "Dodge Roll LV 1",
 				replacementIndex: "",
 				vanillaEXP: 6,
 				replacementEXP: 6,
 				EXPAddress: "11D1A2A0",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Limit LV4",
 				vanillaReward: "Draw",
 				vanillaAddress: "11D1A2AE",
-				replacementReward: "",
+				replacementReward: "Draw",
 				replacementIndex: "",
 				vanillaEXP: 12,
 				replacementEXP: 12,
 				EXPAddress: "11D1A2A8",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Limit LV5",
 				vanillaReward: "Dodge Roll LV 2",
 				vanillaAddress: "11D1A2B6",
-				replacementReward: "",
+				replacementReward: "Dodge Roll LV 2",
 				replacementIndex: "",
 				vanillaEXP: 19,
 				replacementEXP: 19,
 				EXPAddress: "11D1A2B0",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Limit LV6",
 				vanillaReward: "Lucky Lucky",
 				vanillaAddress: "11D1A2BE",
-				replacementReward: "",
+				replacementReward: "Lucky Lucky",
 				replacementIndex: "",
 				vanillaEXP: 23,
 				replacementEXP: 23,
 				EXPAddress: "11D1A2B8",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Limit LV7",
 				vanillaReward: "Dodge Roll LV 3",
 				vanillaAddress: "11D1A2C6",
-				replacementReward: "",
+				replacementReward: "Dodge Roll LV 3",
 				replacementIndex: "",
 				vanillaEXP: 36,
 				replacementEXP: 36,
 				EXPAddress: "11D1A2C0",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			}
 		]
 	},
@@ -357,73 +375,79 @@ const formsData = [
 				level: "Master LV2",
 				vanillaReward: "Auto Master",
 				vanillaAddress: "11D1A2D6",
-				replacementReward: "",
+				replacementReward: "Auto Master",
 				replacementIndex: "",
 				vanillaEXP: 60,
 				replacementEXP: 60,
 				EXPAddress: "11D1A2D0",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Master LV3",
 				vanillaReward: "Aerial Dodge LV 1",
 				vanillaAddress: "11D1A2DE",
-				replacementReward: "",
+				replacementReward: "Aerial Dodge LV 1",
 				replacementIndex: "",
 				vanillaEXP: 180,
 				replacementEXP: 180,
 				EXPAddress: "11D1A2D8",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Master LV4",
 				vanillaReward: "Air Combo Plus",
 				vanillaAddress: "11D1A2E6",
-				replacementReward: "",
+				replacementReward: "Air Combo Plus",
 				replacementIndex: "",
 				vanillaEXP: 216,
 				replacementEXP: 216,
 				EXPAddress: "11D1A2E0",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Master LV5",
 				vanillaReward: "Aerial Dodge LV 2",
 				vanillaAddress: "11D1A2EE",
-				replacementReward: "",
+				replacementReward: "Aerial Dodge LV 2",
 				replacementIndex: "",
 				vanillaEXP: 270,
 				replacementEXP: 270,
 				EXPAddress: "11D1A2E8",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Master LV6",
 				vanillaReward: "Air Combo Plus",
 				vanillaAddress: "11D1A2F6",
-				replacementReward: "",
+				replacementReward: "Air Combo Plus",
 				replacementIndex: "",
 				vanillaEXP: 324,
 				replacementEXP: 324,
 				EXPAddress: "11D1A2F0",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Master LV7",
 				vanillaReward: "Aerial Dodge LV 3",
 				vanillaAddress: "11D1A2FE",
-				replacementReward: "",
+				replacementReward: "Aerial Dodge LV 3",
 				replacementIndex: "",
 				vanillaEXP: 450,
 				replacementEXP: 450,
 				EXPAddress: "11D1A2F8",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			}
 		]
 	},
@@ -464,73 +488,79 @@ const formsData = [
 				level: "Final LV2",
 				vanillaReward: "Auto Final",
 				vanillaAddress: "11D1A30E",
-				replacementReward: "",
+				replacementReward: "Auto Final",
 				replacementIndex: "",
 				vanillaEXP: 12,
 				replacementEXP: 12,
 				EXPAddress: "11D1A308",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Final LV3",
 				vanillaReward: "Glide LV 1",
 				vanillaAddress: "11D1A316",
-				replacementReward: "",
+				replacementReward: "Glide LV 1",
 				replacementIndex: "",
 				vanillaEXP: 24,
 				replacementEXP: 24,
 				EXPAddress: "11D1A310",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Final LV4",
 				vanillaReward: "Form Boost",
 				vanillaAddress: "11D1A31E",
-				replacementReward: "",
+				replacementReward: "Form Boost",
 				replacementIndex: "",
 				vanillaEXP: 48,
 				replacementEXP: 48,
 				EXPAddress: "11D1A318",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Final LV5",
 				vanillaReward: "Glide LV 2",
 				vanillaAddress: "11D1A326",
-				replacementReward: "",
+				replacementReward: "Glide LV 2",
 				replacementIndex: "",
 				vanillaEXP: 76,
 				replacementEXP: 76,
 				EXPAddress: "11D1A320",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Final LV6",
 				vanillaReward: "Form Boost",
 				vanillaAddress: "11D1A32E",
-				replacementReward: "",
+				replacementReward: "Form Boost",
 				replacementIndex: "",
 				vanillaEXP: 133,
 				replacementEXP: 133,
 				EXPAddress: "11D1A328",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			},
 			{
 				level: "Final LV7",
 				vanillaReward: "Glide LV 3",
 				vanillaAddress: "11D1A336",
-				replacementReward: "",
+				replacementReward: "Glide LV 3",
 				replacementIndex: "",
 				vanillaEXP: 157,
 				replacementEXP: 157,
 				EXPAddress: "11D1A330",
 				toBeReplaced: false,
-				isRewardReplaced: false
+				isRewardReplaced: false,
+				isEXPReplaced: false
 			}
 		]
 	}
