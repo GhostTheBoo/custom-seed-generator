@@ -5,22 +5,22 @@ import Tab from 'react-bootstrap/Tab'
 import { worldsData, formTypesData, equipmentTypesData, charactersData } from './Data/typesData'
 import rewardsData from './Data/rewardsData'
 
-import ChestPage from './ChestPage'
+import ChestPage from './Pages/ChestPage'
 import chestsData from './Data/chestsData'
 
-import PopupPage from './PopupPage'
+import PopupPage from './Pages/PopupPage'
 import popupsData from './Data/popupsData'
 
-import FormPage from './FormPage'
+import FormPage from './Pages/FormPage'
 import formsData from './Data/formsData'
 
-import EquipmentPage from './EquipmentPage'
+import EquipmentPage from './Pages/EquipmentPage'
 import equipmentsData from './Data/equipmentsData'
 
-import BonusPage from './BonusPage'
+import BonusPage from './Pages/BonusPage'
 import bonusData from './Data/bonusData'
 
-import LevelPage from './LevelPage'
+import LevelPage from './Pages/LevelPage'
 import levelsData from './Data/levelsData'
 
 class App extends React.Component {
@@ -961,7 +961,13 @@ class App extends React.Component {
 		//#endregion
 
 		let pnachCodes = chestPnachCodes.concat(popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes)
-		console.log(pnachCodes)
+		
+		const element = document.createElement("a")
+		const file = new Blob(pnachCodes, { type: 'text/plain;charset=utf-8' })
+		element.href = URL.createObjectURL(file)
+		element.download = "F266B00B.pnach"
+		document.body.appendChild(element)
+		element.click()
 	}
 	//#endregion
 

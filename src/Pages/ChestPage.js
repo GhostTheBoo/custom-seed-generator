@@ -2,13 +2,13 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 
-import { worldsData } from './Data/typesData'
+import { worldsData } from '../Data/typesData'
 
-import GenericSelect from './Components/GenericSelect'
-import RewardSelect from './Components/RewardSelect'
-import RewardTypeSelect from './Components/RewardTypeSelect'
-import ChestTable from './Components/ChestTable'
-import Buttons from './Components/Buttons'
+import GenericSelect from '../Components/GenericSelect'
+import RewardSelect from '../Components/RewardSelect'
+import RewardTypeSelect from '../Components/RewardTypeSelect'
+import ChestTable from '../Tables/ChestTable'
+import Buttons from '../Components/Buttons'
 
 function ChestPage(props) {
 	return (

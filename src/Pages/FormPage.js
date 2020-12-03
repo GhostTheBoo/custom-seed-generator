@@ -2,14 +2,14 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 
-import { formTypesData } from './Data/typesData'
+import { formTypesData } from '../Data/typesData'
 
-import GenericSelect from './Components/GenericSelect'
-import RewardSelect from './Components/RewardSelect'
-import RewardTypeSelect from './Components/RewardTypeSelect'
-import EXPSelect from './Components/EXPSelect'
-import FormTable from './Components/FormTable'
-import Buttons from './Components/Buttons'
+import GenericSelect from '../Components/GenericSelect'
+import RewardSelect from '../Components/RewardSelect'
+import RewardTypeSelect from '../Components/RewardTypeSelect'
+import EXPSelect from '../Components/EXPSelect'
+import FormTable from '../Tables/FormTable'
+import Buttons from '../Components/Buttons'
 
 function FormPage(props) {
 	return (

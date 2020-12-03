@@ -2,11 +2,11 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 
-import RewardSelect from './Components/RewardSelect'
-import RewardTypeSelect from './Components/RewardTypeSelect'
-import EXPSelect from './Components/EXPSelect'
-import LevelTable from './Components/LevelTable.js'
-import Buttons from './Components/Buttons'
+import RewardSelect from '../Components/RewardSelect'
+import RewardTypeSelect from '../Components/RewardTypeSelect'
+import EXPSelect from '../Components/EXPSelect'
+import LevelTable from '../Tables/LevelTable'
+import Buttons from '../Components/Buttons'
 
 function LevelPage(props) {
 	return (
