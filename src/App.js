@@ -23,6 +23,9 @@ import bonusData from './Data/bonusData'
 import LevelPage from './Pages/LevelPage'
 import levelsData from './Data/levelsData'
 
+import CriticalPage from './Pages/CriticalPage'
+import criticalData from './Data/criticalData'
+
 class App extends React.Component {
 	constructor() {
 		super()
@@ -107,6 +110,12 @@ class App extends React.Component {
 				currentEXPMultiplierValue: 2,
 				selectAll: false,
 				currentDisplayData: levelsData.slice(),
+			},
+			critical: {
+				currentRewardType: 0,
+				currentReward: 0,
+				selectAll: false,
+				currentDisplayData: criticalData.slice()
 			}
 		}
 
@@ -123,6 +132,7 @@ class App extends React.Component {
 		this.handleEquipmentReplace = this.handleEquipmentReplace.bind(this)
 		this.handleBonusReplace = this.handleBonusReplace.bind(this)
 		this.handleLevelReplace = this.handleLevelReplace.bind(this)
+		this.handleCriticalReplace = this.handleCriticalReplace.bind(this)
 
 		this.handleRewardTypeChange = this.handleRewardTypeChange.bind(this)
 		this.handleGenericChange = this.handleGenericChange.bind(this)
@@ -721,6 +731,48 @@ class App extends React.Component {
 			}
 		}))
 	}
+
+	handleCriticalReplace(event) {
+		let replacedCriticalExtras
+		if (event.target.name === 'replaceButton') {
+			replacedCriticalExtras = this.state.critical.currentDisplayData.map(ce => {
+				if (ce.toBeReplaced) {
+					let reward = rewardsData[this.state.critical.currentRewardType].rewards[this.state.critical.currentReward]
+					ce.toBeReplaced = false
+
+					if (reward.reward !== ce.replacementReward) {
+						if (reward.reward === ce.vanillaReward) {
+							ce.isReplaced = false
+							ce.replacementReward = ce.vanillaReward
+							ce.replacementIndex = ''
+						} else {
+							ce.isReplaced = true
+							ce.replacementReward = reward.reward
+							ce.replacementIndex = reward.index
+						}
+					}
+				}
+				return ce
+			})
+		} else {
+			replacedCriticalExtras = this.state.critical.currentDisplayData.map(ce => {
+				if (ce.toBeReplaced) {
+					ce.toBeReplaced = false
+					ce.isReplaced = false
+					ce.replacementReward = ce.vanillaReward
+					ce.replacementIndex = ''
+				}
+				return ce
+			})
+		}
+		this.setState(prevState => ({
+			critical: {
+				...prevState.critical,
+				selectAll: false,
+				currentDisplayData: replacedCriticalExtras
+			}
+		}))
+	}
 	//#endregion
 
 	//#region General Functions
@@ -960,7 +1012,23 @@ class App extends React.Component {
 		})
 		//#endregion
 
-		let pnachCodes = chestPnachCodes.concat(popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes)
+		//#region Critical Extras saving
+		let criticalPnachCodes = this.state.critical.currentDisplayData.map(ce => {
+			let ret = ''
+			let text
+			if (!ce.isReplaced) {
+				ret += '//'
+				text = ' is still '
+			} else
+				text = ' is now '
+
+			ret += 'patch=1,EE,' + ce.vanillaAddress + ',extended,0000' + ce.replacementIndex.padStart(4, '0')
+			ret += ' // ' + ce.vanillaReward + text + ce.replacementReward + '\n'
+			return ret
+		})
+		//#endregion
+
+		let pnachCodes = chestPnachCodes.concat(popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes, criticalPnachCodes)
 		
 		const element = document.createElement("a")
 		const file = new Blob(pnachCodes, { type: 'text/plain;charset=utf-8' })
@@ -1057,6 +1125,18 @@ class App extends React.Component {
 						onRowCheck={(event) => this.onRowCheck('level', event)}
 						checkAll={(event) => this.checkAll('level', event)}
 						handleReplace={this.handleLevelReplace}
+						handleSave={this.handleSave}
+					/>
+				</Tab>
+				<Tab eventKey="critical" title="Critical Extra">
+					<CriticalPage
+						criticalData={this.state.critical}
+						rewardList={rewardsData[this.state.critical.currentRewardType].rewards}
+						onRewardTypeChange={(event) => this.handleRewardTypeChange('critical', event)}
+						onRewardChange={(event) => this.handleGenericChange('critical', event)}
+						onRowCheck={(event) => this.onRowCheck('critical', event)}
+						checkAll={(event) => this.checkAll('critical', event)}
+						handleReplace={this.handleCriticalReplace}
 						handleSave={this.handleSave}
 					/>
 				</Tab>
