@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 
@@ -8,7 +9,6 @@ import GenericSelect from '../Components/GenericSelect'
 import RewardSelect from '../Components/RewardSelect'
 import RewardTypeSelect from '../Components/RewardTypeSelect'
 import ChestTable from '../Tables/ChestTable'
-import Buttons from '../Components/Buttons'
 
 function ChestPage(props) {
 	return (
@@ -51,10 +51,19 @@ function ChestPage(props) {
 				checkAll={props.checkAll}
 				selectAll={props.chestData.selectAll}
 			/>
-			<Buttons
-				onClick={props.handleReplace}
-				onSaveClick={props.handleSave}
-			/>
+			<Button variant='outline-dark'
+				name='replaceButton'
+				onClick={props.onClick}
+			>
+				REPLACE
+			</Button>
+			{' '}
+			<Button variant='outline-dark'
+				name='vanillaButton'
+				onClick={props.onClick}
+			>
+				VANILLA
+			</Button>
 		</div>
 	)
 }

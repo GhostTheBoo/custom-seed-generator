@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 
@@ -25,6 +26,9 @@ import levelsData from './Data/levelsData'
 
 import CriticalPage from './Pages/CriticalPage'
 import criticalData from './Data/criticalData'
+
+import CheatPage from './Pages/CheatPage'
+import cheatData from './Data/cheatData'
 
 class App extends React.Component {
 	constructor() {
@@ -116,6 +120,10 @@ class App extends React.Component {
 				currentReward: 0,
 				selectAll: false,
 				currentDisplayData: criticalData.slice()
+			},
+			cheat: {
+				selectAll: false,
+				currentDisplayData: cheatData.slice()
 			}
 		}
 
@@ -133,6 +141,7 @@ class App extends React.Component {
 		this.handleBonusReplace = this.handleBonusReplace.bind(this)
 		this.handleLevelReplace = this.handleLevelReplace.bind(this)
 		this.handleCriticalReplace = this.handleCriticalReplace.bind(this)
+		this.handleCheatReplace = this.handleCheatReplace.bind(this)
 
 		this.handleRewardTypeChange = this.handleRewardTypeChange.bind(this)
 		this.handleGenericChange = this.handleGenericChange.bind(this)
@@ -773,6 +782,25 @@ class App extends React.Component {
 			}
 		}))
 	}
+
+	handleCheatReplace(event) {
+		let active = this.state.cheat.selectAll
+		let final = this.state.cheat.currentDisplayData[0].isActive
+		let activatedCheats = this.state.cheat.currentDisplayData.map(cheat => {
+			if (cheat.toBeReplaced) {
+				cheat.toBeReplaced = false
+				cheat.isActive = active ? !final : !cheat.isActive
+			}
+			return cheat
+		})
+		this.setState(prevState => ({
+			cheat: {
+				...prevState.cheat,
+				selectAll: false,
+				currentDisplayData: activatedCheats
+			}
+		}))
+	}
 	//#endregion
 
 	//#region General Functions
@@ -838,7 +866,6 @@ class App extends React.Component {
 	}
 
 	handleSave() {
-		//#region Chest saving
 		let chestPnachCodes = this.state.chest.allChests.map(worldList => {
 			let ret = '// ' + worldList.world + '\n'
 			let text
@@ -854,9 +881,7 @@ class App extends React.Component {
 			})
 			return ret
 		})
-		//#endregion
 
-		//#region Popup saving
 		let popupPnachCodes = this.state.popup.allPopups.map(worldList => {
 			let ret = '// ' + worldList.world + '\n'
 			let text
@@ -872,9 +897,7 @@ class App extends React.Component {
 			})
 			return ret
 		})
-		//#endregion
 
-		//#region Form saving
 		let formPnachCodes = this.state.form.allForms.map(driveFormList => {
 			let ret = '// ' + driveFormList.driveForm + '\n'
 			let text
@@ -902,9 +925,7 @@ class App extends React.Component {
 			})
 			return ret
 		})
-		//#endregion
 
-		//#region Equipment saving
 		let equipmentPnachCodes = this.state.equipment.allEquipments.map(equipment => {
 			let ret = '// ' + equipment.equipmentType + '\n'
 
@@ -938,9 +959,7 @@ class App extends React.Component {
 			})
 			return ret
 		})
-		//#endregion
 
-		//#region Bonus saving
 		let bonusPnachCodes = this.state.bonus.allBonuses.map(character => {
 			let ret = '// ' + character.character + '\n'
 			character.characterBonuses.forEach(world => {
@@ -971,9 +990,7 @@ class App extends React.Component {
 			})
 			return ret
 		})
-		//#endregion
 
-		//#region Level saving
 		let levelPnachCodes = this.state.level.currentDisplayData.map(l => {
 			let ret = '// Level: ' + l.level + '\n'
 
@@ -1010,9 +1027,7 @@ class App extends React.Component {
 			}
 			return ret
 		})
-		//#endregion
 
-		//#region Critical Extras saving
 		let criticalPnachCodes = this.state.critical.currentDisplayData.map(ce => {
 			let ret = ''
 			let text
@@ -1026,10 +1041,16 @@ class App extends React.Component {
 			ret += ' // ' + ce.vanillaReward + text + ce.replacementReward + '\n'
 			return ret
 		})
-		//#endregion
 
-		let pnachCodes = chestPnachCodes.concat(popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes, criticalPnachCodes)
-		
+		let cheatPnachCodes = this.state.cheat.currentDisplayData.map(cheat => {
+			let ret = '//' + cheat.name + '\n'
+			ret += cheat.code.join('\n')
+			ret += '\n'
+			return ret
+		})
+
+		let pnachCodes = chestPnachCodes.concat(popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes, criticalPnachCodes, cheatPnachCodes)
+
 		const element = document.createElement("a")
 		const file = new Blob(pnachCodes, { type: 'text/plain;charset=utf-8' })
 		element.href = URL.createObjectURL(file)
@@ -1041,106 +1062,114 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<Tabs defaultActiveKey="chest" transition={false} id="noanim-tab-example">
-				<Tab eventKey="chest" title="Chest">
-					<ChestPage
-						chestData={this.state.chest}
-						rewardList={rewardsData[this.state.chest.currentRewardType].rewards}
-						handleWorldChange={this.handleChestWorldChange}
-						onRewardTypeChange={(event) => this.handleRewardTypeChange('chest', event)}
-						onRewardChange={(event) => this.handleGenericChange('chest', event)}
-						onRowCheck={(event) => this.onRowCheck('chest', event)}
-						checkAll={(event) => this.checkAll('chest', event)}
-						handleReplace={this.handleChestReplace}
-						handleSave={this.handleSave}
-					/>
-				</Tab>
-				<Tab eventKey="popup" title="Popup">
-					<PopupPage
-						popupData={this.state.popup}
-						rewardList={rewardsData[this.state.popup.currentRewardType].rewards}
-						handleWorldChange={this.handlePopupWorldChange}
-						onRewardTypeChange={(event) => this.handleRewardTypeChange('popup', event)}
-						onRewardChange={(event) => this.handleGenericChange('popup', event)}
-						onRowCheck={(event) => this.onRowCheck('popup', event)}
-						checkAll={(event) => this.checkAll('popup', event)}
-						handleReplace={this.handlePopupReplace}
-						handleSave={this.handleSave}
-					/>
-				</Tab>
-				<Tab eventKey="form" title="Form">
-					<FormPage
-						formData={this.state.form}
-						rewardList={rewardsData[this.state.form.currentRewardType].rewards}
-						handleFormChange={this.handleFormChange}
-						onRewardTypeChange={(event) => this.handleRewardTypeChange('form', event)}
-						onGenericChange={(event) => this.handleGenericChange('form', event)}
-						onInputChange={(event) => this.handleInputChange('form', event)}
-						onRowCheck={(event) => this.onRowCheck('form', event)}
-						checkAll={(event) => this.checkAll('form', event)}
-						handleReplace={this.handleFormReplace}
-						handleSave={this.handleSave}
+			<div>
+				<Tabs defaultActiveKey="chest" transition={false} id="noanim-tab-example">
+					<Tab eventKey="chest" title="Chest">
+						<ChestPage
+							chestData={this.state.chest}
+							rewardList={rewardsData[this.state.chest.currentRewardType].rewards}
+							handleWorldChange={this.handleChestWorldChange}
+							onRewardTypeChange={(event) => this.handleRewardTypeChange('chest', event)}
+							onRewardChange={(event) => this.handleGenericChange('chest', event)}
+							onRowCheck={(event) => this.onRowCheck('chest', event)}
+							checkAll={(event) => this.checkAll('chest', event)}
+							onClick={this.handleChestReplace}
+						/>
+					</Tab>
+					<Tab eventKey="popup" title="Popup">
+						<PopupPage
+							popupData={this.state.popup}
+							rewardList={rewardsData[this.state.popup.currentRewardType].rewards}
+							handleWorldChange={this.handlePopupWorldChange}
+							onRewardTypeChange={(event) => this.handleRewardTypeChange('popup', event)}
+							onRewardChange={(event) => this.handleGenericChange('popup', event)}
+							onRowCheck={(event) => this.onRowCheck('popup', event)}
+							checkAll={(event) => this.checkAll('popup', event)}
+							onClick={this.handlePopupReplace}
+						/>
+					</Tab>
+					<Tab eventKey="form" title="Form">
+						<FormPage
+							formData={this.state.form}
+							rewardList={rewardsData[this.state.form.currentRewardType].rewards}
+							handleFormChange={this.handleFormChange}
+							onRewardTypeChange={(event) => this.handleRewardTypeChange('form', event)}
+							onGenericChange={(event) => this.handleGenericChange('form', event)}
+							onInputChange={(event) => this.handleInputChange('form', event)}
+							onRowCheck={(event) => this.onRowCheck('form', event)}
+							checkAll={(event) => this.checkAll('form', event)}
+							onClick={this.handleFormReplace}
 
-					/>
-				</Tab>
-				<Tab eventKey="equipment" title="Equipment">
-					<EquipmentPage
-						equipmentData={this.state.equipment}
-						rewardList={rewardsData[this.state.equipment.currentRewardType].rewards}
-						handleEquipmentTypeChange={this.handleEquipmentTypeChange}
-						onRewardTypeChange={(event) => this.handleRewardTypeChange('equipment', event)}
-						onRewardChange={(event) => this.handleGenericChange('equipment', event)}
-						onInputChange={(event) => this.handleInputChange('equipment', event)}
-						onRowCheck={(event) => this.onRowCheck('equipment', event)}
-						checkAll={(event) => this.checkAll('equipment', event)}
-						handleReplace={this.handleEquipmentReplace}
-						handleSave={this.handleSave}
-					/>
-				</Tab>
-				<Tab eventKey="bonus" title="Bonus">
-					<BonusPage
-						bonusData={this.state.bonus}
-						rewardListA={rewardsData[this.state.bonus.currentARewardType].rewards}
-						rewardListB={rewardsData[this.state.bonus.currentBRewardType].rewards}
-						handleWorldChange={this.handleBonusWorldChange}
-						handleCharacterChange={this.handleBonusCharacterChange}
-						onRewardTypeChange={(event) => this.handleRewardTypeChange('bonus', event)}
-						onRewardChange={(event) => this.handleGenericChange('bonus', event)}
-						onInputChange={(event) => this.handleInputChange('bonus', event)}
-						onRowCheck={(event) => this.onRowCheck('bonus', event)}
-						checkAll={(event) => this.checkAll('bonus', event)}
-						handleReplace={this.handleBonusReplace}
-						handleSave={this.handleSave}
-					/>
-				</Tab>
-				<Tab eventKey="level" title="Level">
-					<LevelPage
-						levelData={this.state.level}
-						swordRewardList={rewardsData[this.state.level.currentSwordRewardType].rewards}
-						shieldRewardList={rewardsData[this.state.level.currentShieldRewardType].rewards}
-						staffRewardList={rewardsData[this.state.level.currentStaffRewardType].rewards}
-						onRewardTypeChange={(event) => this.handleRewardTypeChange('level', event)}
-						onGenericChange={(event) => this.handleGenericChange('level', event)}
-						onInputChange={(event) => this.handleInputChange('level', event)}
-						onRowCheck={(event) => this.onRowCheck('level', event)}
-						checkAll={(event) => this.checkAll('level', event)}
-						handleReplace={this.handleLevelReplace}
-						handleSave={this.handleSave}
-					/>
-				</Tab>
-				<Tab eventKey="critical" title="Critical Extra">
-					<CriticalPage
-						criticalData={this.state.critical}
-						rewardList={rewardsData[this.state.critical.currentRewardType].rewards}
-						onRewardTypeChange={(event) => this.handleRewardTypeChange('critical', event)}
-						onRewardChange={(event) => this.handleGenericChange('critical', event)}
-						onRowCheck={(event) => this.onRowCheck('critical', event)}
-						checkAll={(event) => this.checkAll('critical', event)}
-						handleReplace={this.handleCriticalReplace}
-						handleSave={this.handleSave}
-					/>
-				</Tab>
-			</Tabs>
+						/>
+					</Tab>
+					<Tab eventKey="equipment" title="Equipment">
+						<EquipmentPage
+							equipmentData={this.state.equipment}
+							rewardList={rewardsData[this.state.equipment.currentRewardType].rewards}
+							handleEquipmentTypeChange={this.handleEquipmentTypeChange}
+							onRewardTypeChange={(event) => this.handleRewardTypeChange('equipment', event)}
+							onRewardChange={(event) => this.handleGenericChange('equipment', event)}
+							onInputChange={(event) => this.handleInputChange('equipment', event)}
+							onRowCheck={(event) => this.onRowCheck('equipment', event)}
+							checkAll={(event) => this.checkAll('equipment', event)}
+							onClick={this.handleEquipmentReplace}
+						/>
+					</Tab>
+					<Tab eventKey="bonus" title="Bonus">
+						<BonusPage
+							bonusData={this.state.bonus}
+							rewardListA={rewardsData[this.state.bonus.currentARewardType].rewards}
+							rewardListB={rewardsData[this.state.bonus.currentBRewardType].rewards}
+							handleWorldChange={this.handleBonusWorldChange}
+							handleCharacterChange={this.handleBonusCharacterChange}
+							onRewardTypeChange={(event) => this.handleRewardTypeChange('bonus', event)}
+							onRewardChange={(event) => this.handleGenericChange('bonus', event)}
+							onInputChange={(event) => this.handleInputChange('bonus', event)}
+							onRowCheck={(event) => this.onRowCheck('bonus', event)}
+							checkAll={(event) => this.checkAll('bonus', event)}
+							onClick={this.handleBonusReplace}
+						/>
+					</Tab>
+					<Tab eventKey="level" title="Level">
+						<LevelPage
+							levelData={this.state.level}
+							swordRewardList={rewardsData[this.state.level.currentSwordRewardType].rewards}
+							shieldRewardList={rewardsData[this.state.level.currentShieldRewardType].rewards}
+							staffRewardList={rewardsData[this.state.level.currentStaffRewardType].rewards}
+							onRewardTypeChange={(event) => this.handleRewardTypeChange('level', event)}
+							onGenericChange={(event) => this.handleGenericChange('level', event)}
+							onInputChange={(event) => this.handleInputChange('level', event)}
+							onRowCheck={(event) => this.onRowCheck('level', event)}
+							checkAll={(event) => this.checkAll('level', event)}
+							onClick={this.handleLevelReplace}
+						/>
+					</Tab>
+					<Tab eventKey="critical" title="Critical Extra">
+						<CriticalPage
+							criticalData={this.state.critical}
+							rewardList={rewardsData[this.state.critical.currentRewardType].rewards}
+							onRewardTypeChange={(event) => this.handleRewardTypeChange('critical', event)}
+							onRewardChange={(event) => this.handleGenericChange('critical', event)}
+							onRowCheck={(event) => this.onRowCheck('critical', event)}
+							checkAll={(event) => this.checkAll('critical', event)}
+							onClick={this.handleCriticalReplace}
+						/>
+					</Tab>
+					<Tab eventKey="cheat" title="Cheats">
+						<CheatPage
+							cheatData={this.state.cheat}
+							onRowCheck={(event) => this.onRowCheck('cheat', event)}
+							checkAll={(event) => this.checkAll('cheat', event)}
+							onClick={this.handleCheatReplace}
+						/>
+					</Tab>
+				</Tabs>
+				<Button variant='outline-dark'
+					name='saveButton'
+					onClick={this.handleSave}
+				>
+					SAVE
+			</Button></div>
 		)
 	}
 }

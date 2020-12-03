@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 
@@ -6,7 +7,6 @@ import RewardSelect from '../Components/RewardSelect'
 import RewardTypeSelect from '../Components/RewardTypeSelect'
 import EXPSelect from '../Components/EXPSelect'
 import LevelTable from '../Tables/LevelTable'
-import Buttons from '../Components/Buttons'
 
 function LevelPage(props) {
 	return (
@@ -137,10 +137,19 @@ function LevelPage(props) {
 				checkAll={props.checkAll}
 				selectAll={props.levelData.selectAll}
 			/>
-			<Buttons
-				onClick={props.handleReplace}
-				onSaveClick={props.handleSave}
-			/>
+			<Button variant='outline-dark'
+				name='replaceButton'
+				onClick={props.onClick}
+			>
+				REPLACE
+			</Button>
+			{' '}
+			<Button variant='outline-dark'
+				name='vanillaButton'
+				onClick={props.onClick}
+			>
+				VANILLA
+			</Button>
 		</div >
 	)
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 
@@ -9,7 +10,6 @@ import RewardSelect from '../Components/RewardSelect'
 import RewardTypeSelect from '../Components/RewardTypeSelect'
 import EXPSelect from '../Components/EXPSelect'
 import FormTable from '../Tables/FormTable'
-import Buttons from '../Components/Buttons'
 
 function FormPage(props) {
 	return (
@@ -59,10 +59,19 @@ function FormPage(props) {
 				checkAll={props.checkAll}
 				selectAll={props.formData.selectAll}
 			/>
-			<Buttons
-				onClick={props.handleReplace}
-				onSaveClick={props.handleSave}
-			/>
+			<Button variant='outline-dark'
+				name='replaceButton'
+				onClick={props.onClick}
+			>
+				REPLACE
+			</Button>
+			{' '}
+			<Button variant='outline-dark'
+				name='vanillaButton'
+				onClick={props.onClick}
+			>
+				VANILLA
+			</Button>
 		</div>
 	)
 }
