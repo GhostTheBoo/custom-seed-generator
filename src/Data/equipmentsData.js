@@ -2,8 +2,14 @@ const equipmentsData = [{
 	equipmentType: 'Keyblade',
 	equipments: [{
 		name: 'Kingdom Key',
-		ability: 'Damage Control',
-		vanillaAbility: 'Damage Control',
+		vanillaAbility: {
+			reward: 'Damage Control',
+			index: '021E'
+		},
+		replacementAbility: {
+			reward: 'Damage Control',
+			index: '021E'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 1,
@@ -27,7 +33,6 @@ const equipmentsData = [{
 		statAddress: '21CDF1D8',
 		elementalResistanceAddress: '21CDF1DC',
 		otherResistanceAddress: '21CDF1E0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -36,8 +41,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Oathkeeper',
-		ability: 'Form Boost',
-		vanillaAbility: 'Form Boost',
+		vanillaAbility: {
+			reward: 'Form Boost',
+			index: '018E'
+		},
+		replacementAbility: {
+			reward: 'Form Boost',
+			index: '018E'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 3,
@@ -61,7 +72,6 @@ const equipmentsData = [{
 		statAddress: '21CDF1E8',
 		elementalResistanceAddress: '21CDF1EC',
 		otherResistanceAddress: '21CDF1F0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -70,8 +80,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Oblivion',
-		ability: 'Drive Boost',
-		vanillaAbility: 'Drive Boost',
+		vanillaAbility: {
+			reward: 'Drive Boost',
+			index: '018D'
+		},
+		replacementAbility: {
+			reward: 'Drive Boost',
+			index: '018D'
+		},
 		strength: 6,
 		vanillaStrength: 6,
 		magic: 2,
@@ -95,7 +111,6 @@ const equipmentsData = [{
 		statAddress: '21CDF1F8',
 		elementalResistanceAddress: '21CDF1FC',
 		otherResistanceAddress: '21CDF200',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -104,8 +119,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Star Seeker',
-		ability: 'Air Combo Plus',
-		vanillaAbility: 'Air Combo Plus',
+		vanillaAbility: {
+			reward: 'Air Combo Plus',
+			index: '00A3'
+		},
+		replacementAbility: {
+			reward: 'Air Combo Plus',
+			index: '00A3'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 1,
@@ -129,7 +150,6 @@ const equipmentsData = [{
 		statAddress: '21CDF468',
 		elementalResistanceAddress: '21CDF46C',
 		otherResistanceAddress: '21CDF470',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -138,8 +158,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Hidden Dragon',
-		ability: 'MP Rage',
-		vanillaAbility: 'MP Rage',
+		vanillaAbility: {
+			reward: 'MP Rage',
+			index: '019C'
+		},
+		replacementAbility: {
+			reward: 'MP Rage',
+			index: '019C'
+		},
 		strength: 2,
 		vanillaStrength: 2,
 		magic: 2,
@@ -163,7 +189,6 @@ const equipmentsData = [{
 		statAddress: '21CDF478',
 		elementalResistanceAddress: '21CDF47C',
 		otherResistanceAddress: '21CDF480',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -172,8 +197,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Hero\'s Crest',
-		ability: 'Air Combo Boost',
-		vanillaAbility: 'Air Combo Boost',
+		vanillaAbility: {
+			reward: 'Air Combo Boost',
+			index: '0187'
+		},
+		replacementAbility: {
+			reward: 'Air Combo Boost',
+			index: '0187'
+		},
 		strength: 4,
 		vanillaStrength: 4,
 		magic: 0,
@@ -197,7 +228,6 @@ const equipmentsData = [{
 		statAddress: '21CDF4A8',
 		elementalResistanceAddress: '21CDF4AC',
 		otherResistanceAddress: '21CDF4B0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -206,8 +236,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Monochrome',
-		ability: 'Item Boost',
-		vanillaAbility: 'Item Boost',
+		vanillaAbility: {
+			reward: 'Item Boost',
+			index: '019B'
+		},
+		replacementAbility: {
+			reward: 'Item Boost',
+			index: '019B'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 2,
@@ -231,7 +267,6 @@ const equipmentsData = [{
 		statAddress: '21CDF4B8',
 		elementalResistanceAddress: '21CDF4BC',
 		otherResistanceAddress: '21CDF4C0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -240,8 +275,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Follow the Wind',
-		ability: 'Draw',
-		vanillaAbility: 'Draw',
+		vanillaAbility: {
+			reward: 'Draw',
+			index: '0195'
+		},
+		replacementAbility: {
+			reward: 'Draw',
+			index: '0195'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 1,
@@ -265,7 +306,6 @@ const equipmentsData = [{
 		statAddress: '21CDF4C8',
 		elementalResistanceAddress: '21CDF4CC',
 		otherResistanceAddress: '21CDF4D0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -274,8 +314,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Circle of Life',
-		ability: 'MP Haste',
-		vanillaAbility: 'MP Haste',
+		vanillaAbility: {
+			reward: 'MP Haste',
+			index: '019D'
+		},
+		replacementAbility: {
+			reward: 'MP Haste',
+			index: '019D'
+		},
 		strength: 4,
 		vanillaStrength: 4,
 		magic: 1,
@@ -299,7 +345,6 @@ const equipmentsData = [{
 		statAddress: '21CDF4D8',
 		elementalResistanceAddress: '21CDF4DC',
 		otherResistanceAddress: '21CDF4E0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -308,8 +353,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Photon Debugger',
-		ability: 'Thunder Boost',
-		vanillaAbility: 'Thunder Boost',
+		vanillaAbility: {
+			reward: 'Thunder Boost',
+			index: '019A'
+		},
+		replacementAbility: {
+			reward: 'Thunder Boost',
+			index: '019A'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 2,
@@ -333,7 +384,6 @@ const equipmentsData = [{
 		statAddress: '21CDF4E8',
 		elementalResistanceAddress: '21CDF4EC',
 		otherResistanceAddress: '21CDF4F0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -342,8 +392,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Gull Wing',
-		ability: 'Experience Boost',
-		vanillaAbility: 'Experience Boost',
+		vanillaAbility: {
+			reward: 'Experience Boost',
+			index: '0191'
+		},
+		replacementAbility: {
+			reward: 'Experience Boost',
+			index: '0191'
+		},
 		strength: 2,
 		vanillaStrength: 2,
 		magic: 3,
@@ -367,7 +423,6 @@ const equipmentsData = [{
 		statAddress: '21CDF4F8',
 		elementalResistanceAddress: '21CDF4FC',
 		otherResistanceAddress: '21CDF500',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -376,8 +431,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Rumbling Rose',
-		ability: 'Finishing Plus',
-		vanillaAbility: 'Finishing Plus',
+		vanillaAbility: {
+			reward: 'Finishing Plus',
+			index: '0189'
+		},
+		replacementAbility: {
+			reward: 'Finishing Plus',
+			index: '0189'
+		},
 		strength: 5,
 		vanillaStrength: 5,
 		magic: 0,
@@ -401,7 +462,6 @@ const equipmentsData = [{
 		statAddress: '21CDF508',
 		elementalResistanceAddress: '21CDF50C',
 		otherResistanceAddress: '21CDF510',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -410,8 +470,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Guardian Soul',
-		ability: 'Reaction Boost',
-		vanillaAbility: 'Reaction Boost',
+		vanillaAbility: {
+			reward: 'Reaction Boost',
+			index: '0188'
+		},
+		replacementAbility: {
+			reward: 'Reaction Boost',
+			index: '0188'
+		},
 		strength: 5,
 		vanillaStrength: 5,
 		magic: 1,
@@ -435,7 +501,6 @@ const equipmentsData = [{
 		statAddress: '21CDF518',
 		elementalResistanceAddress: '21CDF51C',
 		otherResistanceAddress: '21CDF520',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -444,8 +509,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Wishing Lamp',
-		ability: 'Jackpot',
-		vanillaAbility: 'Jackpot',
+		vanillaAbility: {
+			reward: 'Jackpot',
+			index: '0196'
+		},
+		replacementAbility: {
+			reward: 'Jackpot',
+			index: '0196'
+		},
 		strength: 4,
 		vanillaStrength: 4,
 		magic: 3,
@@ -469,7 +540,6 @@ const equipmentsData = [{
 		statAddress: '21CDF528',
 		elementalResistanceAddress: '21CDF52C',
 		otherResistanceAddress: '21CDF530',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -478,8 +548,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Decisive Pumpkin',
-		ability: 'Combo Boost',
-		vanillaAbility: 'Combo Boost',
+		vanillaAbility: {
+			reward: 'Combo Boost',
+			index: '0186'
+		},
+		replacementAbility: {
+			reward: 'Combo Boost',
+			index: '0186'
+		},
 		strength: 6,
 		vanillaStrength: 6,
 		magic: 1,
@@ -503,7 +579,6 @@ const equipmentsData = [{
 		statAddress: '21CDF538',
 		elementalResistanceAddress: '21CDF53C',
 		otherResistanceAddress: '21CDF540',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -512,8 +587,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Sweet Memories',
-		ability: 'Drive Converter',
-		vanillaAbility: 'Drive Converter',
+		vanillaAbility: {
+			reward: 'Drive Converter',
+			index: '021C'
+		},
+		replacementAbility: {
+			reward: 'Drive Converter',
+			index: '021C'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 4,
@@ -537,7 +618,6 @@ const equipmentsData = [{
 		statAddress: '21CDF558',
 		elementalResistanceAddress: '21CDF55C',
 		otherResistanceAddress: '21CDF560',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -546,8 +626,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Mysterious Abyss',
-		ability: 'Blizzard Boost',
-		vanillaAbility: 'Blizzard Boost',
+		vanillaAbility: {
+			reward: 'Blizzard Boost',
+			index: '0199'
+		},
+		replacementAbility: {
+			reward: 'Blizzard Boost',
+			index: '0199'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 3,
@@ -571,7 +657,6 @@ const equipmentsData = [{
 		statAddress: '21CDF568',
 		elementalResistanceAddress: '21CDF56C',
 		otherResistanceAddress: '21CDF570',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -580,8 +665,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Sleeping Lion',
-		ability: 'Combo Plus',
-		vanillaAbility: 'Combo Plus',
+		vanillaAbility: {
+			reward: 'Combo Plus',
+			index: '00A2'
+		},
+		replacementAbility: {
+			reward: 'Combo Plus',
+			index: '00A2'
+		},
 		strength: 5,
 		vanillaStrength: 5,
 		magic: 3,
@@ -605,7 +696,6 @@ const equipmentsData = [{
 		statAddress: '21CDF548',
 		elementalResistanceAddress: '21CDF54C',
 		otherResistanceAddress: '21CDF550',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -614,8 +704,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Bond of Flame',
-		ability: 'Fire Boost',
-		vanillaAbility: 'Fire Boost',
+		vanillaAbility: {
+			reward: 'Fire Boost',
+			index: '0198'
+		},
+		replacementAbility: {
+			reward: 'Fire Boost',
+			index: '0198'
+		},
 		strength: 4,
 		vanillaStrength: 4,
 		magic: 4,
@@ -639,7 +735,6 @@ const equipmentsData = [{
 		statAddress: '21CDF588',
 		elementalResistanceAddress: '21CDF58C',
 		otherResistanceAddress: '21CDF590',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -648,8 +743,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Fatal Crest',
-		ability: 'Berserk Charge',
-		vanillaAbility: 'Berserk Charge',
+		vanillaAbility: {
+			reward: 'Berserk Charge',
+			index: '018B'
+		},
+		replacementAbility: {
+			reward: 'Berserk Charge',
+			index: '018B'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 5,
@@ -673,7 +774,6 @@ const equipmentsData = [{
 		statAddress: '21CDF578',
 		elementalResistanceAddress: '21CDF57C',
 		otherResistanceAddress: '21CDF580',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -682,8 +782,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Two Become One',
-		ability: 'Light & Darkness',
-		vanillaAbility: 'Light & Darkness',
+		vanillaAbility: {
+			reward: 'Light & Darkness',
+			index: '021D'
+		},
+		replacementAbility: {
+			reward: 'Light & Darkness',
+			index: '021D'
+		},
 		strength: 5,
 		vanillaStrength: 5,
 		magic: 4,
@@ -707,7 +813,6 @@ const equipmentsData = [{
 		statAddress: '21CDF5F8',
 		elementalResistanceAddress: '21CDF5FC',
 		otherResistanceAddress: '21CDF600',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -716,8 +821,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Fenrir',
-		ability: 'Negative Combo',
-		vanillaAbility: 'Negative Combo',
+		vanillaAbility: {
+			reward: 'Negative Combo',
+			index: '018A'
+		},
+		replacementAbility: {
+			reward: 'Negative Combo',
+			index: '018A'
+		},
 		strength: 7,
 		vanillaStrength: 7,
 		magic: 1,
@@ -741,7 +852,6 @@ const equipmentsData = [{
 		statAddress: '21CDF598',
 		elementalResistanceAddress: '21CDF59C',
 		otherResistanceAddress: '21CDF5A0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -750,8 +860,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Ultima Weapon',
-		ability: 'MP Hastega',
-		vanillaAbility: 'MP Hastega',
+		vanillaAbility: {
+			reward: 'MP Hastega',
+			index: '01A6'
+		},
+		replacementAbility: {
+			reward: 'MP Hastega',
+			index: '01A6'
+		},
 		strength: 6,
 		vanillaStrength: 6,
 		magic: 4,
@@ -775,7 +891,6 @@ const equipmentsData = [{
 		statAddress: '21CDF5A8',
 		elementalResistanceAddress: '21CDF5AC',
 		otherResistanceAddress: '21CDF5B0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -784,8 +899,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Winner\'s Proof',
-		ability: 'No Experience',
-		vanillaAbility: 'No Experience',
+		vanillaAbility: {
+			reward: 'No Experience',
+			index: '0194'
+		},
+		replacementAbility: {
+			reward: 'No Experience',
+			index: '0194'
+		},
 		strength: 5,
 		vanillaStrength: 5,
 		magic: 7,
@@ -809,7 +930,6 @@ const equipmentsData = [{
 		statAddress: '21CDF608',
 		elementalResistanceAddress: '21CDF60C',
 		otherResistanceAddress: '21CDF610',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -818,8 +938,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'FAKE',
-		ability: 'Defender',
-		vanillaAbility: 'Defender',
+		vanillaAbility: {
+			reward: 'Defender',
+			index: '019E019E'
+		},
+		replacementAbility: {
+			reward: 'Defender',
+			index: '019E019E'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 1,
@@ -843,7 +969,6 @@ const equipmentsData = [{
 		statAddress: '21CDF3F8',
 		elementalResistanceAddress: '21CDF3FC',
 		otherResistanceAddress: '21CDF300',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -852,8 +977,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Detection Saber',
-		ability: 'Scan',
-		vanillaAbility: 'Scan',
+		vanillaAbility: {
+			reward: 'Scan',
+			index: '008A'
+		},
+		replacementAbility: {
+			reward: 'Scan',
+			index: '008A'
+		},
 		strength: 4,
 		vanillaStrength: 4,
 		magic: 2,
@@ -877,7 +1008,6 @@ const equipmentsData = [{
 		statAddress: '21CDF208',
 		elementalResistanceAddress: '21CDF20C',
 		otherResistanceAddress: '21CDF210',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -886,8 +1016,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Edge of Ultima',
-		ability: 'MP Hastera',
-		vanillaAbility: 'MP Hastera',
+		vanillaAbility: {
+			reward: 'MP Hastera',
+			index: '01A5'
+		},
+		replacementAbility: {
+			reward: 'MP Hastera',
+			index: '01A5'
+		},
 		strength: 5,
 		vanillaStrength: 5,
 		magic: 4,
@@ -911,7 +1047,6 @@ const equipmentsData = [{
 		statAddress: '21CDF218',
 		elementalResistanceAddress: '21CDF21C',
 		otherResistanceAddress: '21CDF220',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -923,8 +1058,14 @@ const equipmentsData = [{
 	equipmentType: 'Donald Staff',
 	equipments: [{
 		name: 'Mage\'s Staff',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 1,
 		vanillaStrength: 1,
 		magic: 1,
@@ -948,7 +1089,6 @@ const equipmentsData = [{
 		statAddress: '21CDF238',
 		elementalResistanceAddress: '21CDF23C',
 		otherResistanceAddress: '21CDF240',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -957,8 +1097,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Hammer Staff',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 2,
 		vanillaStrength: 2,
 		magic: 1,
@@ -982,7 +1128,6 @@ const equipmentsData = [{
 		statAddress: '21CDF248',
 		elementalResistanceAddress: '21CDF24C',
 		otherResistanceAddress: '21CDF250',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -991,8 +1136,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Victory Bell',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 2,
@@ -1016,7 +1167,6 @@ const equipmentsData = [{
 		statAddress: '21CDF258',
 		elementalResistanceAddress: '21CDF25C',
 		otherResistanceAddress: '21CDF260',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1025,8 +1175,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Comet Staff',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 2,
 		vanillaStrength: 2,
 		magic: 2,
@@ -1050,7 +1206,6 @@ const equipmentsData = [{
 		statAddress: '21CDF278',
 		elementalResistanceAddress: '21CDF27C',
 		otherResistanceAddress: '21CDF280',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1059,8 +1214,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Lord\'s Broom',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 3,
@@ -1084,7 +1245,6 @@ const equipmentsData = [{
 		statAddress: '21CDF288',
 		elementalResistanceAddress: '21CDF28C',
 		otherResistanceAddress: '21CDF290',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1093,8 +1253,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Wisdom Wand',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 4,
 		vanillaStrength: 4,
 		magic: 5,
@@ -1118,7 +1284,6 @@ const equipmentsData = [{
 		statAddress: '21CDF298',
 		elementalResistanceAddress: '21CDF29C',
 		otherResistanceAddress: '21CDF2A0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1127,8 +1292,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Meteor Staff',
-		ability: 'Thunder Boost',
-		vanillaAbility: 'Thunder Boost',
+		vanillaAbility: {
+			reward: 'Thunder Boost',
+			index: '019A'
+		},
+		replacementAbility: {
+			reward: 'Thunder Boost',
+			index: '019A'
+		},
 		strength: 4,
 		vanillaStrength: 4,
 		magic: 3,
@@ -1152,7 +1323,6 @@ const equipmentsData = [{
 		statAddress: '21CDF268',
 		elementalResistanceAddress: '21CDF26C',
 		otherResistanceAddress: '21CDF270',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1161,8 +1331,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Rising Dragon',
-		ability: 'Fire Boost',
-		vanillaAbility: 'Fire Boost',
+		vanillaAbility: {
+			reward: 'Fire Boost',
+			index: '0198'
+		},
+		replacementAbility: {
+			reward: 'Fire Boost',
+			index: '0198'
+		},
 		strength: 4,
 		vanillaStrength: 4,
 		magic: 4,
@@ -1186,7 +1362,6 @@ const equipmentsData = [{
 		statAddress: '21CDF2A8',
 		elementalResistanceAddress: '21CDF2AC',
 		otherResistanceAddress: '21CDF2B0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1195,8 +1370,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Shaman\'s Relic',
-		ability: 'Blizzard Boost',
-		vanillaAbility: 'Blizzard Boost',
+		vanillaAbility: {
+			reward: 'Blizzard Boost',
+			index: '0199'
+		},
+		replacementAbility: {
+			reward: 'Blizzard Boost',
+			index: '0199'
+		},
 		strength: 4,
 		vanillaStrength: 4,
 		magic: 5,
@@ -1220,7 +1401,6 @@ const equipmentsData = [{
 		statAddress: '21CDF2C8',
 		elementalResistanceAddress: '21CDF2CC',
 		otherResistanceAddress: '21CDF2D0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1229,8 +1409,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Shaman\'s Relic+',
-		ability: 'Defender',
-		vanillaAbility: 'Defender',
+		vanillaAbility: {
+			reward: 'Defender',
+			index: '019E'
+		},
+		replacementAbility: {
+			reward: 'Defender',
+			index: '019E'
+		},
 		strength: 4,
 		vanillaStrength: 4,
 		magic: 5,
@@ -1254,7 +1440,6 @@ const equipmentsData = [{
 		statAddress: '21CDF708',
 		elementalResistanceAddress: '21CDF70C',
 		otherResistanceAddress: '21CDF710',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1263,8 +1448,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Nobody Lance',
-		ability: 'Item Boost',
-		vanillaAbility: 'Item Boost',
+		vanillaAbility: {
+			reward: 'Item Boost',
+			index: '019B'
+		},
+		replacementAbility: {
+			reward: 'Item Boost',
+			index: '019B'
+		},
 		strength: 5,
 		vanillaStrength: 5,
 		magic: 5,
@@ -1288,7 +1479,6 @@ const equipmentsData = [{
 		statAddress: '21CDF2B8',
 		elementalResistanceAddress: '21CDF2BC',
 		otherResistanceAddress: '21CDF2C0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1297,8 +1487,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Centurion',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 13,
 		vanillaStrength: 13,
 		magic: 3,
@@ -1322,7 +1518,6 @@ const equipmentsData = [{
 		statAddress: '21CDF618',
 		elementalResistanceAddress: '21CDF61C',
 		otherResistanceAddress: '21CDF620',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1331,8 +1526,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Centurion+',
-		ability: 'Damage Control',
-		vanillaAbility: 'Damage Control',
+		vanillaAbility: {
+			reward: 'Damage Control',
+			index: '021E'
+		},
+		replacementAbility: {
+			reward: 'Damage Control',
+			index: '021E'
+		},
 		strength: 13,
 		vanillaStrength: 13,
 		magic: 3,
@@ -1356,7 +1557,6 @@ const equipmentsData = [{
 		statAddress: '21CDF628',
 		elementalResistanceAddress: '21CDF62C',
 		otherResistanceAddress: '21CDF630',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1365,8 +1565,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Save the Queen',
-		ability: 'Hyper Healing',
-		vanillaAbility: 'Hyper Healing',
+		vanillaAbility: {
+			reward: 'Hyper Healing',
+			index: '01A3'
+		},
+		replacementAbility: {
+			reward: 'Hyper Healing',
+			index: '01A3'
+		},
 		strength: 5,
 		vanillaStrength: 5,
 		magic: 6,
@@ -1390,7 +1596,6 @@ const equipmentsData = [{
 		statAddress: '21CDF488',
 		elementalResistanceAddress: '21CDF48C',
 		otherResistanceAddress: '21CDF490',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1399,8 +1604,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Save the Queen+',
-		ability: 'MP Rage',
-		vanillaAbility: 'MP Rage',
+		vanillaAbility: {
+			reward: 'MP Rage',
+			index: '019C'
+		},
+		replacementAbility: {
+			reward: 'MP Rage',
+			index: '019C'
+		},
 		strength: 5,
 		vanillaStrength: 5,
 		magic: 6,
@@ -1424,7 +1635,6 @@ const equipmentsData = [{
 		statAddress: '21CDF5D8',
 		elementalResistanceAddress: '21CDF5DC',
 		otherResistanceAddress: '21CDF5E0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1433,8 +1643,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Plain Mushroom',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 1,
@@ -1458,7 +1674,6 @@ const equipmentsData = [{
 		statAddress: '21CDF638',
 		elementalResistanceAddress: '21CDF63C',
 		otherResistanceAddress: '21CDF640',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1467,8 +1682,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Plain Mushroom+',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 3,
@@ -1492,7 +1713,6 @@ const equipmentsData = [{
 		statAddress: '21CDF648',
 		elementalResistanceAddress: '21CDF64C',
 		otherResistanceAddress: '21CDF650',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1501,8 +1721,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Precious Mushroom',
-		ability: 'MP Haste',
-		vanillaAbility: 'MP Haste',
+		vanillaAbility: {
+			reward: 'MP Haste',
+			index: '019D'
+		},
+		replacementAbility: {
+			reward: 'MP Haste',
+			index: '019D'
+		},
 		strength: 1,
 		vanillaStrength: 1,
 		magic: 5,
@@ -1526,7 +1752,6 @@ const equipmentsData = [{
 		statAddress: '21CDF658',
 		elementalResistanceAddress: '21CDF65C',
 		otherResistanceAddress: '21CDF660',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1535,8 +1760,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Precious Mushroom+',
-		ability: 'MP Hastera',
-		vanillaAbility: 'MP Hastera',
+		vanillaAbility: {
+			reward: 'MP Hastera',
+			index: '01A5'
+		},
+		replacementAbility: {
+			reward: 'MP Hastera',
+			index: '01A5'
+		},
 		strength: 2,
 		vanillaStrength: 2,
 		magic: 7,
@@ -1560,7 +1791,6 @@ const equipmentsData = [{
 		statAddress: '21CDF668',
 		elementalResistanceAddress: '21CDF66C',
 		otherResistanceAddress: '21CDF670',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1569,8 +1799,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Premium Mushroom',
-		ability: 'MP Hastega',
-		vanillaAbility: 'MP Hastega',
+		vanillaAbility: {
+			reward: 'MP Hastega',
+			index: '01A6'
+		},
+		replacementAbility: {
+			reward: 'MP Hastega',
+			index: '01A6'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 9,
@@ -1594,7 +1830,6 @@ const equipmentsData = [{
 		statAddress: '21CDF678',
 		elementalResistanceAddress: '21CDF67C',
 		otherResistanceAddress: '21CDF680',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1606,8 +1841,14 @@ const equipmentsData = [{
 	equipmentType: 'Goofy Shield',
 	equipments: [{
 		name: 'Knight\'s Shield',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 1,
 		vanillaStrength: 1,
 		magic: 0,
@@ -1631,7 +1872,6 @@ const equipmentsData = [{
 		statAddress: '21CDF2E8',
 		elementalResistanceAddress: '21CDF2EC',
 		otherResistanceAddress: '21CDF2F0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1640,8 +1880,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Adamant Shield',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 2,
 		vanillaStrength: 2,
 		magic: 0,
@@ -1665,7 +1911,6 @@ const equipmentsData = [{
 		statAddress: '21CDF2F8',
 		elementalResistanceAddress: '21CDF2FC',
 		otherResistanceAddress: '21CDF300',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1674,8 +1919,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Chain Gear',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 0,
@@ -1699,7 +1950,6 @@ const equipmentsData = [{
 		statAddress: '21CDF308',
 		elementalResistanceAddress: '21CDF30C',
 		otherResistanceAddress: '21CDF310',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1708,8 +1958,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Falling Star',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 0,
@@ -1733,7 +1989,6 @@ const equipmentsData = [{
 		statAddress: '21CDF328',
 		elementalResistanceAddress: '21CDF32C',
 		otherResistanceAddress: '21CDF330',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1742,8 +1997,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Dream Cloud',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 4,
 		vanillaStrength: 4,
 		magic: 0,
@@ -1767,7 +2028,6 @@ const equipmentsData = [{
 		statAddress: '21CDF338',
 		elementalResistanceAddress: '21CDF33C',
 		otherResistanceAddress: '21CDF340',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1776,8 +2036,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Knight Defender',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 7,
 		vanillaStrength: 7,
 		magic: 0,
@@ -1801,7 +2067,6 @@ const equipmentsData = [{
 		statAddress: '21CDF348',
 		elementalResistanceAddress: '21CDF34C',
 		otherResistanceAddress: '21CDF350',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1810,8 +2075,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Ogre Shield',
-		ability: 'Defender',
-		vanillaAbility: 'Defender',
+		vanillaAbility: {
+			reward: 'Defender',
+			index: '019E'
+		},
+		replacementAbility: {
+			reward: 'Defender',
+			index: '019E'
+		},
 		strength: 5,
 		vanillaStrength: 5,
 		magic: 0,
@@ -1835,7 +2106,6 @@ const equipmentsData = [{
 		statAddress: '21CDF318',
 		elementalResistanceAddress: '21CDF31C',
 		otherResistanceAddress: '21CDF320',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1844,8 +2114,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Genji Shield',
-		ability: 'Hyper Healing',
-		vanillaAbility: 'Hyper Healing',
+		vanillaAbility: {
+			reward: 'Hyper Healing',
+			index: '01A3'
+		},
+		replacementAbility: {
+			reward: 'Hyper Healing',
+			index: '01A3'
+		},
 		strength: 6,
 		vanillaStrength: 6,
 		magic: 0,
@@ -1869,7 +2145,6 @@ const equipmentsData = [{
 		statAddress: '21CDF358',
 		elementalResistanceAddress: '21CDF35C',
 		otherResistanceAddress: '21CDF360',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1878,8 +2153,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Akashic Record',
-		ability: 'MP Haste',
-		vanillaAbility: 'MP Haste',
+		vanillaAbility: {
+			reward: 'MP Haste',
+			index: '019D'
+		},
+		replacementAbility: {
+			reward: 'MP Haste',
+			index: '019D'
+		},
 		strength: 7,
 		vanillaStrength: 7,
 		magic: 0,
@@ -1903,7 +2184,6 @@ const equipmentsData = [{
 		statAddress: '21CDF368',
 		elementalResistanceAddress: '21CDF36C',
 		otherResistanceAddress: '21CDF370',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1912,8 +2192,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Akashic Record+',
-		ability: 'MP Hastera',
-		vanillaAbility: 'MP Hastera',
+		vanillaAbility: {
+			reward: 'MP Hastera',
+			index: '01A5'
+		},
+		replacementAbility: {
+			reward: 'MP Hastera',
+			index: '01A5'
+		},
 		strength: 7,
 		vanillaStrength: 7,
 		magic: 0,
@@ -1937,7 +2223,6 @@ const equipmentsData = [{
 		statAddress: '21CDF718',
 		elementalResistanceAddress: '21CDF71C',
 		otherResistanceAddress: '21CDF720',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1946,8 +2231,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Nobody Guard',
-		ability: 'MP Rage',
-		vanillaAbility: 'MP Rage',
+		vanillaAbility: {
+			reward: 'MP Rage',
+			index: '019C'
+		},
+		replacementAbility: {
+			reward: 'MP Rage',
+			index: '019C'
+		},
 		strength: 8,
 		vanillaStrength: 8,
 		magic: 0,
@@ -1971,7 +2262,6 @@ const equipmentsData = [{
 		statAddress: '21CDF378',
 		elementalResistanceAddress: '21CDF37C',
 		otherResistanceAddress: '21CDF380',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -1980,8 +2270,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Frozen Pride',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 5,
 		vanillaStrength: 5,
 		magic: 0,
@@ -2005,7 +2301,6 @@ const equipmentsData = [{
 		statAddress: '21CDF688',
 		elementalResistanceAddress: '21CDF68C',
 		otherResistanceAddress: '21CDF690',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2014,8 +2309,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Frozen Pride+',
-		ability: 'MP Hastega',
-		vanillaAbility: 'MP Hastega',
+		vanillaAbility: {
+			reward: 'MP Hastega',
+			index: '01A6'
+		},
+		replacementAbility: {
+			reward: 'MP Hastega',
+			index: '01A6'
+		},
 		strength: 5,
 		vanillaStrength: 5,
 		magic: 0,
@@ -2039,7 +2340,6 @@ const equipmentsData = [{
 		statAddress: '21CDF698',
 		elementalResistanceAddress: '21CDF69C',
 		otherResistanceAddress: '21CDF6A0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2048,8 +2348,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Save the King',
-		ability: 'Item Boost',
-		vanillaAbility: 'Item Boost',
+		vanillaAbility: {
+			reward: 'Item Boost',
+			index: '019B'
+		},
+		replacementAbility: {
+			reward: 'Item Boost',
+			index: '019B'
+		},
 		strength: 9,
 		vanillaStrength: 9,
 		magic: 0,
@@ -2073,7 +2379,6 @@ const equipmentsData = [{
 		statAddress: '21CDF498',
 		elementalResistanceAddress: '21CDF49C',
 		otherResistanceAddress: '21CDF4A0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2082,8 +2387,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Save the King+',
-		ability: 'Damage Control',
-		vanillaAbility: 'Damage Control',
+		vanillaAbility: {
+			reward: 'Damage Control',
+			index: '021E'
+		},
+		replacementAbility: {
+			reward: 'Damage Control',
+			index: '021E'
+		},
 		strength: 9,
 		vanillaStrength: 9,
 		magic: 0,
@@ -2107,7 +2418,6 @@ const equipmentsData = [{
 		statAddress: '21CDF5E8',
 		elementalResistanceAddress: '21CDF5EC',
 		otherResistanceAddress: '21CDF5F0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2116,8 +2426,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Joyous Mushroom',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 1,
 		vanillaStrength: 1,
 		magic: 0,
@@ -2141,7 +2457,6 @@ const equipmentsData = [{
 		statAddress: '21CDF6A8',
 		elementalResistanceAddress: '21CDF6AC',
 		otherResistanceAddress: '21CDF6B0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2150,8 +2465,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Joyous Mushroom+',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 0,
@@ -2175,7 +2496,6 @@ const equipmentsData = [{
 		statAddress: '21CDF6B8',
 		elementalResistanceAddress: '21CDF6BC',
 		otherResistanceAddress: '21CDF6C0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2184,8 +2504,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Majestic Mushroom',
-		ability: 'Protect',
-		vanillaAbility: 'Protect',
+		vanillaAbility: {
+			reward: 'Protect',
+			index: '0254'
+		},
+		replacementAbility: {
+			reward: 'Protect',
+			index: '0254'
+		},
 		strength: 5,
 		vanillaStrength: 5,
 		magic: 0,
@@ -2209,7 +2535,6 @@ const equipmentsData = [{
 		statAddress: '21CDF6C8',
 		elementalResistanceAddress: '21CDF6CC',
 		otherResistanceAddress: '21CDF6D0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2218,8 +2543,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Majestic Mushroom+',
-		ability: 'Protectra',
-		vanillaAbility: 'Protectra',
+		vanillaAbility: {
+			reward: 'Protectra',
+			index: '0255'
+		},
+		replacementAbility: {
+			reward: 'Protectra',
+			index: '0255'
+		},
 		strength: 7,
 		vanillaStrength: 7,
 		magic: 0,
@@ -2243,7 +2574,6 @@ const equipmentsData = [{
 		statAddress: '21CDF6D8',
 		elementalResistanceAddress: '21CDF6DC',
 		otherResistanceAddress: '21CDF6E0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2252,8 +2582,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Ultimate Mushroom',
-		ability: 'Protectga',
-		vanillaAbility: 'Protectga',
+		vanillaAbility: {
+			reward: 'Protectga',
+			index: '0256'
+		},
+		replacementAbility: {
+			reward: 'Protectga',
+			index: '0256'
+		},
 		strength: 9,
 		vanillaStrength: 9,
 		magic: 0,
@@ -2277,7 +2613,6 @@ const equipmentsData = [{
 		statAddress: '21CDF6E8',
 		elementalResistanceAddress: '21CDF6EC',
 		otherResistanceAddress: '21CDF6F0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2289,8 +2624,14 @@ const equipmentsData = [{
 	equipmentType: 'Ally Weapon',
 	equipments: [{
 		name: 'Sword of Ancestors (Ping/Mulan)',
-		ability: '',
-		vanillaAbility: '0',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 0,
@@ -2314,7 +2655,6 @@ const equipmentsData = [{
 		statAddress: '21CDF3C8',
 		elementalResistanceAddress: '21CDF3CC',
 		otherResistanceAddress: '21CDF3D0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2323,8 +2663,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Beast\'s Claw (Beast)',
-		ability: '',
-		vanillaAbility: '0',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 0,
@@ -2348,7 +2694,6 @@ const equipmentsData = [{
 		statAddress: '21CDF408',
 		elementalResistanceAddress: '21CDF40C',
 		otherResistanceAddress: '21CDF410',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2357,8 +2702,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Battlefields of War (Auron)',
-		ability: '',
-		vanillaAbility: '0',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 0,
@@ -2382,7 +2733,6 @@ const equipmentsData = [{
 		statAddress: '21CDF3B8',
 		elementalResistanceAddress: '21CDF3BC',
 		otherResistanceAddress: '21CDF3C0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2391,8 +2741,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Skill and Crossbones (Jack Sparrow)',
-		ability: '',
-		vanillaAbility: '0',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 0,
@@ -2416,7 +2772,6 @@ const equipmentsData = [{
 		statAddress: '21CDF438',
 		elementalResistanceAddress: '21CDF43C',
 		otherResistanceAddress: '21CDF440',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2425,8 +2780,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Scimitar (Aladdin)',
-		ability: '',
-		vanillaAbility: '0',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 0,
@@ -2450,7 +2811,6 @@ const equipmentsData = [{
 		statAddress: '21CDF3A8',
 		elementalResistanceAddress: '21CDF3AC',
 		otherResistanceAddress: '21CDF3B0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2459,8 +2819,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Bone Fist (Jack)',
-		ability: '',
-		vanillaAbility: '0',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 0,
@@ -2484,7 +2850,6 @@ const equipmentsData = [{
 		statAddress: '21CDF418',
 		elementalResistanceAddress: '21CDF41C',
 		otherResistanceAddress: '21CDF420',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2493,8 +2858,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Proud Fang (Simba)',
-		ability: '',
-		vanillaAbility: '0',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 0,
@@ -2518,7 +2889,6 @@ const equipmentsData = [{
 		statAddress: '21CDF428',
 		elementalResistanceAddress: '21CDF42C',
 		otherResistanceAddress: '21CDF430',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2527,8 +2897,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Identity Disk (Tron)',
-		ability: '',
-		vanillaAbility: '0',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 0,
@@ -2552,7 +2928,6 @@ const equipmentsData = [{
 		statAddress: '21CDF3E8',
 		elementalResistanceAddress: '21CDF3EC',
 		otherResistanceAddress: '21CDF3F0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2561,8 +2936,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Way to the Dawn (Riku)',
-		ability: '',
-		vanillaAbility: '0',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 0,
@@ -2586,7 +2967,6 @@ const equipmentsData = [{
 		statAddress: '21CDF448',
 		elementalResistanceAddress: '21CDF44C',
 		otherResistanceAddress: '21CDF450',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2598,8 +2978,14 @@ const equipmentsData = [{
 	equipmentType: 'Armor',
 	equipments: [{
 		name: 'Elven Bandana',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -2623,7 +3009,6 @@ const equipmentsData = [{
 		statAddress: '21CDEDB8',
 		elementalResistanceAddress: '21CDEDBC',
 		otherResistanceAddress: '21CDEDC0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2632,8 +3017,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Divine Bandana',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -2657,7 +3048,6 @@ const equipmentsData = [{
 		statAddress: '21CDEDC8',
 		elementalResistanceAddress: '21CDEDCC',
 		otherResistanceAddress: '21CDEDD0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2666,8 +3056,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Champion Belt',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -2691,7 +3087,6 @@ const equipmentsData = [{
 		statAddress: '21CDEF98',
 		elementalResistanceAddress: '21CDEF9C',
 		otherResistanceAddress: '21CDEFA0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2700,8 +3095,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Protect Belt',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -2725,7 +3126,6 @@ const equipmentsData = [{
 		statAddress: '21CDEDF8',
 		elementalResistanceAddress: '21CDEDFC',
 		otherResistanceAddress: '21CDEE00',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2734,8 +3134,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Gaia Belt',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -2759,7 +3165,6 @@ const equipmentsData = [{
 		statAddress: '21CDEE08',
 		elementalResistanceAddress: '21CDEE0C',
 		otherResistanceAddress: '21CDEE10',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2768,8 +3173,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Power Band',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -2793,7 +3204,6 @@ const equipmentsData = [{
 		statAddress: '21CDEDD8',
 		elementalResistanceAddress: '21CDEDDC',
 		otherResistanceAddress: '21CDEDE0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2802,8 +3212,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Buster Band',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -2827,7 +3243,6 @@ const equipmentsData = [{
 		statAddress: '21CDEDE8',
 		elementalResistanceAddress: '21CDEDEC',
 		otherResistanceAddress: '21CDEDF0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2836,8 +3251,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Cosmic Belt',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -2861,7 +3282,6 @@ const equipmentsData = [{
 		statAddress: '21CDEE18',
 		elementalResistanceAddress: '21CDEE1C',
 		otherResistanceAddress: '21CDEE20',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2870,8 +3290,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Fire Bangle',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -2895,7 +3321,6 @@ const equipmentsData = [{
 		statAddress: '21CDEE58',
 		elementalResistanceAddress: '21CDEE5C',
 		otherResistanceAddress: '21CDEE60',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2904,8 +3329,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Fira Bangle',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -2929,7 +3360,6 @@ const equipmentsData = [{
 		statAddress: '21CDEE68',
 		elementalResistanceAddress: '21CDEE6C',
 		otherResistanceAddress: '21CDEE70',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2938,8 +3368,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Firaga Bangle',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -2963,7 +3399,6 @@ const equipmentsData = [{
 		statAddress: '21CDEE78',
 		elementalResistanceAddress: '21CDEE7C',
 		otherResistanceAddress: '21CDEE80',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -2972,8 +3407,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Firagun Bangle',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -2997,7 +3438,6 @@ const equipmentsData = [{
 		statAddress: '21CDEE88',
 		elementalResistanceAddress: '21CDEE8C',
 		otherResistanceAddress: '21CDEE90',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3006,8 +3446,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Blizzard Armlet',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3031,7 +3477,6 @@ const equipmentsData = [{
 		statAddress: '21CDEE98',
 		elementalResistanceAddress: '21CDEE9C',
 		otherResistanceAddress: '21CDEEA0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3040,8 +3485,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Blizzara Armlet',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3065,7 +3516,6 @@ const equipmentsData = [{
 		statAddress: '21CDEEA8',
 		elementalResistanceAddress: '21CDEEAC',
 		otherResistanceAddress: '21CDEEB0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3074,8 +3524,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Blizzaga Armlet',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3099,7 +3555,6 @@ const equipmentsData = [{
 		statAddress: '21CDEEB8',
 		elementalResistanceAddress: '21CDEEBC',
 		otherResistanceAddress: '21CDEEC0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3108,8 +3563,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Blizzagun Armlet',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3133,7 +3594,6 @@ const equipmentsData = [{
 		statAddress: '21CDEEC8',
 		elementalResistanceAddress: '21CDEECC',
 		otherResistanceAddress: '21CDEED0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3142,8 +3602,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Thunder Trinket',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3167,7 +3633,6 @@ const equipmentsData = [{
 		statAddress: '21CDEED8',
 		elementalResistanceAddress: '21CDEEDC',
 		otherResistanceAddress: '21CDEEE0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3176,8 +3641,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Thundara Trinket',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3201,7 +3672,6 @@ const equipmentsData = [{
 		statAddress: '21CDEEE8',
 		elementalResistanceAddress: '21CDEEEC',
 		otherResistanceAddress: '21CDEEF0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3210,8 +3680,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Thundaga Trinket',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3235,7 +3711,6 @@ const equipmentsData = [{
 		statAddress: '21CDEEF8',
 		elementalResistanceAddress: '21CDEEFC',
 		otherResistanceAddress: '21CDEF00',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3244,8 +3719,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Thundagun Trinket',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3269,7 +3750,6 @@ const equipmentsData = [{
 		statAddress: '21CDEF08',
 		elementalResistanceAddress: '21CDEF0C',
 		otherResistanceAddress: '21CDEF10',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3278,8 +3758,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Shock Charm',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3303,7 +3789,6 @@ const equipmentsData = [{
 		statAddress: '21CDEE28',
 		elementalResistanceAddress: '21CDEE2C',
 		otherResistanceAddress: '21CDEE30',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3312,8 +3797,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Shock Charm+',
-		ability: 'Thunder Boost',
-		vanillaAbility: 'Thunder Boost',
+		vanillaAbility: {
+			reward: 'Thunder Boost',
+			index: '019A'
+		},
+		replacementAbility: {
+			reward: 'Thunder Boost',
+			index: '019A'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3337,7 +3828,6 @@ const equipmentsData = [{
 		statAddress: '21CDEE38',
 		elementalResistanceAddress: '21CDEE3C',
 		otherResistanceAddress: '21CDEE40',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3346,8 +3836,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Shadow Anklet',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3371,7 +3867,6 @@ const equipmentsData = [{
 		statAddress: '21CDEF18',
 		elementalResistanceAddress: '21CDEF1C',
 		otherResistanceAddress: '21CDEF20',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3380,8 +3875,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Dark Anklet',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3405,7 +3906,6 @@ const equipmentsData = [{
 		statAddress: '21CDEF28',
 		elementalResistanceAddress: '21CDEF2C',
 		otherResistanceAddress: '21CDEF30',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3414,8 +3914,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Midnight Anklet',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3439,7 +3945,6 @@ const equipmentsData = [{
 		statAddress: '21CDEF38',
 		elementalResistanceAddress: '21CDEF3C',
 		otherResistanceAddress: '21CDEF40',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3448,8 +3953,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Chaos Anklet',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3473,7 +3984,6 @@ const equipmentsData = [{
 		statAddress: '21CDEF48',
 		elementalResistanceAddress: '21CDEF4C',
 		otherResistanceAddress: '21CDEF50',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3482,8 +3992,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Abas Chain',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3507,7 +4023,6 @@ const equipmentsData = [{
 		statAddress: '21CDEF58',
 		elementalResistanceAddress: '21CDEF5C',
 		otherResistanceAddress: '21CDEF60',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3516,8 +4031,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Aegis Chain',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3541,7 +4062,6 @@ const equipmentsData = [{
 		statAddress: '21CDEF68',
 		elementalResistanceAddress: '21CDEF6C',
 		otherResistanceAddress: '21CDEF70',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3550,8 +4070,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Acrisius',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3575,7 +4101,6 @@ const equipmentsData = [{
 		statAddress: '21CDEF78',
 		elementalResistanceAddress: '21CDEF7C',
 		otherResistanceAddress: '21CDEF80',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3584,8 +4109,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Acrisius+',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3609,7 +4140,6 @@ const equipmentsData = [{
 		statAddress: '21CDEFB8',
 		elementalResistanceAddress: '21CDEFBC',
 		otherResistanceAddress: '21CDEFC0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3618,8 +4148,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Cosmic Chain',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3643,7 +4179,6 @@ const equipmentsData = [{
 		statAddress: '21CDEFC8',
 		elementalResistanceAddress: '21CDEFCC',
 		otherResistanceAddress: '21CDEFD0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3652,8 +4187,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Petit Ribbon',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3677,7 +4218,6 @@ const equipmentsData = [{
 		statAddress: '21CDEFA8',
 		elementalResistanceAddress: '21CDEFAC',
 		otherResistanceAddress: '21CDEFB0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3686,8 +4226,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Ribbon',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3711,7 +4257,6 @@ const equipmentsData = [{
 		statAddress: '21CDEF88',
 		elementalResistanceAddress: '21CDEF8C',
 		otherResistanceAddress: '21CDEF90',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3720,8 +4265,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Grand Ribbon',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3745,7 +4296,6 @@ const equipmentsData = [{
 		statAddress: '21CDEE48',
 		elementalResistanceAddress: '21CDEE4C',
 		otherResistanceAddress: '21CDEE50',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3757,8 +4307,14 @@ const equipmentsData = [{
 	equipmentType: 'Accessory',
 	equipments: [{
 		name: 'Ability Ring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3782,7 +4338,6 @@ const equipmentsData = [{
 		statAddress: '21CDEFD8',
 		elementalResistanceAddress: '21CDEFDC',
 		otherResistanceAddress: '21CDEFE0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3791,8 +4346,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Engineer\'s Ring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3816,7 +4377,6 @@ const equipmentsData = [{
 		statAddress: '21CDEFE8',
 		elementalResistanceAddress: '21CDEFEC',
 		otherResistanceAddress: '21CDEFF0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3825,8 +4385,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Technician\'s Ring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3850,7 +4416,6 @@ const equipmentsData = [{
 		statAddress: '21CDEFF8',
 		elementalResistanceAddress: '21CDEFFC',
 		otherResistanceAddress: '21CDF000',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3859,8 +4424,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Skill Ring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3884,7 +4455,6 @@ const equipmentsData = [{
 		statAddress: '21CDF0E8',
 		elementalResistanceAddress: '21CDF0EC',
 		otherResistanceAddress: '21CDF0F0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3893,8 +4463,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Skillful Ring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3918,7 +4494,6 @@ const equipmentsData = [{
 		statAddress: '21CDF0F8',
 		elementalResistanceAddress: '21CDF0FC',
 		otherResistanceAddress: '21CDF100',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3927,8 +4502,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Expert\'s Ring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3952,7 +4533,6 @@ const equipmentsData = [{
 		statAddress: '21CDF008',
 		elementalResistanceAddress: '21CDF00C',
 		otherResistanceAddress: '21CDF010',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3961,8 +4541,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Master\'s Ring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -3986,7 +4572,6 @@ const equipmentsData = [{
 		statAddress: '21CDF0B8',
 		elementalResistanceAddress: '21CDF0BC',
 		otherResistanceAddress: '21CDF0C0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -3995,8 +4580,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Cosmic Ring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -4020,7 +4611,6 @@ const equipmentsData = [{
 		statAddress: '21CDF148',
 		elementalResistanceAddress: '21CDF14C',
 		otherResistanceAddress: '21CDF150',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4029,8 +4619,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Executive\'s Ring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -4054,7 +4650,6 @@ const equipmentsData = [{
 		statAddress: '21CDF6F8',
 		elementalResistanceAddress: '21CDF6FC',
 		otherResistanceAddress: '21CDF700',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4063,8 +4658,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Sardonyx Ring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 1,
 		vanillaStrength: 1,
 		magic: 0,
@@ -4088,7 +4689,6 @@ const equipmentsData = [{
 		statAddress: '21CDF018',
 		elementalResistanceAddress: '21CDF01C',
 		otherResistanceAddress: '21CDF020',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4097,8 +4697,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Tourmaline Ring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 1,
 		vanillaStrength: 1,
 		magic: 0,
@@ -4122,7 +4728,6 @@ const equipmentsData = [{
 		statAddress: '21CDF028',
 		elementalResistanceAddress: '21CDF02C',
 		otherResistanceAddress: '21CDF030',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4131,8 +4736,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Aquamarine Ring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 1,
 		vanillaStrength: 1,
 		magic: 0,
@@ -4156,7 +4767,6 @@ const equipmentsData = [{
 		statAddress: '21CDF038',
 		elementalResistanceAddress: '21CDF03C',
 		otherResistanceAddress: '21CDF040',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4165,8 +4775,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Garnet Ring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 1,
 		vanillaStrength: 1,
 		magic: 0,
@@ -4190,7 +4806,6 @@ const equipmentsData = [{
 		statAddress: '21CDF048',
 		elementalResistanceAddress: '21CDF04C',
 		otherResistanceAddress: '21CDF050',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4199,8 +4814,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Diamond Ring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 1,
 		vanillaStrength: 1,
 		magic: 0,
@@ -4224,7 +4845,6 @@ const equipmentsData = [{
 		statAddress: '21CDF058',
 		elementalResistanceAddress: '21CDF05C',
 		otherResistanceAddress: '21CDF060',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4233,8 +4853,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Silver Ring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 1,
@@ -4258,7 +4884,6 @@ const equipmentsData = [{
 		statAddress: '21CDF068',
 		elementalResistanceAddress: '21CDF06C',
 		otherResistanceAddress: '21CDF070',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4267,8 +4892,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Gold Ring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 1,
@@ -4292,7 +4923,6 @@ const equipmentsData = [{
 		statAddress: '21CDF078',
 		elementalResistanceAddress: '21CDF07C',
 		otherResistanceAddress: '21CDF080',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4301,8 +4931,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Platinum Ring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 1,
@@ -4326,7 +4962,6 @@ const equipmentsData = [{
 		statAddress: '21CDF088',
 		elementalResistanceAddress: '21CDF08C',
 		otherResistanceAddress: '21CDF090',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4335,8 +4970,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Mythril Ring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 1,
@@ -4360,7 +5001,6 @@ const equipmentsData = [{
 		statAddress: '21CDF098',
 		elementalResistanceAddress: '21CDF09C',
 		otherResistanceAddress: '21CDF0A0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4369,8 +5009,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Orichalcum Ring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 1,
@@ -4394,7 +5040,6 @@ const equipmentsData = [{
 		statAddress: '21CDF0A8',
 		elementalResistanceAddress: '21CDF0AC',
 		otherResistanceAddress: '21CDF0B0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4403,8 +5048,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Soldier Earring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 2,
 		vanillaStrength: 2,
 		magic: 0,
@@ -4428,7 +5079,6 @@ const equipmentsData = [{
 		statAddress: '21CDF108',
 		elementalResistanceAddress: '21CDF10C',
 		otherResistanceAddress: '21CDF110',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4437,8 +5087,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Fencer Earring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 2,
 		vanillaStrength: 2,
 		magic: 1,
@@ -4462,7 +5118,6 @@ const equipmentsData = [{
 		statAddress: '21CDF118',
 		elementalResistanceAddress: '21CDF11C',
 		otherResistanceAddress: '21CDF120',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4471,8 +5126,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Mage Earring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 2,
@@ -4496,7 +5157,6 @@ const equipmentsData = [{
 		statAddress: '21CDF128',
 		elementalResistanceAddress: '21CDF12C',
 		otherResistanceAddress: '21CDF130',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4505,8 +5165,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Slayer Earring',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 1,
 		vanillaStrength: 1,
 		magic: 2,
@@ -4530,7 +5196,6 @@ const equipmentsData = [{
 		statAddress: '21CDF138',
 		elementalResistanceAddress: '21CDF13C',
 		otherResistanceAddress: '21CDF140',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4539,8 +5204,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Medal',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 1,
 		vanillaStrength: 1,
 		magic: 0,
@@ -4564,7 +5235,6 @@ const equipmentsData = [{
 		statAddress: '21CDF158',
 		elementalResistanceAddress: '21CDF15C',
 		otherResistanceAddress: '21CDF160',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4573,8 +5243,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Moon Amulet',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 2,
 		vanillaStrength: 2,
 		magic: 2,
@@ -4598,7 +5274,6 @@ const equipmentsData = [{
 		statAddress: '21CDF0C8',
 		elementalResistanceAddress: '21CDF0CC',
 		otherResistanceAddress: '21CDF0D0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4607,8 +5282,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Star Charm',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 2,
 		vanillaStrength: 2,
 		magic: 2,
@@ -4632,7 +5313,6 @@ const equipmentsData = [{
 		statAddress: '21CDF0D8',
 		elementalResistanceAddress: '21CDF0DC',
 		otherResistanceAddress: '21CDF0E0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4641,8 +5321,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Cosmic Arts',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 2,
 		vanillaStrength: 2,
 		magic: 2,
@@ -4666,7 +5352,6 @@ const equipmentsData = [{
 		statAddress: '21CDF168',
 		elementalResistanceAddress: '21CDF16C',
 		otherResistanceAddress: '21CDF170',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4675,8 +5360,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Shadow Archive',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 3,
@@ -4700,7 +5391,6 @@ const equipmentsData = [{
 		statAddress: '21CDF178',
 		elementalResistanceAddress: '21CDF17C',
 		otherResistanceAddress: '21CDF180',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4709,8 +5399,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Shadow Archive+',
-		ability: 'MP Rage',
-		vanillaAbility: 'MP Rage',
+		vanillaAbility: {
+			reward: 'MP Rage',
+			index: '019C'
+		},
+		replacementAbility: {
+			reward: 'MP Rage',
+			index: '019C'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 3,
@@ -4734,7 +5430,6 @@ const equipmentsData = [{
 		statAddress: '21CDF188',
 		elementalResistanceAddress: '21CDF18C',
 		otherResistanceAddress: '21CDF190',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4743,8 +5438,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Full Bloom',
-		ability: '',
-		vanillaAbility: '',
+		vanillaAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementAbility: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 0,
@@ -4768,7 +5469,6 @@ const equipmentsData = [{
 		statAddress: '21CDF1A8',
 		elementalResistanceAddress: '21CDF1AC',
 		otherResistanceAddress: '21CDF1B0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4777,8 +5477,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Full Bloom+',
-		ability: 'MP Haste',
-		vanillaAbility: 'MP Haste',
+		vanillaAbility: {
+			reward: 'MP Haste',
+			index: '019D'
+		},
+		replacementAbility: {
+			reward: 'MP Haste',
+			index: '019D'
+		},
 		strength: 3,
 		vanillaStrength: 3,
 		magic: 0,
@@ -4802,7 +5508,6 @@ const equipmentsData = [{
 		statAddress: '21CDF1C8',
 		elementalResistanceAddress: '21CDF1CC',
 		otherResistanceAddress: '21CDF1D0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4811,8 +5516,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Draw Ring',
-		ability: 'Draw',
-		vanillaAbility: 'Draw',
+		vanillaAbility: {
+			reward: 'Draw',
+			index: '0195'
+		},
+		replacementAbility: {
+			reward: 'Draw',
+			index: '0195'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -4836,7 +5547,6 @@ const equipmentsData = [{
 		statAddress: '21CDF1B8',
 		elementalResistanceAddress: '21CDF1BC',
 		otherResistanceAddress: '21CDF1C0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,
@@ -4845,8 +5555,14 @@ const equipmentsData = [{
 		isOtherResistanceChanged: false
 	}, {
 		name: 'Lucky Ring',
-		ability: 'Lucky Lucky',
-		vanillaAbility: 'Lucky Lucky',
+		vanillaAbility: {
+			reward: 'Lucky Lucky',
+			index: '0197'
+		},
+		replacementAbility: {
+			reward: 'Lucky Lucky',
+			index: '0197'
+		},
 		strength: 0,
 		vanillaStrength: 0,
 		magic: 0,
@@ -4870,7 +5586,6 @@ const equipmentsData = [{
 		statAddress: '21CDF198',
 		elementalResistanceAddress: '21CDF19C',
 		otherResistanceAddress: '21CDF1A0',
-		replacementAbilityIndex: '',
 		toBeReplaced: false,
 		additionalLineCount: 0,
 		isAbilityReplaced: false,

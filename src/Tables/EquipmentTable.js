@@ -32,7 +32,7 @@ function EquipmentTable(props) {
 					{equipment.name}
 				</td>
 				<td>
-					{equipment.ability}
+					{equipment.replacementAbility.index !== '0000' ? equipment.replacementAbility.reward : ''}
 				</td>
 				<td>
 					{equipment.strength}

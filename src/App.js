@@ -337,15 +337,13 @@ class App extends React.Component {
 					let reward = rewardsData[this.state.chest.currentRewardType].rewards[this.state.chest.currentReward]
 					chest.toBeReplaced = false
 
-					if (reward.reward !== chest.replacementReward) {
-						if (reward.reward === chest.vanillaReward) {
+					if (reward.index !== chest.replacementReward.index) {
+						if (reward.index === chest.vanillaReward.index) {
 							chest.isReplaced = false
 							chest.replacementReward = chest.vanillaReward
-							chest.replacementIndex = ''
 						} else {
 							chest.isReplaced = true
-							chest.replacementReward = reward.reward
-							chest.replacementIndex = reward.index
+							chest.replacementReward = reward
 						}
 					}
 				}
@@ -357,7 +355,6 @@ class App extends React.Component {
 					chest.toBeReplaced = false
 					chest.isReplaced = false
 					chest.replacementReward = chest.vanillaReward
-					chest.replacementIndex = ''
 				}
 				return chest
 			})
@@ -382,17 +379,14 @@ class App extends React.Component {
 						popup.isAbility = true
 					else
 						popup.isAbility = false
-					console.log(popup.isAbility)
 
-					if (reward.reward !== popup.replacementReward) {
-						if (reward.reward === popup.vanillaReward) {
+					if (reward.index !== popup.replacementReward.index) {
+						if (reward.index === popup.vanillaReward.index) {
 							popup.isReplaced = false
 							popup.replacementReward = popup.vanillaReward
-							popup.replacementIndex = ''
 						} else {
 							popup.isReplaced = true
-							popup.replacementReward = reward.reward
-							popup.replacementIndex = reward.index
+							popup.replacementReward = reward
 						}
 					}
 				}
@@ -405,7 +399,6 @@ class App extends React.Component {
 					popup.isReplaced = false
 					popup.isAbility = false
 					popup.replacementReward = popup.vanillaReward
-					popup.replacementIndex = ''
 				}
 				return popup
 			})
@@ -426,15 +419,13 @@ class App extends React.Component {
 				if (driveFormLevel.toBeReplaced) {
 					let reward = rewardsData[this.state.form.currentRewardType].rewards[this.state.form.currentReward]
 					driveFormLevel.toBeReplaced = false
-					if (reward.reward !== driveFormLevel.replacementReward) {
-						if (reward.reward === driveFormLevel.vanillaReward) {
+					if (reward.index !== driveFormLevel.replacementReward.index) {
+						if (reward.index === driveFormLevel.vanillaReward.index) {
 							driveFormLevel.isRewardReplaced = false
 							driveFormLevel.replacementReward = driveFormLevel.vanillaReward
-							driveFormLevel.replacementIndex = ''
 						} else {
 							driveFormLevel.isRewardReplaced = true
-							driveFormLevel.replacementReward = reward.reward
-							driveFormLevel.replacementIndex = reward.index
+							driveFormLevel.replacementReward = reward
 						}
 					}
 
@@ -457,7 +448,6 @@ class App extends React.Component {
 					driveFormLevel.isRewardReplaced = false
 					driveFormLevel.isEXPReplaced = false
 					driveFormLevel.replacementReward = driveFormLevel.vanillaReward
-					driveFormLevel.replacementIndex = ''
 					driveFormLevel.replacementEXP = driveFormLevel.vanillaEXP
 				}
 				return driveFormLevel
@@ -481,14 +471,12 @@ class App extends React.Component {
 					equipment.toBeReplaced = false
 					equipment.additionalLineCount = 0
 
-					if (reward.reward === equipment.vanillaAbility) {
+					if (reward.index === equipment.vanillaAbility.index) {
 						equipment.isAbilityReplaced = false
-						equipment.ability = equipment.vanillaAbility
-						equipment.replacementAbilityIndex = ''
+						equipment.replacementAbility = equipment.vanillaAbility
 					} else {
-						equipment.ability = reward.reward
 						equipment.isAbilityReplaced = true
-						equipment.replacementAbilityIndex = reward.index
+						equipment.replacementAbility = reward
 					}
 
 					equipment.strength = this.state.equipment.currentStrength
@@ -548,8 +536,7 @@ class App extends React.Component {
 					equipment.isStatsReplaced = false
 					equipment.isElementalResistanceChanged = false
 					equipment.isOtherResistanceChanged = false
-					equipment.ability = equipment.vanillaAbility
-					equipment.replacementAbilityIndex = ''
+					equipment.replacementAbility = equipment.vanillaAbility
 					equipment.strength = equipment.vanillaStrength
 					equipment.magic = equipment.vanillaMagic
 					equipment.ap = equipment.vanillaAP
@@ -583,13 +570,10 @@ class App extends React.Component {
 					let rewardB = rewardsData[this.state.bonus.currentBRewardType].rewards[this.state.bonus.currentBReward]
 					bonus.toBeReplaced = false
 
-					bonus.replacementReward1 = rewardA.reward
-					bonus.replacementRewardIndex1 = rewardA.index
+					bonus.replacementReward1 = rewardA
+					bonus.replacementReward2 = rewardB
 
-					bonus.replacementReward2 = rewardB.reward
-					bonus.replacementRewardIndex2 = rewardB.index
-
-					if (bonus.replacementReward1 !== bonus.vanillaReward1 || bonus.replacementReward2 !== bonus.vanillaReward2)
+					if (bonus.replacementReward1.index !== bonus.vanillaReward1.index || bonus.replacementReward2.index !== bonus.vanillaReward2.index)
 						bonus.isRewardsReplaced = true
 
 					bonus.hpIncrease = this.state.bonus.currentHP
@@ -612,9 +596,7 @@ class App extends React.Component {
 					bonus.toBeReplaced = false
 
 					bonus.replacementReward1 = bonus.vanillaReward1
-					bonus.replacementRewardIndex1 = ''
 					bonus.replacementReward2 = bonus.vanillaReward2
-					bonus.replacementRewardIndex2 = ''
 					bonus.hpIncrease = bonus.vanillaHpIncrease
 					bonus.mpIncrease = bonus.vanillaMpIncrease
 					bonus.armorSlotIncrease = bonus.vanillaArmorSlotIncrease
@@ -629,9 +611,9 @@ class App extends React.Component {
 			}
 			//reward count
 			bonus.rewardChangeCount = 0
-			if (bonus.replacementReward1 !== '' && bonus.replacementReward1 !== 'Empty')
+			if (bonus.replacementReward1.index !== '0000')
 				bonus.rewardChangeCount++
-			if (bonus.replacementReward2 !== '' && bonus.replacementReward2 !== 'Empty')
+			if (bonus.replacementReward2.index !== '0000')
 				bonus.rewardChangeCount++
 			//stat count
 			bonus.statChangeCount = 0
@@ -667,21 +649,18 @@ class App extends React.Component {
 					l.toBeReplaced = false
 
 					let reward = rewardsData[this.state.level.currentSwordRewardType].rewards[this.state.level.currentSwordReward]
-					l.swordReplacementReward = reward.reward
-					l.swordReplacementIndex = reward.index
-					if (l.swordReplacementReward !== l.vanillaSwordReward)
+					l.replacementSwordReward = reward
+					if (l.replacementSwordReward.index !== l.vanillaSwordReward.index)
 						l.isSwordReplaced = true
 
 					reward = rewardsData[this.state.level.currentShieldRewardType].rewards[this.state.level.currentShieldReward]
-					l.shieldReplacementReward = reward.reward
-					l.shieldReplacementIndex = reward.index
-					if (l.shieldReplacementReward !== l.vanillaShieldReward)
+					l.replacementShieldReward = reward
+					if (l.replacementShieldReward.index !== l.vanillaShieldReward.index)
 						l.isShieldReplaced = true
 
 					reward = rewardsData[this.state.level.currentStaffRewardType].rewards[this.state.level.currentStaffReward]
-					l.staffReplacementReward = reward.reward
-					l.staffReplacementIndex = reward.index
-					if (l.staffReplacementReward !== l.vanillaStaffReward)
+					l.replacementStaffReward = reward
+					if (l.replacementStaffReward.index !== l.vanillaStaffReward.index)
 						l.isStaffReplaced = true
 
 					l.standardAP = this.state.level.currentLevelAP
@@ -707,16 +686,13 @@ class App extends React.Component {
 				if (l.toBeReplaced) {
 					l.toBeReplaced = false
 
-					l.swordReplacementReward = l.vanillaSwordReward
-					l.swordReplacementIndex = ''
+					l.replacementSwordReward = l.vanillaSwordReward
 					l.isSwordReplaced = false
 
-					l.shieldReplacementReward = l.vanillaShieldReward
-					l.shieldReplacementIndex = ''
+					l.replacementShieldReward = l.vanillaShieldReward
 					l.isShieldReplaced = false
 
-					l.staffReplacementReward = l.vanillaStaffReward
-					l.staffReplacementIndex = ''
+					l.replacementStaffReward = l.vanillaStaffReward
 					l.isStaffReplaced = false
 
 					l.standardAP = l.vanillaAP
@@ -749,15 +725,13 @@ class App extends React.Component {
 					let reward = rewardsData[this.state.critical.currentRewardType].rewards[this.state.critical.currentReward]
 					ce.toBeReplaced = false
 
-					if (reward.reward !== ce.replacementReward) {
-						if (reward.reward === ce.vanillaReward) {
+					if (reward.index !== ce.replacementReward.index) {
+						if (reward.index === ce.vanillaReward.index) {
 							ce.isReplaced = false
 							ce.replacementReward = ce.vanillaReward
-							ce.replacementIndex = ''
 						} else {
 							ce.isReplaced = true
-							ce.replacementReward = reward.reward
-							ce.replacementIndex = reward.index
+							ce.replacementReward = reward
 						}
 					}
 				}
@@ -769,7 +743,6 @@ class App extends React.Component {
 					ce.toBeReplaced = false
 					ce.isReplaced = false
 					ce.replacementReward = ce.vanillaReward
-					ce.replacementIndex = ''
 				}
 				return ce
 			})
@@ -876,8 +849,8 @@ class App extends React.Component {
 				} else
 					text = ' is now '
 
-				ret += 'patch=1,EE,' + chest.vanillaAddress + ',extended,0000' + chest.replacementIndex.padStart(4, '0')
-				ret += ' // ' + chest.room + ', ' + chest.vanillaReward + text + chest.replacementReward + '\n'
+				ret += 'patch=1,EE,' + chest.vanillaAddress + ',extended,0000' + chest.replacementReward.index.padStart(4, '0')
+				ret += ' // ' + chest.room + ', ' + chest.vanillaReward.reward + text + chest.replacementReward.reward + '\n'
 			})
 			return ret
 		})
@@ -892,8 +865,8 @@ class App extends React.Component {
 				} else
 					text = ' is now '
 
-				ret += 'patch=1,EE,' + popup.vanillaAddress + ',extended,0000' + popup.replacementIndex.padStart(4, '0')
-				ret += ' // ' + popup.popup + ', ' + popup.vanillaReward + text + popup.replacementReward + '\n'
+				ret += 'patch=1,EE,' + popup.vanillaAddress + ',extended,0000' + popup.replacementReward.index.padStart(4, '0')
+				ret += ' // ' + popup.popup + ', ' + popup.vanillaReward.reward + text + popup.replacementReward.reward + '\n'
 			})
 			return ret
 		})
@@ -911,8 +884,8 @@ class App extends React.Component {
 				} else
 					text = ' is now '
 
-				ret += 'patch=1,EE,' + driveFormLevel.vanillaAddress + ',extended,0000' + driveFormLevel.replacementIndex.padStart(4, '0')
-				ret += ' // ' + driveFormLevel.level + ', ' + driveFormLevel.vanillaReward + text + driveFormLevel.replacementReward + '\n'
+				ret += 'patch=1,EE,' + driveFormLevel.vanillaAddress + ',extended,0000' + driveFormLevel.replacementReward.index.padStart(4, '0')
+				ret += ' // ' + driveFormLevel.level + ', ' + driveFormLevel.vanillaReward.reward + text + driveFormLevel.replacementReward.reward + '\n'
 
 				if (!driveFormLevel.isEXPReplaced) {
 					ret += '//'
@@ -934,7 +907,7 @@ class App extends React.Component {
 
 				if (!eq.isAbilityReplaced)
 					ret += '//'
-				ret += 'patch=1,EE,' + eq.abilityAddress + ',extended,0000' + eq.replacementAbilityIndex.padStart(4, '0') + ' // Ability: ' + eq.ability + '\n'
+				ret += 'patch=1,EE,' + eq.abilityAddress + ',extended,0000' + eq.replacementAbility.index.padStart(4, '0') + ' // Ability: ' + eq.replacementAbility.reward + '\n'
 
 				if (!eq.isStatsReplaced)
 					ret += '//'
@@ -984,8 +957,8 @@ class App extends React.Component {
 
 					if (!bonus.isRewardsReplaced)
 						ret += '//'
-					ret += 'patch=1,EE,' + bonus.rewardAddress + ',extended,' + bonus.replacementRewardIndex2.padStart(4, '0') + bonus.replacementRewardIndex1.padStart(4, '0');
-					ret += ' // Replacement Reward #2:' + bonus.replacementReward2 + ', Replacement Reward #1:' + bonus.replacementReward1 + '\n';
+					ret += 'patch=1,EE,' + bonus.rewardAddress + ',extended,' + bonus.replacementReward2.index.padStart(4, '0') + bonus.replacementReward1.index.padStart(4, '0');
+					ret += ' // Replacement Reward #2:' + bonus.replacementReward2.reward + ', Replacement Reward #1:' + bonus.replacementReward1.reward + '\n';
 				})
 			})
 			return ret
@@ -1015,15 +988,15 @@ class App extends React.Component {
 			else {
 				if (!l.isSwordReplaced)
 					ret += '//'
-				ret += 'patch=1,EE,' + l.swordAddress + ',extended,0000' + l.swordReplacementIndex + ' // Sword Reward: ' + l.swordReplacementReward + '\n'
+				ret += 'patch=1,EE,' + l.swordAddress + ',extended,0000' + l.replacementSwordReward.index + ' // Sword Reward: ' + l.replacementSwordReward.reward + '\n'
 
 				if (!l.isShieldReplaced)
 					ret += '//'
-				ret += 'patch=1,EE,' + l.shieldAddress + ',extended,0000' + l.shieldReplacementIndex + ' // Shield Reward: ' + l.shieldReplacementReward + '\n'
+				ret += 'patch=1,EE,' + l.shieldAddress + ',extended,0000' + l.replacementShieldReward.index + ' // Shield Reward: ' + l.replacementShieldReward.reward + '\n'
 
 				if (!l.isStaffReplaced)
 					ret += '//'
-				ret += 'patch=1,EE,' + l.staffAddress + ',extended,0000' + l.staffReplacementIndex + ' // Staff Reward: ' + l.staffReplacementReward + '\n'
+				ret += 'patch=1,EE,' + l.staffAddress + ',extended,0000' + l.replacementStaffReward.index + ' // Staff Reward: ' + l.replacementStaffReward.reward + '\n'
 			}
 			return ret
 		})
@@ -1037,8 +1010,8 @@ class App extends React.Component {
 			} else
 				text = ' is now '
 
-			ret += 'patch=1,EE,' + ce.vanillaAddress + ',extended,0000' + ce.replacementIndex.padStart(4, '0')
-			ret += ' // ' + ce.vanillaReward + text + ce.replacementReward + '\n'
+			ret += 'patch=1,EE,' + ce.vanillaAddress + ',extended,0000' + ce.replacementReward.index.padStart(4, '0')
+			ret += ' // ' + ce.vanillaReward.reward + text + ce.replacementReward.reward + '\n'
 			return ret
 		})
 
@@ -1155,7 +1128,7 @@ class App extends React.Component {
 							onClick={this.handleCriticalReplace}
 						/>
 					</Tab>
-					<Tab eventKey="cheat" title="Cheats">
+					<Tab eventKey="cheat" title="Cheat">
 						<CheatPage
 							cheatData={this.state.cheat}
 							onRowCheck={(event) => this.onRowCheck('cheat', event)}

@@ -1,57 +1,92 @@
 const criticalData = [
 	{
-		vanillaReward: "Reaction Boost",
+		vanillaReward: {
+			reward: 'Reaction Boost',
+			index: '0188'
+		},
+		replacementReward: {
+			reward: 'Reaction Boost',
+			index: '0188'
+		},
 		vanillaAddress: "11D18DDE",
-		replacementReward: '',
-		replacementIndex: '',
 		toBeReplaced: false,
 		isReplaced: false
 	},
 	{
-		vanillaReward: "Finishing Plus",
+		vanillaReward: {
+			reward: 'Finishing Plus',
+			index: '0189'
+		},
+		replacementReward: {
+			reward: 'Finishing Plus',
+			index: '0189'
+		},
 		vanillaAddress: "11D18DDC",
-		replacementReward: '',
-		replacementIndex: '',
 		toBeReplaced: false,
 		isReplaced: false
 	},
 	{
-		vanillaReward: "Draw",
+		vanillaReward: {
+			reward: 'Draw',
+			index: '0195'
+		},
+		replacementReward: {
+			reward: 'Draw',
+			index: '0195'
+		},
 		vanillaAddress: "11D18DE8",
-		replacementReward: '',
-		replacementIndex: '',
 		toBeReplaced: false,
 		isReplaced: false
 	},
 	{
-		vanillaReward: "Lucky Lucky (1)",
+		vanillaReward: {
+			reward: 'Lucky Lucky (1)',
+			index: '0197'
+		},
+		replacementReward: {
+			reward: 'Lucky Lucky (1)',
+			index: '0197'
+		},
 		vanillaAddress: "11D18DE4",
-		replacementReward: '',
-		replacementIndex: '',
 		toBeReplaced: false,
 		isReplaced: false
 	},
 	{
-		vanillaReward: "Lucky Lucky (2)",
+		vanillaReward: {
+			reward: 'Lucky Lucky (2)',
+			index: '0197'
+		},
+		replacementReward: {
+			reward: 'Lucky Lucky (2)',
+			index: '0197'
+		},
 		vanillaAddress: "11D18DE6",
-		replacementReward: '',
-		replacementIndex: '',
 		toBeReplaced: false,
 		isReplaced: false
 	},
 	{
-		vanillaReward: "MP Hastera",
+		vanillaReward: {
+			reward: 'MP Hastera',
+			index: '01A5'
+		},
+		replacementReward: {
+			reward: 'MP Hastera',
+			index: '01A5'
+		},
 		vanillaAddress: "11D18DE0",
-		replacementReward: '',
-		replacementIndex: '',
 		toBeReplaced: false,
 		isReplaced: false
 	},
 	{
-		vanillaReward: "No Experience",
+		vanillaReward: {
+			reward: 'No Experience',
+			index: '0194'
+		},
+		replacementReward: {
+			reward: 'No Experience',
+			index: '0194'
+		},
 		vanillaAddress: "11D18DE2",
-		replacementReward: '',
-		replacementIndex: '',
 		toBeReplaced: false,
 		isReplaced: false
 	}

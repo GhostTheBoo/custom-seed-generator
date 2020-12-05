@@ -8,7 +8,7 @@ function PopupTable(props) {
 		let originalReward = ''
 		if (popup.isReplaced) {
 			styles = { background: 'green' }
-			originalReward = popup.replacementReward
+			originalReward = popup.replacementReward.reward
 		}
 		if (popup.isAbility)
 			styles = { background: 'red' }
@@ -30,7 +30,7 @@ function PopupTable(props) {
 					{popup.popup}
 				</td>
 				<td>
-					{popup.vanillaReward}
+					{popup.vanillaReward.reward}
 				</td>
 				<td>
 					{originalReward}

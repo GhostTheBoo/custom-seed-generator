@@ -1816,7 +1816,7 @@ const rewardsData = [
 		rewardType: "Empty",
 		rewards: [
 			{
-				reward: "Empty",
+				reward: "EMPTY",
 				index: "0000"
 			}
 		]
