@@ -377,7 +377,7 @@ const rewardsData = [
 			},
 			{
 				reward: "Garnet Ring",
-				index: "0F10"
+				index: "000F"
 			},
 			{
 				reward: "Diamond Ring",

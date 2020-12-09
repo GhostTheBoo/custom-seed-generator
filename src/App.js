@@ -28,7 +28,7 @@ import CriticalPage from './Pages/CriticalPage'
 import criticalData from './Data/criticalData'
 
 import CheatPage from './Pages/CheatPage'
-import cheatData from './Data/cheatData'
+import cheatsData from './Data/cheatsData'
 
 class App extends React.Component {
 	constructor() {
@@ -123,7 +123,7 @@ class App extends React.Component {
 			},
 			cheat: {
 				selectAll: false,
-				currentDisplayData: cheatData.slice()
+				currentDisplayData: cheatsData.slice()
 			}
 		}
 
@@ -149,6 +149,7 @@ class App extends React.Component {
 		this.onRowCheck = this.onRowCheck.bind(this)
 		this.checkAll = this.checkAll.bind(this)
 		this.handleSave = this.handleSave.bind(this)
+		this.handleSaveData = this.handleSaveData.bind(this)
 	}
 
 	//#region Table Data Change
@@ -1031,6 +1032,131 @@ class App extends React.Component {
 		document.body.appendChild(element)
 		element.click()
 	}
+
+	handleSaveData() {
+		let chestSaveData = this.state.chest.allChests.map(world => {
+			let worldRet = '{"world":' + JSON.stringify(world.world) + ',"chests":['
+			let ret = world.chests.filter(chest => chest.isReplaced).map(chest => {
+				let chestRet = '{"replacementReward":{"reward":' + JSON.stringify(chest.replacementReward.reward) + ',"index":"' + chest.replacementReward.index + '"},'
+				chestRet += '"vanillaAddress":"' + chest.vanillaAddress + '"},'
+				chestRet += '"isReplaced":"' + chest.isReplaced + '"},'
+				return chestRet
+			})
+			return (ret.length === 0 ? worldRet : worldRet + ret.join('').slice(0, -1)) + ']},'
+		})
+		chestSaveData = ['"chestsData":[', chestSaveData.join('').slice(0, -1), '],']
+
+		let popupSaveData = this.state.popup.allPopups.map(world => {
+			let worldRet = '{"world":' + JSON.stringify(world.world) + ',"popups":['
+			let ret = world.popups.filter(popup => popup.isReplaced).map(popup => {
+				let popupRet = '{"replacementReward":{"reward":' + JSON.stringify(popup.replacementReward.reward) + ',"index":"' + popup.replacementReward.index + '"},'
+				popupRet += '"vanillaAddress":"' + popup.vanillaAddress + '"},'
+				popupRet += '"isReplaced":"' + popup.isReplaced + '"},'
+				popupRet += '"isAbility":"' + popup.isAbility + '"},'
+				return popupRet
+			})
+			return (ret.length === 0 ? worldRet : worldRet + ret.join('').slice(0, -1)) + ']},'
+		})
+		popupSaveData = ['"popupsData":[', popupSaveData.join('').slice(0, -1), '],']
+
+		let formSaveData = this.state.form.allForms.map(form => {
+			let driveFormRet = '{"driveForm":' + JSON.stringify(form.driveForm) + ',"driveLevels":['
+			let ret = form.driveLevels.filter(driveLevel => (driveLevel.isRewardReplaced || driveLevel.isEXPReplaced)).map(driveLevel => {
+				let driveLevelRet = '{"level":' + JSON.stringify(driveLevel.level) + ','
+				driveLevelRet += '"isRewardReplaced":' + driveLevel.isRewardReplaced + ','
+				if (driveLevel.isRewardReplaced) {
+					driveLevelRet += '"replacementReward":{"reward":' + JSON.stringify(driveLevel.replacementReward.reward)
+					driveLevelRet += ',"index":"' + driveLevel.replacementReward.index + '"},'
+				}
+				driveLevelRet += '"isEXPReplaced":' + driveLevel.isEXPReplaced + ','
+				if (driveLevel.isEXPReplaced)
+					driveLevelRet += '"replacementEXP":' + driveLevel.replacementEXP + ','
+				return driveLevelRet.slice(0, -1) + '},'
+			})
+			return (ret.length === 0 ? driveFormRet : driveFormRet + ret.join('').slice(0, -1)) + ']},'
+		})
+		formSaveData = ['"formsData":[', formSaveData.join('').slice(0, -1), '],']
+
+		let equipmentSaveData = this.state.equipment.allEquipments.map(equipmentType => {
+			let equipmentTypeRet = '{"equipmentType":' + JSON.stringify(equipmentType.equipmentType) + ',"equipments":['
+			let ret = equipmentType.equipments.filter(e => (e.isAbilityReplaced || e.isStatsReplaced
+				|| e.isElementalResistanceChanged || e.isOtherResistanceChanged)).map(equipment => {
+					let equipmentRet = '{"name":' + JSON.stringify(equipment.name) + ','
+					equipmentRet += '"isAbilityReplaced":' + equipment.isAbilityReplaced + ','
+					if (equipment.isAbilityReplaced) {
+						equipmentRet += '"replacementAbility":{"reward":' + JSON.stringify(equipment.replacementAbility.reward) + ',"index":"'
+						equipmentRet += equipment.replacementAbility.index + '"},'
+					}
+					equipmentRet += '"isStatsReplaced":' + equipment.isStatsReplaced + ','
+					if (equipment.isStatsReplaced) {
+						equipmentRet += '"strength":' + equipment.strength + ',"magic":' + equipment.magic + ',"ap":' + equipment.ap + ',"defense":' + equipment.defense + ','
+					}
+					equipmentRet += '"isElementalResistanceChanged":' + equipment.isElementalResistanceChanged + ','
+					if (equipment.isElementalResistanceChanged) {
+						equipmentRet += '"fireResistance":' + equipment.fireResistance + ',"blizzardResistance":' + equipment.blizzardResistance
+						equipmentRet += ',"thunderResistance":' + equipment.thunderResistance + ',"physicalResistance":' + equipment.physicalResistance + ','
+					}
+					equipmentRet += '"isOtherResistanceChanged":' + equipment.isOtherResistanceChanged + ','
+					if (equipment.isOtherResistanceChanged) {
+						equipmentRet += '"darkResistance":' + equipment.darkResistance + ',"lightResistance":' + equipment.lightResistance
+						equipmentRet += ',"universalResistance":' + equipment.universalResistance + ','
+					}
+					return equipmentRet.slice(0, -1) + '},'
+				})
+			return (ret.length === 0 ? equipmentTypeRet : equipmentTypeRet + ret.join('').slice(0, -1)) + ']},'
+		})
+		equipmentSaveData = ['"equipmentsData":[', equipmentSaveData.join('').slice(0, -1), '],']
+
+		let bonusSaveData = this.state.bonus.allBonuses.map(character => {
+			let characterRet = '{"character":' + JSON.stringify(character.character) + ',"characterBonuses":['
+			let ret = character.characterBonuses.map(world => {
+				let worldRet = '{"world":' + JSON.stringify(world.world) + ',"worldBonuses":['
+				let ret = world.worldBonuses.filter(b => b.isStatsReplaced || b.isSlotsReplaced || b.isRewardsReplaced).map(bonus => {
+					let bonusRet = '{"fight":' + JSON.stringify(bonus.fight) + ','
+					bonusRet += '"isStatsReplaced":' + bonus.isStatsReplaced + ','
+					if (bonus.isStatsReplaced) {
+						bonusRet += '"hpIncrease":' + bonus.hpIncrease + ',"mpIncrease":' + bonus.mpIncrease + ','
+					}
+					bonusRet += '"isSlotsReplaced":' + bonus.isSlotsReplaced + ','
+					if (bonus.isSlotsReplaced) {
+						bonusRet += '"armorSlotIncrease":' + bonus.armorSlotIncrease + ',"accessorySlotIncrease":' + bonus.accessorySlotIncrease + ','
+						bonusRet += '"itemSlotIncrease":' + bonus.itemSlotIncrease + ',"driveGaugeIncrease":' + bonus.driveGaugeIncrease + ','
+					}
+					bonusRet += '"isRewardsReplaced":' + bonus.isRewardsReplaced + ','
+					if (bonus.isRewardsReplaced) {
+						bonusRet += '"replacementReward1":{"reward":' + JSON.stringify(bonus.replacementReward1.reward) + ',"index":"' + bonus.replacementReward1.index + '"},'
+						bonusRet += '"replacementReward2":{"reward":' + JSON.stringify(bonus.replacementReward2.reward) + ',"index":"' + bonus.replacementReward2.index + '"},'
+					}
+					return bonusRet.slice(0, -1) + '},'
+				})
+				return (ret.length === 0 ? worldRet : worldRet + ret.join('').slice(0, -1)) + ']},'
+			})
+			return characterRet + ret.join('').slice(0, -1) + ']},'
+		})
+		bonusSaveData = ['"bonusData":[', bonusSaveData.join('').slice(0, -1), '],']
+
+		let cheatSaveData = this.state.cheat.currentDisplayData.filter(cheat => cheat.isActive).map(cheat => {
+			return '{"name":' + JSON.stringify(cheat.name) + ',"isActive":' + cheat.isActive + '},'
+		})
+		cheatSaveData = ['"cheatsData":[', cheatSaveData.join('').slice(0, -1), '],']
+
+
+		let saveData = ['{',
+			chestSaveData.join(''),
+			popupSaveData.join(''),
+			formSaveData.join(''),
+			equipmentSaveData.join(''),
+			bonusSaveData.join(''),
+			cheatSaveData.join('').slice(0, -1),
+			'}']
+
+		const element = document.createElement("a")
+		const file = new Blob(saveData, { type: 'text/plain;charset=utf-8' })
+		element.href = URL.createObjectURL(file)
+		element.download = "saveData.json"
+		document.body.appendChild(element)
+		element.click()
+	}
 	//#endregion
 
 	render() {
@@ -1142,7 +1268,15 @@ class App extends React.Component {
 					onClick={this.handleSave}
 				>
 					SAVE
-			</Button></div>
+				</Button>
+				{' '}
+				<Button variant='outline-dark'
+					name='saveDataButton'
+					onClick={this.handleSaveData}
+				>
+					SAVE DATA
+				</Button>
+			</div>
 		)
 	}
 }

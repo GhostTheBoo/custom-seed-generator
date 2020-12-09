@@ -1,4 +1,4 @@
-const cheatData = [
+const cheatsData = [
 	{
 		name: "Shorter Day 5 (Simulated Twilight Town)",
 		toBeReplaced: false,
@@ -95,7 +95,7 @@ const cheatData = [
 		]
 	},
 	{
-		name: "Skip Dargon Xemnas",
+		name: "Skip Dragon Xemnas",
 		toBeReplaced: false,
 		isActive: false,
 		code: [
@@ -191,4 +191,4 @@ const cheatData = [
 	}
 ]
 
-export default cheatData
+export default cheatsData
