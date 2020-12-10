@@ -2,6 +2,7 @@ import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
+import _ from 'lodash'
 
 import { worldsData, formTypesData, equipmentTypesData, charactersData } from './Data/typesData'
 import rewardsData from './Data/rewardsData'
@@ -99,7 +100,6 @@ class App extends React.Component {
 			},
 			level: {
 				currentWorld: 0,
-				currentCharacter: 0,
 				currentSwordRewardType: 0,
 				currentSwordReward: 0,
 				currentShieldRewardType: 0,
@@ -1209,105 +1209,161 @@ class App extends React.Component {
 	}
 
 	handleLoadData(loadData) {
-		let chestLoadData = JSON.parse(loadData).chestsData.map((world, index) => {
-			let jsonIndex = 0
-			let chests = this.state.chest.allChests[index].chests.map(chest => {
-				if(jsonIndex < world.chests.length)
-				if (world.chests[jsonIndex].vanillaAddress === chest.vanillaAddress) {
-					chest.replacementReward = world.chests[jsonIndex].replacementReward
-					chest.isReplaced = true
-					jsonIndex++
-				}
-				return chest
-			})
-			return {
-				world: world.world,
-				chests: chests
-			}
-		})
-
+		let allLoadData = JSON.parse(loadData)
+		let chestLoadData = _.merge(this.state.chest.allChests, allLoadData.chestsData)
+		let popupLoadData = _.merge(this.state.popup.allPopups, allLoadData.popupsData)
+		let formLoadData = _.merge(this.state.form.allForms, allLoadData.formsData)
+		let equipmentLoadData = _.merge(this.state.equipment.allEquipments, allLoadData.equipmentsData)
+		let bonusLoadData = _.merge(this.state.bonus.allBonuses, allLoadData.bonusData)
+		let levelLoadData = _.merge(this.state.level.currentDisplayData, allLoadData.levelsData)
+		let criticalLoadData = _.merge(this.state.critical.currentDisplayData, allLoadData.criticalsData)
+		let cheatLoadData = _.merge(this.state.cheat.currentDisplayData, allLoadData.cheatsData)
 		this.setState(prevState => ({
 			chest: {
 				...prevState.chest,
-				selectAll: false,
 				allChests: chestLoadData,
 				currentDisplayData: chestLoadData[this.state.chest.currentWorld].chests.slice(),
+			},
+			popup: {
+				...prevState.popup,
+				allPopups: popupLoadData,
+				currentDisplayData: popupLoadData[this.state.popup.currentWorld].popups.slice(),
 			}
+			// ,
+			// popup: {
+			// 	...prevState.chest,
+			// 	allPopups: popupsData.slice(),
+			// 	currentDisplayData: popupsData[0].popups.slice(),
+			// },
+			// form: {
+			// 	...prevState.chest,
+			// 	allForms: formsData.slice(),
+			// 	currentDisplayData: formsData[0].driveLevels.slice(),
+			// },
+			// equipment: {
+			// 	...prevState.chest,
+			// 	allEquipments: equipmentsData.slice(),
+			// 	currentDisplayData: equipmentsData[0].equipments.slice()
+			// },
+			// bonus: {
+			// 	...prevState.chest,
+			// 	allBonuses: bonusData.slice(),
+			// 	currentDisplayData: bonusData[0].characterBonuses[0].worldBonuses.slice()
+			// },
+			// level: {
+			// 	...prevState.chest,
+			// 	currentDisplayData: levelsData.slice(),
+			// },
+			// critical: {
+			// 	...prevState.chest,
+			// 	currentDisplayData: criticalData.slice()
+			// },
+			// cheat: {
+			// 	...prevState.chest,
+			// 	currentDisplayData: cheatsData.slice()
+			// }
 		}))
 
-		// let chestSaveData = this.state.chest.allChests.map(world => {
-		// 	let worldRet = '{"world":' + JSON.stringify(world.world) + ',"chests":['
-		// 	let ret = world.chests.filter(chest => chest.isReplaced).map(chest => {
-		// 		let chestRet = '{"replacementReward":{"reward":' + JSON.stringify(chest.replacementReward.reward) + ',"index":"' + chest.replacementReward.index + '"},'
-		// 		chestRet += '"vanillaAddress":"' + chest.vanillaAddress + '",'
-		// 		chestRet += '"isReplaced":"' + chest.isReplaced + '"},'
-		// 		return chestRet
-		// 	})
-		// 	return (ret.length === 0 ? worldRet : worldRet + ret.join('').slice(0, -1)) + ']},'
-		// })
-		// chestSaveData = ['"chestsData":[', chestSaveData.join('').slice(0, -1), '],']
 
-		// let popupSaveData = this.state.popup.allPopups.map(world => {
-		// 	let worldRet = '{"world":' + JSON.stringify(world.world) + ',"popups":['
-		// 	let ret = world.popups.filter(popup => popup.isReplaced).map(popup => {
-		// 		let popupRet = '{"replacementReward":{"reward":' + JSON.stringify(popup.replacementReward.reward) + ',"index":"' + popup.replacementReward.index + '"},'
-		// 		popupRet += '"vanillaAddress":"' + popup.vanillaAddress + '",'
-		// 		popupRet += '"isReplaced":' + popup.isReplaced + ','
-		// 		popupRet += '"isAbility":' + popup.isAbility + ','
-		// 		return popupRet
-		// 	})
-		// 	return (ret.length === 0 ? worldRet : worldRet + ret.join('').slice(0, -1)) + ']},'
-		// })
-		// popupSaveData = ['"popupsData":[', popupSaveData.join('').slice(0, -1), '],']
 
-		// let formSaveData = this.state.form.allForms.map(form => {
-		// 	let driveFormRet = '{"driveForm":' + JSON.stringify(form.driveForm) + ',"driveLevels":['
-		// 	let ret = form.driveLevels.filter(driveLevel => (driveLevel.isRewardReplaced || driveLevel.isEXPReplaced)).map(driveLevel => {
-		// 		let driveLevelRet = '{"level":' + JSON.stringify(driveLevel.level) + ','
-		// 		driveLevelRet += '"isRewardReplaced":' + driveLevel.isRewardReplaced + ','
-		// 		if (driveLevel.isRewardReplaced) {
-		// 			driveLevelRet += '"replacementReward":{"reward":' + JSON.stringify(driveLevel.replacementReward.reward)
-		// 			driveLevelRet += ',"index":"' + driveLevel.replacementReward.index + '"},'
+
+		// let chestLoadData = JSON.parse(loadData).chestsData.map((world, index) => {
+		// 	let jsonIndex = 0
+		// 	let chests = this.state.chest.allChests[index].chests.map(chest => {
+		// 		if (jsonIndex < world.chests.length) {
+		// 			if (world.chests[jsonIndex].vanillaAddress === chest.vanillaAddress) {
+		// 				chest = { ...chest, ...world.chests[jsonIndex] }
+		// 				jsonIndex++
+		// 			}
 		// 		}
-		// 		driveLevelRet += '"isEXPReplaced":' + driveLevel.isEXPReplaced + ','
-		// 		if (driveLevel.isEXPReplaced)
-		// 			driveLevelRet += '"replacementEXP":' + driveLevel.replacementEXP + ','
-		// 		return driveLevelRet.slice(0, -1) + '},'
+		// 		return chest
 		// 	})
-		// 	return (ret.length === 0 ? driveFormRet : driveFormRet + ret.join('').slice(0, -1)) + ']},'
+		// 	return {
+		// 		world: world.world,
+		// 		chests: chests
+		// 	}
 		// })
-		// formSaveData = ['"formsData":[', formSaveData.join('').slice(0, -1), '],']
 
-		// let equipmentSaveData = this.state.equipment.allEquipments.map(equipmentType => {
-		// 	let equipmentTypeRet = '{"equipmentType":' + JSON.stringify(equipmentType.equipmentType) + ',"equipments":['
-		// 	let ret = equipmentType.equipments.filter(e => (e.isAbilityReplaced || e.isStatsReplaced
-		// 		|| e.isElementalResistanceChanged || e.isOtherResistanceChanged)).map(equipment => {
-		// 			let equipmentRet = '{"name":' + JSON.stringify(equipment.name) + ','
-		// 			equipmentRet += '"isAbilityReplaced":' + equipment.isAbilityReplaced + ','
-		// 			if (equipment.isAbilityReplaced) {
-		// 				equipmentRet += '"replacementAbility":{"reward":' + JSON.stringify(equipment.replacementAbility.reward) + ',"index":"'
-		// 				equipmentRet += equipment.replacementAbility.index + '"},'
+		// let popupLoadData = JSON.parse(loadData).popupsData.map((world, index) => {
+		// 	let jsonIndex = 0
+		// 	let popups = this.state.popup.allPopups[index].popups.map(popup => {
+		// 		if (jsonIndex < world.popups.length) {
+		// 			if (world.popups[jsonIndex].vanillaAddress === popup.vanillaAddress) {
+		// 				popup = { ...popup, ...world.popups[jsonIndex] }
+		// 				jsonIndex++
 		// 			}
-		// 			equipmentRet += '"isStatsReplaced":' + equipment.isStatsReplaced + ','
-		// 			if (equipment.isStatsReplaced) {
-		// 				equipmentRet += '"strength":' + equipment.strength + ',"magic":' + equipment.magic + ',"ap":' + equipment.ap + ',"defense":' + equipment.defense + ','
+		// 		}
+		// 		return popup
+		// 	})
+		// 	return {
+		// 		world: world.world,
+		// 		popups: popups
+		// 	}
+		// })
+
+		// let formLoadData = JSON.parse(loadData).formsData.map((driveForm, index) => {
+		// 	let jsonIndex = 0
+		// 	let driveLevels = this.state.form.allForms[index].driveLevels.map(driveLevel => {
+		// 		if (jsonIndex < driveForm.driveLevels.length) {
+		// 			if (driveForm.driveLevels[jsonIndex].level === driveLevel.level) {
+		// 				driveLevel = { ...driveLevel, ...driveForm.driveLevels[jsonIndex] }
+		// 				jsonIndex++
 		// 			}
-		// 			equipmentRet += '"isElementalResistanceChanged":' + equipment.isElementalResistanceChanged + ','
-		// 			if (equipment.isElementalResistanceChanged) {
-		// 				equipmentRet += '"fireResistance":' + equipment.fireResistance + ',"blizzardResistance":' + equipment.blizzardResistance
-		// 				equipmentRet += ',"thunderResistance":' + equipment.thunderResistance + ',"physicalResistance":' + equipment.physicalResistance + ','
+		// 		}
+		// 		return driveLevel
+		// 	})
+		// 	return {
+		// 		driveForm: driveForm.driveForm,
+		// 		driveLevels: driveLevels
+		// 	}
+		// })
+
+		// let equipmentLoadData = JSON.parse(loadData).equipmentsData.map((equipmentType, index) => {
+		// 	let jsonIndex = 0
+		// 	let equipments = this.state.equipment.allEquipments[index].equipments.map(equipment => {
+		// 		if (jsonIndex < equipmentType.equipments.length) {
+		// 			if (equipmentType.equipments[jsonIndex].name === equipment.name) {
+		// 				equipment = { ...equipment, ...equipmentType.equipments[jsonIndex] }
+		// 				jsonIndex++
 		// 			}
-		// 			equipmentRet += '"isOtherResistanceChanged":' + equipment.isOtherResistanceChanged + ','
-		// 			if (equipment.isOtherResistanceChanged) {
-		// 				equipmentRet += '"darkResistance":' + equipment.darkResistance + ',"lightResistance":' + equipment.lightResistance
-		// 				equipmentRet += ',"universalResistance":' + equipment.universalResistance + ','
+		// 		}
+		// 		return equipment
+		// 	})
+		// 	return {
+		// 		equipmentType: equipmentType.equipmentType,
+		// 		equipments: equipments
+		// 	}
+		// })
+
+		// let bonusLoadData = JSON.parse(loadData).bonusData.map((character, characterIndex) => {
+		// 	let bonuses = this.state.bonus.allBonuses[characterIndex].characterBonuses.map((world,worldIndex) => {
+		// 		let jsonIndex = 0
+		// 		let worldBonuses = world.map((bonus, bonusIndex) => {
+		// 			if (jsonIndex < character.characterBonuses[worldIndex].worldBonuses.length) {
+		// 				if (world.chests[jsonIndex].vanillaAddress === chest.vanillaAddress) {
+		// 					chest = { ...chest, ...world.chests[jsonIndex] }
+		// 					jsonIndex++
+		// 				}
 		// 			}
-		// 			return equipmentRet.slice(0, -1) + '},'
+		// 			return chest
 		// 		})
-		// 	return (ret.length === 0 ? equipmentTypeRet : equipmentTypeRet + ret.join('').slice(0, -1)) + ']},'
+		// 		return {
+		// 			world: world.world,
+		// 			chests: chests
+		// 		}
+		// 		// if (jsonIndex < character.equipments.length) {
+		// 		// 	if (character.equipments[jsonIndex].name === equipment.name) {
+		// 		// 		equipment = { ...equipment, ...character.equipments[jsonIndex] }
+		// 		// 		jsonIndex++
+		// 		// 	}
+		// 		// }
+		// 		// return equipment
+		// 	})
+		// 	return {
+		// 		character: character.character,
+		// 		bonus: bonuses
+		// 	}
 		// })
-		// equipmentSaveData = ['"equipmentsData":[', equipmentSaveData.join('').slice(0, -1), '],']
-
 		// let bonusSaveData = this.state.bonus.allBonuses.map(character => {
 		// 	let characterRet = '{"character":' + JSON.stringify(character.character) + ',"characterBonuses":['
 		// 	let ret = character.characterBonuses.map(world => {
@@ -1377,22 +1433,15 @@ class App extends React.Component {
 		// })
 		// cheatSaveData = ['"cheatsData":[', cheatSaveData.join('').slice(0, -1), '],']
 
-		// let saveData = ['{',
-		// 	chestSaveData.join(''),
-		// 	popupSaveData.join(''),
-		// 	formSaveData.join(''),
-		// 	equipmentSaveData.join(''),
-		// 	bonusSaveData.join(''),
-		// 	levelSaveData.join(''),
-		// 	cheatSaveData.join('').slice(0, -1),
-		// 	'}']
 
-		// const element = document.createElement("a")
-		// const file = new Blob(saveData, { type: 'text/plain;charset=utf-8' })
-		// element.href = URL.createObjectURL(file)
-		// element.download = "saveData.json"
-		// document.body.appendChild(element)
-		// element.click()
+		this.setState(prevState => ({
+			chest: {
+				...prevState.chest,
+				selectAll: false,
+				allChests: chestLoadData,
+				currentDisplayData: chestLoadData[this.state.chest.currentWorld].chests.slice(),
+			}
+		}))
 	}
 	//#endregion
 
