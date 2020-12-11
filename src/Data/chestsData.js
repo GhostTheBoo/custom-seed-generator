@@ -4,235 +4,365 @@ const chestsData = [
 		chests: [
 			{
 				room: "Agrabah",
-				vanillaReward: "Dark Shard",
-				vanillaAddress: "11CDF826",
-				replacementReward: "Dark Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Dark Shard',
+					index: '0118'
+				},
+				replacementReward: {
+					reward: 'Dark Shard',
+					index: '0118'
+				},
+				vanillaAddress: '11CDF826',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Agrabah",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDF832",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDF832',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Agrabah",
-				vanillaReward: "Hi-Potion",
-				vanillaAddress: "11CDF83E",
-				replacementReward: "Hi-Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				replacementReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				vanillaAddress: '11CDF83E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Agrabah",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDF84A",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDF84A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Agrabah",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CDF856",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CDF856',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Agrabah",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDF862",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDF862',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Agrabah",
-				vanillaReward: "Serenity Shard",
-				vanillaAddress: "11CDF86E",
-				replacementReward: "Serenity Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Serenity Shard',
+					index: '0165'
+				},
+				replacementReward: {
+					reward: 'Serenity Shard',
+					index: '0165'
+				},
+				vanillaAddress: '11CDF86E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Bazaar",
-				vanillaReward: "Mythril Gem",
-				vanillaAddress: "11CDF87A",
-				replacementReward: "Mythril Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				replacementReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				vanillaAddress: '11CDF87A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Bazaar",
-				vanillaReward: "Power Shard",
-				vanillaAddress: "11CDF886",
-				replacementReward: "Power Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Power Shard',
+					index: '0149'
+				},
+				replacementReward: {
+					reward: 'Power Shard',
+					index: '0149'
+				},
+				vanillaAddress: '11CDF886',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Bazaar",
-				vanillaReward: "Hi-Potion",
-				vanillaAddress: "11CDF892",
-				replacementReward: "Hi-Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				replacementReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				vanillaAddress: '11CDF892',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Bazaar",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDF89E",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDF89E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Bazaar",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDF8AA",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDF8AA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Palace Walls",
-				vanillaReward: "Skill Ring",
-				vanillaAddress: "11CDF8B6",
-				replacementReward: "Skill Ring",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Skill Ring',
+					index: '0026'
+				},
+				replacementReward: {
+					reward: 'Skill Ring',
+					index: '0026'
+				},
+				vanillaAddress: '11CDF8B6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Palace Walls",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CDF8C2",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CDF8C2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Cave of Wonders Entrance",
-				vanillaReward: "Power Stone",
-				vanillaAddress: "11CDF8CE",
-				replacementReward: "Power Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Power Stone',
+					index: '014A'
+				},
+				replacementReward: {
+					reward: 'Power Stone',
+					index: '014A'
+				},
+				vanillaAddress: '11CDF8CE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Cave of Wonders Entrance",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDF8DA",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDF8DA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Valley of Stone",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CDF8E6",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CDF8E6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Valley of Stone",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDF8F2",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDF8F2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Valley of Stone",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDF8FE",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDF8FE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Valley of Stone",
-				vanillaReward: "Hi-Potion",
-				vanillaAddress: "11CDF90A",
-				replacementReward: "Hi-Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				replacementReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				vanillaAddress: '11CDF90A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Chasm of Challenges",
-				vanillaReward: "Cave of Wonders Map",
-				vanillaAddress: "11CDF916",
-				replacementReward: "Cave of Wonders Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Cave of Wonders Map',
+					index: '0079'
+				},
+				replacementReward: {
+					reward: 'Cave of Wonders Map',
+					index: '0079'
+				},
+				vanillaAddress: '11CDF916',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Chasm of Challenges",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDF922",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDF922',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Treasure Room",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDF92E",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDF92E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Treasure Room",
-				vanillaReward: "Serenity Gem",
-				vanillaAddress: "11CDF93A",
-				replacementReward: "Serenity Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Serenity Gem',
+					index: '0167'
+				},
+				replacementReward: {
+					reward: 'Serenity Gem',
+					index: '0167'
+				},
+				vanillaAddress: '11CDF93A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Ruined Chamber",
-				vanillaReward: "Torn Pages",
-				vanillaAddress: "11CDF946",
-				replacementReward: "Torn Pages",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Torn Pages',
+					index: '0020'
+				},
+				replacementReward: {
+					reward: 'Torn Pages',
+					index: '0020'
+				},
+				vanillaAddress: '11CDF946',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Ruined Chamber",
-				vanillaReward: "Ruins Map",
-				vanillaAddress: "11CDF952",
-				replacementReward: "Ruins Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Ruins Map',
+					index: '007A'
+				},
+				replacementReward: {
+					reward: 'Ruins Map',
+					index: '007A'
+				},
+				vanillaAddress: '11CDF952',
 				toBeReplaced: false,
 				isReplaced: false
 			}
@@ -247,190 +377,295 @@ const chestsData = [
 		chests: [
 			{
 				room: "Courtyard",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFBF2",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFBF2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Courtyard",
-				vanillaReward: "Hi-Potion",
-				vanillaAddress: "11CDFBFE",
-				replacementReward: "Hi-Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				replacementReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				vanillaAddress: '11CDFBFE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Courtyard",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDFC0A",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDFC0A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Belle's Room",
-				vanillaReward: "Castle Map",
-				vanillaAddress: "11CDFC16",
-				replacementReward: "Castle Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Castle Map',
+					index: '005A'
+				},
+				replacementReward: {
+					reward: 'Castle Map',
+					index: '005A'
+				},
+				vanillaAddress: '11CDFC16',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Belle's Room",
-				vanillaReward: "Mega Recipe",
-				vanillaAddress: "11CDFC22",
-				replacementReward: "Mega Recipe",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mega Recipe',
+					index: '017E'
+				},
+				replacementReward: {
+					reward: 'Mega Recipe',
+					index: '017E'
+				},
+				vanillaAddress: '11CDFC22',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The East Wing",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDFC2E",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDFC2E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The East Wing",
-				vanillaReward: "Tent",
-				vanillaAddress: "11CDFC3A",
-				replacementReward: "Tent",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Tent',
+					index: '0083'
+				},
+				replacementReward: {
+					reward: 'Tent',
+					index: '0083'
+				},
+				vanillaAddress: '11CDFC3A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The West Hall",
-				vanillaReward: "Hi-Potion",
-				vanillaAddress: "11CDFC46",
-				replacementReward: "Hi-Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				replacementReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				vanillaAddress: '11CDFC46',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The West Hall",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDFC52",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDFC52',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The West Hall",
-				vanillaReward: "Power Shard",
-				vanillaAddress: "11CDFC5E",
-				replacementReward: "Power Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Power Shard',
+					index: '0149'
+				},
+				replacementReward: {
+					reward: 'Power Shard',
+					index: '0149'
+				},
+				vanillaAddress: '11CDFC5E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The West Hall",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDFC6A",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDFC6A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The West Hall",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFC76",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFC76',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The West Hall",
-				vanillaReward: "Bright Stone",
-				vanillaAddress: "11CDFC82",
-				replacementReward: "Bright Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Bright Stone',
+					index: '015E'
+				},
+				replacementReward: {
+					reward: 'Bright Stone',
+					index: '015E'
+				},
+				vanillaAddress: '11CDFC82',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Dungeon",
-				vanillaReward: "Basement Map",
-				vanillaAddress: "11CDFC8E",
-				replacementReward: "Basement Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Basement Map',
+					index: '005B'
+				},
+				replacementReward: {
+					reward: 'Basement Map',
+					index: '005B'
+				},
+				vanillaAddress: '11CDFC8E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Dungeon",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFC9A",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFC9A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Secret Passage",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDFCA6",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDFCA6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Secret Passage",
-				vanillaReward: "Hi-Potion",
-				vanillaAddress: "11CDFCB2",
-				replacementReward: "Hi-Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				replacementReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				vanillaAddress: '11CDFCB2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Secret Passage",
-				vanillaReward: "Lucid Shard",
-				vanillaAddress: "11CDFCBE",
-				replacementReward: "Lucid Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Lucid Shard',
+					index: '014D'
+				},
+				replacementReward: {
+					reward: 'Lucid Shard',
+					index: '014D'
+				},
+				vanillaAddress: '11CDFCBE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The West Wing",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDFCCA",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDFCCA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The West Wing",
-				vanillaReward: "Tent",
-				vanillaAddress: "11CDFCD6",
-				replacementReward: "Tent",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Tent',
+					index: '0083'
+				},
+				replacementReward: {
+					reward: 'Tent',
+					index: '0083'
+				},
+				vanillaAddress: '11CDFCD6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Beast's Room",
-				vanillaReward: "Blazing Shard",
-				vanillaAddress: "11CDFCE2",
-				replacementReward: "Blazing Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Blazing Shard',
+					index: '013D'
+				},
+				replacementReward: {
+					reward: 'Blazing Shard',
+					index: '013D'
+				},
+				vanillaAddress: '11CDFCE2',
 				toBeReplaced: false,
 				isReplaced: false
 			}
@@ -441,217 +676,337 @@ const chestsData = [
 		chests: [
 			{
 				room: "Depths",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CE04E6",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CE04E6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Depths",
-				vanillaReward: "Power Crystal",
-				vanillaAddress: "11CE04F2",
-				replacementReward: "Power Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Power Crystal',
+					index: '014C'
+				},
+				replacementReward: {
+					reward: 'Power Crystal',
+					index: '014C'
+				},
+				vanillaAddress: '11CE04F2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Depths",
-				vanillaReward: "Frost Crystal",
-				vanillaAddress: "11CE04FE",
-				replacementReward: "Frost Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Frost Crystal',
+					index: '017D'
+				},
+				replacementReward: {
+					reward: 'Frost Crystal',
+					index: '017D'
+				},
+				vanillaAddress: '11CE04FE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Depths",
-				vanillaReward: "Manifest Illusion",
-				vanillaAddress: "11CE050A",
-				replacementReward: "Manifest Illusion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Manifest Illusion',
+					index: '0249'
+				},
+				replacementReward: {
+					reward: 'Manifest Illusion',
+					index: '0249'
+				},
+				vanillaAddress: '11CE050A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Depths",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CE0516",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CE0516',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Depths Upper Level",
-				vanillaReward: "Remembrance Gem",
-				vanillaAddress: "11CE0522",
-				replacementReward: "Remembrance Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Remembrance Gem',
+					index: '0242'
+				},
+				replacementReward: {
+					reward: 'Remembrance Gem',
+					index: '0242'
+				},
+				vanillaAddress: '11CE0522',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mining Area",
-				vanillaReward: "Serenity Gem",
-				vanillaAddress: "11CE052E",
-				replacementReward: "Serenity Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Serenity Gem',
+					index: '0167'
+				},
+				replacementReward: {
+					reward: 'Serenity Gem',
+					index: '0167'
+				},
+				vanillaAddress: '11CE052E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mining Area",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CE053A",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CE053A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mining Area",
-				vanillaReward: "Serenity Crystal",
-				vanillaAddress: "11CE0546",
-				replacementReward: "Serenity Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Serenity Crystal',
+					index: '0168'
+				},
+				replacementReward: {
+					reward: 'Serenity Crystal',
+					index: '0168'
+				},
+				vanillaAddress: '11CE0546',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mining Area",
-				vanillaReward: "Manifest Illusion",
-				vanillaAddress: "11CE0552",
-				replacementReward: "Manifest Illusion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Manifest Illusion',
+					index: '0249'
+				},
+				replacementReward: {
+					reward: 'Manifest Illusion',
+					index: '0249'
+				},
+				vanillaAddress: '11CE0552',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mining Area",
-				vanillaReward: "Serenity Gem",
-				vanillaAddress: "11CE055E",
-				replacementReward: "Serenity Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Serenity Gem',
+					index: '0167'
+				},
+				replacementReward: {
+					reward: 'Serenity Gem',
+					index: '0167'
+				},
+				vanillaAddress: '11CE055E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mining Area",
-				vanillaReward: "Dark Remembrance Map",
-				vanillaAddress: "11CE056A",
-				replacementReward: "Dark Remembrance Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Dark Remembrance Map',
+					index: '024A'
+				},
+				replacementReward: {
+					reward: 'Dark Remembrance Map',
+					index: '024A'
+				},
+				vanillaAddress: '11CE056A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Engine Chamber",
-				vanillaReward: "Serenity Crystal",
-				vanillaAddress: "11CE0576",
-				replacementReward: "Serenity Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Serenity Crystal',
+					index: '0168'
+				},
+				replacementReward: {
+					reward: 'Serenity Crystal',
+					index: '0168'
+				},
+				vanillaAddress: '11CE0576',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Engine Chamber",
-				vanillaReward: "Remembrance Crystal",
-				vanillaAddress: "11CE0582",
-				replacementReward: "Remembrance Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Remembrance Crystal',
+					index: '0243'
+				},
+				replacementReward: {
+					reward: 'Remembrance Crystal',
+					index: '0243'
+				},
+				vanillaAddress: '11CE0582',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Engine Chamber",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CE058E",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CE058E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Engine Chamber",
-				vanillaReward: "Manifest Illusion",
-				vanillaAddress: "11CE059A",
-				replacementReward: "Manifest Illusion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Manifest Illusion',
+					index: '0249'
+				},
+				replacementReward: {
+					reward: 'Manifest Illusion',
+					index: '0249'
+				},
+				vanillaAddress: '11CE059A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mineshaft Lower Level",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CE05A6",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CE05A6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mineshaft Lower Level",
-				vanillaReward: "Depths of Remembrance Map",
-				vanillaAddress: "11CE05BE",
-				replacementReward: "Depths of Remembrance Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Depths of Remembrance Map',
+					index: '024E'
+				},
+				replacementReward: {
+					reward: 'Depths of Remembrance Map',
+					index: '024E'
+				},
+				vanillaAddress: '11CE05BE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mineshaft Mid Level",
-				vanillaReward: "Power Boost",
-				vanillaAddress: "11CE05CA",
-				replacementReward: "Power Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Power Boost',
+					index: '0114'
+				},
+				replacementReward: {
+					reward: 'Power Boost',
+					index: '0114'
+				},
+				vanillaAddress: '11CE05CA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mineshaft Upper Level",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CE05B2",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CE05B2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mineshaft Upper Level",
-				vanillaReward: "Magic Boost",
-				vanillaAddress: "11CE05D6",
-				replacementReward: "Magic Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Magic Boost',
+					index: '0115'
+				},
+				replacementReward: {
+					reward: 'Magic Boost',
+					index: '0115'
+				},
+				vanillaAddress: '11CE05D6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Garden of Assemblage",
-				vanillaReward: "Garden of Assemblage Map",
-				vanillaAddress: "11CE05E2",
-				replacementReward: "Garden of Assemblage Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Garden of Assemblage Map',
+					index: '0250'
+				},
+				replacementReward: {
+					reward: 'Garden of Assemblage Map',
+					index: '0250'
+				},
+				vanillaAddress: '11CE05E2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Garden of Assemblage",
-				vanillaReward: "Lost Illusion",
-				vanillaAddress: "11CE05EE",
-				replacementReward: "Lost Illusion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Lost Illusion',
+					index: '0248'
+				},
+				replacementReward: {
+					reward: 'Lost Illusion',
+					index: '0248'
+				},
+				vanillaAddress: '11CE05EE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Garden of Assemblage",
-				vanillaReward: "Proof of Nonexistence",
-				vanillaAddress: "11CE05FA",
-				replacementReward: "Proof of Nonexistence",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Proof of Nonexistence',
+					index: '0252'
+				},
+				replacementReward: {
+					reward: 'Proof of Nonexistence',
+					index: '0252'
+				},
+				vanillaAddress: '11CE05FA',
 				toBeReplaced: false,
 				isReplaced: false
 			}
@@ -662,73 +1017,113 @@ const chestsData = [
 		chests: [
 			{
 				room: "Courtyard",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDF9B2",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDF9B2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Courtyard",
-				vanillaReward: "Star Recipe",
-				vanillaAddress: "11CDF9BE",
-				replacementReward: "Star Recipe",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Star Recipe',
+					index: '01C1'
+				},
+				replacementReward: {
+					reward: 'Star Recipe',
+					index: '01C1'
+				},
+				vanillaAddress: '11CDF9BE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Courtyard",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDF9CA",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDF9CA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Courtyard",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CDF9D6",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CDF9D6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Courtyard",
-				vanillaReward: "Blazing Stone",
-				vanillaAddress: "11CDF9E2",
-				replacementReward: "Blazing Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Blazing Stone',
+					index: '013E'
+				},
+				replacementReward: {
+					reward: 'Blazing Stone',
+					index: '013E'
+				},
+				vanillaAddress: '11CDF9E2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Courtyard",
-				vanillaReward: "Blazing Shard",
-				vanillaAddress: "11CDF9EE",
-				replacementReward: "Blazing Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Blazing Shard',
+					index: '013D'
+				},
+				replacementReward: {
+					reward: 'Blazing Shard',
+					index: '013D'
+				},
+				vanillaAddress: '11CDF9EE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Courtyard",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDF9FA",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDF9FA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Library",
-				vanillaReward: "Torn Pages",
-				vanillaAddress: "11CDFA06",
-				replacementReward: "Torn Pages",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Torn Pages',
+					index: '0020'
+				},
+				replacementReward: {
+					reward: 'Torn Pages',
+					index: '0020'
+				},
+				vanillaAddress: '11CDFA06',
 				toBeReplaced: false,
 				isReplaced: false
 			}
@@ -739,127 +1134,197 @@ const chestsData = [
 		chests: [
 			{
 				room: "Graveyard",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDFD96",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDFD96',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Graveyard",
-				vanillaReward: "Serenity Gem",
-				vanillaAddress: "11CDFDA2",
-				replacementReward: "Serenity Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Serenity Gem',
+					index: '0167'
+				},
+				replacementReward: {
+					reward: 'Serenity Gem',
+					index: '0167'
+				},
+				vanillaAddress: '11CDFDA2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Dr. Finklestein's Lab",
-				vanillaReward: "Halloween Town Map",
-				vanillaAddress: "11CDFDAE",
-				replacementReward: "Halloween Town Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Halloween Town Map',
+					index: '00FA'
+				},
+				replacementReward: {
+					reward: 'Halloween Town Map',
+					index: '00FA'
+				},
+				vanillaAddress: '11CDFDAE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Halloween Town Square",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CDFDBA",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CDFDBA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Halloween Town Square",
-				vanillaReward: "Energy Shard",
-				vanillaAddress: "11CDFDC6",
-				replacementReward: "Energy Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Energy Shard',
+					index: '0161'
+				},
+				replacementReward: {
+					reward: 'Energy Shard',
+					index: '0161'
+				},
+				vanillaAddress: '11CDFDC6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Hinterlands",
-				vanillaReward: "Lightning Shard",
-				vanillaAddress: "11CDFDD2",
-				replacementReward: "Lightning Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Lightning Shard',
+					index: '0145'
+				},
+				replacementReward: {
+					reward: 'Lightning Shard',
+					index: '0145'
+				},
+				vanillaAddress: '11CDFDD2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Hinterlands",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CDFDDE",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CDFDDE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Hinterlands",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFDEA",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFDEA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Candy Cane Lane",
-				vanillaReward: "Mega Potion",
-				vanillaAddress: "11CDFDF6",
-				replacementReward: "Mega Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mega Potion',
+					index: '0005'
+				},
+				replacementReward: {
+					reward: 'Mega Potion',
+					index: '0005'
+				},
+				vanillaAddress: '11CDFDF6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Candy Cane Lane",
-				vanillaReward: "Mythril Gem",
-				vanillaAddress: "11CDFE02",
-				replacementReward: "Mythril Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				replacementReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				vanillaAddress: '11CDFE02',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Candy Cane Lane",
-				vanillaReward: "Lightning Stone",
-				vanillaAddress: "11CDFE0E",
-				replacementReward: "Lightning Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Lightning Stone',
+					index: '0146'
+				},
+				replacementReward: {
+					reward: 'Lightning Stone',
+					index: '0146'
+				},
+				vanillaAddress: '11CDFE0E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Candy Cane Lane",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CDFE1A",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CDFE1A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Santa's House",
-				vanillaReward: "Christmas Town Map",
-				vanillaAddress: "11CDFE26",
-				replacementReward: "Christmas Town Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Christmas Town Map',
+					index: '01FD'
+				},
+				replacementReward: {
+					reward: 'Christmas Town Map',
+					index: '01FD'
+				},
+				vanillaAddress: '11CDFE26',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Santa's House",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFE32",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFE32',
 				toBeReplaced: false,
 				isReplaced: false
 			}
@@ -870,199 +1335,309 @@ const chestsData = [
 		chests: [
 			{
 				room: "Borough",
-				vanillaReward: "Drive Recovery",
-				vanillaAddress: "11CDFF3A",
-				replacementReward: "Drive Recovery",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Drive Recovery',
+					index: '0112'
+				},
+				replacementReward: {
+					reward: 'Drive Recovery',
+					index: '0112'
+				},
+				vanillaAddress: '11CDFF3A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Borough",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFF46",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFF46',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Borough",
-				vanillaReward: "Hi-Potion",
-				vanillaAddress: "11CDFF52",
-				replacementReward: "Hi-Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				replacementReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				vanillaAddress: '11CDFF52',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Borough",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDFF5E",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDFF5E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Borough",
-				vanillaReward: "Dark Shard",
-				vanillaAddress: "11CDFF6A",
-				replacementReward: "Dark Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Dark Shard',
+					index: '0118'
+				},
+				replacementReward: {
+					reward: 'Dark Shard',
+					index: '0118'
+				},
+				vanillaAddress: '11CDFF6A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Postern",
-				vanillaReward: "Castle Perimeter Map",
-				vanillaAddress: "11CDFF76",
-				replacementReward: "Castle Perimeter Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Castle Perimeter Map',
+					index: '0201'
+				},
+				replacementReward: {
+					reward: 'Castle Perimeter Map',
+					index: '0201'
+				},
+				vanillaAddress: '11CDFF76',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Postern",
-				vanillaReward: "Mythril Gem",
-				vanillaAddress: "11CDFF82",
-				replacementReward: "Mythril Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				replacementReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				vanillaAddress: '11CDFF82',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Postern",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFF8E",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFF8E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Corridors",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CDFF9A",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CDFF9A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Corridors",
-				vanillaReward: "Mythril Crystal",
-				vanillaAddress: "11CDFFA6",
-				replacementReward: "Mythril Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				replacementReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				vanillaAddress: '11CDFFA6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Corridors",
-				vanillaReward: "Dark Crystal",
-				vanillaAddress: "11CDFFB2",
-				replacementReward: "Dark Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Dark Crystal',
+					index: '011B'
+				},
+				replacementReward: {
+					reward: 'Dark Crystal',
+					index: '011B'
+				},
+				vanillaAddress: '11CDFFB2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Corridors",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFFBE",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFFBE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Ansem's Study",
-				vanillaReward: "Skill Recipe",
-				vanillaAddress: "11CDFFCA",
-				replacementReward: "Skill Recipe",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Skill Recipe',
+					index: '01C3'
+				},
+				replacementReward: {
+					reward: 'Skill Recipe',
+					index: '01C3'
+				},
+				vanillaAddress: '11CDFFCA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Ansem's Study",
-				vanillaReward: "Ukulele Charm",
-				vanillaAddress: "11CDFFD6",
-				replacementReward: "Ukulele Charm",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Ukulele Charm',
+					index: '0019'
+				},
+				replacementReward: {
+					reward: 'Ukulele Charm',
+					index: '0019'
+				},
+				vanillaAddress: '11CDFFD6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Restoration Site",
-				vanillaReward: "Moon Recipe",
-				vanillaAddress: "11CDFFE2",
-				replacementReward: "Moon Recipe",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Moon Recipe',
+					index: '01DC'
+				},
+				replacementReward: {
+					reward: 'Moon Recipe',
+					index: '01DC'
+				},
+				vanillaAddress: '11CDFFE2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Restoration Site",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFFEE",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFFEE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Crystal Fissure",
-				vanillaReward: "Torn Pages",
-				vanillaAddress: "11CDFFFA",
-				replacementReward: "Torn Pages",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Torn Pages',
+					index: '0020'
+				},
+				replacementReward: {
+					reward: 'Torn Pages',
+					index: '0020'
+				},
+				vanillaAddress: '11CDFFFA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Crystal Fissure",
-				vanillaReward: "The Great Maw Map",
-				vanillaAddress: "11CE0006",
-				replacementReward: "The Great Maw Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'The Great Maw Map',
+					index: '0202'
+				},
+				replacementReward: {
+					reward: 'The Great Maw Map',
+					index: '0202'
+				},
+				vanillaAddress: '11CE0006',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Crystal Fissure",
-				vanillaReward: "Energy Crystal",
-				vanillaAddress: "11CE0012",
-				replacementReward: "Energy Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Energy Crystal',
+					index: '0164'
+				},
+				replacementReward: {
+					reward: 'Energy Crystal',
+					index: '0164'
+				},
+				vanillaAddress: '11CE0012',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Crystal Fissure",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CE001E",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CE001E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Postern",
-				vanillaReward: "Gull Wing",
-				vanillaAddress: "11CE002A",
-				replacementReward: "Gull Wing",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Gull Wing',
+					index: '01E9'
+				},
+				replacementReward: {
+					reward: 'Gull Wing',
+					index: '01E9'
+				},
+				vanillaAddress: '11CE002A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Heartless Manufactory",
-				vanillaReward: "Cosmic Chain",
-				vanillaAddress: "11CE0036",
-				replacementReward: "Cosmic Chain",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Cosmic Chain',
+					index: '0134'
+				},
+				replacementReward: {
+					reward: 'Cosmic Chain',
+					index: '0134'
+				},
+				vanillaAddress: '11CE0036',
 				toBeReplaced: false,
 				isReplaced: false
 			}
@@ -1073,190 +1648,295 @@ const chestsData = [
 		chests: [
 			{
 				room: "Bamboo Grove",
-				vanillaReward: "Dark Shard",
-				vanillaAddress: "11CDF72A",
-				replacementReward: "Dark Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Dark Shard',
+					index: '0118'
+				},
+				replacementReward: {
+					reward: 'Dark Shard',
+					index: '0118'
+				},
+				vanillaAddress: '11CDF72A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Bamboo Grove",
-				vanillaReward: "Ether",
-				vanillaAddress: "11CDF736",
-				replacementReward: "Ether",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Ether',
+					index: '0003'
+				},
+				replacementReward: {
+					reward: 'Ether',
+					index: '0003'
+				},
+				vanillaAddress: '11CDF736',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Bamboo Grove",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDF742",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDF742',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Checkpoint",
-				vanillaReward: "Hi-Potion",
-				vanillaAddress: "11CDF74E",
-				replacementReward: "Hi-Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				replacementReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				vanillaAddress: '11CDF74E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Checkpoint",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDF75A",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDF75A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mountain Trail",
-				vanillaReward: "Lightning Shard",
-				vanillaAddress: "11CDF766",
-				replacementReward: "Lightning Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Lightning Shard',
+					index: '0145'
+				},
+				replacementReward: {
+					reward: 'Lightning Shard',
+					index: '0145'
+				},
+				vanillaAddress: '11CDF766',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mountain Trail",
-				vanillaReward: "Recovery Recipe",
-				vanillaAddress: "11CDF772",
-				replacementReward: "Recovery Recipe",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Recovery Recipe',
+					index: '01C2'
+				},
+				replacementReward: {
+					reward: 'Recovery Recipe',
+					index: '01C2'
+				},
+				vanillaAddress: '11CDF772',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mountain Trail",
-				vanillaReward: "Ether",
-				vanillaAddress: "11CDF77E",
-				replacementReward: "Ether",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Ether',
+					index: '0003'
+				},
+				replacementReward: {
+					reward: 'Ether',
+					index: '0003'
+				},
+				vanillaAddress: '11CDF77E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mountain Trail",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDF78A",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDF78A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Village Cave",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDF796",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDF796',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Village Cave",
-				vanillaReward: "Dark Shard",
-				vanillaAddress: "11CDF7A2",
-				replacementReward: "Dark Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Dark Shard',
+					index: '0118'
+				},
+				replacementReward: {
+					reward: 'Dark Shard',
+					index: '0118'
+				},
+				vanillaAddress: '11CDF7A2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Ridge",
-				vanillaReward: "Frost Shard",
-				vanillaAddress: "11CDF7AE",
-				replacementReward: "Frost Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Frost Shard',
+					index: '017A'
+				},
+				replacementReward: {
+					reward: 'Frost Shard',
+					index: '017A'
+				},
+				vanillaAddress: '11CDF7AE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Ridge",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDF7BA",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDF7BA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Throne Room",
-				vanillaReward: "Torn Pages",
-				vanillaAddress: "11CDF7C6",
-				replacementReward: "Torn Pages",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Torn Pages',
+					index: '0020'
+				},
+				replacementReward: {
+					reward: 'Torn Pages',
+					index: '0020'
+				},
+				vanillaAddress: '11CDF7C6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Throne Room",
-				vanillaReward: "Palace Map",
-				vanillaAddress: "11CDF7D2",
-				replacementReward: "Palace Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Palace Map',
+					index: '0082'
+				},
+				replacementReward: {
+					reward: 'Palace Map',
+					index: '0082'
+				},
+				vanillaAddress: '11CDF7D2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Throne Room",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDF7DE",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDF7DE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Throne Room",
-				vanillaReward: "Queen Recipe",
-				vanillaAddress: "11CDF7EA",
-				replacementReward: "Queen Recipe",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Queen Recipe',
+					index: '01DD'
+				},
+				replacementReward: {
+					reward: 'Queen Recipe',
+					index: '01DD'
+				},
+				vanillaAddress: '11CDF7EA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Throne Room",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDF7F6",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDF7F6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Throne Room",
-				vanillaReward: "Ogre Shield",
-				vanillaAddress: "11CDF802",
-				replacementReward: "Ogre Shield",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Ogre Shield',
+					index: '008D'
+				},
+				replacementReward: {
+					reward: 'Ogre Shield',
+					index: '008D'
+				},
+				vanillaAddress: '11CDF802',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Throne Room",
-				vanillaReward: "Mythril Crystal",
-				vanillaAddress: "11CDF80E",
-				replacementReward: "Mythril Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				replacementReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				vanillaAddress: '11CDF80E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Throne Room",
-				vanillaReward: "Orichalcum",
-				vanillaAddress: "11CDF81A",
-				replacementReward: "Orichalcum",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				replacementReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				vanillaAddress: '11CDF81A',
 				toBeReplaced: false,
 				isReplaced: false
 			}
@@ -1267,181 +1947,281 @@ const chestsData = [
 		chests: [
 			{
 				room: "Underworld Entrance",
-				vanillaReward: "Power Boost",
-				vanillaAddress: "11CDFB02",
-				replacementReward: "Power Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Power Boost',
+					index: '0114'
+				},
+				replacementReward: {
+					reward: 'Power Boost',
+					index: '0114'
+				},
+				vanillaAddress: '11CDFB02',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Passage",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDFB0E",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDFB0E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Passage",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CDFB1A",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CDFB1A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Passage",
-				vanillaReward: "Ether",
-				vanillaAddress: "11CDFB26",
-				replacementReward: "Ether",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Ether',
+					index: '0003'
+				},
+				replacementReward: {
+					reward: 'Ether',
+					index: '0003'
+				},
+				vanillaAddress: '11CDFB26',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Passage",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFB32",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFB32',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Passage",
-				vanillaReward: "Hi-Potion",
-				vanillaAddress: "11CDFB3E",
-				replacementReward: "Hi-Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				replacementReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				vanillaAddress: '11CDFB3E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Inner Chamber",
-				vanillaReward: "Underworld Map",
-				vanillaAddress: "11CDFB4A",
-				replacementReward: "Underworld Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Underworld Map',
+					index: '0087'
+				},
+				replacementReward: {
+					reward: 'Underworld Map',
+					index: '0087'
+				},
+				vanillaAddress: '11CDFB4A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Inner Chamber",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDFB56",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDFB56',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Caverns Entrance",
-				vanillaReward: "Lucid Shard",
-				vanillaAddress: "11CDFB62",
-				replacementReward: "Lucid Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Lucid Shard',
+					index: '014D'
+				},
+				replacementReward: {
+					reward: 'Lucid Shard',
+					index: '014D'
+				},
+				vanillaAddress: '11CDFB62',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Caverns Entrance",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFB6E",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFB6E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Caverns Entrance",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDFB7A",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDFB7A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Lost Road",
-				vanillaReward: "Bright Shard",
-				vanillaAddress: "11CDFB86",
-				replacementReward: "Bright Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Bright Shard',
+					index: '015D'
+				},
+				replacementReward: {
+					reward: 'Bright Shard',
+					index: '015D'
+				},
+				vanillaAddress: '11CDFB86',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Lost Road",
-				vanillaReward: "Ether",
-				vanillaAddress: "11CDFB92",
-				replacementReward: "Ether",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Ether',
+					index: '0003'
+				},
+				replacementReward: {
+					reward: 'Ether',
+					index: '0003'
+				},
+				vanillaAddress: '11CDFB92',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Lost Road",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDFB9E",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDFB9E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Lost Road",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CDFBAA",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CDFBAA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Atrium",
-				vanillaReward: "Lucid Stone",
-				vanillaAddress: "11CDFBB6",
-				replacementReward: "Lucid Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Lucid Stone',
+					index: '014E'
+				},
+				replacementReward: {
+					reward: 'Lucid Stone',
+					index: '014E'
+				},
+				vanillaAddress: '11CDFBB6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Atrium",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFBC2",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFBC2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Lock",
-				vanillaReward: "Caverns Map",
-				vanillaAddress: "11CDFBCE",
-				replacementReward: "Caverns Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Caverns Map',
+					index: '0088'
+				},
+				replacementReward: {
+					reward: 'Caverns Map',
+					index: '0088'
+				},
+				vanillaAddress: '11CDFBCE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Lock",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDFBDA",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDFBDA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Lock",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFBE6",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFBE6',
 				toBeReplaced: false,
 				isReplaced: false
 			}
@@ -1456,181 +2236,281 @@ const chestsData = [
 		chests: [
 			{
 				room: "Pooh Bear's House",
-				vanillaReward: "Hundred Acre Wood Map",
-				vanillaAddress: "11CDFA12",
-				replacementReward: "Hundred Acre Wood Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Hundred Acre Wood Map',
+					index: '007D'
+				},
+				replacementReward: {
+					reward: 'Hundred Acre Wood Map',
+					index: '007D'
+				},
+				vanillaAddress: '11CDFA12',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Pooh Bear's House",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFA1E",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFA1E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Pooh Bear's House",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CDFA2A",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CDFA2A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Piglet's House",
-				vanillaReward: "Defense Boost",
-				vanillaAddress: "11CDFA36",
-				replacementReward: "Defense Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Defense Boost',
+					index: '0116'
+				},
+				replacementReward: {
+					reward: 'Defense Boost',
+					index: '0116'
+				},
+				vanillaAddress: '11CDFA36',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Piglet's House",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFA42",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFA42',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Piglet's House",
-				vanillaReward: "Mythril Gem",
-				vanillaAddress: "11CDFA4E",
-				replacementReward: "Mythril Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				replacementReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				vanillaAddress: '11CDFA4E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Rabbit's House",
-				vanillaReward: "Draw Ring",
-				vanillaAddress: "11CDFA5A",
-				replacementReward: "Draw Ring",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Draw Ring',
+					index: '0041'
+				},
+				replacementReward: {
+					reward: 'Draw Ring',
+					index: '0041'
+				},
+				vanillaAddress: '11CDFA5A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Rabbit's House",
-				vanillaReward: "Mythril Crystal",
-				vanillaAddress: "11CDFA66",
-				replacementReward: "Mythril Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				replacementReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				vanillaAddress: '11CDFA66',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Rabbit's House",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFA72",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFA72',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Kanga's House",
-				vanillaReward: "Magic Boost",
-				vanillaAddress: "11CDFA7E",
-				replacementReward: "Magic Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Magic Boost',
+					index: '0115'
+				},
+				replacementReward: {
+					reward: 'Magic Boost',
+					index: '0115'
+				},
+				vanillaAddress: '11CDFA7E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Kanga's House",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFA8A",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFA8A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Kanga's House",
-				vanillaReward: "Orichalcum",
-				vanillaAddress: "11CDFA96",
-				replacementReward: "Orichalcum",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				replacementReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				vanillaAddress: '11CDFA96',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Spooky Cave",
-				vanillaReward: "Mythril Gem",
-				vanillaAddress: "11CDFAA2",
-				replacementReward: "Mythril Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				replacementReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				vanillaAddress: '11CDFAA2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Spooky Cave",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFAAE",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFAAE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Spooky Cave",
-				vanillaReward: "Orichalcum",
-				vanillaAddress: "11CDFABA",
-				replacementReward: "Orichalcum",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				replacementReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				vanillaAddress: '11CDFABA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Spooky Cave",
-				vanillaReward: "Guard Recipe",
-				vanillaAddress: "11CDFAC6",
-				replacementReward: "Guard Recipe",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Guard Recipe',
+					index: '01C4'
+				},
+				replacementReward: {
+					reward: 'Guard Recipe',
+					index: '01C4'
+				},
+				vanillaAddress: '11CDFAC6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Spooky Cave",
-				vanillaReward: "Mythril Crystal",
-				vanillaAddress: "11CDFAD2",
-				replacementReward: "Mythril Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				replacementReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				vanillaAddress: '11CDFAD2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Spooky Cave",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFADE",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFADE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Starry Hill",
-				vanillaReward: "Cosmic Ring",
-				vanillaAddress: "11CDFAEA",
-				replacementReward: "Cosmic Ring",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Cosmic Ring',
+					index: '0034'
+				},
+				replacementReward: {
+					reward: 'Cosmic Ring',
+					index: '0034'
+				},
+				vanillaAddress: '11CDFAEA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Starry Hill",
-				vanillaReward: "Style Recipe",
-				vanillaAddress: "11CDFAF6",
-				replacementReward: "Style Recipe",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Style Recipe',
+					index: '01DB'
+				},
+				replacementReward: {
+					reward: 'Style Recipe',
+					index: '01DB'
+				},
+				vanillaAddress: '11CDFAF6',
 				toBeReplaced: false,
 				isReplaced: false
 			}
@@ -1641,190 +2521,295 @@ const chestsData = [
 		chests: [
 			{
 				room: "Rampart",
-				vanillaReward: "Naval Map",
-				vanillaAddress: "11CDFE3E",
-				replacementReward: "Naval Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Naval Map',
+					index: '00FB'
+				},
+				replacementReward: {
+					reward: 'Naval Map',
+					index: '00FB'
+				},
+				vanillaAddress: '11CDFE3E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Rampart",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CDFE4A",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CDFE4A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Rampart",
-				vanillaReward: "Dark Shard",
-				vanillaAddress: "11CDFE56",
-				replacementReward: "Dark Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Dark Shard',
+					index: '0118'
+				},
+				replacementReward: {
+					reward: 'Dark Shard',
+					index: '0118'
+				},
+				vanillaAddress: '11CDFE56',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Town",
-				vanillaReward: "Dark Stone",
-				vanillaAddress: "11CDFE62",
-				replacementReward: "Dark Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Dark Stone',
+					index: '0119'
+				},
+				replacementReward: {
+					reward: 'Dark Stone',
+					index: '0119'
+				},
+				vanillaAddress: '11CDFE62',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Town",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFE6E",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFE6E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Town",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDFE7A",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDFE7A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Town",
-				vanillaReward: "Mythril Gem",
-				vanillaAddress: "11CDFE86",
-				replacementReward: "Mythril Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				replacementReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				vanillaAddress: '11CDFE86',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Cave Mouth",
-				vanillaReward: "Bright Shard",
-				vanillaAddress: "11CDFE92",
-				replacementReward: "Bright Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Bright Shard',
+					index: '015D'
+				},
+				replacementReward: {
+					reward: 'Bright Shard',
+					index: '015D'
+				},
+				vanillaAddress: '11CDFE92',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Cave Mouth",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDFE9E",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDFE9E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Powder Store",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFEAA",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFEAA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Powder Store",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFEB6",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFEB6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Moonlight Nook",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDFEC2",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDFEC2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Moonlight Nook",
-				vanillaReward: "Serenity Gem",
-				vanillaAddress: "11CDFECE",
-				replacementReward: "Serenity Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Serenity Gem',
+					index: '0167'
+				},
+				replacementReward: {
+					reward: 'Serenity Gem',
+					index: '0167'
+				},
+				vanillaAddress: '11CDFECE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Moonlight Nook",
-				vanillaReward: "Power Stone",
-				vanillaAddress: "11CDFEDA",
-				replacementReward: "Power Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Power Stone',
+					index: '014A'
+				},
+				replacementReward: {
+					reward: 'Power Stone',
+					index: '014A'
+				},
+				vanillaAddress: '11CDFEDA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Interceptor's Hold",
-				vanillaReward: "Feather Charm",
-				vanillaAddress: "11CDFEE6",
-				replacementReward: "Feather Charm",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Feather Charm',
+					index: '00A0'
+				},
+				replacementReward: {
+					reward: 'Feather Charm',
+					index: '00A0'
+				},
+				vanillaAddress: '11CDFEE6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Seadrift Keep",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFEF2",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFEF2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Seadrift Keep",
-				vanillaReward: "Orichalcum",
-				vanillaAddress: "11CDFEFE",
-				replacementReward: "Orichalcum",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				replacementReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				vanillaAddress: '11CDFEFE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Seadrift Keep",
-				vanillaReward: "Meteor Staff",
-				vanillaAddress: "11CDFF0A",
-				replacementReward: "Meteor Staff",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Meteor Staff',
+					index: '0096'
+				},
+				replacementReward: {
+					reward: 'Meteor Staff',
+					index: '0096'
+				},
+				vanillaAddress: '11CDFF0A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Seadrift Row",
-				vanillaReward: "Serenity Gem",
-				vanillaAddress: "11CDFF16",
-				replacementReward: "Serenity Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Serenity Gem',
+					index: '0167'
+				},
+				replacementReward: {
+					reward: 'Serenity Gem',
+					index: '0167'
+				},
+				vanillaAddress: '11CDFF16',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Seadrift Row",
-				vanillaReward: "King Recipe",
-				vanillaAddress: "11CDFF22",
-				replacementReward: "King Recipe",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'King Recipe',
+					index: '01DE'
+				},
+				replacementReward: {
+					reward: 'King Recipe',
+					index: '01DE'
+				},
+				vanillaAddress: '11CDFF22',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Seadrift Row",
-				vanillaReward: "Mythril Crystal",
-				vanillaAddress: "11CDFF2E",
-				replacementReward: "Mythril Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				replacementReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				vanillaAddress: '11CDFF2E',
 				toBeReplaced: false,
 				isReplaced: false
 			}
@@ -1835,226 +2820,351 @@ const chestsData = [
 		chests: [
 			{
 				room: "Gorge",
-				vanillaReward: "Savannah Map",
-				vanillaAddress: "11CE0042",
-				replacementReward: "Savannah Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Savannah Map',
+					index: '0200'
+				},
+				replacementReward: {
+					reward: 'Savannah Map',
+					index: '0200'
+				},
+				vanillaAddress: '11CE0042',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Gorge",
-				vanillaReward: "Dark Gem",
-				vanillaAddress: "11CE004E",
-				replacementReward: "Dark Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Dark Gem',
+					index: '011A'
+				},
+				replacementReward: {
+					reward: 'Dark Gem',
+					index: '011A'
+				},
+				vanillaAddress: '11CE004E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Gorge",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CE005A",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CE005A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Elephant Graveyard",
-				vanillaReward: "Frost Gem",
-				vanillaAddress: "11CE0066",
-				replacementReward: "Frost Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Frost Gem',
+					index: '017C'
+				},
+				replacementReward: {
+					reward: 'Frost Gem',
+					index: '017C'
+				},
+				vanillaAddress: '11CE0066',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Elephant Graveyard",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CE0072",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CE0072',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Elephant Graveyard",
-				vanillaReward: "Bright Stone",
-				vanillaAddress: "11CE007E",
-				replacementReward: "Bright Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Bright Stone',
+					index: '015E'
+				},
+				replacementReward: {
+					reward: 'Bright Stone',
+					index: '015E'
+				},
+				vanillaAddress: '11CE007E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Elephant Graveyard",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CE008A",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CE008A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Elephant Graveyard",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CE0096",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CE0096',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Pride Rock",
-				vanillaReward: "Pride Rock Map",
-				vanillaAddress: "11CE00A2",
-				replacementReward: "Pride Rock Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Pride Rock Map',
+					index: '00FC'
+				},
+				replacementReward: {
+					reward: 'Pride Rock Map',
+					index: '00FC'
+				},
+				vanillaAddress: '11CE00A2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Pride Rock",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CE00AE",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CE00AE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Pride Rock",
-				vanillaReward: "Serenity Crystal",
-				vanillaAddress: "11CE00BA",
-				replacementReward: "Serenity Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Serenity Crystal',
+					index: '0168'
+				},
+				replacementReward: {
+					reward: 'Serenity Crystal',
+					index: '0168'
+				},
+				vanillaAddress: '11CE00BA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Wildebeest Valley",
-				vanillaReward: "Energy Stone",
-				vanillaAddress: "11CE00C6",
-				replacementReward: "Energy Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Energy Stone',
+					index: '0162'
+				},
+				replacementReward: {
+					reward: 'Energy Stone',
+					index: '0162'
+				},
+				vanillaAddress: '11CE00C6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Wildebeest Valley",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CE00D2",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CE00D2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Wildebeest Valley",
-				vanillaReward: "Mythril Gem",
-				vanillaAddress: "11CE00DE",
-				replacementReward: "Mythril Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				replacementReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				vanillaAddress: '11CE00DE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Wildebeest Valley",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CE00EA",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CE00EA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Wildebeest Valley",
-				vanillaReward: "Lucid Gem",
-				vanillaAddress: "11CE00F6",
-				replacementReward: "Lucid Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Lucid Gem',
+					index: '014F'
+				},
+				replacementReward: {
+					reward: 'Lucid Gem',
+					index: '014F'
+				},
+				vanillaAddress: '11CE00F6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Wastelands",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CE0102",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CE0102',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Wastelands",
-				vanillaReward: "Serenity Gem",
-				vanillaAddress: "11CE010E",
-				replacementReward: "Serenity Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Serenity Gem',
+					index: '0167'
+				},
+				replacementReward: {
+					reward: 'Serenity Gem',
+					index: '0167'
+				},
+				vanillaAddress: '11CE010E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Wastelands",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CE011A",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CE011A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Jungle",
-				vanillaReward: "Serenity Gem",
-				vanillaAddress: "11CE0126",
-				replacementReward: "Serenity Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Serenity Gem',
+					index: '0167'
+				},
+				replacementReward: {
+					reward: 'Serenity Gem',
+					index: '0167'
+				},
+				vanillaAddress: '11CE0126',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Jungle",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CE0132",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CE0132',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Jungle",
-				vanillaReward: "Serenity Crystal",
-				vanillaAddress: "11CE013E",
-				replacementReward: "Serenity Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Serenity Crystal',
+					index: '0168'
+				},
+				replacementReward: {
+					reward: 'Serenity Crystal',
+					index: '0168'
+				},
+				vanillaAddress: '11CE013E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Oasis",
-				vanillaReward: "Oasis Map",
-				vanillaAddress: "11CE014A",
-				replacementReward: "Oasis Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Oasis Map',
+					index: '01FF'
+				},
+				replacementReward: {
+					reward: 'Oasis Map',
+					index: '01FF'
+				},
+				vanillaAddress: '11CE014A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Oasis",
-				vanillaReward: "Torn Pages",
-				vanillaAddress: "11CE0156",
-				replacementReward: "Torn Pages",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Torn Pages',
+					index: '0020'
+				},
+				replacementReward: {
+					reward: 'Torn Pages',
+					index: '0020'
+				},
+				vanillaAddress: '11CE0156',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Oasis",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CE0162",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CE0162',
 				toBeReplaced: false,
 				isReplaced: false
 			}
@@ -2065,145 +3175,225 @@ const chestsData = [
 		chests: [
 			{
 				room: "Station of Serenity",
-				vanillaReward: "Potion",
-				vanillaAddress: "11CE016E",
-				replacementReward: "Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				replacementReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				vanillaAddress: '11CE016E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Station of Calling",
-				vanillaReward: "Potion",
-				vanillaAddress: "11CE017A",
-				replacementReward: "Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				replacementReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				vanillaAddress: '11CE017A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Central Station",
-				vanillaReward: "Potion",
-				vanillaAddress: "11CE0186",
-				replacementReward: "Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				replacementReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				vanillaAddress: '11CE0186',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Central Station",
-				vanillaReward: "Hi-Potion",
-				vanillaAddress: "11CE0192",
-				replacementReward: "Hi-Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				replacementReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				vanillaAddress: '11CE0192',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Central Station",
-				vanillaReward: "Potion",
-				vanillaAddress: "11CE019E",
-				replacementReward: "Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				replacementReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				vanillaAddress: '11CE019E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Sunset Terrace",
-				vanillaReward: "Ability Ring",
-				vanillaAddress: "11CE01AA",
-				replacementReward: "Ability Ring",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Ability Ring',
+					index: '0008'
+				},
+				replacementReward: {
+					reward: 'Ability Ring',
+					index: '0008'
+				},
+				vanillaAddress: '11CE01AA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Sunset Terrace",
-				vanillaReward: "Hi-Potion",
-				vanillaAddress: "11CE01B6",
-				replacementReward: "Hi-Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				replacementReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				vanillaAddress: '11CE01B6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Sunset Terrace",
-				vanillaReward: "Potion",
-				vanillaAddress: "11CE01C2",
-				replacementReward: "Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				replacementReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				vanillaAddress: '11CE01C2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Sunset Terrace",
-				vanillaReward: "Potion",
-				vanillaAddress: "11CE01CE",
-				replacementReward: "Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				replacementReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				vanillaAddress: '11CE01CE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mansion Foyer",
-				vanillaReward: "Potion",
-				vanillaAddress: "11CE01DA",
-				replacementReward: "Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				replacementReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				vanillaAddress: '11CE01DA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mansion Foyer",
-				vanillaReward: "Potion",
-				vanillaAddress: "11CE01E6",
-				replacementReward: "Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				replacementReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				vanillaAddress: '11CE01E6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mansion Foyer",
-				vanillaReward: "Potion",
-				vanillaAddress: "11CE01F2",
-				replacementReward: "Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				replacementReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				vanillaAddress: '11CE01F2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mansion Dining Room",
-				vanillaReward: "Elven Bandana",
-				vanillaAddress: "11CE01FE",
-				replacementReward: "Elven Bandana",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Elven Bandana',
+					index: '0043'
+				},
+				replacementReward: {
+					reward: 'Elven Bandana',
+					index: '0043'
+				},
+				vanillaAddress: '11CE01FE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mansion Dining Room",
-				vanillaReward: "Potion",
-				vanillaAddress: "11CE020A",
-				replacementReward: "Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				replacementReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				vanillaAddress: '11CE020A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mansion Library",
-				vanillaReward: "Hi-Potion",
-				vanillaAddress: "11CE0216",
-				replacementReward: "Hi-Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				replacementReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				vanillaAddress: '11CE0216',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mansion Basement Corridor",
-				vanillaReward: "Hi-Potion",
-				vanillaAddress: "11CE0222",
-				replacementReward: "Hi-Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				replacementReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				vanillaAddress: '11CE0222',
 				toBeReplaced: false,
 				isReplaced: false
 			}
@@ -2214,127 +3404,197 @@ const chestsData = [
 		chests: [
 			{
 				room: "Pit Cell",
-				vanillaReward: "Pit Cell Area Map",
-				vanillaAddress: "11CDFCEE",
-				replacementReward: "Pit Cell Area Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Pit Cell Area Map',
+					index: '00FE'
+				},
+				replacementReward: {
+					reward: 'Pit Cell Area Map',
+					index: '00FE'
+				},
+				vanillaAddress: '11CDFCEE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Pit Cell",
-				vanillaReward: "Mythril Crystal",
-				vanillaAddress: "11CDFCFA",
-				replacementReward: "Mythril Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				replacementReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				vanillaAddress: '11CDFCFA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Canyon",
-				vanillaReward: "Dark Crystal",
-				vanillaAddress: "11CDFD06",
-				replacementReward: "Dark Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Dark Crystal',
+					index: '011B'
+				},
+				replacementReward: {
+					reward: 'Dark Crystal',
+					index: '011B'
+				},
+				vanillaAddress: '11CDFD06',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Canyon",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CDFD12",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CDFD12',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Canyon",
-				vanillaReward: "Mythril Gem",
-				vanillaAddress: "11CDFD1E",
-				replacementReward: "Mythril Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				replacementReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				vanillaAddress: '11CDFD1E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Canyon",
-				vanillaReward: "Frost Crystal",
-				vanillaAddress: "11CDFD2A",
-				replacementReward: "Frost Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Frost Crystal',
+					index: '017D'
+				},
+				replacementReward: {
+					reward: 'Frost Crystal',
+					index: '017D'
+				},
+				vanillaAddress: '11CDFD2A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Hallway",
-				vanillaReward: "Power Crystal",
-				vanillaAddress: "11CDFD36",
-				replacementReward: "Power Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Power Crystal',
+					index: '014C'
+				},
+				replacementReward: {
+					reward: 'Power Crystal',
+					index: '014C'
+				},
+				vanillaAddress: '11CDFD36',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Hallway",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFD42",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFD42',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Communications Room",
-				vanillaReward: "I/O Tower Map",
-				vanillaAddress: "11CDFD4E",
-				replacementReward: "I/O Tower Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'I/O Tower Map',
+					index: '0203'
+				},
+				replacementReward: {
+					reward: 'I/O Tower Map',
+					index: '0203'
+				},
+				vanillaAddress: '11CDFD4E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Communications Room",
-				vanillaReward: "Gaia Belt",
-				vanillaAddress: "11CDFD5A",
-				replacementReward: "Gaia Belt",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Gaia Belt',
+					index: '004F'
+				},
+				replacementReward: {
+					reward: 'Gaia Belt',
+					index: '004F'
+				},
+				vanillaAddress: '11CDFD5A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Central Computer Core",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDFD66",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDFD66',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Central Computer Core",
-				vanillaReward: "Orichalcum+",
-				vanillaAddress: "11CDFD72",
-				replacementReward: "Orichalcum+",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Orichalcum+',
+					index: '0169'
+				},
+				replacementReward: {
+					reward: 'Orichalcum+',
+					index: '0169'
+				},
+				vanillaAddress: '11CDFD72',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Central Computer Core",
-				vanillaReward: "Cosmic Arts",
-				vanillaAddress: "11CDFD7E",
-				replacementReward: "Cosmic Arts",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Cosmic Arts',
+					index: '0038'
+				},
+				replacementReward: {
+					reward: 'Cosmic Arts',
+					index: '0038'
+				},
+				vanillaAddress: '11CDFD7E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Central Computer Core",
-				vanillaReward: "Central Computer Core Map",
-				vanillaAddress: "11CDFD8A",
-				replacementReward: "Central Computer Core Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Central Computer Core Map',
+					index: '0204'
+				},
+				replacementReward: {
+					reward: 'Central Computer Core Map',
+					index: '0204'
+				},
+				vanillaAddress: '11CDFD8A',
 				toBeReplaced: false,
 				isReplaced: false
 			}
@@ -2345,64 +3605,99 @@ const chestsData = [
 		chests: [
 			{
 				room: "Cornerstone Hill",
-				vanillaReward: "Cornerstone Hill Map",
-				vanillaAddress: "11CDF95E",
-				replacementReward: "Cornerstone Hill Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Cornerstone Hill Map',
+					index: '0072'
+				},
+				replacementReward: {
+					reward: 'Cornerstone Hill Map',
+					index: '0072'
+				},
+				vanillaAddress: '11CDF95E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Cornerstone Hill",
-				vanillaReward: "Frost Shard",
-				vanillaAddress: "11CDF96A",
-				replacementReward: "Frost Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Frost Shard',
+					index: '017A'
+				},
+				replacementReward: {
+					reward: 'Frost Shard',
+					index: '017A'
+				},
+				vanillaAddress: '11CDF96A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Pier",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CDF976",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CDF976',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Pier",
-				vanillaReward: "Hi-Potion",
-				vanillaAddress: "11CDF982",
-				replacementReward: "Hi-Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				replacementReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				vanillaAddress: '11CDF982',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Waterway",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CDF98E",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CDF98E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Waterway",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CDF99A",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CDF99A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Waterway",
-				vanillaReward: "Frost Stone",
-				vanillaAddress: "11CDF9A6",
-				replacementReward: "Frost Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Frost Stone',
+					index: '017B'
+				},
+				replacementReward: {
+					reward: 'Frost Stone',
+					index: '017B'
+				},
+				vanillaAddress: '11CDF9A6',
 				toBeReplaced: false,
 				isReplaced: false
 			}
@@ -2413,352 +3708,547 @@ const chestsData = [
 		chests: [
 			{
 				room: "The Old Mansion",
-				vanillaReward: "Potion",
-				vanillaAddress: "11CE022E",
-				replacementReward: "Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				replacementReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				vanillaAddress: '11CE022E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Old Mansion",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CE023A",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CE023A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Woods",
-				vanillaReward: "Potion",
-				vanillaAddress: "11CE0246",
-				replacementReward: "Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				replacementReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				vanillaAddress: '11CE0246',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Woods",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CE0252",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CE0252',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Woods",
-				vanillaReward: "Hi-Potion",
-				vanillaAddress: "11CE025E",
-				replacementReward: "Hi-Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				replacementReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				vanillaAddress: '11CE025E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Tram Common",
-				vanillaReward: "Hi-Potion",
-				vanillaAddress: "11CE026A",
-				replacementReward: "Hi-Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				replacementReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				vanillaAddress: '11CE026A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Tram Common",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CE0276",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CE0276',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Tram Common",
-				vanillaReward: "Tent",
-				vanillaAddress: "11CE0282",
-				replacementReward: "Tent",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Tent',
+					index: '0083'
+				},
+				replacementReward: {
+					reward: 'Tent',
+					index: '0083'
+				},
+				vanillaAddress: '11CE0282',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Tram Common",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CE028E",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CE028E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Tram Common",
-				vanillaReward: "Potion",
-				vanillaAddress: "11CE029A",
-				replacementReward: "Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				replacementReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				vanillaAddress: '11CE029A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Tram Common",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CE02A6",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CE02A6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Tram Common",
-				vanillaReward: "Potion",
-				vanillaAddress: "11CE02B2",
-				replacementReward: "Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				replacementReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				vanillaAddress: '11CE02B2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Central Station",
-				vanillaReward: "Tent",
-				vanillaAddress: "11CE02BE",
-				replacementReward: "Tent",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Tent',
+					index: '0083'
+				},
+				replacementReward: {
+					reward: 'Tent',
+					index: '0083'
+				},
+				vanillaAddress: '11CE02BE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Central Station",
-				vanillaReward: "Hi-Potion",
-				vanillaAddress: "11CE02CA",
-				replacementReward: "Hi-Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				replacementReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				vanillaAddress: '11CE02CA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Central Station",
-				vanillaReward: "Ether",
-				vanillaAddress: "11CE02D6",
-				replacementReward: "Ether",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Ether',
+					index: '0003'
+				},
+				replacementReward: {
+					reward: 'Ether',
+					index: '0003'
+				},
+				vanillaAddress: '11CE02D6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Tower",
-				vanillaReward: "Potion",
-				vanillaAddress: "11CE02E2",
-				replacementReward: "Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				replacementReward: {
+					reward: 'Potion',
+					index: '0001'
+				},
+				vanillaAddress: '11CE02E2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Tower",
-				vanillaReward: "Hi-Potion",
-				vanillaAddress: "11CE02EE",
-				replacementReward: "Hi-Potion",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				replacementReward: {
+					reward: 'Hi-Potion',
+					index: '0002'
+				},
+				vanillaAddress: '11CE02EE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Tower",
-				vanillaReward: "Ether",
-				vanillaAddress: "11CE02FA",
-				replacementReward: "Ether",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Ether',
+					index: '0003'
+				},
+				replacementReward: {
+					reward: 'Ether',
+					index: '0003'
+				},
+				vanillaAddress: '11CE02FA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Tower Entryway",
-				vanillaReward: "Ether",
-				vanillaAddress: "11CE0306",
-				replacementReward: "Ether",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Ether',
+					index: '0003'
+				},
+				replacementReward: {
+					reward: 'Ether',
+					index: '0003'
+				},
+				vanillaAddress: '11CE0306',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Tower Entryway",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CE0312",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CE0312',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Sorcerer's Loft",
-				vanillaReward: "Tower Map",
-				vanillaAddress: "11CE031E",
-				replacementReward: "Tower Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Tower Map',
+					index: '0215'
+				},
+				replacementReward: {
+					reward: 'Tower Map',
+					index: '0215'
+				},
+				vanillaAddress: '11CE031E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Tower Wardrobe",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CE032A",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CE032A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Underground Concourse",
-				vanillaReward: "Mythril Gem",
-				vanillaAddress: "11CE0336",
-				replacementReward: "Mythril Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				replacementReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				vanillaAddress: '11CE0336',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Underground Concourse",
-				vanillaReward: "Orichalcum",
-				vanillaAddress: "11CE0342",
-				replacementReward: "Orichalcum",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				replacementReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				vanillaAddress: '11CE0342',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Underground Concourse",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CE034E",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CE034E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Underground Concourse",
-				vanillaReward: "Mythril Crystal",
-				vanillaAddress: "11CE035A",
-				replacementReward: "Mythril Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				replacementReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				vanillaAddress: '11CE035A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Tunnelway",
-				vanillaReward: "Orichalcum",
-				vanillaAddress: "11CE0366",
-				replacementReward: "Orichalcum",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				replacementReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				vanillaAddress: '11CE0366',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Tunnelway",
-				vanillaReward: "Mythril Crystal",
-				vanillaAddress: "11CE0372",
-				replacementReward: "Mythril Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				replacementReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				vanillaAddress: '11CE0372',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Sunset Terrace",
-				vanillaReward: "Orichalcum+",
-				vanillaAddress: "11CE037E",
-				replacementReward: "Orichalcum+",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Orichalcum+',
+					index: '0169'
+				},
+				replacementReward: {
+					reward: 'Orichalcum+',
+					index: '0169'
+				},
+				vanillaAddress: '11CE037E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Sunset Terrace",
-				vanillaReward: "Mythril Shard",
-				vanillaAddress: "11CE038A",
-				replacementReward: "Mythril Shard",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				replacementReward: {
+					reward: 'Mythril Shard',
+					index: '0159'
+				},
+				vanillaAddress: '11CE038A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Sunset Terrace",
-				vanillaReward: "Mythril Crystal",
-				vanillaAddress: "11CE0396",
-				replacementReward: "Mythril Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				replacementReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				vanillaAddress: '11CE0396',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Sunset Terrace",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CE03A2",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CE03A2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mansion Foyer",
-				vanillaReward: "Mythril Crystal",
-				vanillaAddress: "11CE03AE",
-				replacementReward: "Mythril Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				replacementReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				vanillaAddress: '11CE03AE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mansion Foyer",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CE03BA",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CE03BA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mansion Foyer",
-				vanillaReward: "Serenity Crystal",
-				vanillaAddress: "11CE03C6",
-				replacementReward: "Serenity Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Serenity Crystal',
+					index: '0168'
+				},
+				replacementReward: {
+					reward: 'Serenity Crystal',
+					index: '0168'
+				},
+				vanillaAddress: '11CE03C6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mansion Dining Room",
-				vanillaReward: "Mythril Crystal",
-				vanillaAddress: "11CE03D2",
-				replacementReward: "Mythril Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				replacementReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				vanillaAddress: '11CE03D2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mansion Dining Room",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CE03DE",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CE03DE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mansion Library",
-				vanillaReward: "Orichalcum",
-				vanillaAddress: "11CE03EA",
-				replacementReward: "Orichalcum",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				replacementReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				vanillaAddress: '11CE03EA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Mansion Basement Corridor",
-				vanillaReward: "Ultimate Recipe",
-				vanillaAddress: "11CE03F6",
-				replacementReward: "Ultimate Recipe",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Ultimate Recipe',
+					index: '01DF'
+				},
+				replacementReward: {
+					reward: 'Ultimate Recipe',
+					index: '01DF'
+				},
+				vanillaAddress: '11CE03F6',
 				toBeReplaced: false,
 				isReplaced: false
 			}
@@ -2769,172 +4259,267 @@ const chestsData = [
 		chests: [
 			{
 				room: "Fragment Crossing",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CE0402",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CE0402',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Fragment Crossing",
-				vanillaReward: "Mythril Crystal",
-				vanillaAddress: "11CE040E",
-				replacementReward: "Mythril Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				replacementReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				vanillaAddress: '11CE040E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Fragment Crossing",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CE041A",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CE041A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Fragment Crossing",
-				vanillaReward: "Orichalcum",
-				vanillaAddress: "11CE0426",
-				replacementReward: "Orichalcum",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				replacementReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				vanillaAddress: '11CE0426',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Memory's Skyscraper",
-				vanillaReward: "Mythril Crystal",
-				vanillaAddress: "11CE0432",
-				replacementReward: "Mythril Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				replacementReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				vanillaAddress: '11CE0432',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Memory's Skyscraper",
-				vanillaReward: "AP Boost",
-				vanillaAddress: "11CE043E",
-				replacementReward: "AP Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CE043E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Memory's Skyscraper",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CE044A",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CE044A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Brink of Despair",
-				vanillaReward: "Dark City Map",
-				vanillaAddress: "11CE0456",
-				replacementReward: "Dark City Map",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Dark City Map',
+					index: '0100'
+				},
+				replacementReward: {
+					reward: 'Dark City Map',
+					index: '0100'
+				},
+				vanillaAddress: '11CE0456',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "The Brink of Despair",
-				vanillaReward: "Orichalum+",
-				vanillaAddress: "11CE0462",
-				replacementReward: "Orichalum+",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Orichalum+',
+					index: '0169'
+				},
+				replacementReward: {
+					reward: 'Orichalum+',
+					index: '0169'
+				},
+				vanillaAddress: '11CE0462',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Nothing's Call",
-				vanillaReward: "Mythril Gem",
-				vanillaAddress: "11CE046E",
-				replacementReward: "Mythril Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				replacementReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				vanillaAddress: '11CE046E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Nothing's Call",
-				vanillaReward: "Orichalcum",
-				vanillaAddress: "11CE047A",
-				replacementReward: "Orichalcum",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				replacementReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				vanillaAddress: '11CE047A',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Twilight's View",
-				vanillaReward: "Cosmic Belt",
-				vanillaAddress: "11CE0486",
-				replacementReward: "Cosmic Belt",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Cosmic Belt',
+					index: '006F'
+				},
+				replacementReward: {
+					reward: 'Cosmic Belt',
+					index: '006F'
+				},
+				vanillaAddress: '11CE0486',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Naught's Skyway",
-				vanillaReward: "Mythril Gem",
-				vanillaAddress: "11CE0492",
-				replacementReward: "Mythril Gem",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				replacementReward: {
+					reward: 'Mythril Gem',
+					index: '015B'
+				},
+				vanillaAddress: '11CE0492',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Naught's Skyway",
-				vanillaReward: "Orichalcum",
-				vanillaAddress: "11CE049E",
-				replacementReward: "Orichalcum",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				replacementReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				vanillaAddress: '11CE049E',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Naught's Skyway",
-				vanillaReward: "Mythril Crystal",
-				vanillaAddress: "11CE04AA",
-				replacementReward: "Mythril Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				replacementReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				vanillaAddress: '11CE04AA',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Ruin and Creation's Passage",
-				vanillaReward: "Mythril Stone",
-				vanillaAddress: "11CE04B6",
-				replacementReward: "Mythril Stone",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				replacementReward: {
+					reward: 'Mythril Stone',
+					index: '015A'
+				},
+				vanillaAddress: '11CE04B6',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Ruin and Creation's Passage",
-				vanillaReward: "Ap Boost",
-				vanillaAddress: "11CE04C2",
-				replacementReward: "Ap Boost",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				replacementReward: {
+					reward: 'AP Boost',
+					index: '0117'
+				},
+				vanillaAddress: '11CE04C2',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Ruin and Creation's Passage",
-				vanillaReward: "Mythril Crystal",
-				vanillaAddress: "11CE04CE",
-				replacementReward: "Mythril Crystal",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				replacementReward: {
+					reward: 'Mythril Crystal',
+					index: '015C'
+				},
+				vanillaAddress: '11CE04CE',
 				toBeReplaced: false,
 				isReplaced: false
 			},
 			{
 				room: "Ruin and Creation's Passage",
-				vanillaReward: "Orichalcum",
-				vanillaAddress: "11CE04DA",
-				replacementReward: "Orichalcum",
-				replacementIndex: '',
+				vanillaReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				replacementReward: {
+					reward: 'Orichalcum',
+					index: '0179'
+				},
+				vanillaAddress: '11CE04DA',
 				toBeReplaced: false,
 				isReplaced: false
 			}

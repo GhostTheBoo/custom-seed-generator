@@ -2,6 +2,7 @@ import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
+import _ from 'lodash'
 
 import { worldsData, formTypesData, equipmentTypesData, charactersData } from './Data/typesData'
 import rewardsData from './Data/rewardsData'
@@ -28,7 +29,7 @@ import CriticalPage from './Pages/CriticalPage'
 import criticalData from './Data/criticalData'
 
 import CheatPage from './Pages/CheatPage'
-import cheatData from './Data/cheatData'
+import cheatsData from './Data/cheatsData'
 
 class App extends React.Component {
 	constructor() {
@@ -99,7 +100,6 @@ class App extends React.Component {
 			},
 			level: {
 				currentWorld: 0,
-				currentCharacter: 0,
 				currentSwordRewardType: 0,
 				currentSwordReward: 0,
 				currentShieldRewardType: 0,
@@ -123,7 +123,7 @@ class App extends React.Component {
 			},
 			cheat: {
 				selectAll: false,
-				currentDisplayData: cheatData.slice()
+				currentDisplayData: cheatsData.slice()
 			}
 		}
 
@@ -149,6 +149,10 @@ class App extends React.Component {
 		this.onRowCheck = this.onRowCheck.bind(this)
 		this.checkAll = this.checkAll.bind(this)
 		this.handleSave = this.handleSave.bind(this)
+		this.handleSaveData = this.handleSaveData.bind(this)
+		this.handleLoadData = this.handleLoadData.bind(this)
+		this.onFileUpload = this.onFileUpload.bind(this)
+		this.loadHandler = this.loadHandler.bind(this)
 	}
 
 	//#region Table Data Change
@@ -337,15 +341,13 @@ class App extends React.Component {
 					let reward = rewardsData[this.state.chest.currentRewardType].rewards[this.state.chest.currentReward]
 					chest.toBeReplaced = false
 
-					if (reward.reward !== chest.replacementReward) {
-						if (reward.reward === chest.vanillaReward) {
+					if (reward.index !== chest.replacementReward.index) {
+						if (reward.index === chest.vanillaReward.index) {
 							chest.isReplaced = false
 							chest.replacementReward = chest.vanillaReward
-							chest.replacementIndex = ''
 						} else {
 							chest.isReplaced = true
-							chest.replacementReward = reward.reward
-							chest.replacementIndex = reward.index
+							chest.replacementReward = reward
 						}
 					}
 				}
@@ -357,7 +359,6 @@ class App extends React.Component {
 					chest.toBeReplaced = false
 					chest.isReplaced = false
 					chest.replacementReward = chest.vanillaReward
-					chest.replacementIndex = ''
 				}
 				return chest
 			})
@@ -382,17 +383,14 @@ class App extends React.Component {
 						popup.isAbility = true
 					else
 						popup.isAbility = false
-					console.log(popup.isAbility)
 
-					if (reward.reward !== popup.replacementReward) {
-						if (reward.reward === popup.vanillaReward) {
+					if (reward.index !== popup.replacementReward.index) {
+						if (reward.index === popup.vanillaReward.index) {
 							popup.isReplaced = false
 							popup.replacementReward = popup.vanillaReward
-							popup.replacementIndex = ''
 						} else {
 							popup.isReplaced = true
-							popup.replacementReward = reward.reward
-							popup.replacementIndex = reward.index
+							popup.replacementReward = reward
 						}
 					}
 				}
@@ -405,7 +403,6 @@ class App extends React.Component {
 					popup.isReplaced = false
 					popup.isAbility = false
 					popup.replacementReward = popup.vanillaReward
-					popup.replacementIndex = ''
 				}
 				return popup
 			})
@@ -426,15 +423,13 @@ class App extends React.Component {
 				if (driveFormLevel.toBeReplaced) {
 					let reward = rewardsData[this.state.form.currentRewardType].rewards[this.state.form.currentReward]
 					driveFormLevel.toBeReplaced = false
-					if (reward.reward !== driveFormLevel.replacementReward) {
-						if (reward.reward === driveFormLevel.vanillaReward) {
+					if (reward.index !== driveFormLevel.replacementReward.index) {
+						if (reward.index === driveFormLevel.vanillaReward.index) {
 							driveFormLevel.isRewardReplaced = false
 							driveFormLevel.replacementReward = driveFormLevel.vanillaReward
-							driveFormLevel.replacementIndex = ''
 						} else {
 							driveFormLevel.isRewardReplaced = true
-							driveFormLevel.replacementReward = reward.reward
-							driveFormLevel.replacementIndex = reward.index
+							driveFormLevel.replacementReward = reward
 						}
 					}
 
@@ -457,7 +452,6 @@ class App extends React.Component {
 					driveFormLevel.isRewardReplaced = false
 					driveFormLevel.isEXPReplaced = false
 					driveFormLevel.replacementReward = driveFormLevel.vanillaReward
-					driveFormLevel.replacementIndex = ''
 					driveFormLevel.replacementEXP = driveFormLevel.vanillaEXP
 				}
 				return driveFormLevel
@@ -481,14 +475,12 @@ class App extends React.Component {
 					equipment.toBeReplaced = false
 					equipment.additionalLineCount = 0
 
-					if (reward.reward === equipment.vanillaAbility) {
+					if (reward.index === equipment.vanillaAbility.index) {
 						equipment.isAbilityReplaced = false
-						equipment.ability = equipment.vanillaAbility
-						equipment.replacementAbilityIndex = ''
+						equipment.replacementAbility = equipment.vanillaAbility
 					} else {
-						equipment.ability = reward.reward
 						equipment.isAbilityReplaced = true
-						equipment.replacementAbilityIndex = reward.index
+						equipment.replacementAbility = reward
 					}
 
 					equipment.strength = this.state.equipment.currentStrength
@@ -548,8 +540,7 @@ class App extends React.Component {
 					equipment.isStatsReplaced = false
 					equipment.isElementalResistanceChanged = false
 					equipment.isOtherResistanceChanged = false
-					equipment.ability = equipment.vanillaAbility
-					equipment.replacementAbilityIndex = ''
+					equipment.replacementAbility = equipment.vanillaAbility
 					equipment.strength = equipment.vanillaStrength
 					equipment.magic = equipment.vanillaMagic
 					equipment.ap = equipment.vanillaAP
@@ -583,13 +574,10 @@ class App extends React.Component {
 					let rewardB = rewardsData[this.state.bonus.currentBRewardType].rewards[this.state.bonus.currentBReward]
 					bonus.toBeReplaced = false
 
-					bonus.replacementReward1 = rewardA.reward
-					bonus.replacementRewardIndex1 = rewardA.index
+					bonus.replacementReward1 = rewardA
+					bonus.replacementReward2 = rewardB
 
-					bonus.replacementReward2 = rewardB.reward
-					bonus.replacementRewardIndex2 = rewardB.index
-
-					if (bonus.replacementReward1 !== bonus.vanillaReward1 || bonus.replacementReward2 !== bonus.vanillaReward2)
+					if (bonus.replacementReward1.index !== bonus.vanillaReward1.index || bonus.replacementReward2.index !== bonus.vanillaReward2.index)
 						bonus.isRewardsReplaced = true
 
 					bonus.hpIncrease = this.state.bonus.currentHP
@@ -612,9 +600,7 @@ class App extends React.Component {
 					bonus.toBeReplaced = false
 
 					bonus.replacementReward1 = bonus.vanillaReward1
-					bonus.replacementRewardIndex1 = ''
 					bonus.replacementReward2 = bonus.vanillaReward2
-					bonus.replacementRewardIndex2 = ''
 					bonus.hpIncrease = bonus.vanillaHpIncrease
 					bonus.mpIncrease = bonus.vanillaMpIncrease
 					bonus.armorSlotIncrease = bonus.vanillaArmorSlotIncrease
@@ -629,9 +615,9 @@ class App extends React.Component {
 			}
 			//reward count
 			bonus.rewardChangeCount = 0
-			if (bonus.replacementReward1 !== '' && bonus.replacementReward1 !== 'Empty')
+			if (bonus.replacementReward1.index !== '0000')
 				bonus.rewardChangeCount++
-			if (bonus.replacementReward2 !== '' && bonus.replacementReward2 !== 'Empty')
+			if (bonus.replacementReward2.index !== '0000')
 				bonus.rewardChangeCount++
 			//stat count
 			bonus.statChangeCount = 0
@@ -667,21 +653,18 @@ class App extends React.Component {
 					l.toBeReplaced = false
 
 					let reward = rewardsData[this.state.level.currentSwordRewardType].rewards[this.state.level.currentSwordReward]
-					l.swordReplacementReward = reward.reward
-					l.swordReplacementIndex = reward.index
-					if (l.swordReplacementReward !== l.vanillaSwordReward)
+					l.replacementSwordReward = reward
+					if (l.replacementSwordReward.index !== l.vanillaSwordReward.index)
 						l.isSwordReplaced = true
 
 					reward = rewardsData[this.state.level.currentShieldRewardType].rewards[this.state.level.currentShieldReward]
-					l.shieldReplacementReward = reward.reward
-					l.shieldReplacementIndex = reward.index
-					if (l.shieldReplacementReward !== l.vanillaShieldReward)
+					l.replacementShieldReward = reward
+					if (l.replacementShieldReward.index !== l.vanillaShieldReward.index)
 						l.isShieldReplaced = true
 
 					reward = rewardsData[this.state.level.currentStaffRewardType].rewards[this.state.level.currentStaffReward]
-					l.staffReplacementReward = reward.reward
-					l.staffReplacementIndex = reward.index
-					if (l.staffReplacementReward !== l.vanillaStaffReward)
+					l.replacementStaffReward = reward
+					if (l.replacementStaffReward.index !== l.vanillaStaffReward.index)
 						l.isStaffReplaced = true
 
 					l.standardAP = this.state.level.currentLevelAP
@@ -707,16 +690,13 @@ class App extends React.Component {
 				if (l.toBeReplaced) {
 					l.toBeReplaced = false
 
-					l.swordReplacementReward = l.vanillaSwordReward
-					l.swordReplacementIndex = ''
+					l.replacementSwordReward = l.vanillaSwordReward
 					l.isSwordReplaced = false
 
-					l.shieldReplacementReward = l.vanillaShieldReward
-					l.shieldReplacementIndex = ''
+					l.replacementShieldReward = l.vanillaShieldReward
 					l.isShieldReplaced = false
 
-					l.staffReplacementReward = l.vanillaStaffReward
-					l.staffReplacementIndex = ''
+					l.replacementStaffReward = l.vanillaStaffReward
 					l.isStaffReplaced = false
 
 					l.standardAP = l.vanillaAP
@@ -749,15 +729,13 @@ class App extends React.Component {
 					let reward = rewardsData[this.state.critical.currentRewardType].rewards[this.state.critical.currentReward]
 					ce.toBeReplaced = false
 
-					if (reward.reward !== ce.replacementReward) {
-						if (reward.reward === ce.vanillaReward) {
+					if (reward.index !== ce.replacementReward.index) {
+						if (reward.index === ce.vanillaReward.index) {
 							ce.isReplaced = false
 							ce.replacementReward = ce.vanillaReward
-							ce.replacementIndex = ''
 						} else {
 							ce.isReplaced = true
-							ce.replacementReward = reward.reward
-							ce.replacementIndex = reward.index
+							ce.replacementReward = reward
 						}
 					}
 				}
@@ -769,7 +747,6 @@ class App extends React.Component {
 					ce.toBeReplaced = false
 					ce.isReplaced = false
 					ce.replacementReward = ce.vanillaReward
-					ce.replacementIndex = ''
 				}
 				return ce
 			})
@@ -876,8 +853,8 @@ class App extends React.Component {
 				} else
 					text = ' is now '
 
-				ret += 'patch=1,EE,' + chest.vanillaAddress + ',extended,0000' + chest.replacementIndex.padStart(4, '0')
-				ret += ' // ' + chest.room + ', ' + chest.vanillaReward + text + chest.replacementReward + '\n'
+				ret += 'patch=1,EE,' + chest.vanillaAddress + ',extended,0000' + chest.replacementReward.index.padStart(4, '0')
+				ret += ' // ' + chest.room + ', ' + chest.vanillaReward.reward + text + chest.replacementReward.reward + '\n'
 			})
 			return ret
 		})
@@ -892,8 +869,8 @@ class App extends React.Component {
 				} else
 					text = ' is now '
 
-				ret += 'patch=1,EE,' + popup.vanillaAddress + ',extended,0000' + popup.replacementIndex.padStart(4, '0')
-				ret += ' // ' + popup.popup + ', ' + popup.vanillaReward + text + popup.replacementReward + '\n'
+				ret += 'patch=1,EE,' + popup.vanillaAddress + ',extended,0000' + popup.replacementReward.index.padStart(4, '0')
+				ret += ' // ' + popup.popup + ', ' + popup.vanillaReward.reward + text + popup.replacementReward.reward + '\n'
 			})
 			return ret
 		})
@@ -911,8 +888,8 @@ class App extends React.Component {
 				} else
 					text = ' is now '
 
-				ret += 'patch=1,EE,' + driveFormLevel.vanillaAddress + ',extended,0000' + driveFormLevel.replacementIndex.padStart(4, '0')
-				ret += ' // ' + driveFormLevel.level + ', ' + driveFormLevel.vanillaReward + text + driveFormLevel.replacementReward + '\n'
+				ret += 'patch=1,EE,' + driveFormLevel.vanillaAddress + ',extended,0000' + driveFormLevel.replacementReward.index.padStart(4, '0')
+				ret += ' // ' + driveFormLevel.level + ', ' + driveFormLevel.vanillaReward.reward + text + driveFormLevel.replacementReward.reward + '\n'
 
 				if (!driveFormLevel.isEXPReplaced) {
 					ret += '//'
@@ -934,7 +911,7 @@ class App extends React.Component {
 
 				if (!eq.isAbilityReplaced)
 					ret += '//'
-				ret += 'patch=1,EE,' + eq.abilityAddress + ',extended,0000' + eq.replacementAbilityIndex.padStart(4, '0') + ' // Ability: ' + eq.ability + '\n'
+				ret += 'patch=1,EE,' + eq.abilityAddress + ',extended,0000' + eq.replacementAbility.index.padStart(4, '0') + ' // Ability: ' + eq.replacementAbility.reward + '\n'
 
 				if (!eq.isStatsReplaced)
 					ret += '//'
@@ -984,8 +961,8 @@ class App extends React.Component {
 
 					if (!bonus.isRewardsReplaced)
 						ret += '//'
-					ret += 'patch=1,EE,' + bonus.rewardAddress + ',extended,' + bonus.replacementRewardIndex2.padStart(4, '0') + bonus.replacementRewardIndex1.padStart(4, '0');
-					ret += ' // Replacement Reward #2:' + bonus.replacementReward2 + ', Replacement Reward #1:' + bonus.replacementReward1 + '\n';
+					ret += 'patch=1,EE,' + bonus.rewardAddress + ',extended,' + bonus.replacementReward2.index.padStart(4, '0') + bonus.replacementReward1.index.padStart(4, '0');
+					ret += ' // Replacement Reward #2:' + bonus.replacementReward2.reward + ', Replacement Reward #1:' + bonus.replacementReward1.reward + '\n';
 				})
 			})
 			return ret
@@ -1015,15 +992,15 @@ class App extends React.Component {
 			else {
 				if (!l.isSwordReplaced)
 					ret += '//'
-				ret += 'patch=1,EE,' + l.swordAddress + ',extended,0000' + l.swordReplacementIndex + ' // Sword Reward: ' + l.swordReplacementReward + '\n'
+				ret += 'patch=1,EE,' + l.swordAddress + ',extended,0000' + l.replacementSwordReward.index + ' // Sword Reward: ' + l.replacementSwordReward.reward + '\n'
 
 				if (!l.isShieldReplaced)
 					ret += '//'
-				ret += 'patch=1,EE,' + l.shieldAddress + ',extended,0000' + l.shieldReplacementIndex + ' // Shield Reward: ' + l.shieldReplacementReward + '\n'
+				ret += 'patch=1,EE,' + l.shieldAddress + ',extended,0000' + l.replacementShieldReward.index + ' // Shield Reward: ' + l.replacementShieldReward.reward + '\n'
 
 				if (!l.isStaffReplaced)
 					ret += '//'
-				ret += 'patch=1,EE,' + l.staffAddress + ',extended,0000' + l.staffReplacementIndex + ' // Staff Reward: ' + l.staffReplacementReward + '\n'
+				ret += 'patch=1,EE,' + l.staffAddress + ',extended,0000' + l.replacementStaffReward.index + ' // Staff Reward: ' + l.replacementStaffReward.reward + '\n'
 			}
 			return ret
 		})
@@ -1037,8 +1014,8 @@ class App extends React.Component {
 			} else
 				text = ' is now '
 
-			ret += 'patch=1,EE,' + ce.vanillaAddress + ',extended,0000' + ce.replacementIndex.padStart(4, '0')
-			ret += ' // ' + ce.vanillaReward + text + ce.replacementReward + '\n'
+			ret += 'patch=1,EE,' + ce.vanillaAddress + ',extended,0000' + ce.replacementReward.index.padStart(4, '0')
+			ret += ' // ' + ce.vanillaReward.reward + text + ce.replacementReward.reward + '\n'
 			return ret
 		})
 
@@ -1057,6 +1034,230 @@ class App extends React.Component {
 		element.download = "F266B00B.pnach"
 		document.body.appendChild(element)
 		element.click()
+	}
+
+	handleSaveData() {
+		let chestSaveData = this.state.chest.allChests.map(world => {
+			let worldRet = '{"world":' + JSON.stringify(world.world) + ',"chests":['
+			let ret = world.chests.filter(chest => chest.isReplaced).map(chest => {
+				let chestRet = '{"replacementReward":{"reward":' + JSON.stringify(chest.replacementReward.reward) + ',"index":"' + chest.replacementReward.index + '"},'
+				chestRet += '"vanillaAddress":"' + chest.vanillaAddress + '",'
+				chestRet += '"isReplaced":"' + chest.isReplaced + '"},'
+				return chestRet
+			})
+			return (ret.length === 0 ? worldRet : worldRet + ret.join('').slice(0, -1)) + ']},'
+		})
+		chestSaveData = ['"chestsData":[', chestSaveData.join('').slice(0, -1), '],']
+
+		let popupSaveData = this.state.popup.allPopups.map(world => {
+			let worldRet = '{"world":' + JSON.stringify(world.world) + ',"popups":['
+			let ret = world.popups.filter(popup => popup.isReplaced).map(popup => {
+				let popupRet = '{"replacementReward":{"reward":' + JSON.stringify(popup.replacementReward.reward) + ',"index":"' + popup.replacementReward.index + '"},'
+				popupRet += '"vanillaAddress":"' + popup.vanillaAddress + '",'
+				popupRet += '"isReplaced":' + popup.isReplaced + ','
+				popupRet += '"isAbility":' + popup.isAbility + ','
+				return popupRet
+			})
+			return (ret.length === 0 ? worldRet : worldRet + ret.join('').slice(0, -1)) + ']},'
+		})
+		popupSaveData = ['"popupsData":[', popupSaveData.join('').slice(0, -1), '],']
+
+		let formSaveData = this.state.form.allForms.map(form => {
+			let driveFormRet = '{"driveForm":' + JSON.stringify(form.driveForm) + ',"driveLevels":['
+			let ret = form.driveLevels.filter(driveLevel => (driveLevel.isRewardReplaced || driveLevel.isEXPReplaced)).map(driveLevel => {
+				let driveLevelRet = '{"level":' + JSON.stringify(driveLevel.level) + ','
+				driveLevelRet += '"isRewardReplaced":' + driveLevel.isRewardReplaced + ','
+				if (driveLevel.isRewardReplaced) {
+					driveLevelRet += '"replacementReward":{"reward":' + JSON.stringify(driveLevel.replacementReward.reward)
+					driveLevelRet += ',"index":"' + driveLevel.replacementReward.index + '"},'
+				}
+				driveLevelRet += '"isEXPReplaced":' + driveLevel.isEXPReplaced + ','
+				if (driveLevel.isEXPReplaced)
+					driveLevelRet += '"replacementEXP":' + driveLevel.replacementEXP + ','
+				return driveLevelRet.slice(0, -1) + '},'
+			})
+			return (ret.length === 0 ? driveFormRet : driveFormRet + ret.join('').slice(0, -1)) + ']},'
+		})
+		formSaveData = ['"formsData":[', formSaveData.join('').slice(0, -1), '],']
+
+		let equipmentSaveData = this.state.equipment.allEquipments.map(equipmentType => {
+			let equipmentTypeRet = '{"equipmentType":' + JSON.stringify(equipmentType.equipmentType) + ',"equipments":['
+			let ret = equipmentType.equipments.filter(e => (e.isAbilityReplaced || e.isStatsReplaced
+				|| e.isElementalResistanceChanged || e.isOtherResistanceChanged)).map(equipment => {
+					let equipmentRet = '{"name":' + JSON.stringify(equipment.name) + ','
+					equipmentRet += '"isAbilityReplaced":' + equipment.isAbilityReplaced + ','
+					if (equipment.isAbilityReplaced) {
+						equipmentRet += '"replacementAbility":{"reward":' + JSON.stringify(equipment.replacementAbility.reward) + ',"index":"'
+						equipmentRet += equipment.replacementAbility.index + '"},'
+					}
+					equipmentRet += '"isStatsReplaced":' + equipment.isStatsReplaced + ','
+					if (equipment.isStatsReplaced) {
+						equipmentRet += '"strength":' + equipment.strength + ',"magic":' + equipment.magic + ',"ap":' + equipment.ap + ',"defense":' + equipment.defense + ','
+					}
+					equipmentRet += '"isElementalResistanceChanged":' + equipment.isElementalResistanceChanged + ','
+					if (equipment.isElementalResistanceChanged) {
+						equipmentRet += '"fireResistance":' + equipment.fireResistance + ',"blizzardResistance":' + equipment.blizzardResistance
+						equipmentRet += ',"thunderResistance":' + equipment.thunderResistance + ',"physicalResistance":' + equipment.physicalResistance + ','
+					}
+					equipmentRet += '"isOtherResistanceChanged":' + equipment.isOtherResistanceChanged + ','
+					if (equipment.isOtherResistanceChanged) {
+						equipmentRet += '"darkResistance":' + equipment.darkResistance + ',"lightResistance":' + equipment.lightResistance
+						equipmentRet += ',"universalResistance":' + equipment.universalResistance + ','
+					}
+					return equipmentRet.slice(0, -1) + '},'
+				})
+			return (ret.length === 0 ? equipmentTypeRet : equipmentTypeRet + ret.join('').slice(0, -1)) + ']},'
+		})
+		equipmentSaveData = ['"equipmentsData":[', equipmentSaveData.join('').slice(0, -1), '],']
+
+		let bonusSaveData = this.state.bonus.allBonuses.map(character => {
+			let characterRet = '{"character":' + JSON.stringify(character.character) + ',"characterBonuses":['
+			let ret = character.characterBonuses.map(world => {
+				let worldRet = '{"world":' + JSON.stringify(world.world) + ',"worldBonuses":['
+				let ret = world.worldBonuses.filter(b => b.isStatsReplaced || b.isSlotsReplaced || b.isRewardsReplaced).map(bonus => {
+					let bonusRet = '{"fight":' + JSON.stringify(bonus.fight) + ','
+					bonusRet += '"isStatsReplaced":' + bonus.isStatsReplaced + ','
+					if (bonus.isStatsReplaced) {
+						bonusRet += '"hpIncrease":' + bonus.hpIncrease + ',"mpIncrease":' + bonus.mpIncrease + ','
+					}
+					bonusRet += '"isSlotsReplaced":' + bonus.isSlotsReplaced + ','
+					if (bonus.isSlotsReplaced) {
+						bonusRet += '"armorSlotIncrease":' + bonus.armorSlotIncrease + ',"accessorySlotIncrease":' + bonus.accessorySlotIncrease + ','
+						bonusRet += '"itemSlotIncrease":' + bonus.itemSlotIncrease + ',"driveGaugeIncrease":' + bonus.driveGaugeIncrease + ','
+					}
+					bonusRet += '"isRewardsReplaced":' + bonus.isRewardsReplaced + ','
+					if (bonus.isRewardsReplaced) {
+						bonusRet += '"replacementReward1":{"reward":' + JSON.stringify(bonus.replacementReward1.reward) + ',"index":"' + bonus.replacementReward1.index + '"},'
+						bonusRet += '"replacementReward2":{"reward":' + JSON.stringify(bonus.replacementReward2.reward) + ',"index":"' + bonus.replacementReward2.index + '"},'
+					}
+					return bonusRet.slice(0, -1) + '},'
+				})
+				return (ret.length === 0 ? worldRet : worldRet + ret.join('').slice(0, -1)) + ']},'
+			})
+			return characterRet + ret.join('').slice(0, -1) + ']},'
+		})
+		bonusSaveData = ['"bonusData":[', bonusSaveData.join('').slice(0, -1), '],']
+
+		let levelSaveData = this.state.level.currentDisplayData.filter(l => (l.isEXPReplaced || l.isStatsReplaced
+			|| l.isSwordReplaced || l.isShieldReplaced || l.isStaffReplaced)).map(level => {
+				let levelRet = '{"level":' + level.level + ','
+				levelRet += '"isEXPReplaced":' + level.isEXPReplaced + ','
+				if (level.isEXPReplaced) {
+					levelRet += '"replacedEXP":' + level.replacedEXP + ','
+				}
+				levelRet += '"isStatsReplaced":' + level.isStatsReplaced + ','
+				if (level.isStatsReplaced) {
+					levelRet += '"standardAP":' + level.standardAP + ','
+					levelRet += '"defense":' + level.defense + ','
+					levelRet += '"magic":' + level.magic + ','
+					levelRet += '"strength":' + level.strength + ','
+				}
+				levelRet += '"isSwordReplaced":' + level.isSwordReplaced + ','
+				if (level.isSwordReplaced) {
+					levelRet += '"replacementSwordReward":{'
+					levelRet += '"reward":' + JSON.stringify(level.replacementSwordReward.reward) + ','
+					levelRet += '"index":"' + level.replacementSwordReward.index + '"},'
+				}
+				levelRet += '"isShieldReplaced":' + level.isShieldReplaced + ','
+				if (level.isShieldReplaced) {
+					levelRet += '"replacementShieldReward":{'
+					levelRet += '"reward":' + JSON.stringify(level.replacementShieldReward.reward) + ','
+					levelRet += '"index":"' + level.replacementShieldReward.index + '"},'
+				}
+				levelRet += '"isStaffReplaced":' + level.isStaffReplaced + ','
+				if (level.isStaffReplaced) {
+					levelRet += '"replacementStaffReward":{'
+					levelRet += '"reward":' + JSON.stringify(level.replacementStaffReward.reward) + ','
+					levelRet += '"index":"' + level.replacementStaffReward.index + '"},'
+				}
+				return levelRet.slice(0, -1) + '},'
+			})
+		levelSaveData = ['"levelsData":[', levelSaveData.join('').slice(0, -1), '],']
+
+		let cheatSaveData = this.state.cheat.currentDisplayData.filter(cheat => cheat.isActive).map(cheat => {
+			return '{"name":' + JSON.stringify(cheat.name) + ',"isActive":' + cheat.isActive + '},'
+		})
+		cheatSaveData = ['"cheatsData":[', cheatSaveData.join('').slice(0, -1), '],']
+
+		let saveData = ['{',
+			chestSaveData.join(''),
+			popupSaveData.join(''),
+			formSaveData.join(''),
+			equipmentSaveData.join(''),
+			bonusSaveData.join(''),
+			levelSaveData.join(''),
+			cheatSaveData.join('').slice(0, -1),
+			'}']
+
+		const element = document.createElement("a")
+		const file = new Blob(saveData, { type: 'text/plain;charset=utf-8' })
+		element.href = URL.createObjectURL(file)
+		element.download = "saveData.json"
+		document.body.appendChild(element)
+		element.click()
+	}
+
+	onFileUpload(event) {
+		let file = event.target.files[0]
+		let reader = new FileReader()
+		reader.readAsText(file)
+		reader.onload = this.loadHandler
+	}
+
+	loadHandler(event) {
+		this.handleLoadData(event.target.result)
+	}
+
+	handleLoadData(loadData) {
+		let allLoadData = JSON.parse(loadData)
+		let chestLoadData = _.merge(this.state.chest.allChests, allLoadData.chestsData)
+		let popupLoadData = _.merge(this.state.popup.allPopups, allLoadData.popupsData)
+		let formLoadData = _.merge(this.state.form.allForms, allLoadData.formsData)
+		let equipmentLoadData = _.merge(this.state.equipment.allEquipments, allLoadData.equipmentsData)
+		let bonusLoadData = _.merge(this.state.bonus.allBonuses, allLoadData.bonusData)
+		let levelLoadData = _.merge(this.state.level.currentDisplayData, allLoadData.levelsData)
+		let criticalLoadData = _.merge(this.state.critical.currentDisplayData, allLoadData.criticalsData)
+		let cheatLoadData = _.merge(this.state.cheat.currentDisplayData, allLoadData.cheatsData)
+		
+		this.setState(prevState => ({
+			chest: {
+				...prevState.chest,
+				allChests: chestLoadData,
+				currentDisplayData: chestLoadData[this.state.chest.currentWorld].chests.slice()
+			},
+			popup: {
+				...prevState.popup,
+				allPopups: popupLoadData,
+				currentDisplayData: popupLoadData[this.state.popup.currentWorld].popups.slice()
+			},
+			form: {
+				...prevState.form,
+				allForms: formLoadData,
+				currentDisplayData: formLoadData[this.state.form.currentDriveForm].driveLevels.slice()
+			},
+			equipment: {
+				...prevState.equipment,
+				allEquipments: equipmentLoadData,
+				currentDisplayData: equipmentLoadData[this.state.equipment.currentEquipmentType].equipments.slice()
+			},
+			bonus: {
+				...prevState.bonus,
+				allBonuses: bonusLoadData,
+				currentDisplayData: bonusLoadData[this.state.bonus.currentCharacter].characterBonuses[this.state.bonus.currentWorld].worldBonuses.slice()
+			},
+			level: {
+				...prevState.level,
+				currentDisplayData: levelLoadData.slice()
+			},
+			critical: {
+				...prevState.critical,
+				currentDisplayData: criticalLoadData.slice()
+			},
+			cheat: {
+				...prevState.cheat,
+				currentDisplayData: cheatLoadData.slice()
+			}
+		}))
 	}
 	//#endregion
 
@@ -1155,7 +1356,7 @@ class App extends React.Component {
 							onClick={this.handleCriticalReplace}
 						/>
 					</Tab>
-					<Tab eventKey="cheat" title="Cheats">
+					<Tab eventKey="cheat" title="Cheat">
 						<CheatPage
 							cheatData={this.state.cheat}
 							onRowCheck={(event) => this.onRowCheck('cheat', event)}
@@ -1169,7 +1370,17 @@ class App extends React.Component {
 					onClick={this.handleSave}
 				>
 					SAVE
-			</Button></div>
+				</Button>
+				{' '}
+				<Button variant='outline-dark'
+					name='saveDataButton'
+					onClick={this.handleSaveData}
+				>
+					SAVE DATA
+				</Button>
+				{' '}
+				<input type="file" onChange={this.onFileUpload} />
+			</div>
 		)
 	}
 }

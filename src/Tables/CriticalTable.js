@@ -22,10 +22,10 @@ function CriticalTable(props) {
 					/>
 				</td>
 				<td>
-					{ce.vanillaReward}
+					{ce.vanillaReward.reward}
 				</td>
 				<td>
-					{ce.replacementReward}
+					{ce.replacementReward.reward}
 				</td>
 			</tr>
 		)

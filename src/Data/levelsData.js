@@ -14,18 +14,33 @@ const levelsData = [
 		vanillaStrength: 2,
 		strength: 2,
 		statAddress: '21D0B6AC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B6B0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B6B2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B6B4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -48,18 +63,33 @@ const levelsData = [
 		vanillaStrength: 2,
 		strength: 2,
 		statAddress: '21D0B6BC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B6C0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B6C2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B6C4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -82,18 +112,33 @@ const levelsData = [
 		vanillaStrength: 4,
 		strength: 4,
 		statAddress: '21D0B6CC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B6D0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B6D2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B6D4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -116,18 +161,33 @@ const levelsData = [
 		vanillaStrength: 4,
 		strength: 4,
 		statAddress: '21D0B6DC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B6E0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B6E2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B6E4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -150,18 +210,33 @@ const levelsData = [
 		vanillaStrength: 4,
 		strength: 4,
 		statAddress: '21D0B6EC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B6F0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B6F2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B6F4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -184,18 +259,33 @@ const levelsData = [
 		vanillaStrength: 6,
 		strength: 6,
 		statAddress: '21D0B6FC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B700',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B702',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B704',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -218,18 +308,33 @@ const levelsData = [
 		vanillaStrength: 6,
 		strength: 6,
 		statAddress: '21D0B70C',
-		vanillaSwordReward: 'Combo Boost',
+		vanillaSwordReward: {
+			reward: 'Combo Boost',
+			index: '0186'
+		},
+		replacementSwordReward: {
+			reward: 'Combo Boost',
+			index: '0186'
+		},
 		swordAddress: '11D0B710',
-		swordReplacementReward: 'Combo Boost',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Item Boost',
+		vanillaShieldReward: {
+			reward: 'Item Boost',
+			index: '019B'
+		},
+		replacementShieldReward: {
+			reward: 'Item Boost',
+			index: '019B'
+		},
 		shieldAddress: '11D0B712',
-		shieldReplacementReward: 'Item Boost',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Experience Boost',
+		vanillaStaffReward: {
+			reward: 'Experience Boost',
+			index: '0191'
+		},
+		replacementStaffReward: {
+			reward: 'Experience Boost',
+			index: '0191'
+		},
 		staffAddress: '11D0B714',
-		staffReplacementReward: 'Experience Boost',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -252,18 +357,33 @@ const levelsData = [
 		vanillaStrength: 6,
 		strength: 6,
 		statAddress: '21D0B71C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B720',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B722',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B724',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -286,18 +406,33 @@ const levelsData = [
 		vanillaStrength: 6,
 		strength: 6,
 		statAddress: '21D0B72C',
-		vanillaSwordReward: 'Experience Boost',
+		vanillaSwordReward: {
+			reward: 'Experience Boost',
+			index: '0191'
+		},
+		replacementSwordReward: {
+			reward: 'Experience Boost',
+			index: '0191'
+		},
 		swordAddress: '11D0B730',
-		swordReplacementReward: 'Experience Boost',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Combo Boost',
+		vanillaShieldReward: {
+			reward: 'Combo Boost',
+			index: '0186'
+		},
+		replacementShieldReward: {
+			reward: 'Combo Boost',
+			index: '0186'
+		},
 		shieldAddress: '11D0B732',
-		shieldReplacementReward: 'Combo Boost',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Item Boost',
+		vanillaStaffReward: {
+			reward: 'Item Boost',
+			index: '019B'
+		},
+		replacementStaffReward: {
+			reward: 'Item Boost',
+			index: '019B'
+		},
 		staffAddress: '11D0B734',
-		staffReplacementReward: 'Item Boost',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -320,18 +455,33 @@ const levelsData = [
 		vanillaStrength: 8,
 		strength: 8,
 		statAddress: '21D0B73C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B740',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B742',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B744',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -354,18 +504,33 @@ const levelsData = [
 		vanillaStrength: 8,
 		strength: 8,
 		statAddress: '21D0B74C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B750',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B752',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B754',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -388,18 +553,33 @@ const levelsData = [
 		vanillaStrength: 8,
 		strength: 8,
 		statAddress: '21D0B75C',
-		vanillaSwordReward: 'Magic Lock-On',
+		vanillaSwordReward: {
+			reward: 'Magic Lock-On',
+			index: '0193'
+		},
+		replacementSwordReward: {
+			reward: 'Magic Lock-On',
+			index: '0193'
+		},
 		swordAddress: '11D0B760',
-		swordReplacementReward: 'Magic Lock-On',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Magic Lock-On',
+		vanillaShieldReward: {
+			reward: 'Magic Lock-On',
+			index: '0193'
+		},
+		replacementShieldReward: {
+			reward: 'Magic Lock-On',
+			index: '0193'
+		},
 		shieldAddress: '11D0B762',
-		shieldReplacementReward: 'Magic Lock-On',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Magic Lock-On',
+		vanillaStaffReward: {
+			reward: 'Magic Lock-On',
+			index: '0193'
+		},
+		replacementStaffReward: {
+			reward: 'Magic Lock-On',
+			index: '0193'
+		},
 		staffAddress: '11D0B764',
-		staffReplacementReward: 'Magic Lock-On',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -422,18 +602,33 @@ const levelsData = [
 		vanillaStrength: 8,
 		strength: 8,
 		statAddress: '21D0B76C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B770',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B772',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B774',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -456,18 +651,33 @@ const levelsData = [
 		vanillaStrength: 10,
 		strength: 10,
 		statAddress: '21D0B77C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B780',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B782',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B784',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -490,18 +700,33 @@ const levelsData = [
 		vanillaStrength: 10,
 		strength: 10,
 		statAddress: '21D0B78C',
-		vanillaSwordReward: 'Reaction Boost',
+		vanillaSwordReward: {
+			reward: 'Reaction Boost',
+			index: '0188'
+		},
+		replacementSwordReward: {
+			reward: 'Reaction Boost',
+			index: '0188'
+		},
 		swordAddress: '11D0B790',
-		swordReplacementReward: 'Reaction Boost',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Damage Drive',
+		vanillaShieldReward: {
+			reward: 'Damage Drive',
+			index: '018C'
+		},
+		replacementShieldReward: {
+			reward: 'Damage Drive',
+			index: '018C'
+		},
 		shieldAddress: '11D0B792',
-		shieldReplacementReward: 'Damage Drive',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Fire Boost',
+		vanillaStaffReward: {
+			reward: 'Fire Boost',
+			index: '0198'
+		},
+		replacementStaffReward: {
+			reward: 'Fire Boost',
+			index: '0198'
+		},
 		staffAddress: '11D0B794',
-		staffReplacementReward: 'Fire Boost',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -524,18 +749,33 @@ const levelsData = [
 		vanillaStrength: 10,
 		strength: 10,
 		statAddress: '21D0B79C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B7A0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B7A2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B7A4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -558,18 +798,33 @@ const levelsData = [
 		vanillaStrength: 10,
 		strength: 10,
 		statAddress: '21D0B7AC',
-		vanillaSwordReward: 'Item Boost',
+		vanillaSwordReward: {
+			reward: 'Item Boost',
+			index: '019B'
+		},
+		replacementSwordReward: {
+			reward: 'Item Boost',
+			index: '019B'
+		},
 		swordAddress: '11D0B7B0',
-		swordReplacementReward: 'Item Boost',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Experience Boost',
+		vanillaShieldReward: {
+			reward: 'Experience Boost',
+			index: '0191'
+		},
+		replacementShieldReward: {
+			reward: 'Experience Boost',
+			index: '0191'
+		},
 		shieldAddress: '11D0B7B2',
-		shieldReplacementReward: 'Experience Boost',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Combo Boost',
+		vanillaStaffReward: {
+			reward: 'Combo Boost',
+			index: '0186'
+		},
+		replacementStaffReward: {
+			reward: 'Combo Boost',
+			index: '0186'
+		},
 		staffAddress: '11D0B7B4',
-		staffReplacementReward: 'Combo Boost',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -592,18 +847,33 @@ const levelsData = [
 		vanillaStrength: 12,
 		strength: 12,
 		statAddress: '21D0B7BC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B7C0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B7C2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B7C4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -626,18 +896,33 @@ const levelsData = [
 		vanillaStrength: 12,
 		strength: 12,
 		statAddress: '21D0B7CC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B7D0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B7D2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B7D4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -660,18 +945,33 @@ const levelsData = [
 		vanillaStrength: 12,
 		strength: 12,
 		statAddress: '21D0B7DC',
-		vanillaSwordReward: 'Leaf Bracer',
+		vanillaSwordReward: {
+			reward: 'Leaf Bracer',
+			index: '0192'
+		},
+		replacementSwordReward: {
+			reward: 'Leaf Bracer',
+			index: '0192'
+		},
 		swordAddress: '11D0B7E0',
-		swordReplacementReward: 'Leaf Bracer',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Leaf Bracer',
+		vanillaShieldReward: {
+			reward: 'Leaf Bracer',
+			index: '0192'
+		},
+		replacementShieldReward: {
+			reward: 'Leaf Bracer',
+			index: '0192'
+		},
 		shieldAddress: '11D0B7E2',
-		shieldReplacementReward: 'Leaf Bracer',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Leaf Bracer',
+		vanillaStaffReward: {
+			reward: 'Leaf Bracer',
+			index: '0192'
+		},
+		replacementStaffReward: {
+			reward: 'Leaf Bracer',
+			index: '0192'
+		},
 		staffAddress: '11D0B7E4',
-		staffReplacementReward: 'Leaf Bracer',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -694,18 +994,33 @@ const levelsData = [
 		vanillaStrength: 12,
 		strength: 12,
 		statAddress: '21D0B7EC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B7F0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B7F2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B7F4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -728,18 +1043,33 @@ const levelsData = [
 		vanillaStrength: 14,
 		strength: 14,
 		statAddress: '21D0B7FC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B800',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B802',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B804',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -762,18 +1092,33 @@ const levelsData = [
 		vanillaStrength: 14,
 		strength: 14,
 		statAddress: '21D0B80C',
-		vanillaSwordReward: 'Fire Boost',
+		vanillaSwordReward: {
+			reward: 'Fire Boost',
+			index: '0198'
+		},
+		replacementSwordReward: {
+			reward: 'Fire Boost',
+			index: '0198'
+		},
 		swordAddress: '11D0B810',
-		swordReplacementReward: 'Fire Boost',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Reaction Boost',
+		vanillaShieldReward: {
+			reward: 'Reaction Boost',
+			index: '0188'
+		},
+		replacementShieldReward: {
+			reward: 'Reaction Boost',
+			index: '0188'
+		},
 		shieldAddress: '11D0B812',
-		shieldReplacementReward: 'Reaction Boost',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Damage Drive',
+		vanillaStaffReward: {
+			reward: 'Damage Drive',
+			index: '018C'
+		},
+		replacementStaffReward: {
+			reward: 'Damage Drive',
+			index: '018C'
+		},
 		staffAddress: '11D0B814',
-		staffReplacementReward: 'Damage Drive',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -796,18 +1141,33 @@ const levelsData = [
 		vanillaStrength: 14,
 		strength: 14,
 		statAddress: '21D0B81C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B820',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B822',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B824',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -830,18 +1190,33 @@ const levelsData = [
 		vanillaStrength: 14,
 		strength: 14,
 		statAddress: '21D0B82C',
-		vanillaSwordReward: 'Drive Boost',
+		vanillaSwordReward: {
+			reward: 'Drive Boost',
+			index: '018D'
+		},
+		replacementSwordReward: {
+			reward: 'Drive Boost',
+			index: '018D'
+		},
 		swordAddress: '11D0B830',
-		swordReplacementReward: 'Drive Boost',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Once More',
+		vanillaShieldReward: {
+			reward: 'Once More',
+			index: '01A0'
+		},
+		replacementShieldReward: {
+			reward: 'Once More',
+			index: '01A0'
+		},
 		shieldAddress: '11D0B832',
-		shieldReplacementReward: 'Once More',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Draw',
+		vanillaStaffReward: {
+			reward: 'Draw',
+			index: '0195'
+		},
+		replacementStaffReward: {
+			reward: 'Draw',
+			index: '0195'
+		},
 		staffAddress: '11D0B834',
-		staffReplacementReward: 'Draw',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -864,18 +1239,33 @@ const levelsData = [
 		vanillaStrength: 16,
 		strength: 16,
 		statAddress: '21D0B83C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B840',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B842',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B844',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -898,18 +1288,33 @@ const levelsData = [
 		vanillaStrength: 16,
 		strength: 16,
 		statAddress: '21D0B84C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B850',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B852',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B854',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -932,18 +1337,33 @@ const levelsData = [
 		vanillaStrength: 16,
 		strength: 16,
 		statAddress: '21D0B85C',
-		vanillaSwordReward: 'Draw',
+		vanillaSwordReward: {
+			reward: 'Draw',
+			index: '0195'
+		},
+		replacementSwordReward: {
+			reward: 'Draw',
+			index: '0195'
+		},
 		swordAddress: '11D0B860',
-		swordReplacementReward: 'Draw',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Drive Boost',
+		vanillaShieldReward: {
+			reward: 'Drive Boost',
+			index: '018D'
+		},
+		replacementShieldReward: {
+			reward: 'Drive Boost',
+			index: '018D'
+		},
 		shieldAddress: '11D0B862',
-		shieldReplacementReward: 'Drive Boost',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Once More',
+		vanillaStaffReward: {
+			reward: 'Once More',
+			index: '01A0'
+		},
+		replacementStaffReward: {
+			reward: 'Once More',
+			index: '01A0'
+		},
 		staffAddress: '11D0B864',
-		staffReplacementReward: 'Once More',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -966,18 +1386,33 @@ const levelsData = [
 		vanillaStrength: 16,
 		strength: 16,
 		statAddress: '21D0B86C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B870',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B872',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B874',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1000,18 +1435,33 @@ const levelsData = [
 		vanillaStrength: 18,
 		strength: 18,
 		statAddress: '21D0B87C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B880',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B882',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B884',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1034,18 +1484,33 @@ const levelsData = [
 		vanillaStrength: 18,
 		strength: 18,
 		statAddress: '21D0B88C',
-		vanillaSwordReward: 'Combination Boost',
+		vanillaSwordReward: {
+			reward: 'Combination Boost',
+			index: '0190'
+		},
+		replacementSwordReward: {
+			reward: 'Combination Boost',
+			index: '0190'
+		},
 		swordAddress: '11D0B890',
-		swordReplacementReward: 'Combination Boost',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Defender',
+		vanillaShieldReward: {
+			reward: 'Defender',
+			index: '019E'
+		},
+		replacementShieldReward: {
+			reward: 'Defender',
+			index: '019E'
+		},
 		shieldAddress: '11D0B892',
-		shieldReplacementReward: 'Defender',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Blizzard Boost',
+		vanillaStaffReward: {
+			reward: 'Blizzard Boost',
+			index: '0199'
+		},
+		replacementStaffReward: {
+			reward: 'Blizzard Boost',
+			index: '0199'
+		},
 		staffAddress: '11D0B894',
-		staffReplacementReward: 'Blizzard Boost',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1068,18 +1533,33 @@ const levelsData = [
 		vanillaStrength: 18,
 		strength: 18,
 		statAddress: '21D0B89C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B8A0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B8A2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B8A4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1102,18 +1582,33 @@ const levelsData = [
 		vanillaStrength: 18,
 		strength: 18,
 		statAddress: '21D0B8AC',
-		vanillaSwordReward: 'Damage Drive',
+		vanillaSwordReward: {
+			reward: 'Damage Drive',
+			index: '018C'
+		},
+		replacementSwordReward: {
+			reward: 'Damage Drive',
+			index: '018C'
+		},
 		swordAddress: '11D0B8B0',
-		swordReplacementReward: 'Damage Drive',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Fire Boost',
+		vanillaShieldReward: {
+			reward: 'Fire Boost',
+			index: '0198'
+		},
+		replacementShieldReward: {
+			reward: 'Fire Boost',
+			index: '0198'
+		},
 		shieldAddress: '11D0B8B2',
-		shieldReplacementReward: 'Fire Boost',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Reaction Boost',
+		vanillaStaffReward: {
+			reward: 'Reaction Boost',
+			index: '0188'
+		},
+		replacementStaffReward: {
+			reward: 'Reaction Boost',
+			index: '0188'
+		},
 		staffAddress: '11D0B8B4',
-		staffReplacementReward: 'Reaction Boost',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1136,18 +1631,33 @@ const levelsData = [
 		vanillaStrength: 20,
 		strength: 20,
 		statAddress: '21D0B8BC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B8C0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B8C2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B8C4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1170,18 +1680,33 @@ const levelsData = [
 		vanillaStrength: 20,
 		strength: 20,
 		statAddress: '21D0B8CC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B8D0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B8D2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B8D4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1204,18 +1729,33 @@ const levelsData = [
 		vanillaStrength: 20,
 		strength: 20,
 		statAddress: '21D0B8DC',
-		vanillaSwordReward: 'Air Combo Boost',
+		vanillaSwordReward: {
+			reward: 'Air Combo Boost',
+			index: '0187'
+		},
+		replacementSwordReward: {
+			reward: 'Air Combo Boost',
+			index: '0187'
+		},
 		swordAddress: '11D0B8E0',
-		swordReplacementReward: 'Air Combo Boost',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Jackpot',
+		vanillaShieldReward: {
+			reward: 'Jackpot',
+			index: '0196'
+		},
+		replacementShieldReward: {
+			reward: 'Jackpot',
+			index: '0196'
+		},
 		shieldAddress: '11D0B8E2',
-		shieldReplacementReward: 'Jackpot',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Negative Combo',
+		vanillaStaffReward: {
+			reward: 'Negative Combo',
+			index: '018A'
+		},
+		replacementStaffReward: {
+			reward: 'Negative Combo',
+			index: '018A'
+		},
 		staffAddress: '11D0B8E4',
-		staffReplacementReward: 'Negative Combo',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1238,18 +1778,33 @@ const levelsData = [
 		vanillaStrength: 20,
 		strength: 20,
 		statAddress: '21D0B8EC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B8F0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B8F2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B8F4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1272,18 +1827,33 @@ const levelsData = [
 		vanillaStrength: 22,
 		strength: 22,
 		statAddress: '21D0B8FC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B900',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B902',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B904',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1306,18 +1876,33 @@ const levelsData = [
 		vanillaStrength: 22,
 		strength: 22,
 		statAddress: '21D0B90C',
-		vanillaSwordReward: 'Blizzard Boost',
+		vanillaSwordReward: {
+			reward: 'Blizzard Boost',
+			index: '0199'
+		},
+		replacementSwordReward: {
+			reward: 'Blizzard Boost',
+			index: '0199'
+		},
 		swordAddress: '11D0B910',
-		swordReplacementReward: 'Blizzard Boost',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Combination Boost',
+		vanillaShieldReward: {
+			reward: 'Combination Boost',
+			index: '0190'
+		},
+		replacementShieldReward: {
+			reward: 'Combination Boost',
+			index: '0190'
+		},
 		shieldAddress: '11D0B912',
-		shieldReplacementReward: 'Combination Boost',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Defender',
+		vanillaStaffReward: {
+			reward: 'Defender',
+			index: '019E'
+		},
+		replacementStaffReward: {
+			reward: 'Defender',
+			index: '019E'
+		},
 		staffAddress: '11D0B914',
-		staffReplacementReward: 'Defender',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1340,18 +1925,33 @@ const levelsData = [
 		vanillaStrength: 22,
 		strength: 22,
 		statAddress: '21D0B91C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B920',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B922',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B924',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1374,18 +1974,33 @@ const levelsData = [
 		vanillaStrength: 22,
 		strength: 22,
 		statAddress: '21D0B92C',
-		vanillaSwordReward: 'Drive Converter',
+		vanillaSwordReward: {
+			reward: 'Drive Converter',
+			index: '021C'
+		},
+		replacementSwordReward: {
+			reward: 'Drive Converter',
+			index: '021C'
+		},
 		swordAddress: '11D0B930',
-		swordReplacementReward: 'Drive Converter',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Damage Control',
+		vanillaShieldReward: {
+			reward: 'Damage Control',
+			index: '021E'
+		},
+		replacementShieldReward: {
+			reward: 'Damage Control',
+			index: '021E'
+		},
 		shieldAddress: '11D0B932',
-		shieldReplacementReward: 'Damage Control',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Thunder Boost',
+		vanillaStaffReward: {
+			reward: 'Thunder Boost',
+			index: '019A'
+		},
+		replacementStaffReward: {
+			reward: 'Thunder Boost',
+			index: '019A'
+		},
 		staffAddress: '11D0B934',
-		staffReplacementReward: 'Thunder Boost',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1408,18 +2023,33 @@ const levelsData = [
 		vanillaStrength: 24,
 		strength: 24,
 		statAddress: '21D0B93C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B940',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B942',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B944',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1442,18 +2072,33 @@ const levelsData = [
 		vanillaStrength: 24,
 		strength: 24,
 		statAddress: '21D0B94C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B950',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B952',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B954',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1476,18 +2121,33 @@ const levelsData = [
 		vanillaStrength: 24,
 		strength: 24,
 		statAddress: '21D0B95C',
-		vanillaSwordReward: 'Negative Combo',
+		vanillaSwordReward: {
+			reward: 'Negative Combo',
+			index: '018A'
+		},
+		replacementSwordReward: {
+			reward: 'Negative Combo',
+			index: '018A'
+		},
 		swordAddress: '11D0B960',
-		swordReplacementReward: 'Negative Combo',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Air Combo Boost',
+		vanillaShieldReward: {
+			reward: 'Air Combo Boost',
+			index: '0187'
+		},
+		replacementShieldReward: {
+			reward: 'Air Combo Boost',
+			index: '0187'
+		},
 		shieldAddress: '11D0B962',
-		shieldReplacementReward: 'Air Combo Boost',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Jackpot',
+		vanillaStaffReward: {
+			reward: 'Jackpot',
+			index: '0196'
+		},
+		replacementStaffReward: {
+			reward: 'Jackpot',
+			index: '0196'
+		},
 		staffAddress: '11D0B964',
-		staffReplacementReward: 'Jackpot',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1510,18 +2170,33 @@ const levelsData = [
 		vanillaStrength: 24,
 		strength: 24,
 		statAddress: '21D0B96C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B970',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B972',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B974',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1544,18 +2219,33 @@ const levelsData = [
 		vanillaStrength: 26,
 		strength: 26,
 		statAddress: '21D0B97C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B980',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B982',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B984',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1578,18 +2268,33 @@ const levelsData = [
 		vanillaStrength: 26,
 		strength: 26,
 		statAddress: '21D0B98C',
-		vanillaSwordReward: 'Once More',
+		vanillaSwordReward: {
+			reward: 'Once More',
+			index: '01A0'
+		},
+		replacementSwordReward: {
+			reward: 'Once More',
+			index: '01A0'
+		},
 		swordAddress: '11D0B990',
-		swordReplacementReward: 'Once More',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Draw',
+		vanillaShieldReward: {
+			reward: 'Draw',
+			index: '0195'
+		},
+		replacementShieldReward: {
+			reward: 'Draw',
+			index: '0195'
+		},
 		shieldAddress: '11D0B992',
-		shieldReplacementReward: 'Draw',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Drive Boost',
+		vanillaStaffReward: {
+			reward: 'Drive Boost',
+			index: '018D'
+		},
+		replacementStaffReward: {
+			reward: 'Drive Boost',
+			index: '018D'
+		},
 		staffAddress: '11D0B994',
-		staffReplacementReward: 'Drive Boost',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1612,18 +2317,33 @@ const levelsData = [
 		vanillaStrength: 26,
 		strength: 26,
 		statAddress: '21D0B99C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B9A0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B9A2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B9A4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1646,18 +2366,33 @@ const levelsData = [
 		vanillaStrength: 26,
 		strength: 26,
 		statAddress: '21D0B9AC',
-		vanillaSwordReward: 'Finishing Plus',
+		vanillaSwordReward: {
+			reward: 'Finishing Plus',
+			index: '0189'
+		},
+		replacementSwordReward: {
+			reward: 'Finishing Plus',
+			index: '0189'
+		},
 		swordAddress: '11D0B9B0',
-		swordReplacementReward: 'Finishing Plus',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Second Chance',
+		vanillaShieldReward: {
+			reward: 'Second Chance',
+			index: '019F'
+		},
+		replacementShieldReward: {
+			reward: 'Second Chance',
+			index: '019F'
+		},
 		shieldAddress: '11D0B9B2',
-		shieldReplacementReward: 'Second Chance',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Berserk Charge',
+		vanillaStaffReward: {
+			reward: 'Berserk Charge',
+			index: '018B'
+		},
+		replacementStaffReward: {
+			reward: 'Berserk Charge',
+			index: '018B'
+		},
 		staffAddress: '11D0B9B4',
-		staffReplacementReward: 'Berserk Charge',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1680,18 +2415,33 @@ const levelsData = [
 		vanillaStrength: 28,
 		strength: 28,
 		statAddress: '21D0B9BC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B9C0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B9C2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B9C4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1714,18 +2464,33 @@ const levelsData = [
 		vanillaStrength: 28,
 		strength: 28,
 		statAddress: '21D0B9CC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B9D0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B9D2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B9D4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1748,18 +2513,33 @@ const levelsData = [
 		vanillaStrength: 28,
 		strength: 28,
 		statAddress: '21D0B9DC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0B9E0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0B9E2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0B9E4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1782,18 +2562,33 @@ const levelsData = [
 		vanillaStrength: 28,
 		strength: 28,
 		statAddress: '21D0B9EC',
-		vanillaSwordReward: 'Thunder Boost',
+		vanillaSwordReward: {
+			reward: 'Thunder Boost',
+			index: '019A'
+		},
+		replacementSwordReward: {
+			reward: 'Thunder Boost',
+			index: '019A'
+		},
 		swordAddress: '11D0B9F0',
-		swordReplacementReward: 'Thunder Boost',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Drive Converter',
+		vanillaShieldReward: {
+			reward: 'Drive Converter',
+			index: '021C'
+		},
+		replacementShieldReward: {
+			reward: 'Drive Converter',
+			index: '021C'
+		},
 		shieldAddress: '11D0B9F2',
-		shieldReplacementReward: 'Drive Converter',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Damage Control',
+		vanillaStaffReward: {
+			reward: 'Damage Control',
+			index: '021E'
+		},
+		replacementStaffReward: {
+			reward: 'Damage Control',
+			index: '021E'
+		},
 		staffAddress: '11D0B9F4',
-		staffReplacementReward: 'Damage Control',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1816,18 +2611,33 @@ const levelsData = [
 		vanillaStrength: 30,
 		strength: 30,
 		statAddress: '21D0B9FC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BA00',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BA02',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BA04',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1850,18 +2660,33 @@ const levelsData = [
 		vanillaStrength: 30,
 		strength: 30,
 		statAddress: '21D0BA0C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BA10',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BA12',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BA14',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1884,18 +2709,33 @@ const levelsData = [
 		vanillaStrength: 30,
 		strength: 30,
 		statAddress: '21D0BA1C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BA20',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BA22',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BA24',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1918,18 +2758,33 @@ const levelsData = [
 		vanillaStrength: 30,
 		strength: 30,
 		statAddress: '21D0BA2C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BA30',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BA32',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BA34',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1952,18 +2807,33 @@ const levelsData = [
 		vanillaStrength: 32,
 		strength: 32,
 		statAddress: '21D0BA3C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BA40',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BA42',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BA44',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -1986,18 +2856,33 @@ const levelsData = [
 		vanillaStrength: 32,
 		strength: 32,
 		statAddress: '21D0BA4C',
-		vanillaSwordReward: 'Defender',
+		vanillaSwordReward: {
+			reward: 'Defender',
+			index: '019E'
+		},
+		replacementSwordReward: {
+			reward: 'Defender',
+			index: '019E'
+		},
 		swordAddress: '11D0BA50',
-		swordReplacementReward: 'Defender',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Blizzard Boost',
+		vanillaShieldReward: {
+			reward: 'Blizzard Boost',
+			index: '0199'
+		},
+		replacementShieldReward: {
+			reward: 'Blizzard Boost',
+			index: '0199'
+		},
 		shieldAddress: '11D0BA52',
-		shieldReplacementReward: 'Blizzard Boost',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Combination Boost',
+		vanillaStaffReward: {
+			reward: 'Combination Boost',
+			index: '0190'
+		},
+		replacementStaffReward: {
+			reward: 'Combination Boost',
+			index: '0190'
+		},
 		staffAddress: '11D0BA54',
-		staffReplacementReward: 'Combination Boost',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2020,18 +2905,33 @@ const levelsData = [
 		vanillaStrength: 32,
 		strength: 32,
 		statAddress: '21D0BA5C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BA60',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BA62',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BA64',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2054,18 +2954,33 @@ const levelsData = [
 		vanillaStrength: 32,
 		strength: 32,
 		statAddress: '21D0BA6C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BA70',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BA72',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BA74',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2088,18 +3003,33 @@ const levelsData = [
 		vanillaStrength: 34,
 		strength: 34,
 		statAddress: '21D0BA7C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BA80',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BA82',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BA84',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2122,18 +3052,33 @@ const levelsData = [
 		vanillaStrength: 34,
 		strength: 34,
 		statAddress: '21D0BA8C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BA90',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BA92',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BA94',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2156,18 +3101,33 @@ const levelsData = [
 		vanillaStrength: 34,
 		strength: 34,
 		statAddress: '21D0BA9C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BAA0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BAA2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BAA4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2190,18 +3150,33 @@ const levelsData = [
 		vanillaStrength: 34,
 		strength: 34,
 		statAddress: '21D0BAAC',
-		vanillaSwordReward: 'Berserk Charge',
+		vanillaSwordReward: {
+			reward: 'Berserk Charge',
+			index: '018B'
+		},
+		replacementSwordReward: {
+			reward: 'Berserk Charge',
+			index: '018B'
+		},
 		swordAddress: '11D0BAB0',
-		swordReplacementReward: 'Berserk Charge',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Finishing Plus',
+		vanillaShieldReward: {
+			reward: 'Finishing Plus',
+			index: '0189'
+		},
+		replacementShieldReward: {
+			reward: 'Finishing Plus',
+			index: '0189'
+		},
 		shieldAddress: '11D0BAB2',
-		shieldReplacementReward: 'Finishing Plus',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Second Chance',
+		vanillaStaffReward: {
+			reward: 'Second Chance',
+			index: '019F'
+		},
+		replacementStaffReward: {
+			reward: 'Second Chance',
+			index: '019F'
+		},
 		staffAddress: '11D0BAB4',
-		staffReplacementReward: 'Second Chance',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2224,18 +3199,33 @@ const levelsData = [
 		vanillaStrength: 36,
 		strength: 36,
 		statAddress: '21D0BABC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BAC0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BAC2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BAC4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2258,18 +3248,33 @@ const levelsData = [
 		vanillaStrength: 36,
 		strength: 36,
 		statAddress: '21D0BACC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BAD0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BAD2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BAD4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2292,18 +3297,33 @@ const levelsData = [
 		vanillaStrength: 36,
 		strength: 36,
 		statAddress: '21D0BADC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BAE0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BAE2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BAE4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2326,18 +3346,33 @@ const levelsData = [
 		vanillaStrength: 36,
 		strength: 36,
 		statAddress: '21D0BAEC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BAF0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BAF2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BAF4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2360,18 +3395,33 @@ const levelsData = [
 		vanillaStrength: 38,
 		strength: 38,
 		statAddress: '21D0BAFC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BB00',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BB02',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BB04',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2394,18 +3444,33 @@ const levelsData = [
 		vanillaStrength: 38,
 		strength: 38,
 		statAddress: '21D0BB0C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BB10',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BB12',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BB14',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2428,18 +3493,33 @@ const levelsData = [
 		vanillaStrength: 38,
 		strength: 38,
 		statAddress: '21D0BB1C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BB20',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BB22',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BB24',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2462,18 +3542,33 @@ const levelsData = [
 		vanillaStrength: 38,
 		strength: 38,
 		statAddress: '21D0BB2C',
-		vanillaSwordReward: 'Jackpot',
+		vanillaSwordReward: {
+			reward: 'Jackpot',
+			index: '0196'
+		},
+		replacementSwordReward: {
+			reward: 'Jackpot',
+			index: '0196'
+		},
 		swordAddress: '11D0BB30',
-		swordReplacementReward: 'Jackpot',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Negative Combo',
+		vanillaShieldReward: {
+			reward: 'Negative Combo',
+			index: '018A'
+		},
+		replacementShieldReward: {
+			reward: 'Negative Combo',
+			index: '018A'
+		},
 		shieldAddress: '11D0BB32',
-		shieldReplacementReward: 'Negative Combo',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Air Combo Boost',
+		vanillaStaffReward: {
+			reward: 'Air Combo Boost',
+			index: '0187'
+		},
+		replacementStaffReward: {
+			reward: 'Air Combo Boost',
+			index: '0187'
+		},
 		staffAddress: '11D0BB34',
-		staffReplacementReward: 'Air Combo Boost',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2496,18 +3591,33 @@ const levelsData = [
 		vanillaStrength: 40,
 		strength: 40,
 		statAddress: '21D0BB3C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BB40',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BB42',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BB44',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2530,18 +3640,33 @@ const levelsData = [
 		vanillaStrength: 40,
 		strength: 40,
 		statAddress: '21D0BB4C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BB50',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BB52',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BB54',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2564,18 +3689,33 @@ const levelsData = [
 		vanillaStrength: 40,
 		strength: 40,
 		statAddress: '21D0BB5C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BB60',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BB62',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BB64',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2598,18 +3738,33 @@ const levelsData = [
 		vanillaStrength: 40,
 		strength: 40,
 		statAddress: '21D0BB6C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BB70',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BB72',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BB74',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2632,18 +3787,33 @@ const levelsData = [
 		vanillaStrength: 42,
 		strength: 42,
 		statAddress: '21D0BB7C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BB80',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BB82',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BB84',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2666,18 +3836,33 @@ const levelsData = [
 		vanillaStrength: 42,
 		strength: 42,
 		statAddress: '21D0BB8C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BB90',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BB92',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BB94',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2700,18 +3885,33 @@ const levelsData = [
 		vanillaStrength: 42,
 		strength: 42,
 		statAddress: '21D0BB9C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BBA0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BBA2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BBA4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2734,18 +3934,33 @@ const levelsData = [
 		vanillaStrength: 42,
 		strength: 42,
 		statAddress: '21D0BBAC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BBB0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BBB2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BBB4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2768,18 +3983,33 @@ const levelsData = [
 		vanillaStrength: 44,
 		strength: 44,
 		statAddress: '21D0BBBC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BBC0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BBC2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BBC4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2802,18 +4032,33 @@ const levelsData = [
 		vanillaStrength: 44,
 		strength: 44,
 		statAddress: '21D0BBCC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BBD0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BBD2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BBD4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2836,18 +4081,33 @@ const levelsData = [
 		vanillaStrength: 44,
 		strength: 44,
 		statAddress: '21D0BBDC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BBE0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BBE2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BBE4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2870,18 +4130,33 @@ const levelsData = [
 		vanillaStrength: 44,
 		strength: 44,
 		statAddress: '21D0BBEC',
-		vanillaSwordReward: 'Second Chance',
+		vanillaSwordReward: {
+			reward: 'Second Chance',
+			index: '019F'
+		},
+		replacementSwordReward: {
+			reward: 'Second Chance',
+			index: '019F'
+		},
 		swordAddress: '11D0BBF0',
-		swordReplacementReward: 'Second Chance',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Berserk Charge',
+		vanillaShieldReward: {
+			reward: 'Berserk Charge',
+			index: '018B'
+		},
+		replacementShieldReward: {
+			reward: 'Berserk Charge',
+			index: '018B'
+		},
 		shieldAddress: '11D0BBF2',
-		shieldReplacementReward: 'Berserk Charge',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Finishing Plus',
+		vanillaStaffReward: {
+			reward: 'Finishing Plus',
+			index: '0189'
+		},
+		replacementStaffReward: {
+			reward: 'Finishing Plus',
+			index: '0189'
+		},
 		staffAddress: '11D0BBF4',
-		staffReplacementReward: 'Finishing Plus',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2904,18 +4179,33 @@ const levelsData = [
 		vanillaStrength: 46,
 		strength: 46,
 		statAddress: '21D0BBFC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BC00',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BC02',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BC04',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2938,18 +4228,33 @@ const levelsData = [
 		vanillaStrength: 46,
 		strength: 46,
 		statAddress: '21D0BC0C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BC10',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BC12',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BC14',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -2972,18 +4277,33 @@ const levelsData = [
 		vanillaStrength: 46,
 		strength: 46,
 		statAddress: '21D0BC1C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BC20',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BC22',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BC24',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -3006,18 +4326,33 @@ const levelsData = [
 		vanillaStrength: 46,
 		strength: 46,
 		statAddress: '21D0BC2C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BC30',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BC32',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BC34',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -3040,18 +4375,33 @@ const levelsData = [
 		vanillaStrength: 48,
 		strength: 48,
 		statAddress: '21D0BC3C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BC40',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BC42',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BC44',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -3074,18 +4424,33 @@ const levelsData = [
 		vanillaStrength: 48,
 		strength: 48,
 		statAddress: '21D0BC4C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BC50',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BC52',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BC54',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -3108,18 +4473,33 @@ const levelsData = [
 		vanillaStrength: 48,
 		strength: 48,
 		statAddress: '21D0BC5C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BC60',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BC62',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BC64',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -3142,18 +4522,33 @@ const levelsData = [
 		vanillaStrength: 48,
 		strength: 48,
 		statAddress: '21D0BC6C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BC70',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BC72',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BC74',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -3176,18 +4571,33 @@ const levelsData = [
 		vanillaStrength: 50,
 		strength: 50,
 		statAddress: '21D0BC7C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BC80',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BC82',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BC84',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -3210,18 +4620,33 @@ const levelsData = [
 		vanillaStrength: 50,
 		strength: 50,
 		statAddress: '21D0BC8C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BC90',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BC92',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BC94',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -3244,18 +4669,33 @@ const levelsData = [
 		vanillaStrength: 50,
 		strength: 50,
 		statAddress: '21D0BC9C',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BCA0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BCA2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BCA4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -3278,18 +4718,33 @@ const levelsData = [
 		vanillaStrength: 50,
 		strength: 50,
 		statAddress: '21D0BCAC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BCB0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BCB2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BCB4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -3312,18 +4767,33 @@ const levelsData = [
 		vanillaStrength: 52,
 		strength: 52,
 		statAddress: '21D0BCBC',
-		vanillaSwordReward: '',
+		vanillaSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementSwordReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		swordAddress: '11D0BCC0',
-		swordReplacementReward: '',
-		swordReplacementIndex: '',
-		vanillaShieldReward: '',
+		vanillaShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementShieldReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		shieldAddress: '11D0BCC2',
-		shieldReplacementReward: '',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: '',
+		vanillaStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
+		replacementStaffReward: {
+			reward: 'EMPTY',
+			index: '0000'
+		},
 		staffAddress: '11D0BCC4',
-		staffReplacementReward: '',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,
@@ -3346,18 +4816,33 @@ const levelsData = [
 		vanillaStrength: 52,
 		strength: 52,
 		statAddress: '21D0BCCC',
-		vanillaSwordReward: 'Damage Control',
+		vanillaSwordReward: {
+			reward: 'Damage Control',
+			index: '021E'
+		},
+		replacementSwordReward: {
+			reward: 'Damage Control',
+			index: '021E'
+		},
 		swordAddress: '11D0BCD0',
-		swordReplacementReward: 'Damage Control',
-		swordReplacementIndex: '',
-		vanillaShieldReward: 'Thunder Boost',
+		vanillaShieldReward: {
+			reward: 'Thunder Boost',
+			index: '019A'
+		},
+		replacementShieldReward: {
+			reward: 'Thunder Boost',
+			index: '019A'
+		},
 		shieldAddress: '11D0BCD2',
-		shieldReplacementReward: 'Thunder Boost',
-		shieldReplacementIndex: '',
-		vanillaStaffReward: 'Drive Converter',
+		vanillaStaffReward: {
+			reward: 'Drive Converter',
+			index: '021C'
+		},
+		replacementStaffReward: {
+			reward: 'Drive Converter',
+			index: '021C'
+		},
 		staffAddress: '11D0BCD4',
-		staffReplacementReward: 'Drive Converter',
-		staffReplacementIndex: '',
 		toBeReplaced: false,
 		isEXPReplaced: false,
 		isStatsReplaced: false,

@@ -5,10 +5,10 @@ function ChestTable(props) {
 	let chestList = props.worldChests.map((chest, index) => {
 		let keyValue = props.currentWorld + index
 		let styles
-		let originalReward = ''
+		let replacementReward = ''
 		if (chest.isReplaced) {
 			styles = { background: 'green' }
-			originalReward = chest.replacementReward
+			replacementReward = chest.replacementReward.reward
 		}
 		return (
 			<tr
@@ -28,10 +28,10 @@ function ChestTable(props) {
 					{chest.room}
 				</td>
 				<td>
-					{chest.vanillaReward}
+					{chest.vanillaReward.reward}
 				</td>
 				<td>
-					{originalReward}
+					{replacementReward}
 				</td>
 			</tr>
 		)

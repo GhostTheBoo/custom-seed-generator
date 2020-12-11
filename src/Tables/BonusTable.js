@@ -28,10 +28,10 @@ function BonusTable(props) {
 					{bonus.fight}
 				</td>
 				<td>
-					{bonus.replacementReward1}
+					{bonus.replacementReward1.index !== '0000' ? bonus.replacementReward1.reward : ''}
 				</td>
 				<td>
-					{bonus.replacementReward2}
+					{bonus.replacementReward2.index !== '0000' ? bonus.replacementReward2.reward : ''}
 				</td>
 				<td>
 					{bonus.hpIncrease}

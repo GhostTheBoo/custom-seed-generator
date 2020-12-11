@@ -43,13 +43,13 @@ function LevelTable(props) {
 					{l.strength}
 				</td>
 				<td>
-					{l.swordReplacementReward}
+					{l.replacementSwordReward.index !== '0000' ? l.replacementSwordReward.reward : ''}
 				</td>
 				<td>
-					{l.shieldReplacementReward}
+					{l.replacementShieldReward.index !== '0000' ? l.replacementShieldReward.reward : ''}
 				</td>
 				<td>
-					{l.staffReplacementReward}
+					{l.replacementStaffReward.index !== '0000' ? l.replacementStaffReward.reward : ''}
 				</td>
 			</tr>
 		)
