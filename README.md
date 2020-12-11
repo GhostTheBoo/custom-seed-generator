@@ -14,6 +14,14 @@ Anything that may cause crashes or issues in game will be shown as a red row.
 Red rows will still be generated to use as described but use at your own risk.
 After all rewards are modified to your liking, the save button will download a pnach file ready to be used.
 
+### Saving / Loading Data
+
+By clicking the save data button, a json file will be generated storing all the data of the current session.
+Whenever loading up the site again, select the downloaded json file.
+This will bring up all the modified values from the previous session.
+It is unrealistic for me to promise this feature works perfectly.
+If any issues come up let me know and be sure not to delete the json file even if it does not seem to work.
+
 ## Pages
 
 ### Chest
@@ -168,7 +176,7 @@ They cannot be red.
 
 ## Things to be Implemented
 
-#### Save & Load Feature
+#### Save & Load Feature !ADDED!
 
 After some bug fixing, I will come up with a glue and duct tape way of saving the current progress of the plando and loading it back in.
 For now, save often and copy/paste the files together when finished.

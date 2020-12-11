@@ -1218,228 +1218,44 @@ class App extends React.Component {
 		let levelLoadData = _.merge(this.state.level.currentDisplayData, allLoadData.levelsData)
 		let criticalLoadData = _.merge(this.state.critical.currentDisplayData, allLoadData.criticalsData)
 		let cheatLoadData = _.merge(this.state.cheat.currentDisplayData, allLoadData.cheatsData)
+		
 		this.setState(prevState => ({
 			chest: {
 				...prevState.chest,
 				allChests: chestLoadData,
-				currentDisplayData: chestLoadData[this.state.chest.currentWorld].chests.slice(),
+				currentDisplayData: chestLoadData[this.state.chest.currentWorld].chests.slice()
 			},
 			popup: {
 				...prevState.popup,
 				allPopups: popupLoadData,
-				currentDisplayData: popupLoadData[this.state.popup.currentWorld].popups.slice(),
-			}
-			// ,
-			// popup: {
-			// 	...prevState.chest,
-			// 	allPopups: popupsData.slice(),
-			// 	currentDisplayData: popupsData[0].popups.slice(),
-			// },
-			// form: {
-			// 	...prevState.chest,
-			// 	allForms: formsData.slice(),
-			// 	currentDisplayData: formsData[0].driveLevels.slice(),
-			// },
-			// equipment: {
-			// 	...prevState.chest,
-			// 	allEquipments: equipmentsData.slice(),
-			// 	currentDisplayData: equipmentsData[0].equipments.slice()
-			// },
-			// bonus: {
-			// 	...prevState.chest,
-			// 	allBonuses: bonusData.slice(),
-			// 	currentDisplayData: bonusData[0].characterBonuses[0].worldBonuses.slice()
-			// },
-			// level: {
-			// 	...prevState.chest,
-			// 	currentDisplayData: levelsData.slice(),
-			// },
-			// critical: {
-			// 	...prevState.chest,
-			// 	currentDisplayData: criticalData.slice()
-			// },
-			// cheat: {
-			// 	...prevState.chest,
-			// 	currentDisplayData: cheatsData.slice()
-			// }
-		}))
-
-
-
-
-		// let chestLoadData = JSON.parse(loadData).chestsData.map((world, index) => {
-		// 	let jsonIndex = 0
-		// 	let chests = this.state.chest.allChests[index].chests.map(chest => {
-		// 		if (jsonIndex < world.chests.length) {
-		// 			if (world.chests[jsonIndex].vanillaAddress === chest.vanillaAddress) {
-		// 				chest = { ...chest, ...world.chests[jsonIndex] }
-		// 				jsonIndex++
-		// 			}
-		// 		}
-		// 		return chest
-		// 	})
-		// 	return {
-		// 		world: world.world,
-		// 		chests: chests
-		// 	}
-		// })
-
-		// let popupLoadData = JSON.parse(loadData).popupsData.map((world, index) => {
-		// 	let jsonIndex = 0
-		// 	let popups = this.state.popup.allPopups[index].popups.map(popup => {
-		// 		if (jsonIndex < world.popups.length) {
-		// 			if (world.popups[jsonIndex].vanillaAddress === popup.vanillaAddress) {
-		// 				popup = { ...popup, ...world.popups[jsonIndex] }
-		// 				jsonIndex++
-		// 			}
-		// 		}
-		// 		return popup
-		// 	})
-		// 	return {
-		// 		world: world.world,
-		// 		popups: popups
-		// 	}
-		// })
-
-		// let formLoadData = JSON.parse(loadData).formsData.map((driveForm, index) => {
-		// 	let jsonIndex = 0
-		// 	let driveLevels = this.state.form.allForms[index].driveLevels.map(driveLevel => {
-		// 		if (jsonIndex < driveForm.driveLevels.length) {
-		// 			if (driveForm.driveLevels[jsonIndex].level === driveLevel.level) {
-		// 				driveLevel = { ...driveLevel, ...driveForm.driveLevels[jsonIndex] }
-		// 				jsonIndex++
-		// 			}
-		// 		}
-		// 		return driveLevel
-		// 	})
-		// 	return {
-		// 		driveForm: driveForm.driveForm,
-		// 		driveLevels: driveLevels
-		// 	}
-		// })
-
-		// let equipmentLoadData = JSON.parse(loadData).equipmentsData.map((equipmentType, index) => {
-		// 	let jsonIndex = 0
-		// 	let equipments = this.state.equipment.allEquipments[index].equipments.map(equipment => {
-		// 		if (jsonIndex < equipmentType.equipments.length) {
-		// 			if (equipmentType.equipments[jsonIndex].name === equipment.name) {
-		// 				equipment = { ...equipment, ...equipmentType.equipments[jsonIndex] }
-		// 				jsonIndex++
-		// 			}
-		// 		}
-		// 		return equipment
-		// 	})
-		// 	return {
-		// 		equipmentType: equipmentType.equipmentType,
-		// 		equipments: equipments
-		// 	}
-		// })
-
-		// let bonusLoadData = JSON.parse(loadData).bonusData.map((character, characterIndex) => {
-		// 	let bonuses = this.state.bonus.allBonuses[characterIndex].characterBonuses.map((world,worldIndex) => {
-		// 		let jsonIndex = 0
-		// 		let worldBonuses = world.map((bonus, bonusIndex) => {
-		// 			if (jsonIndex < character.characterBonuses[worldIndex].worldBonuses.length) {
-		// 				if (world.chests[jsonIndex].vanillaAddress === chest.vanillaAddress) {
-		// 					chest = { ...chest, ...world.chests[jsonIndex] }
-		// 					jsonIndex++
-		// 				}
-		// 			}
-		// 			return chest
-		// 		})
-		// 		return {
-		// 			world: world.world,
-		// 			chests: chests
-		// 		}
-		// 		// if (jsonIndex < character.equipments.length) {
-		// 		// 	if (character.equipments[jsonIndex].name === equipment.name) {
-		// 		// 		equipment = { ...equipment, ...character.equipments[jsonIndex] }
-		// 		// 		jsonIndex++
-		// 		// 	}
-		// 		// }
-		// 		// return equipment
-		// 	})
-		// 	return {
-		// 		character: character.character,
-		// 		bonus: bonuses
-		// 	}
-		// })
-		// let bonusSaveData = this.state.bonus.allBonuses.map(character => {
-		// 	let characterRet = '{"character":' + JSON.stringify(character.character) + ',"characterBonuses":['
-		// 	let ret = character.characterBonuses.map(world => {
-		// 		let worldRet = '{"world":' + JSON.stringify(world.world) + ',"worldBonuses":['
-		// 		let ret = world.worldBonuses.filter(b => b.isStatsReplaced || b.isSlotsReplaced || b.isRewardsReplaced).map(bonus => {
-		// 			let bonusRet = '{"fight":' + JSON.stringify(bonus.fight) + ','
-		// 			bonusRet += '"isStatsReplaced":' + bonus.isStatsReplaced + ','
-		// 			if (bonus.isStatsReplaced) {
-		// 				bonusRet += '"hpIncrease":' + bonus.hpIncrease + ',"mpIncrease":' + bonus.mpIncrease + ','
-		// 			}
-		// 			bonusRet += '"isSlotsReplaced":' + bonus.isSlotsReplaced + ','
-		// 			if (bonus.isSlotsReplaced) {
-		// 				bonusRet += '"armorSlotIncrease":' + bonus.armorSlotIncrease + ',"accessorySlotIncrease":' + bonus.accessorySlotIncrease + ','
-		// 				bonusRet += '"itemSlotIncrease":' + bonus.itemSlotIncrease + ',"driveGaugeIncrease":' + bonus.driveGaugeIncrease + ','
-		// 			}
-		// 			bonusRet += '"isRewardsReplaced":' + bonus.isRewardsReplaced + ','
-		// 			if (bonus.isRewardsReplaced) {
-		// 				bonusRet += '"replacementReward1":{"reward":' + JSON.stringify(bonus.replacementReward1.reward) + ',"index":"' + bonus.replacementReward1.index + '"},'
-		// 				bonusRet += '"replacementReward2":{"reward":' + JSON.stringify(bonus.replacementReward2.reward) + ',"index":"' + bonus.replacementReward2.index + '"},'
-		// 			}
-		// 			return bonusRet.slice(0, -1) + '},'
-		// 		})
-		// 		return (ret.length === 0 ? worldRet : worldRet + ret.join('').slice(0, -1)) + ']},'
-		// 	})
-		// 	return characterRet + ret.join('').slice(0, -1) + ']},'
-		// })
-		// bonusSaveData = ['"bonusData":[', bonusSaveData.join('').slice(0, -1), '],']
-
-		// let levelSaveData = this.state.level.currentDisplayData.filter(l => (l.isEXPReplaced || l.isStatsReplaced
-		// 	|| l.isSwordReplaced || l.isShieldReplaced || l.isStaffReplaced)).map(level => {
-		// 		let levelRet = '{"level":' + level.level + ','
-		// 		levelRet += '"isEXPReplaced":' + level.isEXPReplaced + ','
-		// 		if (level.isEXPReplaced) {
-		// 			levelRet += '"replacedEXP":' + level.replacedEXP + ','
-		// 		}
-		// 		levelRet += '"isStatsReplaced":' + level.isStatsReplaced + ','
-		// 		if (level.isStatsReplaced) {
-		// 			levelRet += '"standardAP":' + level.standardAP + ','
-		// 			levelRet += '"defense":' + level.defense + ','
-		// 			levelRet += '"magic":' + level.magic + ','
-		// 			levelRet += '"strength":' + level.strength + ','
-		// 		}
-		// 		levelRet += '"isSwordReplaced":' + level.isSwordReplaced + ','
-		// 		if (level.isSwordReplaced) {
-		// 			levelRet += '"replacementSwordReward":{'
-		// 			levelRet += '"reward":' + JSON.stringify(level.replacementSwordReward.reward) + ','
-		// 			levelRet += '"index":"' + level.replacementSwordReward.index + '"},'
-		// 		}
-		// 		levelRet += '"isShieldReplaced":' + level.isShieldReplaced + ','
-		// 		if (level.isShieldReplaced) {
-		// 			levelRet += '"replacementShieldReward":{'
-		// 			levelRet += '"reward":' + JSON.stringify(level.replacementShieldReward.reward) + ','
-		// 			levelRet += '"index":"' + level.replacementShieldReward.index + '"},'
-		// 		}
-		// 		levelRet += '"isStaffReplaced":' + level.isStaffReplaced + ','
-		// 		if (level.isStaffReplaced) {
-		// 			levelRet += '"replacementStaffReward":{'
-		// 			levelRet += '"reward":' + JSON.stringify(level.replacementStaffReward.reward) + ','
-		// 			levelRet += '"index":"' + level.replacementStaffReward.index + '"},'
-		// 		}
-		// 		return levelRet.slice(0, -1) + '},'
-		// 	})
-		// levelSaveData = ['"levelsData":[', levelSaveData.join('').slice(0, -1), '],']
-
-		// let cheatSaveData = this.state.cheat.currentDisplayData.filter(cheat => cheat.isActive).map(cheat => {
-		// 	return '{"name":' + JSON.stringify(cheat.name) + ',"isActive":' + cheat.isActive + '},'
-		// })
-		// cheatSaveData = ['"cheatsData":[', cheatSaveData.join('').slice(0, -1), '],']
-
-
-		this.setState(prevState => ({
-			chest: {
-				...prevState.chest,
-				selectAll: false,
-				allChests: chestLoadData,
-				currentDisplayData: chestLoadData[this.state.chest.currentWorld].chests.slice(),
+				currentDisplayData: popupLoadData[this.state.popup.currentWorld].popups.slice()
+			},
+			form: {
+				...prevState.form,
+				allForms: formLoadData,
+				currentDisplayData: formLoadData[this.state.form.currentDriveForm].driveLevels.slice()
+			},
+			equipment: {
+				...prevState.equipment,
+				allEquipments: equipmentLoadData,
+				currentDisplayData: equipmentLoadData[this.state.equipment.currentEquipmentType].equipments.slice()
+			},
+			bonus: {
+				...prevState.bonus,
+				allBonuses: bonusLoadData,
+				currentDisplayData: bonusLoadData[this.state.bonus.currentCharacter].characterBonuses[this.state.bonus.currentWorld].worldBonuses.slice()
+			},
+			level: {
+				...prevState.level,
+				currentDisplayData: levelLoadData.slice()
+			},
+			critical: {
+				...prevState.critical,
+				currentDisplayData: criticalLoadData.slice()
+			},
+			cheat: {
+				...prevState.cheat,
+				currentDisplayData: cheatLoadData.slice()
 			}
 		}))
 	}
