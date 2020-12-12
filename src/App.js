@@ -1,4 +1,5 @@
 import React from 'react'
+import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
@@ -124,7 +125,8 @@ class App extends React.Component {
 			cheat: {
 				selectAll: false,
 				currentDisplayData: cheatsData.slice()
-			}
+			},
+			isHeavilyCommented: false
 		}
 
 		this.handleChestWorldChange = this.handleChestWorldChange.bind(this)
@@ -143,6 +145,7 @@ class App extends React.Component {
 		this.handleCriticalReplace = this.handleCriticalReplace.bind(this)
 		this.handleCheatReplace = this.handleCheatReplace.bind(this)
 
+		this.onCommentCheck = this.onCommentCheck.bind(this)
 		this.handleRewardTypeChange = this.handleRewardTypeChange.bind(this)
 		this.handleGenericChange = this.handleGenericChange.bind(this)
 		this.handleInputChange = this.handleInputChange.bind(this)
@@ -781,6 +784,12 @@ class App extends React.Component {
 	//#endregion
 
 	//#region General Functions
+	onCommentCheck() {
+		this.setState({
+			isHeavilyCommented: !this.state.isHeavilyCommented
+		})
+	}
+
 	handleRewardTypeChange(page, event) {
 		const currentReward = event.target.name.slice(0, -4)
 		this.setState(prevState => ({
@@ -844,187 +853,227 @@ class App extends React.Component {
 
 	handleSave() {
 		let chestPnachCodes = this.state.chest.allChests.map(worldList => {
-			let ret = '// ' + worldList.world + '\n'
-			let text
+			let ret = '// ' + worldList.world.toUpperCase() + '\n'
 			worldList.chests.forEach(chest => {
-				if (!chest.isReplaced) {
-					ret += '//'
-					text = ' is still '
-				} else
-					text = ' is now '
-
-				ret += 'patch=1,EE,' + chest.vanillaAddress + ',extended,0000' + chest.replacementReward.index.padStart(4, '0')
-				ret += ' // ' + chest.room + ', ' + chest.vanillaReward.reward + text + chest.replacementReward.reward + '\n'
+				if (chest.isReplaced) {
+					ret += 'patch=1,EE,' + chest.vanillaAddress + ',extended,0000' + chest.replacementReward.index.padStart(4, '0')
+					ret += ' // ' + chest.room + ', ' + chest.vanillaReward.reward + ' is now ' + chest.replacementReward.reward + '\n'
+				} else if (this.state.isHeavilyCommented) {
+					ret += '//patch=1,EE,' + chest.vanillaAddress + ',extended,0000' + chest.replacementReward.index.padStart(4, '0')
+					ret += ' // ' + chest.room + ', ' + chest.vanillaReward.reward + ' is still ' + chest.replacementReward.reward + '\n'
+				}
 			})
 			return ret
 		})
+		chestPnachCodes.unshift('//CHESTS\n')
 
 		let popupPnachCodes = this.state.popup.allPopups.map(worldList => {
-			let ret = '// ' + worldList.world + '\n'
-			let text
+			let ret = '// ' + worldList.world.toUpperCase() + '\n'
 			worldList.popups.forEach(popup => {
-				if (!popup.isReplaced) {
-					ret += '//'
-					text = ' is still '
-				} else
-					text = ' is now '
-
-				ret += 'patch=1,EE,' + popup.vanillaAddress + ',extended,0000' + popup.replacementReward.index.padStart(4, '0')
-				ret += ' // ' + popup.popup + ', ' + popup.vanillaReward.reward + text + popup.replacementReward.reward + '\n'
+				if (popup.isReplaced) {
+					ret += 'patch=1,EE,' + popup.vanillaAddress + ',extended,0000' + popup.replacementReward.index.padStart(4, '0')
+					ret += ' // ' + popup.popup + ', ' + popup.vanillaReward.reward + ' is now ' + popup.replacementReward.reward + '\n'
+				} else if (this.state.isHeavilyCommented) {
+					ret += '//patch=1,EE,' + popup.vanillaAddress + ',extended,0000' + popup.replacementReward.index.padStart(4, '0')
+					ret += ' // ' + popup.popup + ', ' + popup.vanillaReward.reward + ' is still ' + popup.replacementReward.reward + '\n'
+				}
 			})
 			return ret
 		})
+		popupPnachCodes.unshift('\n//POPUPS\n')
 
 		let formPnachCodes = this.state.form.allForms.map(driveFormList => {
-			let ret = '// ' + driveFormList.driveForm + '\n'
-			let text
+			let ret = '// ' + driveFormList.driveForm.toUpperCase() + '\n'
 			if (driveFormList.driveLevels.some(driveFormLevel => driveFormLevel.isRewardReplaced))
 				ret += driveFormList.removeGrowthJankCodes.join('')
 
 			driveFormList.driveLevels.forEach(driveFormLevel => {
-				if (!driveFormLevel.isRewardReplaced) {
-					ret += '//'
-					text = ' is still '
-				} else
-					text = ' is now '
+				if (driveFormLevel.isRewardReplaced) {
+					ret += 'patch=1,EE,' + driveFormLevel.vanillaAddress + ',extended,0000' + driveFormLevel.replacementReward.index.padStart(4, '0')
+					ret += ' // ' + driveFormLevel.level + ', ' + driveFormLevel.vanillaReward.reward + ' is now ' + driveFormLevel.replacementReward.reward + '\n'
+				} else if (this.state.isHeavilyCommented) {
+					ret += '//patch=1,EE,' + driveFormLevel.vanillaAddress + ',extended,0000' + driveFormLevel.replacementReward.index.padStart(4, '0')
+					ret += ' // ' + driveFormLevel.level + ', ' + driveFormLevel.vanillaReward.reward + ' is still ' + driveFormLevel.replacementReward.reward + '\n'
+				}
 
-				ret += 'patch=1,EE,' + driveFormLevel.vanillaAddress + ',extended,0000' + driveFormLevel.replacementReward.index.padStart(4, '0')
-				ret += ' // ' + driveFormLevel.level + ', ' + driveFormLevel.vanillaReward.reward + text + driveFormLevel.replacementReward.reward + '\n'
-
-				if (!driveFormLevel.isEXPReplaced) {
-					ret += '//'
-					text = ' is still '
-				} else
-					text = ' is '
-
-				ret += 'patch=1,EE,' + driveFormLevel.EXPAddress + ',extended,' + driveFormLevel.replacementEXP.toString(16).toUpperCase().padStart(8, 0)
-				ret += ' // ' + driveFormLevel.replacementEXP + ' experience' + text + 'required to reach ' + driveFormLevel.level + '\n'
+				if (driveFormLevel.isEXPReplaced) {
+					ret += 'patch=1,EE,' + driveFormLevel.EXPAddress + ',extended,' + driveFormLevel.replacementEXP.toString(16).toUpperCase().padStart(8, 0)
+					ret += ' // ' + driveFormLevel.replacementEXP + ' experience is now required to reach ' + driveFormLevel.level + '\n'
+				} else if (this.state.isHeavilyCommented) {
+					ret += '//patch=1,EE,' + driveFormLevel.EXPAddress + ',extended,' + driveFormLevel.replacementEXP.toString(16).toUpperCase().padStart(8, 0)
+					ret += ' // ' + driveFormLevel.replacementEXP + ' experience is still required to reach ' + driveFormLevel.level + '\n'
+				}
 			})
 			return ret
 		})
+		formPnachCodes.unshift('\n//DRIVE FORMS\n')
 
 		let equipmentPnachCodes = this.state.equipment.allEquipments.map(equipment => {
-			let ret = '// ' + equipment.equipmentType + '\n'
+			let ret = '// ' + equipment.equipmentType.toUpperCase() + '\n'
 
 			equipment.equipments.forEach(eq => {
-				ret += '// ' + eq.name + '\n'
+				let text = '// ' + eq.name + '\n'
 
-				if (!eq.isAbilityReplaced)
-					ret += '//'
-				ret += 'patch=1,EE,' + eq.abilityAddress + ',extended,0000' + eq.replacementAbility.index.padStart(4, '0') + ' // Ability: ' + eq.replacementAbility.reward + '\n'
+				if (this.state.isHeavilyCommented || eq.isAbilityReplaced || eq.isStatsReplaced || eq.isElementalResistanceChanged || eq.isOtherResistanceChanged)
+					ret += text
+				text = ''
 
-				if (!eq.isStatsReplaced)
-					ret += '//'
-				ret += 'patch=1,EE,' + eq.statAddress + ',extended,'
-				ret += eq.ap.toString(16).toUpperCase().padStart(2, '0') + eq.defense.toString(16).toUpperCase().padStart(2, '0')
-				ret += eq.magic.toString(16).toUpperCase().padStart(2, '0') + eq.strength.toString(16).toUpperCase().padStart(2, '0')
-				ret += ' // AP:' + eq.ap + ' Defense:' + eq.defense + ' Magic:' + eq.magic + ' Strength:' + eq.strength + '\n'
+				text = 'patch=1,EE,' + eq.abilityAddress + ',extended,0000' + eq.replacementAbility.index.padStart(4, '0') + ' // Ability: ' + eq.replacementAbility.reward + '\n'
+				if (eq.isAbilityReplaced)
+					ret += text
+				else if (this.state.isHeavilyCommented)
+					ret += '//' + text
+				text = ''
 
-				if (!eq.isElementalResistanceChanged)
-					ret += '//'
-				ret += 'patch=1,EE,' + eq.elementalResistanceAddress + ',extended,'
-				ret += (100 - eq.thunderResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - eq.blizzardResistance).toString(16).toUpperCase().padStart(2, '0')
-				ret += (100 - eq.fireResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - eq.physicalResistance).toString(16).toUpperCase().padStart(2, '0')
-				ret += ' // Thunder:' + eq.thunderResistance + '% Blizzard:' + eq.blizzardResistance
-				ret += '% Fire:' + eq.fireResistance + '% Physical:' + eq.physicalResistance + '%\n'
+				text += 'patch=1,EE,' + eq.statAddress + ',extended,'
+				text += eq.ap.toString(16).toUpperCase().padStart(2, '0') + eq.defense.toString(16).toUpperCase().padStart(2, '0')
+				text += eq.magic.toString(16).toUpperCase().padStart(2, '0') + eq.strength.toString(16).toUpperCase().padStart(2, '0')
+				text += ' // AP:' + eq.ap + ' Defense:' + eq.defense + ' Magic:' + eq.magic + ' Strength:' + eq.strength + '\n'
+				if (eq.isStatsReplaced)
+					ret += text
+				else if (this.state.isHeavilyCommented)
+					ret += '//' + text
+				text = ''
 
-				if (!eq.isOtherResistanceChanged)
-					ret += '//'
-				ret += 'patch=1,EE,' + eq.otherResistanceAddress + ',extended,00' + (100 - eq.universalResistance).toString(16).toUpperCase().padStart(2, '0')
-				ret += (100 - eq.lightResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - eq.darkResistance).toString(16).toUpperCase().padStart(2, '0')
-				ret += ' // Universal:' + eq.universalResistance + '% Light:' + eq.lightResistance + '% Dark:' + eq.darkResistance + '%\n'
+				text += 'patch=1,EE,' + eq.elementalResistanceAddress + ',extended,'
+				text += (100 - eq.thunderResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - eq.blizzardResistance).toString(16).toUpperCase().padStart(2, '0')
+				text += (100 - eq.fireResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - eq.physicalResistance).toString(16).toUpperCase().padStart(2, '0')
+				text += ' // Thunder:' + eq.thunderResistance + '% Blizzard:' + eq.blizzardResistance
+				text += '% Fire:' + eq.fireResistance + '% Physical:' + eq.physicalResistance + '%\n'
+				if (eq.isElementalResistanceChanged)
+					ret += text
+				else if (this.state.isHeavilyCommented)
+					ret += '//' + text
+				text = ''
+
+				text += 'patch=1,EE,' + eq.otherResistanceAddress + ',extended,00' + (100 - eq.universalResistance).toString(16).toUpperCase().padStart(2, '0')
+				text += (100 - eq.lightResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - eq.darkResistance).toString(16).toUpperCase().padStart(2, '0')
+				text += ' // Universal:' + eq.universalResistance + '% Light:' + eq.lightResistance + '% Dark:' + eq.darkResistance + '%\n'
+				if (eq.isOtherResistanceChanged)
+					ret += text
+				else if (this.state.isHeavilyCommented)
+					ret += '//' + text
 			})
 			return ret
 		})
+		equipmentPnachCodes.unshift('\nEQUIPMENT\n')
 
 		let bonusPnachCodes = this.state.bonus.allBonuses.map(character => {
-			let ret = '// ' + character.character + '\n'
+			let ret = '// ' + character.character.toUpperCase() + '\n'
 			character.characterBonuses.forEach(world => {
-				ret += '// ' + world.world + '\n'
+				ret += '// ' + world.world.toUpperCase() + '\n'
 				world.worldBonuses.forEach(bonus => {
-					// if (bonus.isRewardsReplaced || bonus.isStatsReplaced || bonus.isSlotsReplaced)
-					ret += '// ' + bonus.fight + '\n'
+					let text = '// ' + bonus.fight + '\n'
+					if (this.state.isHeavilyCommented || bonus.isRewardsReplaced || bonus.isStatsReplaced || bonus.isSlotsReplaced)
+						ret += text
+					text = ''
 
-					if (!bonus.isStatsReplaced)
-						ret += '//'
-					ret += 'patch=1,EE,' + bonus.statAddress + ',extended,0000';
-					ret += bonus.mpIncrease.toString(16).toUpperCase().padStart(2, '0') + bonus.hpIncrease.toString(16).toUpperCase().padStart(2, '0');
-					ret += ' // MP:' + bonus.mpIncrease + ' HP:' + bonus.hpIncrease + '\n';
+					text += 'patch=1,EE,' + bonus.statAddress + ',extended,0000'
+					text += bonus.mpIncrease.toString(16).toUpperCase().padStart(2, '0') + bonus.hpIncrease.toString(16).toUpperCase().padStart(2, '0')
+					text += ' // MP:' + bonus.mpIncrease + ' HP:' + bonus.hpIncrease + '\n'
+					if (bonus.isStatsReplaced)
+						ret += text
+					else if (this.state.isHeavilyCommented)
+						ret += '//' + text
+					text = ''
 
-					if (!bonus.isSlotsReplaced)
-						ret += '//'
-					ret += 'patch=1,EE,' + bonus.slotAddress + ',extended,';
-					ret += bonus.armorSlotIncrease.toString(16).toUpperCase().padStart(2, '0') + bonus.accessorySlotIncrease.toString(16).toUpperCase().padStart(2, '0');
-					ret += bonus.itemSlotIncrease.toString(16).toUpperCase().padStart(2, '0') + bonus.driveGaugeIncrease.toString(16).toUpperCase().padStart(2, '0');
-					ret += ' // Armor Slot:+' + bonus.armorSlotIncrease + ' Accessory Slot:+' + bonus.accessorySlotIncrease;
-					ret += ' Item Slot:+' + bonus.itemSlotIncrease + ' Drive Gauge:+' + bonus.driveGaugeIncrease + '\n';
+					text += 'patch=1,EE,' + bonus.slotAddress + ',extended,'
+					text += bonus.armorSlotIncrease.toString(16).toUpperCase().padStart(2, '0') + bonus.accessorySlotIncrease.toString(16).toUpperCase().padStart(2, '0')
+					text += bonus.itemSlotIncrease.toString(16).toUpperCase().padStart(2, '0') + bonus.driveGaugeIncrease.toString(16).toUpperCase().padStart(2, '0')
+					text += ' // Armor Slot:+' + bonus.armorSlotIncrease + ' Accessory Slot:+' + bonus.accessorySlotIncrease
+					text += ' Item Slot:+' + bonus.itemSlotIncrease + ' Drive Gauge:+' + bonus.driveGaugeIncrease + '\n'
+					if (bonus.isSlotsReplaced)
+						ret += text
+					else if (this.state.isHeavilyCommented)
+						ret += '//' + text
+					text = ''
 
-					if (!bonus.isRewardsReplaced)
-						ret += '//'
-					ret += 'patch=1,EE,' + bonus.rewardAddress + ',extended,' + bonus.replacementReward2.index.padStart(4, '0') + bonus.replacementReward1.index.padStart(4, '0');
-					ret += ' // Replacement Reward #2:' + bonus.replacementReward2.reward + ', Replacement Reward #1:' + bonus.replacementReward1.reward + '\n';
+					text += 'patch=1,EE,' + bonus.rewardAddress + ',extended,' + bonus.replacementReward2.index.padStart(4, '0') + bonus.replacementReward1.index.padStart(4, '0')
+					text += ' // Replacement Reward #2:' + bonus.replacementReward2.reward + ', Replacement Reward #1:' + bonus.replacementReward1.reward + '\n'
+					if (bonus.isRewardsReplaced)
+						ret += text
+					else if (this.state.isHeavilyCommented)
+						ret += '//' + text
 				})
 			})
 			return ret
 		})
+		bonusPnachCodes.unshift('\n//BONUS REWARDS\n')
 
 		let levelPnachCodes = this.state.level.currentDisplayData.map(l => {
 			let ret = '// Level: ' + l.level + '\n'
+			let text = ''
 
 			if (l.level === 99)
 				ret += '// Cannot Level to 100 so experience is not changed\n'
 			else {
-				if (!l.isEXPReplaced)
-					ret += '//'
-				ret += 'patch=1,EE,' + l.expAddress + ',extended,' + l.replacedEXP.toString(16).toUpperCase().padStart(8, '0')
-				ret += ' // Level ' + l.level + ' at ' + l.replacedEXP + ' experience\n'
+				text += 'patch=1,EE,' + l.expAddress + ',extended,' + l.replacedEXP.toString(16).toUpperCase().padStart(8, '0')
+				text += ' // Level ' + l.level + ' at ' + l.replacedEXP + ' experience\n'
+				if (l.isEXPReplaced)
+					ret += text
+				else if (this.state.isHeavilyCommented)
+					ret += '//' + text
 			}
+			text = ''
 
-			if (!l.isStatsReplaced)
-				ret += '//'
-			ret += 'patch=1,EE,' + l.statAddress + ',extended,'
-			ret += l.standardAP.toString(16).toUpperCase().padStart(2, '0') + l.defense.toString(16).toUpperCase().padStart(2, '0')
-			ret += l.magic.toString(16).toUpperCase().padStart(2, '0') + l.strength.toString(16).toUpperCase().padStart(2, '0')
-			ret += ' // AP:' + l.standardAP.toString() + ' Magic:' + l.magic.toString() + ' Defense:' + l.defense.toString() + ' Strength:' + l.strength.toString() + '\n'
+			text += 'patch=1,EE,' + l.statAddress + ',extended,'
+			text += l.standardAP.toString(16).toUpperCase().padStart(2, '0') + l.defense.toString(16).toUpperCase().padStart(2, '0')
+			text += l.magic.toString(16).toUpperCase().padStart(2, '0') + l.strength.toString(16).toUpperCase().padStart(2, '0')
+			text += ' // AP:' + l.standardAP.toString() + ' Magic:' + l.magic.toString() + ' Defense:' + l.defense.toString() + ' Strength:' + l.strength.toString() + '\n'
+			if (l.isStatsReplaced)
+				ret += text
+			else if (this.state.isHeavilyCommented)
+				ret += '//' + text
+			text = ''
 
 			if (l.level === 1)
 				ret += '// No Level 1 Dream Weapon Rewards\n'
 			else {
-				if (!l.isSwordReplaced)
-					ret += '//'
-				ret += 'patch=1,EE,' + l.swordAddress + ',extended,0000' + l.replacementSwordReward.index + ' // Sword Reward: ' + l.replacementSwordReward.reward + '\n'
+				text += 'patch=1,EE,' + l.swordAddress + ',extended,0000' + l.replacementSwordReward.index + ' // Sword Reward: ' + l.replacementSwordReward.reward + '\n'
+				if (l.isSwordReplaced)
+					ret += text
+				else if (this.state.isHeavilyCommented)
+					ret += '//' + text
+				text = ''
 
-				if (!l.isShieldReplaced)
-					ret += '//'
-				ret += 'patch=1,EE,' + l.shieldAddress + ',extended,0000' + l.replacementShieldReward.index + ' // Shield Reward: ' + l.replacementShieldReward.reward + '\n'
+				text += 'patch=1,EE,' + l.shieldAddress + ',extended,0000' + l.replacementShieldReward.index + ' // Shield Reward: ' + l.replacementShieldReward.reward + '\n'
+				if (l.isShieldReplaced)
+					ret += text
+				else if (this.state.isHeavilyCommented)
+					ret += '//' + text
+				text = ''
 
-				if (!l.isStaffReplaced)
-					ret += '//'
-				ret += 'patch=1,EE,' + l.staffAddress + ',extended,0000' + l.replacementStaffReward.index + ' // Staff Reward: ' + l.replacementStaffReward.reward + '\n'
+				text += 'patch=1,EE,' + l.staffAddress + ',extended,0000' + l.replacementStaffReward.index + ' // Staff Reward: ' + l.replacementStaffReward.reward + '\n'
+				if (l.isStaffReplaced)
+					ret += text
+				else if (this.state.isHeavilyCommented)
+					ret += '//' + text
 			}
 			return ret
 		})
+		levelPnachCodes.unshift('\n//LEVEL REWARDS\n')
 
 		let criticalPnachCodes = this.state.critical.currentDisplayData.map(ce => {
 			let ret = ''
-			let text
-			if (!ce.isReplaced) {
-				ret += '//'
-				text = ' is still '
-			} else
-				text = ' is now '
 
-			ret += 'patch=1,EE,' + ce.vanillaAddress + ',extended,0000' + ce.replacementReward.index.padStart(4, '0')
-			ret += ' // ' + ce.vanillaReward.reward + text + ce.replacementReward.reward + '\n'
+			if (ce.isReplaced) {
+				ret += 'patch=1,EE,' + ce.vanillaAddress + ',extended,0000' + ce.replacementReward.index.padStart(4, '0')
+				ret += ' // ' + ce.vanillaReward.reward + ' is now ' + ce.replacementReward.reward + '\n'
+			} else if (this.state.isHeavilyCommented) {
+				ret += '//patch=1,EE,' + ce.vanillaAddress + ',extended,0000' + ce.replacementReward.index.padStart(4, '0')
+				ret += ' // ' + ce.vanillaReward.reward + ' is still ' + ce.replacementReward.reward + '\n'
+			}
 			return ret
 		})
+		criticalPnachCodes.unshift('\n//CRITICAL EXTRAS\n')
 
-		let cheatPnachCodes = this.state.cheat.currentDisplayData.map(cheat => {
+		let cheatPnachCodes = this.state.cheat.currentDisplayData.filter(cheat => cheat.isActive).map(cheat => {
 			let ret = '//' + cheat.name + '\n'
 			ret += cheat.code.join('\n')
 			ret += '\n'
 			return ret
 		})
+		cheatPnachCodes.unshift('\n//CHEAT CODES\n')
 
 		let pnachCodes = chestPnachCodes.concat(popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes, criticalPnachCodes, cheatPnachCodes)
 
@@ -1042,7 +1091,7 @@ class App extends React.Component {
 			let ret = world.chests.filter(chest => chest.isReplaced).map(chest => {
 				let chestRet = '{"replacementReward":{"reward":' + JSON.stringify(chest.replacementReward.reward) + ',"index":"' + chest.replacementReward.index + '"},'
 				chestRet += '"vanillaAddress":"' + chest.vanillaAddress + '",'
-				chestRet += '"isReplaced":"' + chest.isReplaced + '"},'
+				chestRet += '"isReplaced":' + chest.isReplaced + '},'
 				return chestRet
 			})
 			return (ret.length === 0 ? worldRet : worldRet + ret.join('').slice(0, -1)) + ']},'
@@ -1055,7 +1104,7 @@ class App extends React.Component {
 				let popupRet = '{"replacementReward":{"reward":' + JSON.stringify(popup.replacementReward.reward) + ',"index":"' + popup.replacementReward.index + '"},'
 				popupRet += '"vanillaAddress":"' + popup.vanillaAddress + '",'
 				popupRet += '"isReplaced":' + popup.isReplaced + ','
-				popupRet += '"isAbility":' + popup.isAbility + ','
+				popupRet += '"isAbility":' + popup.isAbility + '},'
 				return popupRet
 			})
 			return (ret.length === 0 ? worldRet : worldRet + ret.join('').slice(0, -1)) + ']},'
@@ -1138,41 +1187,49 @@ class App extends React.Component {
 		})
 		bonusSaveData = ['"bonusData":[', bonusSaveData.join('').slice(0, -1), '],']
 
-		let levelSaveData = this.state.level.currentDisplayData.filter(l => (l.isEXPReplaced || l.isStatsReplaced
-			|| l.isSwordReplaced || l.isShieldReplaced || l.isStaffReplaced)).map(level => {
-				let levelRet = '{"level":' + level.level + ','
-				levelRet += '"isEXPReplaced":' + level.isEXPReplaced + ','
-				if (level.isEXPReplaced) {
-					levelRet += '"replacedEXP":' + level.replacedEXP + ','
-				}
-				levelRet += '"isStatsReplaced":' + level.isStatsReplaced + ','
-				if (level.isStatsReplaced) {
-					levelRet += '"standardAP":' + level.standardAP + ','
-					levelRet += '"defense":' + level.defense + ','
-					levelRet += '"magic":' + level.magic + ','
-					levelRet += '"strength":' + level.strength + ','
-				}
-				levelRet += '"isSwordReplaced":' + level.isSwordReplaced + ','
-				if (level.isSwordReplaced) {
-					levelRet += '"replacementSwordReward":{'
-					levelRet += '"reward":' + JSON.stringify(level.replacementSwordReward.reward) + ','
-					levelRet += '"index":"' + level.replacementSwordReward.index + '"},'
-				}
-				levelRet += '"isShieldReplaced":' + level.isShieldReplaced + ','
-				if (level.isShieldReplaced) {
-					levelRet += '"replacementShieldReward":{'
-					levelRet += '"reward":' + JSON.stringify(level.replacementShieldReward.reward) + ','
-					levelRet += '"index":"' + level.replacementShieldReward.index + '"},'
-				}
-				levelRet += '"isStaffReplaced":' + level.isStaffReplaced + ','
-				if (level.isStaffReplaced) {
-					levelRet += '"replacementStaffReward":{'
-					levelRet += '"reward":' + JSON.stringify(level.replacementStaffReward.reward) + ','
-					levelRet += '"index":"' + level.replacementStaffReward.index + '"},'
-				}
-				return levelRet.slice(0, -1) + '},'
-			})
+		let newLevelsData = this.state.level.currentDisplayData.filter(l => (l.isEXPReplaced || l.isStatsReplaced || l.isSwordReplaced || l.isShieldReplaced || l.isStaffReplaced))
+		let levelSaveData = newLevelsData.map(level => {
+			let levelRet = '{"level":' + level.level + ','
+			levelRet += '"isEXPReplaced":' + level.isEXPReplaced + ','
+			if (level.isEXPReplaced) {
+				levelRet += '"replacedEXP":' + level.replacedEXP + ','
+			}
+			levelRet += '"isStatsReplaced":' + level.isStatsReplaced + ','
+			if (level.isStatsReplaced) {
+				levelRet += '"standardAP":' + level.standardAP + ','
+				levelRet += '"defense":' + level.defense + ','
+				levelRet += '"magic":' + level.magic + ','
+				levelRet += '"strength":' + level.strength + ','
+			}
+			levelRet += '"isSwordReplaced":' + level.isSwordReplaced + ','
+			if (level.isSwordReplaced) {
+				levelRet += '"replacementSwordReward":{'
+				levelRet += '"reward":' + JSON.stringify(level.replacementSwordReward.reward) + ','
+				levelRet += '"index":"' + level.replacementSwordReward.index + '"},'
+			}
+			levelRet += '"isShieldReplaced":' + level.isShieldReplaced + ','
+			if (level.isShieldReplaced) {
+				levelRet += '"replacementShieldReward":{'
+				levelRet += '"reward":' + JSON.stringify(level.replacementShieldReward.reward) + ','
+				levelRet += '"index":"' + level.replacementShieldReward.index + '"},'
+			}
+			levelRet += '"isStaffReplaced":' + level.isStaffReplaced + ','
+			if (level.isStaffReplaced) {
+				levelRet += '"replacementStaffReward":{'
+				levelRet += '"reward":' + JSON.stringify(level.replacementStaffReward.reward) + ','
+				levelRet += '"index":"' + level.replacementStaffReward.index + '"},'
+			}
+			return levelRet.slice(0, -1) + '},'
+		})
 		levelSaveData = ['"levelsData":[', levelSaveData.join('').slice(0, -1), '],']
+
+		let criticalSaveData = this.state.critical.currentDisplayData.filter(critical => critical.isReplaced).map(critical => {
+			let critRet = '{"replacementReward":{"reward":' + JSON.stringify(critical.replacementReward.reward) + ',"index":"' + critical.replacementReward.index + '"},'
+			critRet += '"vanillaAddress":"' + critical.vanillaAddress + '",'
+			critRet += '"isReplaced":' + critical.isReplaced + '},'
+			return critRet
+		})
+		criticalSaveData = ['"criticalsData":[', criticalSaveData.join('').slice(0, -1), '],']
 
 		let cheatSaveData = this.state.cheat.currentDisplayData.filter(cheat => cheat.isActive).map(cheat => {
 			return '{"name":' + JSON.stringify(cheat.name) + ',"isActive":' + cheat.isActive + '},'
@@ -1186,6 +1243,7 @@ class App extends React.Component {
 			equipmentSaveData.join(''),
 			bonusSaveData.join(''),
 			levelSaveData.join(''),
+			criticalSaveData.join(''),
 			cheatSaveData.join('').slice(0, -1),
 			'}']
 
@@ -1210,15 +1268,131 @@ class App extends React.Component {
 
 	handleLoadData(loadData) {
 		let allLoadData = JSON.parse(loadData)
-		let chestLoadData = _.merge(this.state.chest.allChests, allLoadData.chestsData)
-		let popupLoadData = _.merge(this.state.popup.allPopups, allLoadData.popupsData)
-		let formLoadData = _.merge(this.state.form.allForms, allLoadData.formsData)
-		let equipmentLoadData = _.merge(this.state.equipment.allEquipments, allLoadData.equipmentsData)
-		let bonusLoadData = _.merge(this.state.bonus.allBonuses, allLoadData.bonusData)
-		let levelLoadData = _.merge(this.state.level.currentDisplayData, allLoadData.levelsData)
-		let criticalLoadData = _.merge(this.state.critical.currentDisplayData, allLoadData.criticalsData)
-		let cheatLoadData = _.merge(this.state.cheat.currentDisplayData, allLoadData.cheatsData)
-		
+		let jsonIndex = 0
+
+		let chestLoadData = this.state.chest.allChests.map((world, worldIndex) => {
+			jsonIndex = 0
+			let newChests = world.chests.map(chest => {
+				let replacedChests = allLoadData.chestsData[worldIndex].chests
+				if (jsonIndex >= replacedChests.length)
+					return chest
+				if (chest.vanillaAddress === replacedChests[jsonIndex].vanillaAddress) {
+					_.merge(chest, replacedChests[jsonIndex])
+					jsonIndex++
+				}
+				return chest
+			})
+			return {
+				world: world.world,
+				chests: newChests
+			}
+		})
+		let popupLoadData = this.state.popup.allPopups.map((world, worldIndex) => {
+			jsonIndex = 0
+			let newPopups = world.popups.map(popup => {
+				let replacedPopups = allLoadData.popupsData[worldIndex].popups
+				if (jsonIndex >= replacedPopups.length)
+					return popup
+				if (popup.vanillaAddress === replacedPopups[jsonIndex].vanillaAddress) {
+					_.merge(popup, replacedPopups[jsonIndex])
+					jsonIndex++
+				}
+				return popup
+			})
+			return {
+				world: world.world,
+				popups: newPopups
+			}
+		})
+		let formLoadData = this.state.form.allForms.map((driveForm, driveFormIndex) => {
+			jsonIndex = 0
+			let newDriveLevels = driveForm.driveLevels.map(driveLevel => {
+				let replacedDriveLevels = allLoadData.formsData[driveFormIndex].driveLevels
+				if (jsonIndex >= replacedDriveLevels.length)
+					return driveLevel
+				if (driveLevel.level === replacedDriveLevels[jsonIndex].level) {
+					_.merge(driveLevel, replacedDriveLevels[jsonIndex])
+					jsonIndex++
+				}
+				return driveLevel
+			})
+			return {
+				driveForm: driveForm.driveForm,
+				removeGrowthJankCodes: driveForm.removeGrowthJankCodes,
+				driveLevels: newDriveLevels
+			}
+		})
+		let equipmentLoadData = this.state.equipment.allEquipments.map((equipmentType, equipmentTypeIndex) => {
+			jsonIndex = 0
+			let newEquipments = equipmentType.equipments.map(equipment => {
+				let replacedEquipments = allLoadData.equipmentsData[equipmentTypeIndex].equipments
+				if (jsonIndex >= replacedEquipments.length)
+					return equipment
+				if (equipment.name === replacedEquipments[jsonIndex].name) {
+					_.merge(equipment, replacedEquipments[jsonIndex])
+					jsonIndex++
+				}
+				return equipment
+			})
+			return {
+				equipmentType: equipmentType.equipmentType,
+				equipments: newEquipments
+			}
+		})
+		let bonusLoadData = this.state.bonus.allBonuses.map((character, characterIndex) => {
+			let newCharacterBonuses = character.characterBonuses.map((world, worldIndex) => {
+				let jsonIndex = 0
+				let newWorldBonuses = world.worldBonuses.map(bonus => {
+					let replacedBonuses = allLoadData.bonusData[characterIndex].characterBonuses[worldIndex].worldBonuses
+					if (jsonIndex >= replacedBonuses.length)
+						return bonus
+					if (bonus.fight === replacedBonuses[jsonIndex].fight) {
+						_.merge(bonus, replacedBonuses[jsonIndex])
+						jsonIndex++
+					}
+					return bonus
+				})
+				return {
+					world: world.world,
+					worldBonuses: newWorldBonuses
+				}
+			})
+			return {
+				character: character.character,
+				characterBonuses: newCharacterBonuses
+			}
+		})
+		jsonIndex = 0
+		let levelLoadData = this.state.level.currentDisplayData.map(level => {
+			if (jsonIndex >= allLoadData.levelsData.length)
+				return level
+			if (level.level === allLoadData.levelsData[jsonIndex].level) {
+				_.merge(level, allLoadData.levelsData[jsonIndex])
+				jsonIndex++
+			}
+			return level
+		})
+		jsonIndex = 0
+		let criticalLoadData = this.state.critical.currentDisplayData.map(critExtra => {
+			if (jsonIndex >= allLoadData.criticalsData.length)
+				return critExtra
+			if (critExtra.vanillaAddress === allLoadData.criticalsData[jsonIndex].vanillaAddress) {
+				_.merge(critExtra, allLoadData.criticalsData[jsonIndex])
+				jsonIndex++
+			}
+			return critExtra
+		})
+		jsonIndex = 0
+		let cheatLoadData = this.state.cheat.currentDisplayData.map(cheat => {
+			if (jsonIndex >= allLoadData.cheatsData.length)
+				return cheat
+			if (cheat.name === allLoadData.cheatsData[jsonIndex].name) {
+				_.merge(cheat, allLoadData.cheatsData[jsonIndex])
+				jsonIndex++
+			}
+			return cheat
+		})
+
 		this.setState(prevState => ({
 			chest: {
 				...prevState.chest,
@@ -1365,6 +1539,13 @@ class App extends React.Component {
 						/>
 					</Tab>
 				</Tabs>
+				<Form.Check
+					type={'checkbox'}
+					id={'commentCheckBox'}
+					label={'Include Thorough Comments?'}
+					checked={this.state.isHeavilyCommented}
+					onChange={this.onCommentCheck}
+				/>
 				<Button variant='outline-dark'
 					name='saveButton'
 					onClick={this.handleSave}
