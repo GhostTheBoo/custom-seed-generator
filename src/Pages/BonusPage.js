@@ -35,6 +35,7 @@ function BonusPage(props) {
 				<Form.Row>
 					<Col>
 						<RewardTypeSelect
+							label={'"A"'}
 							class={'bonus'}
 							currentRewardType={props.bonusData.currentRewardType}
 							name={'currentARewardType'}
@@ -43,6 +44,7 @@ function BonusPage(props) {
 					</Col>
 					<Col>
 						<RewardSelect
+							label={'"A"'}
 							class={'bonus'}
 							rewardList={props.rewardListA}
 							currentReward={props.bonusData.currentReward}
@@ -52,6 +54,7 @@ function BonusPage(props) {
 					</Col>
 					<Col>
 						<RewardTypeSelect
+							label={'"B"'}
 							class={'bonus'}
 							currentRewardType={props.bonusData.currentRewardType}
 							name={'currentBRewardType'}
@@ -60,6 +63,7 @@ function BonusPage(props) {
 					</Col>
 					<Col>
 						<RewardSelect
+							label={'"B"'}
 							class={'bonus'}
 							rewardList={props.rewardListB}
 							currentReward={props.bonusData.currentReward}

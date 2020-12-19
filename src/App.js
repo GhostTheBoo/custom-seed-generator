@@ -125,8 +125,29 @@ class App extends React.Component {
 			cheat: {
 				selectAll: false,
 				currentDisplayData: cheatsData.slice()
-			},
-			isHeavilyCommented: false
+			}
+			// },
+			// startingStatus: {
+			// 	currentStartingKeyblade: 0,
+			// 	currentStartingArmor: 0,
+			// 	currentStartingAccessory: 0,
+			// 	currentStartingMunny: 0,
+			// 	currentStartingHP: 0,
+			// 	currentStartingMP: 0,
+			// 	currentStartingDrive: 0,
+			// 	startingData: {
+			// 		keyblade: 0,
+			// 		armor: 0,
+			// 		accessory: 0,
+			// 		munny: 0,
+			// 		HP: 0,
+			// 		MP: 0
+			// 	},
+			// 	isKeybladeChanged: false,
+			// 	isArmorChanged: false,
+			// 	isAccessoryChanged: false
+			// },
+			// isHeavilyCommented: false
 		}
 
 		this.handleChestWorldChange = this.handleChestWorldChange.bind(this)
@@ -1067,6 +1088,67 @@ class App extends React.Component {
 		})
 		criticalPnachCodes.unshift('\n//CRITICAL EXTRAS\n')
 
+		// let startingPnachCodes = '\n//STARTING STATUS\n'
+		// let initialData = this.state.startingStatus.startingData
+		// if (initialData.keyblade !== 0) {
+		// 	let keyblade = rewardsData[7].rewards[initialData.keyblade]
+		// 	startingPnachCodes += '// Starting Keyblade\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0050003,extended,0032DFC8\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0042002,extended,0032BAE0\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0030001,extended,0032BAE4\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0020001,extended,0032BAE6\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0010001,extended,0032BAE8\n'
+		// 	startingPnachCodes += 'patch=1,EE,1032E020,extended,0000' + keyblade.index.padStart(4, '0') + ' // ' + keyblade.reward + '\n'
+		// }
+		// if (this.state.startingStatus.isArmorChanged) {
+		// 	let armor = rewardsData[7].rewards[initialData.armor]
+		// 	startingPnachCodes += '// Starting Armor\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0050003,extended,0032DFC8\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0042002,extended,0032BAE0\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0030001,extended,0032BAE4\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0020001,extended,0032BAE6\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0010001,extended,0032BAE8\n'
+		// 	startingPnachCodes += 'patch=1,EE,1032E034,extended,0000' + armor.index.padStart(4, '0') + ' // ' + armor.reward + '\n'
+		// }
+		// if (this.state.startingStatus.isAccessoryChanged) {
+		// 	let accessory = rewardsData[7].rewards[initialData.accessory]
+		// 	startingPnachCodes += '// Starting Accessory\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0050003,extended,0032DFC8\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0042002,extended,0032BAE0\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0030001,extended,0032BAE4\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0020001,extended,0032BAE6\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0010001,extended,0032BAE8\n'
+		// 	startingPnachCodes += 'patch=1,EE,1032E044,extended,0000' + accessory.index.padStart(4, '0') + ' // ' + accessory.reward + '\n'
+		// }
+		// if (initialData.munny !== 0) {
+		// 	let munny = initialData.munny
+		// 	startingPnachCodes += '//Starting Munny\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0050003,extended,0032DFC8\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0042002,extended,0032BAE0\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0030001,extended,0032BAE4\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0020001,extended,0032BAE6\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0010001,extended,0032BAE8\n'
+		// 	startingPnachCodes += 'patch=1,EE,2032DF70,extended,' + munny.toString(16).toUpperCase().padStart(8, '0') + ' // ' + munny + ' munny\n'
+		// }
+		// if (initialData.HP !== 20) {
+		// 	let hp = initialData.HP
+		// 	startingPnachCodes += '//Starting Max HP\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0041A04,extended,0032BAE0\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0030001,extended,0032BAE4\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0020001,extended,0032BAE8\n'
+		// 	startingPnachCodes += 'patch=1,EE,01C6C754,extended,000000' + hp.toString(16).toUpperCase().padStart(2, '0') + ' // Max HP: ' + hp + '\n'
+		// 	startingPnachCodes += 'patch=1,EE,01C6C750,extended,000000' + hp.toString(16).toUpperCase().padStart(2, '0') + ' // Current HP: ' + hp + '\n'
+		// }
+		// if (initialData.MP !== 100) {
+		// 	let mp = initialData.MP
+		// 	startingPnachCodes += '//Starting Max MP\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0041A04,extended,0032BAE0\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0030001,extended,0032BAE4\n'
+		// 	startingPnachCodes += 'patch=1,EE,E0020001,extended,0032BAE8\n'
+		// 	startingPnachCodes += 'patch=1,EE,01C6C8D4,extended,000000' + mp.toString(16).toUpperCase().padStart(2, '0') + ' //Max MP: ' + mp + '\n'
+		// 	startingPnachCodes += 'patch=1,EE,01C6C8D0,extended,000000' + mp.toString(16).toUpperCase().padStart(2, '0') + ' //Current MP: ' + mp + '\n'
+		// }
+
 		let cheatPnachCodes = this.state.cheat.currentDisplayData.filter(cheat => cheat.isActive).map(cheat => {
 			let ret = '//' + cheat.name + '\n'
 			ret += cheat.code.join('\n')
@@ -1077,10 +1159,10 @@ class App extends React.Component {
 
 		let pnachCodes = chestPnachCodes.concat(popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes, criticalPnachCodes, cheatPnachCodes)
 
-		const element = document.createElement("a")
+		const element = document.createElement('a')
 		const file = new Blob(pnachCodes, { type: 'text/plain;charset=utf-8' })
 		element.href = URL.createObjectURL(file)
-		element.download = "F266B00B.pnach"
+		element.download = 'F266B00B.pnach'
 		document.body.appendChild(element)
 		element.click()
 	}

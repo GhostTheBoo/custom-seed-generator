@@ -176,12 +176,28 @@ They cannot be red.
 
 ## Things to be Implemented
 
-#### Save & Load Feature !ADDED!
+#### Starting Status
 
-After some bug fixing, I will come up with a glue and duct tape way of saving the current progress of the plando and loading it back in.
-For now, save often and copy/paste the files together when finished.
+I've been trying to include starting equipment but it just has not been functioning cleanly.
+Will return to this when I can figure out a nicer way of implementing it.
+
+#### Look and Feel
+
+Site legit looks like butt so any ideas or thoughts to improve it would be super awesome.
+I've mostly been focused on functionality so actual visuals are hard to do.
+
+#### Randomize
+
+I would love to implement the same random seed generation that val's site uses.
+Essentially replace whatever you want, and then randomize everything else.
+I want it to still kind of be compatible with Val's site where any replacements are either tracked or treated as junk.
+
+#### Tracker
+
+Keep track of how many important items have been used.
+Ex. 3 fires have been given to the player or 2 torn pages.
 
 #### General Requests
 
 Is there a crucial element missing?
-Let me know and I'll do my best to implement it or see any limitations.
+Let me know and I'll do my best to implement it or see any limitations!

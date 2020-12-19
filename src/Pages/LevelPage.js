@@ -15,6 +15,7 @@ function LevelPage(props) {
 				<Form.Row>
 					<Col>
 						<RewardTypeSelect
+							label={'Sword'}
 							class={'level'}
 							currentRewardType={props.levelData.currentSwordRewardType}
 							name={'currentSwordRewardType'}
@@ -23,6 +24,7 @@ function LevelPage(props) {
 					</Col>
 					<Col>
 						<RewardSelect
+							label={'Sword'}
 							class={'level'}
 							rewardList={props.swordRewardList}
 							currentReward={props.levelData.currentSwordReward}
@@ -32,6 +34,7 @@ function LevelPage(props) {
 					</Col>
 					<Col>
 						<RewardTypeSelect
+							label={'Shield'}
 							class={'level'}
 							currentRewardType={props.levelData.currentShieldRewardType}
 							name={'currentShieldRewardType'}
@@ -40,6 +43,7 @@ function LevelPage(props) {
 					</Col>
 					<Col>
 						<RewardSelect
+							label={'Shield'}
 							class={'level'}
 							rewardList={props.shieldRewardList}
 							currentReward={props.levelData.currentShieldReward}
@@ -49,6 +53,7 @@ function LevelPage(props) {
 					</Col>
 					<Col>
 						<RewardTypeSelect
+							label={'Staff'}
 							class={'level'}
 							currentRewardType={props.levelData.currentStaffRewardType}
 							name={'currentStaffRewardType'}
@@ -57,6 +62,7 @@ function LevelPage(props) {
 					</Col>
 					<Col>
 						<RewardSelect
+							label={'Staff'}
 							class={'level'}
 							rewardList={props.staffRewardList}
 							currentReward={props.levelData.currentStaffReward}
