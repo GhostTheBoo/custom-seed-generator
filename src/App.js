@@ -32,6 +32,8 @@ import criticalData from './Data/criticalData'
 import CheatPage from './Pages/CheatPage'
 import cheatsData from './Data/cheatsData'
 
+import startingStatusData from './Data/startingStatusData'
+
 class App extends React.Component {
 	constructor() {
 		super()
@@ -125,29 +127,17 @@ class App extends React.Component {
 			cheat: {
 				selectAll: false,
 				currentDisplayData: cheatsData.slice()
-			}
-			// },
-			// startingStatus: {
-			// 	currentStartingKeyblade: 0,
-			// 	currentStartingArmor: 0,
-			// 	currentStartingAccessory: 0,
-			// 	currentStartingMunny: 0,
-			// 	currentStartingHP: 0,
-			// 	currentStartingMP: 0,
-			// 	currentStartingDrive: 0,
-			// 	startingData: {
-			// 		keyblade: 0,
-			// 		armor: 0,
-			// 		accessory: 0,
-			// 		munny: 0,
-			// 		HP: 0,
-			// 		MP: 0
-			// 	},
-			// 	isKeybladeChanged: false,
-			// 	isArmorChanged: false,
-			// 	isAccessoryChanged: false
-			// },
-			// isHeavilyCommented: false
+			},
+			startingStatus: {
+				currentKeyblade: 0,
+				currentArmor: 0,
+				currentAccessory: 0,
+				currentMunny: 0,
+				currentHP: 0,
+				currentMP: 0,
+				startingStatusData: _.cloneDeep(startingStatusData)
+			},
+			isHeavilyCommented: false
 		}
 
 		this.handleChestWorldChange = this.handleChestWorldChange.bind(this)
@@ -1088,66 +1078,34 @@ class App extends React.Component {
 		})
 		criticalPnachCodes.unshift('\n//CRITICAL EXTRAS\n')
 
-		// let startingPnachCodes = '\n//STARTING STATUS\n'
-		// let initialData = this.state.startingStatus.startingData
-		// if (initialData.keyblade !== 0) {
-		// 	let keyblade = rewardsData[7].rewards[initialData.keyblade]
-		// 	startingPnachCodes += '// Starting Keyblade\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0050003,extended,0032DFC8\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0042002,extended,0032BAE0\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0030001,extended,0032BAE4\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0020001,extended,0032BAE6\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0010001,extended,0032BAE8\n'
-		// 	startingPnachCodes += 'patch=1,EE,1032E020,extended,0000' + keyblade.index.padStart(4, '0') + ' // ' + keyblade.reward + '\n'
-		// }
-		// if (this.state.startingStatus.isArmorChanged) {
-		// 	let armor = rewardsData[7].rewards[initialData.armor]
-		// 	startingPnachCodes += '// Starting Armor\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0050003,extended,0032DFC8\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0042002,extended,0032BAE0\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0030001,extended,0032BAE4\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0020001,extended,0032BAE6\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0010001,extended,0032BAE8\n'
-		// 	startingPnachCodes += 'patch=1,EE,1032E034,extended,0000' + armor.index.padStart(4, '0') + ' // ' + armor.reward + '\n'
-		// }
-		// if (this.state.startingStatus.isAccessoryChanged) {
-		// 	let accessory = rewardsData[7].rewards[initialData.accessory]
-		// 	startingPnachCodes += '// Starting Accessory\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0050003,extended,0032DFC8\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0042002,extended,0032BAE0\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0030001,extended,0032BAE4\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0020001,extended,0032BAE6\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0010001,extended,0032BAE8\n'
-		// 	startingPnachCodes += 'patch=1,EE,1032E044,extended,0000' + accessory.index.padStart(4, '0') + ' // ' + accessory.reward + '\n'
-		// }
-		// if (initialData.munny !== 0) {
-		// 	let munny = initialData.munny
-		// 	startingPnachCodes += '//Starting Munny\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0050003,extended,0032DFC8\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0042002,extended,0032BAE0\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0030001,extended,0032BAE4\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0020001,extended,0032BAE6\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0010001,extended,0032BAE8\n'
-		// 	startingPnachCodes += 'patch=1,EE,2032DF70,extended,' + munny.toString(16).toUpperCase().padStart(8, '0') + ' // ' + munny + ' munny\n'
-		// }
-		// if (initialData.HP !== 20) {
-		// 	let hp = initialData.HP
-		// 	startingPnachCodes += '//Starting Max HP\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0041A04,extended,0032BAE0\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0030001,extended,0032BAE4\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0020001,extended,0032BAE8\n'
-		// 	startingPnachCodes += 'patch=1,EE,01C6C754,extended,000000' + hp.toString(16).toUpperCase().padStart(2, '0') + ' // Max HP: ' + hp + '\n'
-		// 	startingPnachCodes += 'patch=1,EE,01C6C750,extended,000000' + hp.toString(16).toUpperCase().padStart(2, '0') + ' // Current HP: ' + hp + '\n'
-		// }
-		// if (initialData.MP !== 100) {
-		// 	let mp = initialData.MP
-		// 	startingPnachCodes += '//Starting Max MP\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0041A04,extended,0032BAE0\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0030001,extended,0032BAE4\n'
-		// 	startingPnachCodes += 'patch=1,EE,E0020001,extended,0032BAE8\n'
-		// 	startingPnachCodes += 'patch=1,EE,01C6C8D4,extended,000000' + mp.toString(16).toUpperCase().padStart(2, '0') + ' //Max MP: ' + mp + '\n'
-		// 	startingPnachCodes += 'patch=1,EE,01C6C8D0,extended,000000' + mp.toString(16).toUpperCase().padStart(2, '0') + ' //Current MP: ' + mp + '\n'
-		// }
+		let startingPnachCodes = '\n//STARTING STATUS\n'
+		let initialData = this.state.startingStatus.startingStatusData
+		if (initialData.isKeybladeChanged) {
+			let keyblade = initialData.startingKeyblade
+			startingPnachCodes += initialData.keybladeCode.join('') + keyblade.index.padStart(4, '0') + ' // ' + keyblade.reward + '\n'
+		}
+		if (initialData.isArmorChanged) {
+			let armor = initialData.startingArmor
+			startingPnachCodes += initialData.armorCode.join('') + armor.index.padStart(4, '0') + ' // ' + armor.reward + '\n'
+		}
+		if (initialData.isAccessoryChanged) {
+			let accessory = initialData.startingAccessory
+			startingPnachCodes += initialData.accessoryCode.join('') + accessory.index.padStart(4, '0') + ' // ' + accessory.reward + '\n'
+		}
+		if (initialData.startingMunny !== 0) {
+			startingPnachCodes += initialData.munnyCode.join('') + initialData.startingMunny.toString(16).toUpperCase().padStart(8, '0')
+			startingPnachCodes += ' // ' + initialData.startingMunny + ' munny\n'
+		}
+		if (initialData.startingHP !== 20) {
+			let hp = initialData.startingHP
+			startingPnachCodes += initialData.hpCode.slice(0, 5).join('') + hp.toString(16).toUpperCase().padStart(2, '0') + ' // Max HP: ' + hp + '\n'
+			startingPnachCodes += initialData.hpCode[5] + hp.toString(16).toUpperCase().padStart(2, '0') + ' // Current HP: ' + hp + '\n'
+		}
+		if (initialData.startingMP !== 20) {
+			let mp = initialData.startingMP
+			startingPnachCodes += initialData.mpCode.slice(0, 5).join('') + mp.toString(16).toUpperCase().padStart(2, '0') + ' // Max MP: ' + mp + '\n'
+			startingPnachCodes += initialData.mpCode[5] + mp.toString(16).toUpperCase().padStart(2, '0') + ' // Current MP: ' + mp + '\n'
+		}
 
 		let cheatPnachCodes = this.state.cheat.currentDisplayData.filter(cheat => cheat.isActive).map(cheat => {
 			let ret = '//' + cheat.name + '\n'
