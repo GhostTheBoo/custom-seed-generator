@@ -12,7 +12,7 @@ import EquipmentTable from '../Tables/EquipmentTable'
 
 function EquipmentPage(props) {
 	return (
-		<div>
+		<div style={props.style}>
 			<Form>
 				<Form.Row>
 					<GenericSelect

@@ -5,7 +5,7 @@ import CheatTable from '../Tables/CheatTable'
 
 function CheatPage(props) {
 	return (
-		<div>
+		<div style={props.style}>
 			<CheatTable
 				cheatData={props.cheatData.currentDisplayData}
 				onRowCheck={props.onRowCheck}

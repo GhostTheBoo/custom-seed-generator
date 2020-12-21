@@ -1518,11 +1518,18 @@ class App extends React.Component {
 	//#endregion
 
 	render() {
+		let styles = {
+			marginTop: '0',
+			marginRight: '10px',
+			marginBottom: '10px',
+			marginLeft: '10px'
+		}
 		return (
-			<div>
+			<div style={styles}>
 				<Tabs defaultActiveKey="chest" transition={false} id="noanim-tab-example">
 					<Tab eventKey="chest" title="Chest">
 						<ChestPage
+							style={styles}
 							chestData={this.state.chest}
 							rewardList={rewardsData[this.state.chest.currentRewardType].rewards}
 							handleWorldChange={this.handleChestWorldChange}
@@ -1535,6 +1542,7 @@ class App extends React.Component {
 					</Tab>
 					<Tab eventKey="popup" title="Popup">
 						<PopupPage
+							style={styles}
 							popupData={this.state.popup}
 							rewardList={rewardsData[this.state.popup.currentRewardType].rewards}
 							handleWorldChange={this.handlePopupWorldChange}
@@ -1547,6 +1555,7 @@ class App extends React.Component {
 					</Tab>
 					<Tab eventKey="form" title="Form">
 						<FormPage
+							style={styles}
 							formData={this.state.form}
 							rewardList={rewardsData[this.state.form.currentRewardType].rewards}
 							handleFormChange={this.handleFormChange}
@@ -1561,6 +1570,7 @@ class App extends React.Component {
 					</Tab>
 					<Tab eventKey="equipment" title="Equipment">
 						<EquipmentPage
+							style={styles}
 							equipmentData={this.state.equipment}
 							rewardList={rewardsData[this.state.equipment.currentRewardType].rewards}
 							handleEquipmentTypeChange={this.handleEquipmentTypeChange}
@@ -1574,6 +1584,7 @@ class App extends React.Component {
 					</Tab>
 					<Tab eventKey="bonus" title="Bonus">
 						<BonusPage
+							style={styles}
 							bonusData={this.state.bonus}
 							rewardListA={rewardsData[this.state.bonus.currentARewardType].rewards}
 							rewardListB={rewardsData[this.state.bonus.currentBRewardType].rewards}
@@ -1589,6 +1600,7 @@ class App extends React.Component {
 					</Tab>
 					<Tab eventKey="level" title="Level">
 						<LevelPage
+							style={styles}
 							levelData={this.state.level}
 							swordRewardList={rewardsData[this.state.level.currentSwordRewardType].rewards}
 							shieldRewardList={rewardsData[this.state.level.currentShieldRewardType].rewards}
@@ -1603,6 +1615,7 @@ class App extends React.Component {
 					</Tab>
 					<Tab eventKey="critical" title="Critical Extra">
 						<CriticalPage
+							style={styles}
 							criticalData={this.state.critical}
 							rewardList={rewardsData[this.state.critical.currentRewardType].rewards}
 							onRewardTypeChange={(event) => this.handleRewardTypeChange('critical', event)}
@@ -1614,6 +1627,7 @@ class App extends React.Component {
 					</Tab>
 					<Tab eventKey="cheat" title="Cheat">
 						<CheatPage
+							style={styles}
 							cheatData={this.state.cheat}
 							onRowCheck={(event) => this.onRowCheck('cheat', event)}
 							checkAll={(event) => this.checkAll('cheat', event)}

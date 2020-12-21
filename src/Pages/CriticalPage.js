@@ -9,7 +9,7 @@ import CriticalTable from '../Tables/CriticalTable'
 
 function CriticalPage(props) {
 	return (
-		<div>
+		<div style={props.style}>
 			<Form>
 				<Form.Row>
 					<Col>

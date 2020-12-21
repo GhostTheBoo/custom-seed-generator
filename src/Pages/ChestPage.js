@@ -12,7 +12,7 @@ import ChestTable from '../Tables/ChestTable'
 
 function ChestPage(props) {
 	return (
-		<div>
+		<div style={props.style}>
 			<Form>
 				<Form.Row>
 					<GenericSelect

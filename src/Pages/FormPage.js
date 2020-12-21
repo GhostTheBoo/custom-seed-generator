@@ -13,7 +13,7 @@ import FormTable from '../Tables/FormTable'
 
 function FormPage(props) {
 	return (
-		<div>
+		<div style={props.style}>
 			<Form>
 				<Form.Row>
 					<GenericSelect

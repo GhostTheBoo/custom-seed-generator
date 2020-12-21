@@ -12,7 +12,7 @@ import BonusTable from '../Tables/BonusTable'
 
 function BonusPage(props) {
 	return (
-		<div>
+		<div style={props.style}>
 			<Form>
 				<Form.Row>
 					<GenericSelect

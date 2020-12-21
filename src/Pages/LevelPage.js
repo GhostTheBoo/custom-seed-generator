@@ -10,7 +10,7 @@ import LevelTable from '../Tables/LevelTable'
 
 function LevelPage(props) {
 	return (
-		<div>
+		<div style={props.style}>
 			<Form>
 				<Form.Row>
 					<Col>

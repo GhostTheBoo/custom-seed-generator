@@ -12,7 +12,7 @@ import PopupTable from '../Tables/PopupTable'
 
 function PopupPage(props) {
 	return (
-		<div>
+		<div style={props.style}>
 			<Form>
 				<Form.Row>
 					<GenericSelect
