@@ -188,6 +188,21 @@ const cheatsData = [
 			"patch=1,EE,E001008D,extended,0032BAE8",
 			"patch=1,EE,11D48EFC,extended,00000063"
 		]
+	},
+	{
+		name: "Random MP Cost",
+		toBeReplaced: false,
+		isActive: false,
+		code: [
+			"//Easy Urn Training 1",
+			"patch=1,EE,E0020006,extended,0032BAE0",
+			"patch=1,EE,E001008C,extended,0032BAE8",
+			"patch=1,EE,11D48EFC,extended,00000013",
+			"//Easy Urn Training 2",
+			"patch=1,EE,E0020006,extended,0032BAE0",
+			"patch=1,EE,E001008D,extended,0032BAE8",
+			"patch=1,EE,11D48EFC,extended,00000063"
+		]
 	}
 ]
 

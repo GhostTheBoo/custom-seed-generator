@@ -1553,6 +1553,22 @@ class App extends React.Component {
 							onClick={this.handlePopupReplace}
 						/>
 					</Tab>
+					<Tab eventKey="bonus" title="Bonus">
+						<BonusPage
+							style={styles}
+							bonusData={this.state.bonus}
+							rewardListA={rewardsData[this.state.bonus.currentARewardType].rewards}
+							rewardListB={rewardsData[this.state.bonus.currentBRewardType].rewards}
+							handleWorldChange={this.handleBonusWorldChange}
+							handleCharacterChange={this.handleBonusCharacterChange}
+							onRewardTypeChange={(event) => this.handleRewardTypeChange('bonus', event)}
+							onRewardChange={(event) => this.handleGenericChange('bonus', event)}
+							onInputChange={(event) => this.handleInputChange('bonus', event)}
+							onRowCheck={(event) => this.onRowCheck('bonus', event)}
+							checkAll={(event) => this.checkAll('bonus', event)}
+							onClick={this.handleBonusReplace}
+						/>
+					</Tab>
 					<Tab eventKey="form" title="Form">
 						<FormPage
 							style={styles}
@@ -1580,22 +1596,6 @@ class App extends React.Component {
 							onRowCheck={(event) => this.onRowCheck('equipment', event)}
 							checkAll={(event) => this.checkAll('equipment', event)}
 							onClick={this.handleEquipmentReplace}
-						/>
-					</Tab>
-					<Tab eventKey="bonus" title="Bonus">
-						<BonusPage
-							style={styles}
-							bonusData={this.state.bonus}
-							rewardListA={rewardsData[this.state.bonus.currentARewardType].rewards}
-							rewardListB={rewardsData[this.state.bonus.currentBRewardType].rewards}
-							handleWorldChange={this.handleBonusWorldChange}
-							handleCharacterChange={this.handleBonusCharacterChange}
-							onRewardTypeChange={(event) => this.handleRewardTypeChange('bonus', event)}
-							onRewardChange={(event) => this.handleGenericChange('bonus', event)}
-							onInputChange={(event) => this.handleInputChange('bonus', event)}
-							onRowCheck={(event) => this.onRowCheck('bonus', event)}
-							checkAll={(event) => this.checkAll('bonus', event)}
-							onClick={this.handleBonusReplace}
 						/>
 					</Tab>
 					<Tab eventKey="level" title="Level">
