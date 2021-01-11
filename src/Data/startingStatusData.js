@@ -73,10 +73,7 @@ const startingStatusData = {
 		//+ mp.toString(16).toUpperCase().padStart(2, '0') + ' //Max MP: ' + mp + '\n'
 		'patch=1,EE,01C6C8D0,extended,000000'
 		//+ mp.toString(16).toUpperCase().padStart(2, '0') + ' //Current MP: ' + mp + '\n'
-	],
-	isKeybladeChanged: false,
-	isArmorChanged: false,
-	isAccessoryChanged: false
+	]
 }
 
 export default startingStatusData

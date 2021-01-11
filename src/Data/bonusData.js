@@ -1075,11 +1075,11 @@ const bonusData = [
 						slotAddress: '21D10804',
 						rewardAddress: '21D10808',
 						vanillaReward1: {
-							reward: 'Countergaurd',
+							reward: 'Counterguard',
 							index: '010C'
 						},
 						replacementReward1: {
-							reward: 'Countergaurd',
+							reward: 'Counterguard',
 							index: '010C'
 						},
 						vanillaReward2: {

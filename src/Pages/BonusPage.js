@@ -74,13 +74,13 @@ function BonusPage(props) {
 				</Form.Row>
 				<Form.Row>
 					<Col xl='2'>
-						<Form.Group controlId='currentHP'>
+						<Form.Group controlId='currentBonusHP'>
 							<Form.Label column='sm'>HP Increase: </Form.Label>
 							<Form.Control
 								size='sm'
-								name='currentHP'
+								name='currentBonusHP'
 								type='number'
-								value={props.bonusData.currentHP}
+								value={props.bonusData.currentBonusHP}
 								onChange={props.onInputChange}
 								min="0"
 								max="255"
@@ -88,13 +88,13 @@ function BonusPage(props) {
 						</Form.Group>
 					</Col>
 					<Col xl='2'>
-						<Form.Group controlId='currentMP'>
+						<Form.Group controlId='currentBonusMP'>
 							<Form.Label column='sm'>MP Increase: </Form.Label>
 							<Form.Control
 								size='sm'
-								name='currentMP'
+								name='currentBonusMP'
 								type='number'
-								value={props.bonusData.currentMP}
+								value={props.bonusData.currentBonusMP}
 								onChange={props.onInputChange}
 								min="0"
 								max="255"

@@ -32,6 +32,7 @@ import criticalData from './Data/criticalData'
 import CheatPage from './Pages/CheatPage'
 import cheatsData from './Data/cheatsData'
 
+import StartingPage from './Pages/StartingPage'
 import startingStatusData from './Data/startingStatusData'
 
 class App extends React.Component {
@@ -91,8 +92,8 @@ class App extends React.Component {
 				currentAReward: 0,
 				currentBRewardType: 0,
 				currentBReward: 0,
-				currentHP: 0,
-				currentMP: 0,
+				currentBonusHP: 0,
+				currentBonusMP: 0,
 				currentArmor: 0,
 				currentAccessory: 0,
 				currentItem: 0,
@@ -133,8 +134,8 @@ class App extends React.Component {
 				currentArmor: 0,
 				currentAccessory: 0,
 				currentMunny: 0,
-				currentHP: 0,
-				currentMP: 0,
+				currentStartingHP: 20,
+				currentStartingMP: 100,
 				startingStatusData: _.cloneDeep(startingStatusData)
 			},
 			isHeavilyCommented: false
@@ -155,6 +156,7 @@ class App extends React.Component {
 		this.handleLevelReplace = this.handleLevelReplace.bind(this)
 		this.handleCriticalReplace = this.handleCriticalReplace.bind(this)
 		this.handleCheatReplace = this.handleCheatReplace.bind(this)
+		this.handleStartingStatusReplace = this.handleStartingStatusReplace.bind(this)
 
 		this.onCommentCheck = this.onCommentCheck.bind(this)
 		this.handleRewardTypeChange = this.handleRewardTypeChange.bind(this)
@@ -792,6 +794,49 @@ class App extends React.Component {
 			}
 		}))
 	}
+
+	handleStartingStatusReplace(event) {
+		let newStartingStatus = _.cloneDeep(this.state.startingStatus.startingStatusData)
+		let newKeyblade = 0
+		let newArmor = 0
+		let newAccessory = 0
+		if (event.target.name === 'replaceButton') {
+			newStartingStatus.startingKeyblade = rewardsData[7].rewards[this.state.startingStatus.currentKeyblade]
+			newKeyblade = this.state.startingStatus.currentKeyblade
+			if (this.state.startingStatus.currentArmor === 0)
+				newStartingStatus.startingArmor = rewardsData[17].rewards[0]
+			else
+				newStartingStatus.startingArmor = rewardsData[2].rewards[this.state.startingStatus.currentArmor - 1]
+			newArmor = this.state.startingStatus.currentArmor
+			if (this.state.startingStatus.currentAccessory === 0)
+				newStartingStatus.startingAccessory = rewardsData[17].rewards[0]
+			else
+				newStartingStatus.startingAccessory = rewardsData[1].rewards[this.state.startingStatus.currentAccessory - 1]
+			newAccessory = this.state.startingStatus.currentAccessory
+			newStartingStatus.startingMunny = this.state.startingStatus.currentMunny
+			newStartingStatus.startingHP = this.state.startingStatus.currentStartingHP
+			newStartingStatus.startingMP = this.state.startingStatus.currentStartingMP
+		} else {
+			newStartingStatus.startingKeyblade = rewardsData[7].rewards[0]
+			newStartingStatus.startingArmor = rewardsData[17].rewards[0]
+			newStartingStatus.startingAccessory = rewardsData[17].rewards[0]
+			newStartingStatus.startingMunny = 0
+			newStartingStatus.startingHP = 20
+			newStartingStatus.startingMP = 100
+		}
+
+		this.setState(prevState => ({
+			startingStatus: {
+				currentKeyblade: newKeyblade,
+				currentArmor: newArmor,
+				currentAccessory: newAccessory,
+				currentMunny: newStartingStatus.startingMunny,
+				currentStartingHP: newStartingStatus.startingHP,
+				currentStartingMP: newStartingStatus.startingMP,
+				startingStatusData: newStartingStatus
+			}
+		}))
+	}
 	//#endregion
 
 	//#region General Functions
@@ -1080,32 +1125,38 @@ class App extends React.Component {
 
 		let startingPnachCodes = '\n//STARTING STATUS\n'
 		let initialData = this.state.startingStatus.startingStatusData
-		if (initialData.isKeybladeChanged) {
+		if (initialData.startingKeyblade.index !== "0029") {
 			let keyblade = initialData.startingKeyblade
 			startingPnachCodes += initialData.keybladeCode.join('') + keyblade.index.padStart(4, '0') + ' // ' + keyblade.reward + '\n'
-		}
-		if (initialData.isArmorChanged) {
+		} else
+			startingPnachCodes += '// Vanilla starting Keyblade of Kingdom Key\n'
+		if (initialData.startingArmor.index !== "0000") {
 			let armor = initialData.startingArmor
 			startingPnachCodes += initialData.armorCode.join('') + armor.index.padStart(4, '0') + ' // ' + armor.reward + '\n'
-		}
-		if (initialData.isAccessoryChanged) {
+		} else
+			startingPnachCodes += '// Vanilla starting Armor of EMPTY\n'
+		if (initialData.startingAccessory.index !== "0000") {
 			let accessory = initialData.startingAccessory
 			startingPnachCodes += initialData.accessoryCode.join('') + accessory.index.padStart(4, '0') + ' // ' + accessory.reward + '\n'
-		}
+		} else
+			startingPnachCodes += '// Vanilla starting Accessory of EMPTY\n'
 		if (initialData.startingMunny !== 0) {
 			startingPnachCodes += initialData.munnyCode.join('') + initialData.startingMunny.toString(16).toUpperCase().padStart(8, '0')
 			startingPnachCodes += ' // ' + initialData.startingMunny + ' munny\n'
-		}
+		} else
+			startingPnachCodes += '// Vanilla starting Munny of 0\n'
 		if (initialData.startingHP !== 20) {
 			let hp = initialData.startingHP
 			startingPnachCodes += initialData.hpCode.slice(0, 5).join('') + hp.toString(16).toUpperCase().padStart(2, '0') + ' // Max HP: ' + hp + '\n'
 			startingPnachCodes += initialData.hpCode[5] + hp.toString(16).toUpperCase().padStart(2, '0') + ' // Current HP: ' + hp + '\n'
-		}
-		if (initialData.startingMP !== 20) {
+		} else
+			startingPnachCodes += '// Vanilla starting HP of 20\n'
+		if (initialData.startingMP !== 100) {
 			let mp = initialData.startingMP
 			startingPnachCodes += initialData.mpCode.slice(0, 5).join('') + mp.toString(16).toUpperCase().padStart(2, '0') + ' // Max MP: ' + mp + '\n'
 			startingPnachCodes += initialData.mpCode[5] + mp.toString(16).toUpperCase().padStart(2, '0') + ' // Current MP: ' + mp + '\n'
-		}
+		} else
+			startingPnachCodes += '// Vanilla starting MP of 100\n'
 
 		let cheatPnachCodes = this.state.cheat.currentDisplayData.filter(cheat => cheat.isActive).map(cheat => {
 			let ret = '//' + cheat.name + '\n'
@@ -1115,7 +1166,7 @@ class App extends React.Component {
 		})
 		cheatPnachCodes.unshift('\n//CHEAT CODES\n')
 
-		let pnachCodes = chestPnachCodes.concat(popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes, criticalPnachCodes, cheatPnachCodes)
+		let pnachCodes = chestPnachCodes.concat(popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes, criticalPnachCodes, startingPnachCodes, cheatPnachCodes)
 
 		const element = document.createElement('a')
 		const file = new Blob(pnachCodes, { type: 'text/plain;charset=utf-8' })
@@ -1276,6 +1327,16 @@ class App extends React.Component {
 		})
 		cheatSaveData = ['"cheatsData":[', cheatSaveData.join('').slice(0, -1), '],']
 
+		let startingStatus = this.state.startingStatus.startingStatusData
+		let startingStatusSaveData = '"startingStatusData":{'
+		startingStatusSaveData += '"startingKeyblade": {"reward": "' + startingStatus.startingKeyblade.reward + '","index": "' + startingStatus.startingKeyblade.index + '"},'
+		startingStatusSaveData += '"startingArmor": {"reward": "' + startingStatus.startingArmor.reward + '","index": "' + startingStatus.startingArmor.index + '"},'
+		startingStatusSaveData += '"startingAccessory": {"reward": "' + startingStatus.startingAccessory.reward + '","index": "' + startingStatus.startingAccessory.index + '"},'
+		startingStatusSaveData += '"startingMunny":' + startingStatus.startingMunny + ','
+		startingStatusSaveData += '"startingHP":' + startingStatus.startingHP + ','
+		startingStatusSaveData += '"startingMP":' + startingStatus.startingMP
+		startingStatusSaveData += '},'
+
 		let saveData = ['{',
 			chestSaveData.join(''),
 			popupSaveData.join(''),
@@ -1284,6 +1345,7 @@ class App extends React.Component {
 			bonusSaveData.join(''),
 			levelSaveData.join(''),
 			criticalSaveData.join(''),
+			startingStatusSaveData,
 			cheatSaveData.join('').slice(0, -1),
 			'}']
 
@@ -1432,7 +1494,9 @@ class App extends React.Component {
 			}
 			return cheat
 		})
-
+		let startingStatusLoadData = this.state.startingStatus.startingStatusData
+		_.merge(startingStatusLoadData, allLoadData.startingStatusData)
+		
 		this.setState(prevState => ({
 			chest: {
 				...prevState.chest,
@@ -1470,6 +1534,10 @@ class App extends React.Component {
 			cheat: {
 				...prevState.cheat,
 				currentDisplayData: cheatLoadData.slice()
+			},
+			startingStatus: {
+				...prevState.startingStatus,
+				startingStatusData: startingStatusLoadData
 			}
 		}))
 	}
@@ -1590,6 +1658,18 @@ class App extends React.Component {
 							onRowCheck={(event) => this.onRowCheck('cheat', event)}
 							checkAll={(event) => this.checkAll('cheat', event)}
 							onClick={this.handleCheatReplace}
+						/>
+					</Tab>
+					<Tab eventKey="startingStatus" title="Starting Status">
+						<StartingPage
+							style={styles}
+							startingStatusData={this.state.startingStatus}
+							keybladeList={rewardsData[7].rewards}
+							armorList={rewardsData[17].rewards.concat(rewardsData[2].rewards)}
+							accessoryList={rewardsData[17].rewards.concat(rewardsData[1].rewards)}
+							onRewardChange={(event) => this.handleGenericChange('startingStatus', event)}
+							onInputChange={(event) => this.handleInputChange('startingStatus', event)}
+							onClick={this.handleStartingStatusReplace}
 						/>
 					</Tab>
 				</Tabs>
