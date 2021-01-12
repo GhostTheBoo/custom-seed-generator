@@ -153,7 +153,7 @@ const cheatsData = [
 		toBeReplaced: false,
 		isActive: false,
 		code: [
-			"patch=1,EE,201C9A80,word,0000102D"
+			"patch=1,EE,201C9A80,extended,0000102D"
 		]
 	},
 	{
@@ -161,7 +161,15 @@ const cheatsData = [
 		toBeReplaced: false,
 		isActive: false,
 		code: [
-			"patch=1,EE,201C99A0,word,0000102D"
+			"patch=1,EE,201C99A0,extended,0000102D"
+		]
+	},
+	{
+		name: "Allow Summoning Alone",
+		toBeReplaced: false,
+		isActive: false,
+		code: [
+			"patch=1,EE,201C9B5C,extended,0000102D"
 		]
 	},
 	{
@@ -194,14 +202,7 @@ const cheatsData = [
 		toBeReplaced: false,
 		isActive: false,
 		code: [
-			"//Easy Urn Training 1",
-			"patch=1,EE,E0020006,extended,0032BAE0",
-			"patch=1,EE,E001008C,extended,0032BAE8",
-			"patch=1,EE,11D48EFC,extended,00000013",
-			"//Easy Urn Training 2",
-			"patch=1,EE,E0020006,extended,0032BAE0",
-			"patch=1,EE,E001008D,extended,0032BAE8",
-			"patch=1,EE,11D48EFC,extended,00000063"
+			"//PLACEHOLDER FOR RANDOM MP COST"
 		]
 	}
 ]
