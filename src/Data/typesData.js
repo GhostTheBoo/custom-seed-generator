@@ -39,6 +39,7 @@ export const rewardTypesData = [
 	'Empty']
 
 export const formTypesData = [
+	'Summon',
 	'Valor',
 	'Wisdom',
 	'Limit',

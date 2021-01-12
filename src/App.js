@@ -941,7 +941,8 @@ class App extends React.Component {
 		let formPnachCodes = this.state.form.allForms.map(driveFormList => {
 			let ret = '// ' + driveFormList.driveForm.toUpperCase() + '\n'
 			if (driveFormList.driveLevels.some(driveFormLevel => driveFormLevel.isRewardReplaced))
-				ret += driveFormList.removeGrowthJankCodes.join('')
+				if (driveFormList.driveForm !== 'Summon')
+					ret += driveFormList.removeGrowthJankCodes.join('')
 
 			driveFormList.driveLevels.forEach(driveFormLevel => {
 				if (driveFormLevel.isRewardReplaced) {
@@ -1496,7 +1497,7 @@ class App extends React.Component {
 		})
 		let startingStatusLoadData = this.state.startingStatus.startingStatusData
 		_.merge(startingStatusLoadData, allLoadData.startingStatusData)
-		
+
 		this.setState(prevState => ({
 			chest: {
 				...prevState.chest,
