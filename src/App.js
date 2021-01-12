@@ -1595,7 +1595,7 @@ class App extends React.Component {
 							onClick={this.handleBonusReplace}
 						/>
 					</Tab>
-					<Tab eventKey="form" title="Form">
+					<Tab eventKey="form" title="Forms and Summons">
 						<FormPage
 							style={styles}
 							formData={this.state.form}

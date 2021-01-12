@@ -1,44 +1,159 @@
 const formsData = [
 	{
-		driveForm: "Valor",
+		driveForm: 'Summon',
 		removeGrowthJankCodes: [
-			"//Remove High Jump LV1\n",
-			"patch=1,EE,E0030102,extended,0032EE26\n",
-			"patch=1,EE,1036E5A2,extended,00000000\n",
-			"patch=1,EE,1032EE2C,extended,0000805E\n",
-			"patch=1,EE,1032EE42,extended,00000000\n",
-			"//Remove High Jump LV2 1\n",
-			"patch=1,EE,E0010102,extended,0032EE26\n",
-			"patch=1,EE,1036E5A4,extended,0000005F\n",
-			"//Remove High Jump LV2 2\n",
-			"patch=1,EE,E0030103,extended,0032EE26\n",
-			"patch=1,EE,1036E5A4,extended,00000000\n",
-			"patch=1,EE,1032EE2C,extended,0000805F\n",
-			"patch=1,EE,1032EE42,extended,00000000\n",
-			"//Remove High Jump LV3 1\n",
-			"patch=1,EE,E0010104,extended,0032EE26\n",
-			"patch=1,EE,1036E5A6,extended,00000060\n",
-			"//Remove High Jump LV3 2\n",
-			"patch=1,EE,E0030105,extended,0032EE26\n",
-			"patch=1,EE,1036E5A6,extended,00000000\n",
-			"patch=1,EE,1032EE2C,extended,00008060\n",
-			"patch=1,EE,1032EE42,extended,00000000\n",
-			"//Remove High Jump MAX 1\n",
-			"patch=1,EE,E0010106,extended,0032EE26\n",
-			"patch=1,EE,1036E5A8,extended,00000061\n",
-			"//Remove High Jump MAX 2\n",
-			"patch=1,EE,E0020107,extended,0032EE26\n",
-			"patch=1,EE,1032EE2C,extended,00008061\n",
-			"patch=1,EE,1032EE42,extended,00000000\n"
 		],
 		driveLevels: [
 			{
-				level: "Valor LV2",
-				vanillaReward:{
+				level: 'Summon LV2',
+				vanillaReward: {
+					reward: 'EMPTY',
+					index: '0000'
+				},
+				replacementReward: {
+					reward: 'EMPTY',
+					index: '0000'
+				},
+				vanillaAddress: '11D1A1EE',
+				vanillaEXP: 6,
+				replacementEXP: 6,
+				EXPAddress: '11D1A1F0',
+				toBeReplaced: false,
+				isRewardReplaced: false,
+				isEXPReplaced: false
+			},
+			{
+				level: 'Summon LV3',
+				vanillaReward: {
+					reward: 'EMPTY',
+					index: '0000'
+				},
+				replacementReward: {
+					reward: 'EMPTY',
+					index: '0000'
+				},
+				vanillaAddress: '11D1A1F6',
+				vanillaEXP: 16,
+				replacementEXP: 16,
+				EXPAddress: '11D1A1F8',
+				toBeReplaced: false,
+				isRewardReplaced: false,
+				isEXPReplaced: false
+			},
+			{
+				level: 'Summon LV4',
+				vanillaReward: {
+					reward: 'EMPTY',
+					index: '0000'
+				},
+				replacementReward: {
+					reward: 'EMPTY',
+					index: '0000'
+				},
+				vanillaAddress: '11D1A1FE',
+				vanillaEXP: 25,
+				replacementEXP: 25,
+				EXPAddress: '11D1A200',
+				toBeReplaced: false,
+				isRewardReplaced: false,
+				isEXPReplaced: false
+			},
+			{
+				level: 'Summon LV5',
+				vanillaReward: {
+					reward: 'EMPTY',
+					index: '0000'
+				},
+				replacementReward: {
+					reward: 'EMPTY',
+					index: '0000'
+				},
+				vanillaAddress: '11D1A206',
+				vanillaEXP: 42,
+				replacementEXP: 42,
+				EXPAddress: '11D1A208',
+				toBeReplaced: false,
+				isRewardReplaced: false,
+				isEXPReplaced: false
+			},
+			{
+				level: 'Summon LV6',
+				vanillaReward: {
+					reward: 'EMPTY',
+					index: '0000'
+				},
+				replacementReward: {
+					reward: 'EMPTY',
+					index: '0000'
+				},
+				vanillaAddress: '11D1A20E',
+				vanillaEXP: 63,
+				replacementEXP: 63,
+				EXPAddress: '11D1A210',
+				toBeReplaced: false,
+				isRewardReplaced: false,
+				isEXPReplaced: false
+			},
+			{
+				level: 'Summon LV7',
+				vanillaReward: {
+					reward: 'EMPTY',
+					index: '0000'
+				},
+				replacementReward: {
+					reward: 'EMPTY',
+					index: '0000'
+				},
+				vanillaAddress: '11D1A216',
+				vanillaEXP: 98,
+				replacementEXP: 98,
+				EXPAddress: '11D1A218',
+				toBeReplaced: false,
+				isRewardReplaced: false,
+				isEXPReplaced: false
+			}
+		]
+	},
+	{
+		driveForm: 'Valor',
+		removeGrowthJankCodes: [
+			'//Remove High Jump LV1\n',
+			'patch=1,EE,E0030102,extended,0032EE26\n',
+			'patch=1,EE,1036E5A2,extended,00000000\n',
+			'patch=1,EE,1032EE2C,extended,0000805E\n',
+			'patch=1,EE,1032EE42,extended,00000000\n',
+			'//Remove High Jump LV2 1\n',
+			'patch=1,EE,E0010102,extended,0032EE26\n',
+			'patch=1,EE,1036E5A4,extended,0000005F\n',
+			'//Remove High Jump LV2 2\n',
+			'patch=1,EE,E0030103,extended,0032EE26\n',
+			'patch=1,EE,1036E5A4,extended,00000000\n',
+			'patch=1,EE,1032EE2C,extended,0000805F\n',
+			'patch=1,EE,1032EE42,extended,00000000\n',
+			'//Remove High Jump LV3 1\n',
+			'patch=1,EE,E0010104,extended,0032EE26\n',
+			'patch=1,EE,1036E5A6,extended,00000060\n',
+			'//Remove High Jump LV3 2\n',
+			'patch=1,EE,E0030105,extended,0032EE26\n',
+			'patch=1,EE,1036E5A6,extended,00000000\n',
+			'patch=1,EE,1032EE2C,extended,00008060\n',
+			'patch=1,EE,1032EE42,extended,00000000\n',
+			'//Remove High Jump MAX 1\n',
+			'patch=1,EE,E0010106,extended,0032EE26\n',
+			'patch=1,EE,1036E5A8,extended,00000061\n',
+			'//Remove High Jump MAX 2\n',
+			'patch=1,EE,E0020107,extended,0032EE26\n',
+			'patch=1,EE,1032EE2C,extended,00008061\n',
+			'patch=1,EE,1032EE42,extended,00000000\n'
+		],
+		driveLevels: [
+			{
+				level: 'Valor LV2',
+				vanillaReward: {
 					reward: 'Auto Valor',
 					index: '0181'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Auto Valor',
 					index: '0181'
 				},
@@ -51,12 +166,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Valor LV3",
-				vanillaReward:{
+				level: 'Valor LV3',
+				vanillaReward: {
 					reward: 'High Jump LV 1',
 					index: '005E'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'High Jump LV 1',
 					index: '005E'
 				},
@@ -69,12 +184,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Valor LV4",
-				vanillaReward:{
+				level: 'Valor LV4',
+				vanillaReward: {
 					reward: 'Combo Plus',
 					index: '00A2'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Combo Plus',
 					index: '00A2'
 				},
@@ -87,12 +202,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Valor LV5",
-				vanillaReward:{
+				level: 'Valor LV5',
+				vanillaReward: {
 					reward: 'High Jump LV 2',
 					index: '005F'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'High Jump LV 2',
 					index: '005F'
 				},
@@ -105,12 +220,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Valor LV6",
-				vanillaReward:{
+				level: 'Valor LV6',
+				vanillaReward: {
 					reward: 'Combo Plus',
 					index: '00A2'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Combo Plus',
 					index: '00A2'
 				},
@@ -123,12 +238,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Valor LV7",
-				vanillaReward:{
+				level: 'Valor LV7',
+				vanillaReward: {
 					reward: 'High Jump LV 3',
 					index: '0060'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'High Jump LV 3',
 					index: '0060'
 				},
@@ -143,45 +258,45 @@ const formsData = [
 		]
 	},
 	{
-		driveForm: "Wisdom",
+		driveForm: 'Wisdom',
 		removeGrowthJankCodes: [
-			"//Remove Quick Run LV1\n",
-			"patch=1,EE,E0030102,extended,0032EE5E\n",
-			"patch=1,EE,1036E5AC,extended,00000000\n",
-			"patch=1,EE,1032EE64,extended,00008062\n",
-			"patch=1,EE,1032EE74,extended,00000000\n",
-			"//Remove Quick Run LV2 1\n",
-			"patch=1,EE,E0010102,extended,0032EE5E\n",
-			"patch=1,EE,1036E5AE,extended,00000063\n",
-			"//Remove Quick Run LV2\n",
-			"patch=1,EE,E0030103,extended,0032EE5E\n",
-			"patch=1,EE,1036E5AE,extended,00000000\n",
-			"patch=1,EE,1032EE64,extended,00008063\n",
-			"patch=1,EE,1032EE74,extended,00000000\n",
-			"//Remove Quick Run LV3 1\n",
-			"patch=1,EE,E0010104,extended,0032EE5E\n",
-			"patch=1,EE,1036E5B0,extended,00000064\n",
-			"//Remove Quick Run LV3 2\n",
-			"patch=1,EE,E0030105,extended,0032EE5E\n",
-			"patch=1,EE,1036E5B0,extended,00000000\n",
-			"patch=1,EE,1032EE64,extended,00008064\n",
-			"patch=1,EE,1032EE74,extended,00000000\n",
-			"//Remove Quick Run MAX 1\n",
-			"patch=1,EE,E0010106,extended,0032EE5E\n",
-			"patch=1,EE,1036E5B2,extended,00000065\n",
-			"//Remove Quick Run MAX 2\n",
-			"patch=1,EE,E0020107,extended,0032EE5E\n",
-			"patch=1,EE,1032EE64,extended,00008065\n",
-			"patch=1,EE,1032EE74,extended,00000000\n"
+			'//Remove Quick Run LV1\n',
+			'patch=1,EE,E0030102,extended,0032EE5E\n',
+			'patch=1,EE,1036E5AC,extended,00000000\n',
+			'patch=1,EE,1032EE64,extended,00008062\n',
+			'patch=1,EE,1032EE74,extended,00000000\n',
+			'//Remove Quick Run LV2 1\n',
+			'patch=1,EE,E0010102,extended,0032EE5E\n',
+			'patch=1,EE,1036E5AE,extended,00000063\n',
+			'//Remove Quick Run LV2\n',
+			'patch=1,EE,E0030103,extended,0032EE5E\n',
+			'patch=1,EE,1036E5AE,extended,00000000\n',
+			'patch=1,EE,1032EE64,extended,00008063\n',
+			'patch=1,EE,1032EE74,extended,00000000\n',
+			'//Remove Quick Run LV3 1\n',
+			'patch=1,EE,E0010104,extended,0032EE5E\n',
+			'patch=1,EE,1036E5B0,extended,00000064\n',
+			'//Remove Quick Run LV3 2\n',
+			'patch=1,EE,E0030105,extended,0032EE5E\n',
+			'patch=1,EE,1036E5B0,extended,00000000\n',
+			'patch=1,EE,1032EE64,extended,00008064\n',
+			'patch=1,EE,1032EE74,extended,00000000\n',
+			'//Remove Quick Run MAX 1\n',
+			'patch=1,EE,E0010106,extended,0032EE5E\n',
+			'patch=1,EE,1036E5B2,extended,00000065\n',
+			'//Remove Quick Run MAX 2\n',
+			'patch=1,EE,E0020107,extended,0032EE5E\n',
+			'patch=1,EE,1032EE64,extended,00008065\n',
+			'patch=1,EE,1032EE74,extended,00000000\n'
 		],
 		driveLevels: [
 			{
-				level: "Wisdom LV2",
-				vanillaReward:{
+				level: 'Wisdom LV2',
+				vanillaReward: {
 					reward: 'Auto Wisdom',
 					index: '0182'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Auto Wisdom',
 					index: '0182'
 				},
@@ -194,12 +309,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Wisdom LV3",
-				vanillaReward:{
+				level: 'Wisdom LV3',
+				vanillaReward: {
 					reward: 'Quick Run LV 1',
 					index: '0062'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Quick Run LV 1',
 					index: '0062'
 				},
@@ -212,12 +327,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Wisdom LV4",
-				vanillaReward:{
+				level: 'Wisdom LV4',
+				vanillaReward: {
 					reward: 'MP Rage',
 					index: '019C'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'MP Rage',
 					index: '019C'
 				},
@@ -230,12 +345,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Wisdom LV5",
-				vanillaReward:{
+				level: 'Wisdom LV5',
+				vanillaReward: {
 					reward: 'Quick Run LV 2',
 					index: '0063'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Quick Run LV 2',
 					index: '0063'
 				},
@@ -248,12 +363,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Wisdom LV6",
-				vanillaReward:{
+				level: 'Wisdom LV6',
+				vanillaReward: {
 					reward: 'MP Haste',
 					index: '019D'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'MP Haste',
 					index: '019D'
 				},
@@ -266,12 +381,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Wisdom LV7",
-				vanillaReward:{
+				level: 'Wisdom LV7',
+				vanillaReward: {
 					reward: 'Quick Run LV 3',
 					index: '0064'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Quick Run LV 3',
 					index: '0064'
 				},
@@ -286,45 +401,45 @@ const formsData = [
 		]
 	},
 	{
-		driveForm: "Limit",
+		driveForm: 'Limit',
 		removeGrowthJankCodes: [
-			"//Remove Dodge Roll LV1\n",
-			"patch=1,EE,E0030102,extended,0032EE96\n",
-			"patch=1,EE,1036E5B6,extended,00000000\n",
-			"patch=1,EE,1032EE9C,extended,00008234\n",
-			"patch=1,EE,1032EEC2,extended,00000000\n",
-			"//Remove Dodge Roll LV2 1\n",
-			"patch=1,EE,E0010102,extended,0032EE96\n",
-			"patch=1,EE,1036E5B8,extended,00000235\n",
-			"//Remove Dodge Roll LV2 2\n",
-			"patch=1,EE,E0030103,extended,0032EE96\n",
-			"patch=1,EE,1036E5B8,extended,00000000\n",
-			"patch=1,EE,1032EE9C,extended,00008235\n",
-			"patch=1,EE,1032EEC2,extended,00000000\n",
-			"//Remove Dodge Roll LV3 1\n",
-			"patch=1,EE,E0010104,extended,0032EE96\n",
-			"patch=1,EE,1036E5BA,extended,00000236\n",
-			"//Remove Dodge Roll LV3 2\n",
-			"patch=1,EE,E0030105,extended,0032EE96\n",
-			"patch=1,EE,1036E5BA,extended,00000000\n",
-			"patch=1,EE,1032EE9C,extended,00008236\n",
-			"patch=1,EE,1032EEC2,extended,00000000\n",
-			"//Remove Dodge Roll MAX 1\n",
-			"patch=1,EE,E0010106,extended,0032EE96\n",
-			"patch=1,EE,1036E5BC,extended,00000237\n",
-			"//Remove Dodge Roll MAX 2\n",
-			"patch=1,EE,E0020107,extended,0032EE96\n",
-			"patch=1,EE,1032EE9C,extended,00008237\n",
-			"patch=1,EE,1032EEC2,extended,00000000\n"
+			'//Remove Dodge Roll LV1\n',
+			'patch=1,EE,E0030102,extended,0032EE96\n',
+			'patch=1,EE,1036E5B6,extended,00000000\n',
+			'patch=1,EE,1032EE9C,extended,00008234\n',
+			'patch=1,EE,1032EEC2,extended,00000000\n',
+			'//Remove Dodge Roll LV2 1\n',
+			'patch=1,EE,E0010102,extended,0032EE96\n',
+			'patch=1,EE,1036E5B8,extended,00000235\n',
+			'//Remove Dodge Roll LV2 2\n',
+			'patch=1,EE,E0030103,extended,0032EE96\n',
+			'patch=1,EE,1036E5B8,extended,00000000\n',
+			'patch=1,EE,1032EE9C,extended,00008235\n',
+			'patch=1,EE,1032EEC2,extended,00000000\n',
+			'//Remove Dodge Roll LV3 1\n',
+			'patch=1,EE,E0010104,extended,0032EE96\n',
+			'patch=1,EE,1036E5BA,extended,00000236\n',
+			'//Remove Dodge Roll LV3 2\n',
+			'patch=1,EE,E0030105,extended,0032EE96\n',
+			'patch=1,EE,1036E5BA,extended,00000000\n',
+			'patch=1,EE,1032EE9C,extended,00008236\n',
+			'patch=1,EE,1032EEC2,extended,00000000\n',
+			'//Remove Dodge Roll MAX 1\n',
+			'patch=1,EE,E0010106,extended,0032EE96\n',
+			'patch=1,EE,1036E5BC,extended,00000237\n',
+			'//Remove Dodge Roll MAX 2\n',
+			'patch=1,EE,E0020107,extended,0032EE96\n',
+			'patch=1,EE,1032EE9C,extended,00008237\n',
+			'patch=1,EE,1032EEC2,extended,00000000\n'
 		],
 		driveLevels: [
 			{
-				level: "Limit LV2",
-				vanillaReward:{
+				level: 'Limit LV2',
+				vanillaReward: {
 					reward: 'Auto Limit',
 					index: '0238'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Auto Limit',
 					index: '0238'
 				},
@@ -337,12 +452,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Limit LV3",
-				vanillaReward:{
+				level: 'Limit LV3',
+				vanillaReward: {
 					reward: 'Dodge Roll LV 1',
 					index: '0234'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Dodge Roll LV 1',
 					index: '0234'
 				},
@@ -355,12 +470,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Limit LV4",
-				vanillaReward:{
+				level: 'Limit LV4',
+				vanillaReward: {
 					reward: 'Draw',
 					index: '0195'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Draw',
 					index: '0195'
 				},
@@ -373,12 +488,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Limit LV5",
-				vanillaReward:{
+				level: 'Limit LV5',
+				vanillaReward: {
 					reward: 'Dodge Roll LV 2',
 					index: '0235'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Dodge Roll LV 2',
 					index: '0235'
 				},
@@ -391,12 +506,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Limit LV6",
-				vanillaReward:{
+				level: 'Limit LV6',
+				vanillaReward: {
 					reward: 'Lucky Lucky',
 					index: '0197'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Lucky Lucky',
 					index: '0197'
 				},
@@ -409,12 +524,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Limit LV7",
-				vanillaReward:{
+				level: 'Limit LV7',
+				vanillaReward: {
 					reward: 'Dodge Roll LV 3',
 					index: '0236'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Dodge Roll LV 3',
 					index: '0236'
 				},
@@ -429,45 +544,45 @@ const formsData = [
 		]
 	},
 	{
-		driveForm: "Master",
+		driveForm: 'Master',
 		removeGrowthJankCodes: [
-			"//Remove Aerial Dodge LV1\n",
-			"patch=1,EE,E0030102,extended,0032EECE\n",
-			"patch=1,EE,1036E5C0,extended,00000000\n",
-			"patch=1,EE,1032EED4,extended,00008066\n",
-			"patch=1,EE,1032EEEA,extended,00000000\n",
-			"//Remove Aerial Dodge LV2 1\n",
-			"patch=1,EE,E0010102,extended,0032EECE\n",
-			"patch=1,EE,1036E5C2,extended,00000067\n",
-			"//Remove Aerial Dodge LV2 2\n",
-			"patch=1,EE,E0030103,extended,0032EECE\n",
-			"patch=1,EE,1036E5C2,extended,00000000\n",
-			"patch=1,EE,1032EED4,extended,00008067\n",
-			"patch=1,EE,1032EEEA,extended,00000000\n",
-			"//Remove Aerial Dodge LV3 1\n",
-			"patch=1,EE,E0010104,extended,0032EECE\n",
-			"patch=1,EE,1036E5C4,extended,00000068\n",
-			"//Remove Aerial Dodge LV3 2\n",
-			"patch=1,EE,E0030105,extended,0032EECE\n",
-			"patch=1,EE,1036E5C4,extended,00000000\n",
-			"patch=1,EE,1032EED4,extended,00008068\n",
-			"patch=1,EE,1032EEEA,extended,00000000\n",
-			"//Remove Aerial Dodge MAX 1\n",
-			"patch=1,EE,E0010106,extended,0032EECE\n",
-			"patch=1,EE,1036E5C6,extended,00000069\n",
-			"//Remove Aerial Dodge MAX 2\n",
-			"patch=1,EE,E0020107,extended,0032EECE\n",
-			"patch=1,EE,1032EED4,extended,00008069\n",
-			"patch=1,EE,1032EEEA,extended,00000000\n"
+			'//Remove Aerial Dodge LV1\n',
+			'patch=1,EE,E0030102,extended,0032EECE\n',
+			'patch=1,EE,1036E5C0,extended,00000000\n',
+			'patch=1,EE,1032EED4,extended,00008066\n',
+			'patch=1,EE,1032EEEA,extended,00000000\n',
+			'//Remove Aerial Dodge LV2 1\n',
+			'patch=1,EE,E0010102,extended,0032EECE\n',
+			'patch=1,EE,1036E5C2,extended,00000067\n',
+			'//Remove Aerial Dodge LV2 2\n',
+			'patch=1,EE,E0030103,extended,0032EECE\n',
+			'patch=1,EE,1036E5C2,extended,00000000\n',
+			'patch=1,EE,1032EED4,extended,00008067\n',
+			'patch=1,EE,1032EEEA,extended,00000000\n',
+			'//Remove Aerial Dodge LV3 1\n',
+			'patch=1,EE,E0010104,extended,0032EECE\n',
+			'patch=1,EE,1036E5C4,extended,00000068\n',
+			'//Remove Aerial Dodge LV3 2\n',
+			'patch=1,EE,E0030105,extended,0032EECE\n',
+			'patch=1,EE,1036E5C4,extended,00000000\n',
+			'patch=1,EE,1032EED4,extended,00008068\n',
+			'patch=1,EE,1032EEEA,extended,00000000\n',
+			'//Remove Aerial Dodge MAX 1\n',
+			'patch=1,EE,E0010106,extended,0032EECE\n',
+			'patch=1,EE,1036E5C6,extended,00000069\n',
+			'//Remove Aerial Dodge MAX 2\n',
+			'patch=1,EE,E0020107,extended,0032EECE\n',
+			'patch=1,EE,1032EED4,extended,00008069\n',
+			'patch=1,EE,1032EEEA,extended,00000000\n'
 		],
 		driveLevels: [
 			{
-				level: "Master LV2",
-				vanillaReward:{
+				level: 'Master LV2',
+				vanillaReward: {
 					reward: 'Auto Master',
 					index: '0183'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Auto Master',
 					index: '0183'
 				},
@@ -480,12 +595,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Master LV3",
-				vanillaReward:{
+				level: 'Master LV3',
+				vanillaReward: {
 					reward: 'Aerial Dodge LV 1',
 					index: '0066'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Aerial Dodge LV 1',
 					index: '0066'
 				},
@@ -498,12 +613,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Master LV4",
-				vanillaReward:{
+				level: 'Master LV4',
+				vanillaReward: {
 					reward: 'Air Combo Plus',
 					index: '00A3'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Air Combo Plus',
 					index: '00A3'
 				},
@@ -516,12 +631,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Master LV5",
-				vanillaReward:{
+				level: 'Master LV5',
+				vanillaReward: {
 					reward: 'Aerial Dodge LV 2',
 					index: '0067'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Aerial Dodge LV 2',
 					index: '0067'
 				},
@@ -534,12 +649,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Master LV6",
-				vanillaReward:{
+				level: 'Master LV6',
+				vanillaReward: {
 					reward: 'Air Combo Plus',
 					index: '00A3'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Air Combo Plus',
 					index: '00A3'
 				},
@@ -552,12 +667,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Master LV7",
-				vanillaReward:{
+				level: 'Master LV7',
+				vanillaReward: {
 					reward: 'Aerial Dodge LV 3',
 					index: '0068'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Aerial Dodge LV 3',
 					index: '0068'
 				},
@@ -572,45 +687,45 @@ const formsData = [
 		]
 	},
 	{
-		driveForm: "Final",
+		driveForm: 'Final',
 		removeGrowthJankCodes: [
-			"//Remove Glide LV1\n",
-			"patch=1,EE,E0030102,extended,0032EF06\n",
-			"patch=1,EE,1036E5CA,extended,00000000\n",
-			"patch=1,EE,1032EF0C,extended,0000806A\n",
-			"patch=1,EE,1032EF1E,extended,00000000\n",
-			"//Remove Glide LV2 1\n",
-			"patch=1,EE,E0010102,extended,0032EF06\n",
-			"patch=1,EE,1036E5CC,extended,0000006B\n",
-			"//Remove Glide LV2 2\n",
-			"patch=1,EE,E0030103,extended,0032EF06\n",
-			"patch=1,EE,1036E5CC,extended,00000000\n",
-			"patch=1,EE,1032EF0C,extended,0000806B\n",
-			"patch=1,EE,1032EF1E,extended,00000000\n",
-			"//Remove Glide LV3 1\n",
-			"patch=1,EE,E0010104,extended,0032EF06\n",
-			"patch=1,EE,1036E5CE,extended,0000006C\n",
-			"//Remove Glide LV3 2\n",
-			"patch=1,EE,E0030105,extended,0032EF06\n",
-			"patch=1,EE,1036E5CE,extended,00000000\n",
-			"patch=1,EE,1032EF0C,extended,0000806C\n",
-			"patch=1,EE,1032EF1E,extended,00000000\n",
-			"//Remove Glide LV2 1\n",
-			"patch=1,EE,E0010106,extended,0032EF06\n",
-			"patch=1,EE,1036E5D0,extended,0000006D\n",
-			"//Remove Glide MAX 2\n",
-			"patch=1,EE,E0020107,extended,0032EF06\n",
-			"patch=1,EE,1032EF0C,extended,0000806D\n",
-			"patch=1,EE,1032EF1E,extended,00000000\n"
+			'//Remove Glide LV1\n',
+			'patch=1,EE,E0030102,extended,0032EF06\n',
+			'patch=1,EE,1036E5CA,extended,00000000\n',
+			'patch=1,EE,1032EF0C,extended,0000806A\n',
+			'patch=1,EE,1032EF1E,extended,00000000\n',
+			'//Remove Glide LV2 1\n',
+			'patch=1,EE,E0010102,extended,0032EF06\n',
+			'patch=1,EE,1036E5CC,extended,0000006B\n',
+			'//Remove Glide LV2 2\n',
+			'patch=1,EE,E0030103,extended,0032EF06\n',
+			'patch=1,EE,1036E5CC,extended,00000000\n',
+			'patch=1,EE,1032EF0C,extended,0000806B\n',
+			'patch=1,EE,1032EF1E,extended,00000000\n',
+			'//Remove Glide LV3 1\n',
+			'patch=1,EE,E0010104,extended,0032EF06\n',
+			'patch=1,EE,1036E5CE,extended,0000006C\n',
+			'//Remove Glide LV3 2\n',
+			'patch=1,EE,E0030105,extended,0032EF06\n',
+			'patch=1,EE,1036E5CE,extended,00000000\n',
+			'patch=1,EE,1032EF0C,extended,0000806C\n',
+			'patch=1,EE,1032EF1E,extended,00000000\n',
+			'//Remove Glide LV2 1\n',
+			'patch=1,EE,E0010106,extended,0032EF06\n',
+			'patch=1,EE,1036E5D0,extended,0000006D\n',
+			'//Remove Glide MAX 2\n',
+			'patch=1,EE,E0020107,extended,0032EF06\n',
+			'patch=1,EE,1032EF0C,extended,0000806D\n',
+			'patch=1,EE,1032EF1E,extended,00000000\n'
 		],
 		driveLevels: [
 			{
-				level: "Final LV2",
-				vanillaReward:{
+				level: 'Final LV2',
+				vanillaReward: {
 					reward: 'Auto Final',
 					index: '0184'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Auto Final',
 					index: '0184'
 				},
@@ -623,12 +738,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Final LV3",
-				vanillaReward:{
+				level: 'Final LV3',
+				vanillaReward: {
 					reward: 'Glide LV 1',
 					index: '006A'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Glide LV 1',
 					index: '006A'
 				},
@@ -641,12 +756,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Final LV4",
-				vanillaReward:{
+				level: 'Final LV4',
+				vanillaReward: {
 					reward: 'Form Boost',
 					index: '018E'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Form Boost',
 					index: '018E'
 				},
@@ -659,12 +774,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Final LV5",
-				vanillaReward:{
+				level: 'Final LV5',
+				vanillaReward: {
 					reward: 'Glide LV 2',
 					index: '006B'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Glide LV 2',
 					index: '006B'
 				},
@@ -677,12 +792,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Final LV6",
-				vanillaReward:{
+				level: 'Final LV6',
+				vanillaReward: {
 					reward: 'Form Boost',
 					index: '018E'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Form Boost',
 					index: '018E'
 				},
@@ -695,12 +810,12 @@ const formsData = [
 				isEXPReplaced: false
 			},
 			{
-				level: "Final LV7",
-				vanillaReward:{
+				level: 'Final LV7',
+				vanillaReward: {
 					reward: 'Glide LV 3',
 					index: '006C'
 				},
-				replacementReward:{
+				replacementReward: {
 					reward: 'Glide LV 3',
 					index: '006C'
 				},
