@@ -9,7 +9,7 @@ import CriticalTable from '../Tables/CriticalTable'
 
 function CriticalPage(props) {
 	return (
-		<div>
+		<div style={props.style}>
 			<Form>
 				<Form.Row>
 					<Col>
@@ -26,6 +26,7 @@ function CriticalPage(props) {
 							rewardList={props.rewardList}
 							currentReward={props.criticalData.currentReward}
 							name={'currentReward'}
+							label={'Reward'}
 							onChange={props.onRewardChange}
 						/>
 					</Col>

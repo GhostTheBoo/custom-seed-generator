@@ -13,7 +13,7 @@ import FormTable from '../Tables/FormTable'
 
 function FormPage(props) {
 	return (
-		<div>
+		<div style={props.style}>
 			<Form>
 				<Form.Row>
 					<GenericSelect
@@ -40,6 +40,7 @@ function FormPage(props) {
 							rewardList={props.rewardList}
 							currentReward={props.formData.currentReward}
 							name={'currentReward'}
+							label={'Reward'}
 							onChange={props.onGenericChange}
 						/>
 					</Col>

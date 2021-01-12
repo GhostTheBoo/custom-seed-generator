@@ -174,12 +174,31 @@ Click toggle include/exclude each cheat in the final file.
 Cheats are either included or not.
 They cannot be red.
 
+### Starting Status
+
+Select a starting equipment from the dropdowns for keyblade, armor, and accessory
+There is no starting armor or accessory in the vanilla game so their default is just EMPTY
+Select the values for Munny, HP, and MP
+Defaults are 0, 20, and 100
+Select Apply to use the inputted starting status
+Select Vanilla to not change any starting status
+
+#### Why am I red?
+
+Starting status is either changed or left Vanilla
+Nothing can be red
+
 ## Things to be Implemented
 
-#### Starting Status
+#### Starting Status (INCLUDED)
 
 I've been trying to include starting equipment but it just has not been functioning cleanly.
 Will return to this when I can figure out a nicer way of implementing it.
+
+#### Magic Cost
+
+There are codes to change MP costs for magic casts
+Just needs to be implemented
 
 #### Look and Feel
 

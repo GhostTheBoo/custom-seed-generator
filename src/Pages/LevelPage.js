@@ -10,7 +10,7 @@ import LevelTable from '../Tables/LevelTable'
 
 function LevelPage(props) {
 	return (
-		<div>
+		<div style={props.style}>
 			<Form>
 				<Form.Row>
 					<Col>
@@ -24,7 +24,7 @@ function LevelPage(props) {
 					</Col>
 					<Col>
 						<RewardSelect
-							label={'Sword'}
+							label={'Sword Reward'}
 							class={'level'}
 							rewardList={props.swordRewardList}
 							currentReward={props.levelData.currentSwordReward}
@@ -43,7 +43,7 @@ function LevelPage(props) {
 					</Col>
 					<Col>
 						<RewardSelect
-							label={'Shield'}
+							label={'Shield Reward'}
 							class={'level'}
 							rewardList={props.shieldRewardList}
 							currentReward={props.levelData.currentShieldReward}
@@ -62,7 +62,7 @@ function LevelPage(props) {
 					</Col>
 					<Col>
 						<RewardSelect
-							label={'Staff'}
+							label={'Staff Reward'}
 							class={'level'}
 							rewardList={props.staffRewardList}
 							currentReward={props.levelData.currentStaffReward}

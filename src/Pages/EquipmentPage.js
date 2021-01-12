@@ -12,7 +12,7 @@ import EquipmentTable from '../Tables/EquipmentTable'
 
 function EquipmentPage(props) {
 	return (
-		<div>
+		<div style={props.style}>
 			<Form>
 				<Form.Row>
 					<GenericSelect
@@ -39,6 +39,7 @@ function EquipmentPage(props) {
 							rewardList={props.rewardList}
 							currentReward={props.equipmentData.currentReward}
 							name={'currentReward'}
+							label={'Ability'}
 							onChange={props.onRewardChange}
 						/>
 					</Col>
