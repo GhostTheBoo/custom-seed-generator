@@ -39,6 +39,7 @@ function PopupPage(props) {
 							rewardList={props.rewardList}
 							currentReward={props.popupData.currentReward}
 							name={'currentReward'}
+							label={'Reward'}
 							onChange={props.onRewardChange}
 						/>
 					</Col>

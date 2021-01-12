@@ -10,7 +10,7 @@ function RewardSelect(props) {
 
 	return (
 		<Form.Group controlId={props.class + props.name}>
-			<Form.Label column='sm'>{props.label} Reward Selector: </Form.Label>
+			<Form.Label column='sm'>{props.label} Selector: </Form.Label>
 			<Form.Control
 				size='sm'
 				as='select'

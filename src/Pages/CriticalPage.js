@@ -26,6 +26,7 @@ function CriticalPage(props) {
 							rewardList={props.rewardList}
 							currentReward={props.criticalData.currentReward}
 							name={'currentReward'}
+							label={'Reward'}
 							onChange={props.onRewardChange}
 						/>
 					</Col>

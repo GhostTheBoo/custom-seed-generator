@@ -16,8 +16,10 @@ function StartingPage(props) {
 							rewardList={props.keybladeList}
 							currentReward={props.startingStatusData.currentKeyblade}
 							name={'currentKeyblade'}
+							label={'Starting Keyblade'}
 							onChange={props.onRewardChange}
 						/>
+						<Form.Label column='sm'>{props.startingStatusData.startingStatusData.startingKeyblade.reward}</Form.Label>
 					</Col>
 					<Col>
 						<RewardSelect
@@ -25,8 +27,10 @@ function StartingPage(props) {
 							rewardList={props.armorList}
 							currentReward={props.startingStatusData.currentArmor}
 							name={'currentArmor'}
+							label={'Starting Armor'}
 							onChange={props.onRewardChange}
 						/>
+						<Form.Label column='sm'>{props.startingStatusData.startingStatusData.startingArmor.reward}</Form.Label>
 					</Col>
 					<Col>
 						<RewardSelect
@@ -34,14 +38,17 @@ function StartingPage(props) {
 							rewardList={props.accessoryList}
 							currentReward={props.startingStatusData.currentAccessory}
 							name={'currentAccessory'}
+							label={'Starting Accessory'}
 							onChange={props.onRewardChange}
 						/>
+						<Form.Label column='sm'>{props.startingStatusData.startingStatusData.startingAccessory.reward}</Form.Label>
 					</Col>
 				</Form.Row>
+				<br></br>
 				<Form.Row>
 					<Col>
 						<Form.Group controlId='currentMunny'>
-							<Form.Label column='sm'>Munny: </Form.Label>
+							<Form.Label column='sm'>Starting Munny: </Form.Label>
 							<Form.Control
 								size='sm'
 								name='currentMunny'
@@ -51,11 +58,12 @@ function StartingPage(props) {
 								min="0"
 								max="4294967295"
 							/>
+							<Form.Label column='sm'>{props.startingStatusData.startingStatusData.startingMunny}</Form.Label>
 						</Form.Group>
 					</Col>
 					<Col>
 						<Form.Group controlId='currentStartingHP'>
-							<Form.Label column='sm'>HP: </Form.Label>
+							<Form.Label column='sm'>Starting HP: </Form.Label>
 							<Form.Control
 								size='sm'
 								name='currentStartingHP'
@@ -65,11 +73,12 @@ function StartingPage(props) {
 								min="0"
 								max="255"
 							/>
+							<Form.Label column='sm'>{props.startingStatusData.startingStatusData.startingHP}</Form.Label>
 						</Form.Group>
 					</Col>
 					<Col>
 						<Form.Group controlId='currentStartingMP'>
-							<Form.Label column='sm'>MP: </Form.Label>
+							<Form.Label column='sm'>Starting MP: </Form.Label>
 							<Form.Control
 								size='sm'
 								name='currentStartingMP'
@@ -79,6 +88,7 @@ function StartingPage(props) {
 								min="0"
 								max="255"
 							/>
+							<Form.Label column='sm'>{props.startingStatusData.startingStatusData.startingMP}</Form.Label>
 						</Form.Group>
 					</Col>
 				</Form.Row>

@@ -44,7 +44,7 @@ function BonusPage(props) {
 					</Col>
 					<Col>
 						<RewardSelect
-							label={'"A"'}
+							label={'"A" Reward'}
 							class={'bonus'}
 							rewardList={props.rewardListA}
 							currentReward={props.bonusData.currentReward}
@@ -63,7 +63,7 @@ function BonusPage(props) {
 					</Col>
 					<Col>
 						<RewardSelect
-							label={'"B"'}
+							label={'"B" Reward'}
 							class={'bonus'}
 							rewardList={props.rewardListB}
 							currentReward={props.bonusData.currentReward}

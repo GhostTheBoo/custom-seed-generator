@@ -12,8 +12,9 @@ function GenericSelect(props) {
 		<Col xs='auto'>
 			<Form.Group controlId={props.class + props.selector + 'Selector'}>
 				<Form.Label column='sm'>{props.selector} Selector:</Form.Label>
-				<Form.Control as='select'
+				<Form.Control
 					size='sm'
+					as='select'
 					value={props.currentItem}
 					name={props.name}
 					onChange={props.onChange}

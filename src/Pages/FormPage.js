@@ -40,6 +40,7 @@ function FormPage(props) {
 							rewardList={props.rewardList}
 							currentReward={props.formData.currentReward}
 							name={'currentReward'}
+							label={'Reward'}
 							onChange={props.onGenericChange}
 						/>
 					</Col>

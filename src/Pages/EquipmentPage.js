@@ -39,6 +39,7 @@ function EquipmentPage(props) {
 							rewardList={props.rewardList}
 							currentReward={props.equipmentData.currentReward}
 							name={'currentReward'}
+							label={'Ability'}
 							onChange={props.onRewardChange}
 						/>
 					</Col>

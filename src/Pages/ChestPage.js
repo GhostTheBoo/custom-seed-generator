@@ -39,6 +39,7 @@ function ChestPage(props) {
 							rewardList={props.rewardList}
 							currentReward={props.chestData.currentReward}
 							name={'currentReward'}
+							label={'Reward'}
 							onChange={props.onRewardChange}
 						/>
 					</Col>
