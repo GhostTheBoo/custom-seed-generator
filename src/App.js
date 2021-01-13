@@ -1124,40 +1124,42 @@ class App extends React.Component {
 		})
 		criticalPnachCodes.unshift('\n//CRITICAL EXTRAS\n')
 
-		let startingPnachCodes = '\n//STARTING STATUS\n'
+		let startingCodes = ''
 		let initialData = this.state.startingStatus.startingStatusData
 		if (initialData.startingKeyblade.index !== "0029") {
 			let keyblade = initialData.startingKeyblade
-			startingPnachCodes += initialData.keybladeCode.join('') + keyblade.index.padStart(4, '0') + ' // ' + keyblade.reward + '\n'
+			startingCodes += initialData.keybladeCode.join('') + keyblade.index.padStart(4, '0') + ' // ' + keyblade.reward + '\n'
 		} else
-			startingPnachCodes += '// Vanilla starting Keyblade of Kingdom Key\n'
+			startingCodes += '// Vanilla starting Keyblade of Kingdom Key\n'
 		if (initialData.startingArmor.index !== "0000") {
 			let armor = initialData.startingArmor
-			startingPnachCodes += initialData.armorCode.join('') + armor.index.padStart(4, '0') + ' // ' + armor.reward + '\n'
+			startingCodes += initialData.armorCode.join('') + armor.index.padStart(4, '0') + ' // ' + armor.reward + '\n'
 		} else
-			startingPnachCodes += '// Vanilla starting Armor of EMPTY\n'
+			startingCodes += '// Vanilla starting Armor of EMPTY\n'
 		if (initialData.startingAccessory.index !== "0000") {
 			let accessory = initialData.startingAccessory
-			startingPnachCodes += initialData.accessoryCode.join('') + accessory.index.padStart(4, '0') + ' // ' + accessory.reward + '\n'
+			startingCodes += initialData.accessoryCode.join('') + accessory.index.padStart(4, '0') + ' // ' + accessory.reward + '\n'
 		} else
-			startingPnachCodes += '// Vanilla starting Accessory of EMPTY\n'
+			startingCodes += '// Vanilla starting Accessory of EMPTY\n'
 		if (initialData.startingMunny !== 0) {
-			startingPnachCodes += initialData.munnyCode.join('') + initialData.startingMunny.toString(16).toUpperCase().padStart(8, '0')
-			startingPnachCodes += ' // ' + initialData.startingMunny + ' munny\n'
+			startingCodes += initialData.munnyCode.join('') + initialData.startingMunny.toString(16).toUpperCase().padStart(8, '0')
+			startingCodes += ' // ' + initialData.startingMunny + ' munny\n'
 		} else
-			startingPnachCodes += '// Vanilla starting Munny of 0\n'
+			startingCodes += '// Vanilla starting Munny of 0\n'
 		if (initialData.startingHP !== 20) {
 			let hp = initialData.startingHP
-			startingPnachCodes += initialData.hpCode.slice(0, 5).join('') + hp.toString(16).toUpperCase().padStart(2, '0') + ' // Max HP: ' + hp + '\n'
-			startingPnachCodes += initialData.hpCode[5] + hp.toString(16).toUpperCase().padStart(2, '0') + ' // Current HP: ' + hp + '\n'
+			startingCodes += initialData.hpCode.slice(0, 5).join('') + hp.toString(16).toUpperCase().padStart(2, '0') + ' // Max HP: ' + hp + '\n'
+			startingCodes += initialData.hpCode[5] + hp.toString(16).toUpperCase().padStart(2, '0') + ' // Current HP: ' + hp + '\n'
 		} else
-			startingPnachCodes += '// Vanilla starting HP of 20\n'
+			startingCodes += '// Vanilla starting HP of 20\n'
 		if (initialData.startingMP !== 100) {
 			let mp = initialData.startingMP
-			startingPnachCodes += initialData.mpCode.slice(0, 5).join('') + mp.toString(16).toUpperCase().padStart(2, '0') + ' // Max MP: ' + mp + '\n'
-			startingPnachCodes += initialData.mpCode[5] + mp.toString(16).toUpperCase().padStart(2, '0') + ' // Current MP: ' + mp + '\n'
+			startingCodes += initialData.mpCode.slice(0, 5).join('') + mp.toString(16).toUpperCase().padStart(2, '0') + ' // Max MP: ' + mp + '\n'
+			startingCodes += initialData.mpCode[5] + mp.toString(16).toUpperCase().padStart(2, '0') + ' // Current MP: ' + mp + '\n'
 		} else
-			startingPnachCodes += '// Vanilla starting MP of 100\n'
+			startingCodes += '// Vanilla starting MP of 100\n'
+		let startingPnachCodes = ['\n//STARTING STATUS\n']
+		startingPnachCodes.push(startingCodes)
 
 		let cheatPnachCodes = this.state.cheat.currentDisplayData.filter(cheat => cheat.isActive).map(cheat => {
 			let ret = '//' + cheat.name + '\n'

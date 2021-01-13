@@ -49,8 +49,12 @@ export const formTypesData = [
 export const charactersData = [
 	'Sora',
 	'Donald',
-	'Goofy'
-]
+	'Goofy']
+
+export const magicCostsData = [
+	'Magic',
+	'Limit',
+	'Other']
 
 export const equipmentTypesData = [
 	'Keyblade',
@@ -58,5 +62,4 @@ export const equipmentTypesData = [
 	'Goofy Shield',
 	'Ally Weapon',
 	'Armor',
-	'Accessory'
-]
+	'Accessory']
