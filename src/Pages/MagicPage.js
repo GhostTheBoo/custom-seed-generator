@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col'
 import { magicCostsData } from '../Data/typesData'
 
 import GenericSelect from '../Components/GenericSelect'
-import MagicTable from '../Tables/MagicTable'
+import MagicTable from '../Tables/MagicTable.js'
 
 function MagicPage(props) {
 	return (

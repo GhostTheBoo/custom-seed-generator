@@ -8,7 +8,7 @@ const magicData = [
 				vanillaCost: 12,
 				replacementCost: 12,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Fira',
@@ -16,7 +16,7 @@ const magicData = [
 				vanillaCost: 12,
 				replacementCost: 12,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Firaga',
@@ -24,7 +24,7 @@ const magicData = [
 				vanillaCost: 12,
 				replacementCost: 12,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Blizzard',
@@ -32,7 +32,7 @@ const magicData = [
 				vanillaCost: 15,
 				replacementCost: 15,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Blizzara',
@@ -40,7 +40,7 @@ const magicData = [
 				vanillaCost: 15,
 				replacementCost: 15,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Blizzaga',
@@ -48,7 +48,7 @@ const magicData = [
 				vanillaCost: 15,
 				replacementCost: 15,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Thunder',
@@ -56,7 +56,7 @@ const magicData = [
 				vanillaCost: 18,
 				replacementCost: 18,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Thundara',
@@ -64,7 +64,7 @@ const magicData = [
 				vanillaCost: 18,
 				replacementCost: 18,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Thundaga',
@@ -72,7 +72,7 @@ const magicData = [
 				vanillaCost: 18,
 				replacementCost: 18,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Cure',
@@ -80,7 +80,7 @@ const magicData = [
 				vanillaCost: 255,
 				replacementCost: 255,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Cura',
@@ -88,7 +88,7 @@ const magicData = [
 				vanillaCost: 255,
 				replacementCost: 255,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Curaga',
@@ -96,7 +96,7 @@ const magicData = [
 				vanillaCost: 255,
 				replacementCost: 255,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Magnet',
@@ -104,7 +104,7 @@ const magicData = [
 				vanillaCost: 30,
 				replacementCost: 30,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Magnera',
@@ -112,7 +112,7 @@ const magicData = [
 				vanillaCost: 30,
 				replacementCost: 30,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Magnega',
@@ -120,7 +120,7 @@ const magicData = [
 				vanillaCost: 30,
 				replacementCost: 30,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Reflect',
@@ -128,7 +128,7 @@ const magicData = [
 				vanillaCost: 10,
 				replacementCost: 10,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Reflera',
@@ -136,7 +136,7 @@ const magicData = [
 				vanillaCost: 10,
 				replacementCost: 10,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Reflega',
@@ -144,7 +144,7 @@ const magicData = [
 				vanillaCost: 10,
 				replacementCost: 10,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			}
 		]
 	},
@@ -157,7 +157,7 @@ const magicData = [
 				vanillaCost: 255,
 				replacementCost: 255,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Bushido (Auron)',
@@ -165,7 +165,7 @@ const magicData = [
 				vanillaCost: 255,
 				replacementCost: 255,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Red Rocket (Mulan)',
@@ -173,7 +173,7 @@ const magicData = [
 				vanillaCost: 255,
 				replacementCost: 255,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Whirli-Goof (Goofy)',
@@ -181,7 +181,7 @@ const magicData = [
 				vanillaCost: 255,
 				replacementCost: 255,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Comet (Donald)',
@@ -189,7 +189,7 @@ const magicData = [
 				vanillaCost: 255,
 				replacementCost: 255,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Knocksmash (Goofy)',
@@ -197,7 +197,7 @@ const magicData = [
 				vanillaCost: 255,
 				replacementCost: 255,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Duck Flare (Donald)',
@@ -205,7 +205,7 @@ const magicData = [
 				vanillaCost: 255,
 				replacementCost: 255,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Speedster (Aladdin)',
@@ -213,7 +213,7 @@ const magicData = [
 				vanillaCost: 255,
 				replacementCost: 255,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Bluff (Jack Sparrow)',
@@ -221,7 +221,7 @@ const magicData = [
 				vanillaCost: 255,
 				replacementCost: 255,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Wildcat (Simba)',
@@ -229,7 +229,7 @@ const magicData = [
 				vanillaCost: 255,
 				replacementCost: 255,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Dance Call (Jack)',
@@ -237,7 +237,7 @@ const magicData = [
 				vanillaCost: 255,
 				replacementCost: 255,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Setup (Tron)',
@@ -245,7 +245,7 @@ const magicData = [
 				vanillaCost: 255,
 				replacementCost: 255,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Trinity Limit (Sora)',
@@ -253,7 +253,7 @@ const magicData = [
 				vanillaCost: 255,
 				replacementCost: 255,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Session (Riku)',
@@ -261,7 +261,7 @@ const magicData = [
 				vanillaCost: 255,
 				replacementCost: 255,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			}
 		]
 	},
@@ -274,7 +274,7 @@ const magicData = [
 				vanillaCost: 65,
 				replacementCost: 65,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Sonic Blade',
@@ -282,7 +282,7 @@ const magicData = [
 				vanillaCost: 60,
 				replacementCost: 60,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Ragnarok',
@@ -290,7 +290,7 @@ const magicData = [
 				vanillaCost: 80,
 				replacementCost: 80,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			},
 			{
 				ability: 'Ars Arcanum',
@@ -298,7 +298,7 @@ const magicData = [
 				vanillaCost: 72,
 				replacementCost: 72,
 				toBeReplaced: false,
-				isChanged: false
+				isReplaced: false
 			}
 		]
 	}
