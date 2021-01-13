@@ -1,14 +1,6 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table'
-/*
-			<MagicTable
-				currentMagicType={magicCostsData[props.magicData.currentMagicType]}
-				abilities={props.magicData.currentDisplayData}
-				onRowCheck={props.onRowCheck}
-				checkAll={props.checkAll}
-				selectAll={props.magicData.selectAll}
-			/>
-			*/
+
 function MagicTable(props) {
 	let magicList = props.abilities.map((ability, index) => {
 		let styles

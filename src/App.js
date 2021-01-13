@@ -157,6 +157,7 @@ class App extends React.Component {
 		this.handleFormChange = this.handleFormChange.bind(this)
 		this.handleEquipmentTypeChange = this.handleEquipmentTypeChange.bind(this)
 		this.handleBonusCharacterChange = this.handleBonusCharacterChange.bind(this)
+		this.handleMagicTypeChange = this.handleMagicTypeChange.bind(this)
 
 		this.handleChestReplace = this.handleChestReplace.bind(this)
 		this.handlePopupReplace = this.handlePopupReplace.bind(this)
@@ -164,6 +165,7 @@ class App extends React.Component {
 		this.handleEquipmentReplace = this.handleEquipmentReplace.bind(this)
 		this.handleBonusReplace = this.handleBonusReplace.bind(this)
 		this.handleLevelReplace = this.handleLevelReplace.bind(this)
+		this.handleMagicReplace = this.handleMagicReplace.bind(this)
 		this.handleCriticalReplace = this.handleCriticalReplace.bind(this)
 		this.handleCheatReplace = this.handleCheatReplace.bind(this)
 		this.handleStartingStatusReplace = this.handleStartingStatusReplace.bind(this)
@@ -353,6 +355,32 @@ class App extends React.Component {
 				currentCharacter: nextCharacter,
 				allBonuses: newAllBonuses,
 				currentDisplayData: newAllBonuses[nextCharacter].characterBonuses[this.state.bonus.currentWorld].worldBonuses.slice()
+			}
+		}))
+	}
+
+	handleMagicTypeChange(event) {
+		let nextMagicType = parseInt(event.target.value)
+		let toBeReplacedMagicAbilities = this.state.magicCost.currentDisplayData.map(ability => {
+			ability.toBeReplaced = false
+			return ability
+		})
+		let newAllMagicAbilities = this.state.magicCost.allMagic.map((magicType, index) => {
+			if (index === this.state.magicCost.currentMagicType)
+				return {
+					magicType: magicCostsData[index],
+					abilities: toBeReplacedMagicAbilities
+				}
+			return magicType
+		})
+		let nextMagicAbilities = newAllMagicAbilities[nextMagicType].abilities.slice()
+		this.setState(prevState => ({
+			magicCost: {
+				...prevState.magicCost,
+				selectAll: false,
+				currentMagicType: nextMagicType,
+				allMagic: newAllMagicAbilities,
+				currentDisplayData: nextMagicAbilities
 			}
 		}))
 	}
@@ -747,6 +775,45 @@ class App extends React.Component {
 		}))
 	}
 
+	handleMagicReplace(event) {
+		let replacedMagicAbilities
+		if (event.target.name === 'replaceButton') {
+			replacedMagicAbilities = this.state.magicCost.currentDisplayData.map(ability => {
+				if (ability.toBeReplaced) {
+					let cost = this.state.magicCost.currentCost
+					ability.toBeReplaced = false
+
+					if (cost !== ability.replacementCost) {
+						if (cost === ability.vanillaCost) {
+							ability.isReplaced = false
+							ability.replacementCost = ability.vanillaCost
+						} else {
+							ability.isReplaced = true
+							ability.replacementCost = cost
+						}
+					}
+				}
+				return ability
+			})
+		} else {
+			replacedMagicAbilities = this.state.magicCost.currentDisplayData.map(ability => {
+				if (ability.toBeReplaced) {
+					ability.toBeReplaced = false
+					ability.isReplaced = false
+					ability.replacementCost = ability.vanillaCost
+				}
+				return ability
+			})
+		}
+		this.setState(prevState => ({
+			magicCost: {
+				...prevState.magicCost,
+				selectAll: false,
+				currentDisplayData: replacedMagicAbilities
+			}
+		}))
+	}
+
 	handleCriticalReplace(event) {
 		let replacedCriticalExtras
 		if (event.target.name === 'replaceButton') {
@@ -1120,6 +1187,25 @@ class App extends React.Component {
 		})
 		levelPnachCodes.unshift('\n//LEVEL REWARDS\n')
 
+		let magicChangeCount = 0
+		let magicCostPnachCodes = this.state.magicCost.allMagic.map(magicType => {
+			let ret = '// ' + magicType.magicType.toUpperCase() + '\n'
+
+			magicType.abilities.forEach(ability => {
+				let text = 'patch=1,EE,' + ability.costAddress + ',extended,' + ability.replacementCost.toString(16).toUpperCase().padStart(8, '0')
+				text += ' // ' + ability.ability + ' Cost: ' + ability.replacementCost + '\n'
+				if (!ability.isReplaced) {
+					if (this.state.isHeavilyCommented)
+						ret += '//' + text
+				} else {
+					magicChangeCount++
+					ret += text
+				}
+			})
+			return ret
+		})
+		magicCostPnachCodes.unshift('\nMAGIC COSTS\n')
+
 		let criticalPnachCodes = this.state.critical.currentDisplayData.map(ce => {
 			let ret = ''
 
@@ -1179,7 +1265,7 @@ class App extends React.Component {
 		})
 		cheatPnachCodes.unshift('\n//CHEAT CODES\n')
 
-		let pnachCodes = chestPnachCodes.concat(popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes, criticalPnachCodes, startingPnachCodes, cheatPnachCodes)
+		let pnachCodes = chestPnachCodes.concat(popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes, magicCostPnachCodes, criticalPnachCodes, startingPnachCodes, cheatPnachCodes)
 
 		const element = document.createElement('a')
 		const file = new Blob(pnachCodes, { type: 'text/plain;charset=utf-8' })
@@ -1327,6 +1413,24 @@ class App extends React.Component {
 		})
 		levelSaveData = ['"levelsData":[', levelSaveData.join('').slice(0, -1), '],']
 
+		let magicCostSaveData = this.state.magicCost.allMagic.map(magicType => {
+			let ret = ''
+			let newMagicCostArray = magicType.abilities.filter(ability => ability.isReplaced)
+			if (newMagicCostArray.length !== 0) {
+				ret += '{"magicType":' + JSON.stringify(magicType.magicType) + ',"abilities":['
+				newMagicCostArray.forEach(ability => {
+					ret += '{"ability":' + JSON.stringify(ability.ability)
+					ret += ',"replacementCost":' + ability.replacementCost
+					ret += ',"isReplaced":' + ability.isReplaced
+					ret += '},'
+				})
+				ret = ret.slice(0, -1)
+				ret += ']}'
+			}
+			return ret
+		})
+		magicCostSaveData = ['"magicData":[', magicCostSaveData.filter(s => s !== '').join(), '],']
+
 		let criticalSaveData = this.state.critical.currentDisplayData.filter(critical => critical.isReplaced).map(critical => {
 			let critRet = '{"replacementReward":{"reward":' + JSON.stringify(critical.replacementReward.reward) + ',"index":"' + critical.replacementReward.index + '"},'
 			critRet += '"vanillaAddress":"' + critical.vanillaAddress + '",'
@@ -1357,6 +1461,7 @@ class App extends React.Component {
 			equipmentSaveData.join(''),
 			bonusSaveData.join(''),
 			levelSaveData.join(''),
+			magicCostSaveData.join(''),
 			criticalSaveData.join(''),
 			startingStatusSaveData,
 			cheatSaveData.join('').slice(0, -1),
@@ -1487,6 +1592,14 @@ class App extends React.Component {
 			}
 			return level
 		})
+		/*
+		let magicSaveData = allLoadData.magicData
+		let magicLoadData = this.state.magicCost.allMagic.map((magicType, magicTypeIndex) => {
+			if (magicSaveData[jsonIndex].magicType === magicType.magicType) {
+				//merge abilities Array of magicSaveData[jsonIndex] with magicType
+				_.merge(magicType, magicSaveData[jsonIndex].abilities)
+			}
+		})*/
 		jsonIndex = 0
 		let criticalLoadData = this.state.critical.currentDisplayData.map(critExtra => {
 			if (jsonIndex >= allLoadData.criticalsData.length)
@@ -1608,7 +1721,7 @@ class App extends React.Component {
 							onClick={this.handleBonusReplace}
 						/>
 					</Tab>
-					<Tab eventKey="form" title="Forms and Summons">
+					<Tab eventKey="form" title="Forms & Summons">
 						<FormPage
 							style={styles}
 							formData={this.state.form}
@@ -1650,6 +1763,17 @@ class App extends React.Component {
 							onRowCheck={(event) => this.onRowCheck('level', event)}
 							checkAll={(event) => this.checkAll('level', event)}
 							onClick={this.handleLevelReplace}
+						/>
+					</Tab>
+					<Tab eventKey="magic" title="Magic & Limits">
+						<MagicPage
+							style={styles}
+							magicData={this.state.magicCost}
+							handleMagicTypeChange={this.handleMagicTypeChange}
+							onInputChange={(event) => this.handleInputChange('magicCost', event)}
+							onRowCheck={(event) => this.onRowCheck('magicCost', event)}
+							checkAll={(event) => this.checkAll('magicCost', event)}
+							onClick={this.handleMagicReplace}
 						/>
 					</Tab>
 					<Tab eventKey="critical" title="Critical Extra">

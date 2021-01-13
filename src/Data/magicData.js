@@ -1,6 +1,6 @@
 const magicData = [
 	{
-		magicType: 'Magic',
+		magicType: 'Magic Spells',
 		abilities: [
 			{
 				ability: 'Fire',
@@ -149,7 +149,7 @@ const magicData = [
 		]
 	},
 	{
-		magicType: 'Limit',
+		magicType: 'Party Limits',
 		abilities: [
 			{
 				ability: 'Twin Howl (Beast)',

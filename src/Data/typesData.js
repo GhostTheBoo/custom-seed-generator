@@ -52,8 +52,8 @@ export const charactersData = [
 	'Goofy']
 
 export const magicCostsData = [
-	'Magic',
-	'Limit',
+	'Magic Spells',
+	'Party Limits',
 	'Other']
 
 export const equipmentTypesData = [
