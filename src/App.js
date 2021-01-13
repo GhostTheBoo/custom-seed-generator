@@ -5,7 +5,7 @@ import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import _ from 'lodash'
 
-import { worldsData, formTypesData, equipmentTypesData, charactersData } from './Data/typesData'
+import { worldsData, formTypesData, equipmentTypesData, charactersData, magicCostsData } from './Data/typesData'
 import rewardsData from './Data/rewardsData'
 
 import ChestPage from './Pages/ChestPage'
@@ -34,6 +34,9 @@ import cheatsData from './Data/cheatsData'
 
 import StartingPage from './Pages/StartingPage'
 import startingStatusData from './Data/startingStatusData'
+
+import MagicPage from './Pages/MagicPage'
+import magicData from './Data/magicData'
 
 class App extends React.Component {
 	constructor() {
@@ -137,6 +140,13 @@ class App extends React.Component {
 				currentStartingHP: 20,
 				currentStartingMP: 100,
 				startingStatusData: _.cloneDeep(startingStatusData)
+			},
+			magicCost: {
+				currentCost: 0,
+				currentMagicType: 0,
+				selectAll: false,
+				allMagic: magicData.slice(),
+				currentDisplayData: magicData[0].abilities
 			},
 			isHeavilyCommented: false
 		}
