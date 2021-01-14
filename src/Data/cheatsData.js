@@ -198,7 +198,7 @@ const cheatsData = [
 		]
 	},
 	{
-		name: "Random MP Cost",
+		name: "Randomize Spell Cost",
 		toBeReplaced: false,
 		isActive: false,
 		code: [
@@ -224,6 +224,46 @@ const cheatsData = [
 			"patch=1,EE,30000001,extended,01CCD2D0// Reflect",
 			"patch=1,EE,30000001,extended,01CCD300// Reflera",
 			"patch=1,EE,30000001,extended,01CCD330// Reflega"
+		]
+	},
+	{
+		name: "Randomize Party Limits Cost",
+		toBeReplaced: false,
+		isActive: false,
+		code: [
+			"patch=1,EE,E0111FFF,extended,1032BAE0// If not FFFF",
+			"patch=1,EE,E0110002,extended,1032BAE0// If not 2002",
+			"patch=1,EE,E10F00FF,extended,1032F0C6// If Thunder != FF",
+			"patch=1,EE,E00E0000,extended,1032BAD8// If not screen transition",
+			"patch=1,EE,30000001,extended,01CCC130// Twin Howl",
+			"patch=1,EE,30000001,extended,01CCC2B0// Bushido",
+			"patch=1,EE,30000001,extended,01CCCC40// Red Rocket",
+			"patch=1,EE,30000001,extended,01CCE110// Whirli-Goof",
+			"patch=1,EE,30000001,extended,01CCE620// Comet",
+			"patch=1,EE,30000001,extended,01CCF040// Knocksmash",
+			"patch=1,EE,30000001,extended,01CCF160// Duck Flare",
+			"patch=1,EE,30000001,extended,01CCF280// Speedster",
+			"patch=1,EE,30000001,extended,01CCF3A0// Bluff",
+			"patch=1,EE,30000001,extended,01CCF730// WildCat",
+			"patch=1,EE,30000001,extended,01CCFCA0// Dance Call",
+			"patch=1,EE,30000001,extended,01CCFE80// Setup",
+			"patch=1,EE,30000001,extended,01CD0B40// Trinity Limit",
+			"patch=1,EE,30000001,extended,01CD1AD0// Session"
+		]
+	},
+	{
+		name: "Randomize Limit Form Limits Cost",
+		toBeReplaced: false,
+		isActive: false,
+		code: [
+			"patch=1,EE,E007FFFF,extended,1032BAE0// If not FFFF",
+			"patch=1,EE,E0062002,extended,1032BAE0// If not 2002",
+			"patch=1,EE,E10500FF,extended,1032F0C5// If Blizzard != FF",
+			"patch=1,EE,E0040000,extended,1032BAD8// If not screen transition",
+			"patch=1,EE,30000001,extended,01CD3150// Strike Raid",
+			"patch=1,EE,30000001,extended,01CD3030// Sonic Blade",
+			"patch=1,EE,30000001,extended,01CD2F10// Ragnarok",
+			"patch=1,EE,30000001,extended,01CD30C0// Ars Arcanum"
 		]
 	}
 ]
