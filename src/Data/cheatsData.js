@@ -202,7 +202,28 @@ const cheatsData = [
 		toBeReplaced: false,
 		isActive: false,
 		code: [
-			"//PLACEHOLDER FOR RANDOM MP COST"
+			"patch=1,EE,E015FFFF,extended,1032BAE0// If not FFFF",
+			"patch=1,EE,E0142002,extended,1032BAE0// If not 2002",
+			"patch=1,EE,E11300FF,extended,1032F0C4// If Fire != FF",
+			"patch=1,EE,E0120000,extended,1032BAD8// If not screen transition",
+			"patch=1,EE,30000001,extended,01CCBCE0// Fire",
+			"patch=1,EE,30000001,extended,01CCC8E0// Fira",
+			"patch=1,EE,30000001,extended,01CCC910// Firaga",
+			"patch=1,EE,30000001,extended,01CCBD40// Blizzard",
+			"patch=1,EE,30000001,extended,01CCC940// Blizzara",
+			"patch=1,EE,30000001,extended,01CCC970// Blizzaga",
+			"patch=1,EE,30000001,extended,01CCBD10// Thunder",
+			"patch=1,EE,30000001,extended,01CCC9A0// Thundara",
+			"patch=1,EE,30000001,extended,01CCC9D0// Thundaga",
+			"patch=1,EE,30000001,extended,01CCBD70// Cure",
+			"patch=1,EE,30000001,extended,01CCCA00// Cura",
+			"patch=1,EE,30000001,extended,01CCCA30// Curaga",
+			"patch=1,EE,30000001,extended,01CCD240// Magnet",
+			"patch=1,EE,30000001,extended,01CCD270// Magnera",
+			"patch=1,EE,30000001,extended,01CCD2A0// Magnega",
+			"patch=1,EE,30000001,extended,01CCD2D0// Reflect",
+			"patch=1,EE,30000001,extended,01CCD300// Reflera",
+			"patch=1,EE,30000001,extended,01CCD330// Reflega"
 		]
 	}
 ]
