@@ -160,6 +160,17 @@ So while it takes 10618 TOTAL experience to reach level 19, only 1804 ADDITONAL 
 
 Levels shouldn't turn red, just make sure everything is being submitted as expected.
 
+### Magic and Limits
+
+The magic and limits page allows for customization of the mp cost of magic spells, party limits, and limit form limits.
+Select all abilities to change, select the desired cost, and click replace.
+Clicking vanilla will return all selected abilities to their vanilla costs.
+
+#### Why am I Red?
+
+Magic abilities can either have their cost changed or remain the same.
+They cannot be red.
+
 ### Critical Extra
 
 The seven extra critical mode abilities can each be changed to give anything else.
@@ -193,12 +204,8 @@ Select Vanilla to not change any starting status
 Starting status is either changed or left Vanilla
 Nothing can be red
 
+
 ## Things to be Implemented
-
-#### Magic Cost
-
-There are codes to change MP costs for magic casts
-Just needs to be implemented
 
 #### Tracker
 
