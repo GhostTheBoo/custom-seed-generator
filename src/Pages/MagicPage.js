@@ -21,7 +21,9 @@ function MagicPage(props) {
 						currentItem={props.magicData.currentMagicType}
 						onChange={props.handleMagicTypeChange}
 					/>
-					<Col>
+				</Form.Row>
+				<Form.Row>
+					<Col xs='auto'>
 						<Form.Group controlId='currentCost'>
 							<Form.Label column='sm'>Cost: </Form.Label>
 							<Form.Control
