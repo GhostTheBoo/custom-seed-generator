@@ -1095,20 +1095,20 @@ class App extends React.Component {
 		let bonusPnachCodes = this.state.bonus.allBonuses.map(character => {
 			let ret = '// ' + character.character.toUpperCase() + '\n'
 			character.characterBonuses.forEach(world => {
-				ret += '// ' + world.world.toUpperCase() + '\n'
+				let worldRet = ''
 				world.worldBonuses.forEach(bonus => {
 					let text = '// ' + bonus.fight + '\n'
 					if (this.state.isHeavilyCommented || bonus.isRewardsReplaced || bonus.isStatsReplaced || bonus.isSlotsReplaced)
-						ret += text
+						worldRet += text
 					text = ''
 
 					text += 'patch=1,EE,' + bonus.statAddress + ',extended,0000'
 					text += bonus.mpIncrease.toString(16).toUpperCase().padStart(2, '0') + bonus.hpIncrease.toString(16).toUpperCase().padStart(2, '0')
 					text += ' // MP:' + bonus.mpIncrease + ' HP:' + bonus.hpIncrease + '\n'
 					if (bonus.isStatsReplaced)
-						ret += text
+						worldRet += text
 					else if (this.state.isHeavilyCommented)
-						ret += '//' + text
+						worldRet += '//' + text
 					text = ''
 
 					text += 'patch=1,EE,' + bonus.slotAddress + ',extended,'
@@ -1117,25 +1117,28 @@ class App extends React.Component {
 					text += ' // Armor Slot:+' + bonus.armorSlotIncrease + ' Accessory Slot:+' + bonus.accessorySlotIncrease
 					text += ' Item Slot:+' + bonus.itemSlotIncrease + ' Drive Gauge:+' + bonus.driveGaugeIncrease + '\n'
 					if (bonus.isSlotsReplaced)
-						ret += text
+						worldRet += text
 					else if (this.state.isHeavilyCommented)
-						ret += '//' + text
+						worldRet += '//' + text
 					text = ''
 
 					text += 'patch=1,EE,' + bonus.rewardAddress + ',extended,' + bonus.replacementReward2.index.padStart(4, '0') + bonus.replacementReward1.index.padStart(4, '0')
 					text += ' // Replacement Reward #2:' + bonus.replacementReward2.reward + ', Replacement Reward #1:' + bonus.replacementReward1.reward + '\n'
 					if (bonus.isRewardsReplaced)
-						ret += text
+						worldRet += text
 					else if (this.state.isHeavilyCommented)
-						ret += '//' + text
+						worldRet += '//' + text
 				})
+				if (worldRet !== '')
+					ret += '// ' + world.world.toUpperCase() + '\n' + worldRet
 			})
 			return ret
 		})
 		bonusPnachCodes.unshift('\n//BONUS REWARDS\n')
 
 		let levelPnachCodes = this.state.level.currentDisplayData.map(l => {
-			let ret = '// Level: ' + l.level + '\n'
+			// let ret = '// Level: ' + l.level + '\n'
+			let ret = ''
 			let text = ''
 
 			if (l.level === 99)
@@ -1183,13 +1186,17 @@ class App extends React.Component {
 				else if (this.state.isHeavilyCommented)
 					ret += '//' + text
 			}
+			if (ret !== '')
+				ret = '// Level: ' + l.level + '\n' + ret
 			return ret
 		})
 		levelPnachCodes.unshift('\n//LEVEL REWARDS\n')
 
-		let magicChangeCount = 0
 		let magicCostPnachCodes = this.state.magicCost.allMagic.map(magicType => {
-			let ret = '// ' + magicType.magicType.toUpperCase() + '\n'
+			let prefix = '// ' + magicType.magicType.toUpperCase() + '\n'
+			let ret = ''
+			let magicChangeCount = 0
+			let lastAbility
 
 			magicType.abilities.forEach(ability => {
 				let text = 'patch=1,EE,' + ability.costAddress + ',extended,' + ability.replacementCost.toString(16).toUpperCase().padStart(8, '0')
@@ -1198,13 +1205,21 @@ class App extends React.Component {
 					if (this.state.isHeavilyCommented)
 						ret += '//' + text
 				} else {
+					lastAbility = ability
 					magicChangeCount++
 					ret += text
 				}
 			})
-			return ret
+			if (magicChangeCount > 0) {
+				prefix += 'patch=1,EE,E0' + (magicChangeCount + 3).toString(16).toUpperCase().padStart(2, '0') + 'FFFF,extended,1032BAE0 // If not on Title Screen\n'
+				prefix += 'patch=1,EE,E0' + (magicChangeCount + 2).toString(16).toUpperCase().padStart(2, '0') + '2002,extended,1032BAE0 // If not in Station of Serenity\n'
+				prefix += 'patch=1,EE,E0' + (magicChangeCount + 1).toString(16).toUpperCase().padStart(2, '0') + '0000,extended,1032BAD8 // If not screen transition\n'
+				prefix += 'patch=1,EE,E1' + magicChangeCount.toString(16).toUpperCase().padStart(2, '0') + '0000,extended,1'
+				prefix += lastAbility.costAddress.slice(0, -1) + ' // If ' + lastAbility.ability + '\'s MP Cost is not ' + lastAbility.replacementCost + '\n'
+			}
+			return prefix + ret + '\n'
 		})
-		magicCostPnachCodes.unshift('\nMAGIC COSTS\n')
+		magicCostPnachCodes.unshift('\n//MAGIC COSTS\n')
 
 		let criticalPnachCodes = this.state.critical.currentDisplayData.map(ce => {
 			let ret = ''
