@@ -1527,7 +1527,7 @@ class App extends React.Component {
 		let allLoadData = JSON.parse(loadData)
 		let globalIndex = 0
 
-		let chestSaveData = allLoadData.chestsData
+		let chestSaveData = (allLoadData.hasOwnProperty('chestsData') ? allLoadData.chestsData : [])
 		let chestLoadData = chestsData.map(world => {
 			let newWorld = { ...world }
 			if (globalIndex < chestSaveData.length) {
@@ -1551,7 +1551,7 @@ class App extends React.Component {
 		})
 		globalIndex = 0
 
-		let popupSaveData = allLoadData.popupsData
+		let popupSaveData = (allLoadData.hasOwnProperty('popupsData') ? allLoadData.popupsData : [])
 		let popupLoadData = popupsData.map(world => {
 			let newWorld = { ...world }
 			if (globalIndex < popupSaveData.length) {
@@ -1575,7 +1575,7 @@ class App extends React.Component {
 		})
 		globalIndex = 0
 
-		let bonusSaveData = allLoadData.bonusData
+		let bonusSaveData = (allLoadData.hasOwnProperty('bonusData') ? allLoadData.bonusData : [])
 		let bonusLoadData = bonusData.map(character => {
 			let newCharacter = { ...character }
 			if (globalIndex < bonusSaveData.length) {
@@ -1610,7 +1610,7 @@ class App extends React.Component {
 		})
 		globalIndex = 0
 
-		let formSaveData = allLoadData.formsData
+		let formSaveData = (allLoadData.hasOwnProperty('formsData') ? allLoadData.formsData : [])
 		let formLoadData = formsData.map(form => {
 			let newForm = { ...form }
 			if (globalIndex < formSaveData.length) {
@@ -1634,7 +1634,7 @@ class App extends React.Component {
 		})
 		globalIndex = 0
 
-		let equipmentSaveData = allLoadData.equipmentsData
+		let equipmentSaveData = (allLoadData.hasOwnProperty('equipmentsData') ? allLoadData.equipmentsData : [])
 		let equipmentLoadData = equipmentsData.map(equipmentType => {
 			let newEquipmentType = { ...equipmentType }
 			if (globalIndex < equipmentSaveData.length) {
@@ -1658,7 +1658,7 @@ class App extends React.Component {
 		})
 		globalIndex = 0
 
-		let levelSaveData = allLoadData.levelsData
+		let levelSaveData = (allLoadData.hasOwnProperty('levelsData') ? allLoadData.levelsData : [])
 		let levelLoadData = levelsData.map(level => {
 			let newLevel = { ...level }
 			if (globalIndex < levelSaveData.length) {
@@ -1671,7 +1671,7 @@ class App extends React.Component {
 		})
 		globalIndex = 0
 
-		let magicSaveData = allLoadData.magicData
+		let magicSaveData = (allLoadData.hasOwnProperty('magicData') ? allLoadData.magicData : [])
 		let magicLoadData = magicData.map(magicType => {
 			let newMagicType = { ...magicType }
 			if (globalIndex < magicSaveData.length) {
@@ -1695,7 +1695,7 @@ class App extends React.Component {
 		})
 		globalIndex = 0
 
-		let criticalSaveData = allLoadData.criticalsData
+		let criticalSaveData = (allLoadData.hasOwnProperty('criticalsData') ? allLoadData.criticalsData : [])
 		let criticalLoadData = criticalData.map(critExtra => {
 			let newCritExtra = { ...critExtra }
 			if (globalIndex < criticalSaveData.length) {
@@ -1708,7 +1708,7 @@ class App extends React.Component {
 		})
 		globalIndex = 0
 
-		let cheatSaveData = allLoadData.cheatsData
+		let cheatSaveData = (allLoadData.hasOwnProperty('cheatsData') ? allLoadData.cheatsData : [])
 		let cheatLoadData = cheatsData.map(cheat => {
 			let newCheat = { ...cheat }
 			if (globalIndex < cheatSaveData.length) {
@@ -1720,7 +1720,28 @@ class App extends React.Component {
 			return newCheat
 		})
 
-		let startingStatusLoadData = allLoadData.startingStatusData
+		let startingStatusLoadData
+		if (allLoadData.hasOwnProperty('startingStatusData'))
+			startingStatusLoadData = allLoadData.startingStatusData
+		else {
+			startingStatusLoadData = {
+				startingKeyblade: {
+					reward: "Kingdom Key",
+					index: "0029"
+				},
+				startingArmor: {
+					reward: "EMPTY",
+					index: "0000"
+				},
+				startingAccessory: {
+					reward: "EMPTY",
+					index: "0000"
+				},
+				startingMunny: 0,
+				startingHP: 20,
+				startingMP: 100
+			}
+		}
 		startingStatusLoadData.keybladeCode = startingStatusData.keybladeCode
 		startingStatusLoadData.armorCode = startingStatusData.armorCode
 		startingStatusLoadData.accessoryCode = startingStatusData.accessoryCode
