@@ -47,7 +47,7 @@ Abilities do not always end up being given to the player so it would effectively
 The ability will still show up in the popup for the player though.
 
 
-### Form
+### Forms and Summons
 
 The form page has all drive form levels separated by drive forms.
 Select the drive form to modify from the drive form selector.
@@ -58,11 +58,16 @@ If vanilla EXP is 100, and a x2 multiplier is selected, the level will be replac
 The custom EXP value is only read when the custom EXP multiplier value is selected.
 It will replace the selected level with whatever custom EXP is provided.
 
+Summon modifications work the same way.
+However summon rewards do not pop up on screen on level up.
+They will show up in menus though.
+
 #### Form EXP
 
 EXP for form levels is how much EXP is required to reach that specific level from the previous level.
 For example, Valor Level 3 is reached by gaining 160 experience AFTER Valor Level 2.
 In other words, it takes a total of 240 EXP to reach Valor Level 3.
+Summon EXP works the same way.
 
 #### Why am I red?
 
@@ -155,6 +160,17 @@ So while it takes 10618 TOTAL experience to reach level 19, only 1804 ADDITONAL 
 
 Levels shouldn't turn red, just make sure everything is being submitted as expected.
 
+### Magic and Limits
+
+The magic and limits page allows for customization of the mp cost of magic spells, party limits, and limit form limits.
+Select all abilities to change, select the desired cost, and click replace.
+Clicking vanilla will return all selected abilities to their vanilla costs.
+
+#### Why am I Red?
+
+Magic abilities can either have their cost changed or remain the same.
+They cannot be red.
+
 ### Critical Extra
 
 The seven extra critical mode abilities can each be changed to give anything else.
@@ -188,22 +204,13 @@ Select Vanilla to not change any starting status
 Starting status is either changed or left Vanilla
 Nothing can be red
 
+
 ## Things to be Implemented
 
-#### Starting Status (INCLUDED)
+#### Tracker
 
-I've been trying to include starting equipment but it just has not been functioning cleanly.
-Will return to this when I can figure out a nicer way of implementing it.
-
-#### Magic Cost
-
-There are codes to change MP costs for magic casts
-Just needs to be implemented
-
-#### Look and Feel
-
-Site legit looks like butt so any ideas or thoughts to improve it would be super awesome.
-I've mostly been focused on functionality so actual visuals are hard to do.
+Keep track of how many important items have been used.
+Ex. 3 fires have been given to the player or 2 torn pages.
 
 #### Randomize
 
@@ -211,10 +218,10 @@ I would love to implement the same random seed generation that val's site uses.
 Essentially replace whatever you want, and then randomize everything else.
 I want it to still kind of be compatible with Val's site where any replacements are either tracked or treated as junk.
 
-#### Tracker
+#### Look and Feel
 
-Keep track of how many important items have been used.
-Ex. 3 fires have been given to the player or 2 torn pages.
+Site legit looks like butt so any ideas or thoughts to improve it would be super awesome.
+I've mostly been focused on functionality so actual visuals are hard to do.
 
 #### General Requests
 
