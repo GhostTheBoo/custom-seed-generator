@@ -1329,7 +1329,7 @@ class App extends React.Component {
 			character.characterBonuses.forEach(world => {
 				let ret = ''
 				world.worldBonuses.filter(b => b.isStatsReplaced || b.isSlotsReplaced || b.isRewardsReplaced).forEach(bonus => {
-					ret = '{"fight":' + JSON.stringify(bonus.fight) + ','
+					ret += '{"fight":' + JSON.stringify(bonus.fight) + ','
 					ret += '"isStatsReplaced":' + bonus.isStatsReplaced + ','
 					if (bonus.isStatsReplaced) {
 						ret += '"hpIncrease":' + bonus.hpIncrease + ',"mpIncrease":' + bonus.mpIncrease + ','
