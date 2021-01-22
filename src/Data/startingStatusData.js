@@ -73,6 +73,32 @@ const startingStatusData = {
 		//+ mp.toString(16).toUpperCase().padStart(2, '0') + ' //Max MP: ' + mp + '\n'
 		'patch=1,EE,01C6C8D0,extended,000000'
 		//+ mp.toString(16).toUpperCase().padStart(2, '0') + ' //Current MP: ' + mp + '\n'
+	],
+	startingDonald1: {
+		reward: "Donald Thunder",
+		index: "00A7"
+	},
+	startingDonald2: {
+		reward: "Donald Cure",
+		index: "00A8"
+	},
+	donaldCode: [
+		'//Donald\'s Starting Abilities\n',
+		'patch=1,EE,11D16EE0,extended,0000',//Donald Thunder
+		'patch=1,EE,11D16EE2,extended,0000'	//Donald Cure
+	],
+	startingGoofy1: {
+		reward: "Goofy Bash",
+		index: "01AD"
+	},
+	startingGoofy2: {
+		reward: "Item Boost",
+		index: "019B"
+	},
+	goofyCode: [
+		'//Goofy\'s Starting Abilities\n',
+		'patch=1,EE,11D16F62,extended,0000',//Goofy Bash
+		'patch=1,EE,11D16F64,extended,0000'	//Item Boost
 	]
 }
 

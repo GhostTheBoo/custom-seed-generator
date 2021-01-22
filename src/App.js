@@ -139,6 +139,10 @@ class App extends React.Component {
 				currentMunny: 0,
 				currentStartingHP: 20,
 				currentStartingMP: 100,
+				currentDonald1: 28,
+				currentDonald2: 29,
+				currentGoofy1: 33,
+				currentGoofy2: 64,
 				startingStatusData: _.cloneDeep(startingStatusData)
 			},
 			magicCost: {
@@ -864,6 +868,10 @@ class App extends React.Component {
 		let newKeyblade = 0
 		let newArmor = 0
 		let newAccessory = 0
+		let newDonald1 = 28
+		let newDonald2 = 29
+		let newGoofy1 = 33
+		let newGoofy2 = 64
 		if (event.target.name === 'replaceButton') {
 			newStartingStatus.startingKeyblade = rewardsData[7].rewards[this.state.startingStatus.currentKeyblade]
 			newKeyblade = this.state.startingStatus.currentKeyblade
@@ -880,6 +888,28 @@ class App extends React.Component {
 				newStartingStatus.startingAccessory = rewardsData[1].rewards[this.state.startingStatus.currentAccessory - 1]
 			newAccessory = this.state.startingStatus.currentAccessory
 
+			if (this.state.startingStatus.currentDonald1 === 0)
+				newStartingStatus.startingDonald1 = rewardsData[17].rewards[0]
+			else
+				newStartingStatus.startingDonald1 = rewardsData[0].rewards[this.state.startingStatus.currentDonald1 - 1]
+			newDonald1 = this.state.startingStatus.currentDonald1
+			if (this.state.startingStatus.currentDonald2 === 0)
+				newStartingStatus.startingDonald2 = rewardsData[17].rewards[0]
+			else
+				newStartingStatus.startingDonald2 = rewardsData[0].rewards[this.state.startingStatus.currentDonald2 - 1]
+			newDonald2 = this.state.startingStatus.currentDonald2
+
+			if (this.state.startingStatus.currentGoofy1 === 0)
+				newStartingStatus.startingGoofy1 = rewardsData[17].rewards[0]
+			else
+				newStartingStatus.startingGoofy1 = rewardsData[0].rewards[this.state.startingStatus.currentGoofy1 - 1]
+			newGoofy1 = this.state.startingStatus.currentGoofy1
+			if (this.state.startingStatus.currentGoofy2 === 0)
+				newStartingStatus.startingGoofy2 = rewardsData[17].rewards[0]
+			else
+				newStartingStatus.startingGoofy2 = rewardsData[0].rewards[this.state.startingStatus.currentGoofy2 - 1]
+			newGoofy2 = this.state.startingStatus.currentGoofy2
+
 			newStartingStatus.startingMunny = this.state.startingStatus.currentMunny
 			newStartingStatus.startingHP = this.state.startingStatus.currentStartingHP
 			newStartingStatus.startingMP = this.state.startingStatus.currentStartingMP
@@ -887,6 +917,10 @@ class App extends React.Component {
 			newStartingStatus.startingKeyblade = rewardsData[7].rewards[0]
 			newStartingStatus.startingArmor = rewardsData[17].rewards[0]
 			newStartingStatus.startingAccessory = rewardsData[17].rewards[0]
+			newStartingStatus.startingDonald1 = newDonald1
+			newStartingStatus.startingDonald2 = newDonald2
+			newStartingStatus.startingGoofy1 = newGoofy1
+			newStartingStatus.startingGoofy2 = newGoofy2
 			newStartingStatus.startingMunny = 0
 			newStartingStatus.startingHP = 20
 			newStartingStatus.startingMP = 100
@@ -897,6 +931,10 @@ class App extends React.Component {
 				currentKeyblade: newKeyblade,
 				currentArmor: newArmor,
 				currentAccessory: newAccessory,
+				currentDonald1: newDonald1,
+				currentDonald2: newDonald2,
+				currentGoofy1: newGoofy1,
+				currentGoofy2: newGoofy2,
 				currentMunny: newStartingStatus.startingMunny,
 				currentStartingHP: newStartingStatus.startingHP,
 				currentStartingMP: newStartingStatus.startingMP,
@@ -1420,33 +1458,62 @@ class App extends React.Component {
 			startingCodes += initialData.keybladeCode.join('') + keyblade.index.padStart(4, '0') + ' // ' + keyblade.reward + '\n'
 		} else
 			startingCodes += '// Vanilla starting Keyblade of Kingdom Key\n'
+
 		if (initialData.startingArmor.index !== "0000") {
 			let armor = initialData.startingArmor
 			startingCodes += initialData.armorCode.join('') + armor.index.padStart(4, '0') + ' // ' + armor.reward + '\n'
 		} else
 			startingCodes += '// Vanilla starting Armor of EMPTY\n'
+
 		if (initialData.startingAccessory.index !== "0000") {
 			let accessory = initialData.startingAccessory
 			startingCodes += initialData.accessoryCode.join('') + accessory.index.padStart(4, '0') + ' // ' + accessory.reward + '\n'
 		} else
 			startingCodes += '// Vanilla starting Accessory of EMPTY\n'
+
 		if (initialData.startingMunny !== 0) {
 			startingCodes += initialData.munnyCode.join('') + initialData.startingMunny.toString(16).toUpperCase().padStart(8, '0')
 			startingCodes += ' // ' + initialData.startingMunny + ' munny\n'
 		} else
 			startingCodes += '// Vanilla starting Munny of 0\n'
+
 		if (initialData.startingHP !== 20) {
 			let hp = initialData.startingHP
 			startingCodes += initialData.hpCode.slice(0, 5).join('') + hp.toString(16).toUpperCase().padStart(2, '0') + ' // Max HP: ' + hp + '\n'
 			startingCodes += initialData.hpCode[5] + hp.toString(16).toUpperCase().padStart(2, '0') + ' // Current HP: ' + hp + '\n'
 		} else
 			startingCodes += '// Vanilla starting HP of 20\n'
+
 		if (initialData.startingMP !== 100) {
 			let mp = initialData.startingMP
 			startingCodes += initialData.mpCode.slice(0, 5).join('') + mp.toString(16).toUpperCase().padStart(2, '0') + ' // Max MP: ' + mp + '\n'
 			startingCodes += initialData.mpCode[5] + mp.toString(16).toUpperCase().padStart(2, '0') + ' // Current MP: ' + mp + '\n'
 		} else
 			startingCodes += '// Vanilla starting MP of 100\n'
+
+		startingCodes += initialData.donaldCode[0]
+		if (initialData.startingDonald1.index !== "00A7") {
+			let donaldAbility = initialData.startingDonald1
+			startingCodes += initialData.donaldCode[1] + donaldAbility.index.padStart(4, '0') + ' // ' + donaldAbility.reward + '\n'
+		} else
+			startingCodes += '// Vanilla Donald Ability of Donald Thunder\n'
+		if (initialData.startingDonald2.index !== "00A8") {
+			let donaldAbility = initialData.startingDonald2
+			startingCodes += initialData.donaldCode[2] + donaldAbility.index.padStart(4, '0') + ' // ' + donaldAbility.reward + '\n'
+		} else
+			startingCodes += '// Vanilla Donald Ability of Donald Cure\n'
+
+		startingCodes += initialData.goofyCode[0]
+		if (initialData.startingGoofy1.index !== "01AD") {
+			let goofyAbility = initialData.startingGoofy1
+			startingCodes += initialData.goofyCode[1] + goofyAbility.index.padStart(4, '0') + ' // ' + goofyAbility.reward + '\n'
+		} else
+			startingCodes += '// Vanilla Goofy Ability of Goofy Bash\n'
+		if (initialData.startingGoofy2.index !== "019B") {
+			let goofyAbility = initialData.startingGoofy2
+			startingCodes += initialData.goofyCode[2] + goofyAbility.index.padStart(4, '0') + ' // ' + goofyAbility.reward + '\n'
+		} else
+			startingCodes += '// Vanilla Goofy Ability of Item Boost\n'
 		let startingPnachCodes = ['\n//STARTING STATUS\n']
 		startingPnachCodes.push(startingCodes)
 
@@ -1665,6 +1732,10 @@ class App extends React.Component {
 		startingStatusSaveData += '"startingKeyblade": {"reward": "' + startingStatus.startingKeyblade.reward + '","index": "' + startingStatus.startingKeyblade.index + '"},'
 		startingStatusSaveData += '"startingArmor": {"reward": "' + startingStatus.startingArmor.reward + '","index": "' + startingStatus.startingArmor.index + '"},'
 		startingStatusSaveData += '"startingAccessory": {"reward": "' + startingStatus.startingAccessory.reward + '","index": "' + startingStatus.startingAccessory.index + '"},'
+		startingStatusSaveData += '"startingDonald1": {"reward": "' + startingStatus.startingDonald1.reward + '","index": "' + startingStatus.startingDonald1.index + '"},'
+		startingStatusSaveData += '"startingDonald2": {"reward": "' + startingStatus.startingDonald2.reward + '","index": "' + startingStatus.startingDonald2.index + '"},'
+		startingStatusSaveData += '"startingGoofy1": {"reward": "' + startingStatus.startingGoofy1.reward + '","index": "' + startingStatus.startingGoofy1.index + '"},'
+		startingStatusSaveData += '"startingGoofy2": {"reward": "' + startingStatus.startingGoofy2.reward + '","index": "' + startingStatus.startingGoofy2.index + '"},'
 		startingStatusSaveData += '"startingMunny":' + startingStatus.startingMunny + ',"startingHP":' + startingStatus.startingHP + ',"startingMP":' + startingStatus.startingMP
 		startingStatusSaveData += '},'
 
@@ -1926,7 +1997,23 @@ class App extends React.Component {
 				},
 				startingMunny: 0,
 				startingHP: 20,
-				startingMP: 100
+				startingMP: 100,
+				startingDonald1: {
+					reward: "Donald Thunder",
+					index: "00A7"
+				},
+				startingDonald2: {
+					reward: "Donald Cure",
+					index: "00A8"
+				},
+				startingGoofy1: {
+					reward: "Goofy Bash",
+					index: "01AD"
+				},
+				startingGoofy2: {
+					reward: "Item Boost",
+					index: "019B"
+				}
 			}
 		}
 		startingStatusLoadData.keybladeCode = startingStatusData.keybladeCode
@@ -1935,6 +2022,8 @@ class App extends React.Component {
 		startingStatusLoadData.munnyCode = startingStatusData.munnyCode
 		startingStatusLoadData.hpCode = startingStatusData.hpCode
 		startingStatusLoadData.mpCode = startingStatusData.mpCode
+		startingStatusLoadData.donaldCode = startingStatusData.donaldCode
+		startingStatusLoadData.goofyCode = startingStatusData.goofyCode
 
 		let trackerLoadData
 		if (allLoadData.hasOwnProperty('trackerData'))
@@ -2142,6 +2231,8 @@ class App extends React.Component {
 							keybladeList={rewardsData[7].rewards}
 							armorList={rewardsData[17].rewards.concat(rewardsData[2].rewards)}
 							accessoryList={rewardsData[17].rewards.concat(rewardsData[1].rewards)}
+							donaldList={rewardsData[17].rewards.concat(rewardsData[0].rewards)}
+							goofyList={rewardsData[17].rewards.concat(rewardsData[0].rewards)}
 							onRewardChange={(event) => this.handleGenericChange('startingStatus', event)}
 							onInputChange={(event) => this.handleInputChange('startingStatus', event)}
 							onClick={this.handleStartingStatusReplace}
