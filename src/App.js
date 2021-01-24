@@ -926,7 +926,7 @@ class App extends React.Component {
 			newStartingStatus.startingMP = 100
 		}
 
-		this.setState(prevState => ({
+		this.setState({
 			startingStatus: {
 				currentKeyblade: newKeyblade,
 				currentArmor: newArmor,
@@ -940,7 +940,7 @@ class App extends React.Component {
 				currentStartingMP: newStartingStatus.startingMP,
 				startingStatusData: newStartingStatus
 			}
-		}))
+		})
 	}
 	//#endregion
 
