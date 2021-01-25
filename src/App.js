@@ -1978,44 +1978,41 @@ class App extends React.Component {
 			return newCheat
 		})
 
-		let startingStatusLoadData
-		if (allLoadData.hasOwnProperty('startingStatusData'))
-			startingStatusLoadData = allLoadData.startingStatusData
-		else {
-			startingStatusLoadData = {
-				startingKeyblade: {
-					reward: "Kingdom Key",
-					index: "0029"
-				},
-				startingArmor: {
-					reward: "EMPTY",
-					index: "0000"
-				},
-				startingAccessory: {
-					reward: "EMPTY",
-					index: "0000"
-				},
-				startingMunny: 0,
-				startingHP: 20,
-				startingMP: 100,
-				startingDonald1: {
-					reward: "Donald Thunder",
-					index: "00A7"
-				},
-				startingDonald2: {
-					reward: "Donald Cure",
-					index: "00A8"
-				},
-				startingGoofy1: {
-					reward: "Goofy Bash",
-					index: "01AD"
-				},
-				startingGoofy2: {
-					reward: "Item Boost",
-					index: "019B"
-				}
+		let startingStatusLoadData = {
+			startingKeyblade: {
+				reward: "Kingdom Key",
+				index: "0029"
+			},
+			startingArmor: {
+				reward: "EMPTY",
+				index: "0000"
+			},
+			startingAccessory: {
+				reward: "EMPTY",
+				index: "0000"
+			},
+			startingMunny: 0,
+			startingHP: 20,
+			startingMP: 100,
+			startingDonald1: {
+				reward: "Donald Thunder",
+				index: "00A7"
+			},
+			startingDonald2: {
+				reward: "Donald Cure",
+				index: "00A8"
+			},
+			startingGoofy1: {
+				reward: "Goofy Bash",
+				index: "01AD"
+			},
+			startingGoofy2: {
+				reward: "Item Boost",
+				index: "019B"
 			}
 		}
+		if (allLoadData.hasOwnProperty('startingStatusData'))
+			_.merge(startingStatusLoadData, allLoadData.startingStatusData)
 		startingStatusLoadData.keybladeCode = startingStatusData.keybladeCode
 		startingStatusLoadData.armorCode = startingStatusData.armorCode
 		startingStatusLoadData.accessoryCode = startingStatusData.accessoryCode

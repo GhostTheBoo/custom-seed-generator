@@ -265,6 +265,14 @@ const cheatsData = [
 			"patch=1,EE,30000001,extended,01CD2F10// Ragnarok",
 			"patch=1,EE,30000001,extended,01CD30C0// Ars Arcanum"
 		]
+	},
+	{
+		name: "Always Have Scan",
+		toBeReplaced: false,
+		isActive: false,
+		code: [
+			"patch=1,EE,00032E112,extended,0000008A"
+		]
 	}
 ]
 
