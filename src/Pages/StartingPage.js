@@ -92,6 +92,56 @@ function StartingPage(props) {
 						</Form.Group>
 					</Col>
 				</Form.Row>
+				<br></br>
+				<Form.Row>
+					<Col>
+						<RewardSelect
+							class={'startingStatus'}
+							rewardList={props.donaldList}
+							currentReward={props.startingStatusData.currentDonald1}
+							name={'currentDonald1'}
+							label={'Donald\'s First Starting Ability'}
+							onChange={props.onRewardChange}
+						/>
+						<Form.Label column='sm'>{props.startingStatusData.startingStatusData.startingDonald1.reward}</Form.Label>
+					</Col>
+					<Col>
+						<RewardSelect
+							class={'startingStatus'}
+							rewardList={props.donaldList}
+							currentReward={props.startingStatusData.currentDonald2}
+							name={'currentDonald2'}
+							label={'Donald\'s Second Starting Ability'}
+							onChange={props.onRewardChange}
+						/>
+						<Form.Label column='sm'>{props.startingStatusData.startingStatusData.startingDonald2.reward}</Form.Label>
+					</Col>
+				</Form.Row>
+				<Form.Row>
+					<Col>
+						<RewardSelect
+							class={'startingStatus'}
+							rewardList={props.goofyList}
+							currentReward={props.startingStatusData.currentGoofy1}
+							name={'currentGoofy1'}
+							label={'Goofy\'s First Starting Ability'}
+							onChange={props.onRewardChange}
+						/>
+						<Form.Label column='sm'>{props.startingStatusData.startingStatusData.startingGoofy1.reward}</Form.Label>
+					</Col>
+					<Col>
+						<RewardSelect
+							class={'startingStatus'}
+							rewardList={props.goofyList}
+							currentReward={props.startingStatusData.currentGoofy2}
+							name={'currentGoofy2'}
+							label={'Goofy\'s Second Starting Ability'}
+							onChange={props.onRewardChange}
+						/>
+						<Form.Label column='sm'>{props.startingStatusData.startingStatusData.startingGoofy2.reward}</Form.Label>
+					</Col>
+				</Form.Row>
+				<br></br>
 			</Form>
 			<Button variant='outline-dark'
 				name='replaceButton'

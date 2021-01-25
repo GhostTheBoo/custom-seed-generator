@@ -139,6 +139,10 @@ class App extends React.Component {
 				currentMunny: 0,
 				currentStartingHP: 20,
 				currentStartingMP: 100,
+				currentDonald1: 28,
+				currentDonald2: 29,
+				currentGoofy1: 33,
+				currentGoofy2: 64,
 				startingStatusData: _.cloneDeep(startingStatusData)
 			},
 			magicCost: {
@@ -147,6 +151,19 @@ class App extends React.Component {
 				selectAll: false,
 				allMagic: magicData.slice(),
 				currentDisplayData: magicData[0].abilities.slice()
+			},
+			tracker: {
+				fire: 3,
+				blizzard: 3,
+				thunder: 3,
+				cure: 3,
+				reflect: 3,
+				magnet: 3,
+				pages: 5,
+				proofs: [1, 1, 1],
+				reports: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+				drives: [1, 1, 1, 1, 1],
+				summons: [1, 1, 1, 1]
 			},
 			isHeavilyCommented: false
 		}
@@ -176,6 +193,7 @@ class App extends React.Component {
 		this.handleInputChange = this.handleInputChange.bind(this)
 		this.onRowCheck = this.onRowCheck.bind(this)
 		this.checkAll = this.checkAll.bind(this)
+		this.updateTracker = this.updateTracker.bind(this)
 		this.handleSave = this.handleSave.bind(this)
 		this.handleSaveData = this.handleSaveData.bind(this)
 		this.handleLoadData = this.handleLoadData.bind(this)
@@ -394,15 +412,10 @@ class App extends React.Component {
 				if (chest.toBeReplaced) {
 					let reward = rewardsData[this.state.chest.currentRewardType].rewards[this.state.chest.currentReward]
 					chest.toBeReplaced = false
-
 					if (reward.index !== chest.replacementReward.index) {
-						if (reward.index === chest.vanillaReward.index) {
-							chest.isReplaced = false
-							chest.replacementReward = chest.vanillaReward
-						} else {
-							chest.isReplaced = true
-							chest.replacementReward = reward
-						}
+						this.updateTracker(chest.replacementReward.index, reward.index)
+						chest.isReplaced = reward.index !== chest.vanillaReward.index
+						chest.replacementReward = reward
 					}
 				}
 				return chest
@@ -412,6 +425,7 @@ class App extends React.Component {
 				if (chest.toBeReplaced) {
 					chest.toBeReplaced = false
 					chest.isReplaced = false
+					this.updateTracker(chest.replacementReward.index, chest.vanillaReward.index)
 					chest.replacementReward = chest.vanillaReward
 				}
 				return chest
@@ -433,19 +447,11 @@ class App extends React.Component {
 				if (popup.toBeReplaced) {
 					let reward = rewardsData[this.state.popup.currentRewardType].rewards[this.state.popup.currentReward]
 					popup.toBeReplaced = false
-					if (this.state.popup.currentRewardType === 0 || this.state.popup.currentRewardType === 4)
-						popup.isAbility = true
-					else
-						popup.isAbility = false
-
+					popup.isAbility = this.state.popup.currentRewardType === 0 || this.state.popup.currentRewardType === 4
 					if (reward.index !== popup.replacementReward.index) {
-						if (reward.index === popup.vanillaReward.index) {
-							popup.isReplaced = false
-							popup.replacementReward = popup.vanillaReward
-						} else {
-							popup.isReplaced = true
-							popup.replacementReward = reward
-						}
+						this.updateTracker(popup.replacementReward.index, reward.index)
+						popup.isReplaced = reward.index !== popup.vanillaReward.index
+						popup.replacementReward = reward
 					}
 				}
 				return popup
@@ -456,6 +462,7 @@ class App extends React.Component {
 					popup.toBeReplaced = false
 					popup.isReplaced = false
 					popup.isAbility = false
+					this.updateTracker(popup.replacementReward.index, popup.vanillaReward.index)
 					popup.replacementReward = popup.vanillaReward
 				}
 				return popup
@@ -478,15 +485,10 @@ class App extends React.Component {
 					let reward = rewardsData[this.state.form.currentRewardType].rewards[this.state.form.currentReward]
 					driveFormLevel.toBeReplaced = false
 					if (reward.index !== driveFormLevel.replacementReward.index) {
-						if (reward.index === driveFormLevel.vanillaReward.index) {
-							driveFormLevel.isRewardReplaced = false
-							driveFormLevel.replacementReward = driveFormLevel.vanillaReward
-						} else {
-							driveFormLevel.isRewardReplaced = true
-							driveFormLevel.replacementReward = reward
-						}
+						this.updateTracker(driveFormLevel.replacementReward.index, reward.index)
+						driveFormLevel.isRewardReplaced = reward.index !== driveFormLevel.vanillaReward.index
+						driveFormLevel.replacementReward = reward
 					}
-
 					if (this.state.form.currentEXPMultiplierValue === 0)
 						driveFormLevel.replacementEXP = this.state.form.currentEXP
 					else
@@ -505,6 +507,7 @@ class App extends React.Component {
 					driveFormLevel.toBeReplaced = false
 					driveFormLevel.isRewardReplaced = false
 					driveFormLevel.isEXPReplaced = false
+					this.updateTracker(driveFormLevel.replacementReward.index, driveFormLevel.vanillaReward.index)
 					driveFormLevel.replacementReward = driveFormLevel.vanillaReward
 					driveFormLevel.replacementEXP = driveFormLevel.vanillaEXP
 				}
@@ -628,32 +631,30 @@ class App extends React.Component {
 					let rewardB = rewardsData[this.state.bonus.currentBRewardType].rewards[this.state.bonus.currentBReward]
 					bonus.toBeReplaced = false
 
+					this.updateTracker(bonus.replacementReward1.index, rewardA.index)
 					bonus.replacementReward1 = rewardA
+					this.updateTracker(bonus.replacementReward2.index, rewardB.index)
 					bonus.replacementReward2 = rewardB
-
-					if (bonus.replacementReward1.index !== bonus.vanillaReward1.index || bonus.replacementReward2.index !== bonus.vanillaReward2.index)
-						bonus.isRewardsReplaced = true
+					bonus.isRewardsReplaced = bonus.replacementReward1.index !== bonus.vanillaReward1.index || bonus.replacementReward2.index !== bonus.vanillaReward2.index
 
 					bonus.hpIncrease = this.state.bonus.currentBonusHP
 					bonus.mpIncrease = this.state.bonus.currentBonusMP
-
-					if (bonus.hpIncrease !== bonus.vanillaHpIncrease || bonus.mpIncrease !== bonus.vanillaMpIncrease)
-						bonus.isStatsReplaced = true
+					bonus.isStatsReplaced = bonus.hpIncrease !== bonus.vanillaHpIncrease || bonus.mpIncrease !== bonus.vanillaMpIncrease
 
 					bonus.armorSlotIncrease = this.state.bonus.currentArmor
 					bonus.accessorySlotIncrease = this.state.bonus.currentAccessory
 					bonus.itemSlotIncrease = this.state.bonus.currentItem
 					bonus.driveGaugeIncrease = this.state.bonus.currentDrive
-
-					if (bonus.armorSlotIncrease !== bonus.vanillaArmorSlotIncrease || bonus.accessorySlotIncrease !== bonus.vanillaAccessorySlotIncrease ||
-						bonus.itemSlotIncrease !== bonus.vanillaItemSlotIncrease || bonus.driveGaugeIncrease !== bonus.vanillaDriveGaugeIncrease)
-						bonus.isSlotsReplaced = true
+					bonus.isSlotsReplaced = bonus.armorSlotIncrease !== bonus.vanillaArmorSlotIncrease || bonus.accessorySlotIncrease !== bonus.vanillaAccessorySlotIncrease ||
+						bonus.itemSlotIncrease !== bonus.vanillaItemSlotIncrease || bonus.driveGaugeIncrease !== bonus.vanillaDriveGaugeIncrease
 				}
 			} else {
 				if (bonus.toBeReplaced) {
 					bonus.toBeReplaced = false
 
+					this.updateTracker(bonus.replacementReward1.index, bonus.vanillaReward1.index)
 					bonus.replacementReward1 = bonus.vanillaReward1
+					this.updateTracker(bonus.replacementReward2.index, bonus.vanillaReward2.index)
 					bonus.replacementReward2 = bonus.vanillaReward2
 					bonus.hpIncrease = bonus.vanillaHpIncrease
 					bonus.mpIncrease = bonus.vanillaMpIncrease
@@ -707,19 +708,19 @@ class App extends React.Component {
 					l.toBeReplaced = false
 
 					let reward = rewardsData[this.state.level.currentSwordRewardType].rewards[this.state.level.currentSwordReward]
+					this.updateTracker(l.replacementSwordReward.index, reward.index)
 					l.replacementSwordReward = reward
-					if (l.replacementSwordReward.index !== l.vanillaSwordReward.index)
-						l.isSwordReplaced = true
+					l.isSwordReplaced = l.replacementSwordReward.index !== l.vanillaSwordReward.index
 
 					reward = rewardsData[this.state.level.currentShieldRewardType].rewards[this.state.level.currentShieldReward]
+					this.updateTracker(l.replacementShieldReward.index, reward.index)
 					l.replacementShieldReward = reward
-					if (l.replacementShieldReward.index !== l.vanillaShieldReward.index)
-						l.isShieldReplaced = true
+					l.isShieldReplaced = l.replacementShieldReward.index !== l.vanillaShieldReward.index
 
 					reward = rewardsData[this.state.level.currentStaffRewardType].rewards[this.state.level.currentStaffReward]
+					this.updateTracker(l.replacementStaffReward.index, reward.index)
 					l.replacementStaffReward = reward
-					if (l.replacementStaffReward.index !== l.vanillaStaffReward.index)
-						l.isStaffReplaced = true
+					l.isStaffReplaced = l.replacementStaffReward.index !== l.vanillaStaffReward.index
 
 					l.standardAP = this.state.level.currentLevelAP
 					l.criticalAP = Math.floor(((this.state.level.currentLevelAP - 2) * 1.5) + 50)
@@ -727,29 +728,28 @@ class App extends React.Component {
 					l.magic = this.state.level.currentLevelMagic
 					l.strength = this.state.level.currentLevelStrength
 
-					if (l.standardAP !== l.vanillaAP || l.defense !== l.vanillaDefense || l.magic !== l.vanillaMagic || l.strength !== l.vanillaStrength)
-						l.isStatsReplaced = true
+					l.isStatsReplaced = l.standardAP !== l.vanillaAP || l.defense !== l.vanillaDefense || l.magic !== l.vanillaMagic || l.strength !== l.vanillaStrength
 
 					if (this.state.level.currentEXPMultiplierValue === 0)
 						l.replacedEXP = this.state.level.currentEXP
 					else
 						l.replacedEXP = Math.floor((2 * l.vanillaEXP) / this.state.level.currentEXPMultiplierValue)
 
-					if (l.replacedEXP !== l.vanillaEXP)
-						l.isEXPReplaced = true
-					else
-						l.isEXPReplaced = false
+					l.isEXPReplaced = l.replacedEXP !== l.vanillaEXP
 				}
 			} else {
 				if (l.toBeReplaced) {
 					l.toBeReplaced = false
 
+					this.updateTracker(l.replacementSwordReward.index, l.vanillaSwordReward.index)
 					l.replacementSwordReward = l.vanillaSwordReward
 					l.isSwordReplaced = false
 
+					this.updateTracker(l.replacementShieldReward.index, l.vanillaShieldReward.index)
 					l.replacementShieldReward = l.vanillaShieldReward
 					l.isShieldReplaced = false
 
+					this.updateTracker(l.replacementStaffReward.index, l.vanillaStaffReward.index)
 					l.replacementStaffReward = l.vanillaStaffReward
 					l.isStaffReplaced = false
 
@@ -782,15 +782,9 @@ class App extends React.Component {
 				if (ability.toBeReplaced) {
 					let cost = this.state.magicCost.currentCost
 					ability.toBeReplaced = false
-
 					if (cost !== ability.replacementCost) {
-						if (cost === ability.vanillaCost) {
-							ability.isReplaced = false
-							ability.replacementCost = ability.vanillaCost
-						} else {
-							ability.isReplaced = true
-							ability.replacementCost = cost
-						}
+						ability.isReplaced = cost !== ability.vanillaCost
+						ability.replacementCost = cost
 					}
 				}
 				return ability
@@ -823,13 +817,9 @@ class App extends React.Component {
 					ce.toBeReplaced = false
 
 					if (reward.index !== ce.replacementReward.index) {
-						if (reward.index === ce.vanillaReward.index) {
-							ce.isReplaced = false
-							ce.replacementReward = ce.vanillaReward
-						} else {
-							ce.isReplaced = true
-							ce.replacementReward = reward
-						}
+						ce.isReplaced = reward.index !== ce.vanillaReward.index
+						this.updateTracker(ce.replacementReward.index, reward.index)
+						ce.replacementReward = reward
 					}
 				}
 				return ce
@@ -839,6 +829,7 @@ class App extends React.Component {
 				if (ce.toBeReplaced) {
 					ce.toBeReplaced = false
 					ce.isReplaced = false
+					this.updateTracker(ce.replacementReward.index, ce.vanillaReward.index)
 					ce.replacementReward = ce.vanillaReward
 				}
 				return ce
@@ -877,19 +868,48 @@ class App extends React.Component {
 		let newKeyblade = 0
 		let newArmor = 0
 		let newAccessory = 0
+		let newDonald1 = 28
+		let newDonald2 = 29
+		let newGoofy1 = 33
+		let newGoofy2 = 64
 		if (event.target.name === 'replaceButton') {
 			newStartingStatus.startingKeyblade = rewardsData[7].rewards[this.state.startingStatus.currentKeyblade]
 			newKeyblade = this.state.startingStatus.currentKeyblade
+
 			if (this.state.startingStatus.currentArmor === 0)
 				newStartingStatus.startingArmor = rewardsData[17].rewards[0]
 			else
 				newStartingStatus.startingArmor = rewardsData[2].rewards[this.state.startingStatus.currentArmor - 1]
 			newArmor = this.state.startingStatus.currentArmor
+
 			if (this.state.startingStatus.currentAccessory === 0)
 				newStartingStatus.startingAccessory = rewardsData[17].rewards[0]
 			else
 				newStartingStatus.startingAccessory = rewardsData[1].rewards[this.state.startingStatus.currentAccessory - 1]
 			newAccessory = this.state.startingStatus.currentAccessory
+
+			if (this.state.startingStatus.currentDonald1 === 0)
+				newStartingStatus.startingDonald1 = rewardsData[17].rewards[0]
+			else
+				newStartingStatus.startingDonald1 = rewardsData[0].rewards[this.state.startingStatus.currentDonald1 - 1]
+			newDonald1 = this.state.startingStatus.currentDonald1
+			if (this.state.startingStatus.currentDonald2 === 0)
+				newStartingStatus.startingDonald2 = rewardsData[17].rewards[0]
+			else
+				newStartingStatus.startingDonald2 = rewardsData[0].rewards[this.state.startingStatus.currentDonald2 - 1]
+			newDonald2 = this.state.startingStatus.currentDonald2
+
+			if (this.state.startingStatus.currentGoofy1 === 0)
+				newStartingStatus.startingGoofy1 = rewardsData[17].rewards[0]
+			else
+				newStartingStatus.startingGoofy1 = rewardsData[0].rewards[this.state.startingStatus.currentGoofy1 - 1]
+			newGoofy1 = this.state.startingStatus.currentGoofy1
+			if (this.state.startingStatus.currentGoofy2 === 0)
+				newStartingStatus.startingGoofy2 = rewardsData[17].rewards[0]
+			else
+				newStartingStatus.startingGoofy2 = rewardsData[0].rewards[this.state.startingStatus.currentGoofy2 - 1]
+			newGoofy2 = this.state.startingStatus.currentGoofy2
+
 			newStartingStatus.startingMunny = this.state.startingStatus.currentMunny
 			newStartingStatus.startingHP = this.state.startingStatus.currentStartingHP
 			newStartingStatus.startingMP = this.state.startingStatus.currentStartingMP
@@ -897,22 +917,30 @@ class App extends React.Component {
 			newStartingStatus.startingKeyblade = rewardsData[7].rewards[0]
 			newStartingStatus.startingArmor = rewardsData[17].rewards[0]
 			newStartingStatus.startingAccessory = rewardsData[17].rewards[0]
+			newStartingStatus.startingDonald1 = newDonald1
+			newStartingStatus.startingDonald2 = newDonald2
+			newStartingStatus.startingGoofy1 = newGoofy1
+			newStartingStatus.startingGoofy2 = newGoofy2
 			newStartingStatus.startingMunny = 0
 			newStartingStatus.startingHP = 20
 			newStartingStatus.startingMP = 100
 		}
 
-		this.setState(prevState => ({
+		this.setState({
 			startingStatus: {
 				currentKeyblade: newKeyblade,
 				currentArmor: newArmor,
 				currentAccessory: newAccessory,
+				currentDonald1: newDonald1,
+				currentDonald2: newDonald2,
+				currentGoofy1: newGoofy1,
+				currentGoofy2: newGoofy2,
 				currentMunny: newStartingStatus.startingMunny,
 				currentStartingHP: newStartingStatus.startingHP,
 				currentStartingMP: newStartingStatus.startingMP,
 				startingStatusData: newStartingStatus
 			}
-		}))
+		})
 	}
 	//#endregion
 
@@ -984,7 +1012,195 @@ class App extends React.Component {
 		}))
 	}
 
+	updateTracker(before, after) {
+		if (before === after)
+			return
+
+		let currentTracker = {
+			fire: 0,
+			blizzard: 0,
+			thunder: 0,
+			cure: 0,
+			reflect: 0,
+			magnet: 0,
+			pages: 0,
+			proofs: [0, 0, 0],
+			reports: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+			drives: [0, 0, 0, 0, 0],
+			summons: [0, 0, 0, 0]
+		}
+
+		let intAfter = parseInt(after, 16)
+		if (intAfter === 0x15)
+			currentTracker.fire++
+		else if (intAfter === 0x16)
+			currentTracker.blizzard++
+		else if (intAfter === 0x17)
+			currentTracker.thunder++
+		else if (intAfter === 0x18)
+			currentTracker.cure++
+		else if (intAfter === 0x57)
+			currentTracker.reflect++
+		else if (intAfter === 0x58)
+			currentTracker.magnet++
+		else if (intAfter === 0x20)
+			currentTracker.pages++
+		else if (intAfter >= 0x251 && intAfter <= 0x253)
+			currentTracker.proofs[intAfter - 0x251]++
+		else if (intAfter >= 0xE2 && intAfter <= 0xEE)
+			currentTracker.reports[intAfter - 0xE2]++
+		else if (intAfter === 0x1A)
+			//Valor
+			currentTracker.drives[0]++
+		else if (intAfter === 0x1B)
+			//Wisdom
+			currentTracker.drives[1]++
+		else if (intAfter === 0x233)
+			//Limit
+			currentTracker.drives[2]++
+		else if (intAfter === 0x1F)
+			//Master
+			currentTracker.drives[3]++
+		else if (intAfter === 0x1D)
+			//Final
+			currentTracker.drives[4]++
+		else if (intAfter === 0x17F)
+			//Chicken Little
+			currentTracker.summons[0]++
+		else if (intAfter === 0x19)
+			//Stitch
+			currentTracker.summons[1]++
+		else if (intAfter === 0x9F)
+			//Genie
+			currentTracker.summons[2]++
+		else if (intAfter === 0xA0)
+			//Peter Pan
+			currentTracker.summons[3]++
+
+		let intBefore = parseInt(before, 16)
+		if (intBefore === 0x15)
+			currentTracker.fire--
+		else if (intBefore === 0x16)
+			currentTracker.blizzard--
+		else if (intBefore === 0x17)
+			currentTracker.thunder--
+		else if (intBefore === 0x18)
+			currentTracker.cure--
+		else if (intBefore === 0x57)
+			currentTracker.reflect--
+		else if (intBefore === 0x58)
+			currentTracker.magnet--
+		else if (intBefore === 0x20)
+			currentTracker.pages--
+		else if (intBefore >= 0x251 && intBefore <= 0x253)
+			currentTracker.proofs[intBefore - 0x251]--
+		else if (intBefore >= 0xE2 && intBefore <= 0xEE)
+			currentTracker.reports[intBefore - 0xE2]--
+		else if (intBefore === 0x1A)
+			//Valor
+			currentTracker.drives[0]--
+		else if (intBefore === 0x1B)
+			//Wisdom
+			currentTracker.drives[1]--
+		else if (intBefore === 0x233)
+			//Limit
+			currentTracker.drives[2]--
+		else if (intBefore === 0x1F)
+			//Master
+			currentTracker.drives[3]--
+		else if (intBefore === 0x1D)
+			//Final
+			currentTracker.drives[4]--
+		else if (intBefore === 0x17F)
+			//Chicken Little
+			currentTracker.summons[0]--
+		else if (intBefore === 0x19)
+			//Stitch
+			currentTracker.summons[1]--
+		else if (intBefore === 0x9F)
+			//Genie
+			currentTracker.summons[2]--
+		else if (intBefore === 0xA0)
+			//Peter Pan
+			currentTracker.summons[3]--
+
+		this.setState(prevState => ({
+			tracker: {
+				fire: prevState.tracker.fire + currentTracker.fire,
+				blizzard: prevState.tracker.blizzard + currentTracker.blizzard,
+				thunder: prevState.tracker.thunder + currentTracker.thunder,
+				cure: prevState.tracker.cure + currentTracker.cure,
+				reflect: prevState.tracker.reflect + currentTracker.reflect,
+				magnet: prevState.tracker.magnet + currentTracker.magnet,
+				pages: prevState.tracker.pages + currentTracker.pages,
+				proofs: prevState.tracker.proofs.map((proof, index) => {
+					return proof + currentTracker.proofs[index]
+				}),
+				reports: prevState.tracker.reports.map((proof, index) => {
+					return proof + currentTracker.reports[index]
+				}),
+				drives: prevState.tracker.drives.map((proof, index) => {
+					return proof + currentTracker.drives[index]
+				}),
+				summons: prevState.tracker.summons.map((proof, index) => {
+					return proof + currentTracker.summons[index]
+				})
+			}
+		}))
+	}
+
 	handleSave() {
+		let trackerPnachComments = '//GAME STATUS\n'
+		let trackerData = this.state.tracker
+		trackerPnachComments += '// ' + trackerData.fire + ' Fire spell(s)\n'
+		trackerPnachComments += '// ' + trackerData.blizzard + ' Blizzard spell(s)\n'
+		trackerPnachComments += '// ' + trackerData.thunder + ' Thunder spell(s)\n'
+		trackerPnachComments += '// ' + trackerData.cure + ' Cure spell(s)\n'
+		trackerPnachComments += '// ' + trackerData.reflect + ' Reflect spell(s)\n'
+		trackerPnachComments += '// ' + trackerData.magnet + ' Magnet spell(s)\n'
+		trackerPnachComments += '// ' + trackerData.pages + ' Torn Page(s)\n'
+		trackerPnachComments += '// ' + trackerData.proofs[0] + ' Proof(s) of Connection\n'
+		trackerPnachComments += '// ' + trackerData.proofs[1] + ' Proof(s) of Nonexistence\n'
+		trackerPnachComments += '// ' + trackerData.proofs[2] + ' Proof(s) of Peace\n'
+		trackerData.reports.forEach((report, index) => {
+			trackerPnachComments += '// ' + report + ' Secret Ansem\'s Report(s) ' + (index + 1) + '\n'
+		})
+		trackerPnachComments += '// ' + trackerData.drives[0] + ' Valor Form(s)\n'
+		trackerPnachComments += '// ' + trackerData.drives[1] + ' Wisdom Form(s)\n'
+		trackerPnachComments += '// ' + trackerData.drives[2] + ' Limit Form(s)\n'
+		trackerPnachComments += '// ' + trackerData.drives[3] + ' Master Form(s)\n'
+		trackerPnachComments += '// ' + trackerData.drives[4] + ' Final Form(s)\n'
+		trackerPnachComments += '// ' + trackerData.summons[0] + ' Baseball Charm(s)\n'
+		trackerPnachComments += '// ' + trackerData.summons[1] + ' Ukulele Charm(s)\n'
+		trackerPnachComments += '// ' + trackerData.summons[2] + ' Lamp Charm(s)\n'
+		trackerPnachComments += '// ' + trackerData.summons[3] + ' Feather Charm(s)\n\n'
+
+		let finalHP = this.state.startingStatus.startingStatusData.startingHP
+		let finalMP = this.state.startingStatus.startingStatusData.startingMP
+		let finalArmor = 1
+		let finalAccessory = 1
+		let finalItem = 3
+		let finalDrive = 5
+		this.state.bonus.allBonuses[0].characterBonuses.forEach(world => {
+			world.worldBonuses.forEach(bonus => {
+				finalHP += Math.floor(bonus.hpIncrease / 2)
+				finalMP += Math.floor(bonus.mpIncrease / 2)
+				finalArmor += bonus.armorSlotIncrease
+				finalAccessory += bonus.accessorySlotIncrease
+				finalItem += bonus.itemSlotIncrease
+				finalDrive += bonus.driveGaugeIncrease
+			})
+		})
+		finalDrive = finalDrive >= 9 ? 9 : finalDrive
+		trackerPnachComments += '// Sora\'s Final Stats in Critical Mode:\n'
+		trackerPnachComments += '// HP: ' + finalHP + '\n'
+		trackerPnachComments += '// MP: ' + finalMP + '\n'
+		trackerPnachComments += '// Armor: ' + finalArmor + '\n'
+		trackerPnachComments += '// Accessory: ' + finalAccessory + '\n'
+		trackerPnachComments += '// Item: ' + finalItem + '\n'
+		trackerPnachComments += '// Drive: ' + finalDrive + '\n'
+
+
 		let chestPnachCodes = this.state.chest.allChests.map(worldList => {
 			let ret = '// ' + worldList.world.toUpperCase() + '\n'
 			worldList.chests.forEach(chest => {
@@ -998,7 +1214,7 @@ class App extends React.Component {
 			})
 			return ret
 		})
-		chestPnachCodes.unshift('//CHESTS\n')
+		chestPnachCodes.unshift('\n//CHESTS\n')
 
 		let popupPnachCodes = this.state.popup.allPopups.map(worldList => {
 			let ret = '// ' + worldList.world.toUpperCase() + '\n'
@@ -1242,33 +1458,62 @@ class App extends React.Component {
 			startingCodes += initialData.keybladeCode.join('') + keyblade.index.padStart(4, '0') + ' // ' + keyblade.reward + '\n'
 		} else
 			startingCodes += '// Vanilla starting Keyblade of Kingdom Key\n'
+
 		if (initialData.startingArmor.index !== "0000") {
 			let armor = initialData.startingArmor
 			startingCodes += initialData.armorCode.join('') + armor.index.padStart(4, '0') + ' // ' + armor.reward + '\n'
 		} else
 			startingCodes += '// Vanilla starting Armor of EMPTY\n'
+
 		if (initialData.startingAccessory.index !== "0000") {
 			let accessory = initialData.startingAccessory
 			startingCodes += initialData.accessoryCode.join('') + accessory.index.padStart(4, '0') + ' // ' + accessory.reward + '\n'
 		} else
 			startingCodes += '// Vanilla starting Accessory of EMPTY\n'
+
 		if (initialData.startingMunny !== 0) {
 			startingCodes += initialData.munnyCode.join('') + initialData.startingMunny.toString(16).toUpperCase().padStart(8, '0')
 			startingCodes += ' // ' + initialData.startingMunny + ' munny\n'
 		} else
 			startingCodes += '// Vanilla starting Munny of 0\n'
+
 		if (initialData.startingHP !== 20) {
 			let hp = initialData.startingHP
 			startingCodes += initialData.hpCode.slice(0, 5).join('') + hp.toString(16).toUpperCase().padStart(2, '0') + ' // Max HP: ' + hp + '\n'
 			startingCodes += initialData.hpCode[5] + hp.toString(16).toUpperCase().padStart(2, '0') + ' // Current HP: ' + hp + '\n'
 		} else
 			startingCodes += '// Vanilla starting HP of 20\n'
+
 		if (initialData.startingMP !== 100) {
 			let mp = initialData.startingMP
 			startingCodes += initialData.mpCode.slice(0, 5).join('') + mp.toString(16).toUpperCase().padStart(2, '0') + ' // Max MP: ' + mp + '\n'
 			startingCodes += initialData.mpCode[5] + mp.toString(16).toUpperCase().padStart(2, '0') + ' // Current MP: ' + mp + '\n'
 		} else
 			startingCodes += '// Vanilla starting MP of 100\n'
+
+		startingCodes += initialData.donaldCode[0]
+		if (initialData.startingDonald1.index !== "00A7") {
+			let donaldAbility = initialData.startingDonald1
+			startingCodes += initialData.donaldCode[1] + donaldAbility.index.padStart(4, '0') + ' // ' + donaldAbility.reward + '\n'
+		} else
+			startingCodes += '// Vanilla Donald Ability of Donald Thunder\n'
+		if (initialData.startingDonald2.index !== "00A8") {
+			let donaldAbility = initialData.startingDonald2
+			startingCodes += initialData.donaldCode[2] + donaldAbility.index.padStart(4, '0') + ' // ' + donaldAbility.reward + '\n'
+		} else
+			startingCodes += '// Vanilla Donald Ability of Donald Cure\n'
+
+		startingCodes += initialData.goofyCode[0]
+		if (initialData.startingGoofy1.index !== "01AD") {
+			let goofyAbility = initialData.startingGoofy1
+			startingCodes += initialData.goofyCode[1] + goofyAbility.index.padStart(4, '0') + ' // ' + goofyAbility.reward + '\n'
+		} else
+			startingCodes += '// Vanilla Goofy Ability of Goofy Bash\n'
+		if (initialData.startingGoofy2.index !== "019B") {
+			let goofyAbility = initialData.startingGoofy2
+			startingCodes += initialData.goofyCode[2] + goofyAbility.index.padStart(4, '0') + ' // ' + goofyAbility.reward + '\n'
+		} else
+			startingCodes += '// Vanilla Goofy Ability of Item Boost\n'
 		let startingPnachCodes = ['\n//STARTING STATUS\n']
 		startingPnachCodes.push(startingCodes)
 
@@ -1281,6 +1526,7 @@ class App extends React.Component {
 		cheatPnachCodes.unshift('\n//CHEAT CODES\n')
 
 		let pnachCodes = chestPnachCodes.concat(popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes, magicCostPnachCodes, criticalPnachCodes, startingPnachCodes, cheatPnachCodes)
+		pnachCodes.unshift(trackerPnachComments)
 
 		const element = document.createElement('a')
 		const file = new Blob(pnachCodes, { type: 'text/plain;charset=utf-8' })
@@ -1486,10 +1732,21 @@ class App extends React.Component {
 		startingStatusSaveData += '"startingKeyblade": {"reward": "' + startingStatus.startingKeyblade.reward + '","index": "' + startingStatus.startingKeyblade.index + '"},'
 		startingStatusSaveData += '"startingArmor": {"reward": "' + startingStatus.startingArmor.reward + '","index": "' + startingStatus.startingArmor.index + '"},'
 		startingStatusSaveData += '"startingAccessory": {"reward": "' + startingStatus.startingAccessory.reward + '","index": "' + startingStatus.startingAccessory.index + '"},'
-		startingStatusSaveData += '"startingMunny":' + startingStatus.startingMunny + ','
-		startingStatusSaveData += '"startingHP":' + startingStatus.startingHP + ','
-		startingStatusSaveData += '"startingMP":' + startingStatus.startingMP
+		startingStatusSaveData += '"startingDonald1": {"reward": "' + startingStatus.startingDonald1.reward + '","index": "' + startingStatus.startingDonald1.index + '"},'
+		startingStatusSaveData += '"startingDonald2": {"reward": "' + startingStatus.startingDonald2.reward + '","index": "' + startingStatus.startingDonald2.index + '"},'
+		startingStatusSaveData += '"startingGoofy1": {"reward": "' + startingStatus.startingGoofy1.reward + '","index": "' + startingStatus.startingGoofy1.index + '"},'
+		startingStatusSaveData += '"startingGoofy2": {"reward": "' + startingStatus.startingGoofy2.reward + '","index": "' + startingStatus.startingGoofy2.index + '"},'
+		startingStatusSaveData += '"startingMunny":' + startingStatus.startingMunny + ',"startingHP":' + startingStatus.startingHP + ',"startingMP":' + startingStatus.startingMP
 		startingStatusSaveData += '},'
+
+		let tracker = this.state.tracker
+		let trackerData = '"trackerData":{'
+		trackerData += '"fire":' + tracker.fire + ',"blizzard":' + tracker.blizzard + ',"thunder":' + tracker.thunder + ',"cure":' + tracker.cure
+		trackerData += ',"reflect":' + tracker.reflect + ',"magnet":' + tracker.magnet + ',"pages":' + tracker.pages
+		trackerData += ',"proofs":[' + tracker.proofs.toString() + ']'
+		trackerData += ',"reports":[' + tracker.reports.toString() + ']'
+		trackerData += ',"drives":[' + tracker.drives.toString() + ']'
+		trackerData += ',"summons":[' + tracker.summons.toString() + ']},'
 
 		let saveData = ['{',
 			chestSaveData.join(''),
@@ -1501,6 +1758,7 @@ class App extends React.Component {
 			magicCostSaveData.join(''),
 			criticalSaveData.join(''),
 			startingStatusSaveData,
+			trackerData,
 			cheatSaveData.join('').slice(0, -1),
 			'}']
 
@@ -1720,34 +1978,68 @@ class App extends React.Component {
 			return newCheat
 		})
 
-		let startingStatusLoadData
-		if (allLoadData.hasOwnProperty('startingStatusData'))
-			startingStatusLoadData = allLoadData.startingStatusData
-		else {
-			startingStatusLoadData = {
-				startingKeyblade: {
-					reward: "Kingdom Key",
-					index: "0029"
-				},
-				startingArmor: {
-					reward: "EMPTY",
-					index: "0000"
-				},
-				startingAccessory: {
-					reward: "EMPTY",
-					index: "0000"
-				},
-				startingMunny: 0,
-				startingHP: 20,
-				startingMP: 100
+		let startingStatusLoadData = {
+			startingKeyblade: {
+				reward: "Kingdom Key",
+				index: "0029"
+			},
+			startingArmor: {
+				reward: "EMPTY",
+				index: "0000"
+			},
+			startingAccessory: {
+				reward: "EMPTY",
+				index: "0000"
+			},
+			startingMunny: 0,
+			startingHP: 20,
+			startingMP: 100,
+			startingDonald1: {
+				reward: "Donald Thunder",
+				index: "00A7"
+			},
+			startingDonald2: {
+				reward: "Donald Cure",
+				index: "00A8"
+			},
+			startingGoofy1: {
+				reward: "Goofy Bash",
+				index: "01AD"
+			},
+			startingGoofy2: {
+				reward: "Item Boost",
+				index: "019B"
 			}
 		}
+		if (allLoadData.hasOwnProperty('startingStatusData'))
+			_.merge(startingStatusLoadData, allLoadData.startingStatusData)
 		startingStatusLoadData.keybladeCode = startingStatusData.keybladeCode
 		startingStatusLoadData.armorCode = startingStatusData.armorCode
 		startingStatusLoadData.accessoryCode = startingStatusData.accessoryCode
 		startingStatusLoadData.munnyCode = startingStatusData.munnyCode
 		startingStatusLoadData.hpCode = startingStatusData.hpCode
 		startingStatusLoadData.mpCode = startingStatusData.mpCode
+		startingStatusLoadData.donaldCode = startingStatusData.donaldCode
+		startingStatusLoadData.goofyCode = startingStatusData.goofyCode
+
+		let trackerLoadData
+		if (allLoadData.hasOwnProperty('trackerData'))
+			trackerLoadData = allLoadData.trackerData
+		else {
+			trackerLoadData = {
+				fire: 3,
+				blizzard: 3,
+				thunder: 3,
+				cure: 3,
+				reflect: 3,
+				magnet: 3,
+				pages: 5,
+				proofs: 0x7,
+				reports: 0x1FFF,
+				drives: 0x1F,
+				summons: 0xF
+			}
+		}
 
 		this.setState(prevState => ({
 			chest: {
@@ -1795,7 +2087,8 @@ class App extends React.Component {
 				...prevState.magicCost,
 				allMagic: magicLoadData.slice(),
 				currentDisplayData: magicLoadData[this.state.magicCost.currentMagicType].abilities.slice()
-			}
+			},
+			tracker: _.clone(trackerLoadData)
 		}))
 	}
 	//#endregion
@@ -1935,6 +2228,8 @@ class App extends React.Component {
 							keybladeList={rewardsData[7].rewards}
 							armorList={rewardsData[17].rewards.concat(rewardsData[2].rewards)}
 							accessoryList={rewardsData[17].rewards.concat(rewardsData[1].rewards)}
+							donaldList={rewardsData[17].rewards.concat(rewardsData[0].rewards)}
+							goofyList={rewardsData[17].rewards.concat(rewardsData[0].rewards)}
 							onRewardChange={(event) => this.handleGenericChange('startingStatus', event)}
 							onInputChange={(event) => this.handleInputChange('startingStatus', event)}
 							onClick={this.handleStartingStatusReplace}

@@ -207,11 +207,6 @@ Nothing can be red
 
 ## Things to be Implemented
 
-#### Tracker
-
-Keep track of how many important items have been used.
-Ex. 3 fires have been given to the player or 2 torn pages.
-
 #### Randomize
 
 I would love to implement the same random seed generation that val's site uses.
