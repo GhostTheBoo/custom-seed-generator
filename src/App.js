@@ -2022,24 +2022,21 @@ class App extends React.Component {
 		startingStatusLoadData.donaldCode = startingStatusData.donaldCode
 		startingStatusLoadData.goofyCode = startingStatusData.goofyCode
 
-		let trackerLoadData
-		if (allLoadData.hasOwnProperty('trackerData'))
-			trackerLoadData = allLoadData.trackerData
-		else {
-			trackerLoadData = {
-				fire: 3,
-				blizzard: 3,
-				thunder: 3,
-				cure: 3,
-				reflect: 3,
-				magnet: 3,
-				pages: 5,
-				proofs: 0x7,
-				reports: 0x1FFF,
-				drives: 0x1F,
-				summons: 0xF
-			}
+		let trackerLoadData = {
+			fire: 3,
+			blizzard: 3,
+			thunder: 3,
+			cure: 3,
+			reflect: 3,
+			magnet: 3,
+			pages: 5,
+			proofs: [1, 1, 1],
+			reports: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+			drives: [1, 1, 1, 1, 1],
+			summons: [1, 1, 1, 1]
 		}
+		if (allLoadData.hasOwnProperty('trackerData'))
+			_.merge(trackerLoadData, allLoadData.trackerData)
 
 		this.setState(prevState => ({
 			chest: {
