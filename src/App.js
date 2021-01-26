@@ -492,7 +492,7 @@ class App extends React.Component {
 					if (this.state.form.currentEXPMultiplierValue === 0)
 						driveFormLevel.replacementEXP = this.state.form.currentEXP
 					else
-						driveFormLevel.replacementEXP = Math.floor((2 * driveFormLevel.vanillaEXP) / this.state.form.currentEXPMultiplierValue)
+						driveFormLevel.replacementEXP = Math.max(1, Math.floor((2 * driveFormLevel.vanillaEXP) / this.state.form.currentEXPMultiplierValue))
 
 					if (driveFormLevel.replacementEXP !== driveFormLevel.vanillaEXP)
 						driveFormLevel.isEXPReplaced = true
@@ -733,7 +733,7 @@ class App extends React.Component {
 					if (this.state.level.currentEXPMultiplierValue === 0)
 						l.replacedEXP = this.state.level.currentEXP
 					else
-						l.replacedEXP = Math.floor((2 * l.vanillaEXP) / this.state.level.currentEXPMultiplierValue)
+						l.replacedEXP = Math.max(1, Math.floor((2 * l.vanillaEXP) / this.state.level.currentEXPMultiplierValue))
 
 					l.isEXPReplaced = l.replacedEXP !== l.vanillaEXP
 				}
