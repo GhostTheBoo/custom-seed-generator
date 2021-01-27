@@ -8,6 +8,8 @@ import _ from 'lodash'
 import { worldsData, formTypesData, equipmentTypesData, charactersData, magicCostsData } from './Data/typesData'
 import rewardsData from './Data/rewardsData'
 
+import HomePage from './Pages/HomePage'
+
 import ChestPage from './Pages/ChestPage'
 import chestsData from './Data/chestsData'
 
@@ -2099,7 +2101,11 @@ class App extends React.Component {
 		}
 		return (
 			<div style={styles}>
-				<Tabs defaultActiveKey="chest" transition={false} id="noanim-tab-example">
+				<Tabs defaultActiveKey="home" id="noanim-tab-example">
+					<Tab eventKey="home" title="Home">
+						<HomePage
+						/>
+					</Tab>
 					<Tab eventKey="chest" title="Chest">
 						<ChestPage
 							style={styles}
