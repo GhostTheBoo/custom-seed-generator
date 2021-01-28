@@ -1,7 +1,19 @@
-import React from 'react'
+import { React, useState } from 'react'
 import Collapse from 'react-bootstrap/Collapse'
+import Button from 'react-bootstrap/Button'
 
 function HomePage() {
+	const [chestOpen, setChestOpen] = useState(false);
+	const [popupOpen, setPopupOpen] = useState(false);
+	const [bonusOpen, setBonusOpen] = useState(false);
+	const [formOpen, setFormOpen] = useState(false);
+	const [equipmentOpen, setEquipmentOpen] = useState(false);
+	const [levelOpen, setLevelOpen] = useState(false);
+	const [magicOpen, setMagicOpen] = useState(false);
+	const [criticalOpen, setCriticalOpen] = useState(false);
+	const [cheatOpen, setCheatOpen] = useState(false);
+	const [startingOpen, setStartingOpen] = useState(false);
+
 	return (
 		<div>
 			<h1>Custom Seed Generator</h1>
@@ -29,7 +41,16 @@ function HomePage() {
 				If any issues come up let me know and be sure not to delete the json file even if it does not seem to work.
 			</p>
 			<h3>Pages</h3>
-			<Collapse in={true}>
+
+			{/* Chest */}
+			<Button
+				onClick={() => setChestOpen(!chestOpen)}
+				aria-controls="chestPage"
+				aria-expanded={chestOpen}
+			>
+				Chest
+      		</Button>
+			<Collapse in={chestOpen}>
 				<div id="chestPage">
 					<h6>Chest</h6>
 					<p>
@@ -43,7 +64,16 @@ function HomePage() {
 					</p>
 				</div>
 			</Collapse>
-			<Collapse in={false}>
+
+			{/* Popup */}
+			<Button
+				onClick={() => setPopupOpen(!popupOpen)}
+				aria-controls="popupPage"
+				aria-expanded={popupOpen}
+			>
+				Popup
+      		</Button>
+			<Collapse in={popupOpen}>
 				<div id="popupPage">
 					<h6>Popup</h6>
 					<p>
@@ -59,7 +89,57 @@ function HomePage() {
 					</p>
 				</div>
 			</Collapse>
-			<Collapse in={false}>
+
+			{/* Bonus */}
+			<Button
+				onClick={() => setBonusOpen(!bonusOpen)}
+				aria-controls="bonusPage"
+				aria-expanded={bonusOpen}
+			>
+				Bonus
+      		</Button>
+			<Collapse in={bonusOpen}>
+				<div id="bonusPage">
+					<h6>Bonus</h6>
+					<p>
+						The bonus page displays all bonus level rewards for each world and for each character.
+						Bonus levels can rewward up to 2 rewards, stat increases, or slot increases.
+						However only 2 individual rewards can be given to the player without causing any bugs.
+					</p>
+					<h6>Rewards</h6>
+					<p>
+						A bonus level can give 2 rewards.
+						The rewards can be of any type.
+						Selecting empty for either reward will result in no reward being given.
+					</p>
+					<h6>Stats and Slots</h6>
+					<p>
+						HP and MP can both increase on a bonus level.
+						The increases are based on standard mode.
+						Critical mode takes the stat values from standard mode and halves them.
+						So a standard mode HP increase of 10 will be 5 in critical mode.
+						Same applies for MP.
+						Slots do not have this half applied.
+						They can all increase by whatever value entered but the menu does not like having too many slots. (I believe the cap is 20 total slots)
+						The drive gauge is also capped at 9 no matter how many increases given.
+					</p>
+					<h6>Why Am I red?</h6>
+					<p>
+						Bonus levels only visually show 2 rewards.
+						If more than 2 rewards are given, the bonus level may either secretly give the reward to the player or not give it to them at all.
+					</p>
+				</div>
+			</Collapse>
+
+			{/* Form */}
+			<Button
+				onClick={() => setFormOpen(!formOpen)}
+				aria-controls="formPage"
+				aria-expanded={formOpen}
+			>
+				Forms & Summons
+      		</Button>
+			<Collapse in={formOpen}>
 				<div id="formPage">
 					<h6>Forms and Summons</h6>
 					<p>
@@ -90,7 +170,16 @@ function HomePage() {
 					</p>
 				</div>
 			</Collapse>
-			<Collapse in={false}>
+
+			{/* Equipment */}
+			<Button
+				onClick={() => setEquipmentOpen(!equipmentOpen)}
+				aria-controls="equipmentPage"
+				aria-expanded={equipmentOpen}
+			>
+				Equipment
+      		</Button>
+			<Collapse in={equipmentOpen}>
 				<div id="equipmentPage">
 					<h6>Equipment</h6>
 					<p>
@@ -129,39 +218,16 @@ function HomePage() {
 					</p>
 				</div>
 			</Collapse>
-			<Collapse in={false}>
-				<div id="bonusPage">
-					<h6>Bonus</h6>
-					<p>
-						The bonus page displays all bonus level rewards for each world and for each character.
-						Bonus levels can rewward up to 2 rewards, stat increases, or slot increases.
-						However only 2 individual rewards can be given to the player without causing any bugs.
-					</p>
-					<h6>Rewards</h6>
-					<p>
-						A bonus level can give 2 rewards.
-						The rewards can be of any type.
-						Selecting empty for either reward will result in no reward being given.
-					</p>
-					<h6>Stats and Slots</h6>
-					<p>
-						HP and MP can both increase on a bonus level.
-						The increases are based on standard mode.
-						Critical mode takes the stat values from standard mode and halves them.
-						So a standard mode HP increase of 10 will be 5 in critical mode.
-						Same applies for MP.
-						Slots do not have this half applied.
-						They can all increase by whatever value entered but the menu does not like having too many slots. (I believe the cap is 20 total slots)
-						The drive gauge is also capped at 9 no matter how many increases given.
-					</p>
-					<h6>Why Am I red?</h6>
-					<p>
-						Bonus levels only visually show 2 rewards.
-						If more than 2 rewards are given, the bonus level may either secretly give the reward to the player or not give it to them at all.
-					</p>
-				</div>
-			</Collapse>
-			<Collapse in={false}>
+
+			{/* Level */}
+			<Button
+				onClick={() => setLevelOpen(!levelOpen)}
+				aria-controls="levelPage"
+				aria-expanded={levelOpen}
+			>
+				Level
+      		</Button>
+			<Collapse in={levelOpen}>
 				<div id="levelPage">
 					<h6>Chest</h6>
 					<p>
@@ -188,7 +254,16 @@ function HomePage() {
 					</p>
 				</div>
 			</Collapse>
-			<Collapse in={false}>
+
+			{/* Magic */}
+			<Button
+				onClick={() => setMagicOpen(!magicOpen)}
+				aria-controls="magicPage"
+				aria-expanded={magicOpen}
+			>
+				Magic & Limits
+      		</Button>
+			<Collapse in={magicOpen}>
 				<div id="magicPage">
 					<h6>Magic and Limits</h6>
 					<p>
@@ -203,7 +278,16 @@ function HomePage() {
 					</p>
 				</div>
 			</Collapse>
-			<Collapse in={false}>
+
+			{/* Critical */}
+			<Button
+				onClick={() => setCriticalOpen(!criticalOpen)}
+				aria-controls="criticalPage"
+				aria-expanded={criticalOpen}
+			>
+				Critical Extras
+      		</Button>
+			<Collapse in={criticalOpen}>
 				<div id="criticalPage">
 					<h6>Critical Extra</h6>
 					<p>
@@ -216,7 +300,16 @@ function HomePage() {
 					</p>
 				</div>
 			</Collapse>
-			<Collapse in={false}>
+
+			{/* Cheat */}
+			<Button
+				onClick={() => setCheatOpen(!cheatOpen)}
+				aria-controls="cheatPage"
+				aria-expanded={cheatOpen}
+			>
+				Cheats
+      		</Button>
+			<Collapse in={cheatOpen}>
 				<div id="cheatPage">
 					<h6>Cheat</h6>
 					<p>
@@ -230,7 +323,16 @@ function HomePage() {
 					</p>
 				</div>
 			</Collapse>
-			<Collapse in={false}>
+
+			{/* Starting */}
+			<Button
+				onClick={() => setStartingOpen(!startingOpen)}
+				aria-controls="startingPage"
+				aria-expanded={startingOpen}
+			>
+				Starting Status
+      		</Button>
+			<Collapse in={startingOpen}>
 				<div id="startingPage">
 					<h6>Starting Status</h6>
 					<p>
