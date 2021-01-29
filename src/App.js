@@ -169,6 +169,7 @@ class App extends React.Component {
 			},
 			isHeavilyCommented: false
 		}
+		window.addEventListener('beforeunload', this.handleLeavePage);
 
 		this.handleChestWorldChange = this.handleChestWorldChange.bind(this)
 		this.handlePopupWorldChange = this.handlePopupWorldChange.bind(this)
@@ -947,6 +948,12 @@ class App extends React.Component {
 	//#endregion
 
 	//#region General Functions
+	handleLeavePage(event) {
+		const message = 'Make sure you save your data before leaving!';
+		event.returnValue = message;
+		return message;
+	}
+
 	onCommentCheck() {
 		this.setState({
 			isHeavilyCommented: !this.state.isHeavilyCommented
