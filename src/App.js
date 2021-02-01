@@ -2108,7 +2108,7 @@ class App extends React.Component {
 		}
 		return (
 			<div style={styles}>
-				<Tabs defaultActiveKey="home" id="noanim-tab-example">
+				<Tabs defaultActiveKey="home" id="allTabs" transition={false}>
 					<Tab eventKey="home" title="Home">
 						<HomePage
 						/>

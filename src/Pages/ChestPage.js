@@ -73,15 +73,14 @@ function ChestPage(props) {
 				onClick={props.onClick}
 			>
 				REPLACE
-				</Button>
+			</Button>
 			{' '}
 			<Button variant='outline-dark'
 				name='vanillaButton'
 				onClick={props.onClick}
 			>
 				VANILLA
-				</Button>
-			{' '}
+			</Button>
 			<HelpModal
 				page={'Chest'}
 				description={description}
