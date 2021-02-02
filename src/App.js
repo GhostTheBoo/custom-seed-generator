@@ -1362,7 +1362,6 @@ class App extends React.Component {
 		bonusPnachCodes.unshift('\n//BONUS REWARDS\n')
 
 		let levelPnachCodes = this.state.level.currentDisplayData.map(l => {
-			// let ret = '// Level: ' + l.level + '\n'
 			let ret = ''
 			let text = ''
 
@@ -1370,7 +1369,7 @@ class App extends React.Component {
 				ret += '// Cannot Level to 100 so experience is not changed\n'
 			else {
 				text += 'patch=1,EE,' + l.expAddress + ',extended,' + l.replacedEXP.toString(16).toUpperCase().padStart(8, '0')
-				text += ' // Level ' + l.level + ' at ' + l.replacedEXP + ' experience\n'
+				text += ' // Next level at ' + l.replacedEXP + ' experience\n'
 				if (l.isEXPReplaced)
 					ret += text
 				else if (this.state.isHeavilyCommented)
