@@ -9,30 +9,66 @@ import GenericSelect from '../Components/GenericSelect'
 import RewardSelect from '../Components/RewardSelect'
 import RewardTypeSelect from '../Components/RewardTypeSelect'
 import BonusTable from '../Tables/BonusTable'
+import HelpModal from '../Components/HelpModal'
 
 function BonusPage(props) {
+	const description = (
+		<div id="bonusPage">
+			<h6>Bonus</h6>
+			<p>
+				The bonus page displays all bonus level rewards for each world and for each character.
+				Bonus levels can rewward up to 2 rewards, stat increases, or slot increases.
+				However only 2 individual rewards can be given to the player without causing any bugs.
+			</p>
+			<h6>Rewards</h6>
+			<p>
+				A bonus level can give 2 rewards.
+				The rewards can be of any type.
+				Selecting empty for either reward will result in no reward being given.
+			</p>
+			<h6>Stats and Slots</h6>
+			<p>
+				HP and MP can both increase on a bonus level.
+				The increases are based on standard mode.
+				Critical mode takes the stat values from standard mode and halves them.
+				So a standard mode HP increase of 10 will be 5 in critical mode.
+				Same applies for MP.
+				Slots do not have this half applied.
+				They can all increase by whatever value entered but the menu does not like having too many slots. (I believe the cap is 20 total slots)
+				The drive gauge is also capped at 9 no matter how many increases given.
+			</p>
+			<h6>Why Am I red?</h6>
+			<p>
+				Bonus levels only visually show 2 rewards.
+				If more than 2 rewards are given, the bonus level may either secretly give the reward to the player or not give it to them at all.
+			</p>
+		</div>
+	)
+
 	return (
 		<div style={props.style}>
 			<Form>
 				<Form.Row>
-					<GenericSelect
-						class='bonus'
-						selector={'World'}
-						itemList={worldsData}
-						name={'currentWorld'}
-						currentItem={props.bonusData.currentWorld}
-						onChange={props.handleWorldChange}
-					/>
-					<GenericSelect
-						class='bonus'
-						selector={'Character'}
-						itemList={charactersData}
-						name={'currentCharacter'}
-						currentItem={props.bonusData.currentCharacter}
-						onChange={props.handleCharacterChange}
-					/>
-				</Form.Row>
-				<Form.Row>
+					<Col>
+						<GenericSelect
+							class='bonus'
+							selector={'World'}
+							itemList={worldsData}
+							name={'currentWorld'}
+							currentItem={props.bonusData.currentWorld}
+							onChange={props.handleWorldChange}
+						/>
+					</Col>
+					<Col>
+						<GenericSelect
+							class='bonus'
+							selector={'Character'}
+							itemList={charactersData}
+							name={'currentCharacter'}
+							currentItem={props.bonusData.currentCharacter}
+							onChange={props.handleCharacterChange}
+						/>
+					</Col>
 					<Col>
 						<RewardTypeSelect
 							label={'"A"'}
@@ -73,7 +109,7 @@ function BonusPage(props) {
 					</Col>
 				</Form.Row>
 				<Form.Row>
-					<Col xl='2'>
+					<Col>
 						<Form.Group controlId='currentBonusHP'>
 							<Form.Label column='sm'>HP Increase: </Form.Label>
 							<Form.Control
@@ -87,7 +123,7 @@ function BonusPage(props) {
 							/>
 						</Form.Group>
 					</Col>
-					<Col xl='2'>
+					<Col >
 						<Form.Group controlId='currentBonusMP'>
 							<Form.Label column='sm'>MP Increase: </Form.Label>
 							<Form.Control
@@ -101,7 +137,7 @@ function BonusPage(props) {
 							/>
 						</Form.Group>
 					</Col>
-					<Col xl='2'>
+					<Col >
 						<Form.Group controlId='currentArmor'>
 							<Form.Label column='sm'>Armor Slot Increase: </Form.Label>
 							<Form.Control
@@ -115,7 +151,7 @@ function BonusPage(props) {
 							/>
 						</Form.Group>
 					</Col>
-					<Col xl='2'>
+					<Col >
 						<Form.Group controlId='currentAccessory'>
 							<Form.Label column='sm'>Accessory Slot Increase: </Form.Label>
 							<Form.Control
@@ -129,7 +165,7 @@ function BonusPage(props) {
 							/>
 						</Form.Group>
 					</Col>
-					<Col xl='2'>
+					<Col >
 						<Form.Group controlId='currentItem'>
 							<Form.Label column='sm'>Item Slot Increase: </Form.Label>
 							<Form.Control
@@ -143,7 +179,7 @@ function BonusPage(props) {
 							/>
 						</Form.Group>
 					</Col>
-					<Col xl='2'>
+					<Col >
 						<Form.Group controlId='currentDrive'>
 							<Form.Label column='sm'>Drive Gauge Increase: </Form.Label>
 							<Form.Control
@@ -180,6 +216,10 @@ function BonusPage(props) {
 			>
 				VANILLA
 			</Button>
+			<HelpModal
+				page={'Bonus'}
+				description={description}
+			/>
 		</div >
 	)
 }

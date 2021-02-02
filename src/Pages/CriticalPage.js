@@ -6,8 +6,23 @@ import Col from 'react-bootstrap/Col'
 import RewardSelect from '../Components/RewardSelect'
 import RewardTypeSelect from '../Components/RewardTypeSelect'
 import CriticalTable from '../Tables/CriticalTable'
+import HelpModal from '../Components/HelpModal'
 
 function CriticalPage(props) {
+	const description = (
+		<div id="criticalPage">
+			<h6>Critical Extra</h6>
+			<p>
+				The seven extra critical mode abilities can each be changed to give anything else.
+				Keep in mind these rewards are only provided in critical mode.
+			</p>
+			<h6>Why Am I red?</h6>
+			<p>
+				Critical mode extras can be anything so they will never show up as red.
+			</p>
+		</div>
+	)
+
 	return (
 		<div style={props.style}>
 			<Form>
@@ -51,6 +66,10 @@ function CriticalPage(props) {
 			>
 				VANILLA
 			</Button>
+			<HelpModal
+				page={'Critical Extra'}
+				description={description}
+			/>
 		</div>
 	)
 }

@@ -4,8 +4,28 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 
 import RewardSelect from '../Components/RewardSelect'
+import HelpModal from '../Components/HelpModal'
 
 function StartingPage(props) {
+	const description = (
+		<div id="startingPage">
+			<h6>Starting Status</h6>
+			<p>
+				Select a starting equipment from the dropdowns for keyblade, armor, and accessory.
+				There is no starting armor or accessory in the vanilla game so their default is just EMPTY.
+				Select the values for Munny, HP, and MP.
+				Defaults are 0, 20, and 100.
+				Select Apply to use the inputted starting status.
+				Select Vanilla to not change any starting status.
+			</p>
+			<h6>Why Am I red?</h6>
+			<p>
+				Starting status is either changed or left Vanilla.
+				Nothing can be red.
+			</p>
+		</div>
+	)
+
 	return (
 		<div style={props.style}>
 			<Form>
@@ -156,6 +176,10 @@ function StartingPage(props) {
 			>
 				VANILLA
 			</Button>
+			<HelpModal
+				page={'Cheat'}
+				description={description}
+			/>
 		</div >
 	)
 }

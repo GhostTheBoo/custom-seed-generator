@@ -8,6 +8,8 @@ import _ from 'lodash'
 import { worldsData, formTypesData, equipmentTypesData, charactersData, magicCostsData } from './Data/typesData'
 import rewardsData from './Data/rewardsData'
 
+import HomePage from './Pages/HomePage'
+
 import ChestPage from './Pages/ChestPage'
 import chestsData from './Data/chestsData'
 
@@ -167,6 +169,7 @@ class App extends React.Component {
 			},
 			isHeavilyCommented: false
 		}
+		window.addEventListener('beforeunload', this.handleLeavePage);
 
 		this.handleChestWorldChange = this.handleChestWorldChange.bind(this)
 		this.handlePopupWorldChange = this.handlePopupWorldChange.bind(this)
@@ -492,7 +495,7 @@ class App extends React.Component {
 					if (this.state.form.currentEXPMultiplierValue === 0)
 						driveFormLevel.replacementEXP = this.state.form.currentEXP
 					else
-						driveFormLevel.replacementEXP = Math.floor((2 * driveFormLevel.vanillaEXP) / this.state.form.currentEXPMultiplierValue)
+						driveFormLevel.replacementEXP = Math.max(1, Math.floor((2 * driveFormLevel.vanillaEXP) / this.state.form.currentEXPMultiplierValue))
 
 					if (driveFormLevel.replacementEXP !== driveFormLevel.vanillaEXP)
 						driveFormLevel.isEXPReplaced = true
@@ -733,7 +736,7 @@ class App extends React.Component {
 					if (this.state.level.currentEXPMultiplierValue === 0)
 						l.replacedEXP = this.state.level.currentEXP
 					else
-						l.replacedEXP = Math.floor((2 * l.vanillaEXP) / this.state.level.currentEXPMultiplierValue)
+						l.replacedEXP = Math.max(1, Math.floor((2 * l.vanillaEXP) / this.state.level.currentEXPMultiplierValue))
 
 					l.isEXPReplaced = l.replacedEXP !== l.vanillaEXP
 				}
@@ -945,6 +948,12 @@ class App extends React.Component {
 	//#endregion
 
 	//#region General Functions
+	handleLeavePage(event) {
+		const message = 'Make sure you save your data before leaving!';
+		event.returnValue = message;
+		return message;
+	}
+
 	onCommentCheck() {
 		this.setState({
 			isHeavilyCommented: !this.state.isHeavilyCommented
@@ -1353,7 +1362,6 @@ class App extends React.Component {
 		bonusPnachCodes.unshift('\n//BONUS REWARDS\n')
 
 		let levelPnachCodes = this.state.level.currentDisplayData.map(l => {
-			// let ret = '// Level: ' + l.level + '\n'
 			let ret = ''
 			let text = ''
 
@@ -1361,7 +1369,7 @@ class App extends React.Component {
 				ret += '// Cannot Level to 100 so experience is not changed\n'
 			else {
 				text += 'patch=1,EE,' + l.expAddress + ',extended,' + l.replacedEXP.toString(16).toUpperCase().padStart(8, '0')
-				text += ' // Level ' + l.level + ' at ' + l.replacedEXP + ' experience\n'
+				text += ' // Next level at ' + l.replacedEXP + ' experience\n'
 				if (l.isEXPReplaced)
 					ret += text
 				else if (this.state.isHeavilyCommented)
@@ -2099,7 +2107,11 @@ class App extends React.Component {
 		}
 		return (
 			<div style={styles}>
-				<Tabs defaultActiveKey="chest" transition={false} id="noanim-tab-example">
+				<Tabs defaultActiveKey="home" id="allTabs" transition={false}>
+					<Tab eventKey="home" title="Home">
+						<HomePage
+						/>
+					</Tab>
 					<Tab eventKey="chest" title="Chest">
 						<ChestPage
 							style={styles}

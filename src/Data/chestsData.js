@@ -3302,12 +3302,12 @@ const chestsData = [
 			{
 				room: "Mansion Foyer",
 				vanillaReward: {
-					reward: 'Potion',
-					index: '0001'
+					reward: 'Hi-Potion',
+					index: '0002'
 				},
 				replacementReward: {
-					reward: 'Potion',
-					index: '0001'
+					reward: 'Hi-Potion',
+					index: '0002'
 				},
 				vanillaAddress: '11CE01DA',
 				toBeReplaced: false,
@@ -3905,12 +3905,12 @@ const chestsData = [
 			{
 				room: "Central Station",
 				vanillaReward: {
-					reward: 'Ether',
-					index: '0003'
+					reward: 'Mythril Shard',
+					index: '0159'
 				},
 				replacementReward: {
-					reward: 'Ether',
-					index: '0003'
+					reward: 'Mythril Shard',
+					index: '0159'
 				},
 				vanillaAddress: '11CE02D6',
 				toBeReplaced: false,
