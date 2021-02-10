@@ -1,1826 +1,532 @@
-const rewardsData = [
+export class Reward {
+	constructor(reward, index) {
+		this.reward = reward
+		this.index = index
+	}
+}
+
+export const rewardsData = [
 	{
-		rewardType: "Abilities",
+		rewardType: 'Abilities',
 		rewards: [
-			{
-				reward: "Guard",
-				index: "0052"
-			},
-			{
-				reward: "Upper Slash",
-				index: "0089"
-			},
-			{
-				reward: "Horizontal Slash",
-				index: "010F"
-			},
-			{
-				reward: "Finishing Leap",
-				index: "010B"
-			},
-			{
-				reward: "Retaliating Slash",
-				index: "0111"
-			},
-			{
-				reward: "Slapshot",
-				index: "0106"
-			},
-			{
-				reward: "Dodge Slash",
-				index: "0107"
-			},
-			{
-				reward: "Flash Step",
-				index: "022F"
-			},
-			{
-				reward: "Slide Dash",
-				index: "0108"
-			},
-			{
-				reward: "Vicinity Break",
-				index: "0232"
-			},
-			{
-				reward: "Guard Break",
-				index: "0109"
-			},
-			{
-				reward: "Explosion",
-				index: "010A"
-			},
-			{
-				reward: "Aerial Sweep",
-				index: "010D"
-			},
-			{
-				reward: "Aerial Dive",
-				index: "0230"
-			},
-			{
-				reward: "Aerial Spiral",
-				index: "010E"
-			},
-			{
-				reward: "Aerial Finish",
-				index: "0110"
-			},
-			{
-				reward: "Magnet Burst",
-				index: "0231"
-			},
-			{
-				reward: "Counterguard",
-				index: "010C"
-			},
-			{
-				reward: "Auto Valor",
-				index: "0181"
-			},
-			{
-				reward: "Auto Wisdom",
-				index: "0182"
-			},
-			{
-				reward: "Auto Limit",
-				index: "0238"
-			},
-			{
-				reward: "Auto Master",
-				index: "0183"
-			},
-			{
-				reward: "Auto Final",
-				index: "0184"
-			},
-			{
-				reward: "Auto Summon",
-				index: "0185"
-			},
-			{
-				reward: "Trinity Limit",
-				index: "00C6"
-			},
-			{
-				reward: "Donald Fire",
-				index: "00A5"
-			},
-			{
-				reward: "Donald Blizzard",
-				index: "00A6"
-			},
-			{
-				reward: "Donald Thunder",
-				index: "00A7"
-			},
-			{
-				reward: "Donald Cure",
-				index: "00A8"
-			},
-			{
-				reward: "Fantasia (Comet)",
-				index: "00C7"
-			},
-			{
-				reward: "Flare Force (Duck Flare)",
-				index: "00C8"
-			},
-			{
-				reward: "Goofy Tornado",
-				index: "01A7"
-			},
-			{
-				reward: "Goofy Bash",
-				index: "01AD"
-			},
-			{
-				reward: "Goofy Turbo",
-				index: "01A9"
-			},
-			{
-				reward: "Tornado Fusion (Whirli-Goof)",
-				index: "00C9"
-			},
-			{
-				reward: "Teamwork (Knocksmash)",
-				index: "00CA"
-			},
-			{
-				reward: "Scan",
-				index: "008A"
-			},
-			{
-				reward: "Aerial Recovery",
-				index: "009E"
-			},
-			{
-				reward: "Combo Master",
-				index: "021B"
-			},
-			{
-				reward: "Combo Plus",
-				index: "00A2"
-			},
-			{
-				reward: "Air Combo Plus",
-				index: "00A3"
-			},
-			{
-				reward: "Combo Boost",
-				index: "0186"
-			},
-			{
-				reward: "Air Combo Boost",
-				index: "0187"
-			},
-			{
-				reward: "Reaction Boost",
-				index: "0188"
-			},
-			{
-				reward: "Finishing Plus",
-				index: "0189"
-			},
-			{
-				reward: "Negative Combo",
-				index: "018A"
-			},
-			{
-				reward: "Berserk Charge",
-				index: "018B"
-			},
-			{
-				reward: "Damage Drive",
-				index: "018C"
-			},
-			{
-				reward: "Drive Boost",
-				index: "018D"
-			},
-			{
-				reward: "Form Boost",
-				index: "018E"
-			},
-			{
-				reward: "Summon Boost",
-				index: "018F"
-			},
-			{
-				reward: "Combination Boost",
-				index: "0190"
-			},
-			{
-				reward: "Experience Boost",
-				index: "0191"
-			},
-			{
-				reward: "Leaf Bracer",
-				index: "0192"
-			},
-			{
-				reward: "Magic Lock-On",
-				index: "0193"
-			},
-			{
-				reward: "Light & Darkness",
-				index: "021D"
-			},
-			{
-				reward: "Draw",
-				index: "0195"
-			},
-			{
-				reward: "Jackpot",
-				index: "0196"
-			},
-			{
-				reward: "Lucky Lucky",
-				index: "0197"
-			},
-			{
-				reward: "Drive Converter",
-				index: "021C"
-			},
-			{
-				reward: "Fire Boost",
-				index: "0198"
-			},
-			{
-				reward: "Blizzard Boost",
-				index: "0199"
-			},
-			{
-				reward: "Thunder Boost",
-				index: "019A"
-			},
-			{
-				reward: "Item Boost",
-				index: "019B"
-			},
-			{
-				reward: "MP Rage",
-				index: "019C"
-			},
-			{
-				reward: "MP Haste",
-				index: "019D"
-			},
-			{
-				reward: "MP Hastera",
-				index: "01A5"
-			},
-			{
-				reward: "MP Hastega",
-				index: "01A6"
-			},
-			{
-				reward: "Defender",
-				index: "019E"
-			},
-			{
-				reward: "Damage Control",
-				index: "021E"
-			},
-			{
-				reward: "Second Chance",
-				index: "019F"
-			},
-			{
-				reward: "Once More",
-				index: "01A0"
-			},
-			{
-				reward: "No Experience",
-				index: "0194"
-			},
-			{
-				reward: "Auto Limit",
-				index: "01A1"
-			},
-			{
-				reward: "Auto Change",
-				index: "01A2"
-			},
-			{
-				reward: "Hyper Healing",
-				index: "01A3"
-			},
-			{
-				reward: "Auto Healing",
-				index: "01A4"
-			},
-			{
-				reward: "Protect",
-				index: "0254"
-			},
-			{
-				reward: "Protectra",
-				index: "0255"
-			},
-			{
-				reward: "Protectga",
-				index: "0256"
-			}
+			new Reward('Guard', 0x0052),
+			new Reward('Upper Slash', 0x0089),
+			new Reward('Horizontal Slash', 0x010F),
+			new Reward('Finishing Leap', 0x010B),
+			new Reward('Retaliating Slash', 0x0111),
+			new Reward('Slapshot', 0x0106),
+			new Reward('Dodge Slash', 0x0107),
+			new Reward('Flash Step', 0x022F),
+			new Reward('Slide Dash', 0x0108),
+			new Reward('Vicinity Break', 0x0232),
+			new Reward('Guard Break', 0x0109),
+			new Reward('Explosion', 0x010A),
+			new Reward('Aerial Sweep', 0x010D),
+			new Reward('Aerial Dive', 0x0230),
+			new Reward('Aerial Spiral', 0x010E),
+			new Reward('Aerial Finish', 0x0110),
+			new Reward('Magnet Burst', 0x0231),
+			new Reward('Counterguard', 0x010C),
+			new Reward('Auto Valor', 0x0181),
+			new Reward('Auto Wisdom', 0x0182),
+			new Reward('Auto Limit', 0x0238),
+			new Reward('Auto Master', 0x0183),
+			new Reward('Auto Final', 0x0184),
+			new Reward('Auto Summon', 0x0185),
+			new Reward('Trinity Limit', 0x00C6),
+			new Reward('Donald Fire', 0x00A5),
+			new Reward('Donald Blizzard', 0x00A6),
+			new Reward('Donald Thunder', 0x00A7),
+			new Reward('Donald Cure', 0x00A8),
+			new Reward('Fantasia (Comet)', 0x00C7),
+			new Reward('Flare Force (Duck Flare)', 0x00C8),
+			new Reward('Goofy Tornado', 0x01A7),
+			new Reward('Goofy Bash', 0x01AD),
+			new Reward('Goofy Turbo', 0x01A9),
+			new Reward('Tornado Fusion (Whirli-Goof)', 0x00C9),
+			new Reward('Teamwork (Knocksmash)', 0x00CA),
+			new Reward('Scan', 0x008A),
+			new Reward('Aerial Recovery', 0x009E),
+			new Reward('Combo Master', 0x021B),
+			new Reward('Combo Plus', 0x00A2),
+			new Reward('Air Combo Plus', 0x00A3),
+			new Reward('Combo Boost', 0x0186),
+			new Reward('Air Combo Boost', 0x0187),
+			new Reward('Reaction Boost', 0x0188),
+			new Reward('Finishing Plus', 0x0189),
+			new Reward('Negative Combo', 0x018A),
+			new Reward('Berserk Charge', 0x018B),
+			new Reward('Damage Drive', 0x018C),
+			new Reward('Drive Boost', 0x018D),
+			new Reward('Form Boost', 0x018E),
+			new Reward('Summon Boost', 0x018F),
+			new Reward('Combination Boost', 0x0190),
+			new Reward('Experience Boost', 0x0191),
+			new Reward('Leaf Bracer', 0x0192),
+			new Reward('Magic Lock-On', 0x0193),
+			new Reward('Light & Darkness', 0x021D),
+			new Reward('Draw', 0x0195),
+			new Reward('Jackpot', 0x0196),
+			new Reward('Lucky Lucky', 0x0197),
+			new Reward('Drive Converter', 0x021C),
+			new Reward('Fire Boost', 0x0198),
+			new Reward('Blizzard Boost', 0x0199),
+			new Reward('Thunder Boost', 0x019A),
+			new Reward('Item Boost', 0x019B),
+			new Reward('MP Rage', 0x019C),
+			new Reward('MP Haste', 0x019D),
+			new Reward('MP Hastera', 0x01A5),
+			new Reward('MP Hastega', 0x01A6),
+			new Reward('Defender', 0x019E),
+			new Reward('Damage Control', 0x021E),
+			new Reward('Second Chance', 0x019F),
+			new Reward('Once More', 0x01A0),
+			new Reward('No Experience', 0x0194),
+			new Reward('Auto Limit', 0x01A1),
+			new Reward('Auto Change', 0x01A2),
+			new Reward('Hyper Healing', 0x01A3),
+			new Reward('Auto Healing', 0x01A4),
+			new Reward('Protect', 0x0254),
+			new Reward('Protectra', 0x0255),
+			new Reward('Protectga', 0x0256),
 		]
 	},
 	{
-		rewardType: "Accessories",
+		rewardType: 'Accessories',
 		rewards: [
-			{
-				reward: "Ability Ring",
-				index: "0008"
-			},
-			{
-				reward: "Engineer's Ring",
-				index: "0009"
-			},
-			{
-				reward: "Technician's Ring",
-				index: "000A"
-			},
-			{
-				reward: "Skill Ring",
-				index: "0026"
-			},
-			{
-				reward: "Skillful Ring",
-				index: "0027"
-			},
-			{
-				reward: "Expert's Ring",
-				index: "000B"
-			},
-			{
-				reward: "Master's Ring",
-				index: "0022"
-			},
-			{
-				reward: "Cosmic Ring",
-				index: "0034"
-			},
-			{
-				reward: "Executive's Ring",
-				index: "0257"
-			},
-			{
-				reward: "Sardonyx Ring",
-				index: "000C"
-			},
-			{
-				reward: "Tourmaline Ring",
-				index: "000D"
-			},
-			{
-				reward: "Aquamarine Ring",
-				index: "000E"
-			},
-			{
-				reward: "Garnet Ring",
-				index: "000F"
-			},
-			{
-				reward: "Diamond Ring",
-				index: "0010"
-			},
-			{
-				reward: "Silver Ring",
-				index: "0011"
-			},
-			{
-				reward: "Gold Ring",
-				index: "0012"
-			},
-			{
-				reward: "Platinum Ring",
-				index: "0013"
-			},
-			{
-				reward: "Mythril Ring",
-				index: "0014"
-			},
-			{
-				reward: "Orichalcum Ring",
-				index: "001C"
-			},
-			{
-				reward: "Soldier Earring",
-				index: "0028"
-			},
-			{
-				reward: "Fencer Earring",
-				index: "002E"
-			},
-			{
-				reward: "Mage Earring",
-				index: "002F"
-			},
-			{
-				reward: "Slayer Earring",
-				index: "0030"
-			},
-			{
-				reward: "Medal",
-				index: "0035"
-			},
-			{
-				reward: "Moon Amulet",
-				index: "0023"
-			},
-			{
-				reward: "Star Charm",
-				index: "0024"
-			},
-			{
-				reward: "Cosmic Arts",
-				index: "0038"
-			},
-			{
-				reward: "Shadow Archive",
-				index: "0039"
-			},
-			{
-				reward: "Shadow Archive+",
-				index: "003A"
-			},
-			{
-				reward: "Full Bloom",
-				index: "0040"
-			},
-			{
-				reward: "Full Bloom+",
-				index: "0042"
-			},
-			{
-				reward: "Draw Ring",
-				index: "0041"
-			},
-			{
-				reward: "Lucky Ring",
-				index: "003F"
-			}
+			new Reward('Ability Ring', 0x0008),
+			new Reward('Engineer\'s Ring', 0x0009),
+			new Reward('Technician\'s Ring', 0x000A),
+			new Reward('Skill Ring', 0x0026),
+			new Reward('Skillful Ring', 0x0027),
+			new Reward('Expert\'s Ring', 0x000B),
+			new Reward('Master\'s Ring', 0x0022),
+			new Reward('Cosmic Ring', 0x0034),
+			new Reward('Executive\'s Ring', 0x0257),
+			new Reward('Sardonyx Ring', 0x000C),
+			new Reward('Tourmaline Ring', 0x000D),
+			new Reward('Aquamarine Ring', 0x000E),
+			new Reward('Garnet Ring', 0x000F),
+			new Reward('Diamond Ring', 0x0010),
+			new Reward('Silver Ring', 0x0011),
+			new Reward('Gold Ring', 0x0012),
+			new Reward('Platinum Ring', 0x0013),
+			new Reward('Mythril Ring', 0x0014),
+			new Reward('Orichalcum Ring', 0x001C),
+			new Reward('Soldier Earring', 0x0028),
+			new Reward('Fencer Earring', 0x002E),
+			new Reward('Mage Earring', 0x002F),
+			new Reward('Slayer Earring', 0x0030),
+			new Reward('Medal', 0x0035),
+			new Reward('Moon Amulet', 0x0023),
+			new Reward('Star Charm', 0x0024),
+			new Reward('Cosmic Arts', 0x0038),
+			new Reward('Shadow Archive', 0x0039),
+			new Reward('Shadow Archive+', 0x003A),
+			new Reward('Full Bloom', 0x0040),
+			new Reward('Full Bloom+', 0x0042),
+			new Reward('Draw Ring', 0x0041),
+			new Reward('Lucky Ring', 0x003F),
 		]
 	},
 	{
-		rewardType: "Armor",
+		rewardType: 'Armor',
 		rewards: [
-			{
-				reward: "Elven Bandana",
-				index: "0043"
-			},
-			{
-				reward: "Divine Bandana",
-				index: "0044"
-			},
-			{
-				reward: "Protect Belt",
-				index: "004E"
-			},
-			{
-				reward: "Gaia Belt",
-				index: "004F"
-			},
-			{
-				reward: "Power Band",
-				index: "0045"
-			},
-			{
-				reward: "Buster Band",
-				index: "0046"
-			},
-			{
-				reward: "Cosmic Belt",
-				index: "006F"
-			},
-			{
-				reward: "Fire Bangle",
-				index: "00AD"
-			},
-			{
-				reward: "Fira Bangle",
-				index: "00AE"
-			},
-			{
-				reward: "Firaga Bangle",
-				index: "00C5"
-			},
-			{
-				reward: "Firagun Bangle",
-				index: "011C"
-			},
-			{
-				reward: "Blizzard Armlet",
-				index: "011E"
-			},
-			{
-				reward: "Blizzara Armlet",
-				index: "011F"
-			},
-			{
-				reward: "Blizzaga Armlet",
-				index: "0120"
-			},
-			{
-				reward: "Blizzagun Armlet",
-				index: "0121"
-			},
-			{
-				reward: "Thunder Trinket",
-				index: "0123"
-			},
-			{
-				reward: "Thundara Trinket",
-				index: "0124"
-			},
-			{
-				reward: "Thundaga Trinket",
-				index: "0125"
-			},
-			{
-				reward: "Thundagun Trinket",
-				index: "0126"
-			},
-			{
-				reward: "Shock Charm",
-				index: "0084"
-			},
-			{
-				reward: "Shock Charm+",
-				index: "0085"
-			},
-			{
-				reward: "Shadow Anklet",
-				index: "0128"
-			},
-			{
-				reward: "Dark Anklet",
-				index: "0129"
-			},
-			{
-				reward: "Midnight Anklet",
-				index: "012A"
-			},
-			{
-				reward: "Chaos Anklet",
-				index: "012B"
-			},
-			{
-				reward: "Champion Belt",
-				index: "0131"
-			},
-			{
-				reward: "Abas Chain",
-				index: "012D"
-			},
-			{
-				reward: "Aegis Chain",
-				index: "012E"
-			},
-			{
-				reward: "Acrisius",
-				index: "012F"
-			},
-			{
-				reward: "Acrisius+",
-				index: "0133"
-			},
-			{
-				reward: "Cosmic Chain",
-				index: "0134"
-			},
-			{
-				reward: "Petite Ribbon",
-				index: "0132"
-			},
-			{
-				reward: "Ribbon",
-				index: "0130"
-			},
-			{
-				reward: "Grand Ribbon",
-				index: "009D"
-			}
+			new Reward('Elven Bandana', 0x0043),
+			new Reward('Divine Bandana', 0x0044),
+			new Reward('Protect Belt', 0x004E),
+			new Reward('Gaia Belt', 0x004F),
+			new Reward('Power Band', 0x0045),
+			new Reward('Buster Band', 0x0046),
+			new Reward('Cosmic Belt', 0x006F),
+			new Reward('Fire Bangle', 0x00AD),
+			new Reward('Fira Bangle', 0x00AE),
+			new Reward('Firaga Bangle', 0x00C5),
+			new Reward('Firagun Bangle', 0x011C),
+			new Reward('Blizzard Armlet', 0x011E),
+			new Reward('Blizzara Armlet', 0x011F),
+			new Reward('Blizzaga Armlet', 0x0120),
+			new Reward('Blizzagun Armlet', 0x0121),
+			new Reward('Thunder Trinket', 0x0123),
+			new Reward('Thundara Trinket', 0x0124),
+			new Reward('Thundaga Trinket', 0x0125),
+			new Reward('Thundagun Trinket', 0x0126),
+			new Reward('Shock Charm', 0x0084),
+			new Reward('Shock Charm+', 0x0085),
+			new Reward('Shadow Anklet', 0x0128),
+			new Reward('Dark Anklet', 0x0129),
+			new Reward('Midnight Anklet', 0x012A),
+			new Reward('Chaos Anklet', 0x012B),
+			new Reward('Champion Belt', 0x0131),
+			new Reward('Abas Chain', 0x012D),
+			new Reward('Aegis Chain', 0x012E),
+			new Reward('Acrisius', 0x012F),
+			new Reward('Acrisius+', 0x0133),
+			new Reward('Cosmic Chain', 0x0134),
+			new Reward('Petite Ribbon', 0x0132),
+			new Reward('Ribbon', 0x0130),
+			new Reward('Grand Ribbon', 0x009D),
 		]
 	},
 	{
-		rewardType: "Forms",
+		rewardType: 'Forms',
 		rewards: [
-			{
-				reward: "Valor Form",
-				index: "001A"
-			},
-			{
-				reward: "Wisdom Form",
-				index: "001B"
-			},
-			{
-				reward: "Limit Form",
-				index: "0233"
-			},
-			{
-				reward: "Master Form",
-				index: "001F"
-			},
-			{
-				reward: "Final Form",
-				index: "001D"
-			}
+			new Reward('Valor Form', 0x001A),
+			new Reward('Wisdom Form', 0x001B),
+			new Reward('Limit Form', 0x0233),
+			new Reward('Master Form', 0x001F),
+			new Reward('Final Form', 0x001D),
 		]
 	},
 	{
-		rewardType: "Growth Abilities",
+		rewardType: 'Growth Abilities',
 		rewards: [
-			{
-				reward: "High Jump LV1",
-				index: "005E"
-			},
-			{
-				reward: "High Jump LV2",
-				index: "005F"
-			},
-			{
-				reward: "High Jump LV3",
-				index: "0060"
-			},
-			{
-				reward: "High Jump MAX",
-				index: "0061"
-			},
-			{
-				reward: "Quick Run LV1",
-				index: "0062"
-			},
-			{
-				reward: "Quick Run LV2",
-				index: "0063"
-			},
-			{
-				reward: "Quick Run LV3",
-				index: "0064"
-			},
-			{
-				reward: "Quick Run MAX",
-				index: "0065"
-			},
-			{
-				reward: "Dodge Roll LV1",
-				index: "0234"
-			},
-			{
-				reward: "Dodge Roll LV2",
-				index: "0235"
-			},
-			{
-				reward: "Dodge Roll LV3",
-				index: "0236"
-			},
-			{
-				reward: "Dodge Roll MAX",
-				index: "0237"
-			},
-			{
-				reward: "Aerial Dodge LV1",
-				index: "0066"
-			},
-			{
-				reward: "Aerial Dodge LV2",
-				index: "0067"
-			},
-			{
-				reward: "Aerial Dodge LV3",
-				index: "0068"
-			},
-			{
-				reward: "Aerial Dodge MAX",
-				index: "0069"
-			},
-			{
-				reward: "Glide LV1",
-				index: "006A"
-			},
-			{
-				reward: "Glide LV2",
-				index: "006B"
-			},
-			{
-				reward: "Glide LV3",
-				index: "006C"
-			},
-			{
-				reward: "Glide MAX",
-				index: "006D"
-			}
+			new Reward('High Jump LV1', 0x005E),
+			new Reward('High Jump LV2', 0x005F),
+			new Reward('High Jump LV3', 0x0060),
+			new Reward('High Jump MAX', 0x0061),
+			new Reward('Quick Run LV1', 0x0062),
+			new Reward('Quick Run LV2', 0x0063),
+			new Reward('Quick Run LV3', 0x0064),
+			new Reward('Quick Run MAX', 0x0065),
+			new Reward('Dodge Roll LV1', 0x0234),
+			new Reward('Dodge Roll LV2', 0x0235),
+			new Reward('Dodge Roll LV3', 0x0236),
+			new Reward('Dodge Roll MAX', 0x0237),
+			new Reward('Aerial Dodge LV1', 0x0066),
+			new Reward('Aerial Dodge LV2', 0x0067),
+			new Reward('Aerial Dodge LV3', 0x0068),
+			new Reward('Aerial Dodge MAX', 0x0069),
+			new Reward('Glide LV1', 0x006A),
+			new Reward('Glide LV2', 0x006B),
+			new Reward('Glide LV3', 0x006C),
+			new Reward('Glide MAX', 0x006D),
 		]
 	},
 	{
-		rewardType: "Items",
+		rewardType: 'Items',
 		rewards: [
-			{
-				reward: "Potion",
-				index: "0001"
-			},
-			{
-				reward: "Hi-Potion",
-				index: "0002"
-			},
-			{
-				reward: "Ether",
-				index: "0003"
-			},
-			{
-				reward: "Elixir",
-				index: "0004"
-			},
-			{
-				reward: "Mega-Potion",
-				index: "0005"
-			},
-			{
-				reward: "Mega-Ether",
-				index: "0006"
-			},
-			{
-				reward: "Megalixir",
-				index: "0007"
-			},
-			{
-				reward: "Tent",
-				index: "0083"
-			},
-			{
-				reward: "Drive Recovery",
-				index: "0112"
-			},
-			{
-				reward: "High Drive Recovery",
-				index: "0113"
-			},
-			{
-				reward: "Power Boost",
-				index: "0114"
-			},
-			{
-				reward: "Magic Boost",
-				index: "0115"
-			},
-			{
-				reward: "Defense Boost",
-				index: "0116"
-			},
-			{
-				reward: "AP Boost",
-				index: "0117"
-			}
+			new Reward('Potion', 0x0001),
+			new Reward('Hi-Potion', 0x0002),
+			new Reward('Ether', 0x0003),
+			new Reward('Elixir', 0x0004),
+			new Reward('Mega-Potion', 0x0005),
+			new Reward('Mega-Ether', 0x0006),
+			new Reward('Megalixir', 0x0007),
+			new Reward('Tent', 0x0083),
+			new Reward('Drive Recovery', 0x0112),
+			new Reward('High Drive Recovery', 0x0113),
+			new Reward('Power Boost', 0x0114),
+			new Reward('Magic Boost', 0x0115),
+			new Reward('Defense Boost', 0x0116),
+			new Reward('AP Boost', 0x0117),
 		]
 	},
 	{
-		rewardType: "Key Items",
+		rewardType: 'Key Items',
 		rewards: [
-			{
-				reward: "Torn Page",
-				index: "0020"
-			},
-			{
-				reward: "Munny Pouch (Olette)",
-				index: "016A"
-			},
-			{
-				reward: "Munny Pouch (Mickey)",
-				index: "0217"
-			},
-			{
-				reward: "Crystal Orb",
-				index: "016B"
-			},
-			{
-				reward: "Seifer's Trophy",
-				index: "016C"
-			},
-			{
-				reward: "Tournament Poster",
-				index: "016D"
-			},
-			{
-				reward: "Poster",
-				index: "016E"
-			},
-			{
-				reward: "Letter",
-				index: "016F"
-			},
-			{
-				reward: "Namine's Sketches",
-				index: "0170"
-			},
-			{
-				reward: "Membership Card",
-				index: "0171"
-			},
-			{
-				reward: "Olympus Stone",
-				index: "0172"
-			},
-			{
-				reward: "Auron's Statue",
-				index: "0173"
-			},
-			{
-				reward: "Cursed Medallion",
-				index: "0174"
-			},
-			{
-				reward: "Presents",
-				index: "0175"
-			},
-			{
-				reward: "Decoy Presents",
-				index: "0176"
-			},
-			{
-				reward: "Ice Cream",
-				index: "0177"
-			},
-			{
-				reward: "Picture",
-				index: "0178"
-			},
-			{
-				reward: "Promise Charm",
-				index: "020C"
-			},
-			{
-				reward: "Hades Cup Trophy",
-				index: "0219"
-			},
-			{
-				reward: "\"The Struggle\" Trophy",
-				index: "021A"
-			}
+			new Reward('Torn Page', 0x0020),
+			new Reward('Munny Pouch (Olette)', 0x016A),
+			new Reward('Munny Pouch (Mickey)', 0x0217),
+			new Reward('Crystal Orb', 0x016B),
+			new Reward('Seifer\'s Trophy', 0x016C),
+			new Reward('Tournament Poster', 0x016D),
+			new Reward('Poster', 0x016E),
+			new Reward('Letter', 0x016F),
+			new Reward('Namine\'s Sketches', 0x0170),
+			new Reward('Membership Card', 0x0171),
+			new Reward('Olympus Stone', 0x0172),
+			new Reward('Auron\'s Statue', 0x0173),
+			new Reward('Cursed Medallion', 0x0174),
+			new Reward('Presents', 0x0175),
+			new Reward('Decoy Presents', 0x0176),
+			new Reward('Ice Cream', 0x0177),
+			new Reward('Picture', 0x0178),
+			new Reward('Promise Charm', 0x020C),
+			new Reward('Hades Cup Trophy', 0x0219),
+			new Reward('"The Struggle" Trophy', 0x021A),
 		]
 	},
 	{
-		rewardType: "Keyblades",
+		rewardType: 'Keyblades',
 		rewards: [
-			{
-				reward: "Kingdom Key",
-				index: "0029"
-			},
-			{
-				reward: "Oathkeeper",
-				index: "002A"
-			},
-			{
-				reward: "Oblivion",
-				index: "002B"
-			},
-			{
-				reward: "Star Seeker",
-				index: "01E0"
-			},
-			{
-				reward: "Hidden Dragon",
-				index: "01E1"
-			},
-			{
-				reward: "Hero's Crest",
-				index: "01E4"
-			},
-			{
-				reward: "Monochrome",
-				index: "01E5"
-			},
-			{
-				reward: "Follow the Wind",
-				index: "01E6"
-			},
-			{
-				reward: "Circle of Life",
-				index: "01E7"
-			},
-			{
-				reward: "Photon Debugger",
-				index: "01E8"
-			},
-			{
-				reward: "Gull Wing",
-				index: "01E9"
-			},
-			{
-				reward: "Rumbling Rose",
-				index: "01EA"
-			},
-			{
-				reward: "Guardian Soul",
-				index: "01EB"
-			},
-			{
-				reward: "Wishing Lamp",
-				index: "01EC"
-			},
-			{
-				reward: "Decisive Pumpkin",
-				index: "01ED"
-			},
-			{
-				reward: "Sweet Memories",
-				index: "01EF"
-			},
-			{
-				reward: "Mysterious Abyss",
-				index: "01F0"
-			},
-			{
-				reward: "Sleeping Lion",
-				index: "01EE"
-			},
-			{
-				reward: "Bond of Flame",
-				index: "01F2"
-			},
-			{
-				reward: "Two Become One",
-				index: "021F"
-			},
-			{
-				reward: "Fatal Crest",
-				index: "01F1"
-			},
-			{
-				reward: "Fenrir",
-				index: "01F3"
-			},
-			{
-				reward: "Ultima Weapon",
-				index: "01F4"
-			},
-			{
-				reward: "Winner's Proof",
-				index: "0220"
-			},
-			{
-				reward: "Detection Saber",
-				index: "002C"
-			},
-			{
-				reward: "Edge of Ultima",
-				index: "002D"
-			}
+			new Reward('Kingdom Key', 0x0029),
+			new Reward('Oathkeeper', 0x002A),
+			new Reward('Oblivion', 0x002B),
+			new Reward('Star Seeker', 0x01E0),
+			new Reward('Hidden Dragon', 0x01E1),
+			new Reward('Hero\'s Crest', 0x01E4),
+			new Reward('Monochrome', 0x01E5),
+			new Reward('Follow the Wind', 0x01E6),
+			new Reward('Circle of Life', 0x01E7),
+			new Reward('Photon Debugger', 0x01E8),
+			new Reward('Gull Wing', 0x01E9),
+			new Reward('Rumbling Rose', 0x01EA),
+			new Reward('Guardian Soul', 0x01EB),
+			new Reward('Wishing Lamp', 0x01EC),
+			new Reward('Decisive Pumpkin', 0x01ED),
+			new Reward('Sweet Memories', 0x01EF),
+			new Reward('Mysterious Abyss', 0x01F0),
+			new Reward('Sleeping Lion', 0x01EE),
+			new Reward('Bond of Flame', 0x01F2),
+			new Reward('Two Become One', 0x021F),
+			new Reward('Fatal Crest', 0x01F1),
+			new Reward('Fenrir', 0x01F3),
+			new Reward('Ultima Weapon', 0x01F4),
+			new Reward('Winner\'s Proof', 0x0220),
+			new Reward('Detection Saber', 0x002C),
+			new Reward('Edge of Ultima', 0x002D),
 		]
 	},
 	{
-		rewardType: "Area Maps",
+		rewardType: 'Area Maps',
 		rewards: [
-			{
-				reward: "Navigational Map",
-				index: "0059"
-			},
-			{
-				reward: "DH Map",
-				index: "0216"
-			},
-			{
-				reward: "Tower Map",
-				index: "0215"
-			},
-			{
-				reward: "Twilight Town Map",
-				index: "00FF"
-			},
-			{
-				reward: "Sunset Hill Map",
-				index: "0213"
-			},
-			{
-				reward: "Mansion Map",
-				index: "0214"
-			},
-			{
-				reward: "Castle Perimeter Map",
-				index: "0201"
-			},
-			{
-				reward: "The Great Maw Map",
-				index: "0202"
-			},
-			{
-				reward: "Marketplace Map",
-				index: "00FD"
-			},
-			{
-				reward: "Dark Remembrance Map",
-				index: "024A"
-			},
-			{
-				reward: "Depths of Remembrance Map",
-				index: "024E"
-			},
-			{
-				reward: "Garden of Assemblage Map",
-				index: "0250"
-			},
-			{
-				reward: "Castle Map",
-				index: "005A"
-			},
-			{
-				reward: "Basement Map",
-				index: "005B"
-			},
-			{
-				reward: "Castle Walls Map",
-				index: "005C"
-			},
-			{
-				reward: "Underworld Map",
-				index: "0087"
-			},
-			{
-				reward: "Caverns Map",
-				index: "0088"
-			},
-			{
-				reward: "Coliseum Map",
-				index: "0086"
-			},
-			{
-				reward: "Cave of Wonders Map",
-				index: "0079"
-			},
-			{
-				reward: "Ruins Map",
-				index: "007A"
-			},
-			{
-				reward: "Agrabah Map",
-				index: "0078"
-			},
-			{
-				reward: "Palace Map",
-				index: "0082"
-			},
-			{
-				reward: "Encampment Area Map",
-				index: "0070"
-			},
-			{
-				reward: "Village Area Map",
-				index: "0071"
-			},
-			{
-				reward: "100 Acre Wood Map",
-				index: "007D"
-			},
-			{
-				reward: "Piglet's House Map",
-				index: "007F"
-			},
-			{
-				reward: "Rabbit's House Map",
-				index: "007E"
-			},
-			{
-				reward: "Kanga's House Map",
-				index: "0080"
-			},
-			{
-				reward: "Spooky Cave Map",
-				index: "0081"
-			},
-			{
-				reward: "Starry Hill Map",
-				index: "007C"
-			},
-			{
-				reward: "Savannah Map",
-				index: "0200"
-			},
-			{
-				reward: "Pride Rock Map",
-				index: "00FC"
-			},
-			{
-				reward: "Oasis Map",
-				index: "01FF"
-			},
-			{
-				reward: "Undersea Kingdom Map",
-				index: "007B"
-			},
-			{
-				reward: "Disney Castle Map",
-				index: "0077"
-			},
-			{
-				reward: "Cornerstone Hill Map",
-				index: "0072"
-			},
-			{
-				reward: "Window of Time Map",
-				index: "0206"
-			},
-			{
-				reward: "Window of Time Map?",
-				index: "0073"
-			},
-			{
-				reward: "Lilliput Map",
-				index: "0074"
-			},
-			{
-				reward: "Building Site Map",
-				index: "0075"
-			},
-			{
-				reward: "Mickey's House Map",
-				index: "0076"
-			},
-			{
-				reward: "Halloween Town Map",
-				index: "00FA"
-			},
-			{
-				reward: "Christmas Town Map",
-				index: "01FD"
-			},
-			{
-				reward: "Curly Hill Map",
-				index: "01FE"
-			},
-			{
-				reward: "Naval Map",
-				index: "00FB"
-			},
-			{
-				reward: "Isla de Muerta Map",
-				index: "01FB"
-			},
-			{
-				reward: "Ship Graveyard Map",
-				index: "01FC"
-			},
-			{
-				reward: "The Interceptor Map",
-				index: "01F9"
-			},
-			{
-				reward: "The Black Pearl Map",
-				index: "01FA"
-			},
-			{
-				reward: "Pit Cell Area Map",
-				index: "00FE"
-			},
-			{
-				reward: "I/O Tower Map",
-				index: "0203"
-			},
-			{
-				reward: "Central Computer Core Map",
-				index: "0204"
-			},
-			{
-				reward: "Solar Sailer Simulation Map",
-				index: "0205"
-			},
-			{
-				reward: "Dark City Map",
-				index: "0100"
-			},
-			{
-				reward: "Castle That Never Was Map",
-				index: "0218"
-			}
+			new Reward('Navigational Map', 0x0059),
+			new Reward('DH Map', 0x0216),
+			new Reward('Tower Map', 0x0215),
+			new Reward('Twilight Town Map', 0x00FF),
+			new Reward('Sunset Hill Map', 0x0213),
+			new Reward('Mansion Map', 0x0214),
+			new Reward('Castle Perimeter Map', 0x0201),
+			new Reward('The Great Maw Map', 0x0202),
+			new Reward('Marketplace Map', 0x00FD),
+			new Reward('Dark Remembrance Map', 0x024A),
+			new Reward('Depths of Remembrance Map', 0x024E),
+			new Reward('Garden of Assemblage Map', 0x0250),
+			new Reward('Castle Map', 0x005A),
+			new Reward('Basement Map', 0x005B),
+			new Reward('Castle Walls Map', 0x005C),
+			new Reward('Underworld Map', 0x0087),
+			new Reward('Caverns Map', 0x0088),
+			new Reward('Coliseum Map', 0x0086),
+			new Reward('Cave of Wonders Map', 0x0079),
+			new Reward('Ruins Map', 0x007A),
+			new Reward('Agrabah Map', 0x0078),
+			new Reward('Palace Map', 0x0082),
+			new Reward('Encampment Area Map', 0x0070),
+			new Reward('Village Area Map', 0x0071),
+			new Reward('100 Acre Wood Map', 0x007D),
+			new Reward('Piglet\'s House Map', 0x007F),
+			new Reward('Rabbit\'s House Map', 0x007E),
+			new Reward('Kanga\'s House Map', 0x0080),
+			new Reward('Spooky Cave Map', 0x0081),
+			new Reward('Starry Hill Map', 0x007C),
+			new Reward('Savannah Map', 0x0200),
+			new Reward('Pride Rock Map', 0x00FC),
+			new Reward('Oasis Map', 0x01FF),
+			new Reward('Undersea Kingdom Map', 0x007B),
+			new Reward('Disney Castle Map', 0x0077),
+			new Reward('Cornerstone Hill Map', 0x0072),
+			new Reward('Window of Time Map', 0x0206),
+			new Reward('Window of Time Map?', 0x0073),
+			new Reward('Lilliput Map', 0x0074),
+			new Reward('Building Site Map', 0x0075),
+			new Reward('Mickey\'s House Map', 0x0076),
+			new Reward('Halloween Town Map', 0x00FA),
+			new Reward('Christmas Town Map', 0x01FD),
+			new Reward('Curly Hill Map', 0x01FE),
+			new Reward('Naval Map', 0x00FB),
+			new Reward('Isla de Muerta Map', 0x01FB),
+			new Reward('Ship Graveyard Map', 0x01FC),
+			new Reward('The Interceptor Map', 0x01F9),
+			new Reward('The Black Pearl Map', 0x01FA),
+			new Reward('Pit Cell Area Map', 0x00FE),
+			new Reward('I/O Tower Map', 0x0203),
+			new Reward('Central Computer Core Map', 0x0204),
+			new Reward('Solar Sailer Simulation Map', 0x0205),
+			new Reward('Dark City Map', 0x0100),
+			new Reward('Castle That Never Was Map', 0x0218),
 		]
 	},
 	{
-		rewardType: "Proofs",
+		rewardType: 'Proofs',
 		rewards: [
-			{
-				reward: "Proof of Connection",
-				index: "0251"
-			},
-			{
-				reward: "Proof of Nonexistence",
-				index: "0252"
-			},
-			{
-				reward: "Proof of Peace",
-				index: "0253"
-			}
+			new Reward('Proof of Connection', 0x0251),
+			new Reward('Proof of Nonexistence', 0x0252),
+			new Reward('Proof of Peace', 0x0253),
 		]
 	},
 	{
-		rewardType: "Recipes",
+		rewardType: 'Recipes',
 		rewards: [
-			{
-				reward: "Mega-Recipe",
-				index: "017E"
-			},
-			{
-				reward: "Star Recipe",
-				index: "01C1"
-			},
-			{
-				reward: "Recovery Recipe",
-				index: "01C2"
-			},
-			{
-				reward: "Skill Recipe",
-				index: "01C3"
-			},
-			{
-				reward: "Guard Recipe",
-				index: "01C4"
-			},
-			{
-				reward: "Road to Discovery",
-				index: "01D0"
-			},
-			{
-				reward: "Strength Beyond Strength",
-				index: "01D1"
-			},
-			{
-				reward: "Book of Shadows",
-				index: "01D2"
-			},
-			{
-				reward: "Cloaked Thunder",
-				index: "01D3"
-			},
-			{
-				reward: "Eternal Blossom",
-				index: "01D4"
-			},
-			{
-				reward: "Rare Document",
-				index: "01D5"
-			},
-			{
-				reward: "Style Recipe",
-				index: "01DB"
-			},
-			{
-				reward: "Moon Recipe",
-				index: "01DC"
-			},
-			{
-				reward: "Queen Recipe",
-				index: "01DD"
-			},
-			{
-				reward: "King Recipe",
-				index: "01DE"
-			},
-			{
-				reward: "Ultimate Recipe",
-				index: "01DF"
-			}
+			new Reward('Mega-Recipe', 0x017E),
+			new Reward('Star Recipe', 0x01C1),
+			new Reward('Recovery Recipe', 0x01C2),
+			new Reward('Skill Recipe', 0x01C3),
+			new Reward('Guard Recipe', 0x01C4),
+			new Reward('Road to Discovery', 0x01D0),
+			new Reward('Strength Beyond Strength', 0x01D1),
+			new Reward('Book of Shadows', 0x01D2),
+			new Reward('Cloaked Thunder', 0x01D3),
+			new Reward('Eternal Blossom', 0x01D4),
+			new Reward('Rare Document', 0x01D5),
+			new Reward('Style Recipe', 0x01DB),
+			new Reward('Moon Recipe', 0x01DC),
+			new Reward('Queen Recipe', 0x01DD),
+			new Reward('King Recipe', 0x01DE),
+			new Reward('Ultimate Recipe', 0x01DF),
 		]
 	},
 	{
-		rewardType: "Secret Reports",
+		rewardType: 'Secret Reports',
 		rewards: [
-			{
-				reward: "Secret Ansem's Report 1",
-				index: "00E2"
-			},
-			{
-				reward: "Secret Ansem's Report 2",
-				index: "00E3"
-			},
-			{
-				reward: "Secret Ansem's Report 3",
-				index: "00E4"
-			},
-			{
-				reward: "Secret Ansem's Report 4",
-				index: "00E5"
-			},
-			{
-				reward: "Secret Ansem's Report 5",
-				index: "00E6"
-			},
-			{
-				reward: "Secret Ansem's Report 6",
-				index: "00E7"
-			},
-			{
-				reward: "Secret Ansem's Report 7",
-				index: "00E8"
-			},
-			{
-				reward: "Secret Ansem's Report 8",
-				index: "00E9"
-			},
-			{
-				reward: "Secret Ansem's Report 9",
-				index: "00EA"
-			},
-			{
-				reward: "Secret Ansem's Report 10",
-				index: "00EB"
-			},
-			{
-				reward: "Secret Ansem's Report 11",
-				index: "00EC"
-			},
-			{
-				reward: "Secret Ansem's Report 12",
-				index: "00ED"
-			},
-			{
-				reward: "Secret Ansem's Report 13",
-				index: "00EE"
-			}
+			new Reward('Secret Ansem\'s Report 1', 0x00E2),
+			new Reward('Secret Ansem\'s Report 2', 0x00E3),
+			new Reward('Secret Ansem\'s Report 3', 0x00E4),
+			new Reward('Secret Ansem\'s Report 4', 0x00E5),
+			new Reward('Secret Ansem\'s Report 5', 0x00E6),
+			new Reward('Secret Ansem\'s Report 6', 0x00E7),
+			new Reward('Secret Ansem\'s Report 7', 0x00E8),
+			new Reward('Secret Ansem\'s Report 8', 0x00E9),
+			new Reward('Secret Ansem\'s Report 9', 0x00EA),
+			new Reward('Secret Ansem\'s Report 10', 0x00EB),
+			new Reward('Secret Ansem\'s Report 11', 0x00EC),
+			new Reward('Secret Ansem\'s Report 12', 0x00ED),
+			new Reward('Secret Ansem\'s Report 13', 0x00EE),
 		]
 	},
 	{
-		rewardType: "Goofy's Shields",
+		rewardType: 'Goofy\'s Shields',
 		rewards: [
-			{
-				reward: "Knight's Shield",
-				index: "0031"
-			},
-			{
-				reward: "Adamant Shield",
-				index: "008B"
-			},
-			{
-				reward: "Chain Gear",
-				index: "008C"
-			},
-			{
-				reward: "Falling Star",
-				index: "008E"
-			},
-			{
-				reward: "Dream Cloud",
-				index: "008F"
-			},
-			{
-				reward: "Knight Defender",
-				index: "0090"
-			},
-			{
-				reward: "Ogre Shield",
-				index: "008D"
-			},
-			{
-				reward: "Genji Shield",
-				index: "0091"
-			},
-			{
-				reward: "Akashic Record",
-				index: "0092"
-			},
-			{
-				reward: "Akashic Record+",
-				index: "0259"
-			},
-			{
-				reward: "Nobody Guard",
-				index: "0093"
-			},
-			{
-				reward: "Frozen Pride",
-				index: "0228"
-			},
-			{
-				reward: "Frozen Pride+",
-				index: "0229"
-			},
-			{
-				reward: "Save The King",
-				index: "01E3"
-			},
-			{
-				reward: "Save The King+",
-				index: "01F8"
-			},
-			{
-				reward: "Joyous Mushroom",
-				index: "022A"
-			},
-			{
-				reward: "Joyous Mushroom+",
-				index: "022B"
-			},
-			{
-				reward: "Majestic Mushroom",
-				index: "022C"
-			},
-			{
-				reward: "Majestic Mushroom+",
-				index: "022D"
-			},
-			{
-				reward: "Ultimate Mushroom",
-				index: "022E"
-			},
-			{
-				reward: "Detection Shield",
-				index: "0032"
-			},
-			{
-				reward: "Test The King",
-				index: "0033"
-			}
+			new Reward('Knight\'s Shield', 0x0031),
+			new Reward('Adamant Shield', 0x008B),
+			new Reward('Chain Gear', 0x008C),
+			new Reward('Falling Star', 0x008E),
+			new Reward('Dream Cloud', 0x008F),
+			new Reward('Knight Defender', 0x0090),
+			new Reward('Ogre Shield', 0x008D),
+			new Reward('Genji Shield', 0x0091),
+			new Reward('Akashic Record', 0x0092),
+			new Reward('Akashic Record+', 0x0259),
+			new Reward('Nobody Guard', 0x0093),
+			new Reward('Frozen Pride', 0x0228),
+			new Reward('Frozen Pride+', 0x0229),
+			new Reward('Save The King', 0x01E3),
+			new Reward('Save The King+', 0x01F8),
+			new Reward('Joyous Mushroom', 0x022A),
+			new Reward('Joyous Mushroom+', 0x022B),
+			new Reward('Majestic Mushroom', 0x022C),
+			new Reward('Majestic Mushroom+', 0x022D),
+			new Reward('Ultimate Mushroom', 0x022E),
+			new Reward('Detection Shield', 0x0032),
+			new Reward('Test The King', 0x0033),
 		]
 	},
 	{
-		rewardType: "Donald's Staves",
+		rewardType: 'Donald\'s Staves',
 		rewards: [
-			{
-				reward: "Mage's Staff",
-				index: "004B"
-			},
-			{
-				reward: "Hammer Staff",
-				index: "0094"
-			},
-			{
-				reward: "Victory Bell",
-				index: "0095"
-			},
-			{
-				reward: "Comet Staff",
-				index: "0097"
-			},
-			{
-				reward: "Lord's Broom",
-				index: "0098"
-			},
-			{
-				reward: "Wisdom Wand",
-				index: "0099"
-			},
-			{
-				reward: "Meteor Staff",
-				index: "0096"
-			},
-			{
-				reward: "Rising Dragon",
-				index: "009A"
-			},
-			{
-				reward: "Shaman's Relic",
-				index: "009C"
-			},
-			{
-				reward: "Shaman's Relic+ ",
-				index: "0258"
-			},
-			{
-				reward: "Nobody Lance",
-				index: "009B"
-			},
-			{
-				reward: "Centurion",
-				index: "0221"
-			},
-			{
-				reward: "Centurion+",
-				index: "0222"
-			},
-			{
-				reward: "Save The Queen",
-				index: "01E2"
-			},
-			{
-				reward: "Save The Queen+",
-				index: "01F7"
-			},
-			{
-				reward: "Plain Mushroom",
-				index: "0223"
-			},
-			{
-				reward: "Plain Mushroom+",
-				index: "0224"
-			},
-			{
-				reward: "Precious Mushroom",
-				index: "0225"
-			},
-			{
-				reward: "Precious Mushroom+",
-				index: "0226"
-			},
-			{
-				reward: "Premium Mushroom",
-				index: "0227"
-			},
-			{
-				reward: "Staff of Detection",
-				index: "00A1"
-			}
+			new Reward('Mage\'s Staff', 0x004B),
+			new Reward('Hammer Staff', 0x0094),
+			new Reward('Victory Bell', 0x0095),
+			new Reward('Comet Staff', 0x0097),
+			new Reward('Lord\'s Broom', 0x0098),
+			new Reward('Wisdom Wand', 0x0099),
+			new Reward('Meteor Staff', 0x0096),
+			new Reward('Rising Dragon', 0x009A),
+			new Reward('Shaman\'s Relic', 0x009C),
+			new Reward('Shaman\'s Relic+ ', 0x0258),
+			new Reward('Nobody Lance', 0x009B),
+			new Reward('Centurion', 0x0221),
+			new Reward('Centurion+', 0x0222),
+			new Reward('Save The Queen', 0x01E2),
+			new Reward('Save The Queen+', 0x01F7),
+			new Reward('Plain Mushroom', 0x0223),
+			new Reward('Plain Mushroom+', 0x0224),
+			new Reward('Precious Mushroom', 0x0225),
+			new Reward('Precious Mushroom+', 0x0226),
+			new Reward('Premium Mushroom', 0x0227),
+			new Reward('Staff of Detection', 0x00A1),
 		]
 	},
 	{
-		rewardType: "Magic Spells",
+		rewardType: 'Magic Spells',
 		rewards: [
-			{
-				reward: "Fire",
-				index: "0015"
-			},
-			{
-				reward: "Blizzard",
-				index: "0016"
-			},
-			{
-				reward: "Thunder",
-				index: "0017"
-			},
-			{
-				reward: "Cure",
-				index: "0018"
-			},
-			{
-				reward: "Magnet",
-				index: "0057"
-			},
-			{
-				reward: "Reflect",
-				index: "0058"
-			}
+			new Reward('Fire', 0x0015),
+			new Reward('Blizzard', 0x0016),
+			new Reward('Thunder', 0x0017),
+			new Reward('Cure', 0x0018),
+			new Reward('Magnet', 0x0057),
+			new Reward('Reflect', 0x0058),
 		]
 	},
 	{
-		rewardType: "Summons",
+		rewardType: 'Summons',
 		rewards: [
-			{
-				reward: "Baseball Charm",
-				index: "017F"
-			},
-			{
-				reward: "Ukulele Charm",
-				index: "0019"
-			},
-			{
-				reward: "Lamp Charm",
-				index: "009F"
-			},
-			{
-				reward: "Feather Charm",
-				index: "00A0"
-			}
+			new Reward('Baseball Charm', 0x017F),
+			new Reward('Ukulele Charm', 0x0019),
+			new Reward('Lamp Charm', 0x009F),
+			new Reward('Feather Charm', 0x00A0),
 		]
 	},
 	{
-		rewardType: "Synth Materials",
+		rewardType: 'Synth Materials',
 		rewards: [
-			{
-				reward: "Blazing Shard",
-				index: "013D"
-			},
-			{
-				reward: "Blazing Stone",
-				index: "013E"
-			},
-			{
-				reward: "Blazing Gem",
-				index: "013F"
-			},
-			{
-				reward: "Blazing Crystal",
-				index: "0140"
-			},
-			{
-				reward: "Frost Shard",
-				index: "017A"
-			},
-			{
-				reward: "Frost Stone",
-				index: "017B"
-			},
-			{
-				reward: "Frost Gem",
-				index: "017C"
-			},
-			{
-				reward: "Frost Crystal",
-				index: "017D"
-			},
-			{
-				reward: "Lightning Shard",
-				index: "0145"
-			},
-			{
-				reward: "Lightning Stone",
-				index: "0146"
-			},
-			{
-				reward: "Lightning Gem",
-				index: "0147"
-			},
-			{
-				reward: "Lightning Crystal",
-				index: "0148"
-			},
-			{
-				reward: "Lucid Shard",
-				index: "014D"
-			},
-			{
-				reward: "Lucid Stone",
-				index: "014E"
-			},
-			{
-				reward: "Lucid Gem",
-				index: "014F"
-			},
-			{
-				reward: "Lucid Crystal",
-				index: "0150"
-			},
-			{
-				reward: "Power Shard",
-				index: "0149"
-			},
-			{
-				reward: "Power Stone",
-				index: "014A"
-			},
-			{
-				reward: "Power Gem",
-				index: "014B"
-			},
-			{
-				reward: "Power Crystal",
-				index: "014C"
-			},
-			{
-				reward: "Dark Shard",
-				index: "0118"
-			},
-			{
-				reward: "Dark Stone",
-				index: "0119"
-			},
-			{
-				reward: "Dark Gem",
-				index: "011A"
-			},
-			{
-				reward: "Dark Crystal",
-				index: "011B"
-			},
-			{
-				reward: "Dense Shard",
-				index: "0151"
-			},
-			{
-				reward: "Dense Stone",
-				index: "0152"
-			},
-			{
-				reward: "Dense Gem",
-				index: "0153"
-			},
-			{
-				reward: "Dense Crystal",
-				index: "0154"
-			},
-			{
-				reward: "Twilight Shard",
-				index: "0155"
-			},
-			{
-				reward: "Twilight Stone",
-				index: "0156"
-			},
-			{
-				reward: "Twilight Gem",
-				index: "0157"
-			},
-			{
-				reward: "Twilight Crystal",
-				index: "0158"
-			},
-			{
-				reward: "Mythril Shard",
-				index: "0159"
-			},
-			{
-				reward: "Mythril Stone",
-				index: "015A"
-			},
-			{
-				reward: "Mythril Gem",
-				index: "015B"
-			},
-			{
-				reward: "Mythril Crystal",
-				index: "015C"
-			},
-			{
-				reward: "Remembrance Shard",
-				index: "0240"
-			},
-			{
-				reward: "Remembrance Stone",
-				index: "0241"
-			},
-			{
-				reward: "Remembrance Gem",
-				index: "0242"
-			},
-			{
-				reward: "Remembrance Crystal",
-				index: "0243"
-			},
-			{
-				reward: "Tranquility Shard",
-				index: "0244"
-			},
-			{
-				reward: "Tranquility Stone",
-				index: "0245"
-			},
-			{
-				reward: "Tranquility Gem",
-				index: "0246"
-			},
-			{
-				reward: "Tranquility Crystal",
-				index: "0247"
-			},
-			{
-				reward: "Bright Shard",
-				index: "015D"
-			},
-			{
-				reward: "Bright Stone",
-				index: "015E"
-			},
-			{
-				reward: "Bright Gem",
-				index: "015F"
-			},
-			{
-				reward: "Bright Crystal",
-				index: "0160"
-			},
-			{
-				reward: "Energy Shard",
-				index: "0161"
-			},
-			{
-				reward: "Energy Stone",
-				index: "0162"
-			},
-			{
-				reward: "Energy Gem",
-				index: "0163"
-			},
-			{
-				reward: "Energy Crystal",
-				index: "0164"
-			},
-			{
-				reward: "Serenity Shard",
-				index: "0165"
-			},
-			{
-				reward: "Serenity Stone",
-				index: "0166"
-			},
-			{
-				reward: "Serenity Gem",
-				index: "0167"
-			},
-			{
-				reward: "Serenity Crystal",
-				index: "0168"
-			},
-			{
-				reward: "Lost Illusion",
-				index: "0248"
-			},
-			{
-				reward: "Manifest Illusion",
-				index: "0249"
-			},
-			{
-				reward: "Orichalcum",
-				index: "0179"
-			},
-			{
-				reward: "Orichalcum+",
-				index: "0169"
-			}
+			new Reward('Blazing Shard', 0x013D),
+			new Reward('Blazing Stone', 0x013E),
+			new Reward('Blazing Gem', 0x013F),
+			new Reward('Blazing Crystal', 0x0140),
+			new Reward('Frost Shard', 0x017A),
+			new Reward('Frost Stone', 0x017B),
+			new Reward('Frost Gem', 0x017C),
+			new Reward('Frost Crystal', 0x017D),
+			new Reward('Lightning Shard', 0x0145),
+			new Reward('Lightning Stone', 0x0146),
+			new Reward('Lightning Gem', 0x0147),
+			new Reward('Lightning Crystal', 0x0148),
+			new Reward('Lucid Shard', 0x014D),
+			new Reward('Lucid Stone', 0x014E),
+			new Reward('Lucid Gem', 0x014F),
+			new Reward('Lucid Crystal', 0x0150),
+			new Reward('Power Shard', 0x0149),
+			new Reward('Power Stone', 0x014A),
+			new Reward('Power Gem', 0x014B),
+			new Reward('Power Crystal', 0x014C),
+			new Reward('Dark Shard', 0x0118),
+			new Reward('Dark Stone', 0x0119),
+			new Reward('Dark Gem', 0x011A),
+			new Reward('Dark Crystal', 0x011B),
+			new Reward('Dense Shard', 0x0151),
+			new Reward('Dense Stone', 0x0152),
+			new Reward('Dense Gem', 0x0153),
+			new Reward('Dense Crystal', 0x0154),
+			new Reward('Twilight Shard', 0x0155),
+			new Reward('Twilight Stone', 0x0156),
+			new Reward('Twilight Gem', 0x0157),
+			new Reward('Twilight Crystal', 0x0158),
+			new Reward('Mythril Shard', 0x0159),
+			new Reward('Mythril Stone', 0x015A),
+			new Reward('Mythril Gem', 0x015B),
+			new Reward('Mythril Crystal', 0x015C),
+			new Reward('Remembrance Shard', 0x0240),
+			new Reward('Remembrance Stone', 0x0241),
+			new Reward('Remembrance Gem', 0x0242),
+			new Reward('Remembrance Crystal', 0x0243),
+			new Reward('Tranquility Shard', 0x0244),
+			new Reward('Tranquility Stone', 0x0245),
+			new Reward('Tranquility Gem', 0x0246),
+			new Reward('Tranquility Crystal', 0x0247),
+			new Reward('Bright Shard', 0x015D),
+			new Reward('Bright Stone', 0x015E),
+			new Reward('Bright Gem', 0x015F),
+			new Reward('Bright Crystal', 0x0160),
+			new Reward('Energy Shard', 0x0161),
+			new Reward('Energy Stone', 0x0162),
+			new Reward('Energy Gem', 0x0163),
+			new Reward('Energy Crystal', 0x0164),
+			new Reward('Serenity Shard', 0x0165),
+			new Reward('Serenity Stone', 0x0166),
+			new Reward('Serenity Gem', 0x0167),
+			new Reward('Serenity Crystal', 0x0168),
+			new Reward('Lost Illusion', 0x0248),
+			new Reward('Manifest Illusion', 0x0249),
+			new Reward('Orichalcum', 0x0179),
+			new Reward('Orichalcum+', 0x0169),
 		]
 	},
 	{
-		rewardType: "Empty",
+		rewardType: 'Empty',
 		rewards: [
-			{
-				reward: "EMPTY",
-				index: "0000"
-			}
+			new Reward('EMPTY', 0x0000),
 		]
 	}
 ]
-
-export default rewardsData
