@@ -1548,14 +1548,11 @@ class App extends React.Component {
 		let chestSaveData = this.state.chest.allChests.map(world => {
 			let ret = ''
 			world.chests.filter(chest => chest.isReplaced).forEach(chest => {
-				ret += '{"replacementReward":{"reward":' + JSON.stringify(chest.replacementReward.reward)
-				ret += ',"index":"' + chest.replacementReward.index + '"},'
-				ret += '"vanillaAddress":"' + chest.vanillaAddress + '",'
-				ret += '"isReplaced":' + chest.isReplaced + '},'
+				ret += JSON.stringify(chest, ['replacementReward', 'reward', 'index', 'vanillaAddress', 'isReplaced']) + ','
 			})
 			if (ret !== '') {
 				ret = ret.slice(0, -1)
-				ret = '{"world":' + JSON.stringify(world.world) + ',"chests":[' + ret + ']}'
+				ret = '{"world":"' + world.world + '","chests":[' + ret + ']}'
 			}
 			return ret
 		})
@@ -1564,15 +1561,11 @@ class App extends React.Component {
 		let popupSaveData = this.state.popup.allPopups.map(world => {
 			let ret = ''
 			world.popups.filter(popup => popup.isReplaced).forEach(popup => {
-				ret += '{"replacementReward":{"reward":' + JSON.stringify(popup.replacementReward.reward)
-				ret += ',"index":"' + popup.replacementReward.index + '"},'
-				ret += '"vanillaAddress":"' + popup.vanillaAddress + '",'
-				ret += '"isReplaced":' + popup.isReplaced + ','
-				ret += '"isAbility":' + popup.isAbility + '},'
+				ret += JSON.stringify(popup, ['replacementReward', 'reward', 'index', 'vanillaAddress', 'isReplaced', 'isAbility']) + ','
 			})
 			if (ret !== '') {
 				ret = ret.slice(0, -1)
-				ret = '{"world":' + JSON.stringify(world.world) + ',"popups":[' + ret + ']}'
+				ret = '{"world":"' + world.world + '","popups":[' + ret + ']}'
 			}
 			return ret
 		})
@@ -1581,180 +1574,119 @@ class App extends React.Component {
 		let bonusSaveData = this.state.bonus.allBonuses.map(character => {
 			let characterRet = ''
 			character.characterBonuses.forEach(world => {
+				let properties = ['fight', 'isStatsReplaced', 'isSlotsReplaced', 'isRewardsReplaced']
 				let ret = ''
 				world.worldBonuses.filter(b => b.isStatsReplaced || b.isSlotsReplaced || b.isRewardsReplaced).forEach(bonus => {
-					ret += '{"fight":' + JSON.stringify(bonus.fight) + ','
-					ret += '"isStatsReplaced":' + bonus.isStatsReplaced + ','
-					if (bonus.isStatsReplaced) {
-						ret += '"hpIncrease":' + bonus.hpIncrease + ',"mpIncrease":' + bonus.mpIncrease + ','
-					}
-					ret += '"isSlotsReplaced":' + bonus.isSlotsReplaced + ','
-					if (bonus.isSlotsReplaced) {
-						ret += '"armorSlotIncrease":' + bonus.armorSlotIncrease + ',"accessorySlotIncrease":' + bonus.accessorySlotIncrease + ','
-						ret += '"itemSlotIncrease":' + bonus.itemSlotIncrease + ',"driveGaugeIncrease":' + bonus.driveGaugeIncrease + ','
-					}
-					ret += '"isRewardsReplaced":' + bonus.isRewardsReplaced + ','
-					if (bonus.isRewardsReplaced) {
-						ret += '"replacementReward1":{"reward":' + JSON.stringify(bonus.replacementReward1.reward) + ',"index":"' + bonus.replacementReward1.index + '"},'
-						ret += '"replacementReward2":{"reward":' + JSON.stringify(bonus.replacementReward2.reward) + ',"index":"' + bonus.replacementReward2.index + '"},'
-					}
-					ret = ret.slice(0, -1) + '},'
+					if (bonus.isStatsReplaced)
+						properties.push('hpIncrease', 'mpIncrease')
+					if (bonus.isSlotsReplaced)
+						properties.push('armorSlotIncrease', 'accessorySlotIncrease', 'itemSlotIncrease', 'driveGaugeIncrease')
+					if (bonus.isRewardsReplaced)
+						properties.push('replacementReward1', 'reward', 'index', 'replacementReward2', 'reward', 'index')
+					ret += JSON.stringify(bonus, properties) + ','
 				})
 				if (ret !== '') {
 					ret = ret.slice(0, -1)
-					ret = '{"world":' + JSON.stringify(world.world) + ',"worldBonuses":[' + ret + ']},'
+					ret = '{"world":"' + world.world + '","worldBonuses":[' + ret + ']},'
 				}
 				characterRet += ret
 			})
 			if (characterRet !== '') {
 				characterRet = characterRet.slice(0, -1)
-				characterRet = '{"character":' + JSON.stringify(character.character) + ',"characterBonuses":[' + characterRet + ']},'
+				characterRet = '{"character":"' + character.character + '","characterBonuses":[' + characterRet + ']},'
 			}
 			return characterRet.slice(0, -1)
 		})
 		bonusSaveData = ['"bonusData":[', bonusSaveData.filter(s => s !== '').join(), '],']
 
 		let formSaveData = this.state.form.allForms.map(form => {
+			let properties = ['level', 'isRewardReplaced', 'isEXPReplaced']
 			let ret = ''
 			form.driveLevels.filter(dl => (dl.isRewardReplaced || dl.isEXPReplaced)).forEach(driveLevel => {
-				ret += '{"level":' + JSON.stringify(driveLevel.level) + ','
-				ret += '"isRewardReplaced":' + driveLevel.isRewardReplaced + ','
-				if (driveLevel.isRewardReplaced) {
-					ret += '"replacementReward":{"reward":' + JSON.stringify(driveLevel.replacementReward.reward)
-					ret += ',"index":"' + driveLevel.replacementReward.index + '"},'
-				}
-				ret += '"isEXPReplaced":' + driveLevel.isEXPReplaced + ','
+				if (driveLevel.isRewardReplaced)
+					properties.push('replacementReward', 'reward', 'index')
 				if (driveLevel.isEXPReplaced)
-					ret += '"replacementEXP":' + driveLevel.replacementEXP + ','
-				ret = ret.slice(0, -1) + '},'
+					properties.push('replacementEXP')
+				ret += JSON.stringify(driveLevel, properties) + ','
 			})
 			if (ret !== '') {
 				ret = ret.slice(0, -1)
-				ret = '{"driveForm":' + JSON.stringify(form.driveForm) + ',"driveLevels":[' + ret + ']}'
+				ret = '{"driveForm":"' + form.driveForm + '","driveLevels":[' + ret + ']}'
 			}
 			return ret
 		})
 		formSaveData = ['"formsData":[', formSaveData.filter(s => s !== '').join(), '],']
 
 		let equipmentSaveData = this.state.equipment.allEquipments.map(equipmentType => {
+			let properties = ['name', 'isAbilityReplaced', 'isStatsReplaced', 'isElementalResistanceChanged', 'isOtherResistanceChanged']
 			let ret = ''
-			equipmentType.equipments.filter(e => (e.isAbilityReplaced || e.isStatsReplaced
-				|| e.isElementalResistanceChanged || e.isOtherResistanceChanged)).forEach(equipment => {
-					ret += '{"name":' + JSON.stringify(equipment.name) + ','
-					ret += '"isAbilityReplaced":' + equipment.isAbilityReplaced + ','
-					if (equipment.isAbilityReplaced) {
-						ret += '"replacementAbility":{"reward":' + JSON.stringify(equipment.replacementAbility.reward)
-						ret += ',"index":"' + equipment.replacementAbility.index + '"},'
-					}
-					ret += '"isStatsReplaced":' + equipment.isStatsReplaced + ','
-					if (equipment.isStatsReplaced) {
-						ret += '"strength":' + equipment.strength + ',"magic":' + equipment.magic
-						ret += ',"ap":' + equipment.ap + ',"defense":' + equipment.defense + ','
-					}
-					ret += '"isElementalResistanceChanged":' + equipment.isElementalResistanceChanged + ','
-					if (equipment.isElementalResistanceChanged) {
-						ret += '"fireResistance":' + equipment.fireResistance + ',"blizzardResistance":' + equipment.blizzardResistance
-						ret += ',"thunderResistance":' + equipment.thunderResistance + ',"physicalResistance":' + equipment.physicalResistance + ','
-					}
-					ret += '"isOtherResistanceChanged":' + equipment.isOtherResistanceChanged + ','
-					if (equipment.isOtherResistanceChanged) {
-						ret += '"darkResistance":' + equipment.darkResistance + ',"lightResistance":' + equipment.lightResistance
-						ret += ',"universalResistance":' + equipment.universalResistance + ','
-					}
-					ret = ret.slice(0, -1) + '},'
-				})
+			equipmentType.equipments.filter(e => (e.isAbilityReplaced || e.isStatsReplaced || e.isElementalResistanceChanged || e.isOtherResistanceChanged)).forEach(equipment => {
+				if (equipment.isAbilityReplaced)
+					properties.push('replacementAbility', 'reward', 'index')
+				if (equipment.isStatsReplaced)
+					properties.push('strength', 'magic', 'ap', 'defense')
+				if (equipment.isElementalResistanceChanged)
+					properties.push('fireResistance', 'blizzardResistance', 'thunderResistance', 'physicalResistance')
+				if (equipment.isOtherResistanceChanged)
+					properties.push('darkResistance', 'lightResistance', 'universalResistance')
+				ret += JSON.stringify(equipment, properties) + ','
+			})
 			if (ret !== '') {
 				ret = ret.slice(0, -1)
-				ret = '{"equipmentType":' + JSON.stringify(equipmentType.equipmentType) + ',"equipments":[' + ret + ']}'
+				ret = '{"equipmentType":"' + equipmentType.equipmentType + '","equipments":[' + ret + ']}'
 			}
 			return ret
 		})
 		equipmentSaveData = ['"equipmentsData":[', equipmentSaveData.filter(s => s !== '').join(), '],']
 
-		let levelSaveData = this.state.level.currentDisplayData.filter(l => (l.isEXPReplaced || l.isStatsReplaced || l.isSwordReplaced || l.isShieldReplaced || l.isStaffReplaced)).map(level => {
-			let ret = '{"level":' + level.level + ','
-			ret += '"isEXPReplaced":' + level.isEXPReplaced + ','
-			if (level.isEXPReplaced) {
-				ret += '"replacedEXP":' + level.replacedEXP + ','
-			}
-			ret += '"isStatsReplaced":' + level.isStatsReplaced + ','
-			if (level.isStatsReplaced) {
-				ret += '"standardAP":' + level.standardAP + ','
-				ret += '"defense":' + level.defense + ','
-				ret += '"magic":' + level.magic + ','
-				ret += '"strength":' + level.strength + ','
-			}
-			ret += '"isSwordReplaced":' + level.isSwordReplaced + ','
-			if (level.isSwordReplaced) {
-				ret += '"replacementSwordReward":{'
-				ret += '"reward":' + JSON.stringify(level.replacementSwordReward.reward) + ','
-				ret += '"index":"' + level.replacementSwordReward.index + '"},'
-			}
-			ret += '"isShieldReplaced":' + level.isShieldReplaced + ','
-			if (level.isShieldReplaced) {
-				ret += '"replacementShieldReward":{'
-				ret += '"reward":' + JSON.stringify(level.replacementShieldReward.reward) + ','
-				ret += '"index":"' + level.replacementShieldReward.index + '"},'
-			}
-			ret += '"isStaffReplaced":' + level.isStaffReplaced + ','
-			if (level.isStaffReplaced) {
-				ret += '"replacementStaffReward":{'
-				ret += '"reward":' + JSON.stringify(level.replacementStaffReward.reward) + ','
-				ret += '"index":"' + level.replacementStaffReward.index + '"},'
-			}
-			return ret.slice(0, -1) + '},'
-		})
+		let levelSaveData = this.state.level.currentDisplayData.filter(l => (l.isEXPReplaced || l.isStatsReplaced || l.isSwordReplaced
+			|| l.isShieldReplaced || l.isStaffReplaced)).map(level => {
+				let properties = ['level', 'isEXPReplaced', 'isStatsReplaced', 'isSwordReplaced', 'isShieldReplaced', 'isStaffReplaced']
+				if (level.isEXPReplaced)
+					properties.push('replacedEXP')
+				if (level.isStatsReplaced)
+					properties.push('standardAP', 'defense', 'magic', 'strength')
+				if (level.isSwordReplaced)
+					properties.push('replacementSwordReward', 'reward', 'index')
+				if (level.isShieldReplaced)
+					properties.push('replacementShieldReward', 'reward', 'index')
+				if (level.isStaffReplaced)
+					properties.push('replacementStaffReward', 'reward', 'index')
+				return JSON.stringify(level, properties) + ','
+			})
 		levelSaveData = ['"levelsData":[', levelSaveData.join('').slice(0, -1), '],']
 
 		let magicCostSaveData = this.state.magicCost.allMagic.map(magicType => {
 			let ret = ''
 			magicType.abilities.filter(ability => ability.isReplaced).forEach(ability => {
-				ret += '{"ability":' + JSON.stringify(ability.ability)
-				ret += ',"replacementCost":' + ability.replacementCost
-				ret += ',"isReplaced":' + ability.isReplaced + '},'
+				ret += JSON.stringify(ability, ['ability', 'replacementCost', 'isReplaced']) + ','
 			})
 			if (ret !== '') {
 				ret = ret.slice(0, -1)
-				ret = '{"magicType":' + JSON.stringify(magicType.magicType) + ',"abilities":[' + ret + ']}'
+				ret = '{"magicType":"' + magicType.magicType + '","abilities":[' + ret + ']}'
 			}
 			return ret
 		})
 		magicCostSaveData = ['"magicData":[', magicCostSaveData.filter(s => s !== '').join(), '],']
 
 		let criticalSaveData = this.state.critical.currentDisplayData.filter(critical => critical.isReplaced).map(critical => {
-			let ret = '{"replacementReward":{"reward":' + JSON.stringify(critical.replacementReward.reward)
-			ret += ',"index":"' + critical.replacementReward.index + '"},'
-			ret += '"vanillaAddress":"' + critical.vanillaAddress + '",'
-			ret += '"isReplaced":' + critical.isReplaced + '},'
-			return ret
+			return JSON.stringify(critical, ['replacementReward', 'reward', 'index', 'vanillaAddress', 'isReplaced']) + ','
 		})
 		criticalSaveData = ['"criticalsData":[', criticalSaveData.join('').slice(0, -1), '],']
 
 		let cheatSaveData = this.state.cheat.currentDisplayData.filter(cheat => cheat.isActive).map(cheat => {
-			return '{"name":' + JSON.stringify(cheat.name) + ',"isActive":' + cheat.isActive + '},'
+			return JSON.stringify(cheat, ['name', 'isActive']) + ','
 		})
 		cheatSaveData = ['"cheatsData":[', cheatSaveData.join('').slice(0, -1), '],']
 
-		let startingStatus = this.state.startingStatus.startingStatusData
-		let startingStatusSaveData = '"startingStatusData":{'
-		startingStatusSaveData += '"startingKeyblade": {"reward": "' + startingStatus.startingKeyblade.reward + '","index": "' + startingStatus.startingKeyblade.index + '"},'
-		startingStatusSaveData += '"startingArmor": {"reward": "' + startingStatus.startingArmor.reward + '","index": "' + startingStatus.startingArmor.index + '"},'
-		startingStatusSaveData += '"startingAccessory": {"reward": "' + startingStatus.startingAccessory.reward + '","index": "' + startingStatus.startingAccessory.index + '"},'
-		startingStatusSaveData += '"startingDonald1": {"reward": "' + startingStatus.startingDonald1.reward + '","index": "' + startingStatus.startingDonald1.index + '"},'
-		startingStatusSaveData += '"startingDonald2": {"reward": "' + startingStatus.startingDonald2.reward + '","index": "' + startingStatus.startingDonald2.index + '"},'
-		startingStatusSaveData += '"startingGoofy1": {"reward": "' + startingStatus.startingGoofy1.reward + '","index": "' + startingStatus.startingGoofy1.index + '"},'
-		startingStatusSaveData += '"startingGoofy2": {"reward": "' + startingStatus.startingGoofy2.reward + '","index": "' + startingStatus.startingGoofy2.index + '"},'
-		startingStatusSaveData += '"startingMunny":' + startingStatus.startingMunny + ',"startingHP":' + startingStatus.startingHP + ',"startingMP":' + startingStatus.startingMP
-		startingStatusSaveData += '},'
+		let startingStatusSaveData = '"startingStatusData":' + JSON.stringify(this.state.startingStatus.startingStatusData, (key, value) => {
+			if (key.substr(key.length - 4) === 'Code')
+				return undefined
+			else
+				return value
+		}) + ','
 
-		let tracker = this.state.tracker
-		let trackerData = '"trackerData":{'
-		trackerData += '"fire":' + tracker.fire + ',"blizzard":' + tracker.blizzard + ',"thunder":' + tracker.thunder + ',"cure":' + tracker.cure
-		trackerData += ',"reflect":' + tracker.reflect + ',"magnet":' + tracker.magnet + ',"pages":' + tracker.pages
-		trackerData += ',"proofs":[' + tracker.proofs.toString() + ']'
-		trackerData += ',"reports":[' + tracker.reports.toString() + ']'
-		trackerData += ',"drives":[' + tracker.drives.toString() + ']'
-		trackerData += ',"summons":[' + tracker.summons.toString() + ']},'
+		let trackerData = '"trackerData":' + JSON.stringify(this.state.tracker) + ','
 
 		let saveData = ['{',
 			chestSaveData.join(''),
