@@ -3,11 +3,25 @@ import { Reward } from './rewardsData'
 export class Chest {
 	constructor(room, vanilla, address) {
 		this.room = room
-		this.vanillaReward = vanilla
-		this.replacementReward = vanilla
+		this.vanillaReward = Object.assign({}, vanilla)
+		this.replacementReward = Object.assign({}, vanilla)
 		this.vanillaAddress = address
 		this.toBeReplaced = false
 		this.isReplaced = false
+	}
+
+	vanilla() {
+		return new Chest(this.room, this.vanillaReward, this.vanillaAddress)
+	}
+
+	replace(replacement) {
+		let ret = new Chest(this.room, this.vanillaReward, this.vanillaAddress)
+		if (replacement.index !== ret.replacementReward.index)
+			ret.replacementReward = Object.assign({}, replacement)
+		if (replacement.index !== ret.vanillaReward.index)
+			ret.isReplaced = false
+		ret.toBeReplaced = false
+		return ret
 	}
 }
 
