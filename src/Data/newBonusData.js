@@ -101,7 +101,7 @@ export const bonusData = [
 		bonusFights: []
 	}, {
 		world: 'Beast\'s Castle',
-		worldBonuses: [
+		bonusFights: [
 			new BonusFight('Thresholder',
 				new BonusReward('Sora', 0x01D10751, new Reward('Upper Slash', 0x0089), new Reward('EMPTY', 0x0000), 0, 0, 0, 0, 0, 0),
 				new BonusReward('Donald', 0x01D10761, new Reward('Donald Fire', 0x00A5), new Reward('EMPTY', 0x0000), 0, 0, 0, 0, 0, 0),
