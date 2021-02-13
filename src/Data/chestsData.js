@@ -1,38 +1,37 @@
 import { Reward } from './rewardsData'
 
-export function Chest(room, reward, index, address) {
-	this.room = room
-	this.vanillaReward = new Reward(reward, index)
-	this.replacementReward = new Reward(reward, index)
-	this.vanillaAddress = address
-	this.toBeReplaced = false
-	this.isReplaced = false
-}
+export class Chest {
+	constructor(room, reward, index, address) {
+		this.room = room
+		this.vanillaReward = new Reward(reward, index)
+		this.replacementReward = new Reward(reward, index)
+		this.vanillaAddress = address
+		this.toBeReplaced = false
+		this.isReplaced = false
+	}
 
-export function vanilla(chest) {
-	chest.replacementReward.reward = chest.vanillaReward.reward
-	chest.replacementReward.index = chest.vanillaReward.index
-	chest.toBeReplaced = false
-	chest.isReplaced = false
-	return chest
-}
-
-export function replace(chest, rReward) {
-	chest.replacementReward.reward = rReward.reward
-	chest.replacementReward.index = rReward.index
-	chest.toBeReplaced = false
-	chest.isReplaced = rReward.index !== chest.vanillaReward.index
-	return chest
-}
-
-export function markForReplacement(chest, toBeReplaced) {
-	chest.toBeReplaced = toBeReplaced
-	return chest
-}
-
-export function toPnach(chest) {
-	let ret = '//patch=1,EE,' + chest.vanillaAddress + ',extended,0000' + chest.replacementReward.index.padStart(4, '0')
-	return ret + ' // ' + chest.room + ', ' + chest.vanillaReward.reward + ' is now ' + chest.replacementReward.reward + '\n'
+	vanilla() {
+		this.replacementReward.reward = this.vanillaReward.reward
+		this.replacementReward.index = this.vanillaReward.index
+		this.toBeReplaced = false
+		this.isReplaced = false
+	}
+	
+	replace(rReward) {
+		this.replacementReward.reward = rReward.reward
+		this.replacementReward.index = rReward.index
+		this.toBeReplaced = false
+		this.isReplaced = rReward.index !== this.vanillaReward.index
+	}
+	
+	markForReplacement(toBeReplaced) {
+		this.toBeReplaced = toBeReplaced
+	}
+	
+	toPnach() {
+		let ret = '//patch=1,EE,' + this.vanillaAddress + ',extended,0000' + this.replacementReward.index.padStart(4, '0')
+		return ret + ' // ' + this.room + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward + '\n'
+	}
 }
 
 export const chestsData = [

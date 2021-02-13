@@ -2,8 +2,7 @@ import { React, useState } from 'react'
 
 import { worldsData } from './Data/typesData'
 import { rewardsData } from './Data/rewardsData'
-// import { chestsData } from './Data/chestsData'
-import * as Chest from './Data/chestsData'
+import { chestsData } from './Data/chestsData'
 
 import ChestPage from './Pages/newChestPage'
 
@@ -12,58 +11,58 @@ function FunctionApp() {
 	const [currentChestRewardType, setCurrentChestRewardType] = useState(0)
 	const [currentChestReward, setCurrentChestReward] = useState(0)
 	const [chestSelectAll, setChestSelectAll] = useState(false)
-	const [allChests, setChests] = useState(Chest.chestsData)
-	const [currentChestData, setCurrentChestData] = useState(Chest.chestsData[0].chests)
+	const [allChests, setChests] = useState(chestsData)
+	const [currentChestData, setCurrentChestData] = useState(chestsData[0].chests)
 
-	function handleWorldChestChange(nextWorld) {
-		let toBeStoredChests = currentChestData.map(chest => {
-			Chest.markForReplacement(chest, false)
-			return chest
+	function handleTableChange(nextWorld) {
+		let toBeStoredObjects = currentChestData.map(object => {
+			object.markForReplacement(false)
+			return object
 		})
-		let newAllChests = allChests.map((worldChestList, index) => {
+		let newAllObjects = allChests.map((list, index) => {
 			if (index === currentChestWorld)
 				return {
 					world: worldsData[index],
-					chests: toBeStoredChests
+					chests: toBeStoredObjects
 				}
-			return worldChestList
+			return list
 		})
-		setChests(newAllChests)
-		setCurrentChestData(newAllChests[nextWorld].chests)
+		setChests(newAllObjects)
+		setCurrentChestData(newAllObjects[nextWorld].chests)
 		setCurrentChestWorld(nextWorld)
 	}
 
-	function handleChestReplace(buttonName) {
-		let replacedChests
+	function handleReplace(buttonName) {
+		let replacedObjects
 		if (buttonName === 'replaceButton')
-			replacedChests = currentChestData.map(chest => {
-				if (chest.toBeReplaced)
-					Chest.replace(chest, rewardsData[currentChestRewardType].rewards[currentChestReward])
-				return chest
+			replacedObjects = currentChestData.map(object => {
+				if (object.toBeReplaced)
+					object.replace(rewardsData[currentChestRewardType].rewards[currentChestReward])
+				return object
 			})
 		else
-			replacedChests = currentChestData.map(chest => {
-				if (chest.toBeReplaced)
-					Chest.vanilla(chest)
-				return chest
+			replacedObjects = currentChestData.map(object => {
+				if (object.toBeReplaced)
+					object.vanilla()
+				return object
 			})
-		setCurrentChestData(replacedChests)
+		setCurrentChestData(replacedObjects)
 		setChestSelectAll(false)
 	}
 
 	function onRowCheck(row) {
-		let toggledChests = currentChestData.map((chest, index) => {
+		let toggledObjects = currentChestData.map((object, index) => {
 			if (index === parseInt(row))
-				Chest.markForReplacement(chest, !chest.toBeReplaced)
-			return chest
+				object.markForReplacement(!object.toBeReplaced)
+			return object
 		})
-		setCurrentChestData(toggledChests)
+		setCurrentChestData(toggledObjects)
 	}
 
 	function checkAll() {
-		let toBeReplacedObjects = currentChestData.map(chest => {
-			Chest.markForReplacement(chest,!chestSelectAll )
-			return chest
+		let toBeReplacedObjects = currentChestData.map(object => {
+			object.markForReplacement(!chestSelectAll)
+			return object
 		})
 		setCurrentChestData(toBeReplacedObjects)
 		setChestSelectAll(!chestSelectAll)
@@ -86,7 +85,7 @@ function FunctionApp() {
 				currentRewardType={currentChestRewardType}
 				currentReward={currentChestReward}
 				selectAll={chestSelectAll}
-				handleWorldChange={(e) => handleWorldChestChange(e.target.value)}
+				handleWorldChange={(e) => handleTableChange(e.target.value)}
 				onRewardTypeChange={(e) => {
 					setCurrentChestRewardType(e.target.value)
 					setCurrentChestReward(0)
@@ -94,7 +93,7 @@ function FunctionApp() {
 				onRewardChange={(e) => setCurrentChestReward(e.target.value)}
 				onRowCheck={(e) => onRowCheck(e.target.value)}
 				checkAll={() => checkAll()}
-				onClick={(e) => handleChestReplace(e.target.name)}
+				onClick={(e) => handleReplace(e.target.name)}
 			/>
 		</div>
 	)
