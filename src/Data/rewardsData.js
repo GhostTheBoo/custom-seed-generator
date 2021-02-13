@@ -1,8 +1,6 @@
-export class Reward {
-	constructor(reward, index) {
-		this.reward = reward
-		this.index = index
-	}
+export function Reward(reward, index) {
+	this.reward = reward
+	this.index = index
 }
 
 export const rewardsData = [
