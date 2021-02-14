@@ -86,7 +86,7 @@ export const rewardsData = [
 			new Reward('Auto Healing', 0x01A4),
 			new Reward('Protect', 0x0254),
 			new Reward('Protectra', 0x0255),
-			new Reward('Protectga', 0x0256),
+			new Reward('Protectga', 0x0256)
 		]
 	},
 	{
@@ -124,7 +124,7 @@ export const rewardsData = [
 			new Reward('Full Bloom', 0x0040),
 			new Reward('Full Bloom+', 0x0042),
 			new Reward('Draw Ring', 0x0041),
-			new Reward('Lucky Ring', 0x003F),
+			new Reward('Lucky Ring', 0x003F)
 		]
 	},
 	{
@@ -163,7 +163,7 @@ export const rewardsData = [
 			new Reward('Cosmic Chain', 0x0134),
 			new Reward('Petite Ribbon', 0x0132),
 			new Reward('Ribbon', 0x0130),
-			new Reward('Grand Ribbon', 0x009D),
+			new Reward('Grand Ribbon', 0x009D)
 		]
 	},
 	{
@@ -174,6 +174,7 @@ export const rewardsData = [
 			new Reward('Limit Form', 0x0233),
 			new Reward('Master Form', 0x001F),
 			new Reward('Final Form', 0x001D),
+			new Reward('Anti Form', 0x001E)
 		]
 	},
 	{
@@ -198,7 +199,7 @@ export const rewardsData = [
 			new Reward('Glide LV1', 0x006A),
 			new Reward('Glide LV2', 0x006B),
 			new Reward('Glide LV3', 0x006C),
-			new Reward('Glide MAX', 0x006D),
+			new Reward('Glide MAX', 0x006D)
 		]
 	},
 	{
@@ -217,7 +218,7 @@ export const rewardsData = [
 			new Reward('Power Boost', 0x0114),
 			new Reward('Magic Boost', 0x0115),
 			new Reward('Defense Boost', 0x0116),
-			new Reward('AP Boost', 0x0117),
+			new Reward('AP Boost', 0x0117)
 		]
 	},
 	{
@@ -242,7 +243,7 @@ export const rewardsData = [
 			new Reward('Picture', 0x0178),
 			new Reward('Promise Charm', 0x020C),
 			new Reward('Hades Cup Trophy', 0x0219),
-			new Reward('"The Struggle" Trophy', 0x021A),
+			new Reward('"The Struggle" Trophy', 0x021A)
 		]
 	},
 	{
@@ -273,7 +274,7 @@ export const rewardsData = [
 			new Reward('Ultima Weapon', 0x01F4),
 			new Reward('Winner\'s Proof', 0x0220),
 			new Reward('Detection Saber', 0x002C),
-			new Reward('Edge of Ultima', 0x002D),
+			new Reward('Edge of Ultima', 0x002D)
 		]
 	},
 	{
@@ -333,7 +334,7 @@ export const rewardsData = [
 			new Reward('Central Computer Core Map', 0x0204),
 			new Reward('Solar Sailer Simulation Map', 0x0205),
 			new Reward('Dark City Map', 0x0100),
-			new Reward('Castle That Never Was Map', 0x0218),
+			new Reward('Castle That Never Was Map', 0x0218)
 		]
 	},
 	{
@@ -341,7 +342,7 @@ export const rewardsData = [
 		rewards: [
 			new Reward('Proof of Connection', 0x0251),
 			new Reward('Proof of Nonexistence', 0x0252),
-			new Reward('Proof of Peace', 0x0253),
+			new Reward('Proof of Peace', 0x0253)
 		]
 	},
 	{
@@ -362,7 +363,7 @@ export const rewardsData = [
 			new Reward('Moon Recipe', 0x01DC),
 			new Reward('Queen Recipe', 0x01DD),
 			new Reward('King Recipe', 0x01DE),
-			new Reward('Ultimate Recipe', 0x01DF),
+			new Reward('Ultimate Recipe', 0x01DF)
 		]
 	},
 	{
@@ -380,7 +381,7 @@ export const rewardsData = [
 			new Reward('Secret Ansem\'s Report 10', 0x00EB),
 			new Reward('Secret Ansem\'s Report 11', 0x00EC),
 			new Reward('Secret Ansem\'s Report 12', 0x00ED),
-			new Reward('Secret Ansem\'s Report 13', 0x00EE),
+			new Reward('Secret Ansem\'s Report 13', 0x00EE)
 		]
 	},
 	{
@@ -407,7 +408,7 @@ export const rewardsData = [
 			new Reward('Majestic Mushroom+', 0x022D),
 			new Reward('Ultimate Mushroom', 0x022E),
 			new Reward('Detection Shield', 0x0032),
-			new Reward('Test The King', 0x0033),
+			new Reward('Test The King', 0x0033)
 		]
 	},
 	{
@@ -433,7 +434,7 @@ export const rewardsData = [
 			new Reward('Precious Mushroom', 0x0225),
 			new Reward('Precious Mushroom+', 0x0226),
 			new Reward('Premium Mushroom', 0x0227),
-			new Reward('Staff of Detection', 0x00A1),
+			new Reward('Staff of Detection', 0x00A1)
 		]
 	},
 	{
@@ -444,7 +445,7 @@ export const rewardsData = [
 			new Reward('Thunder', 0x0017),
 			new Reward('Cure', 0x0018),
 			new Reward('Magnet', 0x0057),
-			new Reward('Reflect', 0x0058),
+			new Reward('Reflect', 0x0058)
 		]
 	},
 	{
@@ -453,7 +454,7 @@ export const rewardsData = [
 			new Reward('Baseball Charm', 0x017F),
 			new Reward('Ukulele Charm', 0x0019),
 			new Reward('Lamp Charm', 0x009F),
-			new Reward('Feather Charm', 0x00A0),
+			new Reward('Feather Charm', 0x00A0)
 		]
 	},
 	{
@@ -518,13 +519,13 @@ export const rewardsData = [
 			new Reward('Lost Illusion', 0x0248),
 			new Reward('Manifest Illusion', 0x0249),
 			new Reward('Orichalcum', 0x0179),
-			new Reward('Orichalcum+', 0x0169),
+			new Reward('Orichalcum+', 0x0169)
 		]
 	},
 	{
 		rewardType: 'Empty',
 		rewards: [
-			new Reward('EMPTY', 0x0000),
+			new Reward('EMPTY', 0x0000)
 		]
 	}
 ]

@@ -18,8 +18,8 @@ export class Chest {
 	}
 	
 	replace(rReward) {
-		this.replacementReward.reward = rReward.reward
-		this.replacementReward.index = rReward.index
+		this.replacementReward.reward = rReward.reward.reward
+		this.replacementReward.index = rReward.reward.index
 		this.toBeReplaced = false
 		this.isReplaced = rReward.index !== this.vanillaReward.index
 	}

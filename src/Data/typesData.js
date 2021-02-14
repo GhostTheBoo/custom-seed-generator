@@ -69,3 +69,23 @@ export const equipmentTypesData = [
 	'Armor',
 	'Accessory'
 ]
+
+export const iconTypeData = [
+	'Ability Stars',
+	'Accesory',
+	'Armor',
+	'Form Star',
+	'Consumable',
+	'Tent',
+	'Key Item',
+	'Keyblade',
+	'Map',
+	'Proof(s)',
+	'Recipe',
+	'Report',
+	'Shield',
+	'Staff',
+	'Spell',
+	'Summon Charm',
+	'Synthesis Material'
+]
