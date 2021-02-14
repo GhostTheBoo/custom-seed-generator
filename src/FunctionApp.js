@@ -5,10 +5,11 @@ import Tab from 'react-bootstrap/Tab'
 import { worldsData } from './Data/typesData'
 import { rewardsData } from './Data/rewardsData'
 import { chestsData } from './Data/chestsData'
+import { popupsData } from './Data/popupsData'
 
 import HomePage from './Pages/HomePage'
-import ChestPage from './Pages/newChestPage'
-import PopupPage from './Pages/newPopupPage'
+import ChestPage from './Pages/ChestPage'
+import PopupPage from './Pages/PopupPage'
 
 function FunctionApp() {
 	const [currentChestWorld, setCurrentChestWorld] = useState(0)
@@ -18,6 +19,14 @@ function FunctionApp() {
 	const [allChests, setChests] = useState(chestsData)
 	const [currentChestData, setCurrentChestData] = useState(chestsData[0].chests)
 
+	const [currentPopupWorld, setCurrentPopupWorld] = useState(0)
+	const [currentPopupRewardType, setCurrentPopupRewardType] = useState(0)
+	const [currentPopupReward, setCurrentPopupReward] = useState(0)
+	const [popupSelectAll, setPopupSelectAll] = useState(false)
+	const [allPopups, setPopups] = useState(popupsData)
+	const [currentPopupData, setCurrentPopupData] = useState(popupsData[0].popups)
+
+	//#region Table Change
 	function handleChestTableChange(nextWorld) {
 		let toBeStoredObjects = currentChestData.map(object => {
 			object.markForReplacement(false)
@@ -36,6 +45,24 @@ function FunctionApp() {
 		setCurrentChestWorld(nextWorld)
 	}
 
+	function handlePopupTableChange(nextWorld) {
+		let toBeStoredObjects = currentPopupData.map(object => {
+			object.markForReplacement(false)
+			return object
+		})
+		let newAllObjects = allPopups.map((list, index) => {
+			if (index === currentPopupWorld)
+				return {
+					world: worldsData[index],
+					popups: toBeStoredObjects
+				}
+			return list
+		})
+		setPopups(newAllObjects)
+		setCurrentPopupData(newAllObjects[nextWorld].popups)
+		setCurrentPopupWorld(nextWorld)
+	}
+	//#endregion
 	function handleReplace(buttonName, currentReward, currentData, setCurrentData, setSelectAll) {
 		let replacedObjects
 		if (buttonName === 'replaceButton')
@@ -108,28 +135,28 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
-				{/* <Tab eventKey="popup" title="Popup">
+				<Tab eventKey="popup" title="Popup">
 					<PopupPage
 						style={styles}
-						currentWorld={currentChestWorld}
-						chestData={currentChestData}
-						rewardList={rewardsData[currentChestRewardType].rewards}
-						currentRewardType={currentChestRewardType}
-						currentReward={currentChestReward}
-						selectAll={chestSelectAll}
-						handleWorldChange={(e) => handleChestTableChange(e.target.value)}
+						currentWorld={currentPopupWorld}
+						popupData={currentPopupData}
+						rewardList={rewardsData[currentPopupRewardType].rewards}
+						currentRewardType={currentPopupRewardType}
+						currentReward={currentPopupReward}
+						selectAll={popupSelectAll}
+						handleWorldChange={(e) => handlePopupTableChange(e.target.value)}
 						onRewardTypeChange={(e) => {
-							setCurrentChestRewardType(e.target.value)
-							setCurrentChestReward(0)
+							setCurrentPopupRewardType(e.target.value)
+							setCurrentPopupReward(0)
 						}}
-						onRewardChange={(e) => setCurrentChestReward(e.target.value)}
-						onRowCheck={(e) => onRowCheck(e.target.value, currentChestData, setCurrentChestData)}
-						checkAll={() => checkAll(currentChestData, setCurrentChestData, chestSelectAll, setChestSelectAll)}
+						onRewardChange={(e) => setCurrentPopupReward(e.target.value)}
+						onRowCheck={(e) => onRowCheck(e.target.value, currentPopupData, setCurrentPopupData)}
+						checkAll={() => checkAll(currentPopupData, setCurrentPopupData, popupSelectAll, setPopupSelectAll)}
 						onClick={(e) => {
-							handleReplace(e.target.name, rewardsData[currentChestRewardType].rewards[currentChestReward], currentChestData, setCurrentChestData, setChestSelectAll)
+							handleReplace(e.target.name, rewardsData[currentPopupRewardType].rewards[currentPopupReward], currentPopupData, setCurrentPopupData, setPopupSelectAll)
 						}}
 					/>
-				</Tab> */}
+				</Tab>
 			</Tabs>
 		</div>
 	)

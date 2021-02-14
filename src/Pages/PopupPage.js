@@ -39,14 +39,14 @@ function PopupPage(props) {
 							selector={'World'}
 							itemList={worldsData}
 							name={'currentWorld'}
-							currentItem={props.popupData.currentWorld}
+							currentItem={props.currentWorld}
 							onChange={props.handleWorldChange}
 						/>
 					</Col>
 					<Col>
 						<RewardTypeSelect
 							class={'popup'}
-							currentRewardType={props.popupData.currentRewardType}
+							currentRewardType={props.currentRewardType}
 							name={'currentRewardType'}
 							onChange={props.onRewardTypeChange}
 						/>
@@ -64,11 +64,11 @@ function PopupPage(props) {
 				</Form.Row>
 			</Form>
 			<PopupTable
-				currentWorld={worldsData[props.popupData.currentWorld]}
-				worldPopups={props.popupData.currentDisplayData}
+				currentWorld={worldsData[props.currentWorld]}
+				worldPopups={props.popupData}
 				onRowCheck={props.onRowCheck}
 				checkAll={props.checkAll}
-				selectAll={props.popupData.selectAll}
+				selectAll={props.selectAll}
 			/>
 			<Button variant='outline-dark'
 				name='replaceButton'
