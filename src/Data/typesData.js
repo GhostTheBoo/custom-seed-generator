@@ -50,9 +50,19 @@ export const formTypesData = [
 ]
 
 export const charactersData = [
-	'Sora',
+	'Sora/Roxas',
 	'Donald',
-	'Goofy'
+	'Goofy',
+	'Mickey',
+	'Auron',
+	'Ping/Mulan',
+	'Aladdin',
+	'Jack Sparrow',
+	'Beast',
+	'Jack Skellington',
+	'Simba',
+	'Tron',
+	'Riku'
 ]
 
 export const magicCostsData = [
@@ -71,21 +81,22 @@ export const equipmentTypesData = [
 ]
 
 export const iconTypeData = [
-	'Ability Stars',
-	'Accesory',
+	'Ability',
+	'Accessory',
 	'Armor',
-	'Form Star',
+	'Form',
 	'Consumable',
 	'Tent',
-	'Key Item',
+	'Key',
 	'Keyblade',
 	'Map',
-	'Proof(s)',
+	'Proof',
 	'Recipe',
 	'Report',
 	'Shield',
 	'Staff',
 	'Spell',
-	'Summon Charm',
-	'Synthesis Material'
+	'Charm',
+	'Synthesis',
+	'EMPTY'
 ]
