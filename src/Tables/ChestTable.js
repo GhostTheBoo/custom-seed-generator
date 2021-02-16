@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table'
 
 function ChestTable(props) {
 	let chestList = props.worldChests.map((chest, index) => {
-		let keyValue = props.currentWorld + index
+		let keyValue = chest.vanillaAddress
 		let styles
 		let replacementReward = ''
 		if (chest.isReplaced) {
@@ -45,7 +45,7 @@ function ChestTable(props) {
 							type='checkbox'
 							name={props.currentWorld + 'All'}
 							checked={props.selectAll}
-							onChange={props.checkAll}
+							onChange={props.onCheckAll}
 						/>
 					</th>
 					<th>

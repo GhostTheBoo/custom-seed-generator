@@ -37,14 +37,14 @@ function ChestPage(props) {
 							selector={'World'}
 							itemList={worldsData}
 							name={'currentWorld'}
-							currentItem={props.currentWorld}
+							currentItem={props.fieldData.currentWorld}
 							onChange={props.handleWorldChange}
 						/>
 					</Col>
 					<Col>
 						<RewardTypeSelect
 							class={'chest'}
-							currentRewardType={props.currentRewardType}
+							currentRewardType={props.fieldData.currentRewardType}
 							name={'currentRewardType'}
 							onChange={props.onRewardTypeChange}
 						/>
@@ -53,7 +53,7 @@ function ChestPage(props) {
 						<RewardSelect
 							class={'chest'}
 							rewardList={props.rewardList}
-							currentReward={props.currentReward}
+							currentReward={props.fieldData.currentReward}
 							name={'currentReward'}
 							label={'Reward'}
 							onChange={props.onRewardChange}
@@ -62,11 +62,11 @@ function ChestPage(props) {
 				</Form.Row>
 			</Form>
 			<ChestTable
-				currentWorld={worldsData[props.currentWorld]}
+				currentWorld={worldsData[props.fieldData.currentWorld]}
 				worldChests={props.chestData}
 				onRowCheck={props.onRowCheck}
-				checkAll={props.checkAll}
-				selectAll={props.selectAll}
+				onCheckAll={props.onCheckAll}
+				selectAll={props.fieldData.selectAll}
 			/>
 			<Button variant='outline-dark'
 				name='replaceButton'

@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table'
 
 function PopupTable(props) {
 	let popupList = props.worldPopups.map((popup, index) => {
-		let keyValue = props.currentWorld + index
+		let keyValue = popup.vanillaAddress
 		let styles
 		let originalReward = ''
 		if (popup.isReplaced) {
@@ -47,7 +47,7 @@ function PopupTable(props) {
 							type='checkbox'
 							name={props.currentWorld + 'All'}
 							checked={props.selectAll}
-							onChange={props.checkAll}
+							onChange={props.onCheckAll}
 						/>
 					</th>
 					<th>

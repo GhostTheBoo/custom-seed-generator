@@ -55,14 +55,14 @@ function FormPage(props) {
 							selector={'Drive Form'}
 							itemList={formTypesData}
 							name={'currentDriveForm'}
-							currentItem={props.formData.currentDriveForm}
+							currentItem={props.formFieldData.currentDriveForm}
 							onChange={props.handleFormChange}
 						/>
 					</Col>
 					<Col>
 						<RewardTypeSelect
 							class={'form'}
-							currentRewardType={props.formData.currentRewardType}
+							currentRewardType={props.formFieldData.currentRewardType}
 							name={'currentRewardType'}
 							onChange={props.onRewardTypeChange}
 						/>
@@ -71,27 +71,27 @@ function FormPage(props) {
 						<RewardSelect
 							class={'form'}
 							rewardList={props.rewardList}
-							currentReward={props.formData.currentReward}
+							currentReward={props.formFieldData.currentReward}
 							name={'currentReward'}
 							label={'Reward'}
-							onChange={props.onGenericChange}
+							onChange={props.onSelectChange}
 						/>
 					</Col>
 				</Form.Row>
 				<EXPSelect
 					class={'form'}
-					currentEXP={props.formData.currentEXP}
-					currentEXPMultiplier={props.formData.currentEXPMultiplierValue}
+					currentEXP={props.formFieldData.currentEXP}
+					currentEXPMultiplier={props.formFieldData.currentEXPMultiplierValue}
 					onInputChange={props.onInputChange}
-					onMultiplierChange={props.onGenericChange}
+					onMultiplierChange={props.onSelectChange}
 				/>
 			</Form>
 			<FormTable
-				currentDriveForm={formTypesData[props.formData.currentDriveForm]}
-				driveLevels={props.formData.currentDisplayData}
+				currentDriveForm={formTypesData[props.formFieldData.currentDriveForm]}
+				driveLevels={props.formData}
 				onRowCheck={props.onRowCheck}
-				checkAll={props.checkAll}
-				selectAll={props.formData.selectAll}
+				onCheckAll={props.onCheckAll}
+				selectAll={props.formFieldData.selectAll}
 			/>
 			<Button variant='outline-dark'
 				name='replaceButton'

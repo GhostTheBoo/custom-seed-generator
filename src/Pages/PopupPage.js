@@ -67,7 +67,7 @@ function PopupPage(props) {
 				currentWorld={worldsData[props.currentWorld]}
 				worldPopups={props.popupData}
 				onRowCheck={props.onRowCheck}
-				checkAll={props.checkAll}
+				onCheckAll={props.onCheckAll}
 				selectAll={props.selectAll}
 			/>
 			<Button variant='outline-dark'

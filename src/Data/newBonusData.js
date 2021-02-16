@@ -111,15 +111,25 @@ export class BonusReward {
 	}
 
 	toPnach() {
-		let ret = '//'
-
-
-
-
-
-
-		let ret = 'patch=1,EE,' + this.vanillaAddress + ',extended,0000' + this.replacementReward.index.padStart(4, '0')
-		return ret + ' // ' + this.popup + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward + '\n'
+		let ret = '//' + this.replacementCharacter + '\n'
+		if (this.isStatsReplaced()) {
+			ret += 'patch=1,EE,' + this.statAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
+			ret += this.mpIncrease.toString(16).toUpperCase().padStart(2, '0') + this.hpIncrease.toString(16).toUpperCase().padStart(2, '0')
+			ret += ' // MP:' + this.mpIncrease + ' HP:' + this.hpIncrease + '\n'
+		}
+		if (this.isSlotsReplaced()) {
+			ret += 'patch=1,EE,' + this.slotAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,'
+			ret += this.armorSlotIncrease.toString(16).toUpperCase().padStart(2, '0') + this.accessorySlotIncrease.toString(16).toUpperCase().padStart(2, '0')
+			ret += this.itemSlotIncrease.toString(16).toUpperCase().padStart(2, '0') + this.driveGaugeIncrease.toString(16).toUpperCase().padStart(2, '0')
+			ret += ' // Armor Slot:+' + this.armorSlotIncrease + ' Accessory Slot:+' + this.accessorySlotIncrease
+			ret += ' Item Slot:+' + this.itemSlotIncrease + ' Drive Gauge:+' + this.driveGaugeIncrease + '\n'
+		}
+		if (this.isRewardsReplaced()) {
+			ret += 'patch=1,EE,' + this.rewardAddress.toString(16).toUpperCase().padStart(8, '0')
+			ret += ',extended,' + this.replacementReward2.index.toString(16).toUpperCase().padStart(4, '0') + this.replacementReward1.index.toString(16).toUpperCase().padStart(4, '0')
+			ret += ' // Replacement Reward #2:' + this.replacementReward2.reward + ', Replacement Reward #1:' + this.replacementReward1.reward + '\n'
+		}
+		return ret
 	}
 }
 
@@ -130,6 +140,19 @@ export class BonusFight {
 		this.slot2 = slot2
 		this.slot3 = slot3
 		this.slot4 = slot4
+	}
+
+	toPnach() {
+		let ret = '//' + this.fight + '\n'
+		if (this.slot1 !== null)
+			ret += this.slot1.toPnach
+		if (this.slot2 !== null)
+			ret += this.slot2.toPnach
+		if (this.slot3 !== null)
+			ret += this.slot3.toPnach
+		if (this.slot4 !== null)
+			ret += this.slot4.toPnach
+		return ret
 	}
 }
 

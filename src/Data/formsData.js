@@ -3,15 +3,55 @@ import { Reward } from './rewardsData'
 export class FormLevel {
 	constructor(level, vanilla, rewardAddress, exp, expAddress) {
 		this.level = level
-		this.vanillaReward = vanilla
-		this.replacementReward = vanilla
+		this.vanillaReward = { ...vanilla }
+		this.replacementReward = { ...vanilla }
 		this.vanillaAddress = rewardAddress
 		this.vanillaEXP = exp
 		this.replacementEXP = exp
 		this.EXPAddress = expAddress
 		this.toBeReplaced = false
-		this.isReplaced = false
-		this.isEXPReplaced = false
+	}
+
+	isEXPReplaced() {
+		return this.replacementEXP !== this.vanillaEXP
+	}
+
+	isRewardReplaced() {
+		return this.replacementReward.index !== this.vanillaReward.index
+	}
+
+	vanilla() {
+		this.replacementReward.reward = this.vanillaReward.reward
+		this.replacementReward.index = this.vanillaReward.index
+		this.replacementReward.iconType = this.vanillaReward.iconType
+		this.replacementEXP = this.vanillaEXP
+		this.toBeReplaced = false
+	}
+
+	replace(newFormData) {
+		this.replacementReward.reward = newFormData.reward.reward
+		this.replacementReward.index = newFormData.reward.index
+		this.replacementReward.iconType = newFormData.reward.iconType
+		this.replacementEXP = newFormData.multiplier === 0 ? newFormData.exp : Math.max(1, Math.floor((2 * this.vanillaEXP) / newFormData.multiplier))
+		this.toBeReplaced = false
+	}
+
+	markForReplacement(toBeReplaced) {
+		this.toBeReplaced = toBeReplaced
+	}
+
+	toPnach() {
+		let ret = ''
+		if (this.isRewardReplaced()) {
+			ret += 'patch=1,EE,' + this.vanillaAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
+			ret += this.replacementReward.index.toString(16).toUpperCase().padStart(4, '0')
+			ret += ' // ' + this.level + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward + '\n'
+		}
+		if (this.isEXPReplaced()) {
+			ret += 'patch=1,EE,' + this.EXPAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,' + this.replacementEXP.toString(16).toUpperCase().padStart(8, 0)
+			ret += ' // ' + this.replacementEXP + ' experience is now required to reach ' + this.level + '\n'
+		}
+		return ret
 	}
 }
 
@@ -21,12 +61,12 @@ export const formsData = [
 		removeGrowthJankCodes: [
 		],
 		driveLevels: [
-			new FormLevel('Summon LV2', new Reward('EMPTY', 0x0000), 0x11D1A1EE, 6, 0x11D1A1F0),
-			new FormLevel('Summon LV3', new Reward('EMPTY', 0x0000), 0x11D1A1F6, 16, 0x11D1A1F8),
-			new FormLevel('Summon LV4', new Reward('EMPTY', 0x0000), 0x11D1A1FE, 25, 0x11D1A200),
-			new FormLevel('Summon LV5', new Reward('EMPTY', 0x0000), 0x11D1A206, 42, 0x11D1A208),
-			new FormLevel('Summon LV6', new Reward('EMPTY', 0x0000), 0x11D1A20E, 63, 0x11D1A210),
-			new FormLevel('Summon LV7', new Reward('EMPTY', 0x0000), 0x11D1A216, 98, 0x11D1A218)
+			new FormLevel('Summon LV2', new Reward('EMPTY', 0x0000, 'EMPTY'), 0x11D1A1EE, 6, 0x11D1A1F0),
+			new FormLevel('Summon LV3', new Reward('EMPTY', 0x0000, 'EMPTY'), 0x11D1A1F6, 16, 0x11D1A1F8),
+			new FormLevel('Summon LV4', new Reward('EMPTY', 0x0000, 'EMPTY'), 0x11D1A1FE, 25, 0x11D1A200),
+			new FormLevel('Summon LV5', new Reward('EMPTY', 0x0000, 'EMPTY'), 0x11D1A206, 42, 0x11D1A208),
+			new FormLevel('Summon LV6', new Reward('EMPTY', 0x0000, 'EMPTY'), 0x11D1A20E, 63, 0x11D1A210),
+			new FormLevel('Summon LV7', new Reward('EMPTY', 0x0000, 'EMPTY'), 0x11D1A216, 98, 0x11D1A218)
 		]
 	},
 	{
@@ -62,12 +102,12 @@ export const formsData = [
 			'patch=1,EE,1032EE42,extended,00000000\n'
 		],
 		driveLevels: [
-			new FormLevel('Valor LV2', new Reward('Auto Valor', 0x0181), 0x11D1A22E, 80, 0x11D1A228),
-			new FormLevel('Valor LV3', new Reward('High Jump LV 1', 0x005E), 0x11D1A236, 160, 0x11D1A230),
-			new FormLevel('Valor LV4', new Reward('Combo Plus', 0x00A2), 0x11D1A23E, 280, 0x11D1A238),
-			new FormLevel('Valor LV5', new Reward('High Jump LV 2', 0x005F), 0x11D1A246, 448, 0x11D1A240),
-			new FormLevel('Valor LV6', new Reward('Combo Plus', 0x00A2), 0x11D1A24E, 560, 0x11D1A248),
-			new FormLevel('Valor LV7', new Reward('High Jump LV 3', 0x0060), 0x11D1A256, 672, 0x11D1A250)
+			new FormLevel('Valor LV2', new Reward('Auto Valor', 0x0181, 'Ability'), 0x11D1A22E, 80, 0x11D1A228),
+			new FormLevel('Valor LV3', new Reward('High Jump LV 1', 0x005E, 'Ability'), 0x11D1A236, 160, 0x11D1A230),
+			new FormLevel('Valor LV4', new Reward('Combo Plus', 0x00A2, 'Ability'), 0x11D1A23E, 280, 0x11D1A238),
+			new FormLevel('Valor LV5', new Reward('High Jump LV 2', 0x005F, 'Ability'), 0x11D1A246, 448, 0x11D1A240),
+			new FormLevel('Valor LV6', new Reward('Combo Plus', 0x00A2, 'Ability'), 0x11D1A24E, 560, 0x11D1A248),
+			new FormLevel('Valor LV7', new Reward('High Jump LV 3', 0x0060, 'Ability'), 0x11D1A256, 672, 0x11D1A250)
 		]
 	},
 	{
@@ -103,12 +143,12 @@ export const formsData = [
 			'patch=1,EE,1032EE74,extended,00000000\n'
 		],
 		driveLevels: [
-			new FormLevel('Wisdom LV2', new Reward('Auto Wisdom', 0x0182), 0x11D1A266, 20, 0x11D1A260),
-			new FormLevel('Wisdom LV3', new Reward('Quick Run LV 1', 0x0062), 0x11D1A26E, 60, 0x11D1A268),
-			new FormLevel('Wisdom LV4', new Reward('MP Rage', 0x019C), 0x11D1A276, 72, 0x11D1A270),
-			new FormLevel('Wisdom LV5', new Reward('Quick Run LV 2', 0x0063), 0x11D1A27E, 90, 0x11D1A278),
-			new FormLevel('Wisdom LV6', new Reward('MP Haste', 0x019D), 0x11D1A286, 108, 0x11D1A280),
-			new FormLevel('Wisdom LV7', new Reward('Quick Run LV 3', 0x0064), 0x11D1A28E, 150, 0x11D1A288)
+			new FormLevel('Wisdom LV2', new Reward('Auto Wisdom', 0x0182, 'Ability'), 0x11D1A266, 20, 0x11D1A260),
+			new FormLevel('Wisdom LV3', new Reward('Quick Run LV 1', 0x0062, 'Ability'), 0x11D1A26E, 60, 0x11D1A268),
+			new FormLevel('Wisdom LV4', new Reward('MP Rage', 0x019C, 'Ability'), 0x11D1A276, 72, 0x11D1A270),
+			new FormLevel('Wisdom LV5', new Reward('Quick Run LV 2', 0x0063, 'Ability'), 0x11D1A27E, 90, 0x11D1A278),
+			new FormLevel('Wisdom LV6', new Reward('MP Haste', 0x019D, 'Ability'), 0x11D1A286, 108, 0x11D1A280),
+			new FormLevel('Wisdom LV7', new Reward('Quick Run LV 3', 0x0064, 'Ability'), 0x11D1A28E, 150, 0x11D1A288)
 		]
 	},
 	{
@@ -144,12 +184,12 @@ export const formsData = [
 			'patch=1,EE,1032EEC2,extended,00000000\n'
 		],
 		driveLevels: [
-			new FormLevel('Limit LV2', new Reward('Auto Limit', 0x0238), 0x11D1A29E, 3, 0x11D1A298),
-			new FormLevel('Limit LV3', new Reward('Dodge Roll LV 1', 0x0234), 0x11D1A2A6, 6, 0x11D1A2A0),
-			new FormLevel('Limit LV4', new Reward('Draw', 0x0195), 0x11D1A2AE, 12, 0x11D1A2A8),
-			new FormLevel('Limit LV5', new Reward('Dodge Roll LV 2', 0x0235), 0x11D1A2B6, 19, 0x11D1A2B0),
-			new FormLevel('Limit LV6', new Reward('Lucky Lucky', 0x0197), 0x11D1A2BE, 23, 0x11D1A2B8),
-			new FormLevel('Limit LV7', new Reward('Dodge Roll LV 3', 0x0236), 0x11D1A2C6, 36, 0x11D1A2C0)
+			new FormLevel('Limit LV2', new Reward('Auto Limit', 0x0238, 'Ability'), 0x11D1A29E, 3, 0x11D1A298),
+			new FormLevel('Limit LV3', new Reward('Dodge Roll LV 1', 0x0234, 'Ability'), 0x11D1A2A6, 6, 0x11D1A2A0),
+			new FormLevel('Limit LV4', new Reward('Draw', 0x0195, 'Ability'), 0x11D1A2AE, 12, 0x11D1A2A8),
+			new FormLevel('Limit LV5', new Reward('Dodge Roll LV 2', 0x0235, 'Ability'), 0x11D1A2B6, 19, 0x11D1A2B0),
+			new FormLevel('Limit LV6', new Reward('Lucky Lucky', 0x0197, 'Ability'), 0x11D1A2BE, 23, 0x11D1A2B8),
+			new FormLevel('Limit LV7', new Reward('Dodge Roll LV 3', 0x0236, 'Ability'), 0x11D1A2C6, 36, 0x11D1A2C0)
 		]
 	},
 	{
@@ -185,12 +225,12 @@ export const formsData = [
 			'patch=1,EE,1032EEEA,extended,00000000\n'
 		],
 		driveLevels: [
-			new FormLevel('Master LV2', new Reward('Auto Master', 0x0183), 0x11D1A2D6, 60, 0x11D1A2D0),
-			new FormLevel('Master LV3', new Reward('Aerial Dodge LV 1', 0x0066), 0x11D1A2DE, 180, 0x11D1A2D8),
-			new FormLevel('Master LV4', new Reward('Air Combo Plus', 0x00A3), 0x11D1A2E6, 216, 0x11D1A2E0),
-			new FormLevel('Master LV5', new Reward('Aerial Dodge LV 2', 0x0067), 0x11D1A2EE, 270, 0x11D1A2E8),
-			new FormLevel('Master LV6', new Reward('Air Combo Plus', 0x00A3), 0x11D1A2F6, 324, 0x11D1A2F0),
-			new FormLevel('Master LV7', new Reward('Aerial Dodge LV 3', 0x0068), 0x11D1A2FE, 450, 0x11D1A2F8)
+			new FormLevel('Master LV2', new Reward('Auto Master', 0x0183, 'Ability'), 0x11D1A2D6, 60, 0x11D1A2D0),
+			new FormLevel('Master LV3', new Reward('Aerial Dodge LV 1', 0x0066, 'Ability'), 0x11D1A2DE, 180, 0x11D1A2D8),
+			new FormLevel('Master LV4', new Reward('Air Combo Plus', 0x00A3, 'Ability'), 0x11D1A2E6, 216, 0x11D1A2E0),
+			new FormLevel('Master LV5', new Reward('Aerial Dodge LV 2', 0x0067, 'Ability'), 0x11D1A2EE, 270, 0x11D1A2E8),
+			new FormLevel('Master LV6', new Reward('Air Combo Plus', 0x00A3, 'Ability'), 0x11D1A2F6, 324, 0x11D1A2F0),
+			new FormLevel('Master LV7', new Reward('Aerial Dodge LV 3', 0x0068, 'Ability'), 0x11D1A2FE, 450, 0x11D1A2F8)
 		]
 	},
 	{
@@ -226,12 +266,12 @@ export const formsData = [
 			'patch=1,EE,1032EF1E,extended,00000000\n'
 		],
 		driveLevels: [
-			new FormLevel('Final LV2', new Reward('Auto Final', 0x0184), 0x11D1A30E, 12, 0x11D1A308),
-			new FormLevel('Final LV3', new Reward('Glide LV 1', 0x006A), 0x11D1A316, 24, 0x11D1A310),
-			new FormLevel('Final LV4', new Reward('Form Boost', 0x018E), 0x11D1A31E, 48, 0x11D1A318),
-			new FormLevel('Final LV5', new Reward('Glide LV 2', 0x006B), 0x11D1A326, 76, 0x11D1A320),
-			new FormLevel('Final LV6', new Reward('Form Boost', 0x018E), 0x11D1A32E, 133, 0x11D1A328),
-			new FormLevel('Final LV7', new Reward('Glide LV 3', 0x006C), 0x11D1A336, 157, 0x11D1A330)
+			new FormLevel('Final LV2', new Reward('Auto Final', 0x0184, 'Ability'), 0x11D1A30E, 12, 0x11D1A308),
+			new FormLevel('Final LV3', new Reward('Glide LV 1', 0x006A, 'Ability'), 0x11D1A316, 24, 0x11D1A310),
+			new FormLevel('Final LV4', new Reward('Form Boost', 0x018E, 'Ability'), 0x11D1A31E, 48, 0x11D1A318),
+			new FormLevel('Final LV5', new Reward('Glide LV 2', 0x006B, 'Ability'), 0x11D1A326, 76, 0x11D1A320),
+			new FormLevel('Final LV6', new Reward('Form Boost', 0x018E, 'Ability'), 0x11D1A32E, 133, 0x11D1A328),
+			new FormLevel('Final LV7', new Reward('Glide LV 3', 0x006C, 'Ability'), 0x11D1A336, 157, 0x11D1A330)
 		]
 	}
 ]

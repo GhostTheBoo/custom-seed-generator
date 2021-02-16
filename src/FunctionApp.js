@@ -2,106 +2,175 @@ import { React, useState } from 'react'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 
-import { worldsData, charactersData } from './Data/typesData'
+import { worldsData, charactersData, formTypesData } from './Data/typesData'
 import { rewardsData } from './Data/rewardsData'
 import { chestsData } from './Data/chestsData'
 import { popupsData } from './Data/popupsData'
-import { bonusData } from './Data/newBonusData'
+// import { bonusData } from './Data/newBonusData'
+import { formsData } from './Data/formsData'
+import equipmentsData from './Data/equipmentsData'
 
 import HomePage from './Pages/HomePage'
 import ChestPage from './Pages/ChestPage'
 import PopupPage from './Pages/PopupPage'
-import BonusPage from './Pages/BonusPage'
+// import BonusPage from './Pages/BonusPage'
+import FormPage from './Pages/FormPage'
+import EquipmentPage from './Pages/EquipmentPage'
 
 function FunctionApp() {
-	const [currentChestWorld, setCurrentChestWorld] = useState(0)
-	const [currentChestRewardType, setCurrentChestRewardType] = useState(0)
-	const [currentChestReward, setCurrentChestReward] = useState(0)
-	const [chestSelectAll, setChestSelectAll] = useState(false)
-	const [allChests, setChests] = useState(chestsData)
-	const [currentChestData, setCurrentChestData] = useState(chestsData[0].chests)
+	const [chestFieldData, setChestFieldData] = useState({
+		curentWorld: 0,
+		currentRewardType: 0,
+		currentReward: 0,
+		selectAll: false
+	})
+	const [allChests, setAllChests] = useState(chestsData)
+	const [chestData, setChestData] = useState(chestsData[0].chests)
 
-	const [currentPopupWorld, setCurrentPopupWorld] = useState(0)
-	const [currentPopupRewardType, setCurrentPopupRewardType] = useState(0)
-	const [currentPopupReward, setCurrentPopupReward] = useState(0)
-	const [popupSelectAll, setPopupSelectAll] = useState(false)
-	const [allPopups, setPopups] = useState(popupsData)
-	const [currentPopupData, setCurrentPopupData] = useState(popupsData[0].popups)
+	const [popupFieldData, setPopupFieldData] = useState({
+		curentWorld: 0,
+		currentRewardType: 0,
+		currentReward: 0,
+		selectAll: false
+	})
+	const [allPopups, setAllPopups] = useState(popupsData)
+	const [popupData, setPopupData] = useState(popupsData[0].popups)
 
-	const [currentBonusWorld, setCurrentBonusWorld] = useState(0)
-	const [currentBonusARewardType, setCurrentBonusARewardType] = useState(0)
-	const [currentBonusAReward, setCurrentBonusAReward] = useState(0)
-	const [currentBonusBRewardType, setCurrentBonusBRewardType] = useState(0)
-	const [currentBonusBReward, setCurrentBonusBReward] = useState(0)
-	const [currentBonusSlot, setCurrentBonusSlot] = useState(0)
-	const [currentBonusCharacter, setCurrentBonusCharacter] = useState(0)
-	const [currentBonusHP, setCurrentBonusHP] = useState(0)
-	const [currentBonusMP, setCurrentBonusMP] = useState(0)
-	const [currentBonusArmor, setCurrentBonusArmor] = useState(0)
-	const [currentBonusAccessory, setCurrentBonusAccessory] = useState(0)
-	const [currentBonusItem, setCurrentBonusItem] = useState(0)
-	const [currentBonusDrive, setCurrentBonusDrive] = useState(0)
-	const [bonusSelectAll, setBonusSelectAll] = useState(false)
-	const [allBonuses, setBonuses] = useState(bonusData)
-	const [currentBonusData, setCurrentBonusData] = useState(bonusData[0].bonus)
+	const [formFieldData, setFormFieldData] = useState({
+		currentDriveForm: 0,
+		currentRewardType: 0,
+		currentReward: 0,
+		currentEXPMultiplierValue: 2,
+		currentEXP: 0,
+		selectAll: false
+	})
+	const [allForms, setAllForms] = useState(formsData)
+	const [formData, setFormData] = useState(formsData[0].driveLevels)
+
+	const [equipmentFieldData, setEquipmentFieldData] = useState({
+		currentEquipmentType: 0,
+		currentRewardType: 0,
+		currentReward: 0,
+		currentStrength: 0,
+		currentMagic: 0,
+		currentAP: 0,
+		currentDefense: 0,
+		currentPhysical: 0,
+		currentFire: 0,
+		currentBlizzard: 0,
+		currentThunder: 0,
+		currentDark: 0,
+		currentLight: 0,
+		currentUniversal: 0,
+		selectAll: false,
+	})
+	const [allEquipments, setAllEquipments] = useState(equipmentsData)
+	const [equipmentData, setEquipmentData] = useState(equipmentsData[0].equipments)
 
 	//#region Table Change
 	function handleChestTableChange(nextWorld) {
-		let toBeStoredObjects = currentChestData.map(object => {
+		let toBeStoredObjects = chestData.map(object => {
 			object.markForReplacement(false)
 			return object
 		})
 		let newAllObjects = allChests.map((list, index) => {
-			if (index === currentChestWorld)
+			if (index === chestFieldData.currentWorld)
 				return {
 					world: worldsData[index],
 					chests: toBeStoredObjects
 				}
 			return list
 		})
-		setChests(newAllObjects)
-		setCurrentChestData(newAllObjects[nextWorld].chests)
-		setCurrentChestWorld(nextWorld)
+		setAllChests(newAllObjects)
+		setChestData(newAllObjects[nextWorld].chests)
+		setChestFieldData({
+			...chestFieldData,
+			currentWorld: nextWorld
+		})
 	}
-
 	function handlePopupTableChange(nextWorld) {
-		let toBeStoredObjects = currentPopupData.map(object => {
+		let toBeStoredObjects = popupData.map(object => {
 			object.markForReplacement(false)
 			return object
 		})
 		let newAllObjects = allPopups.map((list, index) => {
-			if (index === currentPopupWorld)
+			if (index === popupFieldData.currentWorld)
 				return {
 					world: worldsData[index],
 					popups: toBeStoredObjects
 				}
 			return list
 		})
-		setPopups(newAllObjects)
-		setCurrentPopupData(newAllObjects[nextWorld].popups)
-		setCurrentPopupWorld(nextWorld)
+		setAllPopups(newAllObjects)
+		setPopupData(newAllObjects[nextWorld].popups)
+		setPopupFieldData({
+			...popupFieldData,
+			currentWorld: nextWorld
+		})
 	}
-
-	function handleBonusTableChange(nextWorld) {
-		let toBeStoredObjects = currentBonusData.map(object => {
+	// function handleBonusTableChange(nextWorld) {
+	// 	let toBeStoredObjects = currentBonusData.map(object => {
+	// 		object.markForReplacement(false)
+	// 		return object
+	// 	})
+	// 	let newAllObjects = allBonuses.map((list, index) => {
+	// 		if (index === currentBonusWorld)
+	// 			return {
+	// 				world: worldsData[index],
+	// 				bonusFights: toBeStoredObjects
+	// 			}
+	// 		return list
+	// 	})
+	// 	setBonuses(newAllObjects)
+	// 	setCurrentBonusData(newAllObjects[nextWorld].popups)
+	// 	setCurrentBonusWorld(nextWorld)
+	// }
+	function handleFormTableChange(nextForm) {
+		let toBeStoredObjects = formData.map(object => {
 			object.markForReplacement(false)
 			return object
 		})
-		let newAllObjects = allPopups.map((list, index) => {
-			if (index === currentPopupWorld)
+		let newAllObjects = allForms.map((list, index) => {
+			if (index === formFieldData.currentDriveForm)
 				return {
-					world: worldsData[index],
-					popups: toBeStoredObjects
+					driveForm: formTypesData[index],
+					removeGrowthJankCodes: list.removeGrowthJankCodes,
+					driveLevels: toBeStoredObjects
 				}
 			return list
 		})
-		setPopups(newAllObjects)
-		setCurrentPopupData(newAllObjects[nextWorld].popups)
-		setCurrentPopupWorld(nextWorld)
+		setAllForms(newAllObjects)
+		setFormData(newAllObjects[nextForm].driveLevels)
+		setFormFieldData({
+			...formFieldData,
+			currentDriveForm: nextForm
+		})
+	}
+	function handleEquipmentTableChange(nextEquipment) {
+		let toBeStoredObjects = equipmentData.map(object => {
+			object.markForReplacement(false)
+			return object
+		})
+		let newAllObjects = allEquipments.map((list, index) => {
+			if (index === formFieldData.currentDriveEquipment)
+				return {
+					driveEquipment: formTypesData[index],
+					removeGrowthJankCodes: list.removeGrowthJankCodes,
+					driveLevels: toBeStoredObjects
+				}
+			return list
+		})
+		setAllEquipments(newAllObjects)
+		setEquipmentData(newAllObjects[nextEquipment].driveLevels)
+		setEquipmentFieldData({
+			...formFieldData,
+			currentDriveEquipment: nextEquipment
+		})
 	}
 	//#endregion
 
-	function handleReplace(buttonName, currentReward, currentData, setCurrentData, setSelectAll) {
+	//#region General Functions
+	function handleReplace(buttonName, currentReward, currentData, setCurrentData, fieldData, setFieldData) {
 		let replacedObjects
 		if (buttonName === 'replaceButton')
 			replacedObjects = currentData.map(object => {
@@ -116,10 +185,12 @@ function FunctionApp() {
 				return object
 			})
 		setCurrentData(replacedObjects)
-		setSelectAll(false)
+		setFieldData({
+			...fieldData,
+			selectAll: !fieldData.selectAll
+		})
 	}
-
-	function handleRowCheck(row, currentData, setCurrentData) {
+	function onRowCheck(row, currentData, setCurrentData) {
 		let toggledObjects = currentData.map((object, index) => {
 			if (index === parseInt(row))
 				object.markForReplacement(!object.toBeReplaced)
@@ -127,15 +198,31 @@ function FunctionApp() {
 		})
 		setCurrentData(toggledObjects)
 	}
-
-	function handleCheckAll(currentData, setCurrentData, selectAll, setSelectAll) {
+	function onCheckAll(currentData, setCurrentData, fieldData, setFieldData) {
 		let toBeReplacedObjects = currentData.map(object => {
-			object.markForReplacement(!selectAll)
+			object.markForReplacement(!fieldData.selectAll)
 			return object
 		})
 		setCurrentData(toBeReplacedObjects)
-		setSelectAll(!selectAll)
+		setFieldData({
+			...fieldData,
+			selectAll: !fieldData.selectAll
+		})
 	}
+	function handleRewardTypeChange(value, fieldData, setFieldData) {
+		setFieldData({
+			...fieldData,
+			currentRewardType: parseInt(value),
+			currentReward: 0
+		})
+	}
+	function handleFieldChange(name, value, fieldData, setFieldData) {
+		setFieldData({
+			...fieldData,
+			[name]: parseInt(value)
+		})
+	}
+	//#endregion
 
 	let styles = {
 		marginTop: '0',
@@ -148,103 +235,91 @@ function FunctionApp() {
 		<div style={styles}>
 			<Tabs defaultActiveKey="home" id="allTabs" transition={false}>
 				<Tab eventKey="home" title="Home">
-					<HomePage
-					/>
+					<HomePage />
 				</Tab>
 				<Tab eventKey="chest" title="Chest">
 					<ChestPage
 						style={styles}
-						currentWorld={currentChestWorld}
-						chestData={currentChestData}
-						rewardList={rewardsData[currentChestRewardType].rewards}
-						currentRewardType={currentChestRewardType}
-						currentReward={currentChestReward}
-						selectAll={chestSelectAll}
+						fieldData={chestFieldData}
+						chestData={chestData}
+						rewardList={rewardsData[chestFieldData.currentRewardType].rewards}
 						handleWorldChange={(e) => handleChestTableChange(e.target.value)}
-						onRewardTypeChange={(e) => {
-							setCurrentChestRewardType(e.target.value)
-							setCurrentChestReward(0)
-						}}
-						onRewardChange={(e) => setCurrentChestReward(e.target.value)}
-						handleRowCheck={(e) => handleRowCheck(e.target.value, currentChestData, setCurrentChestData)}
-						handleCheckAll={() => handleCheckAll(currentChestData, setCurrentChestData, chestSelectAll, setChestSelectAll)}
+						onRewardTypeChange={(e) => handleRewardTypeChange(e.target.value, chestFieldData, setChestFieldData)}
+						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, chestFieldData, setChestFieldData)}
+						onRowCheck={(e) => onRowCheck(e.target.value, chestData, setChestData)}
+						onCheckAll={() => onCheckAll(chestData, setChestData, chestFieldData, setChestFieldData)}
 						onClick={(e) => {
 							let replacement = {
 								reward: {
-									...rewardsData[currentChestRewardType].rewards[currentChestReward]
+									...rewardsData[chestFieldData.currentRewardType].rewards[chestFieldData.currentReward]
 								}
 							}
-							handleReplace(e.target.name, replacement, currentChestData, setCurrentChestData, setChestSelectAll)
+							handleReplace(e.target.name, replacement, chestData, setChestData, chestFieldData, setChestFieldData)
 						}}
 					/>
 				</Tab>
 				<Tab eventKey="popup" title="Popup">
 					<PopupPage
 						style={styles}
-						currentWorld={currentPopupWorld}
-						popupData={currentPopupData}
-						rewardList={rewardsData[currentPopupRewardType].rewards}
-						currentRewardType={currentPopupRewardType}
-						currentReward={currentPopupReward}
-						selectAll={popupSelectAll}
+						fieldData={popupFieldData}
+						popupData={popupData}
+						rewardList={rewardsData[popupFieldData.currentRewardType].rewards}
 						handleWorldChange={(e) => handlePopupTableChange(e.target.value)}
-						onRewardTypeChange={(e) => {
-							setCurrentPopupRewardType(e.target.value)
-							setCurrentPopupReward(0)
-						}}
-						onRewardChange={(e) => setCurrentPopupReward(e.target.value)}
-						handleRowCheck={(e) => handleRowCheck(e.target.value, currentPopupData, setCurrentPopupData)}
-						handleCheckAll={() => handleCheckAll(currentPopupData, setCurrentPopupData, popupSelectAll, setPopupSelectAll)}
+						onRewardTypeChange={(e) => handleRewardTypeChange(e.target.value, popupFieldData, setPopupFieldData)}
+						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, popupFieldData, setPopupFieldData)}
+						onRowCheck={(e) => onRowCheck(e.target.value, popupData, setPopupData)}
+						onCheckAll={() => onCheckAll(popupData, setPopupData, popupFieldData, setPopupFieldData)}
 						onClick={(e) => {
 							let replacement = {
 								reward: {
-									...rewardsData[currentPopupRewardType].rewards[currentPopupReward]
+									...rewardsData[popupFieldData.currentRewardType].rewards[popupFieldData.currentReward]
 								}
 							}
-							handleReplace(e.target.name, replacement, currentPopupData, setCurrentPopupData, setPopupSelectAll)
+							handleReplace(e.target.name, replacement, popupData, setPopupData, popupFieldData, setPopupFieldData)
 						}}
 					/>
 				</Tab>
-				<Tab eventKey="bonus" title="Bonus">
-					<BonusPage
+				<Tab eventKey="form" title="Forms & Summons">
+					<FormPage
 						style={styles}
-						currentWorld={currentBonusWorld}
-						bonusData={currentBonusData}
-						rewardListA={rewardsData[currentBonusARewardType].rewards}
-						rewardListB={rewardsData[currentBonusBRewardType].rewards}
-						handleWorldChange={this.handleBonusWorldChange}
-						// handleSlotChange={this.handleBonusSlotChange}
-						onARewardTypeChange={(e) => {
-							setCurrentBonusARewardType(e.target.value)
-							setCurrentBonusAReward(0)
-						}}
-						onARewardChange={(e) => setCurrentBonusAReward(e.target.value)}
-						onBRewardTypeChange={(e) => {
-							setCurrentBonusBRewardType(e.target.value)
-							setCurrentBonusBReward(0)
-						}}
-						onBRewardChange={(e) => setCurrentBonusBReward(e.target.value)}
-						// onInputChange={(event) => handleInputChange('bonus', event)}
-						handleRowCheck={(e) => handleRowCheck(e.target.value, currentBonusData, setCurrentBonusData)}
-						handleCheckAll={() => handleCheckAll(currentBonusData, setCurrentBonusData, bonusSelectAll, setBonusSelectAll)}
+						formData={formData}
+						formFieldData={formFieldData}
+						rewardList={rewardsData[formFieldData.currentRewardType].rewards}
+						handleFormChange={(e) => handleFormTableChange(e.target.value)}
+						onRewardTypeChange={(e) => handleRewardTypeChange(e.target.value, formFieldData, setFormFieldData)}
+						onSelectChange={(e) => handleFieldChange(e.target.name, e.target.value, formFieldData, setFormFieldData)}
+						onInputChange={(e) => handleFieldChange(e.target.name,
+							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
+							formFieldData,
+							setFormFieldData)
+						}
+						onRowCheck={(e) => onRowCheck(e.target.value, formData, setFormData)}
+						onCheckAll={() => onCheckAll(formData, setFormData, formFieldData, setFormFieldData)}
 						onClick={(e) => {
 							let replacement = {
-								character: charactersData[currentBonusCharacter],
-								reward1: {
-									...rewardsData[currentBonusARewardType].rewards[currentBonusAReward]
+								reward: {
+									...rewardsData[formFieldData.currentRewardType].rewards[formFieldData.currentReward]
 								},
-								reward2: {
-									...rewardsData[currentBonusBRewardType].rewards[currentBonusBReward]
-								},
-								hp: currentBonusHP,
-								mp: currentBonusMP,
-								armor: currentBonusArmor,
-								accessory: currentBonusAccessory,
-								item: currentBonusItem,
-								drive: currentBonusDrive
+								multiplier: formFieldData.currentEXPMultiplierValue,
+								exp: formFieldData.currentEXP
 							}
-							handleReplace(e.target.name, replacement, currentBonusData, setCurrentBonusData, setBonusSelectAll)
+							handleReplace(e.target.name, replacement, formData, setFormData, formFieldData, setFormFieldData)
 						}}
+
+					/>
+				</Tab>
+				<Tab eventKey="equipment" title="Equipment">
+					<EquipmentPage
+						style={styles}
+						equipmentData={this.state.equipment}
+						rewardList={rewardsData[this.state.equipment.currentRewardType].rewards}
+						handleEquipmentTypeChange={this.handleEquipmentTypeChange}
+						onRewardTypeChange={(event) => this.handleRewardTypeChange('equipment', event)}
+						onRewardChange={(event) => this.handleGenericChange('equipment', event)}
+						onInputChange={(event) => this.handleInputChange('equipment', event)}
+						onRowCheck={(event) => this.onRowCheck('equipment', event)}
+						checkAll={(event) => this.checkAll('equipment', event)}
+						onClick={this.handleEquipmentReplace}
 					/>
 				</Tab>
 			</Tabs>
