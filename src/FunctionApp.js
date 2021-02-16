@@ -9,6 +9,7 @@ import { popupsData } from './Data/popupsData'
 // import { bonusData } from './Data/newBonusData'
 import { formsData } from './Data/formsData'
 import { equipmentsData } from './Data/equipmentsData'
+import { levelsData } from './Data/levelsData'
 
 import HomePage from './Pages/HomePage'
 import ChestPage from './Pages/ChestPage'
@@ -16,6 +17,7 @@ import PopupPage from './Pages/PopupPage'
 // import BonusPage from './Pages/BonusPage'
 import FormPage from './Pages/FormPage'
 import EquipmentPage from './Pages/EquipmentPage'
+import LevelPage from './Pages/LevelPage'
 
 function FunctionApp() {
 	const [chestFieldData, setChestFieldData] = useState({
@@ -66,6 +68,26 @@ function FunctionApp() {
 	})
 	const [allEquipments, setAllEquipments] = useState(equipmentsData)
 	const [equipmentData, setEquipmentData] = useState(equipmentsData[0].equipments)
+
+	const [levelFieldData, setLevelFieldData] = useState({
+		currentLevelType: 0,
+		currentRewardType: 0,
+		currentReward: 0,
+		currentStrength: 0,
+		currentMagic: 0,
+		currentAP: 0,
+		currentDefense: 0,
+		currentPhysical: 0,
+		currentFire: 0,
+		currentBlizzard: 0,
+		currentThunder: 0,
+		currentDark: 0,
+		currentLight: 0,
+		currentUniversal: 0,
+		selectAll: false,
+	})
+	const [allLevels, setAllLevels] = useState(levelsData)
+	const [levelData, setLevelData] = useState(levelsData[0].levels)
 
 	//#region Table Change
 	function handleChestTableChange(nextWorld) {

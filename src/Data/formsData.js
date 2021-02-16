@@ -32,7 +32,7 @@ export class FormLevel {
 		this.replacementReward.reward = newFormData.reward.reward
 		this.replacementReward.index = newFormData.reward.index
 		this.replacementReward.iconType = newFormData.reward.iconType
-		this.replacementEXP = newFormData.multiplier === 0 ? newFormData.exp : Math.max(1, Math.floor((2 * this.vanillaEXP) / newFormData.multiplier))
+		this.replacementEXP = newFormData.currentEXPMultiplierValue === 0 ? newFormData.currentEXP : Math.max(1, Math.floor((2 * this.vanillaEXP) / newFormData.currentEXPMultiplierValue))
 		this.toBeReplaced = false
 	}
 

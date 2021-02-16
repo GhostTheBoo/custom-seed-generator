@@ -108,7 +108,6 @@ class App extends React.Component {
 				currentDisplayData: bonusData[0].characterBonuses[0].worldBonuses.slice()
 			},
 			level: {
-				currentWorld: 0,
 				currentSwordRewardType: 0,
 				currentSwordReward: 0,
 				currentShieldRewardType: 0,
