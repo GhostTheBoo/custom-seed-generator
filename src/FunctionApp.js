@@ -8,7 +8,7 @@ import { chestsData } from './Data/chestsData'
 import { popupsData } from './Data/popupsData'
 // import { bonusData } from './Data/newBonusData'
 import { formsData } from './Data/formsData'
-import equipmentsData from './Data/equipmentsData'
+import { equipmentsData } from './Data/equipmentsData'
 
 import HomePage from './Pages/HomePage'
 import ChestPage from './Pages/ChestPage'
