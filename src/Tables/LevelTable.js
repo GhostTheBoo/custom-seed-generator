@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table'
 function LevelTable(props) {
 	let levelList = props.allLevels.map((l, index) => {
 		let styles
-		if (l.isEXPReplaced || l.isStatsReplaced || l.isSwordReplaced || l.isShieldReplaced || l.isStaffReplaced) {
+		if (l.isEXPReplaced() || l.isStatsReplaced() || l.isSwordReplaced() || l.isShieldReplaced() || l.isStaffReplaced()) {
 			styles = { background: 'green' }
 		}
 		return (
@@ -25,13 +25,13 @@ function LevelTable(props) {
 					{l.level}
 				</td>
 				<td>
-					{l.replacedEXP}
+					{l.replacementEXP}
 				</td>
 				<td>
 					{l.standardAP}
 				</td>
 				<td>
-					{l.criticalAP}
+					{l.criticalAP()}
 				</td>
 				<td>
 					{l.defense}
@@ -43,13 +43,13 @@ function LevelTable(props) {
 					{l.strength}
 				</td>
 				<td>
-					{l.replacementSwordReward.index !== '0000' ? l.replacementSwordReward.reward : ''}
+					{l.replacementSwordReward.index !== 0 ? l.replacementSwordReward.reward : ''}
 				</td>
 				<td>
-					{l.replacementShieldReward.index !== '0000' ? l.replacementShieldReward.reward : ''}
+					{l.replacementShieldReward.index !== 0 ? l.replacementShieldReward.reward : ''}
 				</td>
 				<td>
-					{l.replacementStaffReward.index !== '0000' ? l.replacementStaffReward.reward : ''}
+					{l.replacementStaffReward.index !== 0 ? l.replacementStaffReward.reward : ''}
 				</td>
 			</tr>
 		)
@@ -64,9 +64,9 @@ function LevelTable(props) {
 							type='checkbox'
 							name={'levelsAll'}
 							checked={props.selectAll}
-							onChange={props.checkAll}
+							onChange={props.onCheckAll}
 						/>
-						</th>
+					</th>
 					<th>
 						Level
 					</th>

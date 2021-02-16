@@ -68,7 +68,7 @@ function PopupPage(props) {
 				worldPopups={props.popupData}
 				onRowCheck={props.onRowCheck}
 				onCheckAll={props.onCheckAll}
-				selectAll={props.selectAll}
+				selectAll={props.fieldData.selectAll}
 			/>
 			<Button variant='outline-dark'
 				name='replaceButton'

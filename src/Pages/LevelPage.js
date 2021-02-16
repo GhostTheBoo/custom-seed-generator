@@ -46,7 +46,7 @@ function LevelPage(props) {
 						<RewardTypeSelect
 							label={'Sword'}
 							class={'level'}
-							currentRewardType={props.levelData.currentSwordRewardType}
+							currentRewardType={props.fieldData.currentSwordRewardType}
 							name={'currentSwordRewardType'}
 							onChange={props.onRewardTypeChange}
 						/>
@@ -56,16 +56,16 @@ function LevelPage(props) {
 							label={'Sword Reward'}
 							class={'level'}
 							rewardList={props.swordRewardList}
-							currentReward={props.levelData.currentSwordReward}
+							currentReward={props.fieldData.currentSwordReward}
 							name={'currentSwordReward'}
-							onChange={props.onGenericChange}
+							onChange={props.onSelectChange}
 						/>
 					</Col>
 					<Col>
 						<RewardTypeSelect
 							label={'Shield'}
 							class={'level'}
-							currentRewardType={props.levelData.currentShieldRewardType}
+							currentRewardType={props.fieldData.currentShieldRewardType}
 							name={'currentShieldRewardType'}
 							onChange={props.onRewardTypeChange}
 						/>
@@ -75,16 +75,16 @@ function LevelPage(props) {
 							label={'Shield Reward'}
 							class={'level'}
 							rewardList={props.shieldRewardList}
-							currentReward={props.levelData.currentShieldReward}
+							currentReward={props.fieldData.currentShieldReward}
 							name={'currentShieldReward'}
-							onChange={props.onGenericChange}
+							onChange={props.onSelectChange}
 						/>
 					</Col>
 					<Col>
 						<RewardTypeSelect
 							label={'Staff'}
 							class={'level'}
-							currentRewardType={props.levelData.currentStaffRewardType}
+							currentRewardType={props.fieldData.currentStaffRewardType}
 							name={'currentStaffRewardType'}
 							onChange={props.onRewardTypeChange}
 						/>
@@ -94,18 +94,18 @@ function LevelPage(props) {
 							label={'Staff Reward'}
 							class={'level'}
 							rewardList={props.staffRewardList}
-							currentReward={props.levelData.currentStaffReward}
+							currentReward={props.fieldData.currentStaffReward}
 							name={'currentStaffReward'}
-							onChange={props.onGenericChange}
+							onChange={props.onSelectChange}
 						/>
 					</Col>
 				</Form.Row>
 				<EXPSelect
 					class={'level'}
-					currentEXP={props.levelData.currentEXP}
-					currentEXPMultiplier={props.levelData.currentEXPMultiplierValue}
+					currentEXP={props.fieldData.currentEXP}
+					currentEXPMultiplier={props.fieldData.currentEXPMultiplierValue}
 					onInputChange={props.onInputChange}
-					onMultiplierChange={props.onGenericChange}
+					onMultiplierChange={props.onSelectChange}
 				/>
 				<Form.Row>
 					<Col>
@@ -115,7 +115,7 @@ function LevelPage(props) {
 								size='sm'
 								name='currentLevelAP'
 								type='number'
-								value={props.levelData.currentLevelAP}
+								value={props.fieldData.currentLevelAP}
 								onChange={props.onInputChange}
 								min="0"
 								max="255"
@@ -129,7 +129,7 @@ function LevelPage(props) {
 								size='sm'
 								name='currentLevelDefense'
 								type='number'
-								value={props.levelData.currentLevelDefense}
+								value={props.fieldData.currentLevelDefense}
 								onChange={props.onInputChange}
 								min="0"
 								max="255"
@@ -143,7 +143,7 @@ function LevelPage(props) {
 								size='sm'
 								name='currentLevelStrength'
 								type='number'
-								value={props.levelData.currentLevelStrength}
+								value={props.fieldData.currentLevelStrength}
 								onChange={props.onInputChange}
 								min="0"
 								max="255"
@@ -157,7 +157,7 @@ function LevelPage(props) {
 								size='sm'
 								name='currentLevelMagic'
 								type='number'
-								value={props.levelData.currentLevelMagic}
+								value={props.fieldData.currentLevelMagic}
 								onChange={props.onInputChange}
 								min="0"
 								max="255"
@@ -167,10 +167,10 @@ function LevelPage(props) {
 				</Form.Row>
 			</Form>
 			<LevelTable
-				allLevels={props.levelData.currentDisplayData}
+				allLevels={props.levelData}
 				onRowCheck={props.onRowCheck}
-				checkAll={props.checkAll}
-				selectAll={props.levelData.selectAll}
+				onCheckAll={props.onCheckAll}
+				selectAll={props.fieldData.selectAll}
 			/>
 			<Button variant='outline-dark'
 				name='replaceButton'

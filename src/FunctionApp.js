@@ -70,24 +70,21 @@ function FunctionApp() {
 	const [equipmentData, setEquipmentData] = useState(equipmentsData[0].equipments)
 
 	const [levelFieldData, setLevelFieldData] = useState({
-		currentLevelType: 0,
-		currentRewardType: 0,
-		currentReward: 0,
-		currentStrength: 0,
-		currentMagic: 0,
-		currentAP: 0,
-		currentDefense: 0,
-		currentPhysical: 0,
-		currentFire: 0,
-		currentBlizzard: 0,
-		currentThunder: 0,
-		currentDark: 0,
-		currentLight: 0,
-		currentUniversal: 0,
-		selectAll: false,
+		currentSwordRewardType: 0,
+		currentSwordReward: 0,
+		currentShieldRewardType: 0,
+		currentShieldReward: 0,
+		currentStaffRewardType: 0,
+		currentStaffReward: 0,
+		currentLevelAP: 0,
+		currentLevelDefense: 0,
+		currentLevelMagic: 0,
+		currentLevelStrength: 0,
+		currentEXP: 0,
+		currentEXPMultiplierValue: 2,
+		selectAll: false
 	})
 	const [allLevels, setAllLevels] = useState(levelsData)
-	const [levelData, setLevelData] = useState(levelsData[0].levels)
 
 	//#region Table Change
 	function handleChestTableChange(nextWorld) {
@@ -208,7 +205,7 @@ function FunctionApp() {
 		setCurrentData(replacedObjects)
 		setFieldData({
 			...fieldData,
-			selectAll: !fieldData.selectAll
+			selectAll: false
 		})
 	}
 	function onRowCheck(row, currentData, setCurrentData) {
@@ -230,11 +227,12 @@ function FunctionApp() {
 			selectAll: !fieldData.selectAll
 		})
 	}
-	function handleRewardTypeChange(value, fieldData, setFieldData) {
+	function handleRewardTypeChange(target, fieldData, setFieldData) {
+		const currentReward = target.name.slice(0, -4)
 		setFieldData({
 			...fieldData,
-			currentRewardType: parseInt(value),
-			currentReward: 0
+			[target.name]: parseInt(target.value),
+			[currentReward]: 0
 		})
 	}
 	function handleFieldChange(name, value, fieldData, setFieldData) {
@@ -265,7 +263,7 @@ function FunctionApp() {
 						chestData={chestData}
 						rewardList={rewardsData[chestFieldData.currentRewardType].rewards}
 						handleWorldChange={(e) => handleChestTableChange(e.target.value)}
-						onRewardTypeChange={(e) => handleRewardTypeChange(e.target.value, chestFieldData, setChestFieldData)}
+						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, chestFieldData, setChestFieldData)}
 						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, chestFieldData, setChestFieldData)}
 						onRowCheck={(e) => onRowCheck(e.target.value, chestData, setChestData)}
 						onCheckAll={() => onCheckAll(chestData, setChestData, chestFieldData, setChestFieldData)}
@@ -286,7 +284,7 @@ function FunctionApp() {
 						popupData={popupData}
 						rewardList={rewardsData[popupFieldData.currentRewardType].rewards}
 						handleWorldChange={(e) => handlePopupTableChange(e.target.value)}
-						onRewardTypeChange={(e) => handleRewardTypeChange(e.target.value, popupFieldData, setPopupFieldData)}
+						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, popupFieldData, setPopupFieldData)}
 						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, popupFieldData, setPopupFieldData)}
 						onRowCheck={(e) => onRowCheck(e.target.value, popupData, setPopupData)}
 						onCheckAll={() => onCheckAll(popupData, setPopupData, popupFieldData, setPopupFieldData)}
@@ -304,10 +302,10 @@ function FunctionApp() {
 					<FormPage
 						style={styles}
 						formData={formData}
-						formFieldData={formFieldData}
+						fieldData={formFieldData}
 						rewardList={rewardsData[formFieldData.currentRewardType].rewards}
 						handleFormChange={(e) => handleFormTableChange(e.target.value)}
-						onRewardTypeChange={(e) => handleRewardTypeChange(e.target.value, formFieldData, setFormFieldData)}
+						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, formFieldData, setFormFieldData)}
 						onSelectChange={(e) => handleFieldChange(e.target.name, e.target.value, formFieldData, setFormFieldData)}
 						onInputChange={(e) => handleFieldChange(e.target.name,
 							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
@@ -321,8 +319,8 @@ function FunctionApp() {
 								reward: {
 									...rewardsData[formFieldData.currentRewardType].rewards[formFieldData.currentReward]
 								},
-								multiplier: formFieldData.currentEXPMultiplierValue,
-								exp: formFieldData.currentEXP
+								currentEXPMultiplierValue: formFieldData.currentEXPMultiplierValue,
+								currentEXP: formFieldData.currentEXP
 							}
 							handleReplace(e.target.name, replacement, formData, setFormData, formFieldData, setFormFieldData)
 						}}
@@ -336,7 +334,7 @@ function FunctionApp() {
 						fieldData={equipmentFieldData}
 						rewardList={rewardsData[equipmentFieldData.currentRewardType].rewards}
 						handleEquipmentTypeChange={(e) => handleEquipmentTableChange(e.target.value)}
-						onRewardTypeChange={(e) => handleRewardTypeChange(e.target.value, equipmentFieldData, setEquipmentFieldData)}
+						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, equipmentFieldData, setEquipmentFieldData)}
 						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, formFieldData, setFormFieldData)}
 						onInputChange={(e) => handleFieldChange(e.target.name,
 							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
@@ -361,9 +359,49 @@ function FunctionApp() {
 								currentUniversal: equipmentFieldData.currentUniversal,
 								reward: {
 									...rewardsData[equipmentFieldData.currentRewardType].rewards[equipmentFieldData.currentReward]
-								},
+								}
 							}
 							handleReplace(e.target.name, replacement, equipmentData, setEquipmentData, equipmentFieldData, setEquipmentFieldData)
+						}}
+					/>
+				</Tab>
+				<Tab eventKey="level" title="Level">
+					<LevelPage
+						style={styles}
+						levelData={allLevels}
+						fieldData={levelFieldData}
+						swordRewardList={rewardsData[levelFieldData.currentSwordRewardType].rewards}
+						shieldRewardList={rewardsData[levelFieldData.currentShieldRewardType].rewards}
+						staffRewardList={rewardsData[levelFieldData.currentStaffRewardType].rewards}
+						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, levelFieldData, setLevelFieldData)}
+						onSelectChange={(e) => handleFieldChange(e.target.name, e.target.value, levelFieldData, setLevelFieldData)}
+						onInputChange={(e) => handleFieldChange(e.target.name,
+							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
+							levelFieldData,
+							setLevelFieldData)
+						}
+						onRowCheck={(e) => onRowCheck(e.target.value, allLevels, setAllLevels)}
+						onCheckAll={() => onCheckAll(allLevels, setAllLevels, levelFieldData, setLevelFieldData)}
+						onClick={(e) => {
+							let replacement = {
+								currentLevelAP: 0,
+								currentLevelDefense: 0,
+								currentLevelMagic: 0,
+								currentLevelStrength: 0,
+								currentEXP: 0,
+								currentEXPMultiplierValue: 2,
+								selectAll: false,
+								sword: {
+									...rewardsData[levelFieldData.currentSwordRewardType].rewards[levelFieldData.currentSwordReward]
+								},
+								shield: {
+									...rewardsData[levelFieldData.currentShieldRewardType].rewards[levelFieldData.currentShieldReward]
+								},
+								staff: {
+									...rewardsData[levelFieldData.currentStaffRewardType].rewards[levelFieldData.currentStaffReward]
+								}
+							}
+							handleReplace(e.target.name, replacement, allLevels, setAllLevels, levelFieldData, setLevelFieldData)
 						}}
 					/>
 				</Tab>
