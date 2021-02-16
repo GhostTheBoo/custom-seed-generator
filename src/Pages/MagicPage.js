@@ -18,7 +18,7 @@ function MagicPage(props) {
 				Select all abilities to change, select the desired cost, and click replace.
 				Clicking vanilla will return all selected abilities to their vanilla costs.
 			</p>
-			<h6>Why Am I red?</h6>
+			<h6>Why Am I Red?</h6>
 			<p>
 				Magic abilities can either have their cost changed or remain the same.
 				They cannot be red.

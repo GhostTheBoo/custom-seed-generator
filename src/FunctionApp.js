@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 
-import { worldsData, charactersData, formTypesData } from './Data/typesData'
+import { worldsData, charactersData, formTypesData, equipmentTypesData } from './Data/typesData'
 import { rewardsData } from './Data/rewardsData'
 import { chestsData } from './Data/chestsData'
 import { popupsData } from './Data/popupsData'
@@ -152,19 +152,18 @@ function FunctionApp() {
 			return object
 		})
 		let newAllObjects = allEquipments.map((list, index) => {
-			if (index === formFieldData.currentDriveEquipment)
+			if (index === equipmentFieldData.currentEquipmentType)
 				return {
-					driveEquipment: formTypesData[index],
-					removeGrowthJankCodes: list.removeGrowthJankCodes,
-					driveLevels: toBeStoredObjects
+					equipmentType: equipmentTypesData[index],
+					equipments: toBeStoredObjects
 				}
 			return list
 		})
 		setAllEquipments(newAllObjects)
-		setEquipmentData(newAllObjects[nextEquipment].driveLevels)
+		setEquipmentData(newAllObjects[nextEquipment].equipments)
 		setEquipmentFieldData({
-			...formFieldData,
-			currentDriveEquipment: nextEquipment
+			...equipmentFieldData,
+			currentEquipmentType: nextEquipment
 		})
 	}
 	//#endregion
@@ -311,15 +310,39 @@ function FunctionApp() {
 				<Tab eventKey="equipment" title="Equipment">
 					<EquipmentPage
 						style={styles}
-						equipmentData={this.state.equipment}
-						rewardList={rewardsData[this.state.equipment.currentRewardType].rewards}
-						handleEquipmentTypeChange={this.handleEquipmentTypeChange}
-						onRewardTypeChange={(event) => this.handleRewardTypeChange('equipment', event)}
-						onRewardChange={(event) => this.handleGenericChange('equipment', event)}
-						onInputChange={(event) => this.handleInputChange('equipment', event)}
-						onRowCheck={(event) => this.onRowCheck('equipment', event)}
-						checkAll={(event) => this.checkAll('equipment', event)}
-						onClick={this.handleEquipmentReplace}
+						equipmentData={equipmentData}
+						fieldData={equipmentFieldData}
+						rewardList={rewardsData[equipmentFieldData.currentRewardType].rewards}
+						handleEquipmentTypeChange={(e) => handleEquipmentTableChange(e.target.value)}
+						onRewardTypeChange={(e) => handleRewardTypeChange(e.target.value, equipmentFieldData, setEquipmentFieldData)}
+						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, formFieldData, setFormFieldData)}
+						onInputChange={(e) => handleFieldChange(e.target.name,
+							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
+							equipmentFieldData,
+							setEquipmentFieldData)
+						}
+						onRowCheck={(e) => onRowCheck(e.target.value, equipmentData, setEquipmentData)}
+						onCheckAll={() => onCheckAll(equipmentData, setEquipmentData, equipmentFieldData, setEquipmentFieldData)}
+						onClick={(e) => {
+							let replacement = {
+								currentEquipmentType: equipmentFieldData.currentEquipmentType,
+								currentStrength: equipmentFieldData.currentStrength,
+								currentMagic: equipmentFieldData.currentMagic,
+								currentAP: equipmentFieldData.currentAP,
+								currentDefense: equipmentFieldData.currentDefense,
+								currentPhysical: equipmentFieldData.currentPhysical,
+								currentFire: equipmentFieldData.currentFire,
+								currentBlizzard: equipmentFieldData.currentBlizzard,
+								currentThunder: equipmentFieldData.currentThunder,
+								currentDark: equipmentFieldData.currentDark,
+								currentLight: equipmentFieldData.currentLight,
+								currentUniversal: equipmentFieldData.currentUniversal,
+								reward: {
+									...rewardsData[equipmentFieldData.currentRewardType].rewards[equipmentFieldData.currentReward]
+								},
+							}
+							handleReplace(e.target.name, replacement, equipmentData, setEquipmentData, equipmentFieldData, setEquipmentFieldData)
+						}}
 					/>
 				</Tab>
 			</Tabs>

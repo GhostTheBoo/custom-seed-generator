@@ -37,7 +37,7 @@ function FormPage(props) {
 				In other words, it takes a total of 240 EXP to reach Valor Level 3.
 				Summon EXP works the same way.
 			</p>
-			<h6>Why Am I red?</h6>
+			<h6>Why Am I Red?</h6>
 			<p>
 				Form levels will not turn red.
 				Their rewards can be anything and custom EXP is capped by the application between 0 and 99999999.

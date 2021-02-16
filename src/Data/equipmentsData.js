@@ -122,48 +122,35 @@ export class Equipment {
 
 	toPnach() {
 		let ret = ''
-		let text = '// ' + this.name + '\n'
 
-		if (this.isAbilityReplaced || this.isStatsReplaced || this.isElementalResistanceChanged || this.isOtherResistanceChanged)
-			ret += text
-		text = ''
+		if (this.isAbilityReplaced) {
+			ret += 'patch=1,EE,' + this.abilityAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
+			ret += this.replacementAbility.index.toString(16).toUpperCase().padStart(4, '0') + ' // Ability: ' + this.replacementAbility.reward + '\n'
+		}
 
-		text = 'patch=1,EE,' + this.abilityAddress + ',extended,0000' + this.replacementAbility.index.padStart(4, '0') + ' // Ability: ' + this.replacementAbility.reward + '\n'
-		if (this.isAbilityReplaced)
-			ret += text
-		else if (this.state.isHeavilyCommented)
-			ret += '//' + text
-		text = ''
+		if (this.isStatsReplaced) {
+			ret += 'patch=1,EE,' + this.statAddress.toString(16).toUpperCase().padStart(8, 0) + ',extended,'
+			ret += this.ap.toString(16).toUpperCase().padStart(2, '0') + this.defense.toString(16).toUpperCase().padStart(2, '0')
+			ret += this.magic.toString(16).toUpperCase().padStart(2, '0') + this.strength.toString(16).toUpperCase().padStart(2, '0')
+			ret += ' // AP:' + this.ap + ' Defense:' + this.defense + ' Magic:' + this.magic + ' Strength:' + this.strength + '\n'
+		}
 
-		text += 'patch=1,EE,' + this.statAddress + ',extended,'
-		text += this.ap.toString(16).toUpperCase().padStart(2, '0') + this.defense.toString(16).toUpperCase().padStart(2, '0')
-		text += this.magic.toString(16).toUpperCase().padStart(2, '0') + this.strength.toString(16).toUpperCase().padStart(2, '0')
-		text += ' // AP:' + this.ap + ' Defense:' + this.defense + ' Magic:' + this.magic + ' Strength:' + this.strength + '\n'
-		if (this.isStatsReplaced)
-			ret += text
-		else if (this.state.isHeavilyCommented)
-			ret += '//' + text
-		text = ''
+		if (this.isElementalResistanceChanged) {
+			ret += 'patch=1,EE,' + this.elementalResistanceAddress.toString(16).toUpperCase().padStart(8, 0) + ',extended,'
+			ret += (100 - this.thunderResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - this.blizzardResistance).toString(16).toUpperCase().padStart(2, '0')
+			ret += (100 - this.fireResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - this.physicalResistance).toString(16).toUpperCase().padStart(2, '0')
+			ret += ' // Thunder:' + this.thunderResistance + '% Blizzard:' + this.blizzardResistance
+			ret += '% Fire:' + this.fireResistance + '% Physical:' + this.physicalResistance + '%\n'
+		}
 
-		text += 'patch=1,EE,' + this.elementalResistanceAddress + ',extended,'
-		text += (100 - this.thunderResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - this.blizzardResistance).toString(16).toUpperCase().padStart(2, '0')
-		text += (100 - this.fireResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - this.physicalResistance).toString(16).toUpperCase().padStart(2, '0')
-		text += ' // Thunder:' + this.thunderResistance + '% Blizzard:' + this.blizzardResistance
-		text += '% Fire:' + this.fireResistance + '% Physical:' + this.physicalResistance + '%\n'
-		if (this.isElementalResistanceChanged)
-			ret += text
-		else if (this.state.isHeavilyCommented)
-			ret += '//' + text
-		text = ''
+		if (this.isOtherResistanceChanged) {
+			ret += 'patch=1,EE,' + this.otherResistanceAddress.toString(16).toUpperCase().padStart(8, 0) + ',extended,00'
+			ret += (100 - this.universalResistance).toString(16).toUpperCase().padStart(2, '0')
+			ret += (100 - this.lightResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - this.darkResistance).toString(16).toUpperCase().padStart(2, '0')
+			ret += ' // Universal:' + this.universalResistance + '% Light:' + this.lightResistance + '% Dark:' + this.darkResistance + '%\n'
+		}
 
-		text += 'patch=1,EE,' + this.otherResistanceAddress + ',extended,00' + (100 - this.universalResistance).toString(16).toUpperCase().padStart(2, '0')
-		text += (100 - this.lightResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - this.darkResistance).toString(16).toUpperCase().padStart(2, '0')
-		text += ' // Universal:' + this.universalResistance + '% Light:' + this.lightResistance + '% Dark:' + this.darkResistance + '%\n'
-		if (this.isOtherResistanceChanged)
-			ret += text
-		else if (this.state.isHeavilyCommented)
-			ret += '//' + text
-		return ret
+		return ret === '' ? ret : '// ' + this.name + '\n' + ret
 	}
 }
 

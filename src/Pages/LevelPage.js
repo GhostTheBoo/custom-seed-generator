@@ -31,7 +31,7 @@ function LevelPage(props) {
 				Experience also works in a similar way measuring the TOTAL amount of experience to reach the next level.
 				So while it takes 10618 TOTAL experience to reach level 19, only 1804 ADDITONAL EXP is required to level up after reaching level 18.
 			</p>
-			<h6>Why Am I red?</h6>
+			<h6>Why Am I Red?</h6>
 			<p>
 				Levels shouldn't turn red, just make sure everything is being submitted as expected.
 			</p>

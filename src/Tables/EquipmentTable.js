@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table'
 function EquipmentTable(props) {
 	let equipmentList = props.equipments.map((equipment, index) => {
 		let styles
-		if (equipment.isAbilityReplaced || equipment.isStatsReplaced || equipment.isElementalResistanceChanged || equipment.isOtherResistanceChanged) {
+		if (equipment.isAbilityReplaced() || equipment.isStatsReplaced() || equipment.isElementalResistanceChanged() || equipment.isOtherResistanceChanged()) {
 			styles = { background: 'green' }
 		}
 		if (props.currentEquipmentType === 'Armor') {
@@ -32,7 +32,7 @@ function EquipmentTable(props) {
 					{equipment.name}
 				</td>
 				<td>
-					{equipment.replacementAbility.index !== '0000' ? equipment.replacementAbility.reward : ''}
+					{equipment.replacementAbility.index !== 0 ? equipment.replacementAbility.reward : ''}
 				</td>
 				<td>
 					{equipment.strength}
@@ -80,7 +80,7 @@ function EquipmentTable(props) {
 							type='checkbox'
 							name={props.currentEquipmentType + 'All'}
 							checked={props.selectAll}
-							onChange={props.checkAll}
+							onChange={props.onCheckAll}
 						/>
 					</th>
 					<th>

@@ -20,7 +20,7 @@ function PopupPage(props) {
 				After selecting a specific world, select what reward you wish to replace with.
 				When clicking replace, all checked rows will be replaced with whatever reward is in the reward selector.
 			</p>
-			<h6>Why Am I red?</h6>
+			<h6>Why Am I Red?</h6>
 			<p>
 				That specific popup is trying to reward the player with an ability.
 				Abilities do not always end up being given to the player so it would effectively be an empty reward.

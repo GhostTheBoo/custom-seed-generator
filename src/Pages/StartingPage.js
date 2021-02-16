@@ -18,7 +18,7 @@ function StartingPage(props) {
 				Select Apply to use the inputted starting status.
 				Select Vanilla to not change any starting status.
 			</p>
-			<h6>Why Am I red?</h6>
+			<h6>Why Am I Red?</h6>
 			<p>
 				Starting status is either changed or left Vanilla.
 				Nothing can be red.

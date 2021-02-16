@@ -37,7 +37,7 @@ function BonusPage(props) {
 				They can all increase by whatever value entered but the menu does not like having too many slots. (I believe the cap is 20 total slots)
 				The drive gauge is also capped at 9 no matter how many increases given.
 			</p>
-			<h6>Why Am I red?</h6>
+			<h6>Why Am I Red?</h6>
 			<p>
 				Bonus levels only visually show 2 rewards.
 				If more than 2 rewards are given, the bonus level may either secretly give the reward to the player or not give it to them at all.

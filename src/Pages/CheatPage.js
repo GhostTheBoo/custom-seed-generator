@@ -12,7 +12,7 @@ function CheatPage(props) {
 				Select any number of cheats to apply to the game when generating the pncah file.
 				Click toggle include/exclude each cheat in the final file.
 			</p>
-			<h6>Why Am I red?</h6>
+			<h6>Why Am I Red?</h6>
 			<p>
 				Cheats are either included or not.
 				They cannot be red.
