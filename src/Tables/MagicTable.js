@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table'
 function MagicTable(props) {
 	let magicList = props.abilities.map((ability, index) => {
 		let styles
-		if (ability.isReplaced) {
+		if (ability.isReplaced()) {
 			styles = { background: 'green' }
 		}
 		return (
@@ -43,7 +43,7 @@ function MagicTable(props) {
 							type='checkbox'
 							name={'magicCosts'}
 							checked={props.selectAll}
-							onChange={props.checkAll}
+							onChange={props.onCheckAll}
 						/>
 					</th>
 					<th>

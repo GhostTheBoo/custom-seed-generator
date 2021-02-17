@@ -37,7 +37,7 @@ function CheatTable(props) {
 							type='checkbox'
 							name={'cheatList'}
 							checked={props.selectAll}
-							onChange={props.checkAll}
+							onChange={props.onCheckAll}
 						/>
 						</th>
 					<th>

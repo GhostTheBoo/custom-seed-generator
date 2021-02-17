@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 
-import { worldsData, charactersData, formTypesData, equipmentTypesData } from './Data/typesData'
+import { worldsData, charactersData, formTypesData, equipmentTypesData, magicCostsData } from './Data/typesData'
 import { rewardsData } from './Data/rewardsData'
 import { chestsData } from './Data/chestsData'
 import { popupsData } from './Data/popupsData'
@@ -10,6 +10,9 @@ import { popupsData } from './Data/popupsData'
 import { formsData } from './Data/formsData'
 import { equipmentsData } from './Data/equipmentsData'
 import { levelsData } from './Data/levelsData'
+import { magicsData } from './Data/magicData'
+import { criticalData } from './Data/criticalData'
+import { cheatsData } from './Data/cheatsData'
 
 import HomePage from './Pages/HomePage'
 import ChestPage from './Pages/ChestPage'
@@ -18,6 +21,9 @@ import PopupPage from './Pages/PopupPage'
 import FormPage from './Pages/FormPage'
 import EquipmentPage from './Pages/EquipmentPage'
 import LevelPage from './Pages/LevelPage'
+import MagicPage from './Pages/MagicPage'
+import CriticalPage from './Pages/CriticalPage'
+import CheatPage from './Pages/CheatPage'
 
 function FunctionApp() {
 	const [chestFieldData, setChestFieldData] = useState({
@@ -43,7 +49,7 @@ function FunctionApp() {
 		currentRewardType: 0,
 		currentReward: 0,
 		currentEXPMultiplierValue: 2,
-		currentEXP: 0,
+		currentEXP: 1,
 		selectAll: false
 	})
 	const [allForms, setAllForms] = useState(formsData)
@@ -80,11 +86,31 @@ function FunctionApp() {
 		currentLevelDefense: 0,
 		currentLevelMagic: 0,
 		currentLevelStrength: 0,
-		currentEXP: 0,
+		currentEXP: 1,
 		currentEXPMultiplierValue: 2,
 		selectAll: false
 	})
 	const [allLevels, setAllLevels] = useState(levelsData)
+
+	const [magicFieldData, setMagicFieldData] = useState({
+		curentMagicType: 0,
+		currentCost: 0,
+		selectAll: false
+	})
+	const [allMagics, setAllMagics] = useState(magicsData)
+	const [magicData, setMagicData] = useState(magicsData[0].abilities)
+
+	const [criticalFieldData, setCriticalFieldData] = useState({
+		currentRewardType: 0,
+		currentReward: 0,
+		selectAll: false
+	})
+	const [allCriticals, setAllCriticals] = useState(criticalData)
+
+	const [cheatFieldData, setCheatFieldData] = useState({
+		selectAll: false
+	})
+	const [allCheats, setAllCheats] = useState(cheatsData)
 
 	//#region Table Change
 	function handleChestTableChange(nextWorld) {
@@ -185,6 +211,26 @@ function FunctionApp() {
 			currentEquipmentType: nextEquipment
 		})
 	}
+	function handleMagicTableChange(nextMagicType) {
+		let toBeStoredObjects = magicData.map(object => {
+			object.markForReplacement(false)
+			return object
+		})
+		let newAllObjects = allMagics.map((list, index) => {
+			if (index === magicFieldData.currentMagicType)
+				return {
+					magicType: magicCostsData[index],
+					abilities: toBeStoredObjects
+				}
+			return list
+		})
+		setAllMagics(newAllObjects)
+		setMagicData(newAllObjects[nextMagicType].abilities)
+		setMagicFieldData({
+			...magicFieldData,
+			currentMagicType: nextMagicType
+		})
+	}
 	//#endregion
 
 	//#region General Functions
@@ -207,6 +253,15 @@ function FunctionApp() {
 			...fieldData,
 			selectAll: false
 		})
+	}
+	function handleCheatReplace() {
+		let replacedObjects = allCheats.map(object => {
+			if (object.toBeReplaced)
+				object.toggle()
+			return object
+		})
+		setAllCheats(replacedObjects)
+		setCheatFieldData({ selectAll: false })
 	}
 	function onRowCheck(row, currentData, setCurrentData) {
 		let toggledObjects = currentData.map((object, index) => {
@@ -390,7 +445,6 @@ function FunctionApp() {
 								currentLevelStrength: 0,
 								currentEXP: 0,
 								currentEXPMultiplierValue: 2,
-								selectAll: false,
 								sword: {
 									...rewardsData[levelFieldData.currentSwordRewardType].rewards[levelFieldData.currentSwordReward]
 								},
@@ -405,6 +459,58 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
+				<Tab eventKey="magic" title="Magic & Limits">
+					<MagicPage
+						style={styles}
+						magicData={magicData}
+						fieldData={magicFieldData}
+						handleMagicTypeChange={(e) => handleMagicTableChange(e.target.value)}
+						onInputChange={(e) => handleFieldChange(e.target.name,
+							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
+							magicFieldData,
+							setMagicFieldData)
+						}
+						onRowCheck={(e) => onRowCheck(e.target.value, allMagics, setAllMagics)}
+						onCheckAll={() => onCheckAll(magicData, setAllMagics, magicFieldData, setMagicFieldData)}
+						onClick={(e) => {
+							let replacement = {
+								cost: magicFieldData.currentCost
+							}
+							handleReplace(e.target.name, replacement, allMagics, setAllMagics, magicFieldData, setMagicFieldData)
+						}}
+					/>
+				</Tab>
+				<Tab eventKey="critical" title="Critical Extra">
+					<CriticalPage
+						style={styles}
+						criticalData={allCriticals}
+						fieldData={criticalFieldData}
+						rewardList={rewardsData[criticalFieldData.currentRewardType].rewards}
+						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, criticalFieldData, setCriticalFieldData)}
+						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, criticalFieldData, setCriticalFieldData)}
+						onRowCheck={(e) => onRowCheck(e.target.value, allCriticals, setAllCriticals)}
+						onCheckAll={() => onCheckAll(allCriticals, setAllCriticals, criticalFieldData, setCriticalFieldData)}
+						onClick={(e) => {
+							let replacement = {
+								reward: {
+									...rewardsData[criticalFieldData.currentRewardType].rewards[criticalFieldData.currentReward]
+								}
+							}
+							handleReplace(e.target.name, replacement, allCriticals, setAllCriticals, criticalFieldData, setCriticalFieldData)
+						}}
+					/>
+				</Tab>
+				<Tab eventKey="cheat" title="Cheat">
+					<CheatPage
+						style={styles}
+						cheatData={allCheats}
+						fieldData={cheatFieldData}
+						onRowCheck={(e) => onRowCheck(e.target.value, allCheats, setAllCheats)}
+						onCheckAll={() => onCheckAll(allCheats, setAllCheats, cheatFieldData, setCheatFieldData)}
+						onClick={() => handleCheatReplace()}
+					/>
+				</Tab>
+
 			</Tabs>
 		</div>
 	)

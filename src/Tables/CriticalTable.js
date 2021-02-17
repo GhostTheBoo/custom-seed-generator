@@ -2,9 +2,9 @@ import React from 'react'
 import Table from 'react-bootstrap/Table'
 
 function CriticalTable(props) {
-	let criticalList = props.criticalExtras.map((ce, index) => {
+	let criticalList = props.allCriticals.map((ce, index) => {
 		let styles
-		if (ce.isReplaced) {
+		if (ce.isReplaced()) {
 			styles = { background: 'green' }
 		}
 		return (
@@ -40,7 +40,7 @@ function CriticalTable(props) {
 							type='checkbox'
 							name={'criticalExtras'}
 							checked={props.selectAll}
-							onChange={props.checkAll}
+							onChange={props.onCheckAll}
 						/>
 						</th>
 					<th>

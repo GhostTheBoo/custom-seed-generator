@@ -34,7 +34,7 @@ function EXPSelect(props) {
 						type='number'
 						value={props.currentEXP}
 						onChange={props.onInputChange}
-						min="0"
+						min="1"
 						max="99999999"
 					/>
 				</Form.Group>

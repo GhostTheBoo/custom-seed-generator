@@ -23,10 +23,10 @@ function CheatPage(props) {
 	return (
 		<div style={props.style}>
 			<CheatTable
-				cheatData={props.cheatData.currentDisplayData}
+				cheatData={props.cheatData}
 				onRowCheck={props.onRowCheck}
-				checkAll={props.checkAll}
-				selectAll={props.cheatData.selectAll}
+				onCheckAll={props.onCheckAll}
+				selectAll={props.fieldData.selectAll}
 			/>
 			<Button variant='outline-dark'
 				name='replaceButton'

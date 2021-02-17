@@ -5,6 +5,17 @@ export class Cheat {
 		this.toBeReplaced = false
 		this.isActive = false
 	}
+
+	toggle() {
+		this.isActive = !this.isActive
+		this.markForReplacement(false)
+	}
+	markForReplacement(toBeReplaced) {
+		this.toBeReplaced = toBeReplaced
+	}
+	toPnach() {
+		return '//' + this.name + '\n' + this.code.join('\n') + '\n'
+	}
 }
 
 export const cheatsData = [
