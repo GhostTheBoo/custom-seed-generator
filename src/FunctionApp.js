@@ -13,6 +13,7 @@ import { levelsData } from './Data/levelsData'
 import { magicsData } from './Data/magicData'
 import { criticalData } from './Data/criticalData'
 import { cheatsData } from './Data/cheatsData'
+import { startingStatusData } from './Data/startingStatusData'
 
 import HomePage from './Pages/HomePage'
 import ChestPage from './Pages/ChestPage'
@@ -24,6 +25,7 @@ import LevelPage from './Pages/LevelPage'
 import MagicPage from './Pages/MagicPage'
 import CriticalPage from './Pages/CriticalPage'
 import CheatPage from './Pages/CheatPage'
+import StartingPage from './Pages/StartingPage'
 
 function FunctionApp() {
 	const [chestFieldData, setChestFieldData] = useState({
@@ -111,6 +113,20 @@ function FunctionApp() {
 		selectAll: false
 	})
 	const [allCheats, setAllCheats] = useState(cheatsData)
+
+	const [startingStatusFieldData, setStartingStatusFieldData] = useState({
+		currentKeyblade: 0,
+		currentArmor: 0,
+		currentAccessory: 0,
+		currentMunny: 0,
+		currentStartingHP: 20,
+		currentStartingMP: 100,
+		currentDonald1: 28,
+		currentDonald2: 29,
+		currentGoofy1: 33,
+		currentGoofy2: 64,
+	})
+	const [startingStatus, setStartingStatus] = useState(startingStatusData)
 
 	//#region Table Change
 	function handleChestTableChange(nextWorld) {
@@ -253,15 +269,6 @@ function FunctionApp() {
 			...fieldData,
 			selectAll: false
 		})
-	}
-	function handleCheatReplace() {
-		let replacedObjects = allCheats.map(object => {
-			if (object.toBeReplaced)
-				object.toggle()
-			return object
-		})
-		setAllCheats(replacedObjects)
-		setCheatFieldData({ selectAll: false })
 	}
 	function onRowCheck(row, currentData, setCurrentData) {
 		let toggledObjects = currentData.map((object, index) => {
@@ -507,7 +514,82 @@ function FunctionApp() {
 						fieldData={cheatFieldData}
 						onRowCheck={(e) => onRowCheck(e.target.value, allCheats, setAllCheats)}
 						onCheckAll={() => onCheckAll(allCheats, setAllCheats, cheatFieldData, setCheatFieldData)}
-						onClick={() => handleCheatReplace()}
+						onClick={() => {
+							let replacedObjects = allCheats.map(object => {
+								if (object.toBeReplaced)
+									object.toggle()
+								return object
+							})
+							setAllCheats(replacedObjects)
+							setCheatFieldData({ selectAll: false })
+						}}
+					/>
+				</Tab>
+				<Tab eventKey="startingStatus" title="Starting Status">
+					<StartingPage
+						style={styles}
+						startingStatusData={startingStatus}
+						fieldData={startingStatusFieldData}
+						keybladeList={rewardsData[7].rewards}
+						armorList={rewardsData[17].rewards.concat(rewardsData[2].rewards)}
+						accessoryList={rewardsData[17].rewards.concat(rewardsData[1].rewards)}
+						donaldList={rewardsData[17].rewards.concat(rewardsData[0].rewards)}
+						goofyList={rewardsData[17].rewards.concat(rewardsData[0].rewards)}
+						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, startingStatusFieldData, setStartingStatusFieldData)}
+						onInputChange={(e) => handleFieldChange(e.target.name,
+							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
+							startingStatusFieldData,
+							setStartingStatusFieldData)
+						}
+						onClick={(e) => {
+							let replacement = {
+								keyblade: {
+									...rewardsData[7].rewards[startingStatusFieldData.currentKeyblade]
+								},
+								armor: {
+									...rewardsData[2].rewards[startingStatusFieldData.currentArmor - 1]
+								},
+								accessory: {
+									...rewardsData[1].rewards[startingStatusFieldData.currentAccessory - 1]
+								},
+								munny: startingStatusFieldData.currentMunny,
+								hp: startingStatusFieldData.currentStartingHP,
+								mp: startingStatusFieldData.currentStartingMP,
+								donald1: {
+									...rewardsData[0].rewards[startingStatusFieldData.currentDonald1 - 1]
+								},
+								donald2: {
+									...rewardsData[0].rewards[startingStatusFieldData.currentDonald2 - 1]
+								},
+								goofy1: {
+									...rewardsData[0].rewards[startingStatusFieldData.currentGoofy1 - 1]
+								},
+								goofy2: {
+									...rewardsData[0].rewards[startingStatusFieldData.currentGoofy2 - 1]
+								}
+							}
+							let final
+							let newFieldData = { ...startingStatusFieldData }
+							if (e.target.name === 'replaceButton')
+								final = startingStatus.replace(replacement)
+							else {
+								final = startingStatus.vanilla()
+								newFieldData = {
+									currentKeyblade: 0,
+									currentArmor: 0,
+									currentAccessory: 0,
+									currentMunny: 0,
+									currentStartingHP: 20,
+									currentStartingMP: 100,
+									currentDonald1: 28,
+									currentDonald2: 29,
+									currentGoofy1: 33,
+									currentGoofy2: 64
+								}
+							}
+							setStartingStatus(final)
+							setStartingStatusFieldData(newFieldData)
+						}}
 					/>
 				</Tab>
 
