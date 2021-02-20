@@ -144,8 +144,8 @@ function FunctionApp() {
 	//#endregion
 
 	//#region Bonus Jank City
-	function handleBonusWorldChange(nextWorld) {
-		let newAllBonuses = allBonuses.map((world, worldID) => {
+	function handleBonusTableChange(nextWorld) {
+		return allBonuses.map((world, worldID) => {
 			if (worldID === bonusFieldData.currentWorld) {
 				let toBeStoredWorldFights = world.bonusFights.map((fight, fightID) => {
 					if (fightID === bonusFieldData.currentFight) {
@@ -160,75 +160,69 @@ function FunctionApp() {
 			}
 			return world
 		})
-		setAllBonuses(newAllBonuses)
-		setBonusFieldData({
-			...bonusFieldData,
-			currentWorld: nextWorld,
-			currentFight: 0
-		})
 	}
-	function handleBonusFightChange(nextFight) {
-		let newAllBonuses = allBonuses.map((world, worldID) => {
-			if (worldID === bonusFieldData.currentWorld) {
-				let toBeStoredWorldFights = world.bonusFights.map((fight, fightID) => {
-					if (fightID === bonusFieldData.currentFight) {
-						return fight.markForReplacement(false, -1)
-					}
-					return fight
-				})
-				return {
-					...world,
-					bonusFights: toBeStoredWorldFights
-				}
-			}
-			return world
-		})
-		setAllBonuses(newAllBonuses)
-		setBonusFieldData({
-			...bonusFieldData,
-			currentFight: nextFight
-		})
-	}
-	function onBonusRowCheck(row) {
-		let newAllBonuses = allBonuses.map((world, worldID) => {
-			if (worldID === bonusFieldData.currentWorld) {
-				let toBeStoredWorldFights = world.bonusFights.map((fight, fightID) => {
-					if (fightID === bonusFieldData.currentFight) {
-						return fight.markForReplacement(false, row)
-					}
-					return fight
-				})
-				return {
-					...world,
-					bonusFights: toBeStoredWorldFights
-				}
-			}
-			return world
-		})
-		setAllBonuses(newAllBonuses)
-	}
-	function onBonusCheckAll() {
-		let newAllBonuses = allBonuses.map((world, worldID) => {
-			if (worldID === bonusFieldData.currentWorld) {
-				let toBeStoredWorldFights = world.bonusFights.map((fight, fightID) => {
-					if (fightID === bonusFieldData.currentFight) {
-						return fight.markForReplacement(!bonusFieldData.selectAll, -1)
-					}
-					return fight
-				})
-				return {
-					...world,
-					bonusFights: toBeStoredWorldFights
-				}
-			}
-			return world
-		})
-		setAllBonuses(newAllBonuses)
-		setBonusFieldData({
-			...bonusFieldData,
-			selectAll: !bonusFieldData.selectAll
-		})
-	}
+	// function handleBonusFightChange(nextFight) {
+	// 	let newAllBonuses = allBonuses.map((world, worldID) => {
+	// 		if (worldID === bonusFieldData.currentWorld) {
+	// 			let toBeStoredWorldFights = world.bonusFights.map((fight, fightID) => {
+	// 				if (fightID === bonusFieldData.currentFight) {
+	// 					return fight.markForReplacement(false, -1)
+	// 				}
+	// 				return fight
+	// 			})
+	// 			return {
+	// 				...world,
+	// 				bonusFights: toBeStoredWorldFights
+	// 			}
+	// 		}
+	// 		return world
+	// 	})
+	// 	setAllBonuses(newAllBonuses)
+	// 	setBonusFieldData({
+	// 		...bonusFieldData,
+	// 		currentFight: nextFight
+	// 	})
+	// }
+	// function onBonusRowCheck(row) {
+	// 	let newAllBonuses = allBonuses.map((world, worldID) => {
+	// 		if (worldID === bonusFieldData.currentWorld) {
+	// 			let toBeStoredWorldFights = world.bonusFights.map((fight, fightID) => {
+	// 				if (fightID === bonusFieldData.currentFight) {
+	// 					return fight.markForReplacement(false, row)
+	// 				}
+	// 				return fight
+	// 			})
+	// 			return {
+	// 				...world,
+	// 				bonusFights: toBeStoredWorldFights
+	// 			}
+	// 		}
+	// 		return world
+	// 	})
+	// 	setAllBonuses(newAllBonuses)
+	// }
+	// function onBonusCheckAll() {
+	// 	let newAllBonuses = allBonuses.map((world, worldID) => {
+	// 		if (worldID === bonusFieldData.currentWorld) {
+	// 			let toBeStoredWorldFights = world.bonusFights.map((fight, fightID) => {
+	// 				if (fightID === bonusFieldData.currentFight) {
+	// 					return fight.markForReplacement(!bonusFieldData.selectAll, -1)
+	// 				}
+	// 				return fight
+	// 			})
+	// 			return {
+	// 				...world,
+	// 				bonusFights: toBeStoredWorldFights
+	// 			}
+	// 		}
+	// 		return world
+	// 	})
+	// 	setAllBonuses(newAllBonuses)
+	// 	setBonusFieldData({
+	// 		...bonusFieldData,
+	// 		selectAll: !bonusFieldData.selectAll
+	// 	})
+	// }
 	//#endregion
 
 	//#region General Functions
@@ -377,6 +371,63 @@ function FunctionApp() {
 							setAllPopups(handleReplace(e.target.name === 'replaceButton', replacement, popupFieldData.currentWorld, 'popups', allPopups))
 							setPopupFieldData({
 								...popupFieldData,
+								selectAll: false
+							})
+						}}
+					/>
+				</Tab>
+				<Tab eventKey="bonus" title="Bonus">
+					<BonusPage
+						style={styles}
+						bonusData={allBonuses[bonusFieldData.currentWorld]}
+						fieldData={bonusFieldData}
+						rewardListA={rewardsData[bonusFieldData.currentARewardType].rewards}
+						rewardListB={rewardsData[bonusFieldData.currentBRewardType].rewards}
+						handleWorldChange={(e) => {
+							setAllBonuses(handleBonusTableChange())
+							setBonusFieldData({
+								...bonusFieldData,
+								currentWorld: e.target.value,
+								currentFight: 0
+							})
+						}}
+						handleFightChange={(e) => {
+							setAllBonuses(handleBonusTableChange())
+							setBonusFieldData({
+								...bonusFieldData,
+								currentFight: e.target.value
+							})
+						}}
+						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, bonusFieldData, setBonusFieldData)}
+						onSelectChange={(e) => handleFieldChange(e.target.name, e.target.value, bonusFieldData, setBonusFieldData)}
+						onInputChange={(e) => handleFieldChange(e.target.name,
+							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
+							bonusFieldData,
+							setBonusFieldData)
+						}
+						onRowCheck={(e) => setAllBonuses(onRowCheck(e.target.value, bonusFieldData.currentWorld, 'bonusFights', allBonuses))}
+						onCheckAll={() => setAllBonuses(onCheckAll(bonusFieldData.currentWorld, 'bonusFights', allBonuses))}
+						onClick={(e) => {
+							let replacement = {
+								currentWorld: bonusFieldData.currentWorld,
+								currentFight: bonusFieldData.currentFight,
+								currentCharacter: bonusFieldData.currentCharacter,
+								currentBonusHP: bonusFieldData.currentBonusHP,
+								currentBonusMP: bonusFieldData.currentBonusMP,
+								currentArmor: bonusFieldData.currentArmor,
+								currentAccessory: bonusFieldData.currentAccessory,
+								currentItem: bonusFieldData.currentItem,
+								currentDrive: bonusFieldData.currentDrive,
+								rewardA: {
+									...rewardsData[bonusFieldData.currentRewardAType].rewards[bonusFieldData.currentRewardA]
+								},
+								rewardB: {
+									...rewardsData[bonusFieldData.currentRewardBType].rewards[bonusFieldData.currentRewardB]
+								}
+							}
+							setAllBonuses(handleReplace(e.target.name === 'replaceButton', replacement, bonusFieldData.currentWorld, 'bonusFights', allBonuses))
+							setBonusFieldData({
+								...bonusFieldData,
 								selectAll: false
 							})
 						}}
@@ -644,48 +695,6 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
-				{/* <Tab eventKey="bonus" title="Bonus">
-					<BonusPage
-						style={styles}
-						worldBonusData={worldBonusData}
-						fightBonusData={fightBonusData}
-						fieldData={bonusFieldData}
-						rewardListA={rewardsData[bonusFieldData.currentARewardType].rewards}
-						rewardListB={rewardsData[bonusFieldData.currentBRewardType].rewards}
-						handleWorldChange={(e) => handleBonusWorldChange(e.target.value)}
-						handleFightChange={(e) => handleBonusFightChange(e.target.value)}
-
-						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, bonusFieldData, setBonusFieldData)}
-						onSelectChange={(e) => handleFieldChange(e.target.name, e.target.value, bonusFieldData, setBonusFieldData)}
-						onInputChange={(e) => handleFieldChange(e.target.name,
-							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
-							bonusFieldData,
-							setBonusFieldData)
-						}
-						// onRowCheck={(e) => onRowCheck(e.target.value, bonusData, setBonusData)}
-						// onCheckAll={() => onCheckAll(bonusData, setBonusData, bonusFieldData, setBonusFieldData)}
-						onClick={(e) => {
-							let replacement = {
-								currentWorld: bonusFieldData.currentWorld,
-								currentFight: bonusFieldData.currentFight,
-								currentCharacter: bonusFieldData.currentCharacter,
-								currentBonusHP: bonusFieldData.currentBonusHP,
-								currentBonusMP: bonusFieldData.currentBonusMP,
-								currentArmor: bonusFieldData.currentArmor,
-								currentAccessory: bonusFieldData.currentAccessory,
-								currentItem: bonusFieldData.currentItem,
-								currentDrive: bonusFieldData.currentDrive,
-								rewardA: {
-									...rewardsData[bonusFieldData.currentRewardAType].rewards[bonusFieldData.currentRewardA]
-								},
-								rewardB: {
-									...rewardsData[bonusFieldData.currentRewardBType].rewards[bonusFieldData.currentRewardB]
-								}
-							}
-							handleReplace(e.target.name, replacement, worldBonusData, setWorldBonusData, bonusFieldData, setBonusFieldData)
-						}}
-					/>
-				</Tab> */}
 			</Tabs>
 		</div>
 	)
