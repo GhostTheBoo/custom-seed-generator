@@ -144,117 +144,6 @@ function FunctionApp() {
 	const [startingStatus, setStartingStatus] = useState(startingStatusData)
 	//#endregion
 
-	//#region Table Change
-	function handleChestTableChange(nextWorld) {
-		let newAllChests = allChests.map((world, worldID) => {
-			if (worldID === chestFieldData.currentWorld) {
-				let toBeStoredChests = world.chests.map(chest => {
-					return chest.markForReplacement(false)
-				})
-				return {
-					...world,
-					chests: toBeStoredChests
-				}
-			}
-			return world
-		})
-		setAllChests(newAllChests)
-		setChestFieldData({
-			...chestFieldData,
-			currentWorld: nextWorld
-		})
-	}
-	function handlePopupTableChange(nextWorld) {
-		let newAllPopups = allPopups.map((world, worldID) => {
-			if (worldID === popupFieldData.currentWorld) {
-				let toBeStoredPopups = world.popups.map(popup => {
-					return popup.markForReplacement(false)
-				})
-				return {
-					...world,
-					popups: toBeStoredPopups
-				}
-			}
-			return world
-		})
-		setAllPopups(newAllPopups)
-		setPopupFieldData({
-			...popupFieldData,
-			currentWorld: nextWorld
-		})
-	}
-	function handleFormTableChange(nextForm) {
-		let newAllForms = allForms.map((driveForm, driveFormID) => {
-			if (driveFormID === formFieldData.currentDriveForm) {
-				let toBeStoredForms = driveForm.driveLevels.map(driveLevel => {
-					return driveLevel.markForReplacement(false)
-				})
-				return {
-					...driveForm,
-					driveLevels: toBeStoredForms
-				}
-			}
-			return driveForm
-		})
-		setAllForms(newAllForms)
-		setFormFieldData({
-			...formFieldData,
-			currentDriveForm: nextForm
-		})
-	}
-	function handleEquipmentTableChange(nextEquipmentType) {
-		let newAllEquipments = allEquipments.map((equipmentType, equipmentTypeID) => {
-			if (equipmentTypeID === equipmentFieldData.currentEquipmentType) {
-				let toBeStoredEquipments = equipmentType.equipments.map(equipment => {
-					return equipment.markForReplacement(false)
-				})
-				return {
-					...equipmentType,
-					equipments: toBeStoredEquipments
-				}
-			}
-			return equipmentType
-		})
-		setAllEquipments(newAllEquipments)
-		setEquipmentFieldData({
-			...equipmentFieldData,
-			currentEquipmentType: nextEquipmentType
-		})
-	}
-	function handleMagicTableChange(nextMagicType) {
-		let newAllMagics = allMagics.map((magicType, magicTypeID) => {
-			if (magicTypeID === magicFieldData.currentMagicType) {
-				let toBeStoredMagics = magicType.abilities.map(magic => {
-					return magic.markForReplacement(false)
-				})
-				return {
-					...magicType,
-					abilities: toBeStoredMagics
-				}
-			}
-			return magicType
-		})
-		setAllMagics(newAllMagics)
-		setMagicFieldData({
-			...magicFieldData,
-			currentMagicType: nextMagicType
-		})
-	}
-	function handleGenericTableChange(currentIndex, fieldName, allData) {
-		return allData.map((objectList, objectListID) => {
-			if (objectListID === currentIndex) {
-				return {
-					...objectList,
-					[fieldName]: objectList[fieldName].map(object => {
-						return object.markForReplacement(false)
-					})
-				}
-			}
-			return objectList
-		})
-	}
-	//#endregion
-
 	//#region Bonus Jank City
 	function handleBonusWorldChange(nextWorld) {
 		let newAllBonuses = allBonuses.map((world, worldID) => {
@@ -344,6 +233,19 @@ function FunctionApp() {
 	//#endregion
 
 	//#region General Functions
+	function handleTableChange(currentIndex, fieldName, allData) {
+		return allData.map((objectList, objectListID) => {
+			if (objectListID === currentIndex) {
+				return {
+					...objectList,
+					[fieldName]: objectList[fieldName].map(object => {
+						return object.markForReplacement(false)
+					})
+				}
+			}
+			return objectList
+		})
+	}
 	function handleReplace(toReplace, reward, currentIndex, fieldName, allData) {
 		return allData.map((object, index) => {
 			if (index === currentIndex)
@@ -431,7 +333,10 @@ function FunctionApp() {
 						fieldData={chestFieldData}
 						chestData={allChests[chestFieldData.curentWorld]}
 						rewardList={rewardsData[chestFieldData.currentRewardType].rewards}
-						handleWorldChange={(e) => handleChestTableChange(e.target.value)}
+						handleWorldChange={(e) => {
+							setAllChests(handleTableChange(chestFieldData.currentWorld, 'chests', allChests))
+							setChestFieldData({ ...chestFieldData, currentWorld: e.target.value })
+						}}
 						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, chestFieldData, setChestFieldData)}
 						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, chestFieldData, setChestFieldData)}
 						onRowCheck={(e) => setAllChests(onRowCheck(e.target.value, chestFieldData.currentWorld, 'chests', allChests))}
@@ -456,7 +361,10 @@ function FunctionApp() {
 						fieldData={popupFieldData}
 						popupData={allPopups[popupFieldData.currentWorld]}
 						rewardList={rewardsData[popupFieldData.currentRewardType].rewards}
-						handleWorldChange={(e) => handlePopupTableChange(e.target.value)}
+						handleWorldChange={(e) => {
+							setAllPopups(handleTableChange(popupFieldData.currentWorld, 'popups', allPopups))
+							setPopupFieldData({ ...popupFieldData, currentWorld: e.target.value })
+						}}
 						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, popupFieldData, setPopupFieldData)}
 						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, popupFieldData, setPopupFieldData)}
 						onRowCheck={(e) => setAllPopups(onRowCheck(e.target.value, popupFieldData.currentWorld, 'popups', allPopups))}
@@ -481,7 +389,10 @@ function FunctionApp() {
 						formData={allForms[formFieldData.currentDriveForm].driveLevels}
 						fieldData={formFieldData}
 						rewardList={rewardsData[formFieldData.currentRewardType].rewards}
-						handleFormChange={(e) => handleFormTableChange(e.target.value)}
+						handleFormChange={(e) => {
+							setAllForms(handleTableChange(formFieldData.currentDriveForm, 'driveLevels', allForms))
+							setFormFieldData({ ...formFieldData, currentDriveForm: e.target.value })
+						}}
 						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, formFieldData, setFormFieldData)}
 						onSelectChange={(e) => handleFieldChange(e.target.name, e.target.value, formFieldData, setFormFieldData)}
 						onInputChange={(e) => handleFieldChange(e.target.name,
@@ -514,7 +425,11 @@ function FunctionApp() {
 						equipmentData={allEquipments[equipmentFieldData.currentEquipmentType].equipments}
 						fieldData={equipmentFieldData}
 						rewardList={rewardsData[equipmentFieldData.currentRewardType].rewards}
-						handleEquipmentTypeChange={(e) => handleEquipmentTableChange(e.target.value)}
+						handleEquipmentTypeChange={(e) => {
+							setAllEquipments(handleTableChange(equipmentFieldData.currentEquipmentType, 'equipments', allEquipments))
+							setEquipmentFieldData({ ...equipmentFieldData, currentEquipmentType: e.target.value })
+						}}
+						// handleEquipmentTypeChange={(e) => handleEquipmentTableChange(e.target.value)}
 						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, equipmentFieldData, setEquipmentFieldData)}
 						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, equipmentFieldData, setEquipmentFieldData)}
 						onInputChange={(e) => handleFieldChange(e.target.name,
@@ -598,7 +513,10 @@ function FunctionApp() {
 						style={styles}
 						magicData={allMagics[magicFieldData.currentMagicType].abilities}
 						fieldData={magicFieldData}
-						handleMagicTypeChange={(e) => handleMagicTableChange(e.target.value)}
+						handleMagicTypeChange={(e) => {
+							setAllMagics(handleTableChange(magicFieldData.currentMagicType, 'abilities', allMagics))
+							setMagicFieldData({ ...magicFieldData, currentMagicType: e.target.value })
+						}}
 						onInputChange={(e) => handleFieldChange(e.target.name,
 							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
 							magicFieldData,
