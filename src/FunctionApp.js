@@ -3,7 +3,6 @@ import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import _ from 'lodash'
 
-import { worldsData, charactersData, formTypesData, equipmentTypesData, magicCostsData } from './Data/typesData'
 import { rewardsData } from './Data/rewardsData'
 import { chestsData } from './Data/chestsData'
 import { popupsData } from './Data/popupsData'
@@ -155,7 +154,7 @@ function FunctionApp() {
 					return fight
 				})
 				return {
-					world: worldsData[worldID],
+					...world,
 					bonusFights: toBeStoredWorldFights
 				}
 			}
@@ -178,7 +177,7 @@ function FunctionApp() {
 					return fight
 				})
 				return {
-					world: worldsData[worldID],
+					...world,
 					bonusFights: toBeStoredWorldFights
 				}
 			}
@@ -200,7 +199,7 @@ function FunctionApp() {
 					return fight
 				})
 				return {
-					world: worldsData[worldID],
+					...world,
 					bonusFights: toBeStoredWorldFights
 				}
 			}
@@ -218,7 +217,7 @@ function FunctionApp() {
 					return fight
 				})
 				return {
-					world: worldsData[worldID],
+					...world,
 					bonusFights: toBeStoredWorldFights
 				}
 			}
