@@ -3,8 +3,8 @@ import { Reward } from './rewardsData'
 export class Equipment {
 	constructor(name, vanilla, strength, magic, ap, defense, fire, blizzard, thunder, dark, physical, light, universal, abilityAddress) {
 		this.name = name
-		this.vanillaAbility = vanilla
-		this.replacementAbility = vanilla
+		this.vanillaAbility = { ...vanilla }
+		this.replacementAbility = { ...vanilla }
 		this.strength = strength
 		this.vanillaStrength = strength
 		this.magic = magic
@@ -50,74 +50,69 @@ export class Equipment {
 	}
 
 	vanilla() {
-		this.replacementAbility = this.vanillaAbility
-		this.strength = this.vanillaStrength
-		this.magic = this.vanillaMagic
-		this.ap = this.vanillaAP
-		this.defense = this.vanillaDefense
-		this.fireResistance = this.vanillaFireResistance
-		this.blizzardResistance = this.vanillaBlizzardResistance
-		this.thunderResistance = this.vanillaThunderResistance
-		this.darkResistance = this.vanillaDarkResistance
-		this.physicalResistance = this.vanillaPhysicalResistance
-		this.lightResistance = this.vanillaLightResistance
-		this.universalResistance = this.vanillaUniversalResistance
-		this.toBeReplaced = false
-		this.additionalLineCount = 0
+		return new Equipment(this.name, new Reward(this.vanillaAbility.reward, this.vanillaAbility.index, this.vanillaAbility.iconType), this.strength, this.magic, this.ap, this.defense,
+			this.fireResistance, this.blizzardResistance, this.thunderResistance, this.darkResistance, this.physicalResistance, this.lightResistance, this.universalResistance,
+			this.abilityAddress)
 	}
 
 	replace(newEquipmentData) {
-		this.toBeReplaced = false
-		this.additionalLineCount = 0
+		let newLineCount = 0
 
-		this.replacementAbility.reward = newEquipmentData.reward.reward
-		this.replacementAbility.index = newEquipmentData.reward.index
-		this.replacementAbility.iconType = newEquipmentData.reward.iconType
-
-		this.strength = newEquipmentData.currentStrength
-		this.magic = newEquipmentData.currentMagic
-		this.ap = newEquipmentData.currentAP
-		this.defense = newEquipmentData.currentDefense
-
-		if (this.isStatsReplaced()) {
+		if (newEquipmentData.strength !== this.vanillaStrength || newEquipmentData.magic !== this.vanillaMagic ||
+			newEquipmentData.defense !== this.vanillaDefense || newEquipmentData.ap !== this.vanillaAP) {
 			if (newEquipmentData.currentEquipmentType !== 5) {
-				if (this.ap !== 0)
-					this.additionalLineCount++
+				if (newEquipmentData.ap !== 0)
+					newLineCount++
 			}
 			if (newEquipmentData.currentEquipmentType !== 4) {
-				if (this.defense !== 0)
-					this.additionalLineCount++
+				if (newEquipmentData.defense !== 0)
+					newLineCount++
 			} else {
-				if (this.strength !== 0)
-					this.additionalLineCount++
-				if (this.magic !== 0)
-					this.additionalLineCount++
+				if (newEquipmentData.strength !== 0)
+					newLineCount++
+				if (newEquipmentData.magic !== 0)
+					newLineCount++
 			}
 		}
 
-		this.fireResistance = newEquipmentData.currentFire
-		this.blizzardResistance = newEquipmentData.currentBlizzard
-		this.thunderResistance = newEquipmentData.currentThunder
-		this.physicalResistance = newEquipmentData.currentPhysical
-
-		this.darkResistance = newEquipmentData.currentDark
-		this.lightResistance = newEquipmentData.currentLight
-		this.universalResistance = newEquipmentData.currentUniversal
-
 		if (newEquipmentData.currentEquipmentType !== 4) {
-			if (this.fireResistance !== 0)
-				this.additionalLineCount++
-			if (this.blizzardResistance !== 0)
-				this.additionalLineCount++
-			if (this.thunderResistance !== 0)
-				this.additionalLineCount++
-			if (this.darkResistance !== 0)
-				this.additionalLineCount++
+			if (newEquipmentData.fireResistance !== 0)
+				newLineCount++
+			if (newEquipmentData.blizzardResistance !== 0)
+				newLineCount++
+			if (newEquipmentData.thunderResistance !== 0)
+				newLineCount++
+			if (newEquipmentData.darkResistance !== 0)
+				newLineCount++
+		}
+
+		return {
+			...this,
+			vanillaAbility: { ...this.vanillaAbility },
+			replacementAbility: { ...newEquipmentData.reward },
+			strength: newEquipmentData.currentStrength,
+			magic: newEquipmentData.currentMagic,
+			ap: newEquipmentData.currentAP,
+			defense: newEquipmentData.currentDefense,
+			fireResistance: newEquipmentData.currentFire,
+			blizzardResistance: newEquipmentData.currentBlizzard,
+			thunderResistance: newEquipmentData.currentThunder,
+			physicalResistance: newEquipmentData.currentPhysical,
+			darkResistance: newEquipmentData.currentDark,
+			lightResistance: newEquipmentData.currentLight,
+			universalResistance: newEquipmentData.currentUniversal,
+			additionalLineCount: newLineCount,
+			toBeReplaced: false,
 		}
 	}
 
 	markForReplacement(toBeReplaced) {
-		this.toBeReplaced = toBeReplaced
+		return {
+			...this,
+			vanillaAbility: { ...this.vanillaAbility },
+			replacementAbility: { ...this.replacementAbility },
+			toBeReplaced: toBeReplaced,
+		}
 	}
 
 	toPnach() {

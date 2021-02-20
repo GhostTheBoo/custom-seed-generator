@@ -15,29 +15,31 @@ export class FormLevel {
 	isEXPReplaced() {
 		return this.replacementEXP !== this.vanillaEXP
 	}
-
 	isRewardReplaced() {
 		return this.replacementReward.index !== this.vanillaReward.index
 	}
 
 	vanilla() {
-		this.replacementReward.reward = this.vanillaReward.reward
-		this.replacementReward.index = this.vanillaReward.index
-		this.replacementReward.iconType = this.vanillaReward.iconType
-		this.replacementEXP = this.vanillaEXP
-		this.toBeReplaced = false
+		return new FormLevel(this.level, new Reward(this.vanillaReward.reward, this.vanillaReward.index, this.vanillaReward.iconType), this.rewardAddress, this.vanillaEXP, this.EXPAddress)
 	}
 
 	replace(newFormData) {
-		this.replacementReward.reward = newFormData.reward.reward
-		this.replacementReward.index = newFormData.reward.index
-		this.replacementReward.iconType = newFormData.reward.iconType
-		this.replacementEXP = newFormData.currentEXPMultiplierValue === 0 ? newFormData.currentEXP : Math.max(1, Math.floor((2 * this.vanillaEXP) / newFormData.currentEXPMultiplierValue))
-		this.toBeReplaced = false
+		return {
+			...this,
+			vanillaReward: { ...this.vanillaReward },
+			replacementReward: { ...newFormData.reward },
+			replacementEXP: newFormData.currentEXPMultiplierValue === 0 ? newFormData.currentEXP : Math.max(1, Math.floor((2 * this.vanillaEXP) / newFormData.currentEXPMultiplierValue)),
+			toBeReplaced: false
+		}
 	}
 
 	markForReplacement(toBeReplaced) {
-		this.toBeReplaced = toBeReplaced
+		return {
+			...this,
+			vanillaReward: { ...this.vanillaReward },
+			replacementReward: { ...this.replacementReward },
+			toBeReplaced: toBeReplaced
+		}
 	}
 
 	toPnach() {

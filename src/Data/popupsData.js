@@ -11,26 +11,33 @@ export class Popup {
 		this.isReplaced = false
 	}
 
+	isReplaced() {
+		return this.replacementReward.index !== this.vanillaReward.index
+	}
+	isAbility() {
+		return this.replacementReward.iconType === 'Ability'
+	}
+
 	vanilla() {
-		this.replacementReward.reward = this.vanillaReward.reward
-		this.replacementReward.index = this.vanillaReward.index
-		this.replacementReward.iconType = this.vanillaReward.iconType
-		this.isAbility = false
-		this.toBeReplaced = false
-		this.isReplaced = false
+		return new Popup(this.popup, new Reward(this.vanillaReward.reward, this.vanillaReward.index, this.vanillaReward.iconType), this.vanillaAddress)
 	}
 
 	replace(newPopupData) {
-		this.replacementReward.reward = newPopupData.reward.reward
-		this.replacementReward.index = newPopupData.reward.index
-		this.replacementReward.iconType = newPopupData.reward.iconType
-		this.isAbility = newPopupData.reward.iconType === 'Ability'
-		this.toBeReplaced = false
-		this.isReplaced = newPopupData.index !== this.vanillaReward.index
+		return {
+			...this,
+			vanillaReward: { ...this.vanillaReward },
+			replacementReward: { ...newPopupData.reward },
+			toBeReplaced: false
+		}
 	}
 
 	markForReplacement(toBeReplaced) {
-		this.toBeReplaced = toBeReplaced
+		return {
+			...this,
+			vanillaReward: { ...this.vanillaReward },
+			replacementReward: { ...this.replacementReward },
+			toBeReplaced: toBeReplaced
+		}
 	}
 
 	toPnach() {

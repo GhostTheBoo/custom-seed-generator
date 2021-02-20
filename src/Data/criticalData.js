@@ -13,21 +13,25 @@ export class Critical {
 	}
 
 	vanilla() {
-		this.replacementReward.reward = this.vanillaReward.reward
-		this.replacementReward.index = this.vanillaReward.index
-		this.replacementReward.iconType = this.vanillaReward.iconType
-		this.toBeReplaced = false
+		return new Critical(new Reward(this.vanillaReward.reward, this.vanillaReward.index, this.vanillaReward.iconType), this.vanillaAddress)
 	}
 
 	replace(newCriticalData) {
-		this.replacementReward.reward = newCriticalData.reward.reward
-		this.replacementReward.index = newCriticalData.reward.index
-		this.replacementReward.iconType = newCriticalData.reward.iconType
-		this.toBeReplaced = false
+		return {
+			...this,
+			vanillaReward: { ...this.vanillaReward },
+			replacementReward: { ...newCriticalData.reward },
+			toBeReplaced: false
+		}
 	}
 
 	markForReplacement(toBeReplaced) {
-		this.toBeReplaced = toBeReplaced
+		return {
+			...this,
+			vanillaReward: { ...this.vanillaReward },
+			replacementReward: { ...this.replacementReward },
+			toBeReplaced: toBeReplaced
+		}
 	}
 
 	toPnach() {

@@ -47,52 +47,41 @@ export class Level {
 	}
 
 	vanilla() {
-		this.replacementEXP = this.vanillaEXP
-		this.standardAP = this.vanillaAP
-		this.defense = this.vanillaDefense
-		this.magic = this.vanillaMagic
-		this.strength = this.vanillaStrength
-
-		this.replacementSwordReward.reward = this.vanillaSwordReward.reward
-		this.replacementSwordReward.index = this.vanillaSwordReward.index
-		this.replacementSwordReward.iconType = this.vanillaSwordReward.iconType
-
-		this.replacementShieldReward.reward = this.vanillaShieldReward.reward
-		this.replacementShieldReward.index = this.vanillaShieldReward.index
-		this.replacementShieldReward.iconType = this.vanillaShieldReward.iconType
-
-		this.replacementStaffReward.reward = this.vanillaStaffReward.reward
-		this.replacementStaffReward.index = this.vanillaStaffReward.index
-		this.replacementStaffReward.iconType = this.vanillaStaffReward.iconType
-
-		this.toBeReplaced = false
+		return new Level(this.level, this.vanillaEXP, this.expAddress, this.vanillaAP, this.vanillaDefense, this.vanillaMagic, this.vanillaStrength,
+			new Reward(this.vanillaSwordReward.reward, this.vanillaSwordReward.index, this.vanillaSwordReward.iconType),
+			new Reward(this.vanillaShieldReward.reward, this.vanillaShieldReward.index, this.vanillaShieldReward.iconType),
+			new Reward(this.vanillaStaffReward.reward, this.vanillaStaffReward.index, this.vanillaStaffReward.iconType))
 	}
 
 	replace(newLevelData) {
-		this.toBeReplaced = false
-
-		this.replacementSwordReward.reward = newLevelData.sword.reward
-		this.replacementSwordReward.index = newLevelData.sword.index
-		this.replacementSwordReward.iconType = newLevelData.sword.iconType
-
-		this.replacementShieldReward.reward = newLevelData.shield.reward
-		this.replacementShieldReward.index = newLevelData.shield.index
-		this.replacementShieldReward.iconType = newLevelData.shield.iconType
-
-		this.replacementStaffReward.reward = newLevelData.staff.reward
-		this.replacementStaffReward.index = newLevelData.staff.index
-		this.replacementStaffReward.iconType = newLevelData.staff.iconType
-
-		this.standardAP = newLevelData.currentLevelAP
-		this.defense = newLevelData.currentLevelDefense
-		this.magic = newLevelData.currentLevelMagic
-		this.strength = newLevelData.currentLevelStrength
-
-		this.replacementEXP = newLevelData.currentEXPMultiplierValue === 0 ? newLevelData.currentEXP : Math.max(1, Math.floor((2 * this.vanillaEXP) / newLevelData.currentEXPMultiplierValue))
+		return {
+			...this,
+			vanillaSwordReward: { ...newLevelData.sword },
+			replacementSwordReward: { ...newLevelData.sword },
+			vanillaShieldReward: { ...newLevelData.shield },
+			replacementShieldReward: { ...newLevelData.shield },
+			vanillaStaffReward: { ...newLevelData.staff },
+			replacementStaffReward: { ...newLevelData.staff },
+			standardAP: newLevelData.currentLevelAP,
+			defense: newLevelData.currentLevelDefense,
+			magic: newLevelData.currentLevelMagic,
+			strength: newLevelData.currentLevelStrength,
+			replacementEXP: newLevelData.currentEXPMultiplierValue === 0 ? newLevelData.currentEXP : Math.max(1, Math.floor((2 * this.vanillaEXP) / newLevelData.currentEXPMultiplierValue)),
+			toBeReplaced: false
+		}
 	}
 
 	markForReplacement(toBeReplaced) {
-		this.toBeReplaced = toBeReplaced
+		return {
+			...this,
+			vanillaSwordReward: { ...this.vanillaSwordReward },
+			replacementSwordReward: { ...this.replacementSwordReward },
+			vanillaShieldReward: { ...this.vanillaShieldReward },
+			replacementShieldReward: { ...this.replacementShieldReward },
+			vanillaStaffReward: { ...this.vanillaStaffReward },
+			replacementStaffReward: { ...this.replacementStaffReward },
+			toBeReplaced: toBeReplaced
+		}
 	}
 
 	toPnach() {

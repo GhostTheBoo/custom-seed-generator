@@ -12,17 +12,22 @@ export class MagicAbility {
 	}
 
 	vanilla() {
-		this.replacementCost = this.vanillaCost
-		this.toBeReplaced = false
+		return new MagicAbility(this.name, this.costAddress, this.vanillaCost)
 	}
 
 	replace(newMagicData) {
-		this.replacementCost = newMagicData.cost
-		this.toBeReplaced = false
+		return {
+			...this,
+			replacementCost: newMagicData.cost,
+			toBeReplaced: false
+		}
 	}
 
 	markForReplacement(toBeReplaced) {
-		this.toBeReplaced = toBeReplaced
+		return {
+			...this,
+			toBeReplaced: toBeReplaced
+		}
 	}
 
 	toPnach() {

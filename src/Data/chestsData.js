@@ -10,24 +10,30 @@ export class Chest {
 		this.isReplaced = false
 	}
 
+	isReplaced() {
+		return this.replacementReward.index !== this.vanillaReward.index
+	}
+
 	vanilla() {
-		this.replacementReward.reward = this.vanillaReward.reward
-		this.replacementReward.index = this.vanillaReward.index
-		this.replacementReward.iconType = this.vanillaReward.iconType
-		this.toBeReplaced = false
-		this.isReplaced = false
+		return new Chest(this.room, new Reward(this.vanillaReward.reward, this.vanillaReward.index, this.vanillaReward.iconType), this.vanillaAddress)
 	}
 
 	replace(newChestData) {
-		this.replacementReward.reward = newChestData.reward.reward
-		this.replacementReward.index = newChestData.reward.index
-		this.replacementReward.iconType = newChestData.reward.iconType
-		this.toBeReplaced = false
-		this.isReplaced = newChestData.index !== this.vanillaReward.index
+		return {
+			...this,
+			vanillaReward: { ...this.vanillaReward },
+			replacementReward: { ...newChestData.reward },
+			toBeReplaced: false
+		}
 	}
 
 	markForReplacement(toBeReplaced) {
-		this.toBeReplaced = toBeReplaced
+		return {
+			...this,
+			vanillaReward: { ...this.vanillaReward },
+			replacementReward: { ...this.replacementReward },
+			toBeReplaced: toBeReplaced
+		}
 	}
 
 	toPnach() {

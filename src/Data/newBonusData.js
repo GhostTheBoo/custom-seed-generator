@@ -64,66 +64,27 @@ export class BonusReward {
 	copy() {
 		return {
 			...this,
-			replacementReward1: {
-				...this.replacementReward1
-			},
-			vanillaReward1: {
-				...this.vanillaReward1
-			},
-			replacementReward2: {
-				...this.replacementReward2
-			},
-			vanillaReward2: {
-				...this.vanillaReward2
-			}
+			replacementReward1: { ...this.replacementReward1 },
+			vanillaReward1: { ...this.vanillaReward1 },
+			replacementReward2: { ...this.replacementReward2 },
+			vanillaReward2: { ...this.vanillaReward2 }
 		}
 	}
 
 	vanilla() {
-		return {
-			...this,
-			replacementCharacter: this.vanillaCharacter,
-			replacementReward1: {
-				...this.replacementReward1
-			},
-			vanillaReward1: {
-				...this.vanillaReward1
-			},
-			replacementReward2: {
-				...this.replacementReward2
-			},
-			vanillaReward2: {
-				...this.vanillaReward2
-			},
-			hpIncrease: this.vanillaHpIncrease,
-			mpIncrease: this.vanillaMpIncrease,
-			armorSlotIncrease: this.vanillaArmorSlotIncrease,
-			accessorySlotIncrease: this.vanillaAccessorySlotIncrease,
-			itemSlotIncrease: this.vanillaItemSlotIncrease,
-			driveGaugeIncrease: this.vanillaDriveGaugeIncrease,
-			statChangeCount: this.getStatCount(),
-			slotChangeCount: this.getSlotCount(),
-			rewardChangeCount: this.getRewardCount(),
-			toBeReplaced: false
-		}
+		return new BonusReward(this.characterAddress, this.vanillaCharacter, new Reward(this.vanillaReward1.reward, this.vanillaReward1.index, this.vanillaReward1.iconType),
+			new Reward(this.vanillaReward2.reward, this.vanillaReward2.index, this.vanillaReward2.iconType), this.hpIncrease, this.mpIncrease, this.armorSlotIncrease,
+			this.accessorySlotIncrease, this.itemSlotIncrease, this.driveGaugeIncrease)
 	}
 
 	replace(newBonusData) {
 		return {
 			...this,
 			replacementCharacter: newBonusData.character,
-			replacementReward1: {
-				...newBonusData.reward1
-			},
-			vanillaReward1: {
-				...this.vanillaReward1
-			},
-			replacementReward2: {
-				...newBonusData.reward2
-			},
-			vanillaReward2: {
-				...this.vanillaReward2
-			},
+			replacementReward1: { ...newBonusData.reward1 },
+			vanillaReward1: { ...this.vanillaReward1 },
+			replacementReward2: { ...newBonusData.reward2 },
+			vanillaReward2: { ...this.vanillaReward2 },
 			hpIncrease: newBonusData.hp,
 			mpIncrease: newBonusData.mp,
 			armorSlotIncrease: newBonusData.armor,
@@ -140,19 +101,11 @@ export class BonusReward {
 	markForReplacement(toBeReplaced) {
 		return {
 			...this,
-			replacementReward1: {
-				...this.reward1
-			},
-			vanillaReward1: {
-				...this.vanillaReward1
-			},
-			replacementReward2: {
-				...this.reward2
-			},
-			vanillaReward2: {
-				...this.vanillaReward2
-			},
-			toBeReplaced: true
+			replacementReward1: { ...this.reward1 },
+			vanillaReward1: { ...this.vanillaReward1 },
+			replacementReward2: { ...this.reward2 },
+			vanillaReward2: { ...this.vanillaReward2 },
+			toBeReplaced: toBeReplaced
 		}
 	}
 
@@ -194,15 +147,7 @@ export class BonusFight {
 			else
 				return slot.copy()
 		})
-		return {
-			...this,
-			slots: [
-				{ ...newSlots[0] },
-				{ ...newSlots[1] },
-				{ ...newSlots[2] },
-				{ ...newSlots[3] }
-			]
-		}
+		return new BonusFight(this.name, newSlots[0], newSlots[1], newSlots[2], newSlots[3])
 	}
 
 	replace(newBonusData) {

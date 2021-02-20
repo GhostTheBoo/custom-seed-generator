@@ -7,11 +7,18 @@ export class Cheat {
 	}
 
 	toggle() {
-		this.isActive = !this.isActive
-		this.markForReplacement(false)
+		let ret = this.markForReplacement(false)
+		return {
+			...ret,
+			isActive: !ret.isActive
+		}
 	}
 	markForReplacement(toBeReplaced) {
-		this.toBeReplaced = toBeReplaced
+		return {
+			...this,
+			code: [...this.code],
+			toBeReplaced: toBeReplaced
+		}
 	}
 	toPnach() {
 		return '//' + this.name + '\n' + this.code.join('\n') + '\n'
