@@ -65,7 +65,7 @@ function PopupPage(props) {
 			</Form>
 			<PopupTable
 				currentWorld={worldsData[props.currentWorld]}
-				worldPopups={props.popupData}
+				worldPopups={props.popupData.popups}
 				onRowCheck={props.onRowCheck}
 				onCheckAll={props.onCheckAll}
 				selectAll={props.fieldData.selectAll}

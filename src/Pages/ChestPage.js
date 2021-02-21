@@ -26,7 +26,6 @@ function ChestPage(props) {
 		</p>
 		</div>
 	)
-
 	return (
 		<div style={props.style}>
 			<Form>
@@ -63,7 +62,7 @@ function ChestPage(props) {
 			</Form>
 			<ChestTable
 				currentWorld={worldsData[props.fieldData.currentWorld]}
-				worldChests={props.chestData}
+				worldChests={props.chestData.chests}
 				onRowCheck={props.onRowCheck}
 				onCheckAll={props.onCheckAll}
 				selectAll={props.fieldData.selectAll}

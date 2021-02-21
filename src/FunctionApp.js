@@ -1,7 +1,6 @@
 import { React, useState } from 'react'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
-import _ from 'lodash'
 
 import { rewardsData } from './Data/rewardsData'
 import { chestsData } from './Data/chestsData'
@@ -161,68 +160,6 @@ function FunctionApp() {
 			return world
 		})
 	}
-	// function handleBonusFightChange(nextFight) {
-	// 	let newAllBonuses = allBonuses.map((world, worldID) => {
-	// 		if (worldID === bonusFieldData.currentWorld) {
-	// 			let toBeStoredWorldFights = world.bonusFights.map((fight, fightID) => {
-	// 				if (fightID === bonusFieldData.currentFight) {
-	// 					return fight.markForReplacement(false, -1)
-	// 				}
-	// 				return fight
-	// 			})
-	// 			return {
-	// 				...world,
-	// 				bonusFights: toBeStoredWorldFights
-	// 			}
-	// 		}
-	// 		return world
-	// 	})
-	// 	setAllBonuses(newAllBonuses)
-	// 	setBonusFieldData({
-	// 		...bonusFieldData,
-	// 		currentFight: nextFight
-	// 	})
-	// }
-	// function onBonusRowCheck(row) {
-	// 	let newAllBonuses = allBonuses.map((world, worldID) => {
-	// 		if (worldID === bonusFieldData.currentWorld) {
-	// 			let toBeStoredWorldFights = world.bonusFights.map((fight, fightID) => {
-	// 				if (fightID === bonusFieldData.currentFight) {
-	// 					return fight.markForReplacement(false, row)
-	// 				}
-	// 				return fight
-	// 			})
-	// 			return {
-	// 				...world,
-	// 				bonusFights: toBeStoredWorldFights
-	// 			}
-	// 		}
-	// 		return world
-	// 	})
-	// 	setAllBonuses(newAllBonuses)
-	// }
-	// function onBonusCheckAll() {
-	// 	let newAllBonuses = allBonuses.map((world, worldID) => {
-	// 		if (worldID === bonusFieldData.currentWorld) {
-	// 			let toBeStoredWorldFights = world.bonusFights.map((fight, fightID) => {
-	// 				if (fightID === bonusFieldData.currentFight) {
-	// 					return fight.markForReplacement(!bonusFieldData.selectAll, -1)
-	// 				}
-	// 				return fight
-	// 			})
-	// 			return {
-	// 				...world,
-	// 				bonusFights: toBeStoredWorldFights
-	// 			}
-	// 		}
-	// 		return world
-	// 	})
-	// 	setAllBonuses(newAllBonuses)
-	// 	setBonusFieldData({
-	// 		...bonusFieldData,
-	// 		selectAll: !bonusFieldData.selectAll
-	// 	})
-	// }
 	//#endregion
 
 	//#region General Functions
@@ -324,7 +261,7 @@ function FunctionApp() {
 					<ChestPage
 						style={styles}
 						fieldData={chestFieldData}
-						chestData={allChests[chestFieldData.curentWorld]}
+						chestData={allChests[chestFieldData.currentWorld]}
 						rewardList={rewardsData[chestFieldData.currentRewardType].rewards}
 						handleWorldChange={(e) => {
 							setAllChests(handleTableChange(chestFieldData.currentWorld, 'chests', allChests))

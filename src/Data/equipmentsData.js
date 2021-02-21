@@ -49,6 +49,29 @@ export class Equipment {
 		return this.darkResistance !== this.vanillaDarkResistance || this.lightResistance !== this.vanillaLightResistance || this.universalResistance !== this.vanillaUniversalResistance
 	}
 
+	copy() {
+		let ret = new Equipment(this.name, new Reward(this.vanillaAbility.reward, this.vanillaAbility.index, this.vanillaAbility.iconType), this.strength, this.magic, this.ap, this.defense,
+			this.fireResistance, this.blizzardResistance, this.thunderResistance, this.darkResistance, this.physicalResistance, this.lightResistance, this.universalResistance,
+			this.abilityAddress)
+
+		ret.replacementAbility = this.replacementAbility
+		ret.strength = this.strength
+		ret.magic = this.magic
+		ret.ap = this.ap
+		ret.defense = this.defense
+		ret.fireResistance = this.fireResistance
+		ret.blizzardResistance = this.blizzardResistance
+		ret.thunderResistance = this.thunderResistance
+		ret.darkResistance = this.darkResistance
+		ret.physicalResistance = this.physicalResistance
+		ret.lightResistance = this.lightResistance
+		ret.universalResistance = this.universalResistance
+		ret.toBeReplaced = this.toBeReplaced
+		ret.additionalLineCount = this.additionalLineCount
+
+		return ret
+	}
+
 	vanilla() {
 		return new Equipment(this.name, new Reward(this.vanillaAbility.reward, this.vanillaAbility.index, this.vanillaAbility.iconType), this.strength, this.magic, this.ap, this.defense,
 			this.fireResistance, this.blizzardResistance, this.thunderResistance, this.darkResistance, this.physicalResistance, this.lightResistance, this.universalResistance,
@@ -56,10 +79,11 @@ export class Equipment {
 	}
 
 	replace(newEquipmentData) {
+		let ret = this.copy()
 		let newLineCount = 0
 
-		if (newEquipmentData.strength !== this.vanillaStrength || newEquipmentData.magic !== this.vanillaMagic ||
-			newEquipmentData.defense !== this.vanillaDefense || newEquipmentData.ap !== this.vanillaAP) {
+		if (newEquipmentData.strength !== ret.vanillaStrength || newEquipmentData.magic !== ret.vanillaMagic ||
+			newEquipmentData.defense !== ret.vanillaDefense || newEquipmentData.ap !== ret.vanillaAP) {
 			if (newEquipmentData.currentEquipmentType !== 5) {
 				if (newEquipmentData.ap !== 0)
 					newLineCount++
@@ -86,33 +110,28 @@ export class Equipment {
 				newLineCount++
 		}
 
-		return {
-			...this,
-			vanillaAbility: { ...this.vanillaAbility },
-			replacementAbility: { ...newEquipmentData.reward },
-			strength: newEquipmentData.currentStrength,
-			magic: newEquipmentData.currentMagic,
-			ap: newEquipmentData.currentAP,
-			defense: newEquipmentData.currentDefense,
-			fireResistance: newEquipmentData.currentFire,
-			blizzardResistance: newEquipmentData.currentBlizzard,
-			thunderResistance: newEquipmentData.currentThunder,
-			physicalResistance: newEquipmentData.currentPhysical,
-			darkResistance: newEquipmentData.currentDark,
-			lightResistance: newEquipmentData.currentLight,
-			universalResistance: newEquipmentData.currentUniversal,
-			additionalLineCount: newLineCount,
-			toBeReplaced: false,
-		}
+		ret.replacementAbility = { ...newEquipmentData.reward }
+		ret.strength = newEquipmentData.currentStrength
+		ret.magic = newEquipmentData.currentMagic
+		ret.ap = newEquipmentData.currentAP
+		ret.defense = newEquipmentData.currentDefense
+		ret.fireResistance = newEquipmentData.currentFire
+		ret.blizzardResistance = newEquipmentData.currentBlizzard
+		ret.thunderResistance = newEquipmentData.currentThunder
+		ret.physicalResistance = newEquipmentData.currentPhysical
+		ret.darkResistance = newEquipmentData.currentDark
+		ret.lightResistance = newEquipmentData.currentLight
+		ret.universalResistance = newEquipmentData.currentUniversal
+		ret.additionalLineCount = newLineCount
+		ret.toBeReplaced = false
+
+		return ret
 	}
 
 	markForReplacement(toBeReplaced) {
-		return {
-			...this,
-			vanillaAbility: { ...this.vanillaAbility },
-			replacementAbility: { ...this.replacementAbility },
-			toBeReplaced: toBeReplaced,
-		}
+		let ret = this.copy()
+		ret.toBeReplaced = toBeReplaced
+		return ret
 	}
 
 	toPnach() {

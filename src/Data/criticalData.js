@@ -12,26 +12,28 @@ export class Critical {
 		return this.replacementReward.index !== this.vanillaReward.index
 	}
 
+	copy() {
+		let ret = new Critical(new Reward(this.vanillaReward.reward, this.vanillaReward.index, this.vanillaReward.iconType), this.vanillaAddress)
+		ret.replacementReward = { ...this.replacementReward }
+		ret.toBeReplaced = this.toBeReplaced
+		return ret
+	}
+
 	vanilla() {
 		return new Critical(new Reward(this.vanillaReward.reward, this.vanillaReward.index, this.vanillaReward.iconType), this.vanillaAddress)
 	}
 
 	replace(newCriticalData) {
-		return {
-			...this,
-			vanillaReward: { ...this.vanillaReward },
-			replacementReward: { ...newCriticalData.reward },
-			toBeReplaced: false
-		}
+		let ret = this.copy()
+		ret.replacementReward = { ...newCriticalData.reward }
+		ret.toBeReplaced = false
+		return ret
 	}
 
 	markForReplacement(toBeReplaced) {
-		return {
-			...this,
-			vanillaReward: { ...this.vanillaReward },
-			replacementReward: { ...this.replacementReward },
-			toBeReplaced: toBeReplaced
-		}
+		let ret = this.copy()
+		ret.toBeReplaced = toBeReplaced
+		return ret
 	}
 
 	toPnach() {

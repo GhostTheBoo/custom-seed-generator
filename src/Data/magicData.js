@@ -11,23 +11,28 @@ export class MagicAbility {
 		return this.replacementCost !== this.vanillaCost
 	}
 
+	copy() {
+		let ret = new MagicAbility(this.name, this.costAddress, this.vanillaCost)
+		ret.replacementCost = this.replacementCost
+		ret.toBeReplaced = this.toBeReplaced
+		return ret
+	}
+
 	vanilla() {
 		return new MagicAbility(this.name, this.costAddress, this.vanillaCost)
 	}
 
 	replace(newMagicData) {
-		return {
-			...this,
-			replacementCost: newMagicData.cost,
-			toBeReplaced: false
-		}
+		let ret = this.copy()
+		ret.replacementCost = newMagicData.cost
+		ret.toBeReplaced = false
+		return ret
 	}
 
 	markForReplacement(toBeReplaced) {
-		return {
-			...this,
-			toBeReplaced: toBeReplaced
-		}
+		let ret = this.copy()
+		ret.toBeReplaced = toBeReplaced
+		return ret
 	}
 
 	toPnach() {

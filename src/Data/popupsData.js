@@ -6,9 +6,7 @@ export class Popup {
 		this.vanillaReward = { ...vanilla }
 		this.replacementReward = { ...vanilla }
 		this.vanillaAddress = address
-		this.isAbility = false
 		this.toBeReplaced = false
-		this.isReplaced = false
 	}
 
 	isReplaced() {
@@ -18,26 +16,27 @@ export class Popup {
 		return this.replacementReward.iconType === 'Ability'
 	}
 
+	copy() {
+		let ret = new Popup(this.popup, new Reward(this.vanillaReward.reward, this.vanillaReward.index, this.vanillaReward.iconType), this.vanillaAddress)
+		ret.replacementReward = { ...this.replacementReward }
+		return ret
+	}
+
 	vanilla() {
 		return new Popup(this.popup, new Reward(this.vanillaReward.reward, this.vanillaReward.index, this.vanillaReward.iconType), this.vanillaAddress)
 	}
 
 	replace(newPopupData) {
-		return {
-			...this,
-			vanillaReward: { ...this.vanillaReward },
-			replacementReward: { ...newPopupData.reward },
-			toBeReplaced: false
-		}
+		let ret = this.copy()
+		ret.replacementReward = { ...newPopupData.reward }
+		ret.toBeReplaced = false
+		return ret
 	}
 
 	markForReplacement(toBeReplaced) {
-		return {
-			...this,
-			vanillaReward: { ...this.vanillaReward },
-			replacementReward: { ...this.replacementReward },
-			toBeReplaced: toBeReplaced
-		}
+		let ret = this.copy()
+		ret.toBeReplaced = toBeReplaced
+		return ret
 	}
 
 	toPnach() {

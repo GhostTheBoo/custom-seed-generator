@@ -46,6 +46,25 @@ export class Level {
 		return this.replacementStaffReward.index !== this.vanillaStaffReward.index
 	}
 
+	copy() {
+		let ret = new Level(this.level, this.vanillaEXP, this.expAddress, this.vanillaAP, this.vanillaDefense, this.vanillaMagic, this.vanillaStrength,
+			new Reward(this.vanillaSwordReward.reward, this.vanillaSwordReward.index, this.vanillaSwordReward.iconType),
+			new Reward(this.vanillaShieldReward.reward, this.vanillaShieldReward.index, this.vanillaShieldReward.iconType),
+			new Reward(this.vanillaStaffReward.reward, this.vanillaStaffReward.index, this.vanillaStaffReward.iconType))
+
+		ret.replacementEXP = this.replacementEXP
+		ret.standardAP = this.standardAP
+		ret.defense = this.defense
+		ret.magic = this.magic
+		ret.strength = this.strength
+		ret.replacementSwordReward = { ...this.replacementSwordReward }
+		ret.replacementShieldReward = { ...this.replacementShieldReward }
+		ret.replacementStaffReward = { ...this.replacementStaffReward }
+		ret.toBeReplaced = this.toBeReplaced
+
+		return ret
+	}
+
 	vanilla() {
 		return new Level(this.level, this.vanillaEXP, this.expAddress, this.vanillaAP, this.vanillaDefense, this.vanillaMagic, this.vanillaStrength,
 			new Reward(this.vanillaSwordReward.reward, this.vanillaSwordReward.index, this.vanillaSwordReward.iconType),
@@ -54,34 +73,25 @@ export class Level {
 	}
 
 	replace(newLevelData) {
-		return {
-			...this,
-			vanillaSwordReward: { ...newLevelData.sword },
-			replacementSwordReward: { ...newLevelData.sword },
-			vanillaShieldReward: { ...newLevelData.shield },
-			replacementShieldReward: { ...newLevelData.shield },
-			vanillaStaffReward: { ...newLevelData.staff },
-			replacementStaffReward: { ...newLevelData.staff },
-			standardAP: newLevelData.currentLevelAP,
-			defense: newLevelData.currentLevelDefense,
-			magic: newLevelData.currentLevelMagic,
-			strength: newLevelData.currentLevelStrength,
-			replacementEXP: newLevelData.currentEXPMultiplierValue === 0 ? newLevelData.currentEXP : Math.max(1, Math.floor((2 * this.vanillaEXP) / newLevelData.currentEXPMultiplierValue)),
-			toBeReplaced: false
-		}
+		let ret = this.copy()
+
+		ret.replacementEXP = newLevelData.currentEXPMultiplierValue === 0 ? newLevelData.currentEXP : Math.max(1, Math.floor((2 * this.vanillaEXP) / newLevelData.currentEXPMultiplierValue))
+		ret.standardAP = newLevelData.currentLevelAP
+		ret.defense = newLevelData.currentLevelDefense
+		ret.magic = newLevelData.currentLevelMagic
+		ret.strength = newLevelData.currentLevelStrength
+		ret.replacementSwordReward = { ...newLevelData.sowrd }
+		ret.replacementShieldReward = { ...newLevelData.shield }
+		ret.replacementStaffReward = { ...newLevelData.staff }
+		ret.toBeReplaced = false
+
+		return ret
 	}
 
 	markForReplacement(toBeReplaced) {
-		return {
-			...this,
-			vanillaSwordReward: { ...this.vanillaSwordReward },
-			replacementSwordReward: { ...this.replacementSwordReward },
-			vanillaShieldReward: { ...this.vanillaShieldReward },
-			replacementShieldReward: { ...this.replacementShieldReward },
-			vanillaStaffReward: { ...this.vanillaStaffReward },
-			replacementStaffReward: { ...this.replacementStaffReward },
-			toBeReplaced: toBeReplaced
-		}
+		let ret = this.copy()
+		ret.toBeReplaced = toBeReplaced
+		return ret
 	}
 
 	toPnach() {

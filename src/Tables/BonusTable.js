@@ -2,30 +2,29 @@ import React from 'react'
 import Table from 'react-bootstrap/Table'
 
 function BonusTable(props) {
-	let bonusList = props.bonuses.map((bonus, index) => {
-		let isReplaced = (bonus.isStatsReplaced || bonus.isSlotsReplaced || bonus.isRewardsReplaced)
-		let changeCount = (bonus.statChangeCount + bonus.slotChangeCount + bonus.rewardChangeCount)
+	let bonusList = props.bonuses.slots.filter(bonus => bonus !== null).map((bonus, index) => {
 		let styles
-		if (isReplaced)
+		console.log(bonus)
+		if (bonus.isStatsReplaced() || bonus.isSlotsReplaced() || bonus.isRewardsReplaced())
 			styles = { background: 'green' }
-		if (changeCount > 2)
+		if ((bonus.getStatCount() + bonus.getSlotCount() + bonus.getRewardCount()) > 2)
 			styles = { background: 'red' }
 		return (
 			<tr
 				style={styles}
-				key={props.currentCharacter + ': ' + bonus.fight}
+				key={bonus.fight + 'Slot' + index}
 			>
 				<td>
 					<input
 						type='checkbox'
-						name={props.currentCharacter + props.currentWorld}
+						name={bonus.fight + 'Slot' + index + 'checkbox'}
 						value={index}
 						checked={bonus.toBeReplaced}
 						onChange={props.onRowCheck}
 					/>
 				</td>
 				<td>
-					{bonus.fight}
+					{bonus.replacementCharacter}
 				</td>
 				<td>
 					{bonus.replacementReward1.index !== '0000' ? bonus.replacementReward1.reward : ''}
@@ -62,13 +61,13 @@ function BonusTable(props) {
 					<th>
 						<input
 							type='checkbox'
-							name={props.currentWorld + 'All'}
+							name={props.bonuses.fight + 'All'}
 							checked={props.selectAll}
-							onChange={props.checkAll}
+							onChange={props.onCheckAll}
 						/>
 					</th>
 					<th>
-						Fight
+						Character
 					</th>
 					<th>
 						Reward 1

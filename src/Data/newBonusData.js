@@ -62,13 +62,25 @@ export class BonusReward {
 	}
 
 	copy() {
-		return {
-			...this,
-			replacementReward1: { ...this.replacementReward1 },
-			vanillaReward1: { ...this.vanillaReward1 },
-			replacementReward2: { ...this.replacementReward2 },
-			vanillaReward2: { ...this.vanillaReward2 }
-		}
+		let ret = new BonusReward(this.characterAddress, this.vanillaCharacter, new Reward(this.vanillaReward1.reward, this.vanillaReward1.index, this.vanillaReward1.iconType),
+			new Reward(this.vanillaReward2.reward, this.vanillaReward2.index, this.vanillaReward2.iconType), this.hpIncrease, this.mpIncrease, this.armorSlotIncrease,
+			this.accessorySlotIncrease, this.itemSlotIncrease, this.driveGaugeIncrease)
+
+		ret.replacementCharacter = this.replacementCharacter
+		ret.replacementReward1 = { ...this.replacementReward1 }
+		ret.replacementReward2 = { ...this.replacementReward2 }
+		ret.hpIncrease = this.hpIncrease
+		ret.mpIncrease = this.mpIncrease
+		ret.armorSlotIncrease = this.armorSlotIncrease
+		ret.accessorySlotIncrease = this.accessorySlotIncrease
+		ret.itemSlotIncrease = this.itemSlotIncrease
+		ret.driveGaugeIncrease = this.driveGaugeIncrease
+		ret.statChangeCount = ret.getStatCount()
+		ret.slotChangeCount = ret.getSlotCount()
+		ret.rewardChangeCount = ret.getRewardCount()
+		ret.toBeReplaced = this.toBeReplaced
+
+		return ret
 	}
 
 	vanilla() {
@@ -78,35 +90,29 @@ export class BonusReward {
 	}
 
 	replace(newBonusData) {
-		return {
-			...this,
-			replacementCharacter: newBonusData.character,
-			replacementReward1: { ...newBonusData.reward1 },
-			vanillaReward1: { ...this.vanillaReward1 },
-			replacementReward2: { ...newBonusData.reward2 },
-			vanillaReward2: { ...this.vanillaReward2 },
-			hpIncrease: newBonusData.hp,
-			mpIncrease: newBonusData.mp,
-			armorSlotIncrease: newBonusData.armor,
-			accessorySlotIncrease: newBonusData.accessory,
-			itemSlotIncrease: newBonusData.item,
-			driveGaugeIncrease: newBonusData.drive,
-			statChangeCount: this.getStatCount(),
-			slotChangeCount: this.getSlotCount(),
-			rewardChangeCount: this.getRewardCount(),
-			toBeReplaced: false
-		}
+		let ret = this.copy()
+
+		ret.replacementCharacter = newBonusData.character
+		ret.replacementReward1 = { ...newBonusData.replacementReward1 }
+		ret.replacementReward2 = { ...newBonusData.replacementReward2 }
+		ret.hpIncrease = newBonusData.hp
+		ret.mpIncrease = newBonusData.mp
+		ret.armorSlotIncrease = newBonusData.armor
+		ret.accessorySlotIncrease = newBonusData.accessory
+		ret.itemSlotIncrease = newBonusData.item
+		ret.driveGaugeIncrease = newBonusData.drive
+		ret.statChangeCount = ret.getStatCount()
+		ret.slotChangeCount = ret.getSlotCount()
+		ret.rewardChangeCount = ret.getRewardCount()
+		ret.toBeReplaced = false
+
+		return ret
 	}
 
 	markForReplacement(toBeReplaced) {
-		return {
-			...this,
-			replacementReward1: { ...this.reward1 },
-			vanillaReward1: { ...this.vanillaReward1 },
-			replacementReward2: { ...this.reward2 },
-			vanillaReward2: { ...this.vanillaReward2 },
-			toBeReplaced: toBeReplaced
-		}
+		let ret = this.copy()
+		ret.toBeReplaced = toBeReplaced
+		return ret
 	}
 
 	toPnach() {

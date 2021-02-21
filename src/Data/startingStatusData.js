@@ -90,16 +90,15 @@ export class StartingStatus {
 	}
 
 	replace(newStartingData) {
-		return {
-			...this,
-			keyblade: { ...newStartingData.keyblade },
-			armor: newStartingData.armor.index !== undefined ? { ...newStartingData.armor } : new Reward('EMPTY', 0x0000, 'EMPTY'),
-			accessory: newStartingData.accessory.index !== undefined ? { ...newStartingData.accessory } : new Reward('EMPTY', 0x0000, 'EMPTY'),
-			donald1: newStartingData.donald1.index !== undefined ? { ...newStartingData.donald1 } : new Reward('EMPTY', 0x0000, 'EMPTY'),
-			donald2: newStartingData.donald2.index !== undefined ? { ...newStartingData.donald2 } : new Reward('EMPTY', 0x0000, 'EMPTY'),
-			goofy1: newStartingData.goofy1.index !== undefined ? { ...newStartingData.goofy1 } : new Reward('EMPTY', 0x0000, 'EMPTY'),
-			goofy2: newStartingData.goofy2.index !== undefined ? { ...newStartingData.goofy2 } : new Reward('EMPTY', 0x0000, 'EMPTY'),
-		}
+		let ret = new StartingStatus()
+		ret.keyblade = { ...newStartingData.keyblade }
+		ret.armor = newStartingData.armor.index !== undefined ? { ...newStartingData.armor } : new Reward('EMPTY', 0x0000, 'EMPTY')
+		ret.accessory = newStartingData.accessory.index !== undefined ? { ...newStartingData.accessory } : new Reward('EMPTY', 0x0000, 'EMPTY')
+		ret.donald1 = newStartingData.donald1.index !== undefined ? { ...newStartingData.donald1 } : new Reward('EMPTY', 0x0000, 'EMPTY')
+		ret.donald2 = newStartingData.donald2.index !== undefined ? { ...newStartingData.donald2 } : new Reward('EMPTY', 0x0000, 'EMPTY')
+		ret.goofy1 = newStartingData.goofy1.index !== undefined ? { ...newStartingData.goofy1 } : new Reward('EMPTY', 0x0000, 'EMPTY')
+		ret.goofy2 = newStartingData.goofy2.index !== undefined ? { ...newStartingData.goofy2 } : new Reward('EMPTY', 0x0000, 'EMPTY')
+		return ret
 	}
 
 	toPnach() {
