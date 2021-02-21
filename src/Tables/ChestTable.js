@@ -6,7 +6,7 @@ function ChestTable(props) {
 		let keyValue = chest.vanillaAddress
 		let styles
 		let replacementReward = ''
-		if (chest.isReplaced) {
+		if (chest.isReplaced()) {
 			styles = { background: 'green' }
 			replacementReward = chest.replacementReward.reward
 		}

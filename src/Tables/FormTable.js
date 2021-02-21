@@ -4,8 +4,6 @@ import Table from 'react-bootstrap/Table'
 function FormTable(props) {
 	let formList = props.driveLevels.map((driveLevel, index) => {
 		let styles
-		let originalReward = driveLevel.isRewardReplaced() ? driveLevel.replacementReward.reward : ''
-		let originalEXP = driveLevel.isEXPReplaced() ? driveLevel.replacementEXP : ''
 
 		if (driveLevel.isRewardReplaced() || driveLevel.isEXPReplaced())
 			styles = { background: 'green' }
@@ -30,13 +28,13 @@ function FormTable(props) {
 					{driveLevel.vanillaReward.reward}
 				</td>
 				<td>
-					{originalReward}
+					{driveLevel.isRewardReplaced() ? driveLevel.replacementReward.reward : ''}
 				</td>
 				<td>
 					{driveLevel.vanillaEXP}
 				</td>
 				<td>
-					{originalEXP}
+					{driveLevel.isEXPReplaced() ? driveLevel.replacementEXP : ''}
 				</td>
 			</tr>
 		)

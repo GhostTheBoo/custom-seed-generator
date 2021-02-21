@@ -6,7 +6,7 @@ function PopupTable(props) {
 		let keyValue = popup.vanillaAddress
 		let styles
 		let originalReward = ''
-		if (popup.isReplaced) {
+		if (popup.isReplaced()) {
 			styles = { background: 'green' }
 			originalReward = popup.replacementReward.reward
 		}
