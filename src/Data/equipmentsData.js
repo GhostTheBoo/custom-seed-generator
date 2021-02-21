@@ -78,31 +78,31 @@ export class Equipment {
 			let ret = this.copy()
 			let newLineCount = 0
 
-			if (newEquipmentData.strength !== ret.vanillaStrength || newEquipmentData.magic !== ret.vanillaMagic ||
-				newEquipmentData.defense !== ret.vanillaDefense || newEquipmentData.ap !== ret.vanillaAP) {
+			if (newEquipmentData.currentStrength !== ret.vanillaStrength || newEquipmentData.currentMagic !== ret.vanillaMagic ||
+				newEquipmentData.currentDefense !== ret.vanillaDefense || newEquipmentData.currentAP !== ret.vanillaAP) {
 				if (newEquipmentData.currentEquipmentType !== 5) {
-					if (newEquipmentData.ap !== 0)
+					if (newEquipmentData.currentAP !== 0)
 						newLineCount++
 				}
 				if (newEquipmentData.currentEquipmentType !== 4) {
-					if (newEquipmentData.defense !== 0)
+					if (newEquipmentData.currentDefense !== 0)
 						newLineCount++
 				} else {
-					if (newEquipmentData.strength !== 0)
+					if (newEquipmentData.currentStrength !== 0)
 						newLineCount++
-					if (newEquipmentData.magic !== 0)
+					if (newEquipmentData.currentMagic !== 0)
 						newLineCount++
 				}
 			}
 
 			if (newEquipmentData.currentEquipmentType !== 4) {
-				if (newEquipmentData.fireResistance !== 0)
+				if (newEquipmentData.currentFire !== 0)
 					newLineCount++
-				if (newEquipmentData.blizzardResistance !== 0)
+				if (newEquipmentData.currentBlizzard !== 0)
 					newLineCount++
-				if (newEquipmentData.thunderResistance !== 0)
+				if (newEquipmentData.currentThunder !== 0)
 					newLineCount++
-				if (newEquipmentData.darkResistance !== 0)
+				if (newEquipmentData.currentDark !== 0)
 					newLineCount++
 			}
 
@@ -120,7 +120,6 @@ export class Equipment {
 			ret.universalResistance = newEquipmentData.currentUniversal
 			ret.additionalLineCount = newLineCount
 			ret.toBeReplaced = false
-
 			return ret
 		}
 		this.markForReplacement = (toBeReplaced) => {

@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/Table'
 
 function EquipmentTable(props) {
 	let equipmentList = props.equipments.map((equipment, index) => {
+		// console.log(equipment)
 		let styles
 		if (equipment.isAbilityReplaced() || equipment.isStatsReplaced() || equipment.isElementalResistanceChanged() || equipment.isOtherResistanceChanged()) {
 			styles = { background: 'green' }
@@ -10,10 +11,8 @@ function EquipmentTable(props) {
 		if (props.currentEquipmentType === 'Armor') {
 			if (equipment.additionalLineCount !== 0)
 				styles = { background: 'red' }
-		} else {
-			if (equipment.additionalLineCount > 1)
-				styles = { background: 'red' }
-		}
+		} else if (equipment.additionalLineCount > 1)
+			styles = { background: 'red' }
 		return (
 			<tr
 				style={styles}

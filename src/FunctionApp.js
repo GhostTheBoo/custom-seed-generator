@@ -187,9 +187,13 @@ function FunctionApp() {
 					: objectList.vanilla()
 			}
 			if (objectListID === fieldData[currentIndexFieldName]) {
-				let newObjectList = toReplace
-					? objectList[fieldName].replace(replacement)
-					: objectList[fieldName].vanilla()
+				let newObjectList = objectList[fieldName].map(object => {
+					if (object.toBeReplaced)
+						return toReplace
+							? object.replace(replacement)
+							: object.vanilla()
+					return object
+				})
 				return {
 					...objectList,
 					[fieldName]: newObjectList
@@ -397,7 +401,6 @@ function FunctionApp() {
 							}
 							handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentDriveForm', 'driveLevels', formFieldData, setFormFieldData, allForms, setAllForms)
 						}}
-
 					/>
 				</Tab>
 				<Tab eventKey="equipment" title="Equipment">
