@@ -76,7 +76,7 @@ export class Level {
 			ret.defense = newLevelData.currentLevelDefense
 			ret.magic = newLevelData.currentLevelMagic
 			ret.strength = newLevelData.currentLevelStrength
-			ret.replacementSwordReward = { ...newLevelData.sowrd }
+			ret.replacementSwordReward = { ...newLevelData.sword }
 			ret.replacementShieldReward = { ...newLevelData.shield }
 			ret.replacementStaffReward = { ...newLevelData.staff }
 			ret.toBeReplaced = false

@@ -8,6 +8,7 @@ export class Cheat {
 		this.copy = () => {
 			let ret = new Cheat(this.name, [...this.code])
 			ret.toBeReplaced = this.toBeReplaced
+			ret.isActive = this.isActive
 			return ret
 		}
 		this.toggle = () => {

@@ -142,7 +142,7 @@ function FunctionApp() {
 	const [startingStatus, setStartingStatus] = useState(startingStatusData)
 	//#endregion
 
-	//#region Bonus Jank City
+	//#region General Functions
 	function handleBonusTableChange() {
 		return allBonuses.map((world, worldID) => {
 			if (worldID === bonusFieldData.currentWorld) {
@@ -160,9 +160,6 @@ function FunctionApp() {
 			return world
 		})
 	}
-	//#endregion
-
-	//#region General Functions
 	function handleTableChange(nextIndex, currentIndexFieldName, dataFieldName, fieldData, setFieldData, allData, setAllData) {
 		let newAllData = allData.map((objectList, objectListID) => {
 			if (objectListID === fieldData[currentIndexFieldName]) {
@@ -182,24 +179,28 @@ function FunctionApp() {
 			selectAll: false
 		})
 	}
-	function handleReplace(toReplace, reward, currentIndex, fieldName, allData) {
-		return allData.map((object, index) => {
-			if (index === currentIndex)
+	function handleReplace(isShallow, toReplace, replacement, currentIndexFieldName, fieldName, fieldData, setFieldData, allData, setAllData) {
+		let newAllData = allData.map((objectList, objectListID) => {
+			if (isShallow) {
+				return toReplace
+					? objectList.replace(replacement)
+					: objectList.vanilla()
+			}
+			if (objectListID === fieldData[currentIndexFieldName]) {
+				let newObjectList = toReplace
+					? objectList[fieldName].replace(replacement)
+					: objectList[fieldName].vanilla()
 				return {
-					...object,
-					[fieldName]: handleShallowReplace(toReplace, reward, object[fieldName])
+					...objectList,
+					[fieldName]: newObjectList
 				}
-			return object
+			}
+			return objectList
 		})
-	}
-	function handleShallowReplace(toReplace, reward, currentData) {
-		return currentData.map(object => {
-			if (object.toBeReplaced)
-				if (toReplace)
-					return object.replace(reward)
-				else
-					return object.vanilla()
-			return object
+		setAllData(newAllData)
+		setFieldData({
+			...fieldData,
+			selectAll: false
 		})
 	}
 	function onRowCheck(isShallow, row, currentIndexFieldName, dataFieldName, fieldData, allData, setAllData) {
@@ -229,7 +230,7 @@ function FunctionApp() {
 		let newSelectAll = !fieldData.selectAll
 		let newAllData = allData.map((objectList, objectListID) => {
 			if (isShallow)
-				return objectList.markForReplacement(!objectList.toBeReplaced)
+				return objectList.markForReplacement(newSelectAll)
 			if (objectListID === fieldData[currentIndexFieldName]) {
 				let newObjectList = objectList[dataFieldName].map(object => {
 					return object.markForReplacement(newSelectAll)
@@ -292,11 +293,7 @@ function FunctionApp() {
 									...rewardsData[chestFieldData.currentRewardType].rewards[chestFieldData.currentReward]
 								}
 							}
-							setAllChests(handleReplace(e.target.name === 'replaceButton', replacement, chestFieldData.currentWorld, 'chests', allChests))
-							setChestFieldData({
-								...chestFieldData,
-								selectAll: false
-							})
+							handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentWorld', 'chests', chestFieldData, setChestFieldData, allChests, setAllChests)
 						}}
 					/>
 				</Tab>
@@ -317,11 +314,7 @@ function FunctionApp() {
 									...rewardsData[popupFieldData.currentRewardType].rewards[popupFieldData.currentReward]
 								}
 							}
-							setAllPopups(handleReplace(e.target.name === 'replaceButton', replacement, popupFieldData.currentWorld, 'popups', allPopups))
-							setPopupFieldData({
-								...popupFieldData,
-								selectAll: false
-							})
+							handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentWorld', 'popups', popupFieldData, setPopupFieldData, allPopups, setAllPopups)
 						}}
 					/>
 				</Tab>
@@ -353,8 +346,7 @@ function FunctionApp() {
 						onSelectChange={(e) => handleFieldChange(e.target.name, e.target.value, bonusFieldData, setBonusFieldData)}
 						onInputChange={(e) => handleFieldChange(e.target.name,
 							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
-							bonusFieldData,
-							setBonusFieldData)
+							bonusFieldData, setBonusFieldData)
 						}
 						onRowCheck={(e) => onRowCheck(false, e.target.value, 'currentWorld', 'bonusFights', bonusFieldData, allBonuses, setAllBonuses)}
 						onCheckAll={() => onCheckAll(false, 'currentWorld', 'bonusFights', bonusFieldData, setBonusFieldData, allBonuses, setAllBonuses)}
@@ -376,11 +368,7 @@ function FunctionApp() {
 									...rewardsData[bonusFieldData.currentRewardBType].rewards[bonusFieldData.currentRewardB]
 								}
 							}
-							setAllBonuses(handleReplace(e.target.name === 'replaceButton', replacement, bonusFieldData.currentWorld, 'bonusFights', allBonuses))
-							setBonusFieldData({
-								...bonusFieldData,
-								selectAll: false
-							})
+							handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentWorld', 'bonusFights', bonusFieldData, setBonusFieldData, allBonuses, setAllBonuses)
 						}}
 					/>
 				</Tab>
@@ -390,13 +378,12 @@ function FunctionApp() {
 						formData={allForms[formFieldData.currentDriveForm].driveLevels}
 						fieldData={formFieldData}
 						rewardList={rewardsData[formFieldData.currentRewardType].rewards}
-						handleFormChange={(e) => handleTableChange(e.target.value, 'currentDriveform', 'driveLevels', formFieldData, setFormFieldData, allForms, setAllForms)}
+						handleFormChange={(e) => handleTableChange(e.target.value, 'currentDriveForm', 'driveLevels', formFieldData, setFormFieldData, allForms, setAllForms)}
 						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, formFieldData, setFormFieldData)}
 						onSelectChange={(e) => handleFieldChange(e.target.name, e.target.value, formFieldData, setFormFieldData)}
 						onInputChange={(e) => handleFieldChange(e.target.name,
 							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
-							formFieldData,
-							setFormFieldData)
+							formFieldData, setFormFieldData)
 						}
 						onRowCheck={(e) => onRowCheck(false, e.target.value, 'currentDriveForm', 'driveLevels', formFieldData, allForms, setAllForms)}
 						onCheckAll={() => onCheckAll(false, 'currentDriveForm', 'driveLevels', formFieldData, setFormFieldData, allForms, setAllForms)}
@@ -408,11 +395,7 @@ function FunctionApp() {
 								currentEXPMultiplierValue: formFieldData.currentEXPMultiplierValue,
 								currentEXP: formFieldData.currentEXP
 							}
-							setAllForms(handleReplace(e.target.name === 'replaceButton', replacement, formFieldData.currentDriveForm, 'driveLevels', allForms))
-							setFormFieldData({
-								...formFieldData,
-								selectAll: false
-							})
+							handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentDriveForm', 'driveLevels', formFieldData, setFormFieldData, allForms, setAllForms)
 						}}
 
 					/>
@@ -429,8 +412,7 @@ function FunctionApp() {
 						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, equipmentFieldData, setEquipmentFieldData)}
 						onInputChange={(e) => handleFieldChange(e.target.name,
 							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
-							equipmentFieldData,
-							setEquipmentFieldData)
+							equipmentFieldData, setEquipmentFieldData)
 						}
 						onRowCheck={(e) => onRowCheck(false, e.target.value, 'currentEquipmentType', 'equipments', equipmentFieldData, allEquipments, setAllEquipments)}
 						onCheckAll={() => onCheckAll(false, 'currentEquipmentType', 'equipments', equipmentFieldData, setEquipmentFieldData, allEquipments, setAllEquipments)}
@@ -452,11 +434,8 @@ function FunctionApp() {
 									...rewardsData[equipmentFieldData.currentRewardType].rewards[equipmentFieldData.currentReward]
 								}
 							}
-							setAllEquipments(handleReplace(e.target.name === 'replaceButton', replacement, equipmentFieldData.currentEquipmentType, 'equipments', allEquipments))
-							setEquipmentFieldData({
-								...equipmentFieldData,
-								selectAll: false
-							})
+							handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentEquipmentType', 'equipments', equipmentFieldData, setEquipmentFieldData,
+								allEquipments, setAllEquipments)
 						}}
 					/>
 				</Tab>
@@ -472,19 +451,18 @@ function FunctionApp() {
 						onSelectChange={(e) => handleFieldChange(e.target.name, e.target.value, levelFieldData, setLevelFieldData)}
 						onInputChange={(e) => handleFieldChange(e.target.name,
 							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
-							levelFieldData,
-							setLevelFieldData)
+							levelFieldData, setLevelFieldData)
 						}
 						onRowCheck={(e) => onRowCheck(true, e.target.value, '', '', levelFieldData, allLevels, setAllLevels)}
-						onCheckAll={() => onCheckAll(true, '', 'levels', levelFieldData, setLevelFieldData, { levels: allLevels }, setAllLevels)}
+						onCheckAll={() => onCheckAll(true, '', '', levelFieldData, setLevelFieldData, allLevels, setAllLevels)}
 						onClick={(e) => {
 							let replacement = {
-								currentLevelAP: 0,
-								currentLevelDefense: 0,
-								currentLevelMagic: 0,
-								currentLevelStrength: 0,
-								currentEXP: 0,
-								currentEXPMultiplierValue: 2,
+								currentLevelAP: levelFieldData.currentLevelAP,
+								currentLevelDefense: levelFieldData.currentLevelDefense,
+								currentLevelMagic: levelFieldData.currentLevelMagic,
+								currentLevelStrength: levelFieldData.currentLevelStrength,
+								currentEXP: levelFieldData.currentEXP,
+								currentEXPMultiplierValue: levelFieldData.currentEXPMultiplierValue,
 								sword: {
 									...rewardsData[levelFieldData.currentSwordRewardType].rewards[levelFieldData.currentSwordReward]
 								},
@@ -495,11 +473,7 @@ function FunctionApp() {
 									...rewardsData[levelFieldData.currentStaffRewardType].rewards[levelFieldData.currentStaffReward]
 								}
 							}
-							setAllLevels(handleShallowReplace(e.target.name === 'replaceButton', replacement, allLevels))
-							setLevelFieldData({
-								...levelFieldData,
-								selectAll: false
-							})
+							handleReplace(true, e.target.name === 'replaceButton', replacement, '', '', levelFieldData, setLevelFieldData, allLevels, setAllLevels)
 						}}
 					/>
 				</Tab>
@@ -511,8 +485,7 @@ function FunctionApp() {
 						handleMagicTypeChange={(e) => handleTableChange(e.target.value, 'currentMagicType', 'abilities', magicFieldData, setMagicFieldData, allMagics, setAllMagics)}
 						onInputChange={(e) => handleFieldChange(e.target.name,
 							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
-							magicFieldData,
-							setMagicFieldData)
+							magicFieldData, setMagicFieldData)
 						}
 						onRowCheck={(e) => onRowCheck(false, e.target.value, 'currentMagicType', 'abilities', magicFieldData, allMagics, setAllMagics)}
 						onCheckAll={() => onCheckAll(false, 'currentMagicType', 'abilities', magicFieldData, setMagicFieldData, allMagics, setAllMagics)}
@@ -520,11 +493,7 @@ function FunctionApp() {
 							let replacement = {
 								cost: magicFieldData.currentCost
 							}
-							setAllMagics(handleReplace(e.target.name === 'replaceButton', replacement, magicFieldData.currentMagicType, 'abilities', allMagics))
-							setMagicFieldData({
-								...magicFieldData,
-								selectAll: false
-							})
+							handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentMagicType', 'abilities', magicFieldData, setMagicFieldData, allMagics, setAllMagics)
 						}}
 					/>
 				</Tab>
@@ -537,18 +506,14 @@ function FunctionApp() {
 						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, criticalFieldData, setCriticalFieldData)}
 						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, criticalFieldData, setCriticalFieldData)}
 						onRowCheck={(e) => onRowCheck(true, e.target.value, '', '', criticalFieldData, allCriticals, setAllCriticals)}
-						onCheckAll={() => onCheckAll(true, '', 'criticals', criticalFieldData, setCriticalFieldData, { criticals: allCriticals }, setAllCriticals)}
+						onCheckAll={() => onCheckAll(true, '', '', criticalFieldData, setCriticalFieldData, allCriticals, setAllCriticals)}
 						onClick={(e) => {
 							let replacement = {
 								reward: {
 									...rewardsData[criticalFieldData.currentRewardType].rewards[criticalFieldData.currentReward]
 								}
 							}
-							setAllCriticals(handleShallowReplace(e.target.name === 'replaceButton', replacement, allCriticals))
-							setCriticalFieldData({
-								...criticalFieldData,
-								selectAll: false
-							})
+							handleReplace(true, e.target.name === 'replaceButton', replacement, '', '', criticalFieldData, setCriticalFieldData, allCriticals, setAllCriticals)
 						}}
 					/>
 				</Tab>
@@ -558,14 +523,13 @@ function FunctionApp() {
 						cheatData={allCheats}
 						fieldData={cheatFieldData}
 						onRowCheck={(e) => onRowCheck(true, e.target.value, '', '', cheatFieldData, allCheats, setAllCheats)}
-						onCheckAll={() => onCheckAll(true, '', 'cheats', cheatFieldData, setCheatFieldData, { cheats: allCheats }, setAllCheats)}
+						onCheckAll={() => onCheckAll(true, '', '', cheatFieldData, setCheatFieldData, allCheats, setAllCheats)}
 						onClick={() => {
-							let replacedObjects = allCheats.map(object => {
+							setAllCheats(allCheats.map(object => {
 								if (object.toBeReplaced)
 									return object.toggle()
 								return object
-							})
-							setAllCheats(replacedObjects)
+							}))
 							setCheatFieldData({ selectAll: false })
 						}}
 					/>
@@ -583,8 +547,7 @@ function FunctionApp() {
 						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, startingStatusFieldData, setStartingStatusFieldData)}
 						onInputChange={(e) => handleFieldChange(e.target.name,
 							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
-							startingStatusFieldData,
-							setStartingStatusFieldData)
+							startingStatusFieldData, setStartingStatusFieldData)
 						}
 						onClick={(e) => {
 							let replacement = {
