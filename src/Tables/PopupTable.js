@@ -10,7 +10,7 @@ function PopupTable(props) {
 			styles = { background: 'green' }
 			originalReward = popup.replacementReward.reward
 		}
-		if (popup.isAbility)
+		if (popup.isAbility())
 			styles = { background: 'red' }
 		return (
 			<tr

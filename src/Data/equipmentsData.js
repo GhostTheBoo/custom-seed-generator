@@ -33,138 +33,133 @@ export class Equipment {
 		this.otherResistanceAddress = this.elementalResistanceAddress + 4
 		this.toBeReplaced = false
 		this.additionalLineCount = 0
-	}
+		
+		this.isAbilityReplaced = () => {
+			return this.vanillaAbility.index !== this.replacementAbility.index
+		}
+		this.isStatsReplaced = () => {
+			return this.strength !== this.vanillaStrength || this.magic !== this.vanillaMagic || this.defense !== this.vanillaDefense || this.ap !== this.vanillaAP
+		}
+		this.isElementalResistanceChanged = () => {
+			return this.fireResistance !== this.vanillaFireResistance || this.blizzardResistance !== this.vanillaBlizzardResistance ||
+				this.thunderResistance !== this.vanillaThunderResistance || this.physicalResistance !== this.vanillaPhysicalResistance
+		}
+		this.isOtherResistanceChanged = () => {
+			return this.darkResistance !== this.vanillaDarkResistance || this.lightResistance !== this.vanillaLightResistance || this.universalResistance !== this.vanillaUniversalResistance
+		}
+		this.copy = () => {
+			let ret = new Equipment(this.name, new Reward(this.vanillaAbility.reward, this.vanillaAbility.index, this.vanillaAbility.iconType), this.strength, this.magic, this.ap, this.defense,
+				this.fireResistance, this.blizzardResistance, this.thunderResistance, this.darkResistance, this.physicalResistance, this.lightResistance, this.universalResistance,
+				this.abilityAddress)
 
-	isAbilityReplaced() {
-		return this.vanillaAbility !== this.replacementAbility
-	}
-	isStatsReplaced() {
-		return this.strength !== this.vanillaStrength || this.magic !== this.vanillaMagic || this.defense !== this.vanillaDefense || this.ap !== this.vanillaAP
-	}
-	isElementalResistanceChanged() {
-		return this.fireResistance !== this.vanillaFireResistance || this.blizzardResistance !== this.vanillaBlizzardResistance ||
-			this.thunderResistance !== this.vanillaThunderResistance || this.physicalResistance !== this.vanillaPhysicalResistance
-	}
-	isOtherResistanceChanged() {
-		return this.darkResistance !== this.vanillaDarkResistance || this.lightResistance !== this.vanillaLightResistance || this.universalResistance !== this.vanillaUniversalResistance
-	}
+			ret.replacementAbility = this.replacementAbility
+			ret.strength = this.strength
+			ret.magic = this.magic
+			ret.ap = this.ap
+			ret.defense = this.defense
+			ret.fireResistance = this.fireResistance
+			ret.blizzardResistance = this.blizzardResistance
+			ret.thunderResistance = this.thunderResistance
+			ret.darkResistance = this.darkResistance
+			ret.physicalResistance = this.physicalResistance
+			ret.lightResistance = this.lightResistance
+			ret.universalResistance = this.universalResistance
+			ret.toBeReplaced = this.toBeReplaced
+			ret.additionalLineCount = this.additionalLineCount
 
-	copy() {
-		let ret = new Equipment(this.name, new Reward(this.vanillaAbility.reward, this.vanillaAbility.index, this.vanillaAbility.iconType), this.strength, this.magic, this.ap, this.defense,
-			this.fireResistance, this.blizzardResistance, this.thunderResistance, this.darkResistance, this.physicalResistance, this.lightResistance, this.universalResistance,
-			this.abilityAddress)
+			return ret
+		}
+		this.vanilla = () => {
+			return new Equipment(this.name, new Reward(this.vanillaAbility.reward, this.vanillaAbility.index, this.vanillaAbility.iconType), this.strength, this.magic, this.ap, this.defense,
+				this.fireResistance, this.blizzardResistance, this.thunderResistance, this.darkResistance, this.physicalResistance, this.lightResistance, this.universalResistance,
+				this.abilityAddress)
+		}
+		this.replace = (newEquipmentData) => {
+			let ret = this.copy()
+			let newLineCount = 0
 
-		ret.replacementAbility = this.replacementAbility
-		ret.strength = this.strength
-		ret.magic = this.magic
-		ret.ap = this.ap
-		ret.defense = this.defense
-		ret.fireResistance = this.fireResistance
-		ret.blizzardResistance = this.blizzardResistance
-		ret.thunderResistance = this.thunderResistance
-		ret.darkResistance = this.darkResistance
-		ret.physicalResistance = this.physicalResistance
-		ret.lightResistance = this.lightResistance
-		ret.universalResistance = this.universalResistance
-		ret.toBeReplaced = this.toBeReplaced
-		ret.additionalLineCount = this.additionalLineCount
-
-		return ret
-	}
-
-	vanilla() {
-		return new Equipment(this.name, new Reward(this.vanillaAbility.reward, this.vanillaAbility.index, this.vanillaAbility.iconType), this.strength, this.magic, this.ap, this.defense,
-			this.fireResistance, this.blizzardResistance, this.thunderResistance, this.darkResistance, this.physicalResistance, this.lightResistance, this.universalResistance,
-			this.abilityAddress)
-	}
-
-	replace(newEquipmentData) {
-		let ret = this.copy()
-		let newLineCount = 0
-
-		if (newEquipmentData.strength !== ret.vanillaStrength || newEquipmentData.magic !== ret.vanillaMagic ||
-			newEquipmentData.defense !== ret.vanillaDefense || newEquipmentData.ap !== ret.vanillaAP) {
-			if (newEquipmentData.currentEquipmentType !== 5) {
-				if (newEquipmentData.ap !== 0)
-					newLineCount++
+			if (newEquipmentData.strength !== ret.vanillaStrength || newEquipmentData.magic !== ret.vanillaMagic ||
+				newEquipmentData.defense !== ret.vanillaDefense || newEquipmentData.ap !== ret.vanillaAP) {
+				if (newEquipmentData.currentEquipmentType !== 5) {
+					if (newEquipmentData.ap !== 0)
+						newLineCount++
+				}
+				if (newEquipmentData.currentEquipmentType !== 4) {
+					if (newEquipmentData.defense !== 0)
+						newLineCount++
+				} else {
+					if (newEquipmentData.strength !== 0)
+						newLineCount++
+					if (newEquipmentData.magic !== 0)
+						newLineCount++
+				}
 			}
+
 			if (newEquipmentData.currentEquipmentType !== 4) {
-				if (newEquipmentData.defense !== 0)
+				if (newEquipmentData.fireResistance !== 0)
 					newLineCount++
-			} else {
-				if (newEquipmentData.strength !== 0)
+				if (newEquipmentData.blizzardResistance !== 0)
 					newLineCount++
-				if (newEquipmentData.magic !== 0)
+				if (newEquipmentData.thunderResistance !== 0)
+					newLineCount++
+				if (newEquipmentData.darkResistance !== 0)
 					newLineCount++
 			}
+
+			ret.replacementAbility = { ...newEquipmentData.reward }
+			ret.strength = newEquipmentData.currentStrength
+			ret.magic = newEquipmentData.currentMagic
+			ret.ap = newEquipmentData.currentAP
+			ret.defense = newEquipmentData.currentDefense
+			ret.fireResistance = newEquipmentData.currentFire
+			ret.blizzardResistance = newEquipmentData.currentBlizzard
+			ret.thunderResistance = newEquipmentData.currentThunder
+			ret.physicalResistance = newEquipmentData.currentPhysical
+			ret.darkResistance = newEquipmentData.currentDark
+			ret.lightResistance = newEquipmentData.currentLight
+			ret.universalResistance = newEquipmentData.currentUniversal
+			ret.additionalLineCount = newLineCount
+			ret.toBeReplaced = false
+
+			return ret
 		}
-
-		if (newEquipmentData.currentEquipmentType !== 4) {
-			if (newEquipmentData.fireResistance !== 0)
-				newLineCount++
-			if (newEquipmentData.blizzardResistance !== 0)
-				newLineCount++
-			if (newEquipmentData.thunderResistance !== 0)
-				newLineCount++
-			if (newEquipmentData.darkResistance !== 0)
-				newLineCount++
+		this.markForReplacement = (toBeReplaced) => {
+			let ret = this.copy()
+			ret.toBeReplaced = toBeReplaced
+			return ret
 		}
+		this.toPnach = () => {
+			let ret = ''
 
-		ret.replacementAbility = { ...newEquipmentData.reward }
-		ret.strength = newEquipmentData.currentStrength
-		ret.magic = newEquipmentData.currentMagic
-		ret.ap = newEquipmentData.currentAP
-		ret.defense = newEquipmentData.currentDefense
-		ret.fireResistance = newEquipmentData.currentFire
-		ret.blizzardResistance = newEquipmentData.currentBlizzard
-		ret.thunderResistance = newEquipmentData.currentThunder
-		ret.physicalResistance = newEquipmentData.currentPhysical
-		ret.darkResistance = newEquipmentData.currentDark
-		ret.lightResistance = newEquipmentData.currentLight
-		ret.universalResistance = newEquipmentData.currentUniversal
-		ret.additionalLineCount = newLineCount
-		ret.toBeReplaced = false
+			if (this.isAbilityReplaced) {
+				ret += 'patch=1,EE,' + this.abilityAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
+				ret += this.replacementAbility.index.toString(16).toUpperCase().padStart(4, '0') + ' // Ability: ' + this.replacementAbility.reward + '\n'
+			}
 
-		return ret
-	}
+			if (this.isStatsReplaced) {
+				ret += 'patch=1,EE,' + this.statAddress.toString(16).toUpperCase().padStart(8, 0) + ',extended,'
+				ret += this.ap.toString(16).toUpperCase().padStart(2, '0') + this.defense.toString(16).toUpperCase().padStart(2, '0')
+				ret += this.magic.toString(16).toUpperCase().padStart(2, '0') + this.strength.toString(16).toUpperCase().padStart(2, '0')
+				ret += ' // AP:' + this.ap + ' Defense:' + this.defense + ' Magic:' + this.magic + ' Strength:' + this.strength + '\n'
+			}
 
-	markForReplacement(toBeReplaced) {
-		let ret = this.copy()
-		ret.toBeReplaced = toBeReplaced
-		return ret
-	}
+			if (this.isElementalResistanceChanged) {
+				ret += 'patch=1,EE,' + this.elementalResistanceAddress.toString(16).toUpperCase().padStart(8, 0) + ',extended,'
+				ret += (100 - this.thunderResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - this.blizzardResistance).toString(16).toUpperCase().padStart(2, '0')
+				ret += (100 - this.fireResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - this.physicalResistance).toString(16).toUpperCase().padStart(2, '0')
+				ret += ' // Thunder:' + this.thunderResistance + '% Blizzard:' + this.blizzardResistance
+				ret += '% Fire:' + this.fireResistance + '% Physical:' + this.physicalResistance + '%\n'
+			}
 
-	toPnach() {
-		let ret = ''
+			if (this.isOtherResistanceChanged) {
+				ret += 'patch=1,EE,' + this.otherResistanceAddress.toString(16).toUpperCase().padStart(8, 0) + ',extended,00'
+				ret += (100 - this.universalResistance).toString(16).toUpperCase().padStart(2, '0')
+				ret += (100 - this.lightResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - this.darkResistance).toString(16).toUpperCase().padStart(2, '0')
+				ret += ' // Universal:' + this.universalResistance + '% Light:' + this.lightResistance + '% Dark:' + this.darkResistance + '%\n'
+			}
 
-		if (this.isAbilityReplaced) {
-			ret += 'patch=1,EE,' + this.abilityAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
-			ret += this.replacementAbility.index.toString(16).toUpperCase().padStart(4, '0') + ' // Ability: ' + this.replacementAbility.reward + '\n'
+			return ret === '' ? ret : '// ' + this.name + '\n' + ret
 		}
-
-		if (this.isStatsReplaced) {
-			ret += 'patch=1,EE,' + this.statAddress.toString(16).toUpperCase().padStart(8, 0) + ',extended,'
-			ret += this.ap.toString(16).toUpperCase().padStart(2, '0') + this.defense.toString(16).toUpperCase().padStart(2, '0')
-			ret += this.magic.toString(16).toUpperCase().padStart(2, '0') + this.strength.toString(16).toUpperCase().padStart(2, '0')
-			ret += ' // AP:' + this.ap + ' Defense:' + this.defense + ' Magic:' + this.magic + ' Strength:' + this.strength + '\n'
-		}
-
-		if (this.isElementalResistanceChanged) {
-			ret += 'patch=1,EE,' + this.elementalResistanceAddress.toString(16).toUpperCase().padStart(8, 0) + ',extended,'
-			ret += (100 - this.thunderResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - this.blizzardResistance).toString(16).toUpperCase().padStart(2, '0')
-			ret += (100 - this.fireResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - this.physicalResistance).toString(16).toUpperCase().padStart(2, '0')
-			ret += ' // Thunder:' + this.thunderResistance + '% Blizzard:' + this.blizzardResistance
-			ret += '% Fire:' + this.fireResistance + '% Physical:' + this.physicalResistance + '%\n'
-		}
-
-		if (this.isOtherResistanceChanged) {
-			ret += 'patch=1,EE,' + this.otherResistanceAddress.toString(16).toUpperCase().padStart(8, 0) + ',extended,00'
-			ret += (100 - this.universalResistance).toString(16).toUpperCase().padStart(2, '0')
-			ret += (100 - this.lightResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - this.darkResistance).toString(16).toUpperCase().padStart(2, '0')
-			ret += ' // Universal:' + this.universalResistance + '% Light:' + this.lightResistance + '% Dark:' + this.darkResistance + '%\n'
-		}
-
-		return ret === '' ? ret : '// ' + this.name + '\n' + ret
 	}
 }
 

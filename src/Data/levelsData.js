@@ -25,110 +25,105 @@ export class Level {
 		this.vanillaStaffReward = { ...staff }
 		this.replacementStaffReward = { ...staff }
 		this.toBeReplaced = false
-	}
 
-	criticalAP() {
-		return Math.floor(((this.standardAP - 2) * 1.5) + 50)
-	}
-	isEXPReplaced() {
-		return this.replacementEXP !== this.vanillaEXP
-	}
-	isStatsReplaced() {
-		return this.standardAP !== this.vanillaAP || this.defense !== this.vanillaDefense || this.magic !== this.vanillaMagic || this.strength !== this.vanillaStrength
-	}
-	isSwordReplaced() {
-		return this.replacementSwordReward.index !== this.vanillaSwordReward.index
-	}
-	isShieldReplaced() {
-		return this.replacementShieldReward.index !== this.vanillaShieldReward.index
-	}
-	isStaffReplaced() {
-		return this.replacementStaffReward.index !== this.vanillaStaffReward.index
-	}
-
-	copy() {
-		let ret = new Level(this.level, this.vanillaEXP, this.expAddress, this.vanillaAP, this.vanillaDefense, this.vanillaMagic, this.vanillaStrength,
-			new Reward(this.vanillaSwordReward.reward, this.vanillaSwordReward.index, this.vanillaSwordReward.iconType),
-			new Reward(this.vanillaShieldReward.reward, this.vanillaShieldReward.index, this.vanillaShieldReward.iconType),
-			new Reward(this.vanillaStaffReward.reward, this.vanillaStaffReward.index, this.vanillaStaffReward.iconType))
-
-		ret.replacementEXP = this.replacementEXP
-		ret.standardAP = this.standardAP
-		ret.defense = this.defense
-		ret.magic = this.magic
-		ret.strength = this.strength
-		ret.replacementSwordReward = { ...this.replacementSwordReward }
-		ret.replacementShieldReward = { ...this.replacementShieldReward }
-		ret.replacementStaffReward = { ...this.replacementStaffReward }
-		ret.toBeReplaced = this.toBeReplaced
-
-		return ret
-	}
-
-	vanilla() {
-		return new Level(this.level, this.vanillaEXP, this.expAddress, this.vanillaAP, this.vanillaDefense, this.vanillaMagic, this.vanillaStrength,
-			new Reward(this.vanillaSwordReward.reward, this.vanillaSwordReward.index, this.vanillaSwordReward.iconType),
-			new Reward(this.vanillaShieldReward.reward, this.vanillaShieldReward.index, this.vanillaShieldReward.iconType),
-			new Reward(this.vanillaStaffReward.reward, this.vanillaStaffReward.index, this.vanillaStaffReward.iconType))
-	}
-
-	replace(newLevelData) {
-		let ret = this.copy()
-
-		ret.replacementEXP = newLevelData.currentEXPMultiplierValue === 0 ? newLevelData.currentEXP : Math.max(1, Math.floor((2 * this.vanillaEXP) / newLevelData.currentEXPMultiplierValue))
-		ret.standardAP = newLevelData.currentLevelAP
-		ret.defense = newLevelData.currentLevelDefense
-		ret.magic = newLevelData.currentLevelMagic
-		ret.strength = newLevelData.currentLevelStrength
-		ret.replacementSwordReward = { ...newLevelData.sowrd }
-		ret.replacementShieldReward = { ...newLevelData.shield }
-		ret.replacementStaffReward = { ...newLevelData.staff }
-		ret.toBeReplaced = false
-
-		return ret
-	}
-
-	markForReplacement(toBeReplaced) {
-		let ret = this.copy()
-		ret.toBeReplaced = toBeReplaced
-		return ret
-	}
-
-	toPnach() {
-		let ret = ''
-
-		if (this.level === 99)
-			ret += '// Cannot Level to 100 so experience is not changed\n'
-		else
-			if (this.isEXPReplaced()) {
-				ret += 'patch=1,EE,' + this.expAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,' + this.replacedEXP.toString(16).toUpperCase().padStart(8, '0')
-				ret += ' // Next level at ' + this.replacedEXP + ' experience\n'
-			}
-
-		if (this.isStatsReplaced()) {
-			ret += 'patch=1,EE,' + this.statAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,'
-			ret += this.standardAP.toString(16).toUpperCase().padStart(2, '0') + this.defense.toString(16).toUpperCase().padStart(2, '0')
-			ret += this.magic.toString(16).toUpperCase().padStart(2, '0') + this.strength.toString(16).toUpperCase().padStart(2, '0')
-			ret += ' // AP:' + this.standardAP + ' Magic:' + this.magic + ' Defense:' + this.defense + ' Strength:' + this.strength + '\n'
+		this.criticalAP = () => {
+			return Math.floor(((this.standardAP - 2) * 1.5) + 50)
 		}
-
-		if (this.level === 1)
-			ret += '// No Level 1 Dream Weapon Rewards\n'
-		else {
-			if (this.isSwordReplaced()) {
-				ret += 'patch=1,EE,' + this.swordAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
-				ret += this.replacementSwordReward.index + ' // Sword Reward: ' + this.replacementSwordReward.reward + '\n'
-			}
-			if (this.isShieldReplaced()) {
-				ret += 'patch=1,EE,' + this.shieldAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
-				ret += this.replacementShieldReward.index + ' // Shield Reward: ' + this.replacementShieldReward.reward + '\n'
-			}
-			if (this.isStaffReplaced()) {
-				ret += 'patch=1,EE,' + this.staffAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
-				ret += this.replacementStaffReward.index + ' // Staff Reward: ' + this.replacementStaffReward.reward + '\n'
-			}
+		this.isEXPReplaced = () => {
+			return this.replacementEXP !== this.vanillaEXP
 		}
-		return ret === '' ? ret : '// Level: ' + this.level + '\n' + ret
+		this.isStatsReplaced = () => {
+			return this.standardAP !== this.vanillaAP || this.defense !== this.vanillaDefense || this.magic !== this.vanillaMagic || this.strength !== this.vanillaStrength
+		}
+		this.isSwordReplaced = () => {
+			return this.replacementSwordReward.index !== this.vanillaSwordReward.index
+		}
+		this.isShieldReplaced = () => {
+			return this.replacementShieldReward.index !== this.vanillaShieldReward.index
+		}
+		this.isStaffReplaced = () => {
+			return this.replacementStaffReward.index !== this.vanillaStaffReward.index
+		}
+		this.copy = () => {
+			let ret = new Level(this.level, this.vanillaEXP, this.expAddress, this.vanillaAP, this.vanillaDefense, this.vanillaMagic, this.vanillaStrength,
+				new Reward(this.vanillaSwordReward.reward, this.vanillaSwordReward.index, this.vanillaSwordReward.iconType),
+				new Reward(this.vanillaShieldReward.reward, this.vanillaShieldReward.index, this.vanillaShieldReward.iconType),
+				new Reward(this.vanillaStaffReward.reward, this.vanillaStaffReward.index, this.vanillaStaffReward.iconType))
+
+			ret.replacementEXP = this.replacementEXP
+			ret.standardAP = this.standardAP
+			ret.defense = this.defense
+			ret.magic = this.magic
+			ret.strength = this.strength
+			ret.replacementSwordReward = { ...this.replacementSwordReward }
+			ret.replacementShieldReward = { ...this.replacementShieldReward }
+			ret.replacementStaffReward = { ...this.replacementStaffReward }
+			ret.toBeReplaced = this.toBeReplaced
+
+			return ret
+		}
+		this.vanilla = () => {
+			return new Level(this.level, this.vanillaEXP, this.expAddress, this.vanillaAP, this.vanillaDefense, this.vanillaMagic, this.vanillaStrength,
+				new Reward(this.vanillaSwordReward.reward, this.vanillaSwordReward.index, this.vanillaSwordReward.iconType),
+				new Reward(this.vanillaShieldReward.reward, this.vanillaShieldReward.index, this.vanillaShieldReward.iconType),
+				new Reward(this.vanillaStaffReward.reward, this.vanillaStaffReward.index, this.vanillaStaffReward.iconType))
+		}
+		this.replace = (newLevelData) => {
+			let ret = this.copy()
+
+			ret.replacementEXP = newLevelData.currentEXPMultiplierValue === 0 ? newLevelData.currentEXP : Math.max(1, Math.floor((2 * this.vanillaEXP) / newLevelData.currentEXPMultiplierValue))
+			ret.standardAP = newLevelData.currentLevelAP
+			ret.defense = newLevelData.currentLevelDefense
+			ret.magic = newLevelData.currentLevelMagic
+			ret.strength = newLevelData.currentLevelStrength
+			ret.replacementSwordReward = { ...newLevelData.sowrd }
+			ret.replacementShieldReward = { ...newLevelData.shield }
+			ret.replacementStaffReward = { ...newLevelData.staff }
+			ret.toBeReplaced = false
+
+			return ret
+		}
+		this.markForReplacement = (toBeReplaced) => {
+			let ret = this.copy()
+			ret.toBeReplaced = toBeReplaced
+			return ret
+		}
+		this.toPnach = () => {
+			let ret = ''
+
+			if (this.level === 99)
+				ret += '// Cannot Level to 100 so experience is not changed\n'
+			else
+				if (this.isEXPReplaced()) {
+					ret += 'patch=1,EE,' + this.expAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,' + this.replacedEXP.toString(16).toUpperCase().padStart(8, '0')
+					ret += ' // Next level at ' + this.replacedEXP + ' experience\n'
+				}
+
+			if (this.isStatsReplaced()) {
+				ret += 'patch=1,EE,' + this.statAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,'
+				ret += this.standardAP.toString(16).toUpperCase().padStart(2, '0') + this.defense.toString(16).toUpperCase().padStart(2, '0')
+				ret += this.magic.toString(16).toUpperCase().padStart(2, '0') + this.strength.toString(16).toUpperCase().padStart(2, '0')
+				ret += ' // AP:' + this.standardAP + ' Magic:' + this.magic + ' Defense:' + this.defense + ' Strength:' + this.strength + '\n'
+			}
+
+			if (this.level === 1)
+				ret += '// No Level 1 Dream Weapon Rewards\n'
+			else {
+				if (this.isSwordReplaced()) {
+					ret += 'patch=1,EE,' + this.swordAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
+					ret += this.replacementSwordReward.index + ' // Sword Reward: ' + this.replacementSwordReward.reward + '\n'
+				}
+				if (this.isShieldReplaced()) {
+					ret += 'patch=1,EE,' + this.shieldAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
+					ret += this.replacementShieldReward.index + ' // Shield Reward: ' + this.replacementShieldReward.reward + '\n'
+				}
+				if (this.isStaffReplaced()) {
+					ret += 'patch=1,EE,' + this.staffAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
+					ret += this.replacementStaffReward.index + ' // Staff Reward: ' + this.replacementStaffReward.reward + '\n'
+				}
+			}
+			return ret === '' ? ret : '// Level: ' + this.level + '\n' + ret
+		}
 	}
 }
 

@@ -2,12 +2,11 @@ import React from 'react'
 import Table from 'react-bootstrap/Table'
 
 function BonusTable(props) {
-	let bonusList = props.bonuses.slots.filter(bonus => bonus !== null).map((bonus, index) => {
+	let bonusList = props.bonuses.slots.filter(bonus => Object.keys(bonus).length !== 0).map((bonus, index) => {
 		let styles
-		console.log(bonus)
 		if (bonus.isStatsReplaced() || bonus.isSlotsReplaced() || bonus.isRewardsReplaced())
 			styles = { background: 'green' }
-		if ((bonus.getStatCount() + bonus.getSlotCount() + bonus.getRewardCount()) > 2)
+		if ((bonus.statChangeCount + bonus.slotChangeCount + bonus.rewardChangeCount) > 2)
 			styles = { background: 'red' }
 		return (
 			<tr

@@ -6,40 +6,35 @@ export class Critical {
 		this.replacementReward = { ...vanilla }
 		this.vanillaAddress = address
 		this.toBeReplaced = false
-	}
 
-	isReplaced() {
-		return this.replacementReward.index !== this.vanillaReward.index
-	}
-
-	copy() {
-		let ret = new Critical(new Reward(this.vanillaReward.reward, this.vanillaReward.index, this.vanillaReward.iconType), this.vanillaAddress)
-		ret.replacementReward = { ...this.replacementReward }
-		ret.toBeReplaced = this.toBeReplaced
-		return ret
-	}
-
-	vanilla() {
-		return new Critical(new Reward(this.vanillaReward.reward, this.vanillaReward.index, this.vanillaReward.iconType), this.vanillaAddress)
-	}
-
-	replace(newCriticalData) {
-		let ret = this.copy()
-		ret.replacementReward = { ...newCriticalData.reward }
-		ret.toBeReplaced = false
-		return ret
-	}
-
-	markForReplacement(toBeReplaced) {
-		let ret = this.copy()
-		ret.toBeReplaced = toBeReplaced
-		return ret
-	}
-
-	toPnach() {
-		let ret = 'patch=1,EE,' + this.vanillaAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000' + this.replacementReward.index.padStart(4, '0')
-		ret += ' // ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward + '\n'
-		return ret
+		this.isReplaced = () => {
+			return this.replacementReward.index !== this.vanillaReward.index
+		}
+		this.copy = () => {
+			let ret = new Critical(new Reward(this.vanillaReward.reward, this.vanillaReward.index, this.vanillaReward.iconType), this.vanillaAddress)
+			ret.replacementReward = { ...this.replacementReward }
+			ret.toBeReplaced = this.toBeReplaced
+			return ret
+		}
+		this.vanilla = () => {
+			return new Critical(new Reward(this.vanillaReward.reward, this.vanillaReward.index, this.vanillaReward.iconType), this.vanillaAddress)
+		}
+		this.replace = (newCriticalData) => {
+			let ret = this.copy()
+			ret.replacementReward = { ...newCriticalData.reward }
+			ret.toBeReplaced = false
+			return ret
+		}
+		this.markForReplacement = (toBeReplaced) => {
+			let ret = this.copy()
+			ret.toBeReplaced = toBeReplaced
+			return ret
+		}
+		this.toPnach = () => {
+			let ret = 'patch=1,EE,' + this.vanillaAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000' + this.replacementReward.index.padStart(4, '0')
+			ret += ' // ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward + '\n'
+			return ret
+		}
 	}
 }
 

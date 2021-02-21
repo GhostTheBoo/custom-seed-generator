@@ -10,58 +10,53 @@ export class FormLevel {
 		this.replacementEXP = exp
 		this.EXPAddress = expAddress
 		this.toBeReplaced = false
-	}
 
-	isEXPReplaced() {
-		return this.replacementEXP !== this.vanillaEXP
-	}
-	isRewardReplaced() {
-		return this.replacementReward.index !== this.vanillaReward.index
-	}
-
-	copy() {
-		let ret = new FormLevel(this.level, new Reward(this.vanillaReward.reward, this.vanillaReward.index, this.vanillaReward.iconType),
-			this.rewardAddress, this.vanillaEXP, this.EXPAddress)
-
-		ret.replacementReward = { ...this.replacementReward }
-		ret.replacementEXP = this.replacementEXP
-		ret.toBeReplaced = this.toBeReplaced
-
-		return ret
-	}
-
-	vanilla() {
-		return new FormLevel(this.level, new Reward(this.vanillaReward.reward, this.vanillaReward.index, this.vanillaReward.iconType), this.rewardAddress, this.vanillaEXP, this.EXPAddress)
-	}
-
-	replace(newFormData) {
-		let ret = this.copy()
-
-		ret.replacementReward = { ...newFormData.reward }
-		ret.replacementEXP = newFormData.currentEXPMultiplierValue === 0 ? newFormData.currentEXP : Math.max(1, Math.floor((2 * this.vanillaEXP) / newFormData.currentEXPMultiplierValue))
-		ret.toBeReplaced = false
-
-		return ret
-	}
-
-	markForReplacement(toBeReplaced) {
-		let ret = this.copy()
-		ret.toBeReplaced = toBeReplaced
-		return ret
-	}
-
-	toPnach() {
-		let ret = ''
-		if (this.isRewardReplaced()) {
-			ret += 'patch=1,EE,' + this.vanillaAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
-			ret += this.replacementReward.index.toString(16).toUpperCase().padStart(4, '0')
-			ret += ' // ' + this.level + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward + '\n'
+		this.isEXPReplaced = () => {
+			return this.replacementEXP !== this.vanillaEXP
 		}
-		if (this.isEXPReplaced()) {
-			ret += 'patch=1,EE,' + this.EXPAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,' + this.replacementEXP.toString(16).toUpperCase().padStart(8, 0)
-			ret += ' // ' + this.replacementEXP + ' experience is now required to reach ' + this.level + '\n'
+		this.isRewardReplaced = () => {
+			return this.replacementReward.index !== this.vanillaReward.index
 		}
-		return ret
+		this.copy = () => {
+			let ret = new FormLevel(this.level, new Reward(this.vanillaReward.reward, this.vanillaReward.index, this.vanillaReward.iconType),
+				this.rewardAddress, this.vanillaEXP, this.EXPAddress)
+
+			ret.replacementReward = { ...this.replacementReward }
+			ret.replacementEXP = this.replacementEXP
+			ret.toBeReplaced = this.toBeReplaced
+
+			return ret
+		}
+		this.vanilla = () => {
+			return new FormLevel(this.level, new Reward(this.vanillaReward.reward, this.vanillaReward.index, this.vanillaReward.iconType), this.rewardAddress, this.vanillaEXP, this.EXPAddress)
+		}
+		this.replace = (newFormData) => {
+			let ret = this.copy()
+
+			ret.replacementReward = { ...newFormData.reward }
+			ret.replacementEXP = newFormData.currentEXPMultiplierValue === 0 ? newFormData.currentEXP : Math.max(1, Math.floor((2 * this.vanillaEXP) / newFormData.currentEXPMultiplierValue))
+			ret.toBeReplaced = false
+
+			return ret
+		}
+		this.markForReplacement = (toBeReplaced) => {
+			let ret = this.copy()
+			ret.toBeReplaced = toBeReplaced
+			return ret
+		}
+		this.toPnach = () => {
+			let ret = ''
+			if (this.isRewardReplaced()) {
+				ret += 'patch=1,EE,' + this.vanillaAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
+				ret += this.replacementReward.index.toString(16).toUpperCase().padStart(4, '0')
+				ret += ' // ' + this.level + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward + '\n'
+			}
+			if (this.isEXPReplaced()) {
+				ret += 'patch=1,EE,' + this.EXPAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,' + this.replacementEXP.toString(16).toUpperCase().padStart(8, 0)
+				ret += ' // ' + this.replacementEXP + ' experience is now required to reach ' + this.level + '\n'
+			}
+			return ret
+		}
 	}
 }
 

@@ -4,28 +4,25 @@ export class Cheat {
 		this.code = [...code]
 		this.toBeReplaced = false
 		this.isActive = false
-	}
 
-	copy() {
-		let ret = new Cheat(this.name, [...this.code])
-		ret.toBeReplaced = this.toBeReplaced
-		return ret
-	}
-
-	toggle() {
-		let ret = this.markForReplacement(false)
-		ret.isActive = !this.isActive
-		return ret
-	}
-
-	markForReplacement(toBeReplaced) {
-		let ret = this.copy()
-		ret.toBeReplaced = toBeReplaced
-		return ret
-	}
-
-	toPnach() {
-		return '//' + this.name + '\n' + this.code.join('\n') + '\n'
+		this.copy = () => {
+			let ret = new Cheat(this.name, [...this.code])
+			ret.toBeReplaced = this.toBeReplaced
+			return ret
+		}
+		this.toggle = () => {
+			let ret = this.markForReplacement(false)
+			ret.isActive = !this.isActive
+			return ret
+		}
+		this.markForReplacement = (toBeReplaced) => {
+			let ret = this.copy()
+			ret.toBeReplaced = toBeReplaced
+			return ret
+		}
+		this.toPnach = () => {
+			return '//' + this.name + '\n' + this.code.join('\n') + '\n'
+		}
 	}
 }
 

@@ -28,18 +28,90 @@ export class BonusReward {
 		this.slotChangeCount = this.getSlotCount()
 		this.rewardChangeCount = this.getRewardCount()
 		this.toBeReplaced = false
-	}
 
-	isStatsReplaced() {
-		return this.hpIncrease !== this.vanillaHpIncrease || this.mpIncrease !== this.vanillaMpIncrease
+		this.isStatsReplaced = () => {
+			return this.hpIncrease !== this.vanillaHpIncrease || this.mpIncrease !== this.vanillaMpIncrease
+		}
+		this.isSlotsReplaced = () => {
+			return this.armorSlotIncrease !== this.vanillaArmorSlotIncrease || this.accessorySlotIncrease !== this.vanillaAccessorySlotIncrease ||
+				this.itemSlotIncrease !== this.vanillaItemSlotIncrease || this.driveGaugeIncrease !== this.vanillaDriveGaugeIncrease
+		}
+		this.isRewardsReplaced = () => {
+			return this.replacementReward1.index !== this.vanillaReward1.index || this.replacementReward2.index !== this.vanillaReward2.index
+		}
+		this.copy = () => {
+			let ret = new BonusReward(this.characterAddress, this.vanillaCharacter, new Reward(this.vanillaReward1.reward, this.vanillaReward1.index, this.vanillaReward1.iconType),
+				new Reward(this.vanillaReward2.reward, this.vanillaReward2.index, this.vanillaReward2.iconType), this.hpIncrease, this.mpIncrease, this.armorSlotIncrease,
+				this.accessorySlotIncrease, this.itemSlotIncrease, this.driveGaugeIncrease)
+
+			ret.replacementCharacter = this.replacementCharacter
+			ret.replacementReward1 = { ...this.replacementReward1 }
+			ret.replacementReward2 = { ...this.replacementReward2 }
+			ret.hpIncrease = this.hpIncrease
+			ret.mpIncrease = this.mpIncrease
+			ret.armorSlotIncrease = this.armorSlotIncrease
+			ret.accessorySlotIncrease = this.accessorySlotIncrease
+			ret.itemSlotIncrease = this.itemSlotIncrease
+			ret.driveGaugeIncrease = this.driveGaugeIncrease
+			ret.statChangeCount = ret.getStatCount()
+			ret.slotChangeCount = ret.getSlotCount()
+			ret.rewardChangeCount = ret.getRewardCount()
+			ret.toBeReplaced = this.toBeReplaced
+
+			return ret
+		}
+		this.vanilla = () => {
+			return new BonusReward(this.characterAddress, this.vanillaCharacter, new Reward(this.vanillaReward1.reward, this.vanillaReward1.index, this.vanillaReward1.iconType),
+				new Reward(this.vanillaReward2.reward, this.vanillaReward2.index, this.vanillaReward2.iconType), this.hpIncrease, this.mpIncrease, this.armorSlotIncrease,
+				this.accessorySlotIncrease, this.itemSlotIncrease, this.driveGaugeIncrease)
+		}
+		this.replace = (newBonusData) => {
+			let ret = this.copy()
+
+			ret.replacementCharacter = newBonusData.character
+			ret.replacementReward1 = { ...newBonusData.replacementReward1 }
+			ret.replacementReward2 = { ...newBonusData.replacementReward2 }
+			ret.hpIncrease = newBonusData.hp
+			ret.mpIncrease = newBonusData.mp
+			ret.armorSlotIncrease = newBonusData.armor
+			ret.accessorySlotIncrease = newBonusData.accessory
+			ret.itemSlotIncrease = newBonusData.item
+			ret.driveGaugeIncrease = newBonusData.drive
+			ret.statChangeCount = ret.getStatCount()
+			ret.slotChangeCount = ret.getSlotCount()
+			ret.rewardChangeCount = ret.getRewardCount()
+			ret.toBeReplaced = false
+
+			return ret
+		}
+		this.markForReplacement = (toBeReplaced) => {
+			let ret = this.copy()
+			ret.toBeReplaced = toBeReplaced
+			return ret
+		}
+		this.toPnach = () => {
+			let ret = '//' + this.replacementCharacter + '\n'
+			if (this.isStatsReplaced()) {
+				ret += 'patch=1,EE,' + this.statAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
+				ret += this.mpIncrease.toString(16).toUpperCase().padStart(2, '0') + this.hpIncrease.toString(16).toUpperCase().padStart(2, '0')
+				ret += ' // MP:' + this.mpIncrease + ' HP:' + this.hpIncrease + '\n'
+			}
+			if (this.isSlotsReplaced()) {
+				ret += 'patch=1,EE,' + this.slotAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,'
+				ret += this.armorSlotIncrease.toString(16).toUpperCase().padStart(2, '0') + this.accessorySlotIncrease.toString(16).toUpperCase().padStart(2, '0')
+				ret += this.itemSlotIncrease.toString(16).toUpperCase().padStart(2, '0') + this.driveGaugeIncrease.toString(16).toUpperCase().padStart(2, '0')
+				ret += ' // Armor Slot:+' + this.armorSlotIncrease + ' Accessory Slot:+' + this.accessorySlotIncrease
+				ret += ' Item Slot:+' + this.itemSlotIncrease + ' Drive Gauge:+' + this.driveGaugeIncrease + '\n'
+			}
+			if (this.isRewardsReplaced()) {
+				ret += 'patch=1,EE,' + this.rewardAddress.toString(16).toUpperCase().padStart(8, '0')
+				ret += ',extended,' + this.replacementReward2.index.toString(16).toUpperCase().padStart(4, '0') + this.replacementReward1.index.toString(16).toUpperCase().padStart(4, '0')
+				ret += ' // Replacement Reward #2:' + this.replacementReward2.reward + ', Replacement Reward #1:' + this.replacementReward1.reward + '\n'
+			}
+			return ret
+		}
 	}
-	isSlotsReplaced() {
-		return this.armorSlotIncrease !== this.vanillaArmorSlotIncrease || this.accessorySlotIncrease !== this.vanillaAccessorySlotIncrease ||
-			this.itemSlotIncrease !== this.vanillaItemSlotIncrease || this.driveGaugeIncrease !== this.vanillaDriveGaugeIncrease
-	}
-	isRewardsReplaced() {
-		return this.replacementReward1.index !== this.vanillaReward1.index || this.replacementReward2.index !== this.vanillaReward2.index
-	}
+	
 	getStatCount() {
 		let ret = 0
 		ret += this.hpIncrease > 0 ? 1 : 0
@@ -60,149 +132,69 @@ export class BonusReward {
 		ret += this.replacementReward2.index !== 0 ? 1 : 0
 		return ret
 	}
-
-	copy() {
-		let ret = new BonusReward(this.characterAddress, this.vanillaCharacter, new Reward(this.vanillaReward1.reward, this.vanillaReward1.index, this.vanillaReward1.iconType),
-			new Reward(this.vanillaReward2.reward, this.vanillaReward2.index, this.vanillaReward2.iconType), this.hpIncrease, this.mpIncrease, this.armorSlotIncrease,
-			this.accessorySlotIncrease, this.itemSlotIncrease, this.driveGaugeIncrease)
-
-		ret.replacementCharacter = this.replacementCharacter
-		ret.replacementReward1 = { ...this.replacementReward1 }
-		ret.replacementReward2 = { ...this.replacementReward2 }
-		ret.hpIncrease = this.hpIncrease
-		ret.mpIncrease = this.mpIncrease
-		ret.armorSlotIncrease = this.armorSlotIncrease
-		ret.accessorySlotIncrease = this.accessorySlotIncrease
-		ret.itemSlotIncrease = this.itemSlotIncrease
-		ret.driveGaugeIncrease = this.driveGaugeIncrease
-		ret.statChangeCount = ret.getStatCount()
-		ret.slotChangeCount = ret.getSlotCount()
-		ret.rewardChangeCount = ret.getRewardCount()
-		ret.toBeReplaced = this.toBeReplaced
-
-		return ret
-	}
-
-	vanilla() {
-		return new BonusReward(this.characterAddress, this.vanillaCharacter, new Reward(this.vanillaReward1.reward, this.vanillaReward1.index, this.vanillaReward1.iconType),
-			new Reward(this.vanillaReward2.reward, this.vanillaReward2.index, this.vanillaReward2.iconType), this.hpIncrease, this.mpIncrease, this.armorSlotIncrease,
-			this.accessorySlotIncrease, this.itemSlotIncrease, this.driveGaugeIncrease)
-	}
-
-	replace(newBonusData) {
-		let ret = this.copy()
-
-		ret.replacementCharacter = newBonusData.character
-		ret.replacementReward1 = { ...newBonusData.replacementReward1 }
-		ret.replacementReward2 = { ...newBonusData.replacementReward2 }
-		ret.hpIncrease = newBonusData.hp
-		ret.mpIncrease = newBonusData.mp
-		ret.armorSlotIncrease = newBonusData.armor
-		ret.accessorySlotIncrease = newBonusData.accessory
-		ret.itemSlotIncrease = newBonusData.item
-		ret.driveGaugeIncrease = newBonusData.drive
-		ret.statChangeCount = ret.getStatCount()
-		ret.slotChangeCount = ret.getSlotCount()
-		ret.rewardChangeCount = ret.getRewardCount()
-		ret.toBeReplaced = false
-
-		return ret
-	}
-
-	markForReplacement(toBeReplaced) {
-		let ret = this.copy()
-		ret.toBeReplaced = toBeReplaced
-		return ret
-	}
-
-	toPnach() {
-		let ret = '//' + this.replacementCharacter + '\n'
-		if (this.isStatsReplaced()) {
-			ret += 'patch=1,EE,' + this.statAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
-			ret += this.mpIncrease.toString(16).toUpperCase().padStart(2, '0') + this.hpIncrease.toString(16).toUpperCase().padStart(2, '0')
-			ret += ' // MP:' + this.mpIncrease + ' HP:' + this.hpIncrease + '\n'
-		}
-		if (this.isSlotsReplaced()) {
-			ret += 'patch=1,EE,' + this.slotAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,'
-			ret += this.armorSlotIncrease.toString(16).toUpperCase().padStart(2, '0') + this.accessorySlotIncrease.toString(16).toUpperCase().padStart(2, '0')
-			ret += this.itemSlotIncrease.toString(16).toUpperCase().padStart(2, '0') + this.driveGaugeIncrease.toString(16).toUpperCase().padStart(2, '0')
-			ret += ' // Armor Slot:+' + this.armorSlotIncrease + ' Accessory Slot:+' + this.accessorySlotIncrease
-			ret += ' Item Slot:+' + this.itemSlotIncrease + ' Drive Gauge:+' + this.driveGaugeIncrease + '\n'
-		}
-		if (this.isRewardsReplaced()) {
-			ret += 'patch=1,EE,' + this.rewardAddress.toString(16).toUpperCase().padStart(8, '0')
-			ret += ',extended,' + this.replacementReward2.index.toString(16).toUpperCase().padStart(4, '0') + this.replacementReward1.index.toString(16).toUpperCase().padStart(4, '0')
-			ret += ' // Replacement Reward #2:' + this.replacementReward2.reward + ', Replacement Reward #1:' + this.replacementReward1.reward + '\n'
-		}
-		return ret
-	}
 }
 
 export class BonusFight {
 	constructor(name, slot1, slot2, slot3, slot4) {
 		this.fight = name
 		this.slots = [{ ...slot1 }, { ...slot2 }, { ...slot3 }, { ...slot4 }]
-	}
-
-	vanilla() {
-		let newSlots = this.slots.map(slot => {
-			if (slot === null)
-				return null
-			else if (slot.toBeReplaced)
-				return slot.vanilla()
-			else
-				return slot.copy()
-		})
-		return new BonusFight(this.name, newSlots[0], newSlots[1], newSlots[2], newSlots[3])
-	}
-
-	replace(newBonusData) {
-		let newSlots = this.slots.map(slot => {
-			if (slot === null)
-				return null
-			else if (slot.toBeReplaced)
-				return slot.replace(newBonusData)
-			else
-				return slot.copy()
-		})
-		return {
-			...this,
-			slots: [
-				{ ...newSlots[0] },
-				{ ...newSlots[1] },
-				{ ...newSlots[2] },
-				{ ...newSlots[3] }
-			]
+		this.vanilla = () => {
+			let newSlots = this.slots.map(slot => {
+				if (slot === null)
+					return null
+				else if (slot.toBeReplaced)
+					return slot.vanilla()
+				else
+					return slot.copy()
+			})
+			return new BonusFight(this.name, newSlots[0], newSlots[1], newSlots[2], newSlots[3])
 		}
-	}
-
-	markForReplacement(toBeReplaced, index) {
-		let newSlots = this.slots.map((slot, slotID) => {
-			if (slot === null)
-				return null
-			else if (index === -1 || index === slotID)
-				return slot.markForReplacement(toBeReplaced)
-			else
-				return slot.copy()
-		})
-		return {
-			...this,
-			slots: [
-				{ ...newSlots[0] },
-				{ ...newSlots[1] },
-				{ ...newSlots[2] },
-				{ ...newSlots[3] }
-			]
+		this.replace = (newBonusData) => {
+			let newSlots = this.slots.map(slot => {
+				if (slot === null)
+					return null
+				else if (slot.toBeReplaced)
+					return slot.replace(newBonusData)
+				else
+					return slot.copy()
+			})
+			return {
+				...this,
+				slots: [
+					{ ...newSlots[0] },
+					{ ...newSlots[1] },
+					{ ...newSlots[2] },
+					{ ...newSlots[3] }
+				]
+			}
 		}
-	}
-
-	toPnach() {
-		let ret = '//' + this.fight + '\n'
-		this.slots.forEach(slot => {
-			if (slot !== null)
-				ret += slot.toPnach()
-		})
-		return ret
+		this.markForReplacement = (toBeReplaced, index) => {
+			let newSlots = this.slots.map((slot, slotID) => {
+				if (slot === null)
+					return null
+				else if (index === -1 || index === slotID)
+					return slot.markForReplacement(toBeReplaced)
+				else
+					return slot.copy()
+			})
+			return {
+				...this,
+				slots: [
+					{ ...newSlots[0] },
+					{ ...newSlots[1] },
+					{ ...newSlots[2] },
+					{ ...newSlots[3] }
+				]
+			}
+		}
+		this.toPnach = () => {
+			let ret = '//' + this.fight + '\n'
+			this.slots.forEach(slot => {
+				if (slot !== null)
+					ret += slot.toPnach()
+			})
+			return ret
+		}
 	}
 }
 

@@ -45,7 +45,7 @@ function BonusPage(props) {
 			</p>
 		</div>
 	)
-
+	// console.log(props.bonusData)
 	return (
 		<div style={props.style}>
 			<Form>
@@ -100,7 +100,7 @@ function BonusPage(props) {
 							rewardList={props.rewardListA}
 							currentReward={props.fieldData.currentAReward}
 							name={'currentAReward'}
-							onChange={props.onRewardChange}
+							onChange={props.onSelectChange}
 						/>
 					</Col>
 					<Col>
@@ -119,7 +119,7 @@ function BonusPage(props) {
 							rewardList={props.rewardListB}
 							currentReward={props.fieldData.currentBReward}
 							name={'currentBReward'}
-							onChange={props.onRewardChange}
+							onChange={props.onSelectChange}
 						/>
 					</Col>
 				</Form.Row>
