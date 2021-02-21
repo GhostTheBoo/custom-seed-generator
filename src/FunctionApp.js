@@ -143,7 +143,7 @@ function FunctionApp() {
 	//#endregion
 
 	//#region Bonus Jank City
-	function handleBonusTableChange(nextWorld) {
+	function handleBonusTableChange() {
 		return allBonuses.map((world, worldID) => {
 			if (worldID === bonusFieldData.currentWorld) {
 				let toBeStoredWorldFights = world.bonusFights.map((fight, fightID) => {
@@ -163,17 +163,23 @@ function FunctionApp() {
 	//#endregion
 
 	//#region General Functions
-	function handleTableChange(currentIndex, fieldName, allData) {
-		return allData.map((objectList, objectListID) => {
-			if (objectListID === currentIndex) {
+	function handleTableChange(nextIndex, currentIndexFieldName, dataFieldName, fieldData, setFieldData, allData, setAllData) {
+		let newAllData = allData.map((objectList, objectListID) => {
+			if (objectListID === fieldData[currentIndexFieldName]) {
 				return {
 					...objectList,
-					[fieldName]: objectList[fieldName].map(object => {
+					[dataFieldName]: objectList[dataFieldName].map(object => {
 						return object.markForReplacement(false)
 					})
 				}
 			}
 			return objectList
+		})
+		setAllData(newAllData)
+		setFieldData({
+			...fieldData,
+			[currentIndexFieldName]: nextIndex,
+			selectAll: false
 		})
 	}
 	function handleReplace(toReplace, reward, currentIndex, fieldName, allData) {
@@ -213,19 +219,20 @@ function FunctionApp() {
 			return object
 		})
 	}
-	function onCheckAll(currentIndex, fieldName, allData) {
-		return allData.map((object, index) => {
-			if (index === currentIndex)
-				return {
-					...object,
-					[fieldName]: onShallowCheckAll(object[fieldName])
-				}
-			return object
+	function onCheckAll(currentIndexFieldName, dataFieldName, fieldData, setFieldData, allData, setAllData) {
+		let newAllData = allData.map((objectList, objectListID) => {
+			if (currentIndexFieldName === '' || objectListID === fieldData[currentIndexFieldName]) {
+				let newObjectList = objectList[dataFieldName].map(object => {
+					return object.markForReplacement(!object.toBeReplaced)
+				})
+				return currentIndexFieldName === '' ? newObjectList : { ...objectList, [dataFieldName]: newObjectList }
+			}
+			return objectList
 		})
-	}
-	function onShallowCheckAll(currentData) {
-		return currentData.map(object => {
-			return object.markForReplacement(!object.toBeReplaced)
+		setAllData(newAllData)
+		setFieldData({
+			...fieldData,
+			selectAll: !fieldData.selectAll
 		})
 	}
 	function handleRewardTypeChange(target, fieldData, setFieldData) {
@@ -262,20 +269,11 @@ function FunctionApp() {
 						fieldData={chestFieldData}
 						chestData={allChests[chestFieldData.currentWorld]}
 						rewardList={rewardsData[chestFieldData.currentRewardType].rewards}
-						handleWorldChange={(e) => {
-							setAllChests(handleTableChange(chestFieldData.currentWorld, 'chests', allChests))
-							setChestFieldData({ ...chestFieldData, currentWorld: e.target.value, selectAll: false })
-						}}
+						handleWorldChange={(e) => handleTableChange(e.target.value, 'currentWorld', 'chests', chestFieldData, setChestFieldData, allChests, setAllChests)}
 						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, chestFieldData, setChestFieldData)}
 						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, chestFieldData, setChestFieldData)}
 						onRowCheck={(e) => setAllChests(onRowCheck(e.target.value, chestFieldData.currentWorld, 'chests', allChests))}
-						onCheckAll={() => {
-							setAllChests(onCheckAll(chestFieldData.currentWorld, 'chests', allChests))
-							setChestFieldData({
-								...chestFieldData,
-								selectAll: !chestFieldData.selectAll
-							})
-						}}
+						onCheckAll={() => onCheckAll('currentWorld', 'chests', chestFieldData, setChestFieldData, allChests, setAllChests)}
 						onClick={(e) => {
 							let replacement = {
 								reward: {
@@ -296,20 +294,11 @@ function FunctionApp() {
 						fieldData={popupFieldData}
 						popupData={allPopups[popupFieldData.currentWorld]}
 						rewardList={rewardsData[popupFieldData.currentRewardType].rewards}
-						handleWorldChange={(e) => {
-							setAllPopups(handleTableChange(popupFieldData.currentWorld, 'popups', allPopups))
-							setPopupFieldData({ ...popupFieldData, currentWorld: e.target.value, selectAll: false })
-						}}
+						handleWorldChange={(e) => handleTableChange(e.target.value, 'currentWorld', 'popups', popupFieldData, setPopupFieldData, allPopups, setAllPopups)}
 						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, popupFieldData, setPopupFieldData)}
 						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, popupFieldData, setPopupFieldData)}
 						onRowCheck={(e) => setAllPopups(onRowCheck(e.target.value, popupFieldData.currentWorld, 'popups', allPopups))}
-						onCheckAll={() => {
-							setAllPopups(onCheckAll(popupFieldData.currentWorld, 'popups', allPopups))
-							setPopupFieldData({
-								...popupFieldData,
-								selectAll: !popupFieldData.selectAll
-							})
-						}}
+						onCheckAll={() => onCheckAll('currentWorld', 'popups', popupFieldData, setPopupFieldData, allPopups, setAllPopups)}
 						onClick={(e) => {
 							let replacement = {
 								reward: {
@@ -356,13 +345,7 @@ function FunctionApp() {
 							setBonusFieldData)
 						}
 						onRowCheck={(e) => setAllBonuses(onRowCheck(e.target.value, bonusFieldData.currentWorld, 'bonusFights', allBonuses))}
-						onCheckAll={() => {
-							setAllBonuses(onCheckAll(bonusFieldData.currentWorld, 'bonusFights', allBonuses))
-							setBonusFieldData({
-								...bonusFieldData,
-								selectAll: !bonusFieldData.selectAll
-							})
-						}}
+						onCheckAll={() => onCheckAll('currentWorld', 'bonusFights', bonusFieldData, setBonusFieldData, allBonuses, setAllBonuses)}
 						onClick={(e) => {
 							let replacement = {
 								currentWorld: bonusFieldData.currentWorld,
@@ -395,10 +378,7 @@ function FunctionApp() {
 						formData={allForms[formFieldData.currentDriveForm].driveLevels}
 						fieldData={formFieldData}
 						rewardList={rewardsData[formFieldData.currentRewardType].rewards}
-						handleFormChange={(e) => {
-							setAllForms(handleTableChange(formFieldData.currentDriveForm, 'driveLevels', allForms))
-							setFormFieldData({ ...formFieldData, currentDriveForm: e.target.value, selectAll: false })
-						}}
+						handleFormChange={(e) => handleTableChange(e.target.value, 'currentDriveform', 'driveLevels', formFieldData, setFormFieldData, allForms, setAllForms)}
 						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, formFieldData, setFormFieldData)}
 						onSelectChange={(e) => handleFieldChange(e.target.name, e.target.value, formFieldData, setFormFieldData)}
 						onInputChange={(e) => handleFieldChange(e.target.name,
@@ -407,13 +387,7 @@ function FunctionApp() {
 							setFormFieldData)
 						}
 						onRowCheck={(e) => setAllForms(onRowCheck(e.target.value, formFieldData.currentDriveForm, 'driveLevels', allForms))}
-						onCheckAll={() => {
-							setAllForms(onCheckAll(formFieldData.currentDriveForm, 'driveLevels', allForms))
-							setFormFieldData({
-								...formFieldData,
-								selectAll: !formFieldData.selectAll
-							})
-						}}
+						onCheckAll={() => onCheckAll('currentDriveForm', 'driveLevels', formFieldData, setFormFieldData, allForms, setAllForms)}
 						onClick={(e) => {
 							let replacement = {
 								reward: {
@@ -437,10 +411,8 @@ function FunctionApp() {
 						equipmentData={allEquipments[equipmentFieldData.currentEquipmentType].equipments}
 						fieldData={equipmentFieldData}
 						rewardList={rewardsData[equipmentFieldData.currentRewardType].rewards}
-						handleEquipmentTypeChange={(e) => {
-							setAllEquipments(handleTableChange(equipmentFieldData.currentEquipmentType, 'equipments', allEquipments))
-							setEquipmentFieldData({ ...equipmentFieldData, currentEquipmentType: e.target.value, selectAll: false })
-						}}
+						handleEquipmentTypeChange={(e) => handleTableChange(e.target.value, 'currentEquipmentType', 'equipments', equipmentFieldData, setEquipmentFieldData,
+							allEquipments, setAllEquipments)}
 						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, equipmentFieldData, setEquipmentFieldData)}
 						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, equipmentFieldData, setEquipmentFieldData)}
 						onInputChange={(e) => handleFieldChange(e.target.name,
@@ -449,13 +421,7 @@ function FunctionApp() {
 							setEquipmentFieldData)
 						}
 						onRowCheck={(e) => setAllEquipments(onRowCheck(e.target.value, equipmentFieldData.currentEquipmentType, 'equipments', allEquipments))}
-						onCheckAll={() => {
-							setAllEquipments(onCheckAll(equipmentFieldData.currentEquipmentType, 'equipments', allEquipments))
-							setEquipmentFieldData({
-								...equipmentFieldData,
-								selectAll: !equipmentFieldData.selectAll
-							})
-						}}
+						onCheckAll={() => onCheckAll('currentEquipmentType', 'equipments', equipmentFieldData, setEquipmentFieldData, allEquipments, setAllEquipments)}
 						onClick={(e) => {
 							let replacement = {
 								currentEquipmentType: equipmentFieldData.currentEquipmentType,
@@ -498,13 +464,7 @@ function FunctionApp() {
 							setLevelFieldData)
 						}
 						onRowCheck={(e) => setAllLevels(onShallowRowCheck(e.target.value, allLevels))}
-						onCheckAll={() => {
-							setAllLevels(onShallowCheckAll(allLevels))
-							setLevelFieldData({
-								...levelFieldData,
-								selectAll: !levelFieldData.selectAll
-							})
-						}}
+						onCheckAll={() => onCheckAll('', 'levels', levelFieldData, setLevelFieldData, { levels: allLevels }, setAllLevels)}
 						onClick={(e) => {
 							let replacement = {
 								currentLevelAP: 0,
@@ -536,23 +496,14 @@ function FunctionApp() {
 						style={styles}
 						magicData={allMagics[magicFieldData.currentMagicType].abilities}
 						fieldData={magicFieldData}
-						handleMagicTypeChange={(e) => {
-							setAllMagics(handleTableChange(magicFieldData.currentMagicType, 'abilities', allMagics))
-							setMagicFieldData({ ...magicFieldData, currentMagicType: e.target.value, selectAll: false })
-						}}
+						handleMagicTypeChange={(e) => handleTableChange(e.target.value, 'currentMagicType', 'abilities', magicFieldData, setMagicFieldData, allMagics, setAllMagics)}
 						onInputChange={(e) => handleFieldChange(e.target.name,
 							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
 							magicFieldData,
 							setMagicFieldData)
 						}
 						onRowCheck={(e) => setAllMagics(onRowCheck(e.target.value, magicFieldData.currentMagicType, 'abilities', allMagics))}
-						onCheckAll={() => {
-							setAllMagics(onCheckAll(magicFieldData.currentMagicType, 'abilities', allMagics))
-							setMagicFieldData({
-								...magicFieldData,
-								selectAll: !magicFieldData.selectAll
-							})
-						}}
+						onCheckAll={() => onCheckAll('currentMagicType', 'abilities', magicFieldData, setMagicFieldData, allMagics, setAllMagics)}
 						onClick={(e) => {
 							let replacement = {
 								cost: magicFieldData.currentCost
@@ -574,13 +525,7 @@ function FunctionApp() {
 						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, criticalFieldData, setCriticalFieldData)}
 						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, criticalFieldData, setCriticalFieldData)}
 						onRowCheck={(e) => setAllCriticals(onShallowRowCheck(e.target.value, allCriticals))}
-						onCheckAll={() => {
-							setAllCriticals(onShallowCheckAll(allCriticals))
-							setCriticalFieldData({
-								...criticalFieldData,
-								selectAll: !criticalFieldData.selectAll
-							})
-						}}
+						onCheckAll={() => onCheckAll('', 'criticals', criticalFieldData, setCriticalFieldData, { criticals: allCriticals }, setAllCriticals)}
 						onClick={(e) => {
 							let replacement = {
 								reward: {
@@ -601,13 +546,7 @@ function FunctionApp() {
 						cheatData={allCheats}
 						fieldData={cheatFieldData}
 						onRowCheck={(e) => setAllCheats(onShallowRowCheck(e.target.value, allCheats))}
-						onCheckAll={() => {
-							setAllCheats(onShallowCheckAll(allCheats))
-							setCheatFieldData({
-								...cheatFieldData,
-								selectAll: !cheatFieldData.selectAll
-							})
-						}}
+						onCheckAll={() => onCheckAll('', 'cheats', cheatFieldData, setCheatFieldData, { cheats: allCheats }, setAllCheats)}
 						onClick={() => {
 							let replacedObjects = allCheats.map(object => {
 								if (object.toBeReplaced)
