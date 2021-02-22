@@ -88,7 +88,28 @@ export class Level {
 			ret.toBeReplaced = toBeReplaced
 			return ret
 		}
-		this.toPnach = () => {
+		this.saveToJSON = () => {
+			return (this.isEXPReplaced() || this.isStatsReplaced() || this.isSwordReplaced() || this.isShieldReplaced() || this.isStaffReplaced())
+				? JSON.stringify(this, ['level', 'replacementEXP', 'standardAP', 'defense', 'magic', 'strength',
+					'replacementSwordReward', 'replacementShieldReward', 'replacementStaffReward'])
+				: ''
+		}
+		this.loadFromJSON = (levelJSON) => {
+			let ret = this.copy()
+
+			ret.replacementEXP = levelJSON.replacementEXP
+			ret.standardAP = levelJSON.standardAP
+			ret.defense = levelJSON.defense
+			ret.magic = levelJSON.magic
+			ret.strength = levelJSON.strength
+			ret.replacementSwordReward = { ...levelJSON.replacementSwordReward }
+			ret.replacementShieldReward = { ...levelJSON.replacementShieldReward }
+			ret.replacementStaffReward = { ...levelJSON.replacementStaffReward }
+			ret.toBeReplaced = false
+
+			return ret
+		}
+		this.saveToPnach = () => {
 			let ret = ''
 
 			if (this.level === 99)

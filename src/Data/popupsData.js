@@ -7,7 +7,7 @@ export class Popup {
 		this.replacementReward = { ...vanilla }
 		this.vanillaAddress = address
 		this.toBeReplaced = false
-		
+
 		this.isReplaced = () => {
 			return this.replacementReward.index !== this.vanillaReward.index
 		}
@@ -33,7 +33,16 @@ export class Popup {
 			ret.toBeReplaced = toBeReplaced
 			return ret
 		}
-		this.toPnach = () => {
+		this.saveToJSON = () => {
+			return this.isReplaced() ? JSON.stringify(this, ['replacementReward', 'vanillaAddress']) : ''
+		}
+		this.loadFromJSON = (popupJSON) => {
+			let ret = this.copy()
+			ret.replacementReward = { ...popupJSON.replacementReward }
+			ret.toBeReplaced = false
+			return ret
+		}
+		this.saveToPnach = () => {
 			let ret = 'patch=1,EE,' + this.vanillaAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000' + this.replacementReward.index.toString(16).toUpperCase().padStart(4, '0')
 			return ret + ' // ' + this.popup + ', new Reward(' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward + '\n'
 		}

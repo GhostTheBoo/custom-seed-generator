@@ -33,7 +33,7 @@ export class Equipment {
 		this.otherResistanceAddress = this.elementalResistanceAddress + 4
 		this.toBeReplaced = false
 		this.additionalLineCount = 0
-		
+
 		this.isAbilityReplaced = () => {
 			return this.vanillaAbility.index !== this.replacementAbility.index
 		}
@@ -127,7 +127,33 @@ export class Equipment {
 			ret.toBeReplaced = toBeReplaced
 			return ret
 		}
-		this.toPnach = () => {
+		this.saveToJSON = () => {
+			return (this.isAbilityReplaced() || this.isStatsReplaced() || this.isElementalResistanceChanged() || this.isOtherResistanceChanged())
+				? JSON.stringify(this, ['name', 'replacementAbility', 'ap', 'defense', 'magic', 'strength', 'fireResistance', 'additionalLineCount',
+					'blizzardResistance', 'thunderResistance', 'darkResistance', 'physicalResistance', 'lightResistance', 'universalResistance'])
+				: ''
+		}
+		this.loadFromJSON = (equipmentJSON) => {
+			let ret = this.copy()
+
+			ret.replacementAbility = { ...equipmentJSON.replacementAbility }
+			ret.strength = equipmentJSON.strength
+			ret.magic = equipmentJSON.magic
+			ret.ap = equipmentJSON.ap
+			ret.defense = equipmentJSON.defense
+			ret.fireResistance = equipmentJSON.fireResistance
+			ret.blizzardResistance = equipmentJSON.blizzardResistance
+			ret.thunderResistance = equipmentJSON.thunderResistance
+			ret.physicalResistance = equipmentJSON.physicalResistance
+			ret.darkResistance = equipmentJSON.darkResistance
+			ret.lightResistance = equipmentJSON.lightResistance
+			ret.universalResistance = equipmentJSON.universalResistance
+			ret.additionalLineCount = equipmentJSON.additionalLineCount
+			ret.toBeReplaced = false
+
+			return ret
+		}
+		this.saveToPnach = () => {
 			let ret = ''
 
 			if (this.isAbilityReplaced) {

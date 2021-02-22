@@ -1,4 +1,5 @@
 import { Reward } from './rewardsData'
+import { charactersData } from './typesData'
 
 export class BonusReward {
 	constructor(address, character, reward1, reward2, hp, mp, armor, accessory, item, drive) {
@@ -29,6 +30,9 @@ export class BonusReward {
 		this.rewardChangeCount = this.getRewardCount()
 		this.toBeReplaced = false
 
+		this.isStatsReplaced = () => {
+			return this.replacementCharacter !== this.vanillaCharacter
+		}
 		this.isStatsReplaced = () => {
 			return this.hpIncrease !== this.vanillaHpIncrease || this.mpIncrease !== this.vanillaMpIncrease
 		}
@@ -89,8 +93,35 @@ export class BonusReward {
 			ret.toBeReplaced = toBeReplaced
 			return ret
 		}
-		this.toPnach = () => {
+		this.saveToJSON = () => {
+			return JSON.stringify(this, ['characterAddress', 'replacementCharacter', 'replacementReward1', 'replacementReward2', 'hpIncrease', 'mpIncrease', 'armorSlotIncrease',
+				'accessorySlotIncrease', 'itemSlotIncrease', 'driveGaugeIncrease'])
+		}
+		this.loadFromJSON = (bonusRewardJSON) => {
+			let ret = this.copy()
+
+			ret.replacementCharacter = bonusRewardJSON.currentCharacter
+			ret.replacementReward1 = { ...bonusRewardJSON.rewardA }
+			ret.replacementReward2 = { ...bonusRewardJSON.rewardB }
+			ret.hpIncrease = bonusRewardJSON.currentBonusHP
+			ret.mpIncrease = bonusRewardJSON.currentBonusMP
+			ret.armorSlotIncrease = bonusRewardJSON.currentArmor
+			ret.accessorySlotIncrease = bonusRewardJSON.currentAccessory
+			ret.itemSlotIncrease = bonusRewardJSON.currentItem
+			ret.driveGaugeIncrease = bonusRewardJSON.currentDrive
+			ret.statChangeCount = ret.getStatCount()
+			ret.slotChangeCount = ret.getSlotCount()
+			ret.rewardChangeCount = ret.getRewardCount()
+			ret.toBeReplaced = false
+
+			return ret
+		}
+		this.saveToPnach = () => {
 			let ret = '//' + this.replacementCharacter + '\n'
+			if (this.isCharacterReplaced()) {
+				ret += 'patch=1,EE,' + this.characterAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,'
+				ret += this.replacementCharacter.toString(16).toUpperCase().padStart(8, '0') + ' // Bonus reward is now given to ' + charactersData[this.replacementCharacter]
+			}
 			if (this.isStatsReplaced()) {
 				ret += 'patch=1,EE,' + this.statAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
 				ret += this.mpIncrease.toString(16).toUpperCase().padStart(2, '0') + this.hpIncrease.toString(16).toUpperCase().padStart(2, '0')
@@ -138,6 +169,14 @@ export class BonusFight {
 	constructor(name, slot1, slot2, slot3, slot4) {
 		this.fight = name
 		this.slots = [{ ...slot1 }, { ...slot2 }, { ...slot3 }, { ...slot4 }]
+
+		this.isReplaced = () => {
+			let ret = false
+			this.slots.filter(slot => Object.keys(slot).length !== 0).forEach(slot => {
+				ret ||= (slot.isStatsReplaced() || slot.isSlotsReplaced() || slot.isRewardsReplaced() || slot.isCharacterReplaced())
+			})
+			return ret
+		}
 		this.vanilla = () => {
 			let newSlots = this.slots.filter(slot => Object.keys(slot).length !== 0).map(slot => {
 				return slot.toBeReplaced ? slot.vanilla() : slot
@@ -156,11 +195,33 @@ export class BonusFight {
 			})
 			return new BonusFight(this.fight, newSlots[0], newSlots[1], newSlots[2], newSlots[3])
 		}
+		this.saveToJSON = () => {
+			if (this.isReplaced()) {
+				let slotCount = 0
+				let ret = '{"fight":' + this.fight + ',slots:['
+				this.slots.forEach(slot => {
+					ret += slot.saveToJSON() + ','
+					slotCount++
+				})
+				while (slotCount !== 4) {
+					ret += '{},'
+					slotCount++
+				}
+				return ret.slice(0, -1) + ']'
+			}
+			else
+				return ''
+		}
+		this.loadFromJSON = (bonusFightJSON) => {
+			let newSlots = this.vanilla().slots.map((slot, slotID) => {
+				return slot.loadFromJSON(bonusFightJSON.slots[slotID])
+			})
+			return new BonusFight(bonusFightJSON.fight, newSlots[0], newSlots[1], newSlots[2], newSlots[3])
+		}
 		this.toPnach = () => {
 			let ret = '//' + this.fight + '\n'
-			this.slots.forEach(slot => {
-				if (Object.keys(slot).length !== 0)
-					ret += slot.toPnach()
+			this.slots.filter(slot => Object.keys(slot).length !== 0).forEach(slot => {
+				ret += slot.saveToPnach()
 			})
 			return ret
 		}

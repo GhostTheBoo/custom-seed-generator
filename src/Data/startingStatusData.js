@@ -84,8 +84,7 @@ export class StartingStatus {
 		]
 
 		this.vanilla = () => {
-			let ret = new StartingStatus()
-			return ret
+			return new StartingStatus()
 		}
 		this.replace = (newStartingData) => {
 			let ret = new StartingStatus()
@@ -101,7 +100,24 @@ export class StartingStatus {
 			ret.goofy2 = newStartingData.goofy2.index !== undefined ? { ...newStartingData.goofy2 } : new Reward('EMPTY', 0x0000, 'EMPTY')
 			return ret
 		}
-		this.toPnach = () => {
+		this.saveToJSON = () => {
+			return JSON.stringify(this, ['keyblade', 'armor', 'accessory', 'munny', 'hp', 'mp', 'donald1', 'donald2', 'goofy1', 'goofy2'])
+		}
+		this.loadFromJSON = (startingStatusJSON) => {
+			let ret = new StartingStatus()
+			ret.keyblade = { ...startingStatusJSON.keyblade }
+			ret.armor = { ...startingStatusJSON.armor }
+			ret.accessory = { ...startingStatusJSON.accessory }
+			ret.munny = startingStatusJSON.munny
+			ret.hp = startingStatusJSON.hp
+			ret.mp = startingStatusJSON.mp
+			ret.donald1 = { ...startingStatusJSON.donald1 }
+			ret.donald2 = { ...startingStatusJSON.donald2 }
+			ret.goofy1 = { ...startingStatusJSON.goofy1 }
+			ret.goofy2 = { ...startingStatusJSON.goofy2 }
+			return ret
+		}
+		this.saveToPnach = () => {
 			let ret = this.keyblade.index !== 0x0029
 				? this.keybladeCode.join('') + this.keyblade.index.toString(16).toUpperCase().padStart(4, '0') + ' // ' + this.keyblade.reward + '\n'
 				: '// Vanilla starting Keyblade of Kingdom Key\n'

@@ -21,7 +21,16 @@ export class Cheat {
 			ret.toBeReplaced = toBeReplaced
 			return ret
 		}
-		this.toPnach = () => {
+		this.saveToJSON = () => {
+			return this.isActive ? JSON.stringify(this, ['name', 'isActive']) : ''
+		}
+		this.loadFromJSON = () => {
+			let ret = this.copy()
+			ret.isActive = true
+			ret.toBeReplaced = false
+			return ret
+		}
+		this.saveToPnach = () => {
 			return '//' + this.name + '\n' + this.code.join('\n') + '\n'
 		}
 	}

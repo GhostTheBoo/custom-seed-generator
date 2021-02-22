@@ -44,7 +44,19 @@ export class FormLevel {
 			ret.toBeReplaced = toBeReplaced
 			return ret
 		}
-		this.toPnach = () => {
+		this.saveToJSON = () => {
+			return (this.isEXPReplaced() || this.isRewardReplaced()) ? JSON.stringify(this, ['level', 'replacementReward', 'replacementEXP']) : ''
+		}
+		this.loadFromJSON = (driveLevelJSON) => {
+			let ret = this.copy()
+
+			ret.replacementEXP = driveLevelJSON.replacementEXP
+			ret.replacementReward = { ...driveLevelJSON.replacementReward }
+			ret.toBeReplaced = false
+
+			return ret
+		}
+		this.saveToPnach = () => {
 			let ret = ''
 			if (this.isRewardReplaced()) {
 				ret += 'patch=1,EE,' + this.vanillaAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
