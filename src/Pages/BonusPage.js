@@ -212,8 +212,8 @@ function BonusPage(props) {
 			</Form>
 			<BonusTable
 				currentWorld={worldsData[props.fieldData.currentWorld]}
-				currentCharacter={charactersData[props.fieldData.currentCharacter]}
-				bonuses={props.bonusData.bonusFights[props.fieldData.currentFight]}
+				currentFight={props.fieldData.currentFight}
+				bonuses={props.bonusData.bonusFights}
 				onRowCheck={props.onRowCheck}
 				onCheckAll={props.onCheckAll}
 				selectAll={props.fieldData.selectAll}

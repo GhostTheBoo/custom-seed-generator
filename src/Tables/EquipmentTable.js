@@ -3,7 +3,6 @@ import Table from 'react-bootstrap/Table'
 
 function EquipmentTable(props) {
 	let equipmentList = props.equipments.map((equipment, index) => {
-		// console.log(equipment)
 		let styles
 		if (equipment.isAbilityReplaced() || equipment.isStatsReplaced() || equipment.isElementalResistanceChanged() || equipment.isOtherResistanceChanged()) {
 			styles = { background: 'green' }
