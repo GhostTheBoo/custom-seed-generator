@@ -540,7 +540,218 @@ function FunctionApp() {
 		document.body.appendChild(element)
 		element.click()
 	}
-	function onFileUpload() {
+	function onFileUpload(loadData) {
+		let allLoadData = JSON.parse(loadData)
+		console.log(allLoadData)
+		let globalIndex = 0
+
+		let chestLoadData = (allLoadData.hasOwnProperty('chestsData') ? allLoadData.chestsData : [])
+		let newAllChests = chestsData.map(world => {
+			if (globalIndex < chestLoadData.length) {
+				if (chestLoadData[globalIndex].world === world.world) {
+					let chestIndex = 0
+					let newChests = world.chests.map(chest => {
+						if (chestIndex < chestLoadData[globalIndex].chests.length) {
+							if (chestLoadData[globalIndex].chests[chestIndex].vanillaAddress === chest.vanillaAddress) {
+								let ret = chest.loadFromJSON(chestLoadData[globalIndex].chests[chestIndex])
+								chestIndex++
+								return ret
+							}
+						}
+						return chest
+					})
+					globalIndex++
+					return {
+						...world,
+						chests: newChests
+					}
+				}
+			}
+			return world
+		})
+		globalIndex = 0
+
+		let popupLoadData = (allLoadData.hasOwnProperty('popupsData') ? allLoadData.popupsData : [])
+		let newAllPopups = popupsData.map(world => {
+			if (globalIndex < popupLoadData.length) {
+				if (popupLoadData[globalIndex].world === world.world) {
+					let popupIndex = 0
+					let newPopups = world.popups.map(popup => {
+						if (popupIndex < popupLoadData[globalIndex].popups.length) {
+							if (popupLoadData[globalIndex].popups[popupIndex].vanillaAddress === popup.vanillaAddress) {
+								let ret = popup.loadFromJSON(popupLoadData[globalIndex].popups[popupIndex])
+								popupIndex++
+								return ret
+							}
+						}
+						return popup
+					})
+					globalIndex++
+					return {
+						...world,
+						popups: newPopups
+					}
+				}
+			}
+			return world
+		})
+		globalIndex = 0
+
+		let bonusLoadData = (allLoadData.hasOwnProperty('bonusData') ? allLoadData.bonusData : [])
+		let newAllBonuses = bonusData.map(world => {
+			if (globalIndex < bonusLoadData.length) {
+				if (bonusLoadData[globalIndex].world === world.world) {
+					let bonusIndex = 0
+					let newBonuses = world.bonusFights.map(bonusFight => {
+						if (bonusIndex < bonusLoadData[globalIndex].bonusFights.length) {
+							if (bonusLoadData[globalIndex].bonusFights[bonusIndex].fight === bonusFight.fight) {
+								let ret = bonusFight.loadFromJSON(bonusLoadData[globalIndex].bonusFights[bonusIndex])
+								bonusIndex++
+								return ret
+							}
+						}
+						return bonusFight
+					})
+					globalIndex++
+					return {
+						...world,
+						bonusFights: newBonuses
+					}
+				}
+			}
+			return world
+		})
+		globalIndex = 0
+
+		let formLoadData = (allLoadData.hasOwnProperty('formsData') ? allLoadData.formsData : [])
+		let newAllForms = formsData.map(driveForm => {
+			if (globalIndex < formLoadData.length) {
+				if (formLoadData[globalIndex].driveForm === driveForm.driveForm) {
+					let formIndex = 0
+					let newForms = driveForm.driveLevels.map(driveLevel => {
+						if (formIndex < formLoadData[globalIndex].driveLevels.length) {
+							if (formLoadData[globalIndex].driveLevels[formIndex].level === driveLevel.level) {
+								let ret = driveLevel.loadFromJSON(formLoadData[globalIndex].driveLevels[formIndex])
+								formIndex++
+								return ret
+							}
+						}
+						return driveLevel
+					})
+					globalIndex++
+					return {
+						...driveForm,
+						driveLevels: newForms
+					}
+				}
+			}
+			return driveForm
+		})
+		globalIndex = 0
+
+		let equipmentLoadData = (allLoadData.hasOwnProperty('equipmentsData') ? allLoadData.equipmentsData : [])
+		let newAllEquipments = equipmentsData.map(equipmentType => {
+			if (globalIndex < equipmentLoadData.length) {
+				if (equipmentLoadData[globalIndex].equipmentType === equipmentType.equipmentType) {
+					let equipmentIndex = 0
+					let newEquipments = equipmentType.equipments.map(equipment => {
+						if (equipmentIndex < equipmentLoadData[globalIndex].equipments.length) {
+							if (equipmentLoadData[globalIndex].equipments[equipmentIndex].name === equipment.name) {
+								let ret = equipment.loadFromJSON(equipmentLoadData[globalIndex].equipments[equipmentIndex])
+								equipmentIndex++
+								return ret
+							}
+						}
+						return equipment
+					})
+					globalIndex++
+					return {
+						...equipmentType,
+						equipments: newEquipments
+					}
+				}
+			}
+			return equipmentType
+		})
+		globalIndex = 0
+
+		let levelLoadData = (allLoadData.hasOwnProperty('levelsData') ? allLoadData.levelsData : [])
+		let newAllLevels = levelsData.map(level => {
+			if (globalIndex < levelLoadData.length) {
+				if (levelLoadData[globalIndex].level === level.level) {
+					let ret = level.loadFromJSON(levelLoadData[globalIndex])
+					globalIndex++
+					return ret
+				}
+			}
+			return level
+		})
+		globalIndex = 0
+
+		let magicLoadData = (allLoadData.hasOwnProperty('magicsData') ? allLoadData.magicsData : [])
+		let newAllMagics = magicsData.map(magicType => {
+			if (globalIndex < magicLoadData.length) {
+				if (magicLoadData[globalIndex].magicType === magicType.magicType) {
+					let magicIndex = 0
+					let newMagics = magicType.abilities.map(ability => {
+						if (magicIndex < magicLoadData[globalIndex].abilities.length) {
+							if (magicLoadData[globalIndex].abilities[magicIndex].costAddress === ability.costAddress) {
+								let ret = ability.loadFromJSON(magicLoadData[globalIndex].abilities[magicIndex])
+								magicIndex++
+								return ret
+							}
+						}
+						return ability
+					})
+					globalIndex++
+					return {
+						...magicType,
+						abilities: newMagics
+					}
+				}
+			}
+			return magicType
+		})
+		globalIndex = 0
+
+		let criticalLoadData = (allLoadData.hasOwnProperty('criticalsData') ? allLoadData.criticalsData : [])
+		let newAllCriticals = criticalData.map(critical => {
+			if (globalIndex < criticalLoadData.length) {
+				if (criticalLoadData[globalIndex].vanillaAddress === critical.vanillaAddress) {
+					let ret = critical.loadFromJSON(criticalLoadData[globalIndex])
+					globalIndex++
+					return ret
+				}
+			}
+			return critical
+		})
+		globalIndex = 0
+
+		let cheatLoadData = (allLoadData.hasOwnProperty('cheatsData') ? allLoadData.cheatsData : [])
+		let newAllCheats = cheatsData.map(cheat => {
+			if (globalIndex < cheatLoadData.length) {
+				if (cheatLoadData[globalIndex].name === cheat.name) {
+					let ret = cheat.loadFromJSON(cheatLoadData[globalIndex])
+					globalIndex++
+					return ret
+				}
+			}
+			return cheat
+		})
+
+		let startingStatusLoadData = (allLoadData.hasOwnProperty('startingStatusData') ? allLoadData.startingStatusData : [])
+		let newStartingStatus = startingStatus.loadFromJSON(startingStatusLoadData)
+
+		setAllChests(newAllChests)
+		setAllPopups(newAllPopups)
+		setAllBonuses(newAllBonuses)
+		setAllForms(newAllForms)
+		setAllEquipments(newAllEquipments)
+		setAllLevels(newAllLevels)
+		setAllMagics(newAllMagics)
+		setAllCriticals(newAllCriticals)
+		setAllCheats(newAllCheats)
+		setStartingStatus(newStartingStatus)
 	}
 	//#endregion
 
@@ -878,7 +1089,12 @@ function FunctionApp() {
 				SAVE DATA
 				</Button>
 			{' '}
-			{/* <input type="file" onChange={() => onFileUpload()} /> */}
+			<input type="file" onChange={(e) => {
+				let file = e.target.files[0]
+				let reader = new FileReader()
+				reader.readAsText(file)
+				reader.onload = (e) => onFileUpload(e.target.result)
+			}} />
 		</div>
 	)
 }
