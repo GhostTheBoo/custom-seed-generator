@@ -31,7 +31,7 @@ export class Critical {
 			return ret
 		}
 		this.saveToJSON = () => {
-			return this.isReplaced() ? JSON.stringify(this, ['replacementReward', 'vanillaAddress']) : ''
+			return this.isReplaced() ? JSON.stringify(this, ['replacementReward', 'reward', 'index', 'iconType', 'vanillaAddress']) + ',' : ''
 		}
 		this.loadFromJSON = (criticalJSON) => {
 			let ret = this.copy()
@@ -40,9 +40,12 @@ export class Critical {
 			return ret
 		}
 		this.saveToPnach = () => {
-			let ret = 'patch=1,EE,' + this.vanillaAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000' + this.replacementReward.index.padStart(4, '0')
-			ret += ' // ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward + '\n'
-			return ret
+			if (this.isReplaced()) {
+				let ret = 'patch=1,EE,' + this.vanillaAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
+				ret += this.replacementReward.index.toString(16).toUpperCase().padStart(4, '0')
+				return ret + ' // ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward + '\n'
+			}
+			return ''
 		}
 	}
 }

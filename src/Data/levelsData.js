@@ -91,7 +91,7 @@ export class Level {
 		this.saveToJSON = () => {
 			return (this.isEXPReplaced() || this.isStatsReplaced() || this.isSwordReplaced() || this.isShieldReplaced() || this.isStaffReplaced())
 				? JSON.stringify(this, ['level', 'replacementEXP', 'standardAP', 'defense', 'magic', 'strength',
-					'replacementSwordReward', 'replacementShieldReward', 'replacementStaffReward'])
+					'replacementSwordReward', 'replacementShieldReward', 'replacementStaffReward', 'reward', 'index', 'iconType']) + ','
 				: ''
 		}
 		this.loadFromJSON = (levelJSON) => {
@@ -116,8 +116,8 @@ export class Level {
 				ret += '// Cannot Level to 100 so experience is not changed\n'
 			else
 				if (this.isEXPReplaced()) {
-					ret += 'patch=1,EE,' + this.expAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,' + this.replacedEXP.toString(16).toUpperCase().padStart(8, '0')
-					ret += ' // Next level at ' + this.replacedEXP + ' experience\n'
+					ret += 'patch=1,EE,' + this.expAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,' + this.replacementEXP.toString(16).toUpperCase().padStart(8, '0')
+					ret += ' // Next level at ' + this.replacementEXP + ' experience\n'
 				}
 
 			if (this.isStatsReplaced()) {
@@ -132,15 +132,15 @@ export class Level {
 			else {
 				if (this.isSwordReplaced()) {
 					ret += 'patch=1,EE,' + this.swordAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
-					ret += this.replacementSwordReward.index + ' // Sword Reward: ' + this.replacementSwordReward.reward + '\n'
+					ret += this.replacementSwordReward.index.toString(16).toUpperCase().padStart(4, '0') + ' // Sword Reward: ' + this.replacementSwordReward.reward + '\n'
 				}
 				if (this.isShieldReplaced()) {
 					ret += 'patch=1,EE,' + this.shieldAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
-					ret += this.replacementShieldReward.index + ' // Shield Reward: ' + this.replacementShieldReward.reward + '\n'
+					ret += this.replacementShieldReward.index.toString(16).toUpperCase().padStart(4, '0') + ' // Shield Reward: ' + this.replacementShieldReward.reward + '\n'
 				}
 				if (this.isStaffReplaced()) {
 					ret += 'patch=1,EE,' + this.staffAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
-					ret += this.replacementStaffReward.index + ' // Staff Reward: ' + this.replacementStaffReward.reward + '\n'
+					ret += this.replacementStaffReward.index.toString(16).toUpperCase().padStart(4, '0') + ' // Staff Reward: ' + this.replacementStaffReward.reward + '\n'
 				}
 			}
 			return ret === '' ? ret : '// Level: ' + this.level + '\n' + ret

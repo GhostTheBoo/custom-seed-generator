@@ -5,7 +5,7 @@ export class FormLevel {
 		this.level = level
 		this.vanillaReward = { ...vanilla }
 		this.replacementReward = { ...vanilla }
-		this.vanillaAddress = rewardAddress
+		this.rewardAddress = rewardAddress
 		this.vanillaEXP = exp
 		this.replacementEXP = exp
 		this.EXPAddress = expAddress
@@ -45,7 +45,7 @@ export class FormLevel {
 			return ret
 		}
 		this.saveToJSON = () => {
-			return (this.isEXPReplaced() || this.isRewardReplaced()) ? JSON.stringify(this, ['level', 'replacementReward', 'replacementEXP']) : ''
+			return (this.isEXPReplaced() || this.isRewardReplaced()) ? JSON.stringify(this, ['level', 'replacementReward', 'reward', 'index', 'iconType', 'replacementEXP']) + ',' : ''
 		}
 		this.loadFromJSON = (driveLevelJSON) => {
 			let ret = this.copy()
@@ -59,7 +59,7 @@ export class FormLevel {
 		this.saveToPnach = () => {
 			let ret = ''
 			if (this.isRewardReplaced()) {
-				ret += 'patch=1,EE,' + this.vanillaAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
+				ret += 'patch=1,EE,' + this.rewardAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
 				ret += this.replacementReward.index.toString(16).toUpperCase().padStart(4, '0')
 				ret += ' // ' + this.level + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward + '\n'
 			}

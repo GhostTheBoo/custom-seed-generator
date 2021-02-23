@@ -32,7 +32,7 @@ export class Chest {
 			return ret
 		}
 		this.saveToJSON = () => {
-			return this.isReplaced() ? JSON.stringify(this, ['replacementReward', 'vanillaAddress']) : ''
+			return this.isReplaced() ? JSON.stringify(this, ['replacementReward', 'reward', 'index', 'iconType', 'vanillaAddress']) + ',' : ''
 		}
 		this.loadFromJSON = (chestJSON) => {
 			let ret = this.copy()
@@ -41,8 +41,12 @@ export class Chest {
 			return ret
 		}
 		this.saveToPnach = () => {
-			let ret = 'patch=1,EE,' + this.vanillaAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000' + this.replacementReward.index.toString(16).toUpperCase().padStart(4, '0')
-			return ret + ' // ' + this.room + ', new Reward(' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward + '\n'
+			if (this.isReplaced()) {
+				let ret = 'patch=1,EE,' + this.vanillaAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
+				ret += this.replacementReward.index.toString(16).toUpperCase().padStart(4, '0')
+				return ret + ' // ' + this.room + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward + '\n'
+			}
+			return ''
 		}
 	}
 }

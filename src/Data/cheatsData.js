@@ -22,7 +22,7 @@ export class Cheat {
 			return ret
 		}
 		this.saveToJSON = () => {
-			return this.isActive ? JSON.stringify(this, ['name', 'isActive']) : ''
+			return this.isActive ? JSON.stringify(this, ['name', 'isActive']) + ',' : ''
 		}
 		this.loadFromJSON = () => {
 			let ret = this.copy()
@@ -31,7 +31,7 @@ export class Cheat {
 			return ret
 		}
 		this.saveToPnach = () => {
-			return '//' + this.name + '\n' + this.code.join('\n') + '\n'
+			return this.isActive ? '//' + this.name + '\n' + this.code.join('\n') + '\n' : ''
 		}
 	}
 }

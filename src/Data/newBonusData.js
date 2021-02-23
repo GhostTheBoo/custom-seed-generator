@@ -30,7 +30,7 @@ export class BonusReward {
 		this.rewardChangeCount = this.getRewardCount()
 		this.toBeReplaced = false
 
-		this.isStatsReplaced = () => {
+		this.isCharacterReplaced = () => {
 			return this.replacementCharacter !== this.vanillaCharacter
 		}
 		this.isStatsReplaced = () => {
@@ -94,8 +94,8 @@ export class BonusReward {
 			return ret
 		}
 		this.saveToJSON = () => {
-			return JSON.stringify(this, ['characterAddress', 'replacementCharacter', 'replacementReward1', 'replacementReward2', 'hpIncrease', 'mpIncrease', 'armorSlotIncrease',
-				'accessorySlotIncrease', 'itemSlotIncrease', 'driveGaugeIncrease'])
+			return JSON.stringify(this, ['characterAddress', 'replacementCharacter', 'replacementReward1', 'replacementReward2', 'reward', 'index', 'iconType',
+				'hpIncrease', 'mpIncrease', 'armorSlotIncrease', 'accessorySlotIncrease', 'itemSlotIncrease', 'driveGaugeIncrease'])
 		}
 		this.loadFromJSON = (bonusRewardJSON) => {
 			let ret = this.copy()
@@ -117,10 +117,10 @@ export class BonusReward {
 			return ret
 		}
 		this.saveToPnach = () => {
-			let ret = '//' + this.replacementCharacter + '\n'
+			let ret = ''
 			if (this.isCharacterReplaced()) {
 				ret += 'patch=1,EE,' + this.characterAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,'
-				ret += this.replacementCharacter.toString(16).toUpperCase().padStart(8, '0') + ' // Bonus reward is now given to ' + charactersData[this.replacementCharacter]
+				ret += this.replacementCharacter.toString(16).toUpperCase().padStart(8, '0') + ' // Bonus reward is now given to ' + charactersData[this.replacementCharacter] + '\n'
 			}
 			if (this.isStatsReplaced()) {
 				ret += 'patch=1,EE,' + this.statAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
@@ -139,7 +139,7 @@ export class BonusReward {
 				ret += ',extended,' + this.replacementReward2.index.toString(16).toUpperCase().padStart(4, '0') + this.replacementReward1.index.toString(16).toUpperCase().padStart(4, '0')
 				ret += ' // Replacement Reward #2:' + this.replacementReward2.reward + ', Replacement Reward #1:' + this.replacementReward1.reward + '\n'
 			}
-			return ret
+			return ret + '\n'
 		}
 	}
 
@@ -173,7 +173,7 @@ export class BonusFight {
 		this.isReplaced = () => {
 			let ret = false
 			this.slots.filter(slot => Object.keys(slot).length !== 0).forEach(slot => {
-				ret ||= (slot.isStatsReplaced() || slot.isSlotsReplaced() || slot.isRewardsReplaced() || slot.isCharacterReplaced())
+				ret = (ret || slot.isStatsReplaced() || slot.isSlotsReplaced() || slot.isRewardsReplaced() || slot.isCharacterReplaced())
 			})
 			return ret
 		}
@@ -198,8 +198,8 @@ export class BonusFight {
 		this.saveToJSON = () => {
 			if (this.isReplaced()) {
 				let slotCount = 0
-				let ret = '{"fight":' + this.fight + ',slots:['
-				this.slots.forEach(slot => {
+				let ret = '{"fight":"' + this.fight + '","slots":['
+				this.slots.filter(slot => Object.keys(slot).length !== 0).forEach(slot => {
 					ret += slot.saveToJSON() + ','
 					slotCount++
 				})
@@ -207,7 +207,7 @@ export class BonusFight {
 					ret += '{},'
 					slotCount++
 				}
-				return ret.slice(0, -1) + ']'
+				return ret.slice(0, -1) + ']},'
 			}
 			else
 				return ''
@@ -218,12 +218,15 @@ export class BonusFight {
 			})
 			return new BonusFight(bonusFightJSON.fight, newSlots[0], newSlots[1], newSlots[2], newSlots[3])
 		}
-		this.toPnach = () => {
-			let ret = '//' + this.fight + '\n'
-			this.slots.filter(slot => Object.keys(slot).length !== 0).forEach(slot => {
-				ret += slot.saveToPnach()
-			})
-			return ret
+		this.saveToPnach = () => {
+			if (this.isReplaced()) {
+				let ret = '//' + this.fight + '\n'
+				this.slots.filter(slot => Object.keys(slot).length !== 0).forEach((slot, slotID) => {
+					ret += '// Bonus Slot #' + (slotID + 1) + '\n' + slot.saveToPnach()
+				})
+				return ret
+			}
+			return ''
 		}
 	}
 }

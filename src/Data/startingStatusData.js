@@ -73,12 +73,12 @@ export class StartingStatus {
 			//+ mp.toString(16).toUpperCase().padStart(2, '0') + ' //Current MP: ' + mp + '\n'
 		]
 		this.donaldCode = [
-			'//Donald\'s Starting Abilities\n',
+			'//DONALD\'S STARTING ABILITIES\n', //'Donald\'s Starting Abilities\n',
 			'patch=1,EE,11D16EE0,extended,0000',//Donald Thunder
 			'patch=1,EE,11D16EE2,extended,0000'	//Donald Cure
 		]
 		this.goofyCode = [
-			'//Goofy\'s Starting Abilities\n',
+			'//GOOFY\'S STARTING ABILITIES\n', //'Goofy\'s Starting Abilities\n',
 			'patch=1,EE,11D16F62,extended,0000',//Goofy Bash
 			'patch=1,EE,11D16F64,extended,0000'	//Item Boost
 		]
@@ -101,7 +101,7 @@ export class StartingStatus {
 			return ret
 		}
 		this.saveToJSON = () => {
-			return JSON.stringify(this, ['keyblade', 'armor', 'accessory', 'munny', 'hp', 'mp', 'donald1', 'donald2', 'goofy1', 'goofy2'])
+			return JSON.stringify(this, ['keyblade', 'armor', 'accessory', 'munny', 'hp', 'mp', 'donald1', 'donald2', 'goofy1', 'goofy2', 'reward', 'index', 'iconType',])
 		}
 		this.loadFromJSON = (startingStatusJSON) => {
 			let ret = new StartingStatus()
@@ -134,31 +134,31 @@ export class StartingStatus {
 				? this.munnyCode.join('') + this.munny.toString(16).toUpperCase().padStart(8, '0') + ' // ' + this.munny + ' munny\n'
 				: '// Vanilla starting Munny of 0\n'
 
-			if (this.HP !== 20) {
+			if (this.hp !== 20) {
 				ret += this.hpCode.slice(0, 5).join('') + this.hp.toString(16).toUpperCase().padStart(2, '0') + ' // Max HP: ' + this.hp + '\n'
 				ret += this.hpCode[5] + this.hp.toString(16).toUpperCase().padStart(2, '0') + ' // Current HP: ' + this.hp + '\n'
 			} else
 				ret += '// Vanilla starting HP of 20\n'
 
-			if (this.MP !== 100) {
+			if (this.mp !== 100) {
 				ret += this.mpCode.slice(0, 5).join('') + this.mp.toString(16).toUpperCase().padStart(2, '0') + ' // Max MP: ' + this.mp + '\n'
 				ret += this.mpCode[5] + this.mp.toString(16).toUpperCase().padStart(2, '0') + ' // Current MP: ' + this.mp + '\n'
 			} else
 				ret += '// Vanilla starting MP of 100\n'
 
 			ret += this.donaldCode[0]
-			ret += this.Donald1.index !== 0x00A7
+			ret += this.donald1.index !== 0x00A7
 				? this.donaldCode[1] + this.donald1.index.toString(16).toUpperCase().padStart(4, '0') + ' // ' + this.donald1.reward + '\n'
 				: '// Vanilla Donald Ability of Donald Thunder\n'
-			ret += this.Donald2.index !== 0x00A8
+			ret += this.donald2.index !== 0x00A8
 				? this.donaldCode[2] + this.donald2.index.toString(16).toUpperCase().padStart(4, '0') + ' // ' + this.donald2.reward + '\n'
 				: '// Vanilla Donald Ability of Donald Cure\n'
 
 			ret += this.goofyCode[0]
-			ret += this.Goofy1.index !== 0x01AD
+			ret += this.goofy1.index !== 0x01AD
 				? this.goofyCode[1] + this.goofy1.index.toString(16).toUpperCase().padStart(4, '0') + ' // ' + this.goofy1.reward + '\n'
 				: '// Vanilla Goofy Ability of Goofy Bash\n'
-			ret += this.Goofy2.index !== 0x019B
+			ret += this.goofy2.index !== 0x019B
 				? this.goofyCode[2] + this.goofy2.index.toString(16).toUpperCase().padStart(4, '0') + ' // ' + this.goofy2.reward + '\n'
 				: '// Vanilla Goofy Ability of Item Boost\n'
 

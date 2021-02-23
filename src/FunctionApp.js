@@ -1,4 +1,5 @@
 import { React, useState } from 'react'
+import Button from 'react-bootstrap/Button'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 
@@ -329,6 +330,218 @@ function FunctionApp() {
 			[name]: parseInt(value)
 		})
 	}
+	function handleSaveAsCheats() {
+		let chestPnachCodes = allChests.map(worldList => {
+			let ret = '// ' + worldList.world.toUpperCase() + '\n'
+			worldList.chests.forEach(chest => {
+				ret += chest.saveToPnach()
+			})
+			return ret
+		})
+		chestPnachCodes.unshift('\n//CHESTS\n')
+
+		let popupPnachCodes = allPopups.map(worldList => {
+			let ret = '// ' + worldList.world.toUpperCase() + '\n'
+			worldList.popups.forEach(popup => {
+				ret += popup.saveToPnach()
+			})
+			return ret
+		})
+		popupPnachCodes.unshift('\n//POPUPS\n')
+
+		let formPnachCodes = allForms.map(driveFormList => {
+			let ret = '// ' + driveFormList.driveForm.toUpperCase() + '\n'
+			if (driveFormList.driveLevels.some(driveFormLevel => driveFormLevel.isRewardReplaced()))
+				if (driveFormList.driveForm !== 'Summon')
+					ret += driveFormList.removeGrowthJankCodes.join('')
+			driveFormList.driveLevels.forEach(driveFormLevel => {
+				ret += driveFormLevel.saveToPnach()
+			})
+			return ret
+		})
+		formPnachCodes.unshift('\n//DRIVE FORMS\n')
+
+		let equipmentPnachCodes = allEquipments.map(equipmentTypeList => {
+			let ret = '// ' + equipmentTypeList.equipmentType.toUpperCase() + '\n'
+
+			equipmentTypeList.equipments.forEach(equipment => {
+				ret += equipment.saveToPnach()
+			})
+			return ret
+		})
+		equipmentPnachCodes.unshift('\nEQUIPMENT\n')
+
+		let bonusPnachCodes = allBonuses.map(worldList => {
+			let ret = '// ' + worldList.world.toUpperCase() + '\n'
+			worldList.bonusFights.forEach(bonusFight => {
+				ret += bonusFight.saveToPnach()
+			})
+			return ret
+		})
+		bonusPnachCodes.unshift('\n//BONUS REWARDS\n')
+
+		let levelPnachCodes = allLevels.map(level => {
+			return level.saveToPnach()
+		})
+		levelPnachCodes.unshift('\n//LEVEL REWARDS\n')
+
+		let magicCostPnachCodes = allMagics.map(magicType => {
+			let prefix = '// ' + magicType.magicType.toUpperCase() + '\n'
+			let ret = ''
+			let tempString = ''
+			let tempLastAbility
+			let magicChangeCount = 0
+			let lastAbility
+			magicType.abilities.forEach(ability => {
+				[tempString, tempLastAbility] = ability.saveToPnach()
+				if (tempString !== '') {
+					ret += tempString
+					lastAbility = tempLastAbility
+					magicChangeCount++
+				}
+			})
+			if (magicChangeCount > 0) {
+				let checkAddress = (lastAbility.costAddress + 0x10000000).toString(16).toUpperCase().padStart(8, '0')
+				prefix += 'patch=1,EE,E0' + (magicChangeCount + 3).toString(16).toUpperCase().padStart(2, '0') + 'FFFF,extended,1032BAE0 // If not on Title Screen\n'
+				prefix += 'patch=1,EE,E0' + (magicChangeCount + 2).toString(16).toUpperCase().padStart(2, '0') + '2002,extended,1032BAE0 // If not in Station of Serenity\n'
+				prefix += 'patch=1,EE,E0' + (magicChangeCount + 1).toString(16).toUpperCase().padStart(2, '0') + '0000,extended,1032BAD8 // If not screen transition\n'
+				prefix += 'patch=1,EE,E1' + magicChangeCount.toString(16).toUpperCase().padStart(2, '0') + '00' + lastAbility.replacementCost.toString(16).toUpperCase().padStart(2, '0')
+				prefix += ',extended,' + checkAddress + ' // If ' + lastAbility.ability + '\'s MP Cost is not ' + lastAbility.replacementCost + '\n'
+			}
+			return prefix + ret
+		})
+		magicCostPnachCodes.unshift('\n//MAGIC COSTS\n')
+
+		let criticalPnachCodes = allCriticals.map(criticalExtra => {
+			return criticalExtra.saveToPnach()
+		})
+		criticalPnachCodes.unshift('\n//CRITICAL EXTRAS\n')
+
+		let startingPnachCodes = ['\n//STARTING STATUS\n']
+		startingPnachCodes.push(startingStatus.saveToPnach())
+
+		let cheatPnachCodes = allCheats.map(cheat => {
+			return cheat.saveToPnach()
+		})
+		cheatPnachCodes.unshift('\n//CHEAT CODES\n')
+
+		let pnachCodes = chestPnachCodes.concat(popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes, magicCostPnachCodes,
+			criticalPnachCodes, startingPnachCodes, cheatPnachCodes)
+
+		const element = document.createElement('a')
+		const file = new Blob(pnachCodes, { type: 'text/plain;charset=utf-8' })
+		element.href = URL.createObjectURL(file)
+		element.download = 'F266B00B.pnach'
+		document.body.appendChild(element)
+		element.click()
+	}
+	function handleSaveAsJSON() {
+		let chestSaveData = allChests.map(world => {
+			let ret = ''
+			world.chests.forEach(chest => {
+				ret += chest.saveToJSON()
+			})
+			if (ret !== '')
+				return '{"world":"' + world.world + '","chests":[' + ret.slice(0, -1) + ']}'
+			return ret
+		})
+		chestSaveData = ['"chestsData":[', chestSaveData.filter(s => s !== '').join(), '],']
+
+		let popupSaveData = allPopups.map(world => {
+			let ret = ''
+			world.popups.forEach(popup => {
+				ret += popup.saveToJSON()
+			})
+			if (ret !== '')
+				return '{"world":"' + world.world + '","popups":[' + ret.slice(0, -1) + ']}'
+			return ret
+		})
+		popupSaveData = ['"popupsData":[', popupSaveData.filter(s => s !== '').join(), '],']
+
+		let bonusSaveData = allBonuses.map(world => {
+			let ret = ''
+			world.bonusFights.forEach(bonusFight => {
+				ret += bonusFight.saveToJSON()
+			})
+			if (ret !== '')
+				return '{"world":"' + world.world + '","bonusFights":[' + ret.slice(0, -1) + ']}'
+			return ret
+		})
+		bonusSaveData = ['"bonusData":[', bonusSaveData.filter(s => s !== '').join(), '],']
+
+		let formSaveData = allForms.map(driveForm => {
+			let ret = ''
+			driveForm.driveLevels.forEach(driveLevel => {
+				ret += driveLevel.saveToJSON()
+			})
+			if (ret !== '')
+				return '{"driveForm":"' + driveForm.driveForm + '","driveLevels":[' + ret.slice(0, -1) + ']}'
+			return ret
+		})
+		formSaveData = ['"formsData":[', formSaveData.filter(s => s !== '').join(), '],']
+
+		let equipmentSaveData = allEquipments.map(equipmentType => {
+			let ret = ''
+			equipmentType.equipments.forEach(equipment => {
+				ret += equipment.saveToJSON()
+			})
+			if (ret !== '')
+				return '{"equipmentType":"' + equipmentType.equipmentType + '","equipments":[' + ret.slice(0, -1) + ']}'
+			return ret
+		})
+		equipmentSaveData = ['"equipmentsData":[', equipmentSaveData.filter(s => s !== '').join(), '],']
+
+		let levelSaveData = allLevels.map(level => {
+			return level.saveToJSON()
+		})
+		levelSaveData = ['"levelsData":[', levelSaveData.join('').slice(0, -1), '],']
+
+		let magicCostSaveData = allMagics.map(magicType => {
+			let ret = ''
+			magicType.abilities.forEach(ability => {
+				ret += ability.saveToJSON()
+			})
+			if (ret !== '')
+				return '{"magicType":"' + magicType.magicType + '","abilities":[' + ret.slice(0, -1) + ']}'
+			return ret
+		})
+		magicCostSaveData = ['"magicData":[', magicCostSaveData.filter(s => s !== '').join(), '],']
+
+		let criticalSaveData = allCriticals.map(critical => {
+			return critical.saveToJSON()
+		})
+		criticalSaveData = ['"criticalsData":[', criticalSaveData.join('').slice(0, -1), '],']
+
+		let cheatSaveData = allCheats.map(cheat => {
+			return cheat.saveToJSON()
+		})
+		cheatSaveData = ['"cheatsData":[', cheatSaveData.join('').slice(0, -1), '],']
+
+		let startingStatusSaveData = '"startingStatusData":' + startingStatus.saveToJSON() + ','
+
+		let saveData = ['{',
+			chestSaveData.join(''),
+			popupSaveData.join(''),
+			bonusSaveData.join(''),
+			formSaveData.join(''),
+			equipmentSaveData.join(''),
+			levelSaveData.join(''),
+			magicCostSaveData.join(''),
+			criticalSaveData.join(''),
+			startingStatusSaveData,
+			// trackerData,
+			cheatSaveData.join('').slice(0, -1),
+			'}']
+
+		const element = document.createElement("a")
+		const file = new Blob(saveData, { type: 'text/plain;charset=utf-8' })
+		element.href = URL.createObjectURL(file)
+		element.download = "saveData.json"
+		document.body.appendChild(element)
+		element.click()
+	}
+	function onFileUpload() {
+	}
 	//#endregion
 
 	let styles = {
@@ -651,6 +864,21 @@ function FunctionApp() {
 					/>
 				</Tab>
 			</Tabs>
+			<Button variant='outline-dark'
+				name='saveButton'
+				onClick={() => handleSaveAsCheats()}
+			>
+				SAVE
+				</Button>
+			{' '}
+			<Button variant='outline-dark'
+				name='saveDataButton'
+				onClick={() => handleSaveAsJSON()}
+			>
+				SAVE DATA
+				</Button>
+			{' '}
+			{/* <input type="file" onChange={() => onFileUpload()} /> */}
 		</div>
 	)
 }

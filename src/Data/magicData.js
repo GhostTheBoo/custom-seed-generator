@@ -30,7 +30,7 @@ export class MagicAbility {
 			return ret
 		}
 		this.saveToJSON = () => {
-			return this.isReplaced() ? JSON.stringify(this, ['costAddress', 'replacementCost']) : ''
+			return this.isReplaced() ? JSON.stringify(this, ['costAddress', 'replacementCost']) + ',' : ''
 		}
 		this.loadFromJSON = (magicJSON) => {
 			let ret = this.copy()
@@ -39,17 +39,13 @@ export class MagicAbility {
 			return ret
 		}
 		this.saveToPnach = () => {
-			let ret = 'patch=1,EE,' + this.costAddress.toString(16).toUpperCase().padStart(8, '0')
-			ret += ',extended,' + this.replacementCost.toString(16).toUpperCase().padStart(8, '0')
-			ret += ' // ' + this.ability + ' Cost: ' + this.replacementCost + '\n'
-
-			// prefix += 'patch=1,EE,E0' + (magicChangeCount + 3).toString(16).toUpperCase().padStart(2, '0') + 'FFFF,extended,1032BAE0 // If not on Title Screen\n'
-			// prefix += 'patch=1,EE,E0' + (magicChangeCount + 2).toString(16).toUpperCase().padStart(2, '0') + '2002,extended,1032BAE0 // If not in Station of Serenity\n'
-			// prefix += 'patch=1,EE,E0' + (magicChangeCount + 1).toString(16).toUpperCase().padStart(2, '0') + '0000,extended,1032BAD8 // If not screen transition\n'
-			// prefix += 'patch=1,EE,E1' + magicChangeCount.toString(16).toUpperCase().padStart(2, '0') + '0000,extended,1'
-			// prefix += lastAbility.costAddress.slice(0, -1) + ' // If ' + lastAbility.ability + '\'s MP Cost is not ' + lastAbility.replacementCost + '\n'
-
-			return ret
+			let ret = ''
+			if (this.isReplaced()) {
+				ret += 'patch=1,EE,' + this.costAddress.toString(16).toUpperCase().padStart(8, '0')
+				ret += ',extended,' + this.replacementCost.toString(16).toUpperCase().padStart(8, '0')
+				ret += ' // ' + this.ability + ' Cost: ' + this.replacementCost + '\n'
+			}
+			return [ret, this]
 		}
 	}
 }
