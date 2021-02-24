@@ -15,6 +15,8 @@ import { criticalData } from './Data/criticalData'
 import { cheatsData } from './Data/cheatsData'
 import { startingStatusData } from './Data/startingStatusData'
 
+import Tracker from './Data/trackerData'
+
 import HomePage from './Pages/HomePage'
 import ChestPage from './Pages/ChestPage'
 import PopupPage from './Pages/PopupPage'
@@ -246,16 +248,18 @@ function FunctionApp() {
 	function handleReplace(isShallow, toReplace, replacement, currentIndexFieldName, fieldName, fieldData, setFieldData, allData, setAllData) {
 		let newAllData = allData.map((objectList, objectListID) => {
 			if (isShallow) {
-				return toReplace
-					? objectList.replace(replacement)
-					: objectList.vanilla()
+				if (objectList.toBeReplaced)
+					return toReplace
+						? objectList.replace(replacement)
+						: objectList.vanilla()
 			}
 			if (objectListID === fieldData[currentIndexFieldName]) {
 				let newObjectList = objectList[fieldName].map(object => {
-					if (object.toBeReplaced)
+					if (object.toBeReplaced) {
 						return toReplace
 							? object.replace(replacement)
 							: object.vanilla()
+					}
 					return object
 				})
 				return {
@@ -330,7 +334,95 @@ function FunctionApp() {
 			[name]: parseInt(value)
 		})
 	}
-	function handleSaveAsCheats() {
+	function handleTracker() {
+		//Chest Tracker
+		let chestTracker = allChests.reduce((prevWorlds, currentWorld) => {
+			currentWorld.chests.forEach(chest => {
+				prevWorlds = prevWorlds.update(chest.replacementReward.index)
+			})
+			return prevWorlds
+		}, new Tracker())
+
+		//Popup Tracker
+		let popupTracker = allPopups.reduce((prevWorlds, currentWorld) => {
+			currentWorld.popups.forEach(popup => {
+				prevWorlds = prevWorlds.update(popup.replacementReward.index)
+			})
+			return prevWorlds
+		}, new Tracker())
+
+		//Bonus Tracker
+		let finalBonusStats = {
+			hp: startingStatus.hp,
+			mp: startingStatus.mp,
+			armor: 1,
+			accessory: 1,
+			item: 3,
+			drive: 5
+		}
+		let bonusTracker = allBonuses.reduce((prevWorlds, currentWorld) => {
+			currentWorld.bonusFights.forEach(bonusFight => {
+				bonusFight.slots.filter(slot => Object.keys(slot).length !== 0).forEach(slot => {
+					if (slot.replacementCharacter === 0) {
+						finalBonusStats.hp += Math.floor(slot.hpIncrease / 2)
+						finalBonusStats.mp += Math.floor(slot.mpIncrease / 2)
+						finalBonusStats.armor += slot.armorSlotIncrease
+						finalBonusStats.accessory += slot.accessorySlotIncrease
+						finalBonusStats.item += slot.itemSlotIncrease
+						finalBonusStats.drive += slot.driveGaugeIncrease
+						prevWorlds = prevWorlds.update(slot.replacementReward1.index)
+						prevWorlds = prevWorlds.update(slot.replacementReward2.index)
+					}
+				})
+			})
+			return prevWorlds
+		}, new Tracker())
+		let finalBonusStatsPnach = '//SORA\'S FINAL STATS IN CRITICAL MODE\n'
+		finalBonusStatsPnach += '// HP: ' + finalBonusStats.hp + '\n'
+		finalBonusStatsPnach += '// MP: ' + finalBonusStats.mp + '\n'
+		finalBonusStatsPnach += '// Armor: ' + finalBonusStats.armor + '\n'
+		finalBonusStatsPnach += '// Accessory: ' + finalBonusStats.accessory + '\n'
+		finalBonusStatsPnach += '// Item: ' + finalBonusStats.item + '\n'
+		finalBonusStatsPnach += '// Drive: ' + Math.min(9, finalBonusStats.drive) + '\n'
+
+		//Forms & Summons Tracker
+		let formTracker = allForms.reduce((prevDriveForms, currentDriveForm) => {
+			currentDriveForm.driveLevels.forEach(driveLevel => {
+				prevDriveForms = prevDriveForms.update(driveLevel.replacementReward.index)
+			})
+			return prevDriveForms
+		}, new Tracker())
+
+		//Level Tracker
+		let levelTracker = allLevels.reduce((prevLevels, currentLevel) => {
+			prevLevels.sword = prevLevels.sword.update(currentLevel.replacementSwordReward.index)
+			prevLevels.shield = prevLevels.shield.update(currentLevel.replacementShieldReward.index)
+			prevLevels.staff = prevLevels.staff.update(currentLevel.replacementStaffReward.index)
+			return prevLevels
+		}, { sword: new Tracker(), shield: new Tracker(), staff: new Tracker() })
+
+		//Critical Extra Tracker
+		let criticalTracker = allCriticals.reduce((prevCriticalExtras, currentCriticalExtra) => {
+			return prevCriticalExtras.update(currentCriticalExtra.replacementReward.index)
+		}, new Tracker())
+
+		return [
+			'//GAME STATUS\n',
+			chestTracker.saveToPnach('CHEST') + '\n',
+			popupTracker.saveToPnach('POPUP') + '\n',
+			formTracker.saveToPnach('FORM & SUMMON') + '\n',
+			criticalTracker.saveToPnach('CRITICAL EXTRA') + '\n',
+			'//LEVEL TALLY\n',
+			levelTracker.sword.saveToPnach('SWORD') + '\n',
+			levelTracker.shield.saveToPnach('SHIELD') + '\n',
+			levelTracker.staff.saveToPnach('STAFF') + '\n',
+			bonusTracker.saveToPnach('BONUS') + '\n',
+			finalBonusStatsPnach
+		]
+	}
+	function handleSaveAsPnach() {
+		let trackerPnachCodes = handleTracker()
+
 		let chestPnachCodes = allChests.map(worldList => {
 			let ret = '// ' + worldList.world.toUpperCase() + '\n'
 			worldList.chests.forEach(chest => {
@@ -425,7 +517,7 @@ function FunctionApp() {
 		})
 		cheatPnachCodes.unshift('\n//CHEAT CODES\n')
 
-		let pnachCodes = chestPnachCodes.concat(popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes, magicCostPnachCodes,
+		let pnachCodes = trackerPnachCodes.concat(chestPnachCodes, popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes, magicCostPnachCodes,
 			criticalPnachCodes, startingPnachCodes, cheatPnachCodes)
 
 		const element = document.createElement('a')
@@ -517,8 +609,6 @@ function FunctionApp() {
 		})
 		cheatSaveData = ['"cheatsData":[', cheatSaveData.join('').slice(0, -1), '],']
 
-		let startingStatusSaveData = '"startingStatusData":' + startingStatus.saveToJSON() + ','
-
 		let saveData = ['{',
 			chestSaveData.join(''),
 			popupSaveData.join(''),
@@ -528,8 +618,7 @@ function FunctionApp() {
 			levelSaveData.join(''),
 			magicCostSaveData.join(''),
 			criticalSaveData.join(''),
-			startingStatusSaveData,
-			// trackerData,
+			'"startingStatusData":' + startingStatus.saveToJSON() + ',',
 			cheatSaveData.join('').slice(0, -1),
 			'}']
 
@@ -904,7 +993,7 @@ function FunctionApp() {
 								currentDark: equipmentFieldData.currentDark,
 								currentLight: equipmentFieldData.currentLight,
 								currentUniversal: equipmentFieldData.currentUniversal,
-								reward: {
+								ability: {
 									...rewardsData[equipmentFieldData.currentRewardType].rewards[equipmentFieldData.currentReward]
 								}
 							}
@@ -1077,7 +1166,7 @@ function FunctionApp() {
 			</Tabs>
 			<Button variant='outline-dark'
 				name='saveButton'
-				onClick={() => handleSaveAsCheats()}
+				onClick={() => handleSaveAsPnach()}
 			>
 				SAVE
 				</Button>

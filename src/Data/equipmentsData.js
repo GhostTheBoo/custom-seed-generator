@@ -106,7 +106,7 @@ export class Equipment {
 					newLineCount++
 			}
 
-			ret.replacementAbility = { ...newEquipmentData.reward }
+			ret.replacementAbility = { ...newEquipmentData.ability }
 			ret.strength = newEquipmentData.currentStrength
 			ret.magic = newEquipmentData.currentMagic
 			ret.ap = newEquipmentData.currentAP
