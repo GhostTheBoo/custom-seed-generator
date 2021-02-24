@@ -1,5 +1,6 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table'
+// import Icon from '../Components/Icon'
 
 function FormTable(props) {
 	let formList = props.driveLevels.map((driveLevel, index) => {

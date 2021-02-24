@@ -1,5 +1,6 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table'
+// import Icon from '../Components/Icon'
 
 function EquipmentTable(props) {
 	let equipmentList = props.equipments.map((equipment, index) => {

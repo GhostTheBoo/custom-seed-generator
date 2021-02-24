@@ -1,5 +1,6 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table'
+// import Icon from '../Components/Icon'
 
 function CriticalTable(props) {
 	let criticalList = props.allCriticals.map((ce, index) => {
