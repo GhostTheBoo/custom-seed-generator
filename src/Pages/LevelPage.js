@@ -100,15 +100,17 @@ function LevelPage(props) {
 						/>
 					</Col>
 				</Form.Row>
-				<EXPSelect
-					class={'level'}
-					currentEXP={props.fieldData.currentEXP}
-					currentEXPMultiplier={props.fieldData.currentEXPMultiplierValue}
-					onInputChange={props.onInputChange}
-					onMultiplierChange={props.onSelectChange}
-				/>
 				<Form.Row>
-					<Col>
+					<Col lg='4'>
+						<EXPSelect
+							class={'level'}
+							currentEXP={props.fieldData.currentEXP}
+							currentEXPMultiplier={props.fieldData.currentEXPMultiplierValue}
+							onInputChange={props.onInputChange}
+							onMultiplierChange={props.onSelectChange}
+						/>
+					</Col>
+					<Col lg='2'>
 						<Form.Group controlId='currentLevelAP'>
 							<Form.Label column='sm'>AP: </Form.Label>
 							<Form.Control
@@ -122,7 +124,7 @@ function LevelPage(props) {
 							/>
 						</Form.Group>
 					</Col>
-					<Col>
+					<Col lg='2'>
 						<Form.Group controlId='currentLevelDefense'>
 							<Form.Label column='sm'>Defense: </Form.Label>
 							<Form.Control
@@ -136,7 +138,7 @@ function LevelPage(props) {
 							/>
 						</Form.Group>
 					</Col>
-					<Col>
+					<Col lg='2'>
 						<Form.Group controlId='currentLevelStrength'>
 							<Form.Label column='sm'>Strength: </Form.Label>
 							<Form.Control
@@ -150,7 +152,7 @@ function LevelPage(props) {
 							/>
 						</Form.Group>
 					</Col>
-					<Col>
+					<Col lg='2'>
 						<Form.Group controlId='currentLevelMagic'>
 							<Form.Label column='sm'>Magic: </Form.Label>
 							<Form.Control

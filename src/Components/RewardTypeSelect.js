@@ -12,20 +12,22 @@ function RewardTypeSelect(props) {
 	})
 
 	return (
-		<Col xs='auto'>
-			<Form.Group controlId={props.class + props.name}>
-				<Form.Label column='sm'>{props.label} Reward Type Selector: </Form.Label>
-				<Form.Control
-					size='sm'
-					as='select'
-					value={props.currentRewardType}
-					name={props.name}
-					onChange={props.onChange}
-				>
-					{rewardTypeOptionList}
-				</Form.Control>
-			</Form.Group>
-		</Col>
+		<Form.Row>
+			<Col>
+				<Form.Group controlId={props.class + props.name}>
+					<Form.Label column='sm'>{props.label} Reward Type Selector: </Form.Label>
+					<Form.Control
+						size='sm'
+						as='select'
+						value={props.currentRewardType}
+						name={props.name}
+						onChange={props.onChange}
+					>
+						{rewardTypeOptionList}
+					</Form.Control>
+				</Form.Group>
+			</Col>
+		</Form.Row>
 	)
 }
 

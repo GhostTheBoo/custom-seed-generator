@@ -73,18 +73,6 @@ function BonusPage(props) {
 						/>
 					</Col>
 					<Col>
-						<GenericSelect
-							class='bonus'
-							selector={'Character'}
-							itemList={charactersData}
-							name={'currentCharacter'}
-							currentItem={props.fieldData.currentCharacter}
-							onChange={props.onSelectChange}
-						/>
-					</Col>
-				</Form.Row>
-				<Form.Row>
-					<Col>
 						<RewardTypeSelect
 							label={'"A"'}
 							class={'bonus'}
@@ -124,6 +112,16 @@ function BonusPage(props) {
 					</Col>
 				</Form.Row>
 				<Form.Row>
+					<Col>
+						<GenericSelect
+							class='bonus'
+							selector={'Character'}
+							itemList={charactersData}
+							name={'currentCharacter'}
+							currentItem={props.fieldData.currentCharacter}
+							onChange={props.onSelectChange}
+						/>
+					</Col>
 					<Col>
 						<Form.Group controlId='currentBonusHP'>
 							<Form.Label column='sm'>HP Increase: </Form.Label>

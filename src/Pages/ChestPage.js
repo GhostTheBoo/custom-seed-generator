@@ -30,7 +30,7 @@ function ChestPage(props) {
 		<div style={props.style}>
 			<Form>
 				<Form.Row>
-					<Col>
+					<Col lg='4'>
 						<GenericSelect
 							class={'chest'}
 							selector={'World'}
@@ -40,7 +40,7 @@ function ChestPage(props) {
 							onChange={props.handleWorldChange}
 						/>
 					</Col>
-					<Col>
+					<Col lg='4'>
 						<RewardTypeSelect
 							class={'chest'}
 							currentRewardType={props.fieldData.currentRewardType}
@@ -48,7 +48,7 @@ function ChestPage(props) {
 							onChange={props.onRewardTypeChange}
 						/>
 					</Col>
-					<Col>
+					<Col lg='4'>
 						<RewardSelect
 							class={'chest'}
 							rewardList={props.rewardList}

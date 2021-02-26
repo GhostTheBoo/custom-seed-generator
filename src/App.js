@@ -1,5 +1,4 @@
 import { React, useState } from 'react'
-import Button from 'react-bootstrap/Button'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 
@@ -28,7 +27,9 @@ import MagicPage from './Pages/MagicPage'
 import CriticalPage from './Pages/CriticalPage'
 import CheatPage from './Pages/CheatPage'
 import StartingPage from './Pages/StartingPage'
-import Icon from './Components/Icon'
+
+import SaveLoadModal from './Components/SaveLoadModal'
+// import Icon from './Components/Icon'
 
 function FunctionApp() {
 	//#region State
@@ -421,7 +422,7 @@ function FunctionApp() {
 			finalBonusStatsPnach
 		]
 	}
-	function handleSaveAsPnach() {
+	function handleSaveAsPnach(fileName) {
 		let trackerPnachCodes = handleTracker()
 
 		let chestPnachCodes = allChests.map(worldList => {
@@ -524,11 +525,11 @@ function FunctionApp() {
 		const element = document.createElement('a')
 		const file = new Blob(pnachCodes, { type: 'text/plain;charset=utf-8' })
 		element.href = URL.createObjectURL(file)
-		element.download = 'F266B00B.pnach'
+		element.download = fileName.length !== 0 ? '(' + fileName + ').pnach' : 'F266B00B.pnach'
 		document.body.appendChild(element)
 		element.click()
 	}
-	function handleSaveAsJSON() {
+	function handleSaveAsJSON(fileName) {
 		let chestSaveData = allChests.map(world => {
 			let ret = ''
 			world.chests.forEach(chest => {
@@ -626,13 +627,12 @@ function FunctionApp() {
 		const element = document.createElement("a")
 		const file = new Blob(saveData, { type: 'text/plain;charset=utf-8' })
 		element.href = URL.createObjectURL(file)
-		element.download = "saveData.json"
+		element.download = fileName.length !== 0 ? fileName + '.json' : 'save_data.json'
 		document.body.appendChild(element)
 		element.click()
 	}
 	function onFileUpload(loadData) {
 		let allLoadData = JSON.parse(loadData)
-		console.log(allLoadData)
 		let globalIndex = 0
 
 		let chestLoadData = (allLoadData.hasOwnProperty('chestsData') ? allLoadData.chestsData : [])
@@ -778,14 +778,14 @@ function FunctionApp() {
 		})
 		globalIndex = 0
 
-		let magicLoadData = (allLoadData.hasOwnProperty('magicsData') ? allLoadData.magicsData : [])
+		let magicLoadData = (allLoadData.hasOwnProperty('magicData') ? allLoadData.magicData : [])
 		let newAllMagics = magicsData.map(magicType => {
 			if (globalIndex < magicLoadData.length) {
 				if (magicLoadData[globalIndex].magicType === magicType.magicType) {
 					let magicIndex = 0
 					let newMagics = magicType.abilities.map(ability => {
 						if (magicIndex < magicLoadData[globalIndex].abilities.length) {
-							if (magicLoadData[globalIndex].abilities[magicIndex].costAddress === ability.costAddress) {
+							if (magicLoadData[globalIndex].abilities[magicIndex].ability === ability.ability) {
 								let ret = ability.loadFromJSON(magicLoadData[globalIndex].abilities[magicIndex])
 								magicIndex++
 								return ret
@@ -1165,26 +1165,16 @@ function FunctionApp() {
 					/>
 				</Tab>
 			</Tabs>
-			<Button variant='outline-dark'
-				name='saveButton'
-				onClick={() => handleSaveAsPnach()}
-			>
-				SAVE
-				</Button>
-			{' '}
-			<Button variant='outline-dark'
-				name='saveDataButton'
-				onClick={() => handleSaveAsJSON()}
-			>
-				SAVE DATA
-				</Button>
-			{' '}
-			<input type="file" onChange={(e) => {
-				let file = e.target.files[0]
-				let reader = new FileReader()
-				reader.readAsText(file)
-				reader.onload = (e) => onFileUpload(e.target.result)
-			}} />
+			<SaveLoadModal
+				handleSaveAsPnach={handleSaveAsPnach}
+				handleSaveAsJSON={handleSaveAsJSON}
+				onFileUpload={(e) => {
+					let file = e.target.files[0]
+					let reader = new FileReader()
+					reader.readAsText(file)
+					reader.onload = (e) => onFileUpload(e.target.result)
+				}}
+			/>
 		</div>
 	)
 }

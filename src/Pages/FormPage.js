@@ -49,7 +49,7 @@ function FormPage(props) {
 		<div style={props.style}>
 			<Form>
 				<Form.Row>
-					<Col>
+					<Col lg='2'>
 						<GenericSelect
 							class={'form'}
 							selector={'Drive Form'}
@@ -59,7 +59,7 @@ function FormPage(props) {
 							onChange={props.handleFormChange}
 						/>
 					</Col>
-					<Col>
+					<Col lg='2'>
 						<RewardTypeSelect
 							class={'form'}
 							currentRewardType={props.fieldData.currentRewardType}
@@ -67,7 +67,7 @@ function FormPage(props) {
 							onChange={props.onRewardTypeChange}
 						/>
 					</Col>
-					<Col>
+					<Col lg='2'>
 						<RewardSelect
 							class={'form'}
 							rewardList={props.rewardList}
@@ -77,14 +77,16 @@ function FormPage(props) {
 							onChange={props.onSelectChange}
 						/>
 					</Col>
+					<Col >
+						<EXPSelect
+							class={'form'}
+							currentEXP={props.fieldData.currentEXP}
+							currentEXPMultiplier={props.fieldData.currentEXPMultiplierValue}
+							onInputChange={props.onInputChange}
+							onMultiplierChange={props.onSelectChange}
+						/>
+					</Col>
 				</Form.Row>
-				<EXPSelect
-					class={'form'}
-					currentEXP={props.fieldData.currentEXP}
-					currentEXPMultiplier={props.fieldData.currentEXPMultiplierValue}
-					onInputChange={props.onInputChange}
-					onMultiplierChange={props.onSelectChange}
-				/>
 			</Form>
 			<FormTable
 				currentDriveForm={formTypesData[props.fieldData.currentDriveForm]}

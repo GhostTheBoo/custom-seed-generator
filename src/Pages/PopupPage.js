@@ -33,7 +33,7 @@ function PopupPage(props) {
 		<div style={props.style}>
 			<Form>
 				<Form.Row>
-					<Col>
+					<Col lg='4'>
 						<GenericSelect
 							class={'popup'}
 							selector={'World'}
@@ -43,7 +43,7 @@ function PopupPage(props) {
 							onChange={props.handleWorldChange}
 						/>
 					</Col>
-					<Col>
+					<Col lg='4'>
 						<RewardTypeSelect
 							class={'popup'}
 							currentRewardType={props.currentRewardType}
@@ -51,7 +51,7 @@ function PopupPage(props) {
 							onChange={props.onRewardTypeChange}
 						/>
 					</Col>
-					<Col>
+					<Col lg='4'>
 						<RewardSelect
 							class={'popup'}
 							rewardList={props.rewardList}
