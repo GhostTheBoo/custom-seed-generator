@@ -100,15 +100,15 @@ export class BonusReward {
 		this.loadFromJSON = (bonusRewardJSON) => {
 			let ret = this.copy()
 
-			ret.replacementCharacter = bonusRewardJSON.currentCharacter
-			ret.replacementReward1 = { ...bonusRewardJSON.rewardA }
-			ret.replacementReward2 = { ...bonusRewardJSON.rewardB }
-			ret.hpIncrease = bonusRewardJSON.currentBonusHP
-			ret.mpIncrease = bonusRewardJSON.currentBonusMP
-			ret.armorSlotIncrease = bonusRewardJSON.currentArmor
-			ret.accessorySlotIncrease = bonusRewardJSON.currentAccessory
-			ret.itemSlotIncrease = bonusRewardJSON.currentItem
-			ret.driveGaugeIncrease = bonusRewardJSON.currentDrive
+			ret.replacementCharacter = bonusRewardJSON.replacementCharacter
+			ret.replacementReward1 = { ...bonusRewardJSON.replacementReward1 }
+			ret.replacementReward2 = { ...bonusRewardJSON.replacementReward2 }
+			ret.hpIncrease = bonusRewardJSON.hpIncrease
+			ret.mpIncrease = bonusRewardJSON.mpIncrease
+			ret.armorSlotIncrease = bonusRewardJSON.armorSlotIncrease
+			ret.accessorySlotIncrease = bonusRewardJSON.accessorySlotIncrease
+			ret.itemSlotIncrease = bonusRewardJSON.itemSlotIncrease
+			ret.driveGaugeIncrease = bonusRewardJSON.driveGaugeIncrease
 			ret.statChangeCount = ret.getStatCount()
 			ret.slotChangeCount = ret.getSlotCount()
 			ret.rewardChangeCount = ret.getRewardCount()
@@ -118,6 +118,7 @@ export class BonusReward {
 		}
 		this.saveToPnach = () => {
 			let ret = ''
+			console.log(this)
 			if (this.isCharacterReplaced()) {
 				ret += 'patch=1,EE,' + this.characterAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,'
 				ret += this.replacementCharacter.toString(16).toUpperCase().padStart(8, '0') + ' // Bonus reward is now given to ' + charactersData[this.replacementCharacter] + '\n'
@@ -213,7 +214,7 @@ export class BonusFight {
 				return ''
 		}
 		this.loadFromJSON = (bonusFightJSON) => {
-			let newSlots = this.vanilla().slots.map((slot, slotID) => {
+			let newSlots = this.slots.filter(slot => Object.keys(slot).length !== 0).map((slot, slotID) => {
 				return slot.loadFromJSON(bonusFightJSON.slots[slotID])
 			})
 			return new BonusFight(bonusFightJSON.fight, newSlots[0], newSlots[1], newSlots[2], newSlots[3])
