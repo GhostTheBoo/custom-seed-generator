@@ -1,16 +1,17 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table'
+// import Icon from '../Components/Icon'
 
 function PopupTable(props) {
 	let popupList = props.worldPopups.map((popup, index) => {
-		let keyValue = props.currentWorld + index
+		let keyValue = popup.vanillaAddress
 		let styles
 		let originalReward = ''
-		if (popup.isReplaced) {
+		if (popup.isReplaced()) {
 			styles = { background: 'green' }
 			originalReward = popup.replacementReward.reward
 		}
-		if (popup.isAbility)
+		if (popup.isAbility())
 			styles = { background: 'red' }
 		return (
 			<tr
@@ -47,7 +48,7 @@ function PopupTable(props) {
 							type='checkbox'
 							name={props.currentWorld + 'All'}
 							checked={props.selectAll}
-							onChange={props.checkAll}
+							onChange={props.onCheckAll}
 						/>
 					</th>
 					<th>

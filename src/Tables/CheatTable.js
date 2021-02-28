@@ -2,9 +2,9 @@ import React from 'react'
 import Table from 'react-bootstrap/Table'
 
 function CheatTable(props) {
-	let cheatList = props.cheatData.map((c, index) => {
+	let cheatList = props.cheatData.map((cheat, index) => {
 		let styles
-		if (c.isActive) {
+		if (cheat.isActive) {
 			styles = { background: 'green' }
 		}
 		return (
@@ -17,12 +17,12 @@ function CheatTable(props) {
 						type='checkbox'
 						name={'cheats'}
 						value={index}
-						checked={c.toBeReplaced}
+						checked={cheat.toBeReplaced}
 						onChange={props.onRowCheck}
 					/>
 				</td>
 				<td>
-					{c.name}
+					{cheat.name}
 				</td>
 			</tr>
 		)
@@ -37,9 +37,9 @@ function CheatTable(props) {
 							type='checkbox'
 							name={'cheatList'}
 							checked={props.selectAll}
-							onChange={props.checkAll}
+							onChange={props.onCheckAll}
 						/>
-						</th>
+					</th>
 					<th>
 						Name
 					</th>

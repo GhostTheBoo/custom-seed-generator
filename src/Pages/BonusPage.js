@@ -17,8 +17,17 @@ function BonusPage(props) {
 			<h6>Bonus</h6>
 			<p>
 				The bonus page displays all bonus level rewards for each world and for each character.
-				Bonus levels can rewward up to 2 rewards, stat increases, or slot increases.
+				Bonus levels can reward up to 2 rewards, stat increases, or slot increases.
 				However only 2 individual rewards can be given to the player without causing any bugs.
+				Additionally, the character a bonus is given to can be modified.
+			</p>
+			<h6>Characters</h6>
+			<p>
+				A fight that gives a bonus reward can give up to 4 rewards to the characters in the party.
+				The person who receives a reward can be modified.
+				This means that in a fight like Abu Escort, Sora can obtain up to 4 bonus levels each with different rewards
+				Keep in mind, each character has an in game cap to their bonus level.
+				If a character earns too many bonus levels, the game will not be happy.
 			</p>
 			<h6>Rewards</h6>
 			<p>
@@ -37,14 +46,14 @@ function BonusPage(props) {
 				They can all increase by whatever value entered but the menu does not like having too many slots. (I believe the cap is 20 total slots)
 				The drive gauge is also capped at 9 no matter how many increases given.
 			</p>
-			<h6>Why Am I red?</h6>
+			<h6>Why Am I Red?</h6>
 			<p>
 				Bonus levels only visually show 2 rewards.
 				If more than 2 rewards are given, the bonus level may either secretly give the reward to the player or not give it to them at all.
 			</p>
 		</div>
 	)
-
+	
 	return (
 		<div style={props.style}>
 			<Form>
@@ -55,25 +64,27 @@ function BonusPage(props) {
 							selector={'World'}
 							itemList={worldsData}
 							name={'currentWorld'}
-							currentItem={props.bonusData.currentWorld}
+							currentItem={props.fieldData.currentWorld}
 							onChange={props.handleWorldChange}
 						/>
 					</Col>
 					<Col>
 						<GenericSelect
 							class='bonus'
-							selector={'Character'}
-							itemList={charactersData}
-							name={'currentCharacter'}
-							currentItem={props.bonusData.currentCharacter}
-							onChange={props.handleCharacterChange}
+							selector={'Fight'}
+							itemList={props.bonusData.bonusFights.map(fight => {
+								return fight.fight
+							})}
+							name={'currentFight'}
+							currentItem={props.fieldData.currentFight}
+							onChange={props.handleFightChange}
 						/>
 					</Col>
 					<Col>
 						<RewardTypeSelect
 							label={'"A"'}
 							class={'bonus'}
-							currentRewardType={props.bonusData.currentRewardType}
+							currentRewardType={props.fieldData.currentARewardType}
 							name={'currentARewardType'}
 							onChange={props.onRewardTypeChange}
 						/>
@@ -83,16 +94,16 @@ function BonusPage(props) {
 							label={'"A" Reward'}
 							class={'bonus'}
 							rewardList={props.rewardListA}
-							currentReward={props.bonusData.currentReward}
+							currentReward={props.fieldData.currentAReward}
 							name={'currentAReward'}
-							onChange={props.onRewardChange}
+							onChange={props.onSelectChange}
 						/>
 					</Col>
 					<Col>
 						<RewardTypeSelect
 							label={'"B"'}
 							class={'bonus'}
-							currentRewardType={props.bonusData.currentRewardType}
+							currentRewardType={props.fieldData.currentBRewardType}
 							name={'currentBRewardType'}
 							onChange={props.onRewardTypeChange}
 						/>
@@ -102,13 +113,23 @@ function BonusPage(props) {
 							label={'"B" Reward'}
 							class={'bonus'}
 							rewardList={props.rewardListB}
-							currentReward={props.bonusData.currentReward}
+							currentReward={props.fieldData.currentBReward}
 							name={'currentBReward'}
-							onChange={props.onRewardChange}
+							onChange={props.onSelectChange}
 						/>
 					</Col>
 				</Form.Row>
 				<Form.Row>
+					<Col>
+						<GenericSelect
+							class='bonus'
+							selector={'Character'}
+							itemList={charactersData}
+							name={'currentCharacter'}
+							currentItem={props.fieldData.currentCharacter}
+							onChange={props.onSelectChange}
+						/>
+					</Col>
 					<Col>
 						<Form.Group controlId='currentBonusHP'>
 							<Form.Label column='sm'>HP Increase: </Form.Label>
@@ -116,7 +137,7 @@ function BonusPage(props) {
 								size='sm'
 								name='currentBonusHP'
 								type='number'
-								value={props.bonusData.currentBonusHP}
+								value={props.fieldData.currentBonusHP}
 								onChange={props.onInputChange}
 								min="0"
 								max="255"
@@ -130,7 +151,7 @@ function BonusPage(props) {
 								size='sm'
 								name='currentBonusMP'
 								type='number'
-								value={props.bonusData.currentBonusMP}
+								value={props.fieldData.currentBonusMP}
 								onChange={props.onInputChange}
 								min="0"
 								max="255"
@@ -144,7 +165,7 @@ function BonusPage(props) {
 								size='sm'
 								name='currentArmor'
 								type='number'
-								value={props.bonusData.currentArmor}
+								value={props.fieldData.currentArmor}
 								onChange={props.onInputChange}
 								min="0"
 								max="255"
@@ -158,7 +179,7 @@ function BonusPage(props) {
 								size='sm'
 								name='currentAccessory'
 								type='number'
-								value={props.bonusData.currentAccessory}
+								value={props.fieldData.currentAccessory}
 								onChange={props.onInputChange}
 								min="0"
 								max="255"
@@ -172,7 +193,7 @@ function BonusPage(props) {
 								size='sm'
 								name='currentItem'
 								type='number'
-								value={props.bonusData.currentItem}
+								value={props.fieldData.currentItem}
 								onChange={props.onInputChange}
 								min="0"
 								max="255"
@@ -186,7 +207,7 @@ function BonusPage(props) {
 								size='sm'
 								name='currentDrive'
 								type='number'
-								value={props.bonusData.currentDrive}
+								value={props.fieldData.currentDrive}
 								onChange={props.onInputChange}
 								min="0"
 								max="255"
@@ -196,12 +217,12 @@ function BonusPage(props) {
 				</Form.Row>
 			</Form>
 			<BonusTable
-				currentWorld={worldsData[props.bonusData.currentWorld]}
-				currentCharacter={charactersData[props.bonusData.currentCharacter]}
-				bonuses={props.bonusData.currentDisplayData}
+				currentWorld={worldsData[props.fieldData.currentWorld]}
+				currentFight={props.fieldData.currentFight}
+				bonuses={props.bonusData.bonusFights}
 				onRowCheck={props.onRowCheck}
-				checkAll={props.checkAll}
-				selectAll={props.bonusData.selectAll}
+				onCheckAll={props.onCheckAll}
+				selectAll={props.fieldData.selectAll}
 			/>
 			<Button variant='outline-dark'
 				name='replaceButton'

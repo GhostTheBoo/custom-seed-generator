@@ -36,7 +36,7 @@ function EquipmentPage(props) {
 				Fire, Blizzard, Thunder, and Dark resistances will draw to the screen
 				All resistances can go from -150% to 100% damage resistance so certain attacks can do extra damage to the wearer if he has a negative resistance.
 			</p>
-			<h6>Why Am I red?</h6>
+			<h6>Why Am I Red?</h6>
 			<p>
 				Equipment have a limit of drawing 5 lines to the menu.
 				While that doesn't cause many issues while equipped, trying to change the equipment can often times draw more lines then already shown.
@@ -62,14 +62,14 @@ function EquipmentPage(props) {
 							selector={'Equipment Type'}
 							itemList={equipmentTypesData}
 							name={'currentEquipmentType'}
-							currentItem={props.equipmentData.currentEquipmentType}
+							currentItem={props.fieldData.currentEquipmentType}
 							onChange={props.handleEquipmentTypeChange}
 						/>
 					</Col>
 					<Col>
 						<RewardTypeSelect
 							class={'equipment'}
-							currentRewardType={props.equipmentData.currentRewardType}
+							currentRewardType={props.fieldData.currentRewardType}
 							name={'currentRewardType'}
 							onChange={props.onRewardTypeChange}
 						/>
@@ -78,7 +78,7 @@ function EquipmentPage(props) {
 						<RewardSelect
 							class={'equipment'}
 							rewardList={props.rewardList}
-							currentReward={props.equipmentData.currentReward}
+							currentReward={props.fieldData.currentReward}
 							name={'currentReward'}
 							label={'Ability'}
 							onChange={props.onRewardChange}
@@ -93,7 +93,7 @@ function EquipmentPage(props) {
 								size='sm'
 								name='currentStrength'
 								type='number'
-								value={props.equipmentData.currentStrength}
+								value={props.fieldData.currentStrength}
 								onChange={props.onInputChange}
 								min="0"
 								max="255"
@@ -107,7 +107,7 @@ function EquipmentPage(props) {
 								size='sm'
 								name='currentMagic'
 								type='number'
-								value={props.equipmentData.currentMagic}
+								value={props.fieldData.currentMagic}
 								onChange={props.onInputChange}
 								min="0"
 								max="255"
@@ -121,7 +121,7 @@ function EquipmentPage(props) {
 								size='sm'
 								name='currentAP'
 								type='number'
-								value={props.equipmentData.currentAP}
+								value={props.fieldData.currentAP}
 								onChange={props.onInputChange}
 								min="0"
 								max="255"
@@ -135,7 +135,7 @@ function EquipmentPage(props) {
 								size='sm'
 								name='currentDefense'
 								type='number'
-								value={props.equipmentData.currentDefense}
+								value={props.fieldData.currentDefense}
 								onChange={props.onInputChange}
 								min="0"
 								max="255"
@@ -149,7 +149,7 @@ function EquipmentPage(props) {
 								size='sm'
 								name='currentFire'
 								type='number'
-								value={props.equipmentData.currentFire}
+								value={props.fieldData.currentFire}
 								onChange={props.onInputChange}
 								min="-155"
 								max="100"
@@ -163,7 +163,7 @@ function EquipmentPage(props) {
 								size='sm'
 								name='currentBlizzard'
 								type='number'
-								value={props.equipmentData.currentBlizzard}
+								value={props.fieldData.currentBlizzard}
 								onChange={props.onInputChange}
 								min="-155"
 								max="100"
@@ -177,7 +177,7 @@ function EquipmentPage(props) {
 								size='sm'
 								name='currentThunder'
 								type='number'
-								value={props.equipmentData.currentThunder}
+								value={props.fieldData.currentThunder}
 								onChange={props.onInputChange}
 								min="-155"
 								max="100"
@@ -191,7 +191,7 @@ function EquipmentPage(props) {
 								size='sm'
 								name='currentDark'
 								type='number'
-								value={props.equipmentData.currentDark}
+								value={props.fieldData.currentDark}
 								onChange={props.onInputChange}
 								min="-155"
 								max="100"
@@ -205,7 +205,7 @@ function EquipmentPage(props) {
 								size='sm'
 								name='currentPhysical'
 								type='number'
-								value={props.equipmentData.currentPhysical}
+								value={props.fieldData.currentPhysical}
 								onChange={props.onInputChange}
 								min="-155"
 								max="100"
@@ -219,7 +219,7 @@ function EquipmentPage(props) {
 								size='sm'
 								name='currentLight'
 								type='number'
-								value={props.equipmentData.currentLight}
+								value={props.fieldData.currentLight}
 								onChange={props.onInputChange}
 								min="-155"
 								max="100"
@@ -233,7 +233,7 @@ function EquipmentPage(props) {
 								size='sm'
 								name='currentUniversal'
 								type='number'
-								value={props.equipmentData.currentUniversal}
+								value={props.fieldData.currentUniversal}
 								onChange={props.onInputChange}
 								min="-155"
 								max="100"
@@ -243,11 +243,11 @@ function EquipmentPage(props) {
 				</Form.Row>
 			</Form>
 			<EquipmentTable
-				currentEquipmentType={equipmentTypesData[props.equipmentData.currentEquipmentType]}
-				equipments={props.equipmentData.currentDisplayData}
+				currentEquipmentType={equipmentTypesData[props.fieldData.currentEquipmentType]}
+				equipments={props.equipmentData}
 				onRowCheck={props.onRowCheck}
-				checkAll={props.checkAll}
-				selectAll={props.equipmentData.selectAll}
+				onCheckAll={props.onCheckAll}
+				selectAll={props.fieldData.selectAll}
 			/>
 			<Button variant='outline-dark'
 				name='replaceButton'

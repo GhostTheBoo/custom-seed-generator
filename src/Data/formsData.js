@@ -1,117 +1,89 @@
-const formsData = [
+import { Reward } from './rewardsData'
+
+export class FormLevel {
+	constructor(level, vanilla, rewardAddress, exp, expAddress) {
+		this.level = level
+		this.vanillaReward = { ...vanilla }
+		this.replacementReward = { ...vanilla }
+		this.rewardAddress = rewardAddress
+		this.vanillaEXP = exp
+		this.replacementEXP = exp
+		this.EXPAddress = expAddress
+		this.toBeReplaced = false
+
+		this.isEXPReplaced = () => {
+			return this.replacementEXP !== this.vanillaEXP
+		}
+		this.isRewardReplaced = () => {
+			return this.replacementReward.index !== this.vanillaReward.index
+		}
+		this.copy = () => {
+			let ret = new FormLevel(this.level, new Reward(this.vanillaReward.reward, this.vanillaReward.index, this.vanillaReward.iconType),
+				this.rewardAddress, this.vanillaEXP, this.EXPAddress)
+
+			ret.replacementReward = { ...this.replacementReward }
+			ret.replacementEXP = this.replacementEXP
+			ret.toBeReplaced = this.toBeReplaced
+
+			return ret
+		}
+		this.vanilla = () => {
+			return new FormLevel(this.level, new Reward(this.vanillaReward.reward, this.vanillaReward.index, this.vanillaReward.iconType), this.rewardAddress, this.vanillaEXP, this.EXPAddress)
+		}
+		this.replace = (newFormData) => {
+			let ret = this.copy()
+
+			ret.replacementReward = { ...newFormData.reward }
+			ret.replacementEXP = newFormData.currentEXPMultiplierValue === 0 ? newFormData.currentEXP : Math.max(1, Math.floor((2 * this.vanillaEXP) / newFormData.currentEXPMultiplierValue))
+			ret.toBeReplaced = false
+
+			return ret
+		}
+		this.markForReplacement = (toBeReplaced) => {
+			let ret = this.copy()
+			ret.toBeReplaced = toBeReplaced
+			return ret
+		}
+		this.saveToJSON = () => {
+			return (this.isEXPReplaced() || this.isRewardReplaced()) ? JSON.stringify(this, ['level', 'replacementReward', 'reward', 'index', 'iconType', 'replacementEXP']) + ',' : ''
+		}
+		this.loadFromJSON = (driveLevelJSON) => {
+			let ret = this.copy()
+
+			ret.replacementEXP = driveLevelJSON.replacementEXP
+			ret.replacementReward = { ...driveLevelJSON.replacementReward }
+			ret.toBeReplaced = false
+
+			return ret
+		}
+		this.saveToPnach = () => {
+			let ret = ''
+			if (this.isRewardReplaced()) {
+				ret += 'patch=1,EE,' + this.rewardAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
+				ret += this.replacementReward.index.toString(16).toUpperCase().padStart(4, '0')
+				ret += ' // ' + this.level + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward + '\n'
+			}
+			if (this.isEXPReplaced()) {
+				ret += 'patch=1,EE,' + this.EXPAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,' + this.replacementEXP.toString(16).toUpperCase().padStart(8, 0)
+				ret += ' // ' + this.replacementEXP + ' experience is now required to reach ' + this.level + '\n'
+			}
+			return ret
+		}
+	}
+}
+
+export const formsData = [
 	{
 		driveForm: 'Summon',
 		removeGrowthJankCodes: [
 		],
 		driveLevels: [
-			{
-				level: 'Summon LV2',
-				vanillaReward: {
-					reward: 'EMPTY',
-					index: '0000'
-				},
-				replacementReward: {
-					reward: 'EMPTY',
-					index: '0000'
-				},
-				vanillaAddress: '11D1A1EE',
-				vanillaEXP: 6,
-				replacementEXP: 6,
-				EXPAddress: '11D1A1F0',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Summon LV3',
-				vanillaReward: {
-					reward: 'EMPTY',
-					index: '0000'
-				},
-				replacementReward: {
-					reward: 'EMPTY',
-					index: '0000'
-				},
-				vanillaAddress: '11D1A1F6',
-				vanillaEXP: 16,
-				replacementEXP: 16,
-				EXPAddress: '11D1A1F8',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Summon LV4',
-				vanillaReward: {
-					reward: 'EMPTY',
-					index: '0000'
-				},
-				replacementReward: {
-					reward: 'EMPTY',
-					index: '0000'
-				},
-				vanillaAddress: '11D1A1FE',
-				vanillaEXP: 25,
-				replacementEXP: 25,
-				EXPAddress: '11D1A200',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Summon LV5',
-				vanillaReward: {
-					reward: 'EMPTY',
-					index: '0000'
-				},
-				replacementReward: {
-					reward: 'EMPTY',
-					index: '0000'
-				},
-				vanillaAddress: '11D1A206',
-				vanillaEXP: 42,
-				replacementEXP: 42,
-				EXPAddress: '11D1A208',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Summon LV6',
-				vanillaReward: {
-					reward: 'EMPTY',
-					index: '0000'
-				},
-				replacementReward: {
-					reward: 'EMPTY',
-					index: '0000'
-				},
-				vanillaAddress: '11D1A20E',
-				vanillaEXP: 63,
-				replacementEXP: 63,
-				EXPAddress: '11D1A210',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Summon LV7',
-				vanillaReward: {
-					reward: 'EMPTY',
-					index: '0000'
-				},
-				replacementReward: {
-					reward: 'EMPTY',
-					index: '0000'
-				},
-				vanillaAddress: '11D1A216',
-				vanillaEXP: 98,
-				replacementEXP: 98,
-				EXPAddress: '11D1A218',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			}
+			new FormLevel('Summon LV2', new Reward('EMPTY', 0x0000, 'EMPTY'), 0x11D1A1EE, 6, 0x11D1A1F0),
+			new FormLevel('Summon LV3', new Reward('EMPTY', 0x0000, 'EMPTY'), 0x11D1A1F6, 16, 0x11D1A1F8),
+			new FormLevel('Summon LV4', new Reward('EMPTY', 0x0000, 'EMPTY'), 0x11D1A1FE, 25, 0x11D1A200),
+			new FormLevel('Summon LV5', new Reward('EMPTY', 0x0000, 'EMPTY'), 0x11D1A206, 42, 0x11D1A208),
+			new FormLevel('Summon LV6', new Reward('EMPTY', 0x0000, 'EMPTY'), 0x11D1A20E, 63, 0x11D1A210),
+			new FormLevel('Summon LV7', new Reward('EMPTY', 0x0000, 'EMPTY'), 0x11D1A216, 98, 0x11D1A218)
 		]
 	},
 	{
@@ -147,114 +119,12 @@ const formsData = [
 			'patch=1,EE,1032EE42,extended,00000000\n'
 		],
 		driveLevels: [
-			{
-				level: 'Valor LV2',
-				vanillaReward: {
-					reward: 'Auto Valor',
-					index: '0181'
-				},
-				replacementReward: {
-					reward: 'Auto Valor',
-					index: '0181'
-				},
-				vanillaAddress: '11D1A22E',
-				vanillaEXP: 80,
-				replacementEXP: 80,
-				EXPAddress: '11D1A228',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Valor LV3',
-				vanillaReward: {
-					reward: 'High Jump LV 1',
-					index: '005E'
-				},
-				replacementReward: {
-					reward: 'High Jump LV 1',
-					index: '005E'
-				},
-				vanillaAddress: '11D1A236',
-				vanillaEXP: 160,
-				replacementEXP: 160,
-				EXPAddress: '11D1A230',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Valor LV4',
-				vanillaReward: {
-					reward: 'Combo Plus',
-					index: '00A2'
-				},
-				replacementReward: {
-					reward: 'Combo Plus',
-					index: '00A2'
-				},
-				vanillaAddress: '11D1A23E',
-				vanillaEXP: 280,
-				replacementEXP: 280,
-				EXPAddress: '11D1A238',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Valor LV5',
-				vanillaReward: {
-					reward: 'High Jump LV 2',
-					index: '005F'
-				},
-				replacementReward: {
-					reward: 'High Jump LV 2',
-					index: '005F'
-				},
-				vanillaAddress: '11D1A246',
-				vanillaEXP: 448,
-				replacementEXP: 448,
-				EXPAddress: '11D1A240',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Valor LV6',
-				vanillaReward: {
-					reward: 'Combo Plus',
-					index: '00A2'
-				},
-				replacementReward: {
-					reward: 'Combo Plus',
-					index: '00A2'
-				},
-				vanillaAddress: '11D1A24E',
-				vanillaEXP: 560,
-				replacementEXP: 560,
-				EXPAddress: '11D1A248',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Valor LV7',
-				vanillaReward: {
-					reward: 'High Jump LV 3',
-					index: '0060'
-				},
-				replacementReward: {
-					reward: 'High Jump LV 3',
-					index: '0060'
-				},
-				vanillaAddress: '11D1A256',
-				vanillaEXP: 672,
-				replacementEXP: 672,
-				EXPAddress: '11D1A250',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			}
+			new FormLevel('Valor LV2', new Reward('Auto Valor', 0x0181, 'Ability'), 0x11D1A22E, 80, 0x11D1A228),
+			new FormLevel('Valor LV3', new Reward('High Jump LV 1', 0x005E, 'Ability'), 0x11D1A236, 160, 0x11D1A230),
+			new FormLevel('Valor LV4', new Reward('Combo Plus', 0x00A2, 'Ability'), 0x11D1A23E, 280, 0x11D1A238),
+			new FormLevel('Valor LV5', new Reward('High Jump LV 2', 0x005F, 'Ability'), 0x11D1A246, 448, 0x11D1A240),
+			new FormLevel('Valor LV6', new Reward('Combo Plus', 0x00A2, 'Ability'), 0x11D1A24E, 560, 0x11D1A248),
+			new FormLevel('Valor LV7', new Reward('High Jump LV 3', 0x0060, 'Ability'), 0x11D1A256, 672, 0x11D1A250)
 		]
 	},
 	{
@@ -290,114 +160,12 @@ const formsData = [
 			'patch=1,EE,1032EE74,extended,00000000\n'
 		],
 		driveLevels: [
-			{
-				level: 'Wisdom LV2',
-				vanillaReward: {
-					reward: 'Auto Wisdom',
-					index: '0182'
-				},
-				replacementReward: {
-					reward: 'Auto Wisdom',
-					index: '0182'
-				},
-				vanillaAddress: '11D1A266',
-				vanillaEXP: 20,
-				replacementEXP: 20,
-				EXPAddress: '11D1A260',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Wisdom LV3',
-				vanillaReward: {
-					reward: 'Quick Run LV 1',
-					index: '0062'
-				},
-				replacementReward: {
-					reward: 'Quick Run LV 1',
-					index: '0062'
-				},
-				vanillaAddress: '11D1A26E',
-				vanillaEXP: 60,
-				replacementEXP: 60,
-				EXPAddress: '11D1A268',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Wisdom LV4',
-				vanillaReward: {
-					reward: 'MP Rage',
-					index: '019C'
-				},
-				replacementReward: {
-					reward: 'MP Rage',
-					index: '019C'
-				},
-				vanillaAddress: '11D1A276',
-				vanillaEXP: 72,
-				replacementEXP: 72,
-				EXPAddress: '11D1A270',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Wisdom LV5',
-				vanillaReward: {
-					reward: 'Quick Run LV 2',
-					index: '0063'
-				},
-				replacementReward: {
-					reward: 'Quick Run LV 2',
-					index: '0063'
-				},
-				vanillaAddress: '11D1A27E',
-				vanillaEXP: 90,
-				replacementEXP: 90,
-				EXPAddress: '11D1A278',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Wisdom LV6',
-				vanillaReward: {
-					reward: 'MP Haste',
-					index: '019D'
-				},
-				replacementReward: {
-					reward: 'MP Haste',
-					index: '019D'
-				},
-				vanillaAddress: '11D1A286',
-				vanillaEXP: 108,
-				replacementEXP: 108,
-				EXPAddress: '11D1A280',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Wisdom LV7',
-				vanillaReward: {
-					reward: 'Quick Run LV 3',
-					index: '0064'
-				},
-				replacementReward: {
-					reward: 'Quick Run LV 3',
-					index: '0064'
-				},
-				vanillaAddress: '11D1A28E',
-				vanillaEXP: 150,
-				replacementEXP: 150,
-				EXPAddress: '11D1A288',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			}
+			new FormLevel('Wisdom LV2', new Reward('Auto Wisdom', 0x0182, 'Ability'), 0x11D1A266, 20, 0x11D1A260),
+			new FormLevel('Wisdom LV3', new Reward('Quick Run LV 1', 0x0062, 'Ability'), 0x11D1A26E, 60, 0x11D1A268),
+			new FormLevel('Wisdom LV4', new Reward('MP Rage', 0x019C, 'Ability'), 0x11D1A276, 72, 0x11D1A270),
+			new FormLevel('Wisdom LV5', new Reward('Quick Run LV 2', 0x0063, 'Ability'), 0x11D1A27E, 90, 0x11D1A278),
+			new FormLevel('Wisdom LV6', new Reward('MP Haste', 0x019D, 'Ability'), 0x11D1A286, 108, 0x11D1A280),
+			new FormLevel('Wisdom LV7', new Reward('Quick Run LV 3', 0x0064, 'Ability'), 0x11D1A28E, 150, 0x11D1A288)
 		]
 	},
 	{
@@ -433,114 +201,12 @@ const formsData = [
 			'patch=1,EE,1032EEC2,extended,00000000\n'
 		],
 		driveLevels: [
-			{
-				level: 'Limit LV2',
-				vanillaReward: {
-					reward: 'Auto Limit',
-					index: '0238'
-				},
-				replacementReward: {
-					reward: 'Auto Limit',
-					index: '0238'
-				},
-				vanillaAddress: '11D1A29E',
-				vanillaEXP: 3,
-				replacementEXP: 3,
-				EXPAddress: '11D1A298',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Limit LV3',
-				vanillaReward: {
-					reward: 'Dodge Roll LV 1',
-					index: '0234'
-				},
-				replacementReward: {
-					reward: 'Dodge Roll LV 1',
-					index: '0234'
-				},
-				vanillaAddress: '11D1A2A6',
-				vanillaEXP: 6,
-				replacementEXP: 6,
-				EXPAddress: '11D1A2A0',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Limit LV4',
-				vanillaReward: {
-					reward: 'Draw',
-					index: '0195'
-				},
-				replacementReward: {
-					reward: 'Draw',
-					index: '0195'
-				},
-				vanillaAddress: '11D1A2AE',
-				vanillaEXP: 12,
-				replacementEXP: 12,
-				EXPAddress: '11D1A2A8',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Limit LV5',
-				vanillaReward: {
-					reward: 'Dodge Roll LV 2',
-					index: '0235'
-				},
-				replacementReward: {
-					reward: 'Dodge Roll LV 2',
-					index: '0235'
-				},
-				vanillaAddress: '11D1A2B6',
-				vanillaEXP: 19,
-				replacementEXP: 19,
-				EXPAddress: '11D1A2B0',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Limit LV6',
-				vanillaReward: {
-					reward: 'Lucky Lucky',
-					index: '0197'
-				},
-				replacementReward: {
-					reward: 'Lucky Lucky',
-					index: '0197'
-				},
-				vanillaAddress: '11D1A2BE',
-				vanillaEXP: 23,
-				replacementEXP: 23,
-				EXPAddress: '11D1A2B8',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Limit LV7',
-				vanillaReward: {
-					reward: 'Dodge Roll LV 3',
-					index: '0236'
-				},
-				replacementReward: {
-					reward: 'Dodge Roll LV 3',
-					index: '0236'
-				},
-				vanillaAddress: '11D1A2C6',
-				vanillaEXP: 36,
-				replacementEXP: 36,
-				EXPAddress: '11D1A2C0',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			}
+			new FormLevel('Limit LV2', new Reward('Auto Limit', 0x0238, 'Ability'), 0x11D1A29E, 3, 0x11D1A298),
+			new FormLevel('Limit LV3', new Reward('Dodge Roll LV 1', 0x0234, 'Ability'), 0x11D1A2A6, 6, 0x11D1A2A0),
+			new FormLevel('Limit LV4', new Reward('Draw', 0x0195, 'Ability'), 0x11D1A2AE, 12, 0x11D1A2A8),
+			new FormLevel('Limit LV5', new Reward('Dodge Roll LV 2', 0x0235, 'Ability'), 0x11D1A2B6, 19, 0x11D1A2B0),
+			new FormLevel('Limit LV6', new Reward('Lucky Lucky', 0x0197, 'Ability'), 0x11D1A2BE, 23, 0x11D1A2B8),
+			new FormLevel('Limit LV7', new Reward('Dodge Roll LV 3', 0x0236, 'Ability'), 0x11D1A2C6, 36, 0x11D1A2C0)
 		]
 	},
 	{
@@ -576,114 +242,12 @@ const formsData = [
 			'patch=1,EE,1032EEEA,extended,00000000\n'
 		],
 		driveLevels: [
-			{
-				level: 'Master LV2',
-				vanillaReward: {
-					reward: 'Auto Master',
-					index: '0183'
-				},
-				replacementReward: {
-					reward: 'Auto Master',
-					index: '0183'
-				},
-				vanillaAddress: '11D1A2D6',
-				vanillaEXP: 60,
-				replacementEXP: 60,
-				EXPAddress: '11D1A2D0',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Master LV3',
-				vanillaReward: {
-					reward: 'Aerial Dodge LV 1',
-					index: '0066'
-				},
-				replacementReward: {
-					reward: 'Aerial Dodge LV 1',
-					index: '0066'
-				},
-				vanillaAddress: '11D1A2DE',
-				vanillaEXP: 180,
-				replacementEXP: 180,
-				EXPAddress: '11D1A2D8',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Master LV4',
-				vanillaReward: {
-					reward: 'Air Combo Plus',
-					index: '00A3'
-				},
-				replacementReward: {
-					reward: 'Air Combo Plus',
-					index: '00A3'
-				},
-				vanillaAddress: '11D1A2E6',
-				vanillaEXP: 216,
-				replacementEXP: 216,
-				EXPAddress: '11D1A2E0',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Master LV5',
-				vanillaReward: {
-					reward: 'Aerial Dodge LV 2',
-					index: '0067'
-				},
-				replacementReward: {
-					reward: 'Aerial Dodge LV 2',
-					index: '0067'
-				},
-				vanillaAddress: '11D1A2EE',
-				vanillaEXP: 270,
-				replacementEXP: 270,
-				EXPAddress: '11D1A2E8',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Master LV6',
-				vanillaReward: {
-					reward: 'Air Combo Plus',
-					index: '00A3'
-				},
-				replacementReward: {
-					reward: 'Air Combo Plus',
-					index: '00A3'
-				},
-				vanillaAddress: '11D1A2F6',
-				vanillaEXP: 324,
-				replacementEXP: 324,
-				EXPAddress: '11D1A2F0',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Master LV7',
-				vanillaReward: {
-					reward: 'Aerial Dodge LV 3',
-					index: '0068'
-				},
-				replacementReward: {
-					reward: 'Aerial Dodge LV 3',
-					index: '0068'
-				},
-				vanillaAddress: '11D1A2FE',
-				vanillaEXP: 450,
-				replacementEXP: 450,
-				EXPAddress: '11D1A2F8',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			}
+			new FormLevel('Master LV2', new Reward('Auto Master', 0x0183, 'Ability'), 0x11D1A2D6, 60, 0x11D1A2D0),
+			new FormLevel('Master LV3', new Reward('Aerial Dodge LV 1', 0x0066, 'Ability'), 0x11D1A2DE, 180, 0x11D1A2D8),
+			new FormLevel('Master LV4', new Reward('Air Combo Plus', 0x00A3, 'Ability'), 0x11D1A2E6, 216, 0x11D1A2E0),
+			new FormLevel('Master LV5', new Reward('Aerial Dodge LV 2', 0x0067, 'Ability'), 0x11D1A2EE, 270, 0x11D1A2E8),
+			new FormLevel('Master LV6', new Reward('Air Combo Plus', 0x00A3, 'Ability'), 0x11D1A2F6, 324, 0x11D1A2F0),
+			new FormLevel('Master LV7', new Reward('Aerial Dodge LV 3', 0x0068, 'Ability'), 0x11D1A2FE, 450, 0x11D1A2F8)
 		]
 	},
 	{
@@ -719,116 +283,12 @@ const formsData = [
 			'patch=1,EE,1032EF1E,extended,00000000\n'
 		],
 		driveLevels: [
-			{
-				level: 'Final LV2',
-				vanillaReward: {
-					reward: 'Auto Final',
-					index: '0184'
-				},
-				replacementReward: {
-					reward: 'Auto Final',
-					index: '0184'
-				},
-				vanillaAddress: '11D1A30E',
-				vanillaEXP: 12,
-				replacementEXP: 12,
-				EXPAddress: '11D1A308',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Final LV3',
-				vanillaReward: {
-					reward: 'Glide LV 1',
-					index: '006A'
-				},
-				replacementReward: {
-					reward: 'Glide LV 1',
-					index: '006A'
-				},
-				vanillaAddress: '11D1A316',
-				vanillaEXP: 24,
-				replacementEXP: 24,
-				EXPAddress: '11D1A310',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Final LV4',
-				vanillaReward: {
-					reward: 'Form Boost',
-					index: '018E'
-				},
-				replacementReward: {
-					reward: 'Form Boost',
-					index: '018E'
-				},
-				vanillaAddress: '11D1A31E',
-				vanillaEXP: 48,
-				replacementEXP: 48,
-				EXPAddress: '11D1A318',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Final LV5',
-				vanillaReward: {
-					reward: 'Glide LV 2',
-					index: '006B'
-				},
-				replacementReward: {
-					reward: 'Glide LV 2',
-					index: '006B'
-				},
-				vanillaAddress: '11D1A326',
-				vanillaEXP: 76,
-				replacementEXP: 76,
-				EXPAddress: '11D1A320',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Final LV6',
-				vanillaReward: {
-					reward: 'Form Boost',
-					index: '018E'
-				},
-				replacementReward: {
-					reward: 'Form Boost',
-					index: '018E'
-				},
-				vanillaAddress: '11D1A32E',
-				vanillaEXP: 133,
-				replacementEXP: 133,
-				EXPAddress: '11D1A328',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			},
-			{
-				level: 'Final LV7',
-				vanillaReward: {
-					reward: 'Glide LV 3',
-					index: '006C'
-				},
-				replacementReward: {
-					reward: 'Glide LV 3',
-					index: '006C'
-				},
-				vanillaAddress: '11D1A336',
-				vanillaEXP: 157,
-				replacementEXP: 157,
-				EXPAddress: '11D1A330',
-				toBeReplaced: false,
-				isRewardReplaced: false,
-				isEXPReplaced: false
-			}
+			new FormLevel('Final LV2', new Reward('Auto Final', 0x0184, 'Ability'), 0x11D1A30E, 12, 0x11D1A308),
+			new FormLevel('Final LV3', new Reward('Glide LV 1', 0x006A, 'Ability'), 0x11D1A316, 24, 0x11D1A310),
+			new FormLevel('Final LV4', new Reward('Form Boost', 0x018E, 'Ability'), 0x11D1A31E, 48, 0x11D1A318),
+			new FormLevel('Final LV5', new Reward('Glide LV 2', 0x006B, 'Ability'), 0x11D1A326, 76, 0x11D1A320),
+			new FormLevel('Final LV6', new Reward('Form Boost', 0x018E, 'Ability'), 0x11D1A32E, 133, 0x11D1A328),
+			new FormLevel('Final LV7', new Reward('Glide LV 3', 0x006C, 'Ability'), 0x11D1A336, 157, 0x11D1A330)
 		]
 	}
 ]
-
-export default formsData

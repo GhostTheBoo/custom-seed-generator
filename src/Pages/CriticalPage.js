@@ -16,7 +16,7 @@ function CriticalPage(props) {
 				The seven extra critical mode abilities can each be changed to give anything else.
 				Keep in mind these rewards are only provided in critical mode.
 			</p>
-			<h6>Why Am I red?</h6>
+			<h6>Why Am I Red?</h6>
 			<p>
 				Critical mode extras can be anything so they will never show up as red.
 			</p>
@@ -30,7 +30,7 @@ function CriticalPage(props) {
 					<Col>
 						<RewardTypeSelect
 							class={'critical'}
-							currentRewardType={props.criticalData.currentRewardType}
+							currentRewardType={props.fieldData.currentRewardType}
 							name={'currentRewardType'}
 							onChange={props.onRewardTypeChange}
 						/>
@@ -39,7 +39,7 @@ function CriticalPage(props) {
 						<RewardSelect
 							class={'critical'}
 							rewardList={props.rewardList}
-							currentReward={props.criticalData.currentReward}
+							currentReward={props.fieldData.currentReward}
 							name={'currentReward'}
 							label={'Reward'}
 							onChange={props.onRewardChange}
@@ -48,10 +48,10 @@ function CriticalPage(props) {
 				</Form.Row>
 			</Form>
 			<CriticalTable
-				criticalExtras={props.criticalData.currentDisplayData}
+				allCriticals={props.criticalData}
 				onRowCheck={props.onRowCheck}
-				checkAll={props.checkAll}
-				selectAll={props.criticalData.selectAll}
+				onCheckAll={props.onCheckAll}
+				selectAll={props.fieldData.selectAll}
 			/>
 			<Button variant='outline-dark'
 				name='replaceButton'

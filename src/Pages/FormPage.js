@@ -37,7 +37,7 @@ function FormPage(props) {
 				In other words, it takes a total of 240 EXP to reach Valor Level 3.
 				Summon EXP works the same way.
 			</p>
-			<h6>Why Am I red?</h6>
+			<h6>Why Am I Red?</h6>
 			<p>
 				Form levels will not turn red.
 				Their rewards can be anything and custom EXP is capped by the application between 0 and 99999999.
@@ -49,49 +49,51 @@ function FormPage(props) {
 		<div style={props.style}>
 			<Form>
 				<Form.Row>
-					<Col>
+					<Col lg='2'>
 						<GenericSelect
 							class={'form'}
 							selector={'Drive Form'}
 							itemList={formTypesData}
 							name={'currentDriveForm'}
-							currentItem={props.formData.currentDriveForm}
+							currentItem={props.fieldData.currentDriveForm}
 							onChange={props.handleFormChange}
 						/>
 					</Col>
-					<Col>
+					<Col lg='2'>
 						<RewardTypeSelect
 							class={'form'}
-							currentRewardType={props.formData.currentRewardType}
+							currentRewardType={props.fieldData.currentRewardType}
 							name={'currentRewardType'}
 							onChange={props.onRewardTypeChange}
 						/>
 					</Col>
-					<Col>
+					<Col lg='2'>
 						<RewardSelect
 							class={'form'}
 							rewardList={props.rewardList}
-							currentReward={props.formData.currentReward}
+							currentReward={props.fieldData.currentReward}
 							name={'currentReward'}
 							label={'Reward'}
-							onChange={props.onGenericChange}
+							onChange={props.onSelectChange}
+						/>
+					</Col>
+					<Col >
+						<EXPSelect
+							class={'form'}
+							currentEXP={props.fieldData.currentEXP}
+							currentEXPMultiplier={props.fieldData.currentEXPMultiplierValue}
+							onInputChange={props.onInputChange}
+							onMultiplierChange={props.onSelectChange}
 						/>
 					</Col>
 				</Form.Row>
-				<EXPSelect
-					class={'form'}
-					currentEXP={props.formData.currentEXP}
-					currentEXPMultiplier={props.formData.currentEXPMultiplierValue}
-					onInputChange={props.onInputChange}
-					onMultiplierChange={props.onGenericChange}
-				/>
 			</Form>
 			<FormTable
-				currentDriveForm={formTypesData[props.formData.currentDriveForm]}
-				driveLevels={props.formData.currentDisplayData}
+				currentDriveForm={formTypesData[props.fieldData.currentDriveForm]}
+				driveLevels={props.formData}
 				onRowCheck={props.onRowCheck}
-				checkAll={props.checkAll}
-				selectAll={props.formData.selectAll}
+				onCheckAll={props.onCheckAll}
+				selectAll={props.fieldData.selectAll}
 			/>
 			<Button variant='outline-dark'
 				name='replaceButton'

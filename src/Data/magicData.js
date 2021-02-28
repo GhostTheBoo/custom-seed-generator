@@ -1,307 +1,105 @@
-const magicData = [
+export class MagicAbility {
+	constructor(name, address, cost) {
+		this.ability = name
+		this.costAddress = address
+		this.vanillaCost = cost
+		this.replacementCost = cost
+		this.toBeReplaced = false
+
+		this.isReplaced = () => {
+			return this.replacementCost !== this.vanillaCost
+		}
+		this.copy = () => {
+			let ret = new MagicAbility(this.ability, this.costAddress, this.vanillaCost)
+			ret.replacementCost = this.replacementCost
+			ret.toBeReplaced = this.toBeReplaced
+			return ret
+		}
+		this.vanilla = () => {
+			return new MagicAbility(this.name, this.costAddress, this.vanillaCost)
+		}
+		this.replace = (newMagicData) => {
+			let ret = this.copy()
+			ret.replacementCost = newMagicData.cost
+			ret.toBeReplaced = false
+			return ret
+		}
+		this.markForReplacement = (toBeReplaced) => {
+			let ret = this.copy()
+			ret.toBeReplaced = toBeReplaced
+			return ret
+		}
+		this.saveToJSON = () => {
+			return this.isReplaced() ? JSON.stringify(this, ['costAddress', 'replacementCost']) + ',' : ''
+		}
+		this.loadFromJSON = (magicJSON) => {
+			let ret = this.copy()
+			ret.replacementCost = magicJSON.replacementCost
+			ret.toBeReplaced = false
+			return ret
+		}
+		this.saveToPnach = () => {
+			let ret = ''
+			if (this.isReplaced()) {
+				ret += 'patch=1,EE,' + this.costAddress.toString(16).toUpperCase().padStart(8, '0')
+				ret += ',extended,' + this.replacementCost.toString(16).toUpperCase().padStart(8, '0')
+				ret += ' // ' + this.ability + ' Cost: ' + this.replacementCost + '\n'
+			}
+			return [ret, this]
+		}
+	}
+}
+
+export const magicsData = [
 	{
 		magicType: 'Magic Spells',
 		abilities: [
-			{
-				ability: 'Fire',
-				costAddress: '01CCBCE0',
-				vanillaCost: 12,
-				replacementCost: 12,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Fira',
-				costAddress: '01CCC8E0',
-				vanillaCost: 12,
-				replacementCost: 12,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Firaga',
-				costAddress: '01CCC910',
-				vanillaCost: 12,
-				replacementCost: 12,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Blizzard',
-				costAddress: '01CCBD40',
-				vanillaCost: 15,
-				replacementCost: 15,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Blizzara',
-				costAddress: '01CCC940',
-				vanillaCost: 15,
-				replacementCost: 15,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Blizzaga',
-				costAddress: '01CCC970',
-				vanillaCost: 15,
-				replacementCost: 15,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Thunder',
-				costAddress: '01CCBD10',
-				vanillaCost: 18,
-				replacementCost: 18,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Thundara',
-				costAddress: '01CCC9A0',
-				vanillaCost: 18,
-				replacementCost: 18,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Thundaga',
-				costAddress: '01CCC9D0',
-				vanillaCost: 18,
-				replacementCost: 18,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Cure',
-				costAddress: '01CCBD70',
-				vanillaCost: 255,
-				replacementCost: 255,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Cura',
-				costAddress: '01CCCA00',
-				vanillaCost: 255,
-				replacementCost: 255,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Curaga',
-				costAddress: '01CCCA30',
-				vanillaCost: 255,
-				replacementCost: 255,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Magnet',
-				costAddress: '01CCD240',
-				vanillaCost: 30,
-				replacementCost: 30,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Magnera',
-				costAddress: '01CCD270',
-				vanillaCost: 30,
-				replacementCost: 30,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Magnega',
-				costAddress: '01CCD2A0',
-				vanillaCost: 30,
-				replacementCost: 30,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Reflect',
-				costAddress: '01CCD2D0',
-				vanillaCost: 10,
-				replacementCost: 10,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Reflera',
-				costAddress: '01CCD300',
-				vanillaCost: 10,
-				replacementCost: 10,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Reflega',
-				costAddress: '01CCD330',
-				vanillaCost: 10,
-				replacementCost: 10,
-				toBeReplaced: false,
-				isReplaced: false
-			}
+			new MagicAbility('Fire', 0x01CCBCE0, 12),
+			new MagicAbility('Fira', 0x01CCC8E0, 12),
+			new MagicAbility('Firaga', 0x01CCC910, 12),
+			new MagicAbility('Blizzard', 0x01CCBD40, 15),
+			new MagicAbility('Blizzara', 0x01CCC940, 15),
+			new MagicAbility('Blizzaga', 0x01CCC970, 15),
+			new MagicAbility('Thunder', 0x01CCBD10, 18),
+			new MagicAbility('Thundara', 0x01CCC9A0, 18),
+			new MagicAbility('Thundaga', 0x01CCC9D0, 18),
+			new MagicAbility('Cure', 0x01CCBD70, 255),
+			new MagicAbility('Cura', 0x01CCCA00, 255),
+			new MagicAbility('Curaga', 0x01CCCA30, 255),
+			new MagicAbility('Magnet', 0x01CCD240, 30),
+			new MagicAbility('Magnera', 0x01CCD270, 30),
+			new MagicAbility('Magnega', 0x01CCD2A0, 30),
+			new MagicAbility('Reflect', 0x01CCD2D0, 10),
+			new MagicAbility('Reflera', 0x01CCD300, 10),
+			new MagicAbility('Reflega', 0x01CCD330, 10)
 		]
 	},
 	{
 		magicType: 'Party Limits',
 		abilities: [
-			{
-				ability: 'Twin Howl (Beast)',
-				costAddress: '01CCC130',
-				vanillaCost: 255,
-				replacementCost: 255,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Bushido (Auron)',
-				costAddress: '01CCC2B0',
-				vanillaCost: 255,
-				replacementCost: 255,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Red Rocket (Mulan)',
-				costAddress: '01CCCC40',
-				vanillaCost: 255,
-				replacementCost: 255,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Whirli-Goof (Goofy)',
-				costAddress: '01CCE110',
-				vanillaCost: 255,
-				replacementCost: 255,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Comet (Donald)',
-				costAddress: '01CCE620',
-				vanillaCost: 255,
-				replacementCost: 255,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Knocksmash (Goofy)',
-				costAddress: '01CCF040',
-				vanillaCost: 255,
-				replacementCost: 255,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Duck Flare (Donald)',
-				costAddress: '01CCF160',
-				vanillaCost: 255,
-				replacementCost: 255,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Speedster (Aladdin)',
-				costAddress: '01CCF280',
-				vanillaCost: 255,
-				replacementCost: 255,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Bluff (Jack Sparrow)',
-				costAddress: '01CCF3A0',
-				vanillaCost: 255,
-				replacementCost: 255,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Wildcat (Simba)',
-				costAddress: '01CCF730',
-				vanillaCost: 255,
-				replacementCost: 255,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Dance Call (Jack)',
-				costAddress: '01CCFCA0',
-				vanillaCost: 255,
-				replacementCost: 255,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Setup (Tron)',
-				costAddress: '01CCFE80',
-				vanillaCost: 255,
-				replacementCost: 255,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Trinity Limit (Sora)',
-				costAddress: '01CD0B40',
-				vanillaCost: 255,
-				replacementCost: 255,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Session (Riku)',
-				costAddress: '01CD1AD0',
-				vanillaCost: 255,
-				replacementCost: 255,
-				toBeReplaced: false,
-				isReplaced: false
-			}
+			new MagicAbility('Twin Howl (Beast)', 0x01CCC130, 255),
+			new MagicAbility('Bushido (Auron)', 0x01CCC2B0, 255),
+			new MagicAbility('Red Rocket (Mulan)', 0x01CCCC40, 255),
+			new MagicAbility('Whirli-Goof (Goofy)', 0x01CCE110, 255),
+			new MagicAbility('Comet (Donald)', 0x01CCE620, 255),
+			new MagicAbility('Knocksmash (Goofy)', 0x01CCF040, 255),
+			new MagicAbility('Duck Flare (Donald)', 0x01CCF160, 255),
+			new MagicAbility('Speedster (Aladdin)', 0x01CCF280, 255),
+			new MagicAbility('Bluff (Jack Sparrow)', 0x01CCF3A0, 255),
+			new MagicAbility('Wildcat (Simba)', 0x01CCF730, 255),
+			new MagicAbility('Dance Call (Jack)', 0x01CCFCA0, 255),
+			new MagicAbility('Setup (Tron)', 0x01CCFE80, 255),
+			new MagicAbility('Trinity Limit (Sora)', 0x01CD0B40, 255),
+			new MagicAbility('Session (Riku)', 0x01CD1AD0, 255)
 		]
 	},
 	{
 		magicType: 'Other',
 		abilities: [
-			{
-				ability: 'Strike Raid',
-				costAddress: '01CD3150',
-				vanillaCost: 65,
-				replacementCost: 65,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Sonic Blade',
-				costAddress: '01CD3030',
-				vanillaCost: 60,
-				replacementCost: 60,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Ragnarok',
-				costAddress: '01CD2F10',
-				vanillaCost: 80,
-				replacementCost: 80,
-				toBeReplaced: false,
-				isReplaced: false
-			},
-			{
-				ability: 'Ars Arcanum',
-				costAddress: '01CD30C0',
-				vanillaCost: 72,
-				replacementCost: 72,
-				toBeReplaced: false,
-				isReplaced: false
-			}
+			new MagicAbility('Strike Raid', 0x01CD3150, 65),
+			new MagicAbility('Sonic Blade', 0x01CD3030, 60),
+			new MagicAbility('Ragnarok', 0x01CD2F10, 80),
+			new MagicAbility('Ars Arcanum', 0x01CD30C0, 72)
 		]
 	}
 ]
-
-export default magicData

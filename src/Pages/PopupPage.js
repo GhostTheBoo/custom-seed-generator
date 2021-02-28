@@ -20,7 +20,7 @@ function PopupPage(props) {
 				After selecting a specific world, select what reward you wish to replace with.
 				When clicking replace, all checked rows will be replaced with whatever reward is in the reward selector.
 			</p>
-			<h6>Why Am I red?</h6>
+			<h6>Why Am I Red?</h6>
 			<p>
 				That specific popup is trying to reward the player with an ability.
 				Abilities do not always end up being given to the player so it would effectively be an empty reward.
@@ -33,25 +33,25 @@ function PopupPage(props) {
 		<div style={props.style}>
 			<Form>
 				<Form.Row>
-					<Col>
+					<Col lg='4'>
 						<GenericSelect
 							class={'popup'}
 							selector={'World'}
 							itemList={worldsData}
 							name={'currentWorld'}
-							currentItem={props.popupData.currentWorld}
+							currentItem={props.currentWorld}
 							onChange={props.handleWorldChange}
 						/>
 					</Col>
-					<Col>
+					<Col lg='4'>
 						<RewardTypeSelect
 							class={'popup'}
-							currentRewardType={props.popupData.currentRewardType}
+							currentRewardType={props.currentRewardType}
 							name={'currentRewardType'}
 							onChange={props.onRewardTypeChange}
 						/>
 					</Col>
-					<Col>
+					<Col lg='4'>
 						<RewardSelect
 							class={'popup'}
 							rewardList={props.rewardList}
@@ -64,11 +64,11 @@ function PopupPage(props) {
 				</Form.Row>
 			</Form>
 			<PopupTable
-				currentWorld={worldsData[props.popupData.currentWorld]}
-				worldPopups={props.popupData.currentDisplayData}
+				currentWorld={worldsData[props.currentWorld]}
+				worldPopups={props.popupData.popups}
 				onRowCheck={props.onRowCheck}
-				checkAll={props.checkAll}
-				selectAll={props.popupData.selectAll}
+				onCheckAll={props.onCheckAll}
+				selectAll={props.fieldData.selectAll}
 			/>
 			<Button variant='outline-dark'
 				name='replaceButton'

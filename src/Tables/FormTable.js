@@ -1,13 +1,12 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table'
+// import Icon from '../Components/Icon'
 
 function FormTable(props) {
 	let formList = props.driveLevels.map((driveLevel, index) => {
 		let styles
-		let originalReward = driveLevel.isRewardReplaced ? driveLevel.replacementReward.reward : ''
-		let originalEXP = driveLevel.isEXPReplaced ? driveLevel.replacementEXP : ''
 
-		if (driveLevel.isRewardReplaced || driveLevel.isEXPReplaced)
+		if (driveLevel.isRewardReplaced() || driveLevel.isEXPReplaced())
 			styles = { background: 'green' }
 		return (
 			<tr
@@ -30,13 +29,13 @@ function FormTable(props) {
 					{driveLevel.vanillaReward.reward}
 				</td>
 				<td>
-					{originalReward}
+					{driveLevel.isRewardReplaced() ? driveLevel.replacementReward.reward : ''}
 				</td>
 				<td>
 					{driveLevel.vanillaEXP}
 				</td>
 				<td>
-					{originalEXP}
+					{driveLevel.isEXPReplaced() ? driveLevel.replacementEXP : ''}
 				</td>
 			</tr>
 		)
@@ -51,7 +50,7 @@ function FormTable(props) {
 							type='checkbox'
 							name={props.currentDriveForm + 'All'}
 							checked={props.selectAll}
-							onChange={props.checkAll}
+							onChange={props.onCheckAll}
 						/>
 					</th>
 					<th>

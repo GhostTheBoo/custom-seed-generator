@@ -20,40 +20,39 @@ function ChestPage(props) {
 				After selecting a specific world, select what reward you wish to replace with.
 				When clicking replace, all checked rows will be replaced with whatever reward is in the reward selector.
 		</p>
-			<h6>Why Am I red?</h6>
+			<h6>Why Am I Red?</h6>
 			<p>
 				Chests can contain anything so they will never show up as red.
 		</p>
 		</div>
 	)
-
 	return (
 		<div style={props.style}>
 			<Form>
 				<Form.Row>
-					<Col>
+					<Col lg='4'>
 						<GenericSelect
 							class={'chest'}
 							selector={'World'}
 							itemList={worldsData}
 							name={'currentWorld'}
-							currentItem={props.chestData.currentWorld}
+							currentItem={props.fieldData.currentWorld}
 							onChange={props.handleWorldChange}
 						/>
 					</Col>
-					<Col>
+					<Col lg='4'>
 						<RewardTypeSelect
 							class={'chest'}
-							currentRewardType={props.chestData.currentRewardType}
+							currentRewardType={props.fieldData.currentRewardType}
 							name={'currentRewardType'}
 							onChange={props.onRewardTypeChange}
 						/>
 					</Col>
-					<Col>
+					<Col lg='4'>
 						<RewardSelect
 							class={'chest'}
 							rewardList={props.rewardList}
-							currentReward={props.chestData.currentReward}
+							currentReward={props.fieldData.currentReward}
 							name={'currentReward'}
 							label={'Reward'}
 							onChange={props.onRewardChange}
@@ -62,11 +61,11 @@ function ChestPage(props) {
 				</Form.Row>
 			</Form>
 			<ChestTable
-				currentWorld={worldsData[props.chestData.currentWorld]}
-				worldChests={props.chestData.currentDisplayData}
+				currentWorld={worldsData[props.fieldData.currentWorld]}
+				worldChests={props.chestData.chests}
 				onRowCheck={props.onRowCheck}
-				checkAll={props.checkAll}
-				selectAll={props.chestData.selectAll}
+				onCheckAll={props.onCheckAll}
+				selectAll={props.fieldData.selectAll}
 			/>
 			<Button variant='outline-dark'
 				name='replaceButton'

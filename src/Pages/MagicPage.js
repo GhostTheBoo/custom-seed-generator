@@ -18,7 +18,7 @@ function MagicPage(props) {
 				Select all abilities to change, select the desired cost, and click replace.
 				Clicking vanilla will return all selected abilities to their vanilla costs.
 			</p>
-			<h6>Why Am I red?</h6>
+			<h6>Why Am I Red?</h6>
 			<p>
 				Magic abilities can either have their cost changed or remain the same.
 				They cannot be red.
@@ -36,7 +36,7 @@ function MagicPage(props) {
 							selector={'Magic Type'}
 							itemList={magicCostsData}
 							name={'currentMagicType'}
-							currentItem={props.magicData.currentMagicType}
+							currentItem={props.fieldData.currentMagicType}
 							onChange={props.handleMagicTypeChange}
 						/>
 					</Col>
@@ -47,7 +47,7 @@ function MagicPage(props) {
 								size='sm'
 								name='currentCost'
 								type='number'
-								value={props.magicData.currentCost}
+								value={props.fieldData.currentCost}
 								onChange={props.onInputChange}
 								min="0"
 								max="255"
@@ -57,11 +57,11 @@ function MagicPage(props) {
 				</Form.Row>
 			</Form>
 			<MagicTable
-				currentMagicType={magicCostsData[props.magicData.currentMagicType]}
-				abilities={props.magicData.currentDisplayData}
+				currentMagicType={magicCostsData[props.fieldData.currentMagicType]}
+				abilities={props.magicData}
 				onRowCheck={props.onRowCheck}
-				checkAll={props.checkAll}
-				selectAll={props.magicData.selectAll}
+				onCheckAll={props.onCheckAll}
+				selectAll={props.fieldData.selectAll}
 			/>
 			<Button variant='outline-dark'
 				name='replaceButton'

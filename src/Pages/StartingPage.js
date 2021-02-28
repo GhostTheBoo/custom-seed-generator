@@ -18,7 +18,7 @@ function StartingPage(props) {
 				Select Apply to use the inputted starting status.
 				Select Vanilla to not change any starting status.
 			</p>
-			<h6>Why Am I red?</h6>
+			<h6>Why Am I Red?</h6>
 			<p>
 				Starting status is either changed or left Vanilla.
 				Nothing can be red.
@@ -34,34 +34,34 @@ function StartingPage(props) {
 						<RewardSelect
 							class={'startingStatus'}
 							rewardList={props.keybladeList}
-							currentReward={props.startingStatusData.currentKeyblade}
+							currentReward={props.fieldData.currentKeyblade}
 							name={'currentKeyblade'}
 							label={'Starting Keyblade'}
 							onChange={props.onRewardChange}
 						/>
-						<Form.Label column='sm'>{props.startingStatusData.startingStatusData.startingKeyblade.reward}</Form.Label>
+						<Form.Label column='sm'>{props.startingStatusData.keyblade.reward}</Form.Label>
 					</Col>
 					<Col>
 						<RewardSelect
 							class={'startingStatus'}
 							rewardList={props.armorList}
-							currentReward={props.startingStatusData.currentArmor}
+							currentReward={props.fieldData.currentArmor}
 							name={'currentArmor'}
 							label={'Starting Armor'}
 							onChange={props.onRewardChange}
 						/>
-						<Form.Label column='sm'>{props.startingStatusData.startingStatusData.startingArmor.reward}</Form.Label>
+						<Form.Label column='sm'>{props.startingStatusData.armor.reward}</Form.Label>
 					</Col>
 					<Col>
 						<RewardSelect
 							class={'startingStatus'}
 							rewardList={props.accessoryList}
-							currentReward={props.startingStatusData.currentAccessory}
+							currentReward={props.fieldData.currentAccessory}
 							name={'currentAccessory'}
 							label={'Starting Accessory'}
 							onChange={props.onRewardChange}
 						/>
-						<Form.Label column='sm'>{props.startingStatusData.startingStatusData.startingAccessory.reward}</Form.Label>
+						<Form.Label column='sm'>{props.startingStatusData.accessory.reward}</Form.Label>
 					</Col>
 				</Form.Row>
 				<br></br>
@@ -73,12 +73,12 @@ function StartingPage(props) {
 								size='sm'
 								name='currentMunny'
 								type='number'
-								value={props.startingStatusData.currentMunny}
+								value={props.fieldData.currentMunny}
 								onChange={props.onInputChange}
 								min="0"
 								max="4294967295"
 							/>
-							<Form.Label column='sm'>{props.startingStatusData.startingStatusData.startingMunny}</Form.Label>
+							<Form.Label column='sm'>{props.startingStatusData.munny}</Form.Label>
 						</Form.Group>
 					</Col>
 					<Col>
@@ -88,12 +88,12 @@ function StartingPage(props) {
 								size='sm'
 								name='currentStartingHP'
 								type='number'
-								value={props.startingStatusData.currentStartingHP}
+								value={props.fieldData.currentStartingHP}
 								onChange={props.onInputChange}
 								min="0"
 								max="255"
 							/>
-							<Form.Label column='sm'>{props.startingStatusData.startingStatusData.startingHP}</Form.Label>
+							<Form.Label column='sm'>{props.startingStatusData.hp}</Form.Label>
 						</Form.Group>
 					</Col>
 					<Col>
@@ -103,12 +103,12 @@ function StartingPage(props) {
 								size='sm'
 								name='currentStartingMP'
 								type='number'
-								value={props.startingStatusData.currentStartingMP}
+								value={props.fieldData.currentStartingMP}
 								onChange={props.onInputChange}
 								min="0"
 								max="255"
 							/>
-							<Form.Label column='sm'>{props.startingStatusData.startingStatusData.startingMP}</Form.Label>
+							<Form.Label column='sm'>{props.startingStatusData.mp}</Form.Label>
 						</Form.Group>
 					</Col>
 				</Form.Row>
@@ -118,23 +118,23 @@ function StartingPage(props) {
 						<RewardSelect
 							class={'startingStatus'}
 							rewardList={props.donaldList}
-							currentReward={props.startingStatusData.currentDonald1}
+							currentReward={props.fieldData.currentDonald1}
 							name={'currentDonald1'}
 							label={'Donald\'s First Starting Ability'}
 							onChange={props.onRewardChange}
 						/>
-						<Form.Label column='sm'>{props.startingStatusData.startingStatusData.startingDonald1.reward}</Form.Label>
+						<Form.Label column='sm'>{props.startingStatusData.donald1.reward}</Form.Label>
 					</Col>
 					<Col>
 						<RewardSelect
 							class={'startingStatus'}
 							rewardList={props.donaldList}
-							currentReward={props.startingStatusData.currentDonald2}
+							currentReward={props.fieldData.currentDonald2}
 							name={'currentDonald2'}
 							label={'Donald\'s Second Starting Ability'}
 							onChange={props.onRewardChange}
 						/>
-						<Form.Label column='sm'>{props.startingStatusData.startingStatusData.startingDonald2.reward}</Form.Label>
+						<Form.Label column='sm'>{props.startingStatusData.donald2.reward}</Form.Label>
 					</Col>
 				</Form.Row>
 				<Form.Row>
@@ -142,23 +142,23 @@ function StartingPage(props) {
 						<RewardSelect
 							class={'startingStatus'}
 							rewardList={props.goofyList}
-							currentReward={props.startingStatusData.currentGoofy1}
+							currentReward={props.fieldData.currentGoofy1}
 							name={'currentGoofy1'}
 							label={'Goofy\'s First Starting Ability'}
 							onChange={props.onRewardChange}
 						/>
-						<Form.Label column='sm'>{props.startingStatusData.startingStatusData.startingGoofy1.reward}</Form.Label>
+						<Form.Label column='sm'>{props.startingStatusData.goofy1.reward}</Form.Label>
 					</Col>
 					<Col>
 						<RewardSelect
 							class={'startingStatus'}
 							rewardList={props.goofyList}
-							currentReward={props.startingStatusData.currentGoofy2}
+							currentReward={props.fieldData.currentGoofy2}
 							name={'currentGoofy2'}
 							label={'Goofy\'s Second Starting Ability'}
 							onChange={props.onRewardChange}
 						/>
-						<Form.Label column='sm'>{props.startingStatusData.startingStatusData.startingGoofy2.reward}</Form.Label>
+						<Form.Label column='sm'>{props.startingStatusData.goofy2.reward}</Form.Label>
 					</Col>
 				</Form.Row>
 				<br></br>

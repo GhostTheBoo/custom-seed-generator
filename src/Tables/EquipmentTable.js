@@ -1,19 +1,18 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table'
+// import Icon from '../Components/Icon'
 
 function EquipmentTable(props) {
 	let equipmentList = props.equipments.map((equipment, index) => {
 		let styles
-		if (equipment.isAbilityReplaced || equipment.isStatsReplaced || equipment.isElementalResistanceChanged || equipment.isOtherResistanceChanged) {
+		if (equipment.isAbilityReplaced() || equipment.isStatsReplaced() || equipment.isElementalResistanceChanged() || equipment.isOtherResistanceChanged()) {
 			styles = { background: 'green' }
 		}
 		if (props.currentEquipmentType === 'Armor') {
 			if (equipment.additionalLineCount !== 0)
 				styles = { background: 'red' }
-		} else {
-			if (equipment.additionalLineCount > 1)
-				styles = { background: 'red' }
-		}
+		} else if (equipment.additionalLineCount > 1)
+			styles = { background: 'red' }
 		return (
 			<tr
 				style={styles}
@@ -32,7 +31,7 @@ function EquipmentTable(props) {
 					{equipment.name}
 				</td>
 				<td>
-					{equipment.replacementAbility.index !== '0000' ? equipment.replacementAbility.reward : ''}
+					{equipment.replacementAbility.index !== 0 ? equipment.replacementAbility.reward : ''}
 				</td>
 				<td>
 					{equipment.strength}
@@ -80,7 +79,7 @@ function EquipmentTable(props) {
 							type='checkbox'
 							name={props.currentEquipmentType + 'All'}
 							checked={props.selectAll}
-							onChange={props.checkAll}
+							onChange={props.onCheckAll}
 						/>
 					</th>
 					<th>

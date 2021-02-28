@@ -29,12 +29,13 @@ function EXPSelect(props) {
 				<Form.Group controlId={'Custom EXP Value' + props.class}>
 					<Form.Label column='sm'>Custom EXP: </Form.Label>
 					<Form.Control
+						disabled={props.currentEXPMultiplier !== 0}
 						size='sm'
 						name='currentEXP'
 						type='number'
 						value={props.currentEXP}
 						onChange={props.onInputChange}
-						min="0"
+						min="1"
 						max="99999999"
 					/>
 				</Form.Group>

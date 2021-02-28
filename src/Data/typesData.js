@@ -16,7 +16,8 @@ export const worldsData = [
 	'Space Paranoids',
 	'Timeless River',
 	'Twilight Town',
-	'The World That Never Was']
+	'The World That Never Was'
+]
 
 export const rewardTypesData = [
 	'Abilities',
@@ -36,7 +37,8 @@ export const rewardTypesData = [
 	'Magic Spells',
 	'Summons',
 	'Synth Materials',
-	'Empty']
+	'Empty'
+]
 
 export const formTypesData = [
 	'Summon',
@@ -44,17 +46,30 @@ export const formTypesData = [
 	'Wisdom',
 	'Limit',
 	'Master',
-	'Final']
+	'Final'
+]
 
 export const charactersData = [
-	'Sora',
+	'Sora/Roxas',
 	'Donald',
-	'Goofy']
+	'Goofy',
+	'Mickey',
+	'Auron',
+	'Ping/Mulan',
+	'Aladdin',
+	'Jack Sparrow',
+	'Beast',
+	'Jack Skellington',
+	'Simba',
+	'Tron',
+	'Riku'
+]
 
 export const magicCostsData = [
 	'Magic Spells',
 	'Party Limits',
-	'Other']
+	'Other'
+]
 
 export const equipmentTypesData = [
 	'Keyblade',
@@ -62,4 +77,26 @@ export const equipmentTypesData = [
 	'Goofy Shield',
 	'Ally Weapon',
 	'Armor',
-	'Accessory']
+	'Accessory'
+]
+
+export const iconTypeData = [
+	'Ability',
+	'Accessory',
+	'Armor',
+	'Form',
+	'Consumable',
+	'Tent',
+	'Key',
+	'Keyblade',
+	'Map',
+	'Proof',
+	'Recipe',
+	'Report',
+	'Shield',
+	'Staff',
+	'Spell',
+	'Charm',
+	'Synthesis',
+	'EMPTY'
+]

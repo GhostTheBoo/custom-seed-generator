@@ -1,15 +1,20 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table'
+// import Icon from '../Components/Icon'
 
 function ChestTable(props) {
 	let chestList = props.worldChests.map((chest, index) => {
-		let keyValue = props.currentWorld + index
+		let keyValue = chest.vanillaAddress
 		let styles
 		let replacementReward = ''
-		if (chest.isReplaced) {
+		if (chest.isReplaced()) {
 			styles = { background: 'green' }
 			replacementReward = chest.replacementReward.reward
 		}
+		// let reward = <Icon
+		// 	fileName={chest.replacementReward.iconType}
+		// 	displayText={chest.replacementReward.index !== 0x0000 ? chest.replacementReward.reward : ''}
+		// />
 		return (
 			<tr
 				style={styles}
@@ -29,6 +34,7 @@ function ChestTable(props) {
 				</td>
 				<td>
 					{chest.vanillaReward.reward}
+					{/* {reward} */}
 				</td>
 				<td>
 					{replacementReward}
@@ -45,7 +51,7 @@ function ChestTable(props) {
 							type='checkbox'
 							name={props.currentWorld + 'All'}
 							checked={props.selectAll}
-							onChange={props.checkAll}
+							onChange={props.onCheckAll}
 						/>
 					</th>
 					<th>
