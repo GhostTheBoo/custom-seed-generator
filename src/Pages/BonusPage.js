@@ -10,7 +10,6 @@ import RewardSelect from '../Components/RewardSelect'
 import RewardTypeSelect from '../Components/RewardTypeSelect'
 import BonusTable from '../Tables/BonusTable'
 import HelpModal from '../Components/HelpModal'
-// import { bonusData } from '../Data/newBonusData'
 
 function BonusPage(props) {
 	const description = (
