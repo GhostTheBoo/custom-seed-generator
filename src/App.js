@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 
@@ -136,6 +136,16 @@ function FunctionApp() {
 		currentGoofy2: 64,
 	})
 	const [startingStatus, setStartingStatus] = useState(startingStatusData)
+	const alertUser = e => {
+		e.preventDefault()
+		e.returnValue = ''
+	}
+	useEffect(() => {
+		window.addEventListener('beforeunload', alertUser)
+		return () => {
+			window.removeEventListener('beforeunload', alertUser)
+		}
+	}, [])
 	//#endregion
 
 	//#region Bonus Jank City
