@@ -29,7 +29,7 @@ import CheatPage from './Pages/CheatPage'
 import StartingPage from './Pages/StartingPage'
 
 import SaveLoadModal from './Components/SaveLoadModal'
-// import Icon from './Components/Icon'
+import Icon from './Components/Icon'
 
 function FunctionApp() {
 	//#region State
@@ -863,11 +863,11 @@ function FunctionApp() {
 	}
 	return (
 		<div style={styles}>
-			<Tabs defaultActiveKey="home" id="allTabs" transition={false}>
-				<Tab eventKey="home" title='Home'>
+			<Tabs defaultActiveKey='home' id='allTabs' transition={false}>
+				<Tab eventKey='home' title='Home'>
 					<HomePage />
 				</Tab>
-				<Tab eventKey="chest" title="Chest">
+				<Tab eventKey='chest' title='Chest'>
 					<ChestPage
 						style={styles}
 						fieldData={chestFieldData}
@@ -888,7 +888,7 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
-				<Tab eventKey="popup" title="Popup">
+				<Tab eventKey='popup' title='Popup'>
 					<PopupPage
 						style={styles}
 						fieldData={popupFieldData}
@@ -909,7 +909,7 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
-				<Tab eventKey="bonus" title="Bonus">
+				<Tab eventKey='bonus' title='Bonus'>
 					<BonusPage
 						style={styles}
 						bonusData={allBonuses[bonusFieldData.currentWorld]}
@@ -947,7 +947,7 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
-				<Tab eventKey="form" title="Forms & Summons">
+				<Tab eventKey='form' title='Forms & Summons'>
 					<FormPage
 						style={styles}
 						formData={allForms[formFieldData.currentDriveForm].driveLevels}
@@ -974,7 +974,7 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
-				<Tab eventKey="equipment" title="Equipment">
+				<Tab eventKey='equipment' title='Equipment'>
 					<EquipmentPage
 						style={styles}
 						equipmentData={allEquipments[equipmentFieldData.currentEquipmentType].equipments}
@@ -1013,7 +1013,7 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
-				<Tab eventKey="level" title="Level">
+				<Tab eventKey='level' title='Level'>
 					<LevelPage
 						style={styles}
 						levelData={allLevels}
@@ -1051,7 +1051,7 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
-				<Tab eventKey="magic" title="Magic & Limits">
+				<Tab eventKey='magic' title='Magic & Limits'>
 					<MagicPage
 						style={styles}
 						magicData={allMagics[magicFieldData.currentMagicType].abilities}
@@ -1071,7 +1071,7 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
-				<Tab eventKey="critical" title="Critical Extra">
+				<Tab eventKey='critical' title='Critical Extra'>
 					<CriticalPage
 						style={styles}
 						criticalData={allCriticals}
@@ -1091,7 +1091,7 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
-				<Tab eventKey="cheat" title="Cheat">
+				<Tab eventKey='cheat' title='Cheat'>
 					<CheatPage
 						style={styles}
 						cheatData={allCheats}
@@ -1108,7 +1108,7 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
-				<Tab eventKey="startingStatus" title="Starting Status">
+				<Tab eventKey='startingStatus' title='Starting Status'>
 					<StartingPage
 						style={styles}
 						startingStatusData={startingStatus}

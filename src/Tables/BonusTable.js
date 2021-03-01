@@ -1,6 +1,6 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table'
-// import Icon from '../Components/Icon'
+import Icon from '../Components/Icon'
 
 import { charactersData } from '../Data/typesData'
 
@@ -25,14 +25,14 @@ function BonusTable(props) {
 			else
 				bonusReceiver = charactersData[bonus.replacementCharacter]
 
-			// let bonusA = <Icon
-			// 	fileName={bonus.replacementReward1.iconType}
-			// 	displayText={bonus.replacementReward1.index !== 0x0000 ? bonus.replacementReward1.reward : ''}
-			// />
-			// let bonusB = <Icon
-			// 	fileName={bonus.replacementReward2.iconType}
-			// 	displayText={bonus.replacementReward2.index !== 0x0000 ? bonus.replacementReward2.reward : ''}
-			// />
+			let bonusA = <Icon
+				fileName={bonus.replacementReward1.iconType}
+				displayText={bonus.replacementReward1.index !== 0x0000 ? bonus.replacementReward1.reward : ''}
+			/>
+			let bonusB = <Icon
+				fileName={bonus.replacementReward2.iconType}
+				displayText={bonus.replacementReward2.index !== 0x0000 ? bonus.replacementReward2.reward : ''}
+			/>
 
 			return (
 				<tr
@@ -52,12 +52,12 @@ function BonusTable(props) {
 						{bonusReceiver}
 					</td>
 					<td>
-						{/* {bonusA} */}
-						{bonus.replacementReward1.index !== 0x0000 ? bonus.replacementReward1.reward : ''}
+						{bonusA}
+						{/* {bonus.replacementReward1.index !== 0x0000 ? bonus.replacementReward1.reward : ''} */}
 					</td>
 					<td>
-						{/* {bonusB} */}
-						{bonus.replacementReward2.index !== 0x0000 ? bonus.replacementReward2.reward : ''}
+						{bonusB}
+						{/* {bonus.replacementReward2.index !== 0x0000 ? bonus.replacementReward2.reward : ''} */}
 					</td>
 					<td>
 						{bonus.hpIncrease}
