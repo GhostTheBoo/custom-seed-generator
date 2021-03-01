@@ -1,6 +1,6 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table'
-// import Icon from '../Components/Icon'
+import Icon from '../Components/Icon'
 
 function EquipmentTable(props) {
 	let equipmentList = props.equipments.map((equipment, index) => {
@@ -31,7 +31,10 @@ function EquipmentTable(props) {
 					{equipment.name}
 				</td>
 				<td>
-					{equipment.replacementAbility.index !== 0 ? equipment.replacementAbility.reward : ''}
+					<Icon
+						fileName={equipment.replacementAbility.iconType}
+						displayText={equipment.replacementAbility.index !== 0x0000 ? equipment.replacementAbility.reward : ''}
+					/>
 				</td>
 				<td>
 					{equipment.strength}

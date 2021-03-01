@@ -1,16 +1,13 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table'
-// import Icon from '../Components/Icon'
+import Icon from '../Components/Icon'
 
 function PopupTable(props) {
 	let popupList = props.worldPopups.map((popup, index) => {
 		let keyValue = popup.vanillaAddress
 		let styles
-		let originalReward = ''
-		if (popup.isReplaced()) {
+		if (popup.isReplaced())
 			styles = { background: 'green' }
-			originalReward = popup.replacementReward.reward
-		}
 		if (popup.isAbility())
 			styles = { background: 'red' }
 		return (
@@ -31,10 +28,16 @@ function PopupTable(props) {
 					{popup.popup}
 				</td>
 				<td>
-					{popup.vanillaReward.reward}
+					<Icon
+						fileName={popup.vanillaReward.iconType}
+						displayText={popup.vanillaReward.reward}
+					/>
 				</td>
 				<td>
-					{originalReward}
+					<Icon
+						fileName={popup.replacementReward.iconType}
+						displayText={popup.replacementReward.reward}
+					/>
 				</td>
 			</tr>
 		)

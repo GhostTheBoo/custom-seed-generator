@@ -247,5 +247,5 @@ export const levelsData = [
 	new Level(96, 2736378, 0x21D0BC98, 66, 51, 54, 50, new Reward('EMPTY', 0x0000, 'EMPTY'), new Reward('EMPTY', 0x0000, 'EMPTY'), new Reward('EMPTY', 0x0000, 'EMPTY')),
 	new Level(97, 2805578, 0x21D0BCA8, 68, 52, 54, 50, new Reward('EMPTY', 0x0000, 'EMPTY'), new Reward('EMPTY', 0x0000, 'EMPTY'), new Reward('EMPTY', 0x0000, 'EMPTY')),
 	new Level(98, 2875578, 0x21D0BCB8, 68, 52, 54, 52, new Reward('EMPTY', 0x0000, 'EMPTY'), new Reward('EMPTY', 0x0000, 'EMPTY'), new Reward('EMPTY', 0x0000, 'EMPTY')),
-	new Level(99, 0, 0x21D0BCC8, 68, 53, 54, 52, new Reward('Damage Control', 0x021E, 'Ability'), new Reward('Thunder Boost', 0x019A, 'Ability'), new Reward('Drive Converter', 0x021C4))
+	new Level(99, 0, 0x21D0BCC8, 68, 53, 54, 52, new Reward('Damage Control', 0x021E, 'Ability'), new Reward('Thunder Boost', 0x019A, 'Ability'), new Reward('Drive Converter', 0x021C4, 'Ability'))
 ]

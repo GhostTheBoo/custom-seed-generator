@@ -1,6 +1,6 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table'
-// import Icon from '../Components/Icon'
+import Icon from '../Components/Icon'
 
 function CriticalTable(props) {
 	let criticalList = props.allCriticals.map((ce, index) => {
@@ -23,10 +23,16 @@ function CriticalTable(props) {
 					/>
 				</td>
 				<td>
-					{ce.vanillaReward.reward}
+					<Icon
+						fileName={ce.vanillaReward.iconType}
+						displayText={ce.vanillaReward.reward}
+					/>
 				</td>
 				<td>
-					{ce.replacementReward.reward}
+					<Icon
+						fileName={ce.replacementReward.iconType}
+						displayText={ce.replacementReward.reward}
+					/>
 				</td>
 			</tr>
 		)
@@ -43,7 +49,7 @@ function CriticalTable(props) {
 							checked={props.selectAll}
 							onChange={props.onCheckAll}
 						/>
-						</th>
+					</th>
 					<th>
 						Original Ability
 					</th>

@@ -25,15 +25,6 @@ function BonusTable(props) {
 			else
 				bonusReceiver = charactersData[bonus.replacementCharacter]
 
-			let bonusA = <Icon
-				fileName={bonus.replacementReward1.iconType}
-				displayText={bonus.replacementReward1.index !== 0x0000 ? bonus.replacementReward1.reward : ''}
-			/>
-			let bonusB = <Icon
-				fileName={bonus.replacementReward2.iconType}
-				displayText={bonus.replacementReward2.index !== 0x0000 ? bonus.replacementReward2.reward : ''}
-			/>
-
 			return (
 				<tr
 					style={styles}
@@ -52,12 +43,16 @@ function BonusTable(props) {
 						{bonusReceiver}
 					</td>
 					<td>
-						{bonusA}
-						{/* {bonus.replacementReward1.index !== 0x0000 ? bonus.replacementReward1.reward : ''} */}
+						<Icon
+							fileName={bonus.replacementReward1.iconType}
+							displayText={bonus.replacementReward1.index !== 0x0000 ? bonus.replacementReward1.reward : ''}
+						/>
 					</td>
 					<td>
-						{bonusB}
-						{/* {bonus.replacementReward2.index !== 0x0000 ? bonus.replacementReward2.reward : ''} */}
+						<Icon
+							fileName={bonus.replacementReward2.iconType}
+							displayText={bonus.replacementReward2.index !== 0x0000 ? bonus.replacementReward2.reward : ''}
+						/>
 					</td>
 					<td>
 						{bonus.hpIncrease}

@@ -1,6 +1,6 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table'
-// import Icon from '../Components/Icon'
+import Icon from '../Components/Icon'
 
 function LevelTable(props) {
 	let levelList = props.allLevels.map((l, index) => {
@@ -44,13 +44,22 @@ function LevelTable(props) {
 					{l.strength}
 				</td>
 				<td>
-					{l.replacementSwordReward.index !== 0 ? l.replacementSwordReward.reward : ''}
+					<Icon
+						fileName={l.replacementSwordReward.iconType}
+						displayText={l.replacementSwordReward.index !== 0x0000 ? l.replacementSwordReward.reward : ''}
+					/>
 				</td>
 				<td>
-					{l.replacementShieldReward.index !== 0 ? l.replacementShieldReward.reward : ''}
+					<Icon
+						fileName={l.replacementShieldReward.iconType}
+						displayText={l.replacementShieldReward.index !== 0x0000 ? l.replacementShieldReward.reward : ''}
+					/>
 				</td>
 				<td>
-					{l.replacementStaffReward.index !== 0 ? l.replacementStaffReward.reward : ''}
+					<Icon
+						fileName={l.replacementStaffReward.iconType}
+						displayText={l.replacementStaffReward.index !== 0x0000 ? l.replacementStaffReward.reward : ''}
+					/>
 				</td>
 			</tr>
 		)

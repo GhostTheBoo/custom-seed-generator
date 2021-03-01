@@ -1,14 +1,22 @@
-import React from 'react'
+import { React, useState, useEffect } from 'react'
 
 function Icon(props) {
-	let iconName = props.fileName.toLowerCase()
-	let displayIcon = '/icons/' + iconName + '.png'
+	const [iconPath, setIconPath] = useState(props.fileName.toLowerCase())
+
+	useEffect(() => {
+		setIconPath(props.fileName.toLowerCase())
+	}, [props.fileName])
+
+	function handleError() {
+		setIconPath('empty')
+	}
+
 	return (
 		<div>
 			<img
-				src={process.env.PUBLIC_URL + displayIcon}
-				alt={props.displayText}
-				onError={() => displayIcon = '/icons/empty.png'}
+				src={process.env.PUBLIC_URL + '/icons/' + iconPath + '.png'}
+				alt={props.fileName.toLowerCase()}
+				onError={handleError}
 				height={30}
 				width={30}
 			/>

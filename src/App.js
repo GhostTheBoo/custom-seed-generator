@@ -2,6 +2,7 @@ import { React, useState, useEffect } from 'react'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 
+import { pageList } from './Data/typesData'
 import { rewardsData } from './Data/rewardsData'
 import { chestsData } from './Data/chestsData'
 import { popupsData } from './Data/popupsData'
@@ -855,6 +856,12 @@ function FunctionApp() {
 	}
 	//#endregion
 
+	let icons = pageList.map(pageName => {
+		return <Icon
+			fileName={pageName}
+			displayText={pageName}
+		/>
+	})
 	let styles = {
 		marginTop: '0',
 		marginRight: '10px',
@@ -864,10 +871,10 @@ function FunctionApp() {
 	return (
 		<div style={styles}>
 			<Tabs defaultActiveKey='home' id='allTabs' transition={false}>
-				<Tab eventKey='home' title='Home'>
+				<Tab eventKey='home' title={icons[0]}>
 					<HomePage />
 				</Tab>
-				<Tab eventKey='chest' title='Chest'>
+				<Tab eventKey='chest' title={icons[1]}>
 					<ChestPage
 						style={styles}
 						fieldData={chestFieldData}
@@ -888,7 +895,7 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
-				<Tab eventKey='popup' title='Popup'>
+				<Tab eventKey='popup' title={icons[2]}>
 					<PopupPage
 						style={styles}
 						fieldData={popupFieldData}
@@ -909,7 +916,7 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
-				<Tab eventKey='bonus' title='Bonus'>
+				<Tab eventKey='bonus' title={icons[3]}>
 					<BonusPage
 						style={styles}
 						bonusData={allBonuses[bonusFieldData.currentWorld]}
@@ -947,7 +954,7 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
-				<Tab eventKey='form' title='Forms & Summons'>
+				<Tab eventKey='form' title={icons[4]}>
 					<FormPage
 						style={styles}
 						formData={allForms[formFieldData.currentDriveForm].driveLevels}
@@ -974,7 +981,7 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
-				<Tab eventKey='equipment' title='Equipment'>
+				<Tab eventKey='equipment' title={icons[5]}>
 					<EquipmentPage
 						style={styles}
 						equipmentData={allEquipments[equipmentFieldData.currentEquipmentType].equipments}
@@ -1013,7 +1020,7 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
-				<Tab eventKey='level' title='Level'>
+				<Tab eventKey='level' title={icons[6]}>
 					<LevelPage
 						style={styles}
 						levelData={allLevels}
@@ -1051,7 +1058,7 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
-				<Tab eventKey='magic' title='Magic & Limits'>
+				<Tab eventKey='magic' title={icons[7]}>
 					<MagicPage
 						style={styles}
 						magicData={allMagics[magicFieldData.currentMagicType].abilities}
@@ -1071,7 +1078,7 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
-				<Tab eventKey='critical' title='Critical Extra'>
+				<Tab eventKey='critical' title={icons[8]}>
 					<CriticalPage
 						style={styles}
 						criticalData={allCriticals}
@@ -1091,7 +1098,7 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
-				<Tab eventKey='cheat' title='Cheat'>
+				<Tab eventKey='cheat' title={icons[9]}>
 					<CheatPage
 						style={styles}
 						cheatData={allCheats}
@@ -1108,7 +1115,7 @@ function FunctionApp() {
 						}}
 					/>
 				</Tab>
-				<Tab eventKey='startingStatus' title='Starting Status'>
+				<Tab eventKey='startingStatus' title={icons[10]}>
 					<StartingPage
 						style={styles}
 						startingStatusData={startingStatus}

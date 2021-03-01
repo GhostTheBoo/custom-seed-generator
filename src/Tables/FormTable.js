@@ -1,6 +1,6 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table'
-// import Icon from '../Components/Icon'
+import Icon from '../Components/Icon'
 
 function FormTable(props) {
 	let formList = props.driveLevels.map((driveLevel, index) => {
@@ -26,10 +26,16 @@ function FormTable(props) {
 					{driveLevel.level}
 				</td>
 				<td>
-					{driveLevel.vanillaReward.reward}
+					<Icon
+						fileName={driveLevel.vanillaReward.iconType}
+						displayText={driveLevel.vanillaReward.reward}
+					/>
 				</td>
 				<td>
-					{driveLevel.isRewardReplaced() ? driveLevel.replacementReward.reward : ''}
+					<Icon
+						fileName={driveLevel.replacementReward.iconType}
+						displayText={driveLevel.replacementReward.reward}
+					/>
 				</td>
 				<td>
 					{driveLevel.vanillaEXP}

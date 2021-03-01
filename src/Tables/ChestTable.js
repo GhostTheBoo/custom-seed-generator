@@ -6,15 +6,8 @@ function ChestTable(props) {
 	let chestList = props.worldChests.map((chest, index) => {
 		let keyValue = chest.vanillaAddress
 		let styles
-		let replacementReward = ''
-		if (chest.isReplaced()) {
+		if (chest.isReplaced())
 			styles = { background: 'green' }
-			replacementReward = chest.replacementReward.reward
-		}
-		let reward = <Icon
-			fileName={chest.replacementReward.iconType}
-			displayText={chest.replacementReward.index !== 0x0000 ? chest.replacementReward.reward : ''}
-		/>
 		return (
 			<tr
 				style={styles}
@@ -33,11 +26,16 @@ function ChestTable(props) {
 					{chest.room}
 				</td>
 				<td>
-					{/* {chest.vanillaReward.reward} */}
-					{reward}
+					<Icon
+						fileName={chest.vanillaReward.iconType}
+						displayText={chest.vanillaReward.reward}
+					/>
 				</td>
 				<td>
-					{replacementReward}
+					<Icon
+						fileName={chest.replacementReward.iconType}
+						displayText={chest.replacementReward.reward}
+					/>
 				</td>
 			</tr>
 		)
