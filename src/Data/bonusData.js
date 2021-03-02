@@ -46,7 +46,7 @@ export class BonusReward {
 		this.copy = () => {
 			let ret = new BonusReward(this.characterAddress, this.vanillaCharacter, new Reward(this.vanillaReward1.reward, this.vanillaReward1.index, this.vanillaReward1.iconType),
 				new Reward(this.vanillaReward2.reward, this.vanillaReward2.index, this.vanillaReward2.iconType), this.vanillaHpIncrease, this.vanillaMpIncrease,
-				this.vanillaArmorSlotIncrease,this.vanillaAccessorySlotIncrease, this.vanillaItemSlotIncrease, this.vanillaDriveGaugeIncrease)
+				this.vanillaArmorSlotIncrease, this.vanillaAccessorySlotIncrease, this.vanillaItemSlotIncrease, this.vanillaDriveGaugeIncrease)
 
 			ret.replacementCharacter = this.replacementCharacter
 			ret.replacementReward1 = { ...this.replacementReward1 }
@@ -66,8 +66,8 @@ export class BonusReward {
 		}
 		this.vanilla = () => {
 			return new BonusReward(this.characterAddress, this.vanillaCharacter, new Reward(this.vanillaReward1.reward, this.vanillaReward1.index, this.vanillaReward1.iconType),
-				new Reward(this.vanillaReward2.reward, this.vanillaReward2.index, this.vanillaReward2.iconType), this.hpIncrease, this.mpIncrease, this.armorSlotIncrease,
-				this.accessorySlotIncrease, this.itemSlotIncrease, this.driveGaugeIncrease)
+				new Reward(this.vanillaReward2.reward, this.vanillaReward2.index, this.vanillaReward2.iconType), this.vanillaHpIncrease, this.vanillaMpIncrease,
+				this.vanillaArmorSlotIncrease, this.vanillaAccessorySlotIncrease, this.vanillaItemSlotIncrease, this.vanillaDriveGaugeIncrease)
 		}
 		this.replace = (newBonusData) => {
 			let ret = this.copy()
@@ -179,9 +179,9 @@ export class BonusFight {
 		}
 		this.vanilla = () => {
 			let newSlots = this.slots.filter(slot => Object.keys(slot).length !== 0).map(slot => {
-				return slot.toBeReplaced ? slot.vanilla() : slot
+				return slot.toBeReplaced ? slot.vanilla() : slot.markForReplacement(false)
 			})
-			return new BonusFight(this.name, newSlots[0], newSlots[1], newSlots[2], newSlots[3])
+			return new BonusFight(this.fight, newSlots[0], newSlots[1], newSlots[2], newSlots[3])
 		}
 		this.replace = (newBonusData) => {
 			let newSlots = this.slots.filter(slot => Object.keys(slot).length !== 0).map(slot => {
