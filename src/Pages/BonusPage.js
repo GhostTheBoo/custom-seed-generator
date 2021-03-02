@@ -25,7 +25,7 @@ function BonusPage(props) {
 			<p>
 				A fight that gives a bonus reward can give up to 4 rewards to the characters in the party.
 				The person who receives a reward can be modified.
-				This means that in a fight like Abu Escort, Sora can obtain up to 4 bonus levels each with different rewards
+				This means that in a fight like Abu Escort, Sora can obtain up to 4 bonus levels each with different rewards.
 				Keep in mind, each character has an in game cap to their bonus level.
 				If a character earns too many bonus levels, the game will not be happy.
 			</p>
