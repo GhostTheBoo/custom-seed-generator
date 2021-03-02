@@ -85,7 +85,7 @@ export class BonusReward {
 			ret.slotChangeCount = ret.getSlotCount()
 			ret.rewardChangeCount = ret.getRewardCount()
 			ret.toBeReplaced = false
-			
+
 			return ret
 		}
 		this.markForReplacement = (toBeReplaced) => {
@@ -179,9 +179,9 @@ export class BonusFight {
 		}
 		this.vanilla = () => {
 			let newSlots = this.slots.filter(slot => Object.keys(slot).length !== 0).map(slot => {
-				return slot.toBeReplaced ? slot.vanilla() : slot
+				return slot.toBeReplaced ? slot.vanilla() : slot.markForReplacement(false)
 			})
-			return new BonusFight(this.name, newSlots[0], newSlots[1], newSlots[2], newSlots[3])
+			return new BonusFight(this.fight, newSlots[0], newSlots[1], newSlots[2], newSlots[3])
 		}
 		this.replace = (newBonusData) => {
 			let newSlots = this.slots.filter(slot => Object.keys(slot).length !== 0).map(slot => {
