@@ -46,7 +46,7 @@ export class BonusReward {
 		this.copy = () => {
 			let ret = new BonusReward(this.characterAddress, this.vanillaCharacter, new Reward(this.vanillaReward1.reward, this.vanillaReward1.index, this.vanillaReward1.iconType),
 				new Reward(this.vanillaReward2.reward, this.vanillaReward2.index, this.vanillaReward2.iconType), this.vanillaHpIncrease, this.vanillaMpIncrease,
-				this.vanillaArmorSlotIncrease,this.vanillaAccessorySlotIncrease, this.vanillaItemSlotIncrease, this.vanillaDriveGaugeIncrease)
+				this.vanillaArmorSlotIncrease, this.vanillaAccessorySlotIncrease, this.vanillaItemSlotIncrease, this.vanillaDriveGaugeIncrease)
 
 			ret.replacementCharacter = this.replacementCharacter
 			ret.replacementReward1 = { ...this.replacementReward1 }
@@ -66,8 +66,8 @@ export class BonusReward {
 		}
 		this.vanilla = () => {
 			return new BonusReward(this.characterAddress, this.vanillaCharacter, new Reward(this.vanillaReward1.reward, this.vanillaReward1.index, this.vanillaReward1.iconType),
-				new Reward(this.vanillaReward2.reward, this.vanillaReward2.index, this.vanillaReward2.iconType), this.hpIncrease, this.mpIncrease, this.armorSlotIncrease,
-				this.accessorySlotIncrease, this.itemSlotIncrease, this.driveGaugeIncrease)
+				new Reward(this.vanillaReward2.reward, this.vanillaReward2.index, this.vanillaReward2.iconType), this.vanillaHpIncrease, this.vanillaMpIncrease,
+				this.vanillaArmorSlotIncrease, this.vanillaAccessorySlotIncrease, this.vanillaItemSlotIncrease, this.vanillaDriveGaugeIncrease)
 		}
 		this.replace = (newBonusData) => {
 			let ret = this.copy()
@@ -85,7 +85,7 @@ export class BonusReward {
 			ret.slotChangeCount = ret.getSlotCount()
 			ret.rewardChangeCount = ret.getRewardCount()
 			ret.toBeReplaced = false
-
+			
 			return ret
 		}
 		this.markForReplacement = (toBeReplaced) => {
