@@ -45,8 +45,8 @@ export class BonusReward {
 		}
 		this.copy = () => {
 			let ret = new BonusReward(this.characterAddress, this.vanillaCharacter, new Reward(this.vanillaReward1.reward, this.vanillaReward1.index, this.vanillaReward1.iconType),
-				new Reward(this.vanillaReward2.reward, this.vanillaReward2.index, this.vanillaReward2.iconType), this.hpIncrease, this.mpIncrease, this.armorSlotIncrease,
-				this.accessorySlotIncrease, this.itemSlotIncrease, this.driveGaugeIncrease)
+				new Reward(this.vanillaReward2.reward, this.vanillaReward2.index, this.vanillaReward2.iconType), this.vanillaHpIncrease, this.vanillaMpIncrease,
+				this.vanillaArmorSlotIncrease,this.vanillaAccessorySlotIncrease, this.vanillaItemSlotIncrease, this.vanillaDriveGaugeIncrease)
 
 			ret.replacementCharacter = this.replacementCharacter
 			ret.replacementReward1 = { ...this.replacementReward1 }
@@ -118,7 +118,6 @@ export class BonusReward {
 		}
 		this.saveToPnach = () => {
 			let ret = ''
-			console.log(this)
 			if (this.isCharacterReplaced()) {
 				ret += 'patch=1,EE,' + this.characterAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,'
 				ret += this.replacementCharacter.toString(16).toUpperCase().padStart(8, '0') + ' // Bonus reward is now given to ' + charactersData[this.replacementCharacter] + '\n'
