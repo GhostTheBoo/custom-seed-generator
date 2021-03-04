@@ -90,7 +90,7 @@ export const popupsData = [
 		world: 'Disney Castle',
 		popups: [
 			new Popup('Disney Castle Map', new Reward('Disney Castle Map', 0x0077, 'Map'), 0x11CE0756),
-			new Popup('Proof of Connection', new Reward('Proof of Connection', 0x0251, 'Proof'), 0x11CE0B16),
+			new Popup('Proof of Connection', new Reward('Proof of Connection', 0x0251, 'Connection'), 0x11CE0B16),
 			new Popup('Manifest Illusion', new Reward('Manifest Illusion', 0x0249, 'Synthesis'), 0x11CE0B22),
 			new Popup('Marluxia (Absent Silhouette)', new Reward('Eternal Blossom', 0x01D4, 'Recipe'), 0x11CE0A6E),
 			new Popup('Marluxia (Data)', new Reward('Lost Illusion', 0x0248, 'Synthesis'), 0x11CE0AAA)
@@ -122,7 +122,7 @@ export const popupsData = [
 			new Popup('Picture', new Reward('Picture', 0x0178, 'Key'), 0x11CE083A),
 			new Popup('Ansem\'s Study during MCP Takeover', new Reward('Sleeping Lion', 0x01EE, 'Keyblade'), 0x11CE0936),
 			new Popup('Approaching Sephiroh after talking to Cloud', new Reward('Fenrir', 0x01F3, 'Keyblade'), 0x11CE0942),
-			new Popup('Mushroom XIII (Proof of Peace)', new Reward('Proof of Peace', 0x0253, 'Proof'), 0x11CE0B3A),
+			new Popup('Mushroom XIII (Proof of Peace)', new Reward('Proof of Peace', 0x0253, 'Peace'), 0x11CE0B3A),
 			new Popup('Mushroom XIII (Winner\'s Proof)', new Reward('Winner\'s Proof', 0x0220, 'Keyblade'), 0x11CE0B2E),
 			new Popup('Demyx (Data)', new Reward('AP Boost', 0x0117, 'Tent'), 0x11CE0AB6)
 		]
@@ -155,9 +155,9 @@ export const popupsData = [
 		popups: [
 			new Popup('Protect Belt (Pain & Panic Cup)', new Reward('Protect Belt', 0x004E, 'Armor'), 0x11CE073E),
 			new Popup('Serenity Gem (Pain & Panic Cup)', new Reward('Serenity Gem', 0x0167, 'Synthesis'), 0x11CE074A),
-			new Popup('Rising Dragon (Cerberus Cup)', new Reward('Rising Dragon', 0x009A, 'Staff'), 0x11CE07CE),
+			new Popup('Rising Dragon (Cerberus Cup)', new Reward('Rising Dragon', 0x009A, 'Donald'), 0x11CE07CE),
 			new Popup('Serenity Crystal (Cerberus Cup)', new Reward('Serenity Crystal', 0x0168, 'Synthesis'), 0x11CE07DA),
-			new Popup('Genji Shield (Titan Cup)', new Reward('Genji Shield', 0x0091, 'Shield'), 0x11CE089A),
+			new Popup('Genji Shield (Titan Cup)', new Reward('Genji Shield', 0x0091, 'Goofy'), 0x11CE089A),
 			new Popup('Skillful Ring (Titan Cup)', new Reward('Skillful Ring', 0x0027, 'Accessory'), 0x11CE08A6),
 			new Popup('Fatal Crest (Goddess of Fate Cup)', new Reward('Fatal Crest', 0x01F1, 'Keyblade'), 0x11CE094E),
 			new Popup('Orichalcum+ (Goddess of Fate Cup)', new Reward('Orichalcum+', 0x0169, 'Synthesis'), 0x11CE095A),

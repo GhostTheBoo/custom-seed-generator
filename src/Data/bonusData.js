@@ -283,7 +283,7 @@ export const bonusData = [
 				new BonusReward(0x01D107A1, 2, new Reward('EMPTY', 0x0000, 'EMPTY'), new Reward('EMPTY', 0x0000, 'EMPTY'), 0, 0, 0, 0, 1, 0),
 				new BonusReward(0x01D107B1, 8, new Reward('EMPTY', 0x0000, 'EMPTY'), new Reward('EMPTY', 0x0000, 'EMPTY'), 35, 0, 0, 0, 0, 0)),
 			new BonusFight('Xaldin',
-				new BonusReward(0x01D107C1, 0, new Reward('Reflect', 0x0058, 'Spel'), new Reward('EMPTY', 0x0000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
+				new BonusReward(0x01D107C1, 0, new Reward('Reflect', 0x0058, 'Spell'), new Reward('EMPTY', 0x0000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
 				new BonusReward(0x01D107D1, 1, new Reward('Auto Healing', 0x01A4, 'Ability'), new Reward('EMPTY', 0x0000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
 				new BonusReward(0x01D107E1, 2, new Reward('EMPTY', 0x0000, 'EMPTY'), new Reward('EMPTY', 0x0000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
 				new BonusReward(0x01D107F1, 8, new Reward('EMPTY', 0x0000, 'EMPTY'), new Reward('EMPTY', 0x0000, 'EMPTY'), 25, 0, 0, 0, 0, 0))

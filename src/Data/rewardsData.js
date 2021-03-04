@@ -225,7 +225,7 @@ export const rewardsData = [
 	{
 		rewardType: 'Key Items',
 		rewards: [
-			new Reward('Torn Page', 0x0020, 'Key'),
+			new Reward('Torn Page', 0x0020, 'Pages'),
 			new Reward('Munny Pouch (Olette)', 0x016A, 'Key'),
 			new Reward('Munny Pouch (Mickey)', 0x0217, 'Key'),
 			new Reward('Crystal Orb', 0x016B, 'Key'),
@@ -242,7 +242,7 @@ export const rewardsData = [
 			new Reward('Decoy Presents', 0x0176, 'Key'),
 			new Reward('Ice Cream', 0x0177, 'Key'),
 			new Reward('Picture', 0x0178, 'Key'),
-			new Reward('Promise Charm', 0x020C, 'Key'),
+			new Reward('Promise Charm', 0x020C, 'Promise'),
 			new Reward('Hades Cup Trophy', 0x0219, 'Key'),
 			new Reward('"The Struggle" Trophy', 0x021A, 'Key')
 		]
@@ -341,9 +341,9 @@ export const rewardsData = [
 	{
 		rewardType: 'Proofs',
 		rewards: [
-			new Reward('Proof of Connection', 0x0251, 'Proof'),
-			new Reward('Proof of Nonexistence', 0x0252, 'Proof'),
-			new Reward('Proof of Peace', 0x0253, 'Proof')
+			new Reward('Proof of Connection', 0x0251, 'Connection'),
+			new Reward('Proof of Nonexistence', 0x0252, 'Nonexistence'),
+			new Reward('Proof of Peace', 0x0253, 'Peace')
 		]
 	},
 	{
@@ -388,54 +388,54 @@ export const rewardsData = [
 	{
 		rewardType: 'Goofy\'s Shields',
 		rewards: [
-			new Reward('Knight\'s Shield', 0x0031, 'Shield'),
-			new Reward('Adamant Shield', 0x008B, 'Shield'),
-			new Reward('Chain Gear', 0x008C, 'Shield'),
-			new Reward('Falling Star', 0x008E, 'Shield'),
-			new Reward('Dream Cloud', 0x008F, 'Shield'),
-			new Reward('Knight Defender', 0x0090, 'Shield'),
-			new Reward('Ogre Shield', 0x008D, 'Shield'),
-			new Reward('Genji Shield', 0x0091, 'Shield'),
-			new Reward('Akashic Record', 0x0092, 'Shield'),
-			new Reward('Akashic Record+', 0x0259, 'Shield'),
-			new Reward('Nobody Guard', 0x0093, 'Shield'),
-			new Reward('Frozen Pride', 0x0228, 'Shield'),
-			new Reward('Frozen Pride+', 0x0229, 'Shield'),
-			new Reward('Save The King', 0x01E3, 'Shield'),
-			new Reward('Save The King+', 0x01F8, 'Shield'),
-			new Reward('Joyous Mushroom', 0x022A, 'Shield'),
-			new Reward('Joyous Mushroom+', 0x022B, 'Shield'),
-			new Reward('Majestic Mushroom', 0x022C, 'Shield'),
-			new Reward('Majestic Mushroom+', 0x022D, 'Shield'),
-			new Reward('Ultimate Mushroom', 0x022E, 'Shield'),
-			new Reward('Detection Shield', 0x0032, 'Shield'),
-			new Reward('Test The King', 0x0033, 'Shield')
+			new Reward('Knight\'s Shield', 0x0031, 'Goofy'),
+			new Reward('Adamant Shield', 0x008B, 'Goofy'),
+			new Reward('Chain Gear', 0x008C, 'Goofy'),
+			new Reward('Falling Star', 0x008E, 'Goofy'),
+			new Reward('Dream Cloud', 0x008F, 'Goofy'),
+			new Reward('Knight Defender', 0x0090, 'Goofy'),
+			new Reward('Ogre Shield', 0x008D, 'Goofy'),
+			new Reward('Genji Shield', 0x0091, 'Goofy'),
+			new Reward('Akashic Record', 0x0092, 'Goofy'),
+			new Reward('Akashic Record+', 0x0259, 'Goofy'),
+			new Reward('Nobody Guard', 0x0093, 'Goofy'),
+			new Reward('Frozen Pride', 0x0228, 'Goofy'),
+			new Reward('Frozen Pride+', 0x0229, 'Goofy'),
+			new Reward('Save The King', 0x01E3, 'Goofy'),
+			new Reward('Save The King+', 0x01F8, 'Goofy'),
+			new Reward('Joyous Mushroom', 0x022A, 'Goofy'),
+			new Reward('Joyous Mushroom+', 0x022B, 'Goofy'),
+			new Reward('Majestic Mushroom', 0x022C, 'Goofy'),
+			new Reward('Majestic Mushroom+', 0x022D, 'Goofy'),
+			new Reward('Ultimate Mushroom', 0x022E, 'Goofy'),
+			new Reward('Detection Shield', 0x0032, 'Goofy'),
+			new Reward('Test The King', 0x0033, 'Goofy')
 		]
 	},
 	{
 		rewardType: 'Donald\'s Staves',
 		rewards: [
-			new Reward('Mage\'s Staff', 0x004B, 'Staff'),
-			new Reward('Hammer Staff', 0x0094, 'Staff'),
-			new Reward('Victory Bell', 0x0095, 'Staff'),
-			new Reward('Comet Staff', 0x0097, 'Staff'),
-			new Reward('Lord\'s Broom', 0x0098, 'Staff'),
-			new Reward('Wisdom Wand', 0x0099, 'Staff'),
-			new Reward('Meteor Staff', 0x0096, 'Staff'),
-			new Reward('Rising Dragon', 0x009A, 'Staff'),
-			new Reward('Shaman\'s Relic', 0x009C, 'Staff'),
-			new Reward('Shaman\'s Relic+ ', 0x0258, 'Staff'),
-			new Reward('Nobody Lance', 0x009B, 'Staff'),
-			new Reward('Centurion', 0x0221, 'Staff'),
-			new Reward('Centurion+', 0x0222, 'Staff'),
-			new Reward('Save The Queen', 0x01E2, 'Staff'),
-			new Reward('Save The Queen+', 0x01F7, 'Staff'),
-			new Reward('Plain Mushroom', 0x0223, 'Staff'),
-			new Reward('Plain Mushroom+', 0x0224, 'Staff'),
-			new Reward('Precious Mushroom', 0x0225, 'Staff'),
-			new Reward('Precious Mushroom+', 0x0226, 'Staff'),
-			new Reward('Premium Mushroom', 0x0227, 'Staff'),
-			new Reward('Staff of Detection', 0x00A1, 'Staff')
+			new Reward('Mage\'s Staff', 0x004B, 'Donald'),
+			new Reward('Hammer Staff', 0x0094, 'Donald'),
+			new Reward('Victory Bell', 0x0095, 'Donald'),
+			new Reward('Comet Staff', 0x0097, 'Donald'),
+			new Reward('Lord\'s Broom', 0x0098, 'Donald'),
+			new Reward('Wisdom Wand', 0x0099, 'Donald'),
+			new Reward('Meteor Staff', 0x0096, 'Donald'),
+			new Reward('Rising Dragon', 0x009A, 'Donald'),
+			new Reward('Shaman\'s Relic', 0x009C, 'Donald'),
+			new Reward('Shaman\'s Relic+ ', 0x0258, 'Donald'),
+			new Reward('Nobody Lance', 0x009B, 'Donald'),
+			new Reward('Centurion', 0x0221, 'Donald'),
+			new Reward('Centurion+', 0x0222, 'Donald'),
+			new Reward('Save The Queen', 0x01E2, 'Donald'),
+			new Reward('Save The Queen+', 0x01F7, 'Donald'),
+			new Reward('Plain Mushroom', 0x0223, 'Donald'),
+			new Reward('Plain Mushroom+', 0x0224, 'Donald'),
+			new Reward('Precious Mushroom', 0x0225, 'Donald'),
+			new Reward('Precious Mushroom+', 0x0226, 'Donald'),
+			new Reward('Premium Mushroom', 0x0227, 'Donald'),
+			new Reward('Staff of Detection', 0x00A1, 'Donald')
 		]
 	},
 	{

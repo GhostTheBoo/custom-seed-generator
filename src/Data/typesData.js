@@ -100,17 +100,3 @@ export const iconTypeData = [
 	'Synthesis',
 	'EMPTY'
 ]
-
-export const pageList = [
-	'Home',
-	'Chest',
-	'Popup',
-	'Bonus',
-	'Forms & Summons',
-	'Equipment',
-	'Level',
-	'Magic & Limits',
-	'Critical Extra',
-	'Cheat',
-	'Starting Status'
-]

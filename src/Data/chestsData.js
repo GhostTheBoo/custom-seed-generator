@@ -79,7 +79,7 @@ export const chestsData = [
 			new Chest('Chasm of Challenges', new Reward('AP Boost', 0x0117, 'Tent'), 0x11CDF922),
 			new Chest('Treasure Room', new Reward('AP Boost', 0x0117, 'Tent'), 0x11CDF92E),
 			new Chest('Treasure Room', new Reward('Serenity Gem', 0x0167, 'Synthesis'), 0x11CDF93A),
-			new Chest('Ruined Chamber', new Reward('Torn Pages', 0x0020, 'Key'), 0x11CDF946),
+			new Chest('Ruined Chamber', new Reward('Torn Pages', 0x0020, 'Pages'), 0x11CDF946),
 			new Chest('Ruined Chamber', new Reward('Ruins Map', 0x007A, 'Map'), 0x11CDF952)
 		]
 	},
@@ -139,7 +139,7 @@ export const chestsData = [
 			new Chest('Mineshaft Upper Level', new Reward('Magic Boost', 0x0115, 'Tent'), 0x11CE05D6),
 			new Chest('Garden of Assemblage', new Reward('Garden of Assemblage Map', 0x0250, 'Map'), 0x11CE05E2),
 			new Chest('Garden of Assemblage', new Reward('Lost Illusion', 0x0248, 'Synthesis'), 0x11CE05EE),
-			new Chest('Garden of Assemblage', new Reward('Proof of Nonexistence', 0x0252, 'Proof'), 0x11CE05FA)
+			new Chest('Garden of Assemblage', new Reward('Proof of Nonexistence', 0x0252, 'Nonexistence'), 0x11CE05FA)
 		]
 	},
 	{
@@ -152,7 +152,7 @@ export const chestsData = [
 			new Chest('Courtyard', new Reward('Blazing Stone', 0x013E, 'Synthesis'), 0x11CDF9E2),
 			new Chest('Courtyard', new Reward('Blazing Shard', 0x013D, 'Synthesis'), 0x11CDF9EE),
 			new Chest('Courtyard', new Reward('Mythril Shard', 0x0159, 'Synthesis'), 0x11CDF9FA),
-			new Chest('Library', new Reward('Torn Pages', 0x0020, 'Key'), 0x11CDFA06)
+			new Chest('Library', new Reward('Torn Pages', 0x0020, 'Pages'), 0x11CDFA06)
 		]
 	},
 	{
@@ -193,7 +193,7 @@ export const chestsData = [
 			new Chest('Ansem\'s Study', new Reward('Ukulele Charm', 0x0019, 'Charm'), 0x11CDFFD6),
 			new Chest('Restoration Site', new Reward('Moon Recipe', 0x01DC, 'Recipe'), 0x11CDFFE2),
 			new Chest('Restoration Site', new Reward('AP Boost', 0x0117, 'Tent'), 0x11CDFFEE),
-			new Chest('Crystal Fissure', new Reward('Torn Pages', 0x0020, 'Key'), 0x11CDFFFA),
+			new Chest('Crystal Fissure', new Reward('Torn Pages', 0x0020, 'Pages'), 0x11CDFFFA),
 			new Chest('Crystal Fissure', new Reward('The Great Maw Map', 0x0202, 'Map'), 0x11CE0006),
 			new Chest('Crystal Fissure', new Reward('Energy Crystal', 0x0164, 'Synthesis'), 0x11CE0012),
 			new Chest('Crystal Fissure', new Reward('AP Boost', 0x0117, 'Tent'), 0x11CE001E),
@@ -217,12 +217,12 @@ export const chestsData = [
 			new Chest('Village Cave', new Reward('Dark Shard', 0x0118, 'Synthesis'), 0x11CDF7A2),
 			new Chest('Ridge', new Reward('Frost Shard', 0x017A, 'Synthesis'), 0x11CDF7AE),
 			new Chest('Ridge', new Reward('AP Boost', 0x0117, 'Tent'), 0x11CDF7BA),
-			new Chest('Throne Room', new Reward('Torn Pages', 0x0020, 'Key'), 0x11CDF7C6),
+			new Chest('Throne Room', new Reward('Torn Pages', 0x0020, 'Pages'), 0x11CDF7C6),
 			new Chest('Throne Room', new Reward('Palace Map', 0x0082, 'Map'), 0x11CDF7D2),
 			new Chest('Throne Room', new Reward('AP Boost', 0x0117, 'Tent'), 0x11CDF7DE),
 			new Chest('Throne Room', new Reward('Queen Recipe', 0x01DD, 'Recipe'), 0x11CDF7EA),
 			new Chest('Throne Room', new Reward('AP Boost', 0x0117, 'Tent'), 0x11CDF7F6),
-			new Chest('Throne Room', new Reward('Ogre Shield', 0x008D, 'Shield'), 0x11CDF802),
+			new Chest('Throne Room', new Reward('Ogre Shield', 0x008D, 'Goofy'), 0x11CDF802),
 			new Chest('Throne Room', new Reward('Mythril Crystal', 0x015C, 'Synthesis'), 0x11CDF80E),
 			new Chest('Throne Room', new Reward('Orichalcum', 0x0179, 'Synthesis'), 0x11CDF81A)
 		]
@@ -301,7 +301,7 @@ export const chestsData = [
 			new Chest('The Interceptor\'s Hold', new Reward('Feather Charm', 0x00A0, 'Charm'), 0x11CDFEE6),
 			new Chest('Seadrift Keep', new Reward('AP Boost', 0x0117, 'Tent'), 0x11CDFEF2),
 			new Chest('Seadrift Keep', new Reward('Orichalcum', 0x0179, 'Synthesis'), 0x11CDFEFE),
-			new Chest('Seadrift Keep', new Reward('Meteor Staff', 0x0096, 'Staff'), 0x11CDFF0A),
+			new Chest('Seadrift Keep', new Reward('Meteor Staff', 0x0096, 'Donald'), 0x11CDFF0A),
 			new Chest('Seadrift Row', new Reward('Serenity Gem', 0x0167, 'Synthesis'), 0x11CDFF16),
 			new Chest('Seadrift Row', new Reward('King Recipe', 0x01DE, 'Recipe'), 0x11CDFF22),
 			new Chest('Seadrift Row', new Reward('Mythril Crystal', 0x015C, 'Synthesis'), 0x11CDFF2E)
@@ -333,7 +333,7 @@ export const chestsData = [
 			new Chest('Jungle', new Reward('Mythril Stone', 0x015A, 'Synthesis'), 0x11CE0132),
 			new Chest('Jungle', new Reward('Serenity Crystal', 0x0168, 'Synthesis'), 0x11CE013E),
 			new Chest('Oasis', new Reward('Oasis Map', 0x01FF, 'Map'), 0x11CE014A),
-			new Chest('Oasis', new Reward('Torn Pages', 0x0020, 'Key'), 0x11CE0156),
+			new Chest('Oasis', new Reward('Torn Pages', 0x0020, 'Pages'), 0x11CE0156),
 			new Chest('Oasis', new Reward('AP Boost', 0x0117, 'Tent'), 0x11CE0162)
 		]
 	},
