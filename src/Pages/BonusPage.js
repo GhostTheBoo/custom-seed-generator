@@ -241,7 +241,7 @@ function BonusPage(props) {
 				page={'Bonus'}
 				description={description}
 			/>
-		</div >
+		</div>
 	)
 }
 

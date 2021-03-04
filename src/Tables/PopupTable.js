@@ -58,10 +58,10 @@ function PopupTable(props) {
 						Popup Description
 					</th>
 					<th>
-						Original Reward
+						Original
 					</th>
 					<th>
-						Replacement Reward
+						Replacement
 					</th>
 				</tr>
 			</thead>

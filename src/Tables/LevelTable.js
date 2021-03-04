@@ -99,13 +99,22 @@ function LevelTable(props) {
 						Strength
 					</th>
 					<th>
-						Sword Replacement Reward
+						<Icon
+							fileName={'sword'}
+							displayText={'Sword Replacement Reward'}
+						/>
 					</th>
 					<th>
-						Shield Replacement Reward
+						<Icon
+							fileName={'shield'}
+							displayText={'Shield Replacement Reward'}
+						/>
 					</th>
 					<th>
-						Staff Replacement Reward
+						<Icon
+							fileName={'staff'}
+							displayText={'Staff Replacement Reward'}
+						/>
 					</th>
 				</tr>
 			</thead>

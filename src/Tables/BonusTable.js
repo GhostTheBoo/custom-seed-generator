@@ -95,10 +95,10 @@ function BonusTable(props) {
 						Character
 					</th>
 					<th>
-						Reward 1
+						"A" Reward
 					</th>
 					<th>
-						Reward 2
+						"B" Reward
 					</th>
 					<th>
 						HP Increase
@@ -107,16 +107,28 @@ function BonusTable(props) {
 						MP Increase
 					</th>
 					<th>
-						Armor Slot Increase
+						<Icon
+							fileName={'armor'}
+							displayText={'Armor Slot Increase'}
+						/>
 					</th>
 					<th>
-						Accessory Slot Increase
+						<Icon
+							fileName={'accessory'}
+							displayText={'Accessory Slot Increase'}
+						/>
 					</th>
 					<th>
-						Item Slot Increase
+						<Icon
+							fileName={'consumable'}
+							displayText={'Item Slot Increase'}
+						/>
 					</th>
 					<th>
-						Drive Gauge Increase
+						<Icon
+							fileName={'form'}
+							displayText={'Drive Gauge Increase'}
+						/>
 					</th>
 				</tr>
 			</thead>

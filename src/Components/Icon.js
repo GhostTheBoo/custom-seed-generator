@@ -20,7 +20,7 @@ function Icon(props) {
 				height={30}
 				width={30}
 			/>
-			{props.displayText}
+			{' ' + props.displayText}
 		</div >
 	)
 }

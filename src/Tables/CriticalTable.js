@@ -51,7 +51,7 @@ function CriticalTable(props) {
 						/>
 					</th>
 					<th>
-						Original Ability
+						Original
 					</th>
 					<th>
 						Replacement

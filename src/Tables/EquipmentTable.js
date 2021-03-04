@@ -89,7 +89,10 @@ function EquipmentTable(props) {
 						Name
 					</th>
 					<th>
-						Ability
+						<Icon
+							fileName={'ability'}
+							displayText={'Ability'}
+						/>
 					</th>
 					<th>
 						Strength

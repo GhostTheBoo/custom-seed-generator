@@ -63,10 +63,10 @@ function FormTable(props) {
 						Level
 					</th>
 					<th>
-						Original Ability
+						Original
 					</th>
 					<th>
-						Replacement Reward
+						Replacement
 					</th>
 					<th>
 						Original EXP to Level
