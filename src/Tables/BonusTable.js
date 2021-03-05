@@ -8,12 +8,20 @@ function BonusTable(props) {
 	let bonusList
 	if (props.bonuses.length !== 0) {
 		bonusList = props.bonuses[props.currentFight].slots.filter(bonus => Object.keys(bonus).length !== 0).map((bonus, index) => {
-			let styles
+			let backgroundColor = ''
 
-			if (bonus.isStatsReplaced() || bonus.isSlotsReplaced() || bonus.isRewardsReplaced() || bonus.isCharacterReplaced())
-				styles = { background: 'green' }
-			if ((bonus.statChangeCount + bonus.slotChangeCount + bonus.rewardChangeCount) > 2)
-				styles = { background: 'red' }
+			if (bonus.isStatsReplaced() || bonus.isSlotsReplaced() || bonus.isRewardsReplaced() || bonus.isCharacterReplaced()) {
+				if (index % 2 === 0)
+					backgroundColor = '#225533'
+				else
+					backgroundColor = '#224433'
+			}
+			if ((bonus.statChangeCount + bonus.slotChangeCount + bonus.rewardChangeCount) > 2) {
+				if (index % 2 === 0)
+					backgroundColor = '#552222'
+				else
+					backgroundColor = '#442222'
+			}
 
 			let bonusReceiver
 			if (bonus.replacementCharacter === 0) {
@@ -27,7 +35,7 @@ function BonusTable(props) {
 
 			return (
 				<tr
-					style={styles}
+					style={{ backgroundColor: backgroundColor }}
 					key={bonus.fight + 'Slot' + index}
 				>
 					<td>

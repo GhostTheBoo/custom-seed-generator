@@ -4,13 +4,16 @@ import Icon from '../Components/Icon'
 
 function FormTable(props) {
 	let formList = props.driveLevels.map((driveLevel, index) => {
-		let styles
-
-		if (driveLevel.isRewardReplaced() || driveLevel.isEXPReplaced())
-			styles = { background: 'green' }
+		let backgroundColor = ''
+		if (driveLevel.isRewardReplaced() || driveLevel.isEXPReplaced()) {
+			if (index % 2 === 0)
+				backgroundColor = '#225533'
+			else
+				backgroundColor = '#224433'
+		}
 		return (
 			<tr
-				style={styles}
+				style={{ backgroundColor: backgroundColor }}
 				key={driveLevel.level}
 			>
 				<td>

@@ -4,18 +4,29 @@ import Icon from '../Components/Icon'
 
 function EquipmentTable(props) {
 	let equipmentList = props.equipments.map((equipment, index) => {
-		let styles
+		let backgroundColor = ''
 		if (equipment.isAbilityReplaced() || equipment.isStatsReplaced() || equipment.isElementalResistanceChanged() || equipment.isOtherResistanceChanged()) {
-			styles = { background: 'green' }
+			if (index % 2 === 0)
+				backgroundColor = '#225533'
+			else
+				backgroundColor = '#224433'
 		}
 		if (props.currentEquipmentType === 'Armor') {
-			if (equipment.additionalLineCount !== 0)
-				styles = { background: 'red' }
-		} else if (equipment.additionalLineCount > 1)
-			styles = { background: 'red' }
+			if (equipment.additionalLineCount !== 0) {
+				if (index % 2 === 0)
+					backgroundColor = '#552222'
+				else
+					backgroundColor = '#442222'
+			}
+		} else if (equipment.additionalLineCount > 1) {
+			if (index % 2 === 0)
+				backgroundColor = '#552222'
+			else
+				backgroundColor = '#442222'
+		}
 		return (
 			<tr
-				style={styles}
+				style={{ backgroundColor: backgroundColor }}
 				key={equipment.name}
 			>
 				<td>

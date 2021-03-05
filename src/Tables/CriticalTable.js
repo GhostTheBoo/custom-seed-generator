@@ -4,13 +4,16 @@ import Icon from '../Components/Icon'
 
 function CriticalTable(props) {
 	let criticalList = props.allCriticals.map((ce, index) => {
-		let styles
+		let backgroundColor = ''
 		if (ce.isReplaced()) {
-			styles = { background: 'green' }
+			if (index % 2 === 0)
+				backgroundColor = '#225533'
+			else
+				backgroundColor = '#224433'
 		}
 		return (
 			<tr
-				style={styles}
+				style={{ backgroundColor: backgroundColor }}
 				key={ce.vanillaAddress}
 			>
 				<td>

@@ -4,13 +4,16 @@ import Icon from '../Components/Icon'
 
 function LevelTable(props) {
 	let levelList = props.allLevels.map((l, index) => {
-		let styles
+		let backgroundColor = ''
 		if (l.isEXPReplaced() || l.isStatsReplaced() || l.isSwordReplaced() || l.isShieldReplaced() || l.isStaffReplaced()) {
-			styles = { background: 'green' }
+			if (index % 2 === 0)
+				backgroundColor = '#225533'
+			else
+				backgroundColor = '#224433'
 		}
 		return (
 			<tr
-				style={styles}
+				style={{ backgroundColor: backgroundColor }}
 				key={l.level}
 			>
 				<td>

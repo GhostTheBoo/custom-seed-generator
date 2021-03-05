@@ -5,12 +5,16 @@ import Icon from '../Components/Icon'
 function ChestTable(props) {
 	let chestList = props.worldChests.map((chest, index) => {
 		let keyValue = chest.vanillaAddress
-		let styles
-		if (chest.isReplaced())
-			styles = { background: 'green' }
+		let backgroundColor = ''
+		if (chest.isReplaced()) {
+			if (index % 2 === 0)
+				backgroundColor = '#225533'
+			else
+				backgroundColor = '#224433'
+		}
 		return (
 			<tr
-				style={styles}
+				style={{ backgroundColor: backgroundColor }}
 				key={keyValue}
 			>
 				<td>

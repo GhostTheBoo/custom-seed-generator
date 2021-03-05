@@ -5,14 +5,22 @@ import Icon from '../Components/Icon'
 function PopupTable(props) {
 	let popupList = props.worldPopups.map((popup, index) => {
 		let keyValue = popup.vanillaAddress
-		let styles
-		if (popup.isReplaced())
-			styles = { background: 'green' }
-		if (popup.isAbility())
-			styles = { background: 'red' }
+		let backgroundColor = ''
+		if (popup.isReplaced()) {
+			if (index % 2 === 0)
+				backgroundColor = '#225533'
+			else
+				backgroundColor = '#224433'
+		}
+		if (popup.isAbility()) {
+			if (index % 2 === 0)
+				backgroundColor = '#552222'
+			else
+				backgroundColor = '#442222'
+		}
 		return (
 			<tr
-				style={styles}
+				style={{ backgroundColor: backgroundColor }}
 				key={keyValue}
 			>
 				<td>

@@ -3,13 +3,16 @@ import Table from 'react-bootstrap/Table'
 
 function MagicTable(props) {
 	let magicList = props.abilities.map((ability, index) => {
-		let styles
+		let backgroundColor = ''
 		if (ability.isReplaced()) {
-			styles = { background: 'green' }
+			if (index % 2 === 0)
+				backgroundColor = '#225533'
+			else
+				backgroundColor = '#224433'
 		}
 		return (
 			<tr
-				style={styles}
+				style={{ backgroundColor: backgroundColor }}
 				key={ability.costAddress}
 			>
 				<td>

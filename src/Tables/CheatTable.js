@@ -3,13 +3,16 @@ import Table from 'react-bootstrap/Table'
 
 function CheatTable(props) {
 	let cheatList = props.cheatData.map((cheat, index) => {
-		let styles
+		let backgroundColor = ''
 		if (cheat.isActive) {
-			styles = { background: 'green' }
+			if (index % 2 === 0)
+				backgroundColor = '#225533'
+			else
+				backgroundColor = '#224433'
 		}
 		return (
 			<tr
-				style={styles}
+				style={{ backgroundColor: backgroundColor }}
 				key={index}
 			>
 				<td>
