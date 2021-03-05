@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react'
-import { Nav, Row, Col, TabContainer, Tab } from 'react-bootstrap'
+import { Tabs, Tab } from 'react-bootstrap'
 import SaveLoadModal from './Components/SaveLoadModal'
 import Icon from './Components/Icon'
 
@@ -134,7 +134,6 @@ function FunctionApp() {
 		currentGoofy2: 64,
 	})
 	const [startingStatus, setStartingStatus] = useState(startingStatusData)
-	const [currentTab, setCurrentTab] = useState('home')
 	const alertUser = e => {
 		e.preventDefault()
 		e.returnValue = ''
@@ -862,501 +861,384 @@ function FunctionApp() {
 	}
 	return (
 		<div style={styles}>
-			<TabContainer
-				defaultActiveKey={currentTab}
-				id='allTabsID'
-				transition={false}
-				onSelect={key => setCurrentTab(key)}
-			>
-				<Row>
-					<Col>
-						<Nav
-							fill
-							variant='tabs'
-							className='allTabs'
-							style={{ backgroundColor: "black" }}
-						>
-							<Nav.Item>
-								<Nav.Link
-									eventKey='home'
-									style={{
-										backgroundColor: 'home' === currentTab ? "darkgray" : "darkslategray",
-										color: "white",
-										borderColor: "black"
-									}}
-								>
-									<Icon
-										fileName={'home'}
-										displayText={'Home'}
-									/>
-								</Nav.Link>
-							</Nav.Item>
-							<Nav.Item>
-								<Nav.Link
-									eventKey='chest'
-									style={{
-										backgroundColor: 'chest' === currentTab ? "darkgray" : "darkslategray",
-										color: "white",
-										borderColor: "black"
-									}}
-								>
-									<Icon
-										fileName={'chest'}
-										displayText={'Chest'}
-									/>
-								</Nav.Link>
-							</Nav.Item>
-							<Nav.Item>
-								<Nav.Link
-									eventKey='popup'
-									style={{
-										backgroundColor: 'popup' === currentTab ? "darkgray" : "darkslategray",
-										color: "white",
-										borderColor: "black"
-									}}
-								>
-									<Icon
-										fileName={'popup'}
-										displayText={'Popup'}
-									/>
-								</Nav.Link>
-							</Nav.Item>
-							<Nav.Item>
-								<Nav.Link
-									eventKey='bonus'
-									style={{
-										backgroundColor: 'bonus' === currentTab ? "darkgray" : "darkslategray",
-										color: "white",
-										borderColor: "black"
-									}}
-								>
-									<Icon
-										fileName={'key'}
-										displayText={'Bonus'}
-									/>
-								</Nav.Link>
-							</Nav.Item>
-							<Nav.Item>
-								<Nav.Link
-									eventKey='form'
-									style={{
-										backgroundColor: 'form' === currentTab ? "darkgray" : "darkslategray",
-										color: "white",
-										borderColor: "black"
-									}}
-								>
-									<Icon
-										fileName={'form'}
-										displayText={'Forms & Summons'}
-									/>
-								</Nav.Link>
-							</Nav.Item>
-							<Nav.Item>
-								<Nav.Link
-									eventKey='equipment'
-									style={{
-										backgroundColor: 'equipment' === currentTab ? "darkgray" : "darkslategray",
-										color: "white",
-										borderColor: "black"
-									}}
-								>
-									<Icon
-										fileName={'keyblade'}
-										displayText={'Equipment'}
-									/>
-								</Nav.Link>
-							</Nav.Item>
-							<Nav.Item>
-								<Nav.Link
-									eventKey='level'
-									style={{
-										backgroundColor: 'level' === currentTab ? "darkgray" : "darkslategray",
-										color: "white",
-										borderColor: "black"
-									}}
-								>
-									<Icon
-										fileName={'level'}
-										displayText={'Level'}
-									/>
-								</Nav.Link>
-							</Nav.Item>
-							<Nav.Item>
-								<Nav.Link
-									eventKey='magic'
-									style={{
-										backgroundColor: 'magic' === currentTab ? "darkgray" : "darkslategray",
-										color: "white",
-										borderColor: "black"
-									}}
-								>
-									<Icon
-										fileName={'spell'}
-										displayText={'Magic & Limits'}
-									/>
-								</Nav.Link>
-							</Nav.Item>
-							<Nav.Item>
-								<Nav.Link
-									eventKey='critical'
-									style={{
-										backgroundColor: 'critical' === currentTab ? "darkgray" : "darkslategray",
-										color: "white",
-										borderColor: "black"
-									}}
-								>
-									<Icon
-										fileName={'critical'}
-										displayText={'Critical Extra'}
-									/>
-								</Nav.Link>
-							</Nav.Item>
-							<Nav.Item>
-								<Nav.Link
-									eventKey='cheat'
-									style={{
-										backgroundColor: 'cheat' === currentTab ? "darkgray" : "darkslategray",
-										color: "white",
-										borderColor: "black"
-									}}
-								>
-									<Icon
-										fileName={'cheat'}
-										displayText={'Cheats'}
-									/>
-								</Nav.Link>
-							</Nav.Item>
-							<Nav.Item>
-								<Nav.Link
-									eventKey='startingStatus'
-									style={{
-										backgroundColor: 'startingStatus' === currentTab ? "darkgray" : "darkslategray",
-										color: "white",
-										borderColor: "black"
-									}}
-								>
-									<Icon
-										fileName={'starting'}
-										displayText={'Starting Status'}
-									/>
-								</Nav.Link>
-							</Nav.Item>
-						</Nav>
-					</Col>
-				</Row>
-				<Tab.Content>
-					<Tab.Pane eventKey='home'>
-						<HomePage />
-					</Tab.Pane>
-					<Tab.Pane eventKey='chest'>
-						<ChestPage
-							style={styles}
-							fieldData={chestFieldData}
-							chestData={allChests[chestFieldData.currentWorld]}
-							rewardList={rewardsData[chestFieldData.currentRewardType].rewards}
-							handleWorldChange={(e) => handleTableChange(e.target.value, 'currentWorld', 'chests', chestFieldData, setChestFieldData, allChests, setAllChests)}
-							onRewardTypeChange={(e) => handleRewardTypeChange(e.target, chestFieldData, setChestFieldData)}
-							onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, chestFieldData, setChestFieldData)}
-							onRowCheck={(e) => onRowCheck(false, e.target.value, 'currentWorld', 'chests', chestFieldData, allChests, setAllChests)}
-							onCheckAll={() => onCheckAll(false, 'currentWorld', 'chests', chestFieldData, setChestFieldData, allChests, setAllChests)}
-							onClick={(e) => {
-								let replacement = {
-									reward: {
-										...rewardsData[chestFieldData.currentRewardType].rewards[chestFieldData.currentReward]
-									}
+			<Tabs defaultActiveKey='home' id='allTabs' transition={false}>
+				<Tab
+					eventKey='home'
+					title={<Icon
+						fileName={'home'}
+						displayText={'Home'}
+					/>}
+				>
+					<HomePage />
+				</Tab>
+				<Tab
+					eventKey='chest'
+					title={<Icon
+						fileName={'chest'}
+						displayText={'Chest'}
+					/>}
+				>
+					<ChestPage
+						style={styles}
+						fieldData={chestFieldData}
+						chestData={allChests[chestFieldData.currentWorld]}
+						rewardList={rewardsData[chestFieldData.currentRewardType].rewards}
+						handleWorldChange={(e) => handleTableChange(e.target.value, 'currentWorld', 'chests', chestFieldData, setChestFieldData, allChests, setAllChests)}
+						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, chestFieldData, setChestFieldData)}
+						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, chestFieldData, setChestFieldData)}
+						onRowCheck={(e) => onRowCheck(false, e.target.value, 'currentWorld', 'chests', chestFieldData, allChests, setAllChests)}
+						onCheckAll={() => onCheckAll(false, 'currentWorld', 'chests', chestFieldData, setChestFieldData, allChests, setAllChests)}
+						onClick={(e) => {
+							let replacement = {
+								reward: {
+									...rewardsData[chestFieldData.currentRewardType].rewards[chestFieldData.currentReward]
 								}
-								handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentWorld', 'chests', chestFieldData, setChestFieldData, allChests, setAllChests)
-							}}
-						/>
-					</Tab.Pane>
-					<Tab.Pane eventKey='popup'>
-						<PopupPage
-							style={styles}
-							fieldData={popupFieldData}
-							popupData={allPopups[popupFieldData.currentWorld]}
-							rewardList={rewardsData[popupFieldData.currentRewardType].rewards}
-							handleWorldChange={(e) => handleTableChange(e.target.value, 'currentWorld', 'popups', popupFieldData, setPopupFieldData, allPopups, setAllPopups)}
-							onRewardTypeChange={(e) => handleRewardTypeChange(e.target, popupFieldData, setPopupFieldData)}
-							onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, popupFieldData, setPopupFieldData)}
-							onRowCheck={(e) => onRowCheck(false, e.target.value, 'currentWorld', 'popups', popupFieldData, allPopups, setAllPopups)}
-							onCheckAll={() => onCheckAll(false, 'currentWorld', 'popups', popupFieldData, setPopupFieldData, allPopups, setAllPopups)}
-							onClick={(e) => {
-								let replacement = {
-									reward: {
-										...rewardsData[popupFieldData.currentRewardType].rewards[popupFieldData.currentReward]
-									}
-								}
-								handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentWorld', 'popups', popupFieldData, setPopupFieldData, allPopups, setAllPopups)
-							}}
-						/>
-					</Tab.Pane>
-					<Tab.Pane eventKey='bonus'>
-						<BonusPage
-							style={styles}
-							bonusData={allBonuses[bonusFieldData.currentWorld]}
-							fieldData={bonusFieldData}
-							rewardListA={rewardsData[bonusFieldData.currentARewardType].rewards}
-							rewardListB={rewardsData[bonusFieldData.currentBRewardType].rewards}
-							handleWorldChange={(e) => handleBonusTableChange(e.target.value, 0)}
-							handleFightChange={(e) => handleBonusTableChange(bonusFieldData.currentWorld, e.target.value)}
-							onRewardTypeChange={(e) => handleRewardTypeChange(e.target, bonusFieldData, setBonusFieldData)}
-							onSelectChange={(e) => handleFieldChange(e.target.name, e.target.value, bonusFieldData, setBonusFieldData)}
-							onInputChange={(e) => handleFieldChange(e.target.name,
-								Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
-								bonusFieldData, setBonusFieldData)
 							}
-							onRowCheck={(e) => onBonusRowCheck(e.target.value)}
-							onCheckAll={() => onBonusCheckAll()}
-							onClick={(e) => {
-								let replacement = {
-									currentWorld: bonusFieldData.currentWorld,
-									currentCharacter: bonusFieldData.currentCharacter,
-									currentBonusHP: bonusFieldData.currentBonusHP,
-									currentBonusMP: bonusFieldData.currentBonusMP,
-									currentArmor: bonusFieldData.currentArmor,
-									currentAccessory: bonusFieldData.currentAccessory,
-									currentItem: bonusFieldData.currentItem,
-									currentDrive: bonusFieldData.currentDrive,
-									rewardA: {
-										...rewardsData[bonusFieldData.currentARewardType].rewards[bonusFieldData.currentAReward]
-									},
-									rewardB: {
-										...rewardsData[bonusFieldData.currentBRewardType].rewards[bonusFieldData.currentBReward]
-									}
+							handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentWorld', 'chests', chestFieldData, setChestFieldData, allChests, setAllChests)
+						}}
+					/>
+				</Tab>
+				<Tab
+					eventKey='popup'
+					title={<Icon
+						fileName={'popup'}
+						displayText={'Popup'}
+					/>}
+				>
+					<PopupPage
+						style={styles}
+						fieldData={popupFieldData}
+						popupData={allPopups[popupFieldData.currentWorld]}
+						rewardList={rewardsData[popupFieldData.currentRewardType].rewards}
+						handleWorldChange={(e) => handleTableChange(e.target.value, 'currentWorld', 'popups', popupFieldData, setPopupFieldData, allPopups, setAllPopups)}
+						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, popupFieldData, setPopupFieldData)}
+						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, popupFieldData, setPopupFieldData)}
+						onRowCheck={(e) => onRowCheck(false, e.target.value, 'currentWorld', 'popups', popupFieldData, allPopups, setAllPopups)}
+						onCheckAll={() => onCheckAll(false, 'currentWorld', 'popups', popupFieldData, setPopupFieldData, allPopups, setAllPopups)}
+						onClick={(e) => {
+							let replacement = {
+								reward: {
+									...rewardsData[popupFieldData.currentRewardType].rewards[popupFieldData.currentReward]
 								}
-								handleBonusReplace(e.target.name === 'replaceButton', replacement)
-							}}
-						/>
-					</Tab.Pane>
-					<Tab.Pane eventKey='form'>
-						<FormPage
-							style={styles}
-							formData={allForms[formFieldData.currentDriveForm].driveLevels}
-							fieldData={formFieldData}
-							rewardList={rewardsData[formFieldData.currentRewardType].rewards}
-							handleFormChange={(e) => handleTableChange(e.target.value, 'currentDriveForm', 'driveLevels', formFieldData, setFormFieldData, allForms, setAllForms)}
-							onRewardTypeChange={(e) => handleRewardTypeChange(e.target, formFieldData, setFormFieldData)}
-							onSelectChange={(e) => handleFieldChange(e.target.name, e.target.value, formFieldData, setFormFieldData)}
-							onInputChange={(e) => handleFieldChange(e.target.name,
-								Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
-								formFieldData, setFormFieldData)
 							}
-							onRowCheck={(e) => onRowCheck(false, e.target.value, 'currentDriveForm', 'driveLevels', formFieldData, allForms, setAllForms)}
-							onCheckAll={() => onCheckAll(false, 'currentDriveForm', 'driveLevels', formFieldData, setFormFieldData, allForms, setAllForms)}
-							onClick={(e) => {
-								let replacement = {
-									reward: {
-										...rewardsData[formFieldData.currentRewardType].rewards[formFieldData.currentReward]
-									},
-									currentEXPMultiplierValue: formFieldData.currentEXPMultiplierValue,
-									currentEXP: formFieldData.currentEXP
+							handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentWorld', 'popups', popupFieldData, setPopupFieldData, allPopups, setAllPopups)
+						}}
+					/>
+				</Tab>
+				<Tab
+					eventKey='bonus'
+					title={<Icon
+						fileName={'key'}
+						displayText={'Bonus'}
+					/>}
+				>
+					<BonusPage
+						style={styles}
+						bonusData={allBonuses[bonusFieldData.currentWorld]}
+						fieldData={bonusFieldData}
+						rewardListA={rewardsData[bonusFieldData.currentARewardType].rewards}
+						rewardListB={rewardsData[bonusFieldData.currentBRewardType].rewards}
+						handleWorldChange={(e) => handleBonusTableChange(e.target.value, 0)}
+						handleFightChange={(e) => handleBonusTableChange(bonusFieldData.currentWorld, e.target.value)}
+						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, bonusFieldData, setBonusFieldData)}
+						onSelectChange={(e) => handleFieldChange(e.target.name, e.target.value, bonusFieldData, setBonusFieldData)}
+						onInputChange={(e) => handleFieldChange(e.target.name,
+							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
+							bonusFieldData, setBonusFieldData)
+						}
+						onRowCheck={(e) => onBonusRowCheck(e.target.value)}
+						onCheckAll={() => onBonusCheckAll()}
+						onClick={(e) => {
+							let replacement = {
+								currentWorld: bonusFieldData.currentWorld,
+								currentCharacter: bonusFieldData.currentCharacter,
+								currentBonusHP: bonusFieldData.currentBonusHP,
+								currentBonusMP: bonusFieldData.currentBonusMP,
+								currentArmor: bonusFieldData.currentArmor,
+								currentAccessory: bonusFieldData.currentAccessory,
+								currentItem: bonusFieldData.currentItem,
+								currentDrive: bonusFieldData.currentDrive,
+								rewardA: {
+									...rewardsData[bonusFieldData.currentARewardType].rewards[bonusFieldData.currentAReward]
+								},
+								rewardB: {
+									...rewardsData[bonusFieldData.currentBRewardType].rewards[bonusFieldData.currentBReward]
 								}
-								handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentDriveForm', 'driveLevels', formFieldData, setFormFieldData, allForms, setAllForms)
-							}}
-						/>
-					</Tab.Pane>
-					<Tab.Pane eventKey='equipment'>
-						<EquipmentPage
-							style={styles}
-							equipmentData={allEquipments[equipmentFieldData.currentEquipmentType].equipments}
-							fieldData={equipmentFieldData}
-							rewardList={rewardsData[equipmentFieldData.currentRewardType].rewards}
-							handleEquipmentTypeChange={(e) => handleTableChange(e.target.value, 'currentEquipmentType', 'equipments', equipmentFieldData, setEquipmentFieldData,
-								allEquipments, setAllEquipments)}
-							onRewardTypeChange={(e) => handleRewardTypeChange(e.target, equipmentFieldData, setEquipmentFieldData)}
-							onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, equipmentFieldData, setEquipmentFieldData)}
-							onInputChange={(e) => handleFieldChange(e.target.name,
-								Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
-								equipmentFieldData, setEquipmentFieldData)
 							}
-							onRowCheck={(e) => onRowCheck(false, e.target.value, 'currentEquipmentType', 'equipments', equipmentFieldData, allEquipments, setAllEquipments)}
-							onCheckAll={() => onCheckAll(false, 'currentEquipmentType', 'equipments', equipmentFieldData, setEquipmentFieldData, allEquipments, setAllEquipments)}
-							onClick={(e) => {
-								let replacement = {
-									currentEquipmentType: equipmentFieldData.currentEquipmentType,
-									currentStrength: equipmentFieldData.currentStrength,
-									currentMagic: equipmentFieldData.currentMagic,
-									currentAP: equipmentFieldData.currentAP,
-									currentDefense: equipmentFieldData.currentDefense,
-									currentPhysical: equipmentFieldData.currentPhysical,
-									currentFire: equipmentFieldData.currentFire,
-									currentBlizzard: equipmentFieldData.currentBlizzard,
-									currentThunder: equipmentFieldData.currentThunder,
-									currentDark: equipmentFieldData.currentDark,
-									currentLight: equipmentFieldData.currentLight,
-									currentUniversal: equipmentFieldData.currentUniversal,
-									ability: {
-										...rewardsData[equipmentFieldData.currentRewardType].rewards[equipmentFieldData.currentReward]
-									}
-								}
-								handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentEquipmentType', 'equipments', equipmentFieldData, setEquipmentFieldData,
-									allEquipments, setAllEquipments)
-							}}
-						/>
-					</Tab.Pane>
-					<Tab.Pane eventKey='level'>
-						<LevelPage
-							style={styles}
-							levelData={allLevels}
-							fieldData={levelFieldData}
-							swordRewardList={rewardsData[levelFieldData.currentSwordRewardType].rewards}
-							shieldRewardList={rewardsData[levelFieldData.currentShieldRewardType].rewards}
-							staffRewardList={rewardsData[levelFieldData.currentStaffRewardType].rewards}
-							onRewardTypeChange={(e) => handleRewardTypeChange(e.target, levelFieldData, setLevelFieldData)}
-							onSelectChange={(e) => handleFieldChange(e.target.name, e.target.value, levelFieldData, setLevelFieldData)}
-							onInputChange={(e) => handleFieldChange(e.target.name,
-								Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
-								levelFieldData, setLevelFieldData)
+							handleBonusReplace(e.target.name === 'replaceButton', replacement)
+						}}
+					/>
+				</Tab>
+				<Tab
+					eventKey='form'
+					title={<Icon
+						fileName={'form'}
+						displayText={'Forms & Summons'}
+					/>}
+				>
+					<FormPage
+						style={styles}
+						formData={allForms[formFieldData.currentDriveForm].driveLevels}
+						fieldData={formFieldData}
+						rewardList={rewardsData[formFieldData.currentRewardType].rewards}
+						handleFormChange={(e) => handleTableChange(e.target.value, 'currentDriveForm', 'driveLevels', formFieldData, setFormFieldData, allForms, setAllForms)}
+						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, formFieldData, setFormFieldData)}
+						onSelectChange={(e) => handleFieldChange(e.target.name, e.target.value, formFieldData, setFormFieldData)}
+						onInputChange={(e) => handleFieldChange(e.target.name,
+							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
+							formFieldData, setFormFieldData)
+						}
+						onRowCheck={(e) => onRowCheck(false, e.target.value, 'currentDriveForm', 'driveLevels', formFieldData, allForms, setAllForms)}
+						onCheckAll={() => onCheckAll(false, 'currentDriveForm', 'driveLevels', formFieldData, setFormFieldData, allForms, setAllForms)}
+						onClick={(e) => {
+							let replacement = {
+								reward: {
+									...rewardsData[formFieldData.currentRewardType].rewards[formFieldData.currentReward]
+								},
+								currentEXPMultiplierValue: formFieldData.currentEXPMultiplierValue,
+								currentEXP: formFieldData.currentEXP
 							}
-							onRowCheck={(e) => onRowCheck(true, e.target.value, '', '', levelFieldData, allLevels, setAllLevels)}
-							onCheckAll={() => onCheckAll(true, '', '', levelFieldData, setLevelFieldData, allLevels, setAllLevels)}
-							onClick={(e) => {
-								let replacement = {
-									currentLevelAP: levelFieldData.currentLevelAP,
-									currentLevelDefense: levelFieldData.currentLevelDefense,
-									currentLevelMagic: levelFieldData.currentLevelMagic,
-									currentLevelStrength: levelFieldData.currentLevelStrength,
-									currentEXP: levelFieldData.currentEXP,
-									currentEXPMultiplierValue: levelFieldData.currentEXPMultiplierValue,
-									sword: {
-										...rewardsData[levelFieldData.currentSwordRewardType].rewards[levelFieldData.currentSwordReward]
-									},
-									shield: {
-										...rewardsData[levelFieldData.currentShieldRewardType].rewards[levelFieldData.currentShieldReward]
-									},
-									staff: {
-										...rewardsData[levelFieldData.currentStaffRewardType].rewards[levelFieldData.currentStaffReward]
-									}
+							handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentDriveForm', 'driveLevels', formFieldData, setFormFieldData, allForms, setAllForms)
+						}}
+					/>
+				</Tab>
+				<Tab
+					eventKey='equipment'
+					title={<Icon
+						fileName={'keyblade'}
+						displayText={'Equipment'}
+					/>}
+				>
+					<EquipmentPage
+						style={styles}
+						equipmentData={allEquipments[equipmentFieldData.currentEquipmentType].equipments}
+						fieldData={equipmentFieldData}
+						rewardList={rewardsData[equipmentFieldData.currentRewardType].rewards}
+						handleEquipmentTypeChange={(e) => handleTableChange(e.target.value, 'currentEquipmentType', 'equipments', equipmentFieldData, setEquipmentFieldData,
+							allEquipments, setAllEquipments)}
+						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, equipmentFieldData, setEquipmentFieldData)}
+						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, equipmentFieldData, setEquipmentFieldData)}
+						onInputChange={(e) => handleFieldChange(e.target.name,
+							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
+							equipmentFieldData, setEquipmentFieldData)
+						}
+						onRowCheck={(e) => onRowCheck(false, e.target.value, 'currentEquipmentType', 'equipments', equipmentFieldData, allEquipments, setAllEquipments)}
+						onCheckAll={() => onCheckAll(false, 'currentEquipmentType', 'equipments', equipmentFieldData, setEquipmentFieldData, allEquipments, setAllEquipments)}
+						onClick={(e) => {
+							let replacement = {
+								currentEquipmentType: equipmentFieldData.currentEquipmentType,
+								currentStrength: equipmentFieldData.currentStrength,
+								currentMagic: equipmentFieldData.currentMagic,
+								currentAP: equipmentFieldData.currentAP,
+								currentDefense: equipmentFieldData.currentDefense,
+								currentPhysical: equipmentFieldData.currentPhysical,
+								currentFire: equipmentFieldData.currentFire,
+								currentBlizzard: equipmentFieldData.currentBlizzard,
+								currentThunder: equipmentFieldData.currentThunder,
+								currentDark: equipmentFieldData.currentDark,
+								currentLight: equipmentFieldData.currentLight,
+								currentUniversal: equipmentFieldData.currentUniversal,
+								ability: {
+									...rewardsData[equipmentFieldData.currentRewardType].rewards[equipmentFieldData.currentReward]
 								}
-								handleReplace(true, e.target.name === 'replaceButton', replacement, '', '', levelFieldData, setLevelFieldData, allLevels, setAllLevels)
-							}}
-						/>
-					</Tab.Pane>
-					<Tab.Pane eventKey='magic'>
-						<MagicPage
-							style={styles}
-							magicData={allMagics[magicFieldData.currentMagicType].abilities}
-							fieldData={magicFieldData}
-							handleMagicTypeChange={(e) => handleTableChange(e.target.value, 'currentMagicType', 'abilities', magicFieldData, setMagicFieldData, allMagics, setAllMagics)}
-							onInputChange={(e) => handleFieldChange(e.target.name,
-								Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
-								magicFieldData, setMagicFieldData)
 							}
-							onRowCheck={(e) => onRowCheck(false, e.target.value, 'currentMagicType', 'abilities', magicFieldData, allMagics, setAllMagics)}
-							onCheckAll={() => onCheckAll(false, 'currentMagicType', 'abilities', magicFieldData, setMagicFieldData, allMagics, setAllMagics)}
-							onClick={(e) => {
-								let replacement = {
-									cost: magicFieldData.currentCost
+							handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentEquipmentType', 'equipments', equipmentFieldData, setEquipmentFieldData,
+								allEquipments, setAllEquipments)
+						}}
+					/>
+				</Tab>
+				<Tab
+					eventKey='level'
+					title={<Icon
+						fileName={'level'}
+						displayText={'Level'}
+					/>}
+				>
+					<LevelPage
+						style={styles}
+						levelData={allLevels}
+						fieldData={levelFieldData}
+						swordRewardList={rewardsData[levelFieldData.currentSwordRewardType].rewards}
+						shieldRewardList={rewardsData[levelFieldData.currentShieldRewardType].rewards}
+						staffRewardList={rewardsData[levelFieldData.currentStaffRewardType].rewards}
+						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, levelFieldData, setLevelFieldData)}
+						onSelectChange={(e) => handleFieldChange(e.target.name, e.target.value, levelFieldData, setLevelFieldData)}
+						onInputChange={(e) => handleFieldChange(e.target.name,
+							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
+							levelFieldData, setLevelFieldData)
+						}
+						onRowCheck={(e) => onRowCheck(true, e.target.value, '', '', levelFieldData, allLevels, setAllLevels)}
+						onCheckAll={() => onCheckAll(true, '', '', levelFieldData, setLevelFieldData, allLevels, setAllLevels)}
+						onClick={(e) => {
+							let replacement = {
+								currentLevelAP: levelFieldData.currentLevelAP,
+								currentLevelDefense: levelFieldData.currentLevelDefense,
+								currentLevelMagic: levelFieldData.currentLevelMagic,
+								currentLevelStrength: levelFieldData.currentLevelStrength,
+								currentEXP: levelFieldData.currentEXP,
+								currentEXPMultiplierValue: levelFieldData.currentEXPMultiplierValue,
+								sword: {
+									...rewardsData[levelFieldData.currentSwordRewardType].rewards[levelFieldData.currentSwordReward]
+								},
+								shield: {
+									...rewardsData[levelFieldData.currentShieldRewardType].rewards[levelFieldData.currentShieldReward]
+								},
+								staff: {
+									...rewardsData[levelFieldData.currentStaffRewardType].rewards[levelFieldData.currentStaffReward]
 								}
-								handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentMagicType', 'abilities', magicFieldData, setMagicFieldData, allMagics, setAllMagics)
-							}}
-						/>
-					</Tab.Pane>
-					<Tab.Pane eventKey='critical'>
-						<CriticalPage
-							style={styles}
-							criticalData={allCriticals}
-							fieldData={criticalFieldData}
-							rewardList={rewardsData[criticalFieldData.currentRewardType].rewards}
-							onRewardTypeChange={(e) => handleRewardTypeChange(e.target, criticalFieldData, setCriticalFieldData)}
-							onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, criticalFieldData, setCriticalFieldData)}
-							onRowCheck={(e) => onRowCheck(true, e.target.value, '', '', criticalFieldData, allCriticals, setAllCriticals)}
-							onCheckAll={() => onCheckAll(true, '', '', criticalFieldData, setCriticalFieldData, allCriticals, setAllCriticals)}
-							onClick={(e) => {
-								let replacement = {
-									reward: {
-										...rewardsData[criticalFieldData.currentRewardType].rewards[criticalFieldData.currentReward]
-									}
-								}
-								handleReplace(true, e.target.name === 'replaceButton', replacement, '', '', criticalFieldData, setCriticalFieldData, allCriticals, setAllCriticals)
-							}}
-						/>
-					</Tab.Pane>
-					<Tab.Pane eventKey='cheat'>
-						<CheatPage
-							style={styles}
-							cheatData={allCheats}
-							fieldData={cheatFieldData}
-							onRowCheck={(e) => onRowCheck(true, e.target.value, '', '', cheatFieldData, allCheats, setAllCheats)}
-							onCheckAll={() => onCheckAll(true, '', '', cheatFieldData, setCheatFieldData, allCheats, setAllCheats)}
-							onClick={() => {
-								setAllCheats(allCheats.map(object => {
-									if (object.toBeReplaced)
-										return object.toggle()
-									return object
-								}))
-								setCheatFieldData({ selectAll: false })
-							}}
-						/>
-					</Tab.Pane>
-					<Tab.Pane eventKey='startingStatus'>
-						<StartingPage
-							style={styles}
-							startingStatusData={startingStatus}
-							fieldData={startingStatusFieldData}
-							keybladeList={rewardsData[7].rewards}
-							armorList={rewardsData[17].rewards.concat(rewardsData[2].rewards)}
-							accessoryList={rewardsData[17].rewards.concat(rewardsData[1].rewards)}
-							donaldList={rewardsData[17].rewards.concat(rewardsData[0].rewards)}
-							goofyList={rewardsData[17].rewards.concat(rewardsData[0].rewards)}
-							onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, startingStatusFieldData, setStartingStatusFieldData)}
-							onInputChange={(e) => handleFieldChange(e.target.name,
-								Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
-								startingStatusFieldData, setStartingStatusFieldData)
 							}
-							onClick={(e) => {
-								let replacement = {
-									keyblade: {
-										...rewardsData[7].rewards[startingStatusFieldData.currentKeyblade]
-									},
-									armor: {
-										...rewardsData[2].rewards[startingStatusFieldData.currentArmor - 1]
-									},
-									accessory: {
-										...rewardsData[1].rewards[startingStatusFieldData.currentAccessory - 1]
-									},
-									munny: startingStatusFieldData.currentMunny,
-									hp: startingStatusFieldData.currentStartingHP,
-									mp: startingStatusFieldData.currentStartingMP,
-									donald1: {
-										...rewardsData[0].rewards[startingStatusFieldData.currentDonald1 - 1]
-									},
-									donald2: {
-										...rewardsData[0].rewards[startingStatusFieldData.currentDonald2 - 1]
-									},
-									goofy1: {
-										...rewardsData[0].rewards[startingStatusFieldData.currentGoofy1 - 1]
-									},
-									goofy2: {
-										...rewardsData[0].rewards[startingStatusFieldData.currentGoofy2 - 1]
-									}
+							handleReplace(true, e.target.name === 'replaceButton', replacement, '', '', levelFieldData, setLevelFieldData, allLevels, setAllLevels)
+						}}
+					/>
+				</Tab>
+				<Tab
+					eventKey='magic'
+					title={<Icon
+						fileName={'spell'}
+						displayText={'Magic & Limits'}
+					/>}
+				>
+					<MagicPage
+						style={styles}
+						magicData={allMagics[magicFieldData.currentMagicType].abilities}
+						fieldData={magicFieldData}
+						handleMagicTypeChange={(e) => handleTableChange(e.target.value, 'currentMagicType', 'abilities', magicFieldData, setMagicFieldData, allMagics, setAllMagics)}
+						onInputChange={(e) => handleFieldChange(e.target.name,
+							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
+							magicFieldData, setMagicFieldData)
+						}
+						onRowCheck={(e) => onRowCheck(false, e.target.value, 'currentMagicType', 'abilities', magicFieldData, allMagics, setAllMagics)}
+						onCheckAll={() => onCheckAll(false, 'currentMagicType', 'abilities', magicFieldData, setMagicFieldData, allMagics, setAllMagics)}
+						onClick={(e) => {
+							let replacement = {
+								cost: magicFieldData.currentCost
+							}
+							handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentMagicType', 'abilities', magicFieldData, setMagicFieldData, allMagics, setAllMagics)
+						}}
+					/>
+				</Tab>
+				<Tab
+					eventKey='critical'
+					title={<Icon
+						fileName={'critical'}
+						displayText={'Critical Extra'}
+					/>}
+				>
+					<CriticalPage
+						style={styles}
+						criticalData={allCriticals}
+						fieldData={criticalFieldData}
+						rewardList={rewardsData[criticalFieldData.currentRewardType].rewards}
+						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, criticalFieldData, setCriticalFieldData)}
+						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, criticalFieldData, setCriticalFieldData)}
+						onRowCheck={(e) => onRowCheck(true, e.target.value, '', '', criticalFieldData, allCriticals, setAllCriticals)}
+						onCheckAll={() => onCheckAll(true, '', '', criticalFieldData, setCriticalFieldData, allCriticals, setAllCriticals)}
+						onClick={(e) => {
+							let replacement = {
+								reward: {
+									...rewardsData[criticalFieldData.currentRewardType].rewards[criticalFieldData.currentReward]
 								}
-								let final
-								let newFieldData = { ...startingStatusFieldData }
-								if (e.target.name === 'replaceButton')
-									final = startingStatus.replace(replacement)
-								else {
-									final = startingStatus.vanilla()
-									newFieldData = {
-										currentKeyblade: 0,
-										currentArmor: 0,
-										currentAccessory: 0,
-										currentMunny: 0,
-										currentStartingHP: 20,
-										currentStartingMP: 100,
-										currentDonald1: 28,
-										currentDonald2: 29,
-										currentGoofy1: 33,
-										currentGoofy2: 64
-									}
+							}
+							handleReplace(true, e.target.name === 'replaceButton', replacement, '', '', criticalFieldData, setCriticalFieldData, allCriticals, setAllCriticals)
+						}}
+					/>
+				</Tab>
+				<Tab
+					eventKey='cheat'
+					title={<Icon
+						fileName={'cheat'}
+						displayText={'Cheats'}
+					/>}
+				>
+					<CheatPage
+						style={styles}
+						cheatData={allCheats}
+						fieldData={cheatFieldData}
+						onRowCheck={(e) => onRowCheck(true, e.target.value, '', '', cheatFieldData, allCheats, setAllCheats)}
+						onCheckAll={() => onCheckAll(true, '', '', cheatFieldData, setCheatFieldData, allCheats, setAllCheats)}
+						onClick={() => {
+							setAllCheats(allCheats.map(object => {
+								if (object.toBeReplaced)
+									return object.toggle()
+								return object
+							}))
+							setCheatFieldData({ selectAll: false })
+						}}
+					/>
+				</Tab>
+				<Tab
+					eventKey='startingStatus'
+					title={<Icon
+						fileName={'starting'}
+						displayText={'Starting Status'}
+					/>}
+				>
+					<StartingPage
+						style={styles}
+						startingStatusData={startingStatus}
+						fieldData={startingStatusFieldData}
+						keybladeList={rewardsData[7].rewards}
+						armorList={rewardsData[17].rewards.concat(rewardsData[2].rewards)}
+						accessoryList={rewardsData[17].rewards.concat(rewardsData[1].rewards)}
+						donaldList={rewardsData[17].rewards.concat(rewardsData[0].rewards)}
+						goofyList={rewardsData[17].rewards.concat(rewardsData[0].rewards)}
+						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, startingStatusFieldData, setStartingStatusFieldData)}
+						onInputChange={(e) => handleFieldChange(e.target.name,
+							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
+							startingStatusFieldData, setStartingStatusFieldData)
+						}
+						onClick={(e) => {
+							let replacement = {
+								keyblade: {
+									...rewardsData[7].rewards[startingStatusFieldData.currentKeyblade]
+								},
+								armor: {
+									...rewardsData[2].rewards[startingStatusFieldData.currentArmor - 1]
+								},
+								accessory: {
+									...rewardsData[1].rewards[startingStatusFieldData.currentAccessory - 1]
+								},
+								munny: startingStatusFieldData.currentMunny,
+								hp: startingStatusFieldData.currentStartingHP,
+								mp: startingStatusFieldData.currentStartingMP,
+								donald1: {
+									...rewardsData[0].rewards[startingStatusFieldData.currentDonald1 - 1]
+								},
+								donald2: {
+									...rewardsData[0].rewards[startingStatusFieldData.currentDonald2 - 1]
+								},
+								goofy1: {
+									...rewardsData[0].rewards[startingStatusFieldData.currentGoofy1 - 1]
+								},
+								goofy2: {
+									...rewardsData[0].rewards[startingStatusFieldData.currentGoofy2 - 1]
 								}
-								setStartingStatus(final)
-								setStartingStatusFieldData(newFieldData)
-							}}
-						/>
-					</Tab.Pane>
-				</Tab.Content>
-			</TabContainer>
+							}
+							let final
+							let newFieldData = { ...startingStatusFieldData }
+							if (e.target.name === 'replaceButton')
+								final = startingStatus.replace(replacement)
+							else {
+								final = startingStatus.vanilla()
+								newFieldData = {
+									currentKeyblade: 0,
+									currentArmor: 0,
+									currentAccessory: 0,
+									currentMunny: 0,
+									currentStartingHP: 20,
+									currentStartingMP: 100,
+									currentDonald1: 28,
+									currentDonald2: 29,
+									currentGoofy1: 33,
+									currentGoofy2: 64
+								}
+							}
+							setStartingStatus(final)
+							setStartingStatusFieldData(newFieldData)
+						}}
+					/>
+				</Tab>
+			</Tabs>
 			<SaveLoadModal
 				handleSaveAsPnach={handleSaveAsPnach}
 				handleSaveAsJSON={handleSaveAsJSON}

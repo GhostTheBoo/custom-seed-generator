@@ -27,7 +27,7 @@ function HomePage() {
 				It is unrealistic for me to promise this feature works perfectly.
 				If any issues come up let me know and be sure not to delete the json file even if it does not seem to work.
 			</p>
-		</div >
+		</div>
 	)
 }
 

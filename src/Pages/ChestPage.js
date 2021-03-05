@@ -67,14 +67,14 @@ function ChestPage(props) {
 				onCheckAll={props.onCheckAll}
 				selectAll={props.fieldData.selectAll}
 			/>
-			<Button variant='outline-dark'
+			<Button variant='outline-light'
 				name='replaceButton'
 				onClick={props.onClick}
 			>
 				REPLACE
 			</Button>
 			{' '}
-			<Button variant='outline-dark'
+			<Button variant='outline-light'
 				name='vanillaButton'
 				onClick={props.onClick}
 			>

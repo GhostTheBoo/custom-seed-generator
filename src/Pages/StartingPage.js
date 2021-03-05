@@ -163,24 +163,28 @@ function StartingPage(props) {
 				</Form.Row>
 				<br></br>
 			</Form>
-			<Button variant='outline-dark'
-				name='replaceButton'
-				onClick={props.onClick}
-			>
-				APPLY
+			<div>
+				<Button
+					variant='outline-light'
+					name='replaceButton'
+					onClick={props.onClick}
+				>
+					APPLY
 			</Button>
-			{' '}
-			<Button variant='outline-dark'
-				name='vanillaButton'
-				onClick={props.onClick}
-			>
-				VANILLA
+				{' '}
+				<Button
+					variant='outline-light'
+					name='vanillaButton'
+					onClick={props.onClick}
+				>
+					VANILLA
 			</Button>
+			</div>
 			<HelpModal
 				page={'Cheat'}
 				description={description}
 			/>
-		</div >
+		</div>
 	)
 }
 
