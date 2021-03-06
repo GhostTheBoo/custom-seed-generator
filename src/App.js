@@ -1,7 +1,9 @@
 import { React, useState, useEffect } from 'react'
 import { Tabs, Tab } from 'react-bootstrap'
+
 import SaveLoadModal from './Components/SaveLoadModal'
 import Icon from './Components/Icon'
+import HelpModal from './Components/HelpModal'
 
 import { rewardsData } from './Data/rewardsData'
 import { chestsData } from './Data/chestsData'
@@ -144,6 +146,7 @@ function FunctionApp() {
 			window.removeEventListener('beforeunload', alertUser)
 		}
 	}, [])
+	const [currentTab, setCurrentTab] = useState('home')
 	//#endregion
 
 	//#region Bonus Jank City
@@ -854,14 +857,15 @@ function FunctionApp() {
 	//#endregion
 
 	let styles = {
-		marginTop: '0',
+		marginTop: '10px',
 		marginRight: '10px',
 		marginBottom: '10px',
 		marginLeft: '10px'
 	}
+
 	return (
 		<div style={styles}>
-			<Tabs defaultActiveKey='home' id='allTabs' transition={false}>
+			<Tabs defaultActiveKey={currentTab} id='allTabs' transition={false} onSelect={(newTab) => setCurrentTab(newTab)}>
 				<Tab
 					eventKey='home'
 					title={<Icon
@@ -869,7 +873,18 @@ function FunctionApp() {
 						displayText={'Home'}
 					/>}
 				>
-					<HomePage />
+					<HomePage>
+						<SaveLoadModal
+							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsJSON={handleSaveAsJSON}
+							onFileUpload={(e) => {
+								let file = e.target.files[0]
+								let reader = new FileReader()
+								reader.readAsText(file)
+								reader.onload = (e) => onFileUpload(e.target.result)
+							}}
+						/>
+					</HomePage>
 				</Tab>
 				<Tab
 					eventKey='chest'
@@ -896,7 +911,19 @@ function FunctionApp() {
 							}
 							handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentWorld', 'chests', chestFieldData, setChestFieldData, allChests, setAllChests)
 						}}
-					/>
+					>
+						<HelpModal tab={currentTab} />
+						<SaveLoadModal
+							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsJSON={handleSaveAsJSON}
+							onFileUpload={(e) => {
+								let file = e.target.files[0]
+								let reader = new FileReader()
+								reader.readAsText(file)
+								reader.onload = (e) => onFileUpload(e.target.result)
+							}}
+						/>
+					</ChestPage>
 				</Tab>
 				<Tab
 					eventKey='popup'
@@ -923,7 +950,19 @@ function FunctionApp() {
 							}
 							handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentWorld', 'popups', popupFieldData, setPopupFieldData, allPopups, setAllPopups)
 						}}
-					/>
+					>
+						<HelpModal tab={currentTab} />
+						<SaveLoadModal
+							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsJSON={handleSaveAsJSON}
+							onFileUpload={(e) => {
+								let file = e.target.files[0]
+								let reader = new FileReader()
+								reader.readAsText(file)
+								reader.onload = (e) => onFileUpload(e.target.result)
+							}}
+						/>
+					</PopupPage>
 				</Tab>
 				<Tab
 					eventKey='bonus'
@@ -967,7 +1006,19 @@ function FunctionApp() {
 							}
 							handleBonusReplace(e.target.name === 'replaceButton', replacement)
 						}}
-					/>
+					>
+						<HelpModal tab={currentTab} />
+						<SaveLoadModal
+							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsJSON={handleSaveAsJSON}
+							onFileUpload={(e) => {
+								let file = e.target.files[0]
+								let reader = new FileReader()
+								reader.readAsText(file)
+								reader.onload = (e) => onFileUpload(e.target.result)
+							}}
+						/>
+					</BonusPage>
 				</Tab>
 				<Tab
 					eventKey='form'
@@ -1000,7 +1051,19 @@ function FunctionApp() {
 							}
 							handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentDriveForm', 'driveLevels', formFieldData, setFormFieldData, allForms, setAllForms)
 						}}
-					/>
+					>
+						<HelpModal tab={currentTab} />
+						<SaveLoadModal
+							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsJSON={handleSaveAsJSON}
+							onFileUpload={(e) => {
+								let file = e.target.files[0]
+								let reader = new FileReader()
+								reader.readAsText(file)
+								reader.onload = (e) => onFileUpload(e.target.result)
+							}}
+						/>
+					</FormPage>
 				</Tab>
 				<Tab
 					eventKey='equipment'
@@ -1045,7 +1108,19 @@ function FunctionApp() {
 							handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentEquipmentType', 'equipments', equipmentFieldData, setEquipmentFieldData,
 								allEquipments, setAllEquipments)
 						}}
-					/>
+					>
+						<HelpModal tab={currentTab} />
+						<SaveLoadModal
+							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsJSON={handleSaveAsJSON}
+							onFileUpload={(e) => {
+								let file = e.target.files[0]
+								let reader = new FileReader()
+								reader.readAsText(file)
+								reader.onload = (e) => onFileUpload(e.target.result)
+							}}
+						/>
+					</EquipmentPage>
 				</Tab>
 				<Tab
 					eventKey='level'
@@ -1089,7 +1164,19 @@ function FunctionApp() {
 							}
 							handleReplace(true, e.target.name === 'replaceButton', replacement, '', '', levelFieldData, setLevelFieldData, allLevels, setAllLevels)
 						}}
-					/>
+					>
+						<HelpModal tab={currentTab} />
+						<SaveLoadModal
+							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsJSON={handleSaveAsJSON}
+							onFileUpload={(e) => {
+								let file = e.target.files[0]
+								let reader = new FileReader()
+								reader.readAsText(file)
+								reader.onload = (e) => onFileUpload(e.target.result)
+							}}
+						/>
+					</LevelPage>
 				</Tab>
 				<Tab
 					eventKey='magic'
@@ -1115,7 +1202,19 @@ function FunctionApp() {
 							}
 							handleReplace(false, e.target.name === 'replaceButton', replacement, 'currentMagicType', 'abilities', magicFieldData, setMagicFieldData, allMagics, setAllMagics)
 						}}
-					/>
+					>
+						<HelpModal tab={currentTab} />
+						<SaveLoadModal
+							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsJSON={handleSaveAsJSON}
+							onFileUpload={(e) => {
+								let file = e.target.files[0]
+								let reader = new FileReader()
+								reader.readAsText(file)
+								reader.onload = (e) => onFileUpload(e.target.result)
+							}}
+						/>
+					</MagicPage>
 				</Tab>
 				<Tab
 					eventKey='critical'
@@ -1141,7 +1240,19 @@ function FunctionApp() {
 							}
 							handleReplace(true, e.target.name === 'replaceButton', replacement, '', '', criticalFieldData, setCriticalFieldData, allCriticals, setAllCriticals)
 						}}
-					/>
+					>
+						<HelpModal tab={currentTab} />
+						<SaveLoadModal
+							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsJSON={handleSaveAsJSON}
+							onFileUpload={(e) => {
+								let file = e.target.files[0]
+								let reader = new FileReader()
+								reader.readAsText(file)
+								reader.onload = (e) => onFileUpload(e.target.result)
+							}}
+						/>
+					</CriticalPage>
 				</Tab>
 				<Tab
 					eventKey='cheat'
@@ -1164,7 +1275,19 @@ function FunctionApp() {
 							}))
 							setCheatFieldData({ selectAll: false })
 						}}
-					/>
+					>
+						<HelpModal tab={currentTab} />
+						<SaveLoadModal
+							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsJSON={handleSaveAsJSON}
+							onFileUpload={(e) => {
+								let file = e.target.files[0]
+								let reader = new FileReader()
+								reader.readAsText(file)
+								reader.onload = (e) => onFileUpload(e.target.result)
+							}}
+						/>
+					</CheatPage>
 				</Tab>
 				<Tab
 					eventKey='startingStatus'
@@ -1236,19 +1359,21 @@ function FunctionApp() {
 							setStartingStatus(final)
 							setStartingStatusFieldData(newFieldData)
 						}}
-					/>
+					>
+						<HelpModal tab={currentTab} />
+						<SaveLoadModal
+							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsJSON={handleSaveAsJSON}
+							onFileUpload={(e) => {
+								let file = e.target.files[0]
+								let reader = new FileReader()
+								reader.readAsText(file)
+								reader.onload = (e) => onFileUpload(e.target.result)
+							}}
+						/>
+					</StartingPage>
 				</Tab>
 			</Tabs>
-			<SaveLoadModal
-				handleSaveAsPnach={handleSaveAsPnach}
-				handleSaveAsJSON={handleSaveAsJSON}
-				onFileUpload={(e) => {
-					let file = e.target.files[0]
-					let reader = new FileReader()
-					reader.readAsText(file)
-					reader.onload = (e) => onFileUpload(e.target.result)
-				}}
-			/>
 		</div>
 	)
 }

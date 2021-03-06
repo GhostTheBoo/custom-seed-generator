@@ -1,7 +1,5 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-import Col from 'react-bootstrap/Col'
+import { Button, Form, Row, Col, Container } from 'react-bootstrap'
 
 import { worldsData, charactersData } from '../Data/typesData'
 
@@ -9,51 +7,8 @@ import GenericSelect from '../Components/GenericSelect'
 import RewardSelect from '../Components/RewardSelect'
 import RewardTypeSelect from '../Components/RewardTypeSelect'
 import BonusTable from '../Tables/BonusTable'
-import HelpModal from '../Components/HelpModal'
 
 function BonusPage(props) {
-	const description = (
-		<div id="bonusPage">
-			<h6>Bonus</h6>
-			<p>
-				The bonus page displays all bonus level rewards for each world and for each character.
-				Bonus levels can reward up to 2 rewards, stat increases, or slot increases.
-				However only 2 individual rewards can be given to the player without causing any bugs.
-				Additionally, the character a bonus is given to can be modified.
-			</p>
-			<h6>Characters</h6>
-			<p>
-				A fight that gives a bonus reward can give up to 4 rewards to the characters in the party.
-				The person who receives a reward can be modified.
-				This means that in a fight like Abu Escort, Sora can obtain up to 4 bonus levels each with different rewards.
-				Keep in mind, each character has an in game cap to their bonus level.
-				If a character earns too many bonus levels, the game will not be happy.
-			</p>
-			<h6>Rewards</h6>
-			<p>
-				A bonus level can give 2 rewards.
-				The rewards can be of any type.
-				Selecting empty for either reward will result in no reward being given.
-			</p>
-			<h6>Stats and Slots</h6>
-			<p>
-				HP and MP can both increase on a bonus level.
-				The increases are based on standard mode.
-				Critical mode takes the stat values from standard mode and halves them.
-				So a standard mode HP increase of 10 will be 5 in critical mode.
-				Same applies for MP.
-				Slots do not have this half applied.
-				They can all increase by whatever value entered but the menu does not like having too many slots. (I believe the cap is 20 total slots)
-				The drive gauge is also capped at 9 no matter how many increases given.
-			</p>
-			<h6>Why Am I Red?</h6>
-			<p>
-				Bonus levels only visually show 2 rewards.
-				If more than 2 rewards are given, the bonus level may either secretly give the reward to the player or not give it to them at all.
-			</p>
-		</div>
-	)
-	
 	return (
 		<div style={props.style}>
 			<Form>
@@ -224,23 +179,32 @@ function BonusPage(props) {
 				onCheckAll={props.onCheckAll}
 				selectAll={props.fieldData.selectAll}
 			/>
-			<Button variant='outline-light'
-				name='replaceButton'
-				onClick={props.onClick}
-			>
-				REPLACE
-			</Button>
-			{' '}
-			<Button variant='outline-light'
-				name='vanillaButton'
-				onClick={props.onClick}
-			>
-				VANILLA
-			</Button>
-			<HelpModal
-				page={'Bonus'}
-				description={description}
-			/>
+			<Container fluid>
+				<Row>
+					<Col xs='1'>
+						<Button
+							variant='outline-light'
+							block
+							name='replaceButton'
+							onClick={props.onClick}
+						>
+							REPLACE
+							</Button>
+					</Col>
+					<Col xs='1'>
+						<Button
+							variant='outline-light'
+							block
+							name='vanillaButton'
+							onClick={props.onClick}
+						>
+							VANILLA
+							</Button>
+					</Col>
+					<Col xs='8'></Col>
+					{props.children}
+				</Row>
+			</Container>
 		</div>
 	)
 }

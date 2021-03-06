@@ -1,31 +1,12 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-import Col from 'react-bootstrap/Col'
+import { Button, Form, Row, Col, Container } from 'react-bootstrap'
 
 import { magicCostsData } from '../Data/typesData'
 
 import GenericSelect from '../Components/GenericSelect'
 import MagicTable from '../Tables/MagicTable.js'
-import HelpModal from '../Components/HelpModal'
 
 function MagicPage(props) {
-	const description = (
-		<div id="magicPage">
-			<h6>Magic and Limits</h6>
-			<p>
-				The magic and limits page allows for customization of the mp cost of magic spells, party limits, and limit form limits.
-				Select all abilities to change, select the desired cost, and click replace.
-				Clicking vanilla will return all selected abilities to their vanilla costs.
-			</p>
-			<h6>Why Am I Red?</h6>
-			<p>
-				Magic abilities can either have their cost changed or remain the same.
-				They cannot be red.
-			</p>
-		</div>
-	)
-
 	return (
 		<div style={props.style}>
 			<Form>
@@ -63,24 +44,33 @@ function MagicPage(props) {
 				onCheckAll={props.onCheckAll}
 				selectAll={props.fieldData.selectAll}
 			/>
-			<Button variant='outline-light'
-				name='replaceButton'
-				onClick={props.onClick}
-			>
-				REPLACE
-			</Button>
-			{' '}
-			<Button variant='outline-light'
-				name='vanillaButton'
-				onClick={props.onClick}
-			>
-				VANILLA
-			</Button>
-			<HelpModal
-				page={'Magic & Limits'}
-				description={description}
-			/>
-		</div >
+			<Container fluid>
+				<Row>
+					<Col xs='1'>
+						<Button
+							variant='outline-light'
+							block
+							name='replaceButton'
+							onClick={props.onClick}
+						>
+							REPLACE
+							</Button>
+					</Col>
+					<Col xs='1'>
+						<Button
+							variant='outline-light'
+							block
+							name='vanillaButton'
+							onClick={props.onClick}
+						>
+							VANILLA
+							</Button>
+					</Col>
+					<Col xs='8'></Col>
+					{props.children}
+				</Row>
+			</Container>
+		</div>
 	)
 }
 

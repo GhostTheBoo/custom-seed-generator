@@ -1,8 +1,5 @@
 import { React, useState } from 'react'
-import Form from 'react-bootstrap/Form'
-import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
-import Modal from 'react-bootstrap/Modal'
+import { Form, Col, Button, Modal } from 'react-bootstrap'
 
 function SaveLoadModal(props) {
 	const [show, setShow] = useState(false)
@@ -10,11 +7,11 @@ function SaveLoadModal(props) {
 	const [jsonFileName, setJSONFileName] = useState('')
 
 	return (
-		<div>
-			<Button variant="primary" onClick={() => setShow(true)}>
+		<Col xs='1'>
+			<Button variant="primary" block onClick={() => setShow(true)}>
 				SAVE & LOAD
       		</Button>
-			<Modal size="lg" show={show} onHide={() => setShow(false)}>
+			<Modal size="lg" show={show} onHide={() => setShow(false)} centered>
 				<Modal.Header closeButton>
 					<Modal.Title>
 						{'Save & Load'}
@@ -22,7 +19,7 @@ function SaveLoadModal(props) {
 				</Modal.Header>
 				<Modal.Body>
 					<Form.Row>
-						<Col lg='10'>
+						<Col xs='10'>
 							<Form.Group controlId='currentPnachFileName'>
 								<Form.Label column='sm' srOnly>Pnach File Name: </Form.Label>
 								<Form.Control
@@ -35,17 +32,20 @@ function SaveLoadModal(props) {
 								/>
 							</Form.Group>
 						</Col>
-						<Button
-							variant='outline-dark'
-							name='savePnachButton'
-							onClick={() => props.handleSaveAsPnach(pnachFileName)}
-						>
-							SAVE PNACH
-						</Button>
+						<Col>
+							<Button
+								variant='outline-light'
+								block
+								name='savePnachButton'
+								onClick={() => props.handleSaveAsPnach(pnachFileName)}
+							>
+								SAVE PNACH
+							</Button>
+						</Col>
 					</Form.Row>
 					<br></br>
 					<Form.Row>
-						<Col lg='10'>
+						<Col xs='10'>
 							<Form.Group controlId='currentJSONFileName'>
 								<Form.Label column='sm' srOnly>JSON Save File Name: </Form.Label>
 								<Form.Control
@@ -58,15 +58,17 @@ function SaveLoadModal(props) {
 								/>
 							</Form.Group>
 						</Col>
-						<Button
-							variant='outline-dark'
-							name='saveJSONButton'
-							onClick={() => props.handleSaveAsJSON(jsonFileName)}
-						>
-							SAVE DATA
-						</Button>
+						<Col>
+							<Button
+								variant='outline-light'
+								block
+								name='saveJSONButton'
+								onClick={() => props.handleSaveAsJSON(jsonFileName)}
+							>
+								SAVE DATA
+							</Button>
+						</Col>
 					</Form.Row>
-					<br></br>
 					<Form.Row>
 						<Form.Group controlId='currentLoadFileName'>
 							<Form.Label column='sm'>JSON Save File Name: </Form.Label>
@@ -78,7 +80,7 @@ function SaveLoadModal(props) {
 					</Form.Row>
 				</Modal.Body>
 			</Modal>
-		</div >
+		</Col>
 	)
 }
 

@@ -1,28 +1,11 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-import Col from 'react-bootstrap/Col'
+import { Button, Form, Row, Col, Container } from 'react-bootstrap'
 
 import RewardSelect from '../Components/RewardSelect'
 import RewardTypeSelect from '../Components/RewardTypeSelect'
 import CriticalTable from '../Tables/CriticalTable'
-import HelpModal from '../Components/HelpModal'
 
 function CriticalPage(props) {
-	const description = (
-		<div id="criticalPage">
-			<h6>Critical Extra</h6>
-			<p>
-				The seven extra critical mode abilities can each be changed to give anything else.
-				Keep in mind these rewards are only provided in critical mode.
-			</p>
-			<h6>Why Am I Red?</h6>
-			<p>
-				Critical mode extras can be anything so they will never show up as red.
-			</p>
-		</div>
-	)
-
 	return (
 		<div style={props.style}>
 			<Form>
@@ -53,23 +36,32 @@ function CriticalPage(props) {
 				onCheckAll={props.onCheckAll}
 				selectAll={props.fieldData.selectAll}
 			/>
-			<Button variant='outline-light'
-				name='replaceButton'
-				onClick={props.onClick}
-			>
-				REPLACE
-			</Button>
-			{' '}
-			<Button variant='outline-light'
-				name='vanillaButton'
-				onClick={props.onClick}
-			>
-				VANILLA
-			</Button>
-			<HelpModal
-				page={'Critical Extra'}
-				description={description}
-			/>
+			<Container fluid>
+				<Row>
+					<Col xs='1'>
+						<Button
+							variant='outline-light'
+							block
+							name='replaceButton'
+							onClick={props.onClick}
+						>
+							REPLACE
+							</Button>
+					</Col>
+					<Col xs='1'>
+						<Button
+							variant='outline-light'
+							block
+							name='vanillaButton'
+							onClick={props.onClick}
+						>
+							VANILLA
+							</Button>
+					</Col>
+					<Col xs='8'></Col>
+					{props.children}
+				</Row>
+			</Container>
 		</div>
 	)
 }

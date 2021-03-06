@@ -1,6 +1,7 @@
 import React from 'react'
+import { Row, Container } from 'react-bootstrap'
 
-function HomePage() {
+function HomePage(props) {
 	return (
 		<div>
 			<h1>Custom Seed Generator</h1>
@@ -27,6 +28,11 @@ function HomePage() {
 				It is unrealistic for me to promise this feature works perfectly.
 				If any issues come up let me know and be sure not to delete the json file even if it does not seem to work.
 			</p>
+			<Container fluid>
+				<Row>
+					{props.children}
+				</Row>
+			</Container>
 		</div>
 	)
 }

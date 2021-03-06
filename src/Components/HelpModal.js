@@ -1,34 +1,37 @@
 import { React, useState } from 'react'
-import Button from 'react-bootstrap/Button'
-import Modal from 'react-bootstrap/Modal'
+import { Button, Modal, Col } from 'react-bootstrap'
+
+import { helpData } from '../Data/helpData'
 
 function HelpModal(props) {
 	const [show, setShow] = useState(false)
-
-	const handleClose = () => setShow(false)
-	const handleShow = () => setShow(true)
-
+	if (props.tab === 'home')
+		return (
+			<Col xs='1'>
+			</Col>
+		)
+	let pageHelp = helpData.find(page => page.key === props.tab)
 	return (
-		<div>
-			<Button variant="primary" onClick={handleShow}>
+		<Col xs='1'>
+			<Button block variant="primary" onClick={() => setShow(true)}>
 				Help!
       		</Button>
-			<Modal size="lg" show={show} onHide={handleClose} centered>
+			<Modal size="lg" show={show} onHide={() => setShow(false)}>
 				<Modal.Header closeButton>
 					<Modal.Title>
-						{props.page}
+						{pageHelp.page}
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					{props.description}
+					{pageHelp.help}
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant="primary" onClick={handleClose}>
+					<Button variant="primary" onClick={() => setShow(false)}>
 						Okay
           			</Button>
 				</Modal.Footer>
 			</Modal>
-		</div>
+		</Col>
 	)
 }
 
