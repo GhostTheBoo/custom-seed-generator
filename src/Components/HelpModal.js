@@ -5,14 +5,12 @@ import { helpData } from '../Data/helpData'
 
 function HelpModal(props) {
 	const [show, setShow] = useState(false)
+	let offsetValue = props.tab === 'cheat' ? '6' : '4'
 	if (props.tab === 'home')
-		return (
-			<Col xs='1'>
-			</Col>
-		)
+		return null
 	let pageHelp = helpData.find(page => page.key === props.tab)
 	return (
-		<Col xs='1'>
+		<Col xl={{ span: '2', offset: offsetValue }}>
 			<Button block variant="primary" onClick={() => setShow(true)}>
 				Help!
       		</Button>

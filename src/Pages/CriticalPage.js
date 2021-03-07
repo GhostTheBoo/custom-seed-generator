@@ -37,8 +37,8 @@ function CriticalPage(props) {
 				selectAll={props.fieldData.selectAll}
 			/>
 			<Container fluid>
-				<Row>
-					<Col xs='1'>
+				<Row xs='4'>
+					<Col xl='2'>
 						<Button
 							variant='outline-light'
 							block
@@ -48,7 +48,7 @@ function CriticalPage(props) {
 							REPLACE
 							</Button>
 					</Col>
-					<Col xs='1'>
+					<Col xl='2'>
 						<Button
 							variant='outline-light'
 							block
@@ -58,7 +58,6 @@ function CriticalPage(props) {
 							VANILLA
 							</Button>
 					</Col>
-					<Col xs='8'></Col>
 					{props.children}
 				</Row>
 			</Container>

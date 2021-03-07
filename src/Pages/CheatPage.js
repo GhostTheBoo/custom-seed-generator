@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Row, Col, Container } from 'react-bootstrap'
+import { Button, Row, Col, Container } from 'react-bootstrap'
 
 import CheatTable from '../Tables/CheatTable'
 
@@ -13,16 +13,17 @@ function CheatPage(props) {
 				selectAll={props.fieldData.selectAll}
 			/>
 			<Container fluid>
-				<Row>
-					<Col xs='1'>
-						<Button variant='outline-light'
+				<Row xs='3'>
+					<Col xl='2'>
+						<Button
+							variant='outline-light'
+							block
 							name='replaceButton'
 							onClick={props.onClick}
 						>
 							TOGGLE
-						</Button>
+							</Button>
 					</Col>
-					<Col xs='9'></Col>
 					{props.children}
 				</Row>
 			</Container>

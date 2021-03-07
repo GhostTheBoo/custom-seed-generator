@@ -7,7 +7,7 @@ function SaveLoadModal(props) {
 	const [jsonFileName, setJSONFileName] = useState('')
 
 	return (
-		<Col xs='1'>
+		<Col xl='2'>
 			<Button variant="primary" block onClick={() => setShow(true)}>
 				SAVE & LOAD
       		</Button>
