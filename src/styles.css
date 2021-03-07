@@ -31,3 +31,19 @@ element.style {
     text-shadow: 0 1px 0 #000;
     opacity: .5;
 }
+th {
+	font-size: 1em;
+	height: 36px;
+	text-align: center;
+}
+tr {
+	height: 35px;
+	text-align: center;
+}
+
+/* .rewardTable {
+	display: block;
+	position: relative;
+	height: 700px;
+	overflow: auto;
+} */

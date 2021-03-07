@@ -871,6 +871,7 @@ function FunctionApp() {
 					title={<Icon
 						fileName={'home'}
 						displayText={'Home'}
+						type={'tab'}
 					/>}
 				>
 					<HomePage>
@@ -891,6 +892,7 @@ function FunctionApp() {
 					title={<Icon
 						fileName={'chest'}
 						displayText={'Chest'}
+						type={'tab'}
 					/>}
 				>
 					<ChestPage
@@ -930,6 +932,7 @@ function FunctionApp() {
 					title={<Icon
 						fileName={'popup'}
 						displayText={'Popup'}
+						type={'tab'}
 					/>}
 				>
 					<PopupPage
@@ -969,6 +972,7 @@ function FunctionApp() {
 					title={<Icon
 						fileName={'key'}
 						displayText={'Bonus'}
+						type={'tab'}
 					/>}
 				>
 					<BonusPage
@@ -1025,6 +1029,7 @@ function FunctionApp() {
 					title={<Icon
 						fileName={'form'}
 						displayText={'Forms & Summons'}
+						type={'tab'}
 					/>}
 				>
 					<FormPage
@@ -1070,6 +1075,7 @@ function FunctionApp() {
 					title={<Icon
 						fileName={'keyblade'}
 						displayText={'Equipment'}
+						type={'tab'}
 					/>}
 				>
 					<EquipmentPage
@@ -1127,6 +1133,7 @@ function FunctionApp() {
 					title={<Icon
 						fileName={'level'}
 						displayText={'Level'}
+						type={'tab'}
 					/>}
 				>
 					<LevelPage
@@ -1183,6 +1190,7 @@ function FunctionApp() {
 					title={<Icon
 						fileName={'spell'}
 						displayText={'Magic & Limits'}
+						type={'tab'}
 					/>}
 				>
 					<MagicPage
@@ -1221,6 +1229,7 @@ function FunctionApp() {
 					title={<Icon
 						fileName={'critical'}
 						displayText={'Critical Extra'}
+						type={'tab'}
 					/>}
 				>
 					<CriticalPage
@@ -1259,6 +1268,7 @@ function FunctionApp() {
 					title={<Icon
 						fileName={'cheat'}
 						displayText={'Cheats'}
+						type={'tab'}
 					/>}
 				>
 					<CheatPage
@@ -1294,6 +1304,7 @@ function FunctionApp() {
 					title={<Icon
 						fileName={'starting'}
 						displayText={'Starting Status'}
+						type={'tab'}
 					/>}
 				>
 					<StartingPage

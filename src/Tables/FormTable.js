@@ -32,12 +32,14 @@ function FormTable(props) {
 					<Icon
 						fileName={driveLevel.vanillaReward.iconType}
 						displayText={driveLevel.vanillaReward.reward}
+						type={'row'}
 					/>
 				</td>
 				<td>
 					<Icon
 						fileName={driveLevel.replacementReward.iconType}
 						displayText={driveLevel.replacementReward.reward}
+						type={'row'}
 					/>
 				</td>
 				<td>
@@ -51,38 +53,40 @@ function FormTable(props) {
 	})
 
 	return (
-		<Table striped bordered hover size='sm' variant='dark'>
-			<thead>
-				<tr>
-					<th>
-						<input
-							type='checkbox'
-							name={props.currentDriveForm + 'All'}
-							checked={props.selectAll}
-							onChange={props.onCheckAll}
-						/>
+		<div className='rewardTable'>
+			<Table striped bordered hover size='sm' variant='dark'>
+				<thead>
+					<tr>
+						<th>
+							<input
+								type='checkbox'
+								name={props.currentDriveForm + 'All'}
+								checked={props.selectAll}
+								onChange={props.onCheckAll}
+							/>
+						</th>
+						<th>
+							Level
 					</th>
-					<th>
-						Level
+						<th>
+							Original
 					</th>
-					<th>
-						Original
+						<th>
+							Replacement
 					</th>
-					<th>
-						Replacement
+						<th>
+							Original EXP to Level
 					</th>
-					<th>
-						Original EXP to Level
+						<th>
+							New EXP to Level
 					</th>
-					<th>
-						New EXP to Level
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				{formList}
-			</tbody>
-		</Table>
+					</tr>
+				</thead>
+				<tbody>
+					{formList}
+				</tbody>
+			</Table>
+		</div>
 	)
 }
 

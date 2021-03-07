@@ -38,32 +38,34 @@ function MagicTable(props) {
 	})
 
 	return (
-		<Table striped bordered hover size='sm' variant='dark'>
-			<thead>
-				<tr>
-					<th>
-						<input
-							type='checkbox'
-							name={'magicCosts'}
-							checked={props.selectAll}
-							onChange={props.onCheckAll}
-						/>
+		<div className='rewardTable'>
+			<Table striped bordered hover size='sm' variant='dark'>
+				<thead>
+					<tr>
+						<th>
+							<input
+								type='checkbox'
+								name={'magicCosts'}
+								checked={props.selectAll}
+								onChange={props.onCheckAll}
+							/>
+						</th>
+						<th>
+							Ability
 					</th>
-					<th>
-						Ability
+						<th>
+							Original Cost
 					</th>
-					<th>
-						Original Cost
+						<th>
+							Replacement Cost
 					</th>
-					<th>
-						Replacement Cost
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				{magicList}
-			</tbody>
-		</Table>
+					</tr>
+				</thead>
+				<tbody>
+					{magicList}
+				</tbody>
+			</Table>
+		</div>
 	)
 }
 

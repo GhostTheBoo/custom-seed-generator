@@ -33,44 +33,48 @@ function ChestTable(props) {
 					<Icon
 						fileName={chest.vanillaReward.iconType}
 						displayText={chest.vanillaReward.reward}
+						type={'row'}
 					/>
 				</td>
 				<td>
 					<Icon
 						fileName={chest.replacementReward.iconType}
 						displayText={chest.replacementReward.reward}
+						type={'row'}
 					/>
 				</td>
 			</tr>
 		)
 	})
 	return (
-		<Table striped bordered hover size='sm' variant='dark'>
-			<thead>
-				<tr>
-					<th>
-						<input
-							type='checkbox'
-							name={props.currentWorld + 'All'}
-							checked={props.selectAll}
-							onChange={props.onCheckAll}
-						/>
-					</th>
-					<th>
-						Room
-					</th>
-					<th>
-						Original
-					</th>
-					<th>
-						Replacement
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				{chestList}
-			</tbody>
-		</Table>
+		<div className='rewardTable'>
+			<Table striped bordered hover size='sm' variant='dark'>
+				<thead>
+					<tr>
+						<th>
+							<input
+								type='checkbox'
+								name={props.currentWorld + 'All'}
+								checked={props.selectAll}
+								onChange={props.onCheckAll}
+							/>
+						</th>
+						<th>
+							Room
+						</th>
+						<th>
+							Original
+						</th>
+						<th>
+							Replacement
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{chestList}
+				</tbody>
+			</Table>
+		</div>
 	)
 }
 

@@ -54,12 +54,14 @@ function BonusTable(props) {
 						<Icon
 							fileName={bonus.replacementReward1.iconType}
 							displayText={bonus.replacementReward1.index !== 0x0000 ? bonus.replacementReward1.reward : ''}
+							type={'row'}
 						/>
 					</td>
 					<td>
 						<Icon
 							fileName={bonus.replacementReward2.iconType}
 							displayText={bonus.replacementReward2.index !== 0x0000 ? bonus.replacementReward2.reward : ''}
+							type={'row'}
 						/>
 					</td>
 					<td>
@@ -88,62 +90,68 @@ function BonusTable(props) {
 		bonusList = []
 
 	return (
-		<Table striped bordered hover size='sm' variant='dark'>
-			<thead>
-				<tr>
-					<th>
-						<input
-							type='checkbox'
-							name={props.bonuses.fight + 'All'}
-							checked={props.selectAll}
-							onChange={props.onCheckAll}
-						/>
+		<div className='dataTable'>
+			<Table striped bordered hover size='sm' variant='dark'>
+				<thead>
+					<tr>
+						<th>
+							<input
+								type='checkbox'
+								name={props.bonuses.fight + 'All'}
+								checked={props.selectAll}
+								onChange={props.onCheckAll}
+							/>
+						</th>
+						<th>
+							Character
 					</th>
-					<th>
-						Character
+						<th>
+							"A" Reward
 					</th>
-					<th>
-						"A" Reward
+						<th>
+							"B" Reward
 					</th>
-					<th>
-						"B" Reward
+						<th>
+							HP Increase
 					</th>
-					<th>
-						HP Increase
+						<th>
+							MP Increase
 					</th>
-					<th>
-						MP Increase
-					</th>
-					<th>
-						<Icon
-							fileName={'armor'}
-							displayText={'Armor Slot Increase'}
-						/>
-					</th>
-					<th>
-						<Icon
-							fileName={'accessory'}
-							displayText={'Accessory Slot Increase'}
-						/>
-					</th>
-					<th>
-						<Icon
-							fileName={'consumable'}
-							displayText={'Item Slot Increase'}
-						/>
-					</th>
-					<th>
-						<Icon
-							fileName={'form'}
-							displayText={'Drive Gauge Increase'}
-						/>
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				{bonusList}
-			</tbody>
-		</Table>
+						<th>
+							<Icon
+								fileName={'armor'}
+								displayText={'Armor Slot Increase'}
+								type={'header'}
+							/>
+						</th>
+						<th>
+							<Icon
+								fileName={'accessory'}
+								displayText={'Accessory Slot Increase'}
+								type={'header'}
+							/>
+						</th>
+						<th>
+							<Icon
+								fileName={'consumable'}
+								displayText={'Item Slot Increase'}
+								type={'header'}
+							/>
+						</th>
+						<th>
+							<Icon
+								fileName={'form'}
+								displayText={'Drive Gauge Increase'}
+								type={'header'}
+							/>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{bonusList}
+				</tbody>
+			</Table>
+		</div>
 	)
 }
 

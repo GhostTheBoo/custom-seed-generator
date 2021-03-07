@@ -10,6 +10,15 @@ function Icon(props) {
 	function handleError() {
 		setIconPath('empty')
 	}
+	let iconSize
+	if (props.type === 'row')
+		iconSize = 25
+	else if (props.type === 'tab')
+		iconSize = 40
+	else if (props.type === 'header')
+		iconSize = 20
+	else
+		iconSize = 0
 
 	return (
 		<div>
@@ -17,11 +26,11 @@ function Icon(props) {
 				src={process.env.PUBLIC_URL + '/icons/' + iconPath + '.png'}
 				alt={props.fileName.toLowerCase()}
 				onError={handleError}
-				height={30}
-				width={30}
+				height={iconSize}
+				width={iconSize}
 			/>
 			{' ' + props.displayText}
-		</div >
+		</div>
 	)
 }
 

@@ -50,18 +50,21 @@ function LevelTable(props) {
 					<Icon
 						fileName={l.replacementSwordReward.iconType}
 						displayText={l.replacementSwordReward.index !== 0x0000 ? l.replacementSwordReward.reward : ''}
+						type={'row'}
 					/>
 				</td>
 				<td>
 					<Icon
 						fileName={l.replacementShieldReward.iconType}
 						displayText={l.replacementShieldReward.index !== 0x0000 ? l.replacementShieldReward.reward : ''}
+						type={'row'}
 					/>
 				</td>
 				<td>
 					<Icon
 						fileName={l.replacementStaffReward.iconType}
 						displayText={l.replacementStaffReward.index !== 0x0000 ? l.replacementStaffReward.reward : ''}
+						type={'row'}
 					/>
 				</td>
 			</tr>
@@ -69,62 +72,67 @@ function LevelTable(props) {
 	})
 
 	return (
-		<Table striped bordered hover size='sm' variant='dark'>
-			<thead>
-				<tr>
-					<th>
-						<input
-							type='checkbox'
-							name={'levelsAll'}
-							checked={props.selectAll}
-							onChange={props.onCheckAll}
-						/>
+		<div className='rewardTable'>
+			<Table striped bordered hover size='sm' variant='dark'>
+				<thead>
+					<tr>
+						<th>
+							<input
+								type='checkbox'
+								name={'levelsAll'}
+								checked={props.selectAll}
+								onChange={props.onCheckAll}
+							/>
+						</th>
+						<th>
+							Level
 					</th>
-					<th>
-						Level
+						<th>
+							Total EXP to Next Level
 					</th>
-					<th>
-						Total EXP to Next Level
+						<th>
+							Standard AP
 					</th>
-					<th>
-						Standard AP
+						<th>
+							Critical AP
 					</th>
-					<th>
-						Critical AP
+						<th>
+							Defense
 					</th>
-					<th>
-						Defense
+						<th>
+							Magic
 					</th>
-					<th>
-						Magic
+						<th>
+							Strength
 					</th>
-					<th>
-						Strength
-					</th>
-					<th>
-						<Icon
-							fileName={'sword'}
-							displayText={'Sword Replacement Reward'}
-						/>
-					</th>
-					<th>
-						<Icon
-							fileName={'shield'}
-							displayText={'Shield Replacement Reward'}
-						/>
-					</th>
-					<th>
-						<Icon
-							fileName={'staff'}
-							displayText={'Staff Replacement Reward'}
-						/>
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				{levelList}
-			</tbody>
-		</Table>
+						<th>
+							<Icon
+								fileName={'sword'}
+								displayText={'Sword Replacement Reward'}
+								type={'header'}
+							/>
+						</th>
+						<th>
+							<Icon
+								fileName={'shield'}
+								displayText={'Shield Replacement Reward'}
+								type={'header'}
+							/>
+						</th>
+						<th>
+							<Icon
+								fileName={'staff'}
+								displayText={'Staff Replacement Reward'}
+								type={'header'}
+							/>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{levelList}
+				</tbody>
+			</Table>
+		</div>
 	)
 }
 

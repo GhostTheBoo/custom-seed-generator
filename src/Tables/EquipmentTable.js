@@ -45,6 +45,7 @@ function EquipmentTable(props) {
 					<Icon
 						fileName={equipment.replacementAbility.iconType}
 						displayText={equipment.replacementAbility.index !== 0x0000 ? equipment.replacementAbility.reward : ''}
+						type={'row'}
 					/>
 				</td>
 				<td>
@@ -85,65 +86,68 @@ function EquipmentTable(props) {
 	})
 
 	return (
-		<Table striped bordered hover size='sm' variant='dark'>
-			<thead>
-				<tr>
-					<th>
-						<input
-							type='checkbox'
-							name={props.currentEquipmentType + 'All'}
-							checked={props.selectAll}
-							onChange={props.onCheckAll}
-						/>
+		<div className='rewardTable'>
+			<Table striped bordered hover size='sm' variant='dark'>
+				<thead>
+					<tr>
+						<th>
+							<input
+								type='checkbox'
+								name={props.currentEquipmentType + 'All'}
+								checked={props.selectAll}
+								onChange={props.onCheckAll}
+							/>
+						</th>
+						<th>
+							Name
 					</th>
-					<th>
-						Name
+						<th>
+							<Icon
+								fileName={'ability'}
+								displayText={'Ability'}
+								type={'header'}
+							/>
+						</th>
+						<th>
+							Strength
 					</th>
-					<th>
-						<Icon
-							fileName={'ability'}
-							displayText={'Ability'}
-						/>
+						<th>
+							Magic
 					</th>
-					<th>
-						Strength
+						<th>
+							AP
 					</th>
-					<th>
-						Magic
+						<th>
+							Defense
 					</th>
-					<th>
-						AP
+						<th>
+							Fire Resistance
 					</th>
-					<th>
-						Defense
+						<th>
+							Blizzard Resistance
 					</th>
-					<th>
-						Fire Resistance
+						<th>
+							Thunder Resistance
 					</th>
-					<th>
-						Blizzard Resistance
+						<th>
+							Dark Resistance
 					</th>
-					<th>
-						Thunder Resistance
+						<th>
+							Physical Resistance
 					</th>
-					<th>
-						Dark Resistance
+						<th>
+							Light Resistance
 					</th>
-					<th>
-						Physical Resistance
+						<th>
+							Universal Resistance
 					</th>
-					<th>
-						Light Resistance
-					</th>
-					<th>
-						Universal Resistance
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				{equipmentList}
-			</tbody>
-		</Table>
+					</tr>
+				</thead>
+				<tbody>
+					{equipmentList}
+				</tbody>
+			</Table>
+		</div>
 	)
 }
 

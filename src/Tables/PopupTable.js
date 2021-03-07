@@ -39,44 +39,48 @@ function PopupTable(props) {
 					<Icon
 						fileName={popup.vanillaReward.iconType}
 						displayText={popup.vanillaReward.reward}
+						type={'row'}
 					/>
 				</td>
 				<td>
 					<Icon
 						fileName={popup.replacementReward.iconType}
 						displayText={popup.replacementReward.reward}
+						type={'row'}
 					/>
 				</td>
 			</tr>
 		)
 	})
 	return (
-		<Table striped bordered hover size='sm' variant='dark'>
-			<thead>
-				<tr>
-					<th>
-						<input
-							type='checkbox'
-							name={props.currentWorld + 'All'}
-							checked={props.selectAll}
-							onChange={props.onCheckAll}
-						/>
+		<div className='rewardTable'>
+			<Table striped bordered hover size='sm' variant='dark'>
+				<thead>
+					<tr>
+						<th>
+							<input
+								type='checkbox'
+								name={props.currentWorld + 'All'}
+								checked={props.selectAll}
+								onChange={props.onCheckAll}
+							/>
+						</th>
+						<th>
+							Popup Description
 					</th>
-					<th>
-						Popup Description
+						<th>
+							Original
 					</th>
-					<th>
-						Original
+						<th>
+							Replacement
 					</th>
-					<th>
-						Replacement
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				{popupList}
-			</tbody>
-		</Table>
+					</tr>
+				</thead>
+				<tbody>
+					{popupList}
+				</tbody>
+			</Table>
+		</div>
 	)
 }
 

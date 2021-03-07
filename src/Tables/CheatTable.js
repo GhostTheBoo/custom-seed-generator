@@ -32,26 +32,28 @@ function CheatTable(props) {
 	})
 
 	return (
-		<Table striped bordered hover size='sm' variant='dark'>
-			<thead>
-				<tr>
-					<th>
-						<input
-							type='checkbox'
-							name={'cheatList'}
-							checked={props.selectAll}
-							onChange={props.onCheckAll}
-						/>
+		<div className='rewardTable'>
+			<Table striped bordered hover size='sm' variant='dark'>
+				<thead>
+					<tr>
+						<th>
+							<input
+								type='checkbox'
+								name={'cheatList'}
+								checked={props.selectAll}
+								onChange={props.onCheckAll}
+							/>
+						</th>
+						<th>
+							Name
 					</th>
-					<th>
-						Name
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				{cheatList}
-			</tbody>
-		</Table>
+					</tr>
+				</thead>
+				<tbody>
+					{cheatList}
+				</tbody>
+			</Table>
+		</div>
 	)
 }
 

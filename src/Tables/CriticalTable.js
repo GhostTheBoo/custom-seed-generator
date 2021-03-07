@@ -29,12 +29,14 @@ function CriticalTable(props) {
 					<Icon
 						fileName={ce.vanillaReward.iconType}
 						displayText={ce.vanillaReward.reward}
+						type={'row'}
 					/>
 				</td>
 				<td>
 					<Icon
 						fileName={ce.replacementReward.iconType}
 						displayText={ce.replacementReward.reward}
+						type={'row'}
 					/>
 				</td>
 			</tr>
@@ -42,29 +44,31 @@ function CriticalTable(props) {
 	})
 
 	return (
-		<Table striped bordered hover size='sm' variant='dark'>
-			<thead>
-				<tr>
-					<th>
-						<input
-							type='checkbox'
-							name={'criticalExtras'}
-							checked={props.selectAll}
-							onChange={props.onCheckAll}
-						/>
+		<div className='rewardTable'>
+			<Table striped bordered hover size='sm' variant='dark'>
+				<thead>
+					<tr>
+						<th>
+							<input
+								type='checkbox'
+								name={'criticalExtras'}
+								checked={props.selectAll}
+								onChange={props.onCheckAll}
+							/>
+						</th>
+						<th>
+							Original
 					</th>
-					<th>
-						Original
+						<th>
+							Replacement
 					</th>
-					<th>
-						Replacement
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				{criticalList}
-			</tbody>
-		</Table>
+					</tr>
+				</thead>
+				<tbody>
+					{criticalList}
+				</tbody>
+			</Table>
+		</div>
 	)
 }
 
