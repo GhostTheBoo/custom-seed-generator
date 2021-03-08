@@ -866,25 +866,27 @@ function FunctionApp() {
 		globalIndex = 0
 
 		let criticalLoadData = (allLoadData.hasOwnProperty('criticalsData') ? allLoadData.criticalsData : [])
-		let newAllCriticals = startingAbilityData[0].abilities.map(ability => {
-			if (globalIndex < criticalLoadData.length) {
-				if (criticalLoadData[globalIndex].vanillaAddress === ability.vanillaAddress) {
-					let ret = ability.loadFromJSON(criticalLoadData[globalIndex])
-					globalIndex++
-					return ret
-				}
-			}
-			return ability
-		})
-		globalIndex = 0
-
 		let startingAbilityLoadData = (allLoadData.hasOwnProperty('startingAbilitiesData') ? allLoadData.startingAbilitiesData : [])
 		let newAllStartingAbilities = startingAbilityData.map((characterAbilities, index) => {
-			if (index === 0)
-				return {
-					character: characterAbilities.character,
-					abilities: newAllCriticals
+			if (index === 0) {
+				if (criticalLoadData.length > 0) {
+					let newAllCriticals = startingAbilityData[0].abilities.map(ability => {
+						if (globalIndex < criticalLoadData.length) {
+							if (criticalLoadData[globalIndex].vanillaAddress === ability.vanillaAddress) {
+								let ret = ability.loadFromJSON(criticalLoadData[globalIndex])
+								globalIndex++
+								return ret
+							}
+						}
+						return ability
+					})
+					globalIndex = 0
+					return {
+						character: characterAbilities.character,
+						abilities: newAllCriticals
+					}
 				}
+			}
 			if (globalIndex < startingAbilityLoadData.length) {
 				if (startingAbilityLoadData[globalIndex].character === characterAbilities.character) {
 					let startingAbilityIndex = 0
