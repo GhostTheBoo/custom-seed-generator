@@ -13,7 +13,7 @@ import { formsData } from './Data/formsData'
 import { equipmentsData } from './Data/equipmentsData'
 import { levelsData } from './Data/levelsData'
 import { magicsData } from './Data/magicData'
-import { criticalData } from './Data/criticalData'
+import { startingAbilityData } from './Data/startingAbilityData'
 import { cheatsData } from './Data/cheatsData'
 import { startingStatusData } from './Data/startingStatusData'
 import Tracker from './Data/trackerData'
@@ -26,9 +26,11 @@ import FormPage from './Pages/FormPage'
 import EquipmentPage from './Pages/EquipmentPage'
 import LevelPage from './Pages/LevelPage'
 import MagicPage from './Pages/MagicPage'
-import CriticalPage from './Pages/CriticalPage'
+import StartingAbilityPage from './Pages/StartingAbilityPage'
 import CheatPage from './Pages/CheatPage'
-import StartingPage from './Pages/StartingPage'
+// import StartingPage from './Pages/StartingPage'
+// import StartingStatusPage from './Pages/StartingStatusPage'
+// import StartingStatusTable from './Tables/StartingStatusTable'
 
 
 function FunctionApp() {
@@ -113,12 +115,31 @@ function FunctionApp() {
 		selectAll: false
 	})
 	const [allMagics, setAllMagics] = useState(magicsData)
-	const [criticalFieldData, setCriticalFieldData] = useState({
+	const [startingAbilityFieldData, setStartingAbilityFieldData] = useState({
+		currentCharacter: 0,
 		currentRewardType: 0,
 		currentReward: 0,
 		selectAll: false
 	})
-	const [allCriticals, setAllCriticals] = useState(criticalData)
+	const [allStartingAbilities, setAllStartingAbilities] = useState(startingAbilityData)
+	// const [startingStatusFieldData, setStartingStatusFieldData] = useState({
+	// 	currentCharacter: 0,
+	// 	currentRewardType: 0,
+	// 	currentReward: 0,
+	// 	currentHP: 0,
+	// 	currentMP: 0,
+	// 	currentArmorSlot: 0,
+	// 	currentAccessorySlot: 0,
+	// 	currentItemSlot: 0,
+	// 	selectAll: false
+	// })
+	// const [startingStatus, setStartingStatus] = useState(startingStatusData)
+	// const [criticalFieldData, setCriticalFieldData] = useState({
+	// 	currentRewardType: 0,
+	// 	currentReward: 0,
+	// 	selectAll: false
+	// })
+	// const [allCriticals, setAllCriticals] = useState(criticalData)
 	const [cheatFieldData, setCheatFieldData] = useState({
 		selectAll: false
 	})
@@ -129,11 +150,7 @@ function FunctionApp() {
 		currentAccessory: 0,
 		currentMunny: 0,
 		currentStartingHP: 20,
-		currentStartingMP: 100,
-		currentDonald1: 28,
-		currentDonald2: 29,
-		currentGoofy1: 33,
-		currentGoofy2: 64,
+		currentStartingMP: 100
 	})
 	const [startingStatus, setStartingStatus] = useState(startingStatusData)
 	const alertUser = e => {
@@ -414,9 +431,14 @@ function FunctionApp() {
 			return prevLevels
 		}, { sword: new Tracker(), shield: new Tracker(), staff: new Tracker() })
 
-		//Critical Extra Tracker
-		let criticalTracker = allCriticals.reduce((prevCriticalExtras, currentCriticalExtra) => {
-			return prevCriticalExtras.update(currentCriticalExtra.replacementReward.index)
+		// //Critical Extra Tracker
+		// let criticalTracker = allCriticals.reduce((prevCriticalExtras, currentCriticalExtra) => {
+		// 	return prevCriticalExtras.update(currentCriticalExtra.replacementReward.index)
+		// }, new Tracker())
+
+		//Starting Ability Tracker
+		let stratingAbilityTracker = allStartingAbilities[0].abilities.reduce((prevStartingAbilities, currentStartingAbility) => {
+			return prevStartingAbilities.update(currentStartingAbility.replacementReward.index)
 		}, new Tracker())
 
 		return [
@@ -424,7 +446,8 @@ function FunctionApp() {
 			chestTracker.saveToPnach('CHEST') + '\n',
 			popupTracker.saveToPnach('POPUP') + '\n',
 			formTracker.saveToPnach('FORM & SUMMON') + '\n',
-			criticalTracker.saveToPnach('CRITICAL EXTRA') + '\n',
+			// criticalTracker.saveToPnach('CRITICAL EXTRA') + '\n',
+			stratingAbilityTracker.saveToPnach('SORA\'S STARTING ABILITIES') + '\n',
 			'//LEVEL TALLY\n',
 			levelTracker.sword.saveToPnach('SWORD') + '\n',
 			levelTracker.shield.saveToPnach('SHIELD') + '\n',
@@ -517,21 +540,39 @@ function FunctionApp() {
 		})
 		magicCostPnachCodes.unshift('\n//MAGIC COSTS\n')
 
-		let criticalPnachCodes = allCriticals.map(criticalExtra => {
-			return criticalExtra.saveToPnach()
+		// let criticalPnachCodes = allCriticals.map(criticalExtra => {
+		// 	return criticalExtra.saveToPnach()
+		// })
+		// criticalPnachCodes.unshift('\n//CRITICAL EXTRAS\n')
+
+		let startingAbilityPnachCodes = allStartingAbilities.map(characterAbilities => {
+			let ret = '// ' + characterAbilities.character.toUpperCase() + '\n'
+			characterAbilities.abilities.forEach(ability => {
+				ret += ability.saveToPnach()
+			})
+			return ret
 		})
-		criticalPnachCodes.unshift('\n//CRITICAL EXTRAS\n')
+		startingAbilityPnachCodes.unshift('\n//STARTING ABILITIES\n')
 
 		let startingPnachCodes = ['\n//STARTING STATUS\n']
 		startingPnachCodes.push(startingStatus.saveToPnach())
+
+		// let startingStatusPnachCodes = startingStatus.map(character => {
+		// 	return character.saveToPnach()
+		// })
+		// startingStatusPnachCodes.unshift('\n//STARTING STATUS\n')
 
 		let cheatPnachCodes = allCheats.map(cheat => {
 			return cheat.saveToPnach()
 		})
 		cheatPnachCodes.unshift('\n//CHEAT CODES\n')
 
+		// let pnachCodes = trackerPnachCodes.concat(chestPnachCodes, popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes, magicCostPnachCodes,
+		// 	criticalPnachCodes, startingPnachCodes, cheatPnachCodes)
 		let pnachCodes = trackerPnachCodes.concat(chestPnachCodes, popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes, magicCostPnachCodes,
-			criticalPnachCodes, startingPnachCodes, cheatPnachCodes)
+			startingAbilityPnachCodes, startingPnachCodes, cheatPnachCodes)
+		// let pnachCodes = trackerPnachCodes.concat(chestPnachCodes, popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes, magicCostPnachCodes,
+		// 	startingStatusPnachCodes, cheatPnachCodes)
 
 		const element = document.createElement('a')
 		const file = new Blob(pnachCodes, { type: 'text/plain;charset=utf-8' })
@@ -596,10 +637,7 @@ function FunctionApp() {
 		})
 		equipmentSaveData = ['"equipmentsData":[', equipmentSaveData.filter(s => s !== '').join(), '],']
 
-		let levelSaveData = allLevels.map(level => {
-			return level.saveToJSON()
-		})
-		levelSaveData = ['"levelsData":[', levelSaveData.join('').slice(0, -1), '],']
+		let levelSaveData = ['"levelsData":[', allLevels.map(level => { return level.saveToJSON() }).join('').slice(0, -1), '],']
 
 		let magicCostSaveData = allMagics.map(magicType => {
 			let ret = ''
@@ -612,15 +650,25 @@ function FunctionApp() {
 		})
 		magicCostSaveData = ['"magicData":[', magicCostSaveData.filter(s => s !== '').join(), '],']
 
-		let criticalSaveData = allCriticals.map(critical => {
-			return critical.saveToJSON()
-		})
-		criticalSaveData = ['"criticalsData":[', criticalSaveData.join('').slice(0, -1), '],']
+		// let criticalSaveData = allCriticals.map(critical => {
+		// 	return critical.saveToJSON()
+		// })
+		// criticalSaveData = ['"criticalsData":[', criticalSaveData.join('').slice(0, -1), '],']
 
-		let cheatSaveData = allCheats.map(cheat => {
-			return cheat.saveToJSON()
+		let startingAbilitySaveData = allStartingAbilities.map(characterAbilities => {
+			let ret = ''
+			characterAbilities.abilities.forEach(ability => {
+				ret += ability.saveToJSON()
+			})
+			if (ret !== '')
+				return '{"character":"' + characterAbilities.character + '","abilities":[' + ret.slice(0, -1) + ']}'
+			return ret
 		})
-		cheatSaveData = ['"cheatsData":[', cheatSaveData.join('').slice(0, -1), '],']
+		startingAbilitySaveData = ['"startingAbilitiesData":[', startingAbilitySaveData.filter(s => s !== '').join(), '],']
+
+		// let startingStatusSaveData = ['"startingStatusData":[', startingStatus.map(character => { return character.saveToJSON() }).filter(s => s !== '').join(), '],']
+
+		let cheatSaveData = ['"cheatsData":[', allCheats.map(cheat => { return cheat.saveToJSON() }).join('').slice(0, -1), '],']
 
 		let saveData = ['{',
 			chestSaveData.join(''),
@@ -630,8 +678,10 @@ function FunctionApp() {
 			equipmentSaveData.join(''),
 			levelSaveData.join(''),
 			magicCostSaveData.join(''),
-			criticalSaveData.join(''),
+			// criticalSaveData.join(''),
+			startingAbilitySaveData.join(''),
 			'"startingStatusData":' + startingStatus.saveToJSON() + ',',
+			// startingStatusSaveData.join(''),
 			cheatSaveData.join('').slice(0, -1),
 			'}']
 
@@ -816,15 +866,45 @@ function FunctionApp() {
 		globalIndex = 0
 
 		let criticalLoadData = (allLoadData.hasOwnProperty('criticalsData') ? allLoadData.criticalsData : [])
-		let newAllCriticals = criticalData.map(critical => {
+		let newAllCriticals = startingAbilityData[0].abilities.map(ability => {
 			if (globalIndex < criticalLoadData.length) {
-				if (criticalLoadData[globalIndex].vanillaAddress === critical.vanillaAddress) {
-					let ret = critical.loadFromJSON(criticalLoadData[globalIndex])
+				if (criticalLoadData[globalIndex].vanillaAddress === ability.vanillaAddress) {
+					let ret = ability.loadFromJSON(criticalLoadData[globalIndex])
 					globalIndex++
 					return ret
 				}
 			}
-			return critical
+			return ability
+		})
+		globalIndex = 0
+
+		let startingAbilityLoadData = (allLoadData.hasOwnProperty('startingAbilitiesData') ? allLoadData.startingAbilitiesData : [])
+		let newAllStartingAbilities = startingAbilityData.map((characterAbilities, index) => {
+			if (index === 0)
+				return {
+					character: characterAbilities.character,
+					abilities: newAllCriticals
+				}
+			if (globalIndex < startingAbilityLoadData.length) {
+				if (startingAbilityLoadData[globalIndex].character === characterAbilities.character) {
+					let startingAbilityIndex = 0
+					let newStartingAbilities = characterAbilities.abilities.map(ability => {
+						if (startingAbilityIndex < startingAbilityLoadData[globalIndex].abilities.length) {
+							if (startingAbilityLoadData[globalIndex].abilities[startingAbilityIndex].vanillaAddress === ability.vanillaAddress) {
+								startingAbilityIndex++
+								return ability.loadFromJSON(startingAbilityLoadData[globalIndex].abilities[startingAbilityIndex - 1])
+							}
+						}
+						return ability
+					})
+					globalIndex++
+					return {
+						...characterAbilities,
+						abilities: newStartingAbilities
+					}
+				}
+			}
+			return characterAbilities
 		})
 		globalIndex = 0
 
@@ -850,9 +930,15 @@ function FunctionApp() {
 		setAllEquipments(newAllEquipments)
 		setAllLevels(newAllLevels)
 		setAllMagics(newAllMagics)
-		setAllCriticals(newAllCriticals)
+		// setAllCriticals(newAllCriticals)
+		setAllStartingAbilities(newAllStartingAbilities)
 		setAllCheats(newAllCheats)
 		setStartingStatus(newStartingStatus)
+		setStartingStatusFieldData({
+			currentMunny: newStartingStatus.munny,
+			currentStartingHP: newStartingStatus.hp,
+			currentStartingMP: newStartingStatus.mp,
+		})
 	}
 	//#endregion
 
@@ -1225,29 +1311,73 @@ function FunctionApp() {
 					</MagicPage>
 				</Tab>
 				<Tab
-					eventKey='critical'
+					eventKey='startingStatus'
 					title={<Icon
-						fileName={'critical'}
-						displayText={'Critical Extra'}
+						fileName={'starting'}
+						displayText={'Starting Status'}
 						type={'tab'}
 					/>}
 				>
-					<CriticalPage
+					<StartingAbilityPage
 						style={styles}
-						criticalData={allCriticals}
-						fieldData={criticalFieldData}
-						rewardList={rewardsData[criticalFieldData.currentRewardType].rewards}
-						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, criticalFieldData, setCriticalFieldData)}
-						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, criticalFieldData, setCriticalFieldData)}
-						onRowCheck={(e) => onRowCheck(true, e.target.value, '', '', criticalFieldData, allCriticals, setAllCriticals)}
-						onCheckAll={() => onCheckAll(true, '', '', criticalFieldData, setCriticalFieldData, allCriticals, setAllCriticals)}
+						startingStatusData={startingStatus}
+						startingAbilityData={allStartingAbilities[startingAbilityFieldData.currentCharacter]}
+						fieldData={{ ...startingAbilityFieldData, ...startingStatusFieldData }}
+						rewardList={rewardsData[startingAbilityFieldData.currentRewardType].rewards}
+						keybladeList={rewardsData[7].rewards}
+						armorList={rewardsData[17].rewards.concat(rewardsData[2].rewards)}
+						accessoryList={rewardsData[17].rewards.concat(rewardsData[1].rewards)}
+						handleCharacterChange={(e) => handleTableChange(e.target.value, 'currentCharacter', 'abilities', startingAbilityFieldData, setStartingAbilityFieldData,
+							allStartingAbilities, setAllStartingAbilities)}
+						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, startingAbilityFieldData, setStartingAbilityFieldData)}
+						onAbilityRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, startingAbilityFieldData, setStartingAbilityFieldData)}
+						onStatusRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, startingStatusFieldData, setStartingStatusFieldData)}
+						onInputChange={(e) => handleFieldChange(e.target.name,
+							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
+							startingStatusFieldData, setStartingStatusFieldData)
+						}
+						onRowCheck={(e) => onRowCheck(false, e.target.value, 'currentCharacter', 'abilities', startingAbilityFieldData, allStartingAbilities, setAllStartingAbilities)}
+						onCheckAll={() => onCheckAll(false, 'currentCharacter', 'abilities', startingAbilityFieldData, setStartingAbilityFieldData, allStartingAbilities,
+							setAllStartingAbilities)}
 						onClick={(e) => {
-							let replacement = {
+							let replacementA = {
 								reward: {
-									...rewardsData[criticalFieldData.currentRewardType].rewards[criticalFieldData.currentReward]
+									...rewardsData[startingAbilityFieldData.currentRewardType].rewards[startingAbilityFieldData.currentReward]
 								}
 							}
-							handleReplace(true, e.target.name === 'replaceButton', replacement, '', '', criticalFieldData, setCriticalFieldData, allCriticals, setAllCriticals)
+							let replacementB = {
+								keyblade: {
+									...rewardsData[7].rewards[startingStatusFieldData.currentKeyblade]
+								},
+								armor: {
+									...rewardsData[2].rewards[startingStatusFieldData.currentArmor - 1]
+								},
+								accessory: {
+									...rewardsData[1].rewards[startingStatusFieldData.currentAccessory - 1]
+								},
+								munny: startingStatusFieldData.currentMunny,
+								hp: startingStatusFieldData.currentStartingHP,
+								mp: startingStatusFieldData.currentStartingMP
+							}
+							let final
+							let newFieldData = { ...startingStatusFieldData }
+							if (e.target.name === 'replaceButton')
+								final = startingStatus.replace(replacementB)
+							else {
+								final = startingStatus.vanilla()
+								newFieldData = {
+									currentKeyblade: 0,
+									currentArmor: 0,
+									currentAccessory: 0,
+									currentMunny: 0,
+									currentStartingHP: 20,
+									currentStartingMP: 100
+								}
+							}
+							handleReplace(false, e.target.name === 'replaceButton', replacementA, 'currentCharacter', 'abilities', startingAbilityFieldData, setStartingAbilityFieldData,
+								allStartingAbilities, setAllStartingAbilities)
+							setStartingStatus(final)
+							setStartingStatusFieldData(newFieldData)
 						}}
 					>
 						<HelpModal tab={currentTab} />
@@ -1261,7 +1391,7 @@ function FunctionApp() {
 								reader.onload = (e) => onFileUpload(e.target.result)
 							}}
 						/>
-					</CriticalPage>
+					</StartingAbilityPage>
 				</Tab>
 				<Tab
 					eventKey='cheat'
@@ -1298,91 +1428,6 @@ function FunctionApp() {
 							}}
 						/>
 					</CheatPage>
-				</Tab>
-				<Tab
-					eventKey='startingStatus'
-					title={<Icon
-						fileName={'starting'}
-						displayText={'Starting Status'}
-						type={'tab'}
-					/>}
-				>
-					<StartingPage
-						style={styles}
-						startingStatusData={startingStatus}
-						fieldData={startingStatusFieldData}
-						keybladeList={rewardsData[7].rewards}
-						armorList={rewardsData[17].rewards.concat(rewardsData[2].rewards)}
-						accessoryList={rewardsData[17].rewards.concat(rewardsData[1].rewards)}
-						donaldList={rewardsData[17].rewards.concat(rewardsData[0].rewards)}
-						goofyList={rewardsData[17].rewards.concat(rewardsData[0].rewards)}
-						onRewardChange={(e) => handleFieldChange(e.target.name, e.target.value, startingStatusFieldData, setStartingStatusFieldData)}
-						onInputChange={(e) => handleFieldChange(e.target.name,
-							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
-							startingStatusFieldData, setStartingStatusFieldData)
-						}
-						onClick={(e) => {
-							let replacement = {
-								keyblade: {
-									...rewardsData[7].rewards[startingStatusFieldData.currentKeyblade]
-								},
-								armor: {
-									...rewardsData[2].rewards[startingStatusFieldData.currentArmor - 1]
-								},
-								accessory: {
-									...rewardsData[1].rewards[startingStatusFieldData.currentAccessory - 1]
-								},
-								munny: startingStatusFieldData.currentMunny,
-								hp: startingStatusFieldData.currentStartingHP,
-								mp: startingStatusFieldData.currentStartingMP,
-								donald1: {
-									...rewardsData[0].rewards[startingStatusFieldData.currentDonald1 - 1]
-								},
-								donald2: {
-									...rewardsData[0].rewards[startingStatusFieldData.currentDonald2 - 1]
-								},
-								goofy1: {
-									...rewardsData[0].rewards[startingStatusFieldData.currentGoofy1 - 1]
-								},
-								goofy2: {
-									...rewardsData[0].rewards[startingStatusFieldData.currentGoofy2 - 1]
-								}
-							}
-							let final
-							let newFieldData = { ...startingStatusFieldData }
-							if (e.target.name === 'replaceButton')
-								final = startingStatus.replace(replacement)
-							else {
-								final = startingStatus.vanilla()
-								newFieldData = {
-									currentKeyblade: 0,
-									currentArmor: 0,
-									currentAccessory: 0,
-									currentMunny: 0,
-									currentStartingHP: 20,
-									currentStartingMP: 100,
-									currentDonald1: 28,
-									currentDonald2: 29,
-									currentGoofy1: 33,
-									currentGoofy2: 64
-								}
-							}
-							setStartingStatus(final)
-							setStartingStatusFieldData(newFieldData)
-						}}
-					>
-						<HelpModal tab={currentTab} />
-						<SaveLoadModal
-							handleSaveAsPnach={handleSaveAsPnach}
-							handleSaveAsJSON={handleSaveAsJSON}
-							onFileUpload={(e) => {
-								let file = e.target.files[0]
-								let reader = new FileReader()
-								reader.readAsText(file)
-								reader.onload = (e) => onFileUpload(e.target.result)
-							}}
-						/>
-					</StartingPage>
 				</Tab>
 			</Tabs>
 		</div>

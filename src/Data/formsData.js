@@ -120,11 +120,11 @@ export const formsData = [
 		],
 		driveLevels: [
 			new FormLevel('Valor LV2', new Reward('Auto Valor', 0x0181, 'Ability'), 0x11D1A22E, 80, 0x11D1A228),
-			new FormLevel('Valor LV3', new Reward('High Jump LV 1', 0x005E, 'Ability'), 0x11D1A236, 160, 0x11D1A230),
+			new FormLevel('Valor LV3', new Reward('High Jump LV 1', 0x005E, 'HighJump'), 0x11D1A236, 160, 0x11D1A230),
 			new FormLevel('Valor LV4', new Reward('Combo Plus', 0x00A2, 'Ability'), 0x11D1A23E, 280, 0x11D1A238),
-			new FormLevel('Valor LV5', new Reward('High Jump LV 2', 0x005F, 'Ability'), 0x11D1A246, 448, 0x11D1A240),
+			new FormLevel('Valor LV5', new Reward('High Jump LV 2', 0x005F, 'HighJump'), 0x11D1A246, 448, 0x11D1A240),
 			new FormLevel('Valor LV6', new Reward('Combo Plus', 0x00A2, 'Ability'), 0x11D1A24E, 560, 0x11D1A248),
-			new FormLevel('Valor LV7', new Reward('High Jump LV 3', 0x0060, 'Ability'), 0x11D1A256, 672, 0x11D1A250)
+			new FormLevel('Valor LV7', new Reward('High Jump LV 3', 0x0060, 'HighJump'), 0x11D1A256, 672, 0x11D1A250)
 		]
 	},
 	{
@@ -161,11 +161,11 @@ export const formsData = [
 		],
 		driveLevels: [
 			new FormLevel('Wisdom LV2', new Reward('Auto Wisdom', 0x0182, 'Ability'), 0x11D1A266, 20, 0x11D1A260),
-			new FormLevel('Wisdom LV3', new Reward('Quick Run LV 1', 0x0062, 'Ability'), 0x11D1A26E, 60, 0x11D1A268),
+			new FormLevel('Wisdom LV3', new Reward('Quick Run LV 1', 0x0062, 'QuickRun'), 0x11D1A26E, 60, 0x11D1A268),
 			new FormLevel('Wisdom LV4', new Reward('MP Rage', 0x019C, 'Ability'), 0x11D1A276, 72, 0x11D1A270),
-			new FormLevel('Wisdom LV5', new Reward('Quick Run LV 2', 0x0063, 'Ability'), 0x11D1A27E, 90, 0x11D1A278),
+			new FormLevel('Wisdom LV5', new Reward('Quick Run LV 2', 0x0063, 'QuickRun'), 0x11D1A27E, 90, 0x11D1A278),
 			new FormLevel('Wisdom LV6', new Reward('MP Haste', 0x019D, 'Ability'), 0x11D1A286, 108, 0x11D1A280),
-			new FormLevel('Wisdom LV7', new Reward('Quick Run LV 3', 0x0064, 'Ability'), 0x11D1A28E, 150, 0x11D1A288)
+			new FormLevel('Wisdom LV7', new Reward('Quick Run LV 3', 0x0064, 'QuickRun'), 0x11D1A28E, 150, 0x11D1A288)
 		]
 	},
 	{
@@ -202,11 +202,11 @@ export const formsData = [
 		],
 		driveLevels: [
 			new FormLevel('Limit LV2', new Reward('Auto Limit', 0x0238, 'Ability'), 0x11D1A29E, 3, 0x11D1A298),
-			new FormLevel('Limit LV3', new Reward('Dodge Roll LV 1', 0x0234, 'Ability'), 0x11D1A2A6, 6, 0x11D1A2A0),
+			new FormLevel('Limit LV3', new Reward('Dodge Roll LV 1', 0x0234, 'DodgeRoll'), 0x11D1A2A6, 6, 0x11D1A2A0),
 			new FormLevel('Limit LV4', new Reward('Draw', 0x0195, 'Ability'), 0x11D1A2AE, 12, 0x11D1A2A8),
-			new FormLevel('Limit LV5', new Reward('Dodge Roll LV 2', 0x0235, 'Ability'), 0x11D1A2B6, 19, 0x11D1A2B0),
+			new FormLevel('Limit LV5', new Reward('Dodge Roll LV 2', 0x0235, 'DodgeRoll'), 0x11D1A2B6, 19, 0x11D1A2B0),
 			new FormLevel('Limit LV6', new Reward('Lucky Lucky', 0x0197, 'Ability'), 0x11D1A2BE, 23, 0x11D1A2B8),
-			new FormLevel('Limit LV7', new Reward('Dodge Roll LV 3', 0x0236, 'Ability'), 0x11D1A2C6, 36, 0x11D1A2C0)
+			new FormLevel('Limit LV7', new Reward('Dodge Roll LV 3', 0x0236, 'DodgeRoll'), 0x11D1A2C6, 36, 0x11D1A2C0)
 		]
 	},
 	{
@@ -243,11 +243,11 @@ export const formsData = [
 		],
 		driveLevels: [
 			new FormLevel('Master LV2', new Reward('Auto Master', 0x0183, 'Ability'), 0x11D1A2D6, 60, 0x11D1A2D0),
-			new FormLevel('Master LV3', new Reward('Aerial Dodge LV 1', 0x0066, 'Ability'), 0x11D1A2DE, 180, 0x11D1A2D8),
+			new FormLevel('Master LV3', new Reward('Aerial Dodge LV 1', 0x0066, 'AerialDodge'), 0x11D1A2DE, 180, 0x11D1A2D8),
 			new FormLevel('Master LV4', new Reward('Air Combo Plus', 0x00A3, 'Ability'), 0x11D1A2E6, 216, 0x11D1A2E0),
-			new FormLevel('Master LV5', new Reward('Aerial Dodge LV 2', 0x0067, 'Ability'), 0x11D1A2EE, 270, 0x11D1A2E8),
+			new FormLevel('Master LV5', new Reward('Aerial Dodge LV 2', 0x0067, 'AerialDodge'), 0x11D1A2EE, 270, 0x11D1A2E8),
 			new FormLevel('Master LV6', new Reward('Air Combo Plus', 0x00A3, 'Ability'), 0x11D1A2F6, 324, 0x11D1A2F0),
-			new FormLevel('Master LV7', new Reward('Aerial Dodge LV 3', 0x0068, 'Ability'), 0x11D1A2FE, 450, 0x11D1A2F8)
+			new FormLevel('Master LV7', new Reward('Aerial Dodge LV 3', 0x0068, 'AerialDodge'), 0x11D1A2FE, 450, 0x11D1A2F8)
 		]
 	},
 	{
@@ -284,11 +284,11 @@ export const formsData = [
 		],
 		driveLevels: [
 			new FormLevel('Final LV2', new Reward('Auto Final', 0x0184, 'Ability'), 0x11D1A30E, 12, 0x11D1A308),
-			new FormLevel('Final LV3', new Reward('Glide LV 1', 0x006A, 'Ability'), 0x11D1A316, 24, 0x11D1A310),
+			new FormLevel('Final LV3', new Reward('Glide LV 1', 0x006A, 'Glide'), 0x11D1A316, 24, 0x11D1A310),
 			new FormLevel('Final LV4', new Reward('Form Boost', 0x018E, 'Ability'), 0x11D1A31E, 48, 0x11D1A318),
-			new FormLevel('Final LV5', new Reward('Glide LV 2', 0x006B, 'Ability'), 0x11D1A326, 76, 0x11D1A320),
+			new FormLevel('Final LV5', new Reward('Glide LV 2', 0x006B, 'Glide'), 0x11D1A326, 76, 0x11D1A320),
 			new FormLevel('Final LV6', new Reward('Form Boost', 0x018E, 'Ability'), 0x11D1A32E, 133, 0x11D1A328),
-			new FormLevel('Final LV7', new Reward('Glide LV 3', 0x006C, 'Ability'), 0x11D1A336, 157, 0x11D1A330)
+			new FormLevel('Final LV7', new Reward('Glide LV 3', 0x006C, 'Glide'), 0x11D1A336, 157, 0x11D1A330)
 		]
 	}
 ]

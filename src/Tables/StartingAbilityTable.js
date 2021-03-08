@@ -2,10 +2,10 @@ import React from 'react'
 import Table from 'react-bootstrap/Table'
 import Icon from '../Components/Icon'
 
-function CriticalTable(props) {
-	let criticalList = props.allCriticals.map((ce, index) => {
+function StartingAbilityTable(props) {
+	let abilityList = props.allStartingAbilities.map((ability, index) => {
 		let backgroundColor = ''
-		if (ce.isReplaced()) {
+		if (ability.isReplaced()) {
 			if (index % 2 === 0)
 				backgroundColor = '#225533'
 			else
@@ -14,28 +14,28 @@ function CriticalTable(props) {
 		return (
 			<tr
 				style={{ backgroundColor: backgroundColor }}
-				key={ce.vanillaAddress}
+				key={ability.vanillaAddress}
 			>
 				<td>
 					<input
 						type='checkbox'
 						name={'criticals'}
 						value={index}
-						checked={ce.toBeReplaced}
+						checked={ability.toBeReplaced}
 						onChange={props.onRowCheck}
 					/>
 				</td>
 				<td>
 					<Icon
-						fileName={ce.vanillaReward.iconType}
-						displayText={ce.vanillaReward.reward}
+						fileName={ability.vanillaReward.iconType}
+						displayText={ability.vanillaReward.reward}
 						type={'row'}
 					/>
 				</td>
 				<td>
 					<Icon
-						fileName={ce.replacementReward.iconType}
-						displayText={ce.replacementReward.reward}
+						fileName={ability.replacementReward.iconType}
+						displayText={ability.replacementReward.reward}
 						type={'row'}
 					/>
 				</td>
@@ -51,7 +51,7 @@ function CriticalTable(props) {
 						<th>
 							<input
 								type='checkbox'
-								name={'criticalExtras'}
+								name={'startingAbilities'}
 								checked={props.selectAll}
 								onChange={props.onCheckAll}
 							/>
@@ -65,11 +65,11 @@ function CriticalTable(props) {
 					</tr>
 				</thead>
 				<tbody>
-					{criticalList}
+					{abilityList}
 				</tbody>
 			</Table>
 		</div>
 	)
 }
 
-export default CriticalTable
+export default StartingAbilityTable

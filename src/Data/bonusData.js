@@ -385,7 +385,7 @@ export const bonusData = [
 			new BonusFight('Storm Rider',
 				new BonusReward(0x01D10901, 0, new Reward('Thunder', 0x0017, 'Spell'), new Reward('EMPTY', 0x0000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
 				new BonusReward(0x01D10911, 1, new Reward('EMPTY', 0x0000, 'EMPTY'), new Reward('EMPTY', 0x0000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
-				new BonusReward(0x01D10921, 2, new Reward('Tornado Fusion (Whirli-Goof)', 0x00C9, 'Ability'), new Reward('EMPTY', 0x0000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
+				new BonusReward(0x01D10921, 2, new Reward('Tornado Fusion (Whirli-Goof)', 0x00C9, 'Limit'), new Reward('EMPTY', 0x0000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
 				new BonusReward(0x01D10931, 5, new Reward('EMPTY', 0x0000, 'EMPTY'), new Reward('EMPTY', 0x0000, 'EMPTY'), 25, 0, 0, 0, 0, 0))
 		]
 	}, {
@@ -407,7 +407,7 @@ export const bonusData = [
 				new BonusReward(0x01D11011, 2, new Reward('EMPTY', 0x0000, 'EMPTY'), new Reward('EMPTY', 0x0000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
 				null),
 			new BonusFight('Pete (Olympus Coliseum)',
-				new BonusReward(0x01D10821, 0, new Reward('Trinity Limit', 0x00C6, 'Ability'), new Reward('EMPTY', 0x0000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
+				new BonusReward(0x01D10821, 0, new Reward('Trinity Limit', 0x00C6, 'Limit'), new Reward('EMPTY', 0x0000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
 				new BonusReward(0x01D10831, 1, new Reward('EMPTY', 0x0000, 'EMPTY'), new Reward('EMPTY', 0x0000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
 				new BonusReward(0x01D10841, 2, new Reward('Hyper Healing', 0x01A3, 'Ability'), new Reward('EMPTY', 0x0000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
 				null),
@@ -449,7 +449,7 @@ export const bonusData = [
 			new BonusFight('Captain Barbossa',
 				new BonusReward(0x01D10AA1, 0, new Reward('Aerial Finish', 0x0110, 'Ability'), new Reward('EMPTY', 0x0000, 'EMPTY'), 0, 0, 0, 0, 0, 1),
 				new BonusReward(0x01D10AB1, 1, new Reward('EMPTY', 0x0000, 'EMPTY'), new Reward('EMPTY', 0x0000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
-				new BonusReward(0x01D10AC1, 2, new Reward('Teamwork (Knocksmash)', 0x00CA, 'Ability'), new Reward('Auto Limit', 0x01A1, 'Ability'), 0, 0, 0, 0, 0, 0),
+				new BonusReward(0x01D10AC1, 2, new Reward('Teamwork (Knocksmash)', 0x00CA, 'Limit'), new Reward('Auto Limit', 0x01A1, 'Ability'), 0, 0, 0, 0, 0, 0),
 				new BonusReward(0x01D10AD1, 7, new Reward('EMPTY', 0x0000, 'EMPTY'), new Reward('EMPTY', 0x0000, 'EMPTY'), 15, 0, 0, 0, 0, 0)),
 			new BonusFight('Grim Reaper I',
 				new BonusReward(0x01D11021, 0, new Reward('Horizontal Slash', 0x010F, 'Ability'), new Reward('EMPTY', 0x0000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
@@ -458,7 +458,7 @@ export const bonusData = [
 				new BonusReward(0x01D11051, 7, new Reward('EMPTY', 0x0000, 'EMPTY'), new Reward('EMPTY', 0x0000, 'EMPTY'), 10, 0, 0, 0, 0, 0)),
 			new BonusFight('Grim Reaper II',
 				new BonusReward(0x01D10AE1, 0, new Reward('Magnet', 0x0057, 'Spell'), new Reward('EMPTY', 0x0000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-				new BonusReward(0x01D10AF1, 1, new Reward('Flare Force (Duck Flare)', 0x00C8, 'Ability'), new Reward('EMPTY', 0x0000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
+				new BonusReward(0x01D10AF1, 1, new Reward('Flare Force (Duck Flare)', 0x00C8, 'Limit'), new Reward('EMPTY', 0x0000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
 				new BonusReward(0x01D10B01, 2, new Reward('EMPTY', 0x0000, 'EMPTY'), new Reward('EMPTY', 0x0000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
 				new BonusReward(0x01D10B11, 7, new Reward('EMPTY', 0x0000, 'EMPTY'), new Reward('EMPTY', 0x0000, 'EMPTY'), 15, 0, 0, 0, 0, 0))
 		]
@@ -544,7 +544,7 @@ export const bonusData = [
 		bonusFights: [
 			new BonusFight('Pete (Steamboat Fight)',
 				new BonusReward(0x01D10981, 0, new Reward('Dodge Slash', 0x0107, 'Ability'), new Reward('EMPTY', 0x0000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-				new BonusReward(0x01D10991, 1, new Reward('Fantasia (Comet)', 0x00C7, 'Ability'), new Reward('Auto Limit', 0x01A1, 'Ability'), 0, 0, 0, 0, 0, 0),
+				new BonusReward(0x01D10991, 1, new Reward('Fantasia (Comet)', 0x00C7, 'Limit'), new Reward('Auto Limit', 0x01A1, 'Ability'), 0, 0, 0, 0, 0, 0),
 				new BonusReward(0x01D109A1, 2, new Reward('EMPTY', 0x0000, 'EMPTY'), new Reward('EMPTY', 0x0000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
 				null),
 			new BonusFight('Pete (Timeless River)',
