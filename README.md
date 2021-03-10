@@ -1,5 +1,8 @@
 # Custom Seed Generator
 
+Site link:
+https://ghosttheboo.github.io/custom-seed-generator/
+
 ## Description
 
 This tool is used with the Garden of Assemblage mod to customize specific rewards and aspects of Kingdom Hearts 2 Final Mix.
