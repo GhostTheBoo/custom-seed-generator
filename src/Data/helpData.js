@@ -81,23 +81,6 @@ export const helpData = [
 		)
 	},
 	{
-		key: 'critical',
-		page: 'Critical Extra',
-		help: (
-			<div id='criticalPageHelp'>
-				<h6>Critical Extra</h6>
-				<p>
-					The seven extra critical mode abilities can each be changed to give anything else.
-					Keep in mind these rewards are only provided in critical mode.
-				</p>
-				<h6>Why Am I Red?</h6>
-				<p>
-					Critical mode extras can be anything so they will never show up as red.
-				</p>
-			</div>
-		)
-	},
-	{
 		key: 'equipment',
 		page: 'Equipment',
 		help: (
@@ -252,12 +235,18 @@ export const helpData = [
 			<div id='startingPageHelp'>
 				<h6>Starting Status</h6>
 				<p>
+					Sora, Donald, and Goofy can all have their starting equipment modified.
+					Select the desired character and then replace each reward with whatever you choose.
+				</p>
+				<p>
+					Only Sora's starting equipment and stats can be modified.
 					Select a starting equipment from the dropdowns for keyblade, armor, and accessory.
 					There is no starting armor or accessory in the vanilla game so their default is just EMPTY.
 					Select the values for Munny, HP, and MP.
 					Defaults are 0, 20, and 100.
-					Select Apply to use the inputted starting status.
-					Select Vanilla to not change any starting status.
+					Select REPLACE to use the inputted starting status.
+					Select Vanilla to revert any changes.
+					Keep in mind starting stats will be replaced everytime REPLACE is pressed so make sure all values are set correctly
 				</p>
 				<h6>Why Am I Red?</h6>
 				<p>

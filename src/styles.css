@@ -34,11 +34,15 @@ element.style {
 th {
 	font-size: 1em;
 	height: 36px;
-	text-align: center;
+	/* text-align: center; */
+	/* position: sticky;
+	top: 0;
+	background-color: #343a40;
+	box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4); */
 }
 tr {
 	height: 35px;
-	text-align: center;
+	/* text-align: center; */
 }
 
 /* .rewardTable {

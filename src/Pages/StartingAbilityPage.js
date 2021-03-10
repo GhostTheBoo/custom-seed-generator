@@ -16,7 +16,7 @@ function StartingAbilityPage(props) {
 						<GenericSelect
 							class={'startingAbility'}
 							selector={'Character'}
-							itemList={['Sora', 'Donald', 'Goofy']}
+							itemList={['Sora (Critical Mode)', 'Donald', 'Goofy']}
 							name={'currentCharacter'}
 							currentItem={props.fieldData.currentCharacter}
 							onChange={props.handleCharacterChange}

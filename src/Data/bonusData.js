@@ -72,7 +72,9 @@ export class BonusReward {
 		this.replace = (newBonusData) => {
 			let ret = this.copy()
 
-			ret.replacementCharacter = newBonusData.currentCharacter
+			ret.replacementCharacter = newBonusData.currentCharacter === 13
+				? ret.vanillaCharacter
+				: newBonusData.currentCharacter
 			ret.replacementReward1 = { ...newBonusData.rewardA }
 			ret.replacementReward2 = { ...newBonusData.rewardB }
 			ret.hpIncrease = newBonusData.currentBonusHP

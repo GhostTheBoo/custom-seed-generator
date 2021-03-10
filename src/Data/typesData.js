@@ -62,7 +62,8 @@ export const charactersData = [
 	'Jack Skellington',
 	'Simba',
 	'Tron',
-	'Riku'
+	'Riku',
+	'Vanilla'
 ]
 
 export const magicCostsData = [

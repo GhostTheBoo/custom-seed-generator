@@ -28,9 +28,6 @@ import LevelPage from './Pages/LevelPage'
 import MagicPage from './Pages/MagicPage'
 import StartingAbilityPage from './Pages/StartingAbilityPage'
 import CheatPage from './Pages/CheatPage'
-// import StartingPage from './Pages/StartingPage'
-// import StartingStatusPage from './Pages/StartingStatusPage'
-// import StartingStatusTable from './Tables/StartingStatusTable'
 
 
 function FunctionApp() {
@@ -52,7 +49,7 @@ function FunctionApp() {
 	const [bonusFieldData, setBonusFieldData] = useState({
 		currentWorld: 0,
 		currentFight: 0,
-		currentCharacter: 0,
+		currentCharacter: 13,
 		currentARewardType: 0,
 		currentAReward: 0,
 		currentBRewardType: 0,
@@ -122,24 +119,6 @@ function FunctionApp() {
 		selectAll: false
 	})
 	const [allStartingAbilities, setAllStartingAbilities] = useState(startingAbilityData)
-	// const [startingStatusFieldData, setStartingStatusFieldData] = useState({
-	// 	currentCharacter: 0,
-	// 	currentRewardType: 0,
-	// 	currentReward: 0,
-	// 	currentHP: 0,
-	// 	currentMP: 0,
-	// 	currentArmorSlot: 0,
-	// 	currentAccessorySlot: 0,
-	// 	currentItemSlot: 0,
-	// 	selectAll: false
-	// })
-	// const [startingStatus, setStartingStatus] = useState(startingStatusData)
-	// const [criticalFieldData, setCriticalFieldData] = useState({
-	// 	currentRewardType: 0,
-	// 	currentReward: 0,
-	// 	selectAll: false
-	// })
-	// const [allCriticals, setAllCriticals] = useState(criticalData)
 	const [cheatFieldData, setCheatFieldData] = useState({
 		selectAll: false
 	})
