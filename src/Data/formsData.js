@@ -56,16 +56,18 @@ export class FormLevel {
 
 			return ret
 		}
-		this.saveToPnach = () => {
+		this.saveToPnach = (isCommented) => {
 			let ret = ''
 			if (this.isRewardReplaced()) {
 				ret += 'patch=1,EE,' + this.rewardAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
 				ret += this.replacementReward.index.toString(16).toUpperCase().padStart(4, '0')
-				ret += ' // ' + this.level + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward + '\n'
+				if (isCommented) ret += ' // ' + this.level + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward
+				ret += '\n'
 			}
 			if (this.isEXPReplaced()) {
 				ret += 'patch=1,EE,' + this.EXPAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,' + this.replacementEXP.toString(16).toUpperCase().padStart(8, 0)
-				ret += ' // ' + this.replacementEXP + ' experience is now required to reach ' + this.level + '\n'
+				if (isCommented) ret += ' // ' + this.replacementEXP + ' experience is now required to reach ' + this.level
+				ret += '\n'
 			}
 			return ret
 		}

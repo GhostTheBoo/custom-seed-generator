@@ -38,12 +38,13 @@ export class MagicAbility {
 			ret.toBeReplaced = false
 			return ret
 		}
-		this.saveToPnach = () => {
+		this.saveToPnach = (isCommented) => {
 			let ret = ''
 			if (this.isReplaced()) {
 				ret += 'patch=1,EE,' + this.costAddress.toString(16).toUpperCase().padStart(8, '0')
 				ret += ',extended,' + this.replacementCost.toString(16).toUpperCase().padStart(8, '0')
-				ret += ' // ' + this.ability + ' Cost: ' + this.replacementCost + '\n'
+				if (isCommented) ret += ' // ' + this.ability + ' Cost: ' + this.replacementCost
+				ret += '\n'
 			}
 			return [ret, this]
 		}

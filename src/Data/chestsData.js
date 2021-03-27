@@ -40,13 +40,15 @@ export class Chest {
 			ret.toBeReplaced = false
 			return ret
 		}
-		this.saveToPnach = () => {
+		this.saveToPnach = (isCommented) => {
+			let ret = ''
 			if (this.isReplaced()) {
-				let ret = 'patch=1,EE,' + this.vanillaAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
+				ret = 'patch=1,EE,' + this.vanillaAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
 				ret += this.replacementReward.index.toString(16).toUpperCase().padStart(4, '0')
-				return ret + ' // ' + this.room + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward + '\n'
+				if (isCommented) ret += ' // ' + this.room + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward
+				ret += '\n'
 			}
-			return ''
+			return ret
 		}
 	}
 }

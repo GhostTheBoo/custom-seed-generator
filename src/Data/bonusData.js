@@ -118,28 +118,35 @@ export class BonusReward {
 
 			return ret
 		}
-		this.saveToPnach = () => {
+		this.saveToPnach = (isCommented) => {
 			let ret = ''
 			if (this.isCharacterReplaced()) {
 				ret += 'patch=1,EE,' + this.characterAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,'
-				ret += this.replacementCharacter.toString(16).toUpperCase().padStart(8, '0') + ' // Bonus reward is now given to ' + charactersData[this.replacementCharacter] + '\n'
+				ret += this.replacementCharacter.toString(16).toUpperCase().padStart(8, '0')
+				if (isCommented) ret += ' // Bonus reward is now given to ' + charactersData[this.replacementCharacter]
+				ret += '\n'
 			}
 			if (this.isStatsReplaced()) {
 				ret += 'patch=1,EE,' + this.statAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
 				ret += this.mpIncrease.toString(16).toUpperCase().padStart(2, '0') + this.hpIncrease.toString(16).toUpperCase().padStart(2, '0')
-				ret += ' // MP:' + this.mpIncrease + ' HP:' + this.hpIncrease + '\n'
+				if (isCommented) ret += ' // MP:' + this.mpIncrease + ' HP:' + this.hpIncrease
+				ret += '\n'
 			}
 			if (this.isSlotsReplaced()) {
 				ret += 'patch=1,EE,' + this.slotAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,'
 				ret += this.armorSlotIncrease.toString(16).toUpperCase().padStart(2, '0') + this.accessorySlotIncrease.toString(16).toUpperCase().padStart(2, '0')
 				ret += this.itemSlotIncrease.toString(16).toUpperCase().padStart(2, '0') + this.driveGaugeIncrease.toString(16).toUpperCase().padStart(2, '0')
-				ret += ' // Armor Slot:+' + this.armorSlotIncrease + ' Accessory Slot:+' + this.accessorySlotIncrease
-				ret += ' Item Slot:+' + this.itemSlotIncrease + ' Drive Gauge:+' + this.driveGaugeIncrease + '\n'
+				if (isCommented) {
+					ret += ' // Armor Slot:+' + this.armorSlotIncrease + ' Accessory Slot:+' + this.accessorySlotIncrease
+					ret += ' Item Slot:+' + this.itemSlotIncrease + ' Drive Gauge:+' + this.driveGaugeIncrease
+				}
+				ret += '\n'
 			}
 			if (this.isRewardsReplaced()) {
 				ret += 'patch=1,EE,' + this.rewardAddress.toString(16).toUpperCase().padStart(8, '0')
 				ret += ',extended,' + this.replacementReward2.index.toString(16).toUpperCase().padStart(4, '0') + this.replacementReward1.index.toString(16).toUpperCase().padStart(4, '0')
-				ret += ' // Replacement Reward #2:' + this.replacementReward2.reward + ', Replacement Reward #1:' + this.replacementReward1.reward + '\n'
+				if (isCommented) ret += ' // Replacement Reward #2:' + this.replacementReward2.reward + ', Replacement Reward #1:' + this.replacementReward1.reward
+				ret += '\n'
 			}
 			return ret + '\n'
 		}
@@ -220,11 +227,13 @@ export class BonusFight {
 			})
 			return new BonusFight(bonusFightJSON.fight, newSlots[0], newSlots[1], newSlots[2], newSlots[3])
 		}
-		this.saveToPnach = () => {
+		this.saveToPnach = (isCommented) => {
 			if (this.isReplaced()) {
-				let ret = '//' + this.fight + '\n'
+				let ret = '\n'
+				if (isCommented) ret = ret + '//' + this.fight
 				this.slots.filter(slot => Object.keys(slot).length !== 0).forEach((slot, slotID) => {
-					ret += '// Bonus Slot #' + (slotID + 1) + '\n' + slot.saveToPnach()
+					if (isCommented) ret += '// Bonus Slot #' + (slotID + 1) + '\n'
+					ret += slot.saveToPnach(isCommented)
 				})
 				return ret
 			}
