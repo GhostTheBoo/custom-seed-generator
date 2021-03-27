@@ -42,12 +42,15 @@ export class Popup {
 			ret.toBeReplaced = false
 			return ret
 		}
-		this.saveToPnach = () => {
+		this.saveToPnach = (isCommented) => {
+			let ret = ''
 			if (this.isReplaced()) {
-				let ret = 'patch=1,EE,' + this.vanillaAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000' + this.replacementReward.index.toString(16).toUpperCase().padStart(4, '0')
-				return ret + ' // ' + this.popup + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward + '\n'
+				ret += 'patch=1,EE,' + this.vanillaAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
+				ret += this.replacementReward.index.toString(16).toUpperCase().padStart(4, '0')
+				if (isCommented) ret += ' // ' + this.popup + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward
+				ret += '\n'
 			}
-			return ''
+			return ret
 		}
 	}
 }

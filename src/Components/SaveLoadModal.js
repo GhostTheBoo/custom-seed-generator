@@ -19,7 +19,7 @@ function SaveLoadModal(props) {
 				</Modal.Header>
 				<Modal.Body>
 					<Form.Row>
-						<Col xs='10'>
+						<Col xs='7'>
 							<Form.Group controlId='currentPnachFileName'>
 								<Form.Label column='sm' srOnly>Pnach File Name: </Form.Label>
 								<Form.Control
@@ -32,7 +32,16 @@ function SaveLoadModal(props) {
 								/>
 							</Form.Group>
 						</Col>
-						<Col>
+						<Col xs='3'>
+							<Form.Check
+								type={'checkbox'}
+								id={`isCommentedCheckbox`}
+								label={`Include Comments?`}
+								checked={props.isCommented}
+								onChange={props.onCommentChange}
+							/>
+						</Col>
+						<Col xs='2'>
 							<Button
 								variant='outline-light'
 								block

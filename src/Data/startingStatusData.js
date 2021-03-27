@@ -96,34 +96,56 @@ export class StartingStatus {
 			ret.mp = startingStatusJSON.mp
 			return ret
 		}
-		this.saveToPnach = () => {
-			let ret = this.keyblade.index !== 0x0029
-				? this.keybladeCode.join('') + this.keyblade.index.toString(16).toUpperCase().padStart(4, '0') + ' // ' + this.keyblade.reward + '\n'
-				: '// Vanilla starting Keyblade of Kingdom Key\n'
+		this.saveToPnach = (isCommented) => {
+			let ret = ''
+			if (this.keyblade.index !== 0x0029) {
+				ret += this.keybladeCode.join('') + this.keyblade.index.toString(16).toUpperCase().padStart(4, '0')
+				if (isCommented) ret += ' // ' + this.keyblade.reward
+				ret += '\n'
+			} else
+				if (isCommented) ret += '// Vanilla starting Keyblade of Kingdom Key\n'
 
-			ret += this.armor.index !== 0x0000
-				? this.armorCode.join('') + this.armor.index.toString(16).toUpperCase().padStart(4, '0') + ' // ' + this.armor.reward + '\n'
-				: '// Vanilla starting Armor of EMPTY\n'
+			if (this.armor.index !== 0x0000) {
+				ret += this.armorCode.join('') + this.armor.index.toString(16).toUpperCase().padStart(4, '0')
+				if (isCommented) ret += ' // ' + this.armor.reward
+				ret += '\n'
+			} else {
+				if (isCommented) ret += '// Vanilla starting Armor of EMPTY\n'
+			}
 
-			ret += this.accessory.index !== 0x0000
-				? this.accessoryCode.join('') + this.accessory.index.toString(16).toUpperCase().padStart(4, '0') + ' // ' + this.accessory.reward + '\n'
-				: '// Vanilla starting Accessory of EMPTY\n'
+			if (this.accessory.index !== 0x0000) {
+				ret += this.accessoryCode.join('') + this.accessory.index.toString(16).toUpperCase().padStart(4, '0')
+				if (isCommented) ret += ' // ' + this.accessory.reward
+				ret += '\n'
+			} else {
+				if (isCommented) ret += '// Vanilla starting Accessory of EMPTY\n'
+			}
 
-			ret += this.munny !== 0
-				? this.munnyCode.join('') + this.munny.toString(16).toUpperCase().padStart(8, '0') + ' // ' + this.munny + ' munny\n'
-				: '// Vanilla starting Munny of 0\n'
+			if (this.munny !== 0) {
+				ret += this.munnyCode.join('') + this.munny.toString(16).toUpperCase().padStart(8, '0')
+				if (isCommented) ret += ' // ' + this.munny + ' munny'
+				ret += '\n'
+			} else {
+				if (isCommented) ret += '// Vanilla starting Munny of 0\n'
+			}
 
 			if (this.hp !== 20) {
-				ret += this.hpCode.slice(0, 5).join('') + this.hp.toString(16).toUpperCase().padStart(2, '0') + ' // Max HP: ' + this.hp + '\n'
-				ret += this.hpCode[5] + this.hp.toString(16).toUpperCase().padStart(2, '0') + ' // Current HP: ' + this.hp + '\n'
+				ret += this.hpCode.slice(0, 5).join('') + this.hp.toString(16).toUpperCase().padStart(2, '0')
+				if (isCommented) ret += ' // Max HP: ' + this.hp
+				ret += '\n' + this.hpCode[5] + this.hp.toString(16).toUpperCase().padStart(2, '0')
+				if (isCommented) ret += ' // Current HP: ' + this.hp
+				ret += '\n'
 			} else
-				ret += '// Vanilla starting HP of 20\n'
+				if (isCommented) ret += '// Vanilla starting HP of 20\n'
 
 			if (this.mp !== 100) {
-				ret += this.mpCode.slice(0, 5).join('') + this.mp.toString(16).toUpperCase().padStart(2, '0') + ' // Max MP: ' + this.mp + '\n'
-				ret += this.mpCode[5] + this.mp.toString(16).toUpperCase().padStart(2, '0') + ' // Current MP: ' + this.mp + '\n'
+				ret += this.mpCode.slice(0, 5).join('') + this.mp.toString(16).toUpperCase().padStart(2, '0')
+				if (isCommented) ret += ' // Max MP: ' + this.mp
+				ret += '\n' + this.mpCode[5] + this.mp.toString(16).toUpperCase().padStart(2, '0')
+				if (isCommented) ret += ' // Current MP: ' + this.mp
+				ret += '\n'
 			} else
-				ret += '// Vanilla starting MP of 100\n'
+				if (isCommented) ret += '// Vanilla starting MP of 100\n'
 
 			return ret
 		}

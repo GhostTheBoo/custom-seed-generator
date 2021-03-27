@@ -153,33 +153,44 @@ export class Equipment {
 
 			return ret
 		}
-		this.saveToPnach = () => {
+		this.saveToPnach = (isCommented) => {
 			let ret = ''
 
 			if (this.isAbilityReplaced()) {
 				ret += 'patch=1,EE,' + this.abilityAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
-				ret += this.replacementAbility.index.toString(16).toUpperCase().padStart(4, '0') + ' // Ability: ' + this.replacementAbility.reward + '\n'
+				ret += this.replacementAbility.index.toString(16).toUpperCase().padStart(4, '0')
+				if (isCommented)
+					ret += ' // Ability: ' + this.replacementAbility.reward
+				ret += '\n'
 			}
 			if (this.isStatsReplaced()) {
 				ret += 'patch=1,EE,' + this.statAddress.toString(16).toUpperCase().padStart(8, 0) + ',extended,'
 				ret += this.ap.toString(16).toUpperCase().padStart(2, '0') + this.defense.toString(16).toUpperCase().padStart(2, '0')
 				ret += this.magic.toString(16).toUpperCase().padStart(2, '0') + this.strength.toString(16).toUpperCase().padStart(2, '0')
-				ret += ' // AP:' + this.ap + ' Defense:' + this.defense + ' Magic:' + this.magic + ' Strength:' + this.strength + '\n'
+				if (isCommented)
+					ret += ' // AP:' + this.ap + ' Defense:' + this.defense + ' Magic:' + this.magic + ' Strength:' + this.strength
+				ret += '\n'
 			}
 			if (this.isElementalResistanceChanged()) {
 				ret += 'patch=1,EE,' + this.elementalResistanceAddress.toString(16).toUpperCase().padStart(8, 0) + ',extended,'
 				ret += (100 - this.thunderResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - this.blizzardResistance).toString(16).toUpperCase().padStart(2, '0')
 				ret += (100 - this.fireResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - this.physicalResistance).toString(16).toUpperCase().padStart(2, '0')
-				ret += ' // Thunder:' + this.thunderResistance + '% Blizzard:' + this.blizzardResistance
-				ret += '% Fire:' + this.fireResistance + '% Physical:' + this.physicalResistance + '%\n'
+				if (isCommented)
+					ret += ' // Thunder:' + this.thunderResistance + '% Blizzard:' + this.blizzardResistance + '% Fire:' + this.fireResistance + '% Physical:' + this.physicalResistance + '%'
+				ret += '\n'
 			}
 			if (this.isOtherResistanceChanged()) {
 				ret += 'patch=1,EE,' + this.otherResistanceAddress.toString(16).toUpperCase().padStart(8, 0) + ',extended,00'
 				ret += (100 - this.universalResistance).toString(16).toUpperCase().padStart(2, '0')
 				ret += (100 - this.lightResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - this.darkResistance).toString(16).toUpperCase().padStart(2, '0')
-				ret += ' // Universal:' + this.universalResistance + '% Light:' + this.lightResistance + '% Dark:' + this.darkResistance + '%\n'
+				if (isCommented)
+					ret += ' // Universal:' + this.universalResistance + '% Light:' + this.lightResistance + '% Dark:' + this.darkResistance + '%'
+				ret += '\n'
 			}
-			return ret === '' ? ret : '// ' + this.name + '\n' + ret
+			if (ret === '') return ret
+			return isCommented
+				? '// ' + this.name + '\n' + ret
+				: ret
 		}
 	}
 }

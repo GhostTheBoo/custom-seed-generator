@@ -109,41 +109,54 @@ export class Level {
 
 			return ret
 		}
-		this.saveToPnach = () => {
+		this.saveToPnach = (isCommented) => {
 			let ret = ''
 
-			if (this.level === 99)
-				ret += '// Cannot Level to 100 so experience is not changed\n'
+			if (this.level === 99) {
+				if (isCommented) ret += '// Cannot Level to 100 so experience is not changed\n'
+			}
 			else
 				if (this.isEXPReplaced()) {
 					ret += 'patch=1,EE,' + this.expAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,' + this.replacementEXP.toString(16).toUpperCase().padStart(8, '0')
-					ret += ' // Next level at ' + this.replacementEXP + ' experience\n'
+					if (isCommented) ret += ' // Next level at ' + this.replacementEXP + ' experience'
+					ret += '\n'
 				}
 
 			if (this.isStatsReplaced()) {
 				ret += 'patch=1,EE,' + this.statAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,'
 				ret += this.standardAP.toString(16).toUpperCase().padStart(2, '0') + this.defense.toString(16).toUpperCase().padStart(2, '0')
 				ret += this.magic.toString(16).toUpperCase().padStart(2, '0') + this.strength.toString(16).toUpperCase().padStart(2, '0')
-				ret += ' // AP:' + this.standardAP + ' Magic:' + this.magic + ' Defense:' + this.defense + ' Strength:' + this.strength + '\n'
+				if (isCommented) ret += ' // AP:' + this.standardAP + ' Magic:' + this.magic + ' Defense:' + this.defense + ' Strength:' + this.strength
+				ret += '\n'
 			}
 
-			if (this.level === 1)
-				ret += '// No Level 1 Dream Weapon Rewards\n'
+			if (this.level === 1) {
+				if (isCommented) ret += '// No Level 1 Dream Weapon Rewards\n'
+			}
 			else {
 				if (this.isSwordReplaced()) {
 					ret += 'patch=1,EE,' + this.swordAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
-					ret += this.replacementSwordReward.index.toString(16).toUpperCase().padStart(4, '0') + ' // Sword Reward: ' + this.replacementSwordReward.reward + '\n'
+					ret += this.replacementSwordReward.index.toString(16).toUpperCase().padStart(4, '0')
+					if (isCommented) ret += ' // Sword Reward: ' + this.replacementSwordReward.reward
+					ret += '\n'
 				}
 				if (this.isShieldReplaced()) {
 					ret += 'patch=1,EE,' + this.shieldAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
-					ret += this.replacementShieldReward.index.toString(16).toUpperCase().padStart(4, '0') + ' // Shield Reward: ' + this.replacementShieldReward.reward + '\n'
+					ret += this.replacementShieldReward.index.toString(16).toUpperCase().padStart(4, '0')
+					if (isCommented) ret += ' // Shield Reward: ' + this.replacementShieldReward.reward
+					ret += '\n'
 				}
 				if (this.isStaffReplaced()) {
 					ret += 'patch=1,EE,' + this.staffAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,0000'
-					ret += this.replacementStaffReward.index.toString(16).toUpperCase().padStart(4, '0') + ' // Staff Reward: ' + this.replacementStaffReward.reward + '\n'
+					ret += this.replacementStaffReward.index.toString(16).toUpperCase().padStart(4, '0')
+					if (isCommented) ret += ' // Staff Reward: ' + this.replacementStaffReward.reward
+					ret += '\n'
 				}
 			}
-			return ret === '' ? ret : '// Level: ' + this.level + '\n' + ret
+			if (ret === '') return ret
+			return isCommented
+				? '// Level: ' + this.level + '\n' + ret
+				: ret
 		}
 	}
 }
