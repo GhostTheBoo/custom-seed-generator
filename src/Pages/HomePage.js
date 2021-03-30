@@ -2,6 +2,8 @@ import React from 'react'
 import { Row, Container } from 'react-bootstrap'
 
 function HomePage(props) {
+	let lastUpdateDate = 'March 29, 2021'
+
 	return (
 		<div>
 			<h1>Custom Seed Generator</h1>
@@ -27,6 +29,13 @@ function HomePage(props) {
 				This will bring up all the modified values from the previous session.
 				It is unrealistic for me to promise this feature works perfectly.
 				If any issues come up let me know and be sure not to delete the json file even if it does not seem to work.
+			</p>
+			<h3>More Information</h3>
+			<p>
+				The site is hosted using Github Pages.
+				The repository can be found <a target='_blank' rel='noopener noreferrer' href='https://github.com/GhostTheBoo/custom-seed-generator'>here</a>.
+				<br></br>
+				The site has most recently been updated on {lastUpdateDate}.
 			</p>
 			<Container fluid>
 				<Row>
