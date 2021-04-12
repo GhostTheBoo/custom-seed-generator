@@ -508,12 +508,11 @@ function FunctionApp() {
 				}
 			})
 			if (magicChangeCount > 0) {
-				let checkAddress = (lastAbility.costAddress + 0x10000000).toString(16).toUpperCase().padStart(8, '0')
 				prefix += 'patch=1,EE,E0' + (magicChangeCount + 3).toString(16).toUpperCase().padStart(2, '0') + 'FFFF,extended,1032BAE0 // If not on Title Screen\n'
 				prefix += 'patch=1,EE,E0' + (magicChangeCount + 2).toString(16).toUpperCase().padStart(2, '0') + '2002,extended,1032BAE0 // If not in Station of Serenity\n'
 				prefix += 'patch=1,EE,E0' + (magicChangeCount + 1).toString(16).toUpperCase().padStart(2, '0') + '0000,extended,1032BAD8 // If not screen transition\n'
 				prefix += 'patch=1,EE,E1' + magicChangeCount.toString(16).toUpperCase().padStart(2, '0') + '00' + lastAbility.replacementCost.toString(16).toUpperCase().padStart(2, '0')
-				prefix += ',extended,' + checkAddress
+				prefix += ',extended,1' + lastAbility.costAddress.toString(16).toUpperCase().padStart(7, '0')
 				if (isCommented) prefix += ' // If ' + lastAbility.ability + '\'s MP Cost is not ' + lastAbility.replacementCost
 				prefix += '\n'
 			}
@@ -536,13 +535,127 @@ function FunctionApp() {
 		let cheatPnachCodes = allCheats.map(cheat => { return cheat.saveToPnach() })
 		cheatPnachCodes.unshift('\n//CHEAT CODES\n')
 
-		let pnachCodes = trackerPnachCodes.concat(chestPnachCodes, popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes, magicCostPnachCodes,
+		let pnachCodes = [].concat(trackerPnachCodes, chestPnachCodes, popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes, magicCostPnachCodes,
 			startingAbilityPnachCodes, startingPnachCodes, cheatPnachCodes)
 
 		const element = document.createElement('a')
 		const file = new Blob(pnachCodes, { type: 'text/plain;charset=utf-8' })
 		element.href = URL.createObjectURL(file)
 		element.download = fileName.length !== 0 ? '(' + fileName + ').pnach' : 'F266B00B.pnach'
+		document.body.appendChild(element)
+		element.click()
+	}
+	function handleSaveAsLua(fileName) {
+		// let trackerPnachCodes = isCommented ? handleTracker() : []
+
+		let chestLuaCodes = allChests.map(worldList => {
+			let ret = isCommented ? '-- ' + worldList.world.toUpperCase() + '\n' : ''
+			worldList.chests.forEach(chest => {
+				ret += chest.saveToLua(isCommented)
+			})
+			return ret
+		})
+		chestLuaCodes.unshift('\n--CHESTS\n')
+
+		let popupLuaCodes = allPopups.map(worldList => {
+			let ret = isCommented ? '-- ' + worldList.world.toUpperCase() + '\n' : ''
+			worldList.popups.forEach(popup => {
+				ret += popup.saveToLua(isCommented)
+			})
+			return ret
+		})
+		popupLuaCodes.unshift('\n--POPUPS\n')
+
+		// let formPnachCodes = allForms.map(driveFormList => {
+		// 	let ret = isCommented ? '// ' + driveFormList.driveForm.toUpperCase() + '\n' : ''
+		// 	if (driveFormList.driveLevels.some(driveFormLevel => driveFormLevel.isRewardReplaced()))
+		// 		if (driveFormList.driveForm !== 'Summon')
+		// 			ret += driveFormList.removeGrowthJankCodes.join('')
+		// 	driveFormList.driveLevels.forEach(driveFormLevel => {
+		// 		ret += driveFormLevel.saveToPnach(isCommented)
+		// 	})
+		// 	return ret
+		// })
+		// formPnachCodes.unshift('\n//DRIVE FORMS\n')
+
+		let equipmentLuaCodes = allEquipments.map(equipmentTypeList => {
+			let ret = isCommented ? '-- ' + equipmentTypeList.equipmentType.toUpperCase() + '\n' : ''
+			equipmentTypeList.equipments.forEach(equipment => {
+				ret += equipment.saveToLua(isCommented)
+			})
+			return ret
+		})
+		equipmentLuaCodes.unshift('\n--EQUIPMENT\n')
+
+		// let bonusPnachCodes = allBonuses.map(worldList => {
+		// 	let ret = isCommented ? '// ' + worldList.world.toUpperCase() + '\n' : ''
+		// 	worldList.bonusFights.forEach(bonusFight => {
+		// 		ret += bonusFight.saveToPnach(isCommented)
+		// 	})
+		// 	return ret
+		// })
+		// bonusPnachCodes.unshift('\n//BONUS REWARDS\n')
+
+		// let levelPnachCodes = allLevels.map(level => {
+		// 	return level.saveToPnach(isCommented)
+		// })
+		// levelPnachCodes.unshift('\n//LEVEL REWARDS\n')
+
+		// let magicCostLuaCodes = allMagics.map(magicType => {
+		// 	let prefix = isCommented ? '-- ' + magicType.magicType.toUpperCase() + '\n' : ''
+		// 	let ret = ''
+		// 	let tempString = ''
+		// 	let tempLastAbility
+		// 	let magicChangeCount = 0
+		// 	let lastAbility
+		// 	magicType.abilities.forEach(ability => {
+		// 		[tempString, tempLastAbility] = ability.saveToLua(isCommented)
+		// 		if (tempString !== '') {
+		// 			ret += tempString
+		// 			lastAbility = tempLastAbility
+		// 			magicChangeCount++
+		// 		}
+		// 	})
+		// 	if (magicChangeCount > 0) {
+		// 		let checkAddress = (lastAbility.costAddress + 0x10000000).toString(16).toUpperCase().padStart(8, '0')
+		// 		prefix += 'patch=1,EE,E0' + (magicChangeCount + 3).toString(16).toUpperCase().padStart(2, '0') + 'FFFF,extended,1032BAE0 // If not on Title Screen\n'
+		// 		prefix += 'patch=1,EE,E0' + (magicChangeCount + 2).toString(16).toUpperCase().padStart(2, '0') + '2002,extended,1032BAE0 // If not in Station of Serenity\n'
+		// 		prefix += 'patch=1,EE,E0' + (magicChangeCount + 1).toString(16).toUpperCase().padStart(2, '0') + '0000,extended,1032BAD8 // If not screen transition\n'
+		// 		prefix += 'patch=1,EE,E1' + magicChangeCount.toString(16).toUpperCase().padStart(2, '0') + '00' + lastAbility.replacementCost.toString(16).toUpperCase().padStart(2, '0')
+		// 		prefix += ',extended,' + checkAddress
+		// 		if (isCommented) prefix += ' // If ' + lastAbility.ability + '\'s MP Cost is not ' + lastAbility.replacementCost
+		// 		prefix += '\n'
+		// 	}
+		// 	return prefix + ret
+		// })
+		// magicCostLuaCodes.unshift('\n//MAGIC COSTS\n')
+
+		// let startingAbilityPnachCodes = allStartingAbilities.map(characterAbilities => {
+		// 	let ret = isCommented ? '// ' + characterAbilities.character.toUpperCase() + '\n' : ''
+		// 	characterAbilities.abilities.forEach(ability => {
+		// 		ret += ability.saveToPnach(isCommented)
+		// 	})
+		// 	return ret
+		// })
+		// startingAbilityPnachCodes.unshift('\n//STARTING ABILITIES\n')
+
+		// let startingPnachCodes = ['\n//STARTING STATUS\n']
+		// startingPnachCodes.push(startingStatus.saveToPnach(isCommented))
+
+		// let cheatPnachCodes = allCheats.map(cheat => { return cheat.saveToPnach() })
+		// cheatPnachCodes.unshift('\n//CHEAT CODES\n')
+
+		// let pnachCodes = trackerPnachCodes.concat(chestPnachCodes, popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes, magicCostPnachCodes,
+		// 	startingAbilityPnachCodes, startingPnachCodes, cheatPnachCodes)
+
+
+
+		let luaCodes = [].concat(chestLuaCodes, popupLuaCodes, equipmentLuaCodes)
+
+		const element = document.createElement('a')
+		const file = new Blob(luaCodes, { type: 'text/plain;charset=utf-8' })
+		element.href = URL.createObjectURL(file)
+		element.download = fileName.length !== 0 ? '(' + fileName + ').lua' : 'F266B00B.lua'
 		document.body.appendChild(element)
 		element.click()
 	}
@@ -932,6 +1045,7 @@ function FunctionApp() {
 							isCommented={isCommented}
 							onCommentChange={() => { setIsCommented(!isCommented) }}
 							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsLua={handleSaveAsLua}
 							handleSaveAsJSON={handleSaveAsJSON}
 							onFileUpload={(e) => {
 								let file = e.target.files[0]
@@ -974,6 +1088,7 @@ function FunctionApp() {
 							isCommented={isCommented}
 							onCommentChange={(e) => { setIsCommented(!isCommented) }}
 							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsLua={handleSaveAsLua}
 							handleSaveAsJSON={handleSaveAsJSON}
 							onFileUpload={(e) => {
 								let file = e.target.files[0]
@@ -1016,6 +1131,7 @@ function FunctionApp() {
 							isCommented={isCommented}
 							onCommentChange={(e) => { setIsCommented(!isCommented) }}
 							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsLua={handleSaveAsLua}
 							handleSaveAsJSON={handleSaveAsJSON}
 							onFileUpload={(e) => {
 								let file = e.target.files[0]
@@ -1075,6 +1191,7 @@ function FunctionApp() {
 							isCommented={isCommented}
 							onCommentChange={(e) => { setIsCommented(!isCommented) }}
 							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsLua={handleSaveAsLua}
 							handleSaveAsJSON={handleSaveAsJSON}
 							onFileUpload={(e) => {
 								let file = e.target.files[0]
@@ -1123,6 +1240,7 @@ function FunctionApp() {
 							isCommented={isCommented}
 							onCommentChange={(e) => { setIsCommented(!isCommented) }}
 							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsLua={handleSaveAsLua}
 							handleSaveAsJSON={handleSaveAsJSON}
 							onFileUpload={(e) => {
 								let file = e.target.files[0]
@@ -1183,6 +1301,7 @@ function FunctionApp() {
 							isCommented={isCommented}
 							onCommentChange={(e) => { setIsCommented(!isCommented) }}
 							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsLua={handleSaveAsLua}
 							handleSaveAsJSON={handleSaveAsJSON}
 							onFileUpload={(e) => {
 								let file = e.target.files[0]
@@ -1242,6 +1361,7 @@ function FunctionApp() {
 							isCommented={isCommented}
 							onCommentChange={(e) => { setIsCommented(!isCommented) }}
 							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsLua={handleSaveAsLua}
 							handleSaveAsJSON={handleSaveAsJSON}
 							onFileUpload={(e) => {
 								let file = e.target.files[0]
@@ -1283,6 +1403,7 @@ function FunctionApp() {
 							isCommented={isCommented}
 							onCommentChange={(e) => { setIsCommented(!isCommented) }}
 							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsLua={handleSaveAsLua}
 							handleSaveAsJSON={handleSaveAsJSON}
 							onFileUpload={(e) => {
 								let file = e.target.files[0]
@@ -1368,6 +1489,7 @@ function FunctionApp() {
 							isCommented={isCommented}
 							onCommentChange={(e) => { setIsCommented(!isCommented) }}
 							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsLua={handleSaveAsLua}
 							handleSaveAsJSON={handleSaveAsJSON}
 							onFileUpload={(e) => {
 								let file = e.target.files[0]
@@ -1406,6 +1528,7 @@ function FunctionApp() {
 							isCommented={isCommented}
 							onCommentChange={(e) => { setIsCommented(!isCommented) }}
 							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsLua={handleSaveAsLua}
 							handleSaveAsJSON={handleSaveAsJSON}
 							onFileUpload={(e) => {
 								let file = e.target.files[0]

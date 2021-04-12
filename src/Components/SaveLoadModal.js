@@ -4,6 +4,7 @@ import { Form, Col, Button, Modal } from 'react-bootstrap'
 function SaveLoadModal(props) {
 	const [show, setShow] = useState(false)
 	const [pnachFileName, setPnachFileName] = useState('')
+	const [luaFileName, setLuaFileName] = useState('')
 	const [jsonFileName, setJSONFileName] = useState('')
 
 	return (
@@ -54,6 +55,41 @@ function SaveLoadModal(props) {
 					</Form.Row>
 					<br></br>
 					<Form.Row>
+						<Col xs='7'>
+							<Form.Group controlId='currentLuaFileName'>
+								<Form.Label column='sm' srOnly>Lua File Name: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentLuaFileName'
+									type='text'
+									value={luaFileName}
+									placeholder='Lua File Name'
+									onChange={(e) => setLuaFileName(e.target.value)}
+								/>
+							</Form.Group>
+						</Col>
+						<Col xs='3'>
+							<Form.Check
+								type={'checkbox'}
+								id={`isCommentedCheckbox`}
+								label={`Include Comments?`}
+								checked={props.isCommented}
+								onChange={props.onCommentChange}
+							/>
+						</Col>
+						<Col xs='2'>
+							<Button
+								variant='outline-light'
+								block
+								name='saveLuaButton'
+								onClick={() => props.handleSaveAsLua(luaFileName)}
+							>
+								SAVE LUA
+							</Button>
+						</Col>
+					</Form.Row>
+					<br></br>
+					<Form.Row>
 						<Col xs='10'>
 							<Form.Group controlId='currentJSONFileName'>
 								<Form.Label column='sm' srOnly>JSON Save File Name: </Form.Label>
@@ -78,6 +114,7 @@ function SaveLoadModal(props) {
 							</Button>
 						</Col>
 					</Form.Row>
+					<br></br>
 					<Form.Row>
 						<Form.Group controlId='currentLoadFileName'>
 							<Form.Label column='sm'>JSON Save File Name: </Form.Label>
