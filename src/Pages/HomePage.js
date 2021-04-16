@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Container } from 'react-bootstrap'
 
 function HomePage(props) {
-	let dateLastUpdated = 'April 16, 2021'
+	let lastUpdateDate = 'April 16, 2021'
 
 	return (
 		<div>
@@ -35,7 +35,7 @@ function HomePage(props) {
 				The site is hosted using Github Pages.
 				The repository can be found <a target='_blank' rel='noopener noreferrer' href='https://github.com/GhostTheBoo/custom-seed-generator'>here</a>.
 				<br></br>
-				The site has most recently been updated on {dateLastUpdated}.
+				The site has most recently been updated on {lastUpdateDate}.
 			</p>
 			<Container fluid>
 				<Row>
