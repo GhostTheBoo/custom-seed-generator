@@ -61,15 +61,15 @@ export const cheatsData = [
 		'patch=1,EE,0032DEC4,extended,0000001E'
 	], [
 		'\tif ReadShort(Now+0) == 0x0B02 and ReadShort(Now+8) == 0x0C then',
-		'\t\tWriteShort(Save+0x034C,0x02)',
-		'\t\tWriteShort(Save+0x0350,0x0D)',
-		'\t\tWriteShort(Save+0x0356,0x13)',
-		'\t\tWriteShort(Save+0x0358,0x03)',
-		'\t\tWriteShort(Save+0x035C,0x01)',
-		'\t\tWriteShort(Save+0x03E8,0x03)',
-		'\t\tWriteShort(Save+0x03EC,0x00)',
+		'\t\tWriteShort(Save+0x034C,0x0002)',
+		'\t\tWriteShort(Save+0x0350,0x000D)',
+		'\t\tWriteShort(Save+0x0356,0x0013)',
+		'\t\tWriteShort(Save+0x0358,0x0003)',
+		'\t\tWriteShort(Save+0x035C,0x0001)',
+		'\t\tWriteShort(Save+0x03E8,0x0003)',
+		'\t\tWriteShort(Save+0x03EC,0x0000)',
 		'\t\tWriteByte(Save+0x2394,0x1E)',
-		'\t\tWriteShort(Save+0x2110,0x00)',
+		'\t\tWriteShort(Save+0x2110,0x0000)',
 		'\t\tWriteByte(Save+0x1CDD,ReadByte(Save+0x1CDD)|0xC0)',
 		'\t\tWriteByte(Save+0x1CDE,ReadByte(Save+0x1CDE)|0x07)',
 		'\t\tWriteByte(Save+0x1CEF,ReadByte(Save+0x1CEF)|0x80)',
@@ -100,13 +100,13 @@ export const cheatsData = [
 	], [
 		'\tif ReadShort(Now+0) == 0x090E and ReadShort(Now+8) == 0x37 then',
 		'\t\tif Platform == \'PS2\' then',
-		'\t\t\tWriteInt(0x1C6C4F0,0)',
-		'\t\t\tWriteInt(0x1C6C288,0)',
-		'\t\t\tWriteInt(0x1C6C020,0)',
+		'\t\t\tWriteInt(0x1C6C4F0,0x00000000)',
+		'\t\t\tWriteInt(0x1C6C288,0x00000000)',
+		'\t\t\tWriteInt(0x1C6C020,0x00000000)',
 		'\t\telseif Platform == \'PC\' then',
-		'\t\t\tWriteInt(0x2A209E8-0x56450E,0)',
-		'\t\t\tWriteInt(0x2A20770-0x56450E,0)',
-		'\t\t\tWriteInt(0x2A204F8-0x56450E,0)',
+		'\t\t\tWriteInt(0x2A209E8-0x56450E,0x00000000)',
+		'\t\t\tWriteInt(0x2A20770-0x56450E,0x00000000)',
+		'\t\t\tWriteInt(0x2A204F8-0x56450E,0x00000000)',
 		'\t\tend',
 		'\tend'
 	]),
@@ -139,7 +139,7 @@ export const cheatsData = [
 		'patch=1,EE,1032EF8E,extended,00000000'
 	], [
 		'\tWriteShort(Btl0+0x31A6C,0x0000820E)',
-		'\tif ReadShort(Save+0x345E) == 0x820E then WriteShort(Save+0x345E,0) end'
+		'\tif ReadShort(Save+0x345E) == 0x820E then WriteShort(Save+0x345E,0x0000) end'
 	]),
 	new Cheat('Faster Hyenas 2', [
 		'//Fast Hyenas II 1',
@@ -155,12 +155,12 @@ export const cheatsData = [
 	], [
 		'\tif ReadShort(Now+0) == 0x050A and ReadShort(Now+8) == 0x39 then',
 		'\t\tif Platform == \'PS2\' then',
-		'\t\t\tWriteInt(0x1C4EDB4,0)',
-		'\t\t\tWriteInt(0x1C4EDF4,0)',
+		'\t\t\tWriteInt(0x1C4EDB4,0x00000000)',
+		'\t\t\tWriteInt(0x1C4EDF4,0x00000000)',
 		'\t\tif ReadInt(0x1D48EFC) == 135 then WriteInt(0x1D48EFC,246) end',
 		'\t\telseif Platform == \'PC\' then',
-		'\t\t\tWriteInt(0x29E32A0-0x56450E,0)',
-		'\t\t\tWriteInt(0x29E32E0-0x56450E,0)',
+		'\t\t\tWriteInt(0x29E32A0-0x56450E,0x00000000)',
+		'\t\t\tWriteInt(0x29E32E0-0x56450E,0x00000000)',
 		'\t\t\tif ReadInt(0x2A0D108-0x56450E) == 135 then WriteInt(0x2A0D108-0x56450E,246) end',
 		'\t\tend',
 		'\tend'
@@ -210,26 +210,26 @@ export const cheatsData = [
 	], [
 		'\tif World == 0x0B then --Atlantica Songs',
 		'\t\tif Room == 0x02 and Events(0x3F,0x3F,0x3F) then --Tutorial',
-		'\t\t\tWriteInt(Songs+0x00,1)',
+		'\t\t\tWriteInt(Songs+0x00,0x00000001)',
 		'\t\telseif Room == 0x04 then',
 		'\t\t\tif Events(0x40,0x40,0x40) then --Swim This Way (Story)',
-		'\t\t\t\tWriteInt(Songs+0x10,0)',
+		'\t\t\t\tWriteInt(Songs+0x10,0x00000000)',
 		'\t\t\telseif Events(0x37,0x37,0x37) then --A New Day is Dawning (Story)',
-		'\t\t\t\tWriteInt(Songs+0x00,30000)',
+		'\t\t\t\tWriteInt(Songs+0x00,0x00007530)',
 		'\t\t\tend',
 		'\t\telseif Room == 0x01 and Events(0x33,0x33,0x33) then --Part of Your World (Story)',
-		'\t\t\tWriteInt(Songs+0x04,5)',
+		'\t\t\tWriteInt(Songs+0x04,0x00000005)',
 		'\t\telseif Room == 0x03 and Events(0x35,0x35,0x35) then --Under the Sea (Story)',
-		'\t\t\tWriteInt(Songs+0x00,10000)',
+		'\t\t\tWriteInt(Songs+0x00,0x00002710)',
 		'\t\telseif Room == 0x09 and Events(0x41,0x41,0x41) then --Ursula\'s Revenge (Story)',
-		'\t\t\tWriteInt(Songs+0x00,10000)',
+		'\t\t\tWriteInt(Songs+0x00,0x00002710)',
 		'\t\tend',
 		'\tend'
 	]),
-	new Cheat('No Anti-Form and no Forced Final Form', [
-		'patch=1,EE,201D6388,extended,0000102D'
+	new Cheat('Disable Final Form & Anti Form (No Anti Points)', [
+		'patch=1,EE,2032EF40,extended,00000000'
 	], [
-
+		'\tWriteInt(Save+0x3410,0x00000000)'
 	]),
 	new Cheat('Use Drives Without Party Members', [
 		'patch=1,EE,201C9A80,extended,0000102D'
@@ -268,9 +268,9 @@ export const cheatsData = [
 		'\tif World == 0x06 then --Olympus Coliseum Training',
 		'\t\tif Room == 0x00 and ReadInt(Score) == 0 then',
 		'\t\t\tif Events(0x8C,0x8C,0x8C) then --Urn Practice (Story)',
-		'\t\t\t\tWriteInt(Score,19)',
+		'\t\t\t\tWriteInt(Score,0x00000013)',
 		'\t\t\telseif Events(0x8D,0x8D,0x8D) then --Urn Maniac (Story)',
-		'\t\t\t\tWriteInt(Score,99)',
+		'\t\t\t\tWriteInt(Score,0x00000063)',
 		'\t\t\tend',
 		'\t\tend',
 		'\tend'
@@ -299,24 +299,24 @@ export const cheatsData = [
 		'patch=1,EE,30000001,extended,01CCD300// Reflera',
 		'patch=1,EE,30000001,extended,01CCD330// Reflega'
 	], [
-		'WriteByte(Sys3+0x9E0,math.random(0,255)) -- Fire',
-		'WriteByte(Sys3+0x15E0,math.random(0,255)) -- Fira',
-		'WriteByte(Sys3+0x1610,math.random(0,255)) -- Firaga',
-		'WriteByte(Sys3+0xA40,math.random(0,255)) -- Blizzard',
-		'WriteByte(Sys3+0x1640,math.random(0,255)) -- Blizzara',
-		'WriteByte(Sys3+0x1670,math.random(0,255)) -- Blizzaga',
-		'WriteByte(Sys3+0xA10,math.random(0,255)) -- Thunder',
-		'WriteByte(Sys3+0x16A0,math.random(0,255)) -- Thundara',
-		'WriteByte(Sys3+0x16D0,math.random(0,255)) -- Thundaga',
-		'WriteByte(Sys3+0xA70,math.random(0,255)) -- Cure',
-		'WriteByte(Sys3+0x1700,math.random(0,255)) -- Cura',
-		'WriteByte(Sys3+0x1730,math.random(0,255)) -- Curaga',
-		'WriteByte(Sys3+0x1F40,math.random(0,255)) -- Magnet',
-		'WriteByte(Sys3+0x1F70,math.random(0,255)) -- Magnera',
-		'WriteByte(Sys3+0x1FA0,math.random(0,255)) -- Magnega',
-		'WriteByte(Sys3+0x1FD0,math.random(0,255)) -- Reflect',
-		'WriteByte(Sys3+0x2000,math.random(0,255)) -- Reflera',
-		'WriteByte(Sys3+0x2030,math.random(0,255)) -- Reflega'
+		'\tWriteByte(Sys3+0x9E0,math.random(0,255)) -- Fire',
+		'\tWriteByte(Sys3+0x15E0,math.random(0,255)) -- Fira',
+		'\tWriteByte(Sys3+0x1610,math.random(0,255)) -- Firaga',
+		'\tWriteByte(Sys3+0xA40,math.random(0,255)) -- Blizzard',
+		'\tWriteByte(Sys3+0x1640,math.random(0,255)) -- Blizzara',
+		'\tWriteByte(Sys3+0x1670,math.random(0,255)) -- Blizzaga',
+		'\tWriteByte(Sys3+0xA10,math.random(0,255)) -- Thunder',
+		'\tWriteByte(Sys3+0x16A0,math.random(0,255)) -- Thundara',
+		'\tWriteByte(Sys3+0x16D0,math.random(0,255)) -- Thundaga',
+		'\tWriteByte(Sys3+0xA70,math.random(0,255)) -- Cure',
+		'\tWriteByte(Sys3+0x1700,math.random(0,255)) -- Cura',
+		'\tWriteByte(Sys3+0x1730,math.random(0,255)) -- Curaga',
+		'\tWriteByte(Sys3+0x1F40,math.random(0,255)) -- Magnet',
+		'\tWriteByte(Sys3+0x1F70,math.random(0,255)) -- Magnera',
+		'\tWriteByte(Sys3+0x1FA0,math.random(0,255)) -- Magnega',
+		'\tWriteByte(Sys3+0x1FD0,math.random(0,255)) -- Reflect',
+		'\tWriteByte(Sys3+0x2000,math.random(0,255)) -- Reflera',
+		'\tWriteByte(Sys3+0x2030,math.random(0,255)) -- Reflega'
 	]),
 	new Cheat('Randomize Party Limits Cost', [
 		'patch=1,EE,E0111FFF,extended,1032BAE0// If not FFFF',
@@ -338,20 +338,20 @@ export const cheatsData = [
 		'patch=1,EE,30000001,extended,01CD0B40// Trinity Limit',
 		'patch=1,EE,30000001,extended,01CD1AD0// Session'
 	], [
-		'WriteByte(Sys3+0xE30,math.random(0,255)) -- Twin Howl (Beast)',
-		'WriteByte(Sys3+0xFB0,math.random(0,255)) -- Bushido (Auron)',
-		'WriteByte(Sys3+0x1940,math.random(0,255)) -- Red Rocket (Mulan)',
-		'WriteByte(Sys3+0x2E10,math.random(0,255)) -- Whirli-Goof (Goofy)',
-		'WriteByte(Sys3+0x3320,math.random(0,255)) -- Comet (Donald)',
-		'WriteByte(Sys3+0x3D40,math.random(0,255)) -- Knocksmash (Goofy)',
-		'WriteByte(Sys3+0x3E60,math.random(0,255)) -- Duck Flare (Donald)',
-		'WriteByte(Sys3+0x3F80,math.random(0,255)) -- Speedster (Aladdin)',
-		'WriteByte(Sys3+0x40A0,math.random(0,255)) -- Bluff (Jack Sparrow)',
-		'WriteByte(Sys3+0x4430,math.random(0,255)) -- Wildcat (Simba)',
-		'WriteByte(Sys3+0x49A0,math.random(0,255)) -- Dance Call (Jack)',
-		'WriteByte(Sys3+0x4B80,math.random(0,255)) -- Setup (Tron)',
-		'WriteByte(Sys3+0x5840,math.random(0,255)) -- Trinity Limit (Sora)',
-		'WriteByte(Sys3+0x67D0,math.random(0,255)) -- Session (Riku)'
+		'\tWriteByte(Sys3+0xE30,math.random(0,255)) -- Twin Howl (Beast)',
+		'\tWriteByte(Sys3+0xFB0,math.random(0,255)) -- Bushido (Auron)',
+		'\tWriteByte(Sys3+0x1940,math.random(0,255)) -- Red Rocket (Mulan)',
+		'\tWriteByte(Sys3+0x2E10,math.random(0,255)) -- Whirli-Goof (Goofy)',
+		'\tWriteByte(Sys3+0x3320,math.random(0,255)) -- Comet (Donald)',
+		'\tWriteByte(Sys3+0x3D40,math.random(0,255)) -- Knocksmash (Goofy)',
+		'\tWriteByte(Sys3+0x3E60,math.random(0,255)) -- Duck Flare (Donald)',
+		'\tWriteByte(Sys3+0x3F80,math.random(0,255)) -- Speedster (Aladdin)',
+		'\tWriteByte(Sys3+0x40A0,math.random(0,255)) -- Bluff (Jack Sparrow)',
+		'\tWriteByte(Sys3+0x4430,math.random(0,255)) -- Wildcat (Simba)',
+		'\tWriteByte(Sys3+0x49A0,math.random(0,255)) -- Dance Call (Jack)',
+		'\tWriteByte(Sys3+0x4B80,math.random(0,255)) -- Setup (Tron)',
+		'\tWriteByte(Sys3+0x5840,math.random(0,255)) -- Trinity Limit (Sora)',
+		'\tWriteByte(Sys3+0x67D0,math.random(0,255)) -- Session (Riku)'
 	]),
 	new Cheat('Randomize Limit Form Limits Cost', [
 		'patch=1,EE,E007FFFF,extended,1032BAE0// If not FFFF',
@@ -363,10 +363,10 @@ export const cheatsData = [
 		'patch=1,EE,30000001,extended,01CD2F10// Ragnarok',
 		'patch=1,EE,30000001,extended,01CD30C0// Ars Arcanum'
 	], [
-		'WriteByte(Sys3+0x7E50,math.random(0,255)) -- Strike Raid',
-		'WriteByte(Sys3+0x7D30,math.random(0,255)) -- Sonic Blade',
-		'WriteByte(Sys3+0x7C10,math.random(0,255)) -- Ragnarok',
-		'WriteByte(Sys3+0x7DC0,math.random(0,255)) -- Ars Arcanum'
+		'\tWriteByte(Sys3+0x7E50,math.random(0,255)) -- Strike Raid',
+		'\tWriteByte(Sys3+0x7D30,math.random(0,255)) -- Sonic Blade',
+		'\tWriteByte(Sys3+0x7C10,math.random(0,255)) -- Ragnarok',
+		'\tWriteByte(Sys3+0x7DC0,math.random(0,255)) -- Ars Arcanum'
 	]),
 	new Cheat('Always Have Scan', [
 		'patch=1,EE,0032E112,extended,0000008A'

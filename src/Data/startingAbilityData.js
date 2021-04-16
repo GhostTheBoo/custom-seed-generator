@@ -53,7 +53,7 @@ export class StartingAbility {
 			let ret = ''
 			let address = this.vanillaAddress - 0x1CE5D80
 			if (this.isReplaced()) {
-				ret += '\tWriteShort(Btl0+0x' + address.toString(16).toUpperCase() + ',0x' + this.replacementReward.index.toString(16).toUpperCase() + ')'
+				ret += '\tWriteShort(Btl0+0x' + address.toString(16).toUpperCase() + ',0x' + this.replacementReward.index.toString(16).toUpperCase().padStart(4,'0') + ')'
 				if (isCommented) ret += ' -- ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward
 				ret += '\n'
 			}
@@ -154,27 +154,27 @@ export const startingAbilityData = [
 	{
 		character: 'Sora',
 		abilities: [
-			new StartingAbility(new Reward('Reaction Boost', 0x0188, 'Ability'), 0x1D18DDE),
-			new StartingAbility(new Reward('Finishing Plus', 0x0189, 'Ability'), 0x1D18DDC),
-			new StartingAbility(new Reward('Draw', 0x0195, 'Ability'), 0x1D18DE8),
-			new StartingAbility(new Reward('Lucky Lucky (1)', 0x0197, 'Ability'), 0x1D18DE4),
-			new StartingAbility(new Reward('Lucky Lucky (2)', 0x0197, 'Ability'), 0x1D18DE6),
-			new StartingAbility(new Reward('MP Hastera', 0x01A5, 'Ability'), 0x1D18DE0),
-			new StartingAbility(new Reward('No Experience', 0x0194, 'Ability'), 0x1D18DE2)
+			new StartingAbility(new Reward('Reaction Boost', 0x188, 'Ability'), 0x1D18DDE),
+			new StartingAbility(new Reward('Finishing Plus', 0x189, 'Ability'), 0x1D18DDC),
+			new StartingAbility(new Reward('Draw', 0x195, 'Ability'), 0x1D18DE8),
+			new StartingAbility(new Reward('Lucky Lucky (1)', 0x197, 'Ability'), 0x1D18DE4),
+			new StartingAbility(new Reward('Lucky Lucky (2)', 0x197, 'Ability'), 0x1D18DE6),
+			new StartingAbility(new Reward('MP Hastera', 0x1A5, 'Ability'), 0x1D18DE0),
+			new StartingAbility(new Reward('No Experience', 0x194, 'Ability'), 0x1D18DE2)
 		]
 	},
 	{
 		character: 'Donald',
 		abilities: [
-			new StartingAbility(new Reward('Donald Thunder', 0x00A7, 'Ability'), 0x1D16EE0),
-			new StartingAbility(new Reward('Donald Cure', 0x00A8, 'Ability'), 0x1D16EE2)
+			new StartingAbility(new Reward('Donald Thunder', 0x0A7, 'Ability'), 0x1D16EE0),
+			new StartingAbility(new Reward('Donald Cure', 0x0A8, 'Ability'), 0x1D16EE2)
 		]
 	},
 	{
 		character: 'Goofy',
 		abilities: [
-			new StartingAbility(new Reward('Goofy Bash', 0x01AD, 'Ability'), 0x1D16F62),
-			new StartingAbility(new Reward('Item Boost', 0x019B, 'Ability'), 0x1D16F64)
+			new StartingAbility(new Reward('Goofy Bash', 0x1AD, 'Ability'), 0x1D16F62),
+			new StartingAbility(new Reward('Item Boost', 0x19B, 'Ability'), 0x1D16F64)
 		]
 	}
 ]
@@ -182,20 +182,20 @@ export const startingAbilityData = [
 export const notUsedStartingStatusData = [
 	new StartingStatus('Sora (Non-Critical)', 0x1D16E50, 20, 100, 1, 1, 3, []),
 	new StartingStatus('Sora (Critical)', 0x1D18DD0, 20, 100, 1, 1, 3, [
-		new Reward('Finishing Plus', 0x0189, 'Ability'),
-		new Reward('Reaction Boost', 0x0188, 'Ability'),
-		new Reward('MP Hastera', 0x01A5, 'Ability'),
-		new Reward('No Experience', 0x0194, 'Ability'),
-		new Reward('Lucky Lucky (1)', 0x0197, 'Ability'),
-		new Reward('Lucky Lucky (2)', 0x0197, 'Ability'),
-		new Reward('Draw', 0x0195, 'Ability')
+		new Reward('Finishing Plus', 0x189, 'Ability'),
+		new Reward('Reaction Boost', 0x188, 'Ability'),
+		new Reward('MP Hastera', 0x1A5, 'Ability'),
+		new Reward('No Experience', 0x194, 'Ability'),
+		new Reward('Lucky Lucky (1)', 0x197, 'Ability'),
+		new Reward('Lucky Lucky (2)', 0x197, 'Ability'),
+		new Reward('Draw', 0x195, 'Ability')
 	]),
 	new StartingStatus('Donald', 0x1D16ED0, 18, 100, 1, 2, 2, [
-		new Reward('Donald Thunder', 0x00A7, 'Ability'),
-		new Reward('Donald Cure', 0x00A8, 'Ability')
+		new Reward('Donald Thunder', 0x0A7, 'Ability'),
+		new Reward('Donald Cure', 0x0A8, 'Ability')
 	]),
 	new StartingStatus('Goofy', 0x1D16F50, 28, 100, 2, 1, 3, [
-		new Reward('Goofy Bash', 0x01AD, 'Ability'),
-		new Reward('Item Boost', 0x019B, 'Ability')
+		new Reward('Goofy Bash', 0x1AD, 'Ability'),
+		new Reward('Item Boost', 0x19B, 'Ability')
 	]),
 ]

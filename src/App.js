@@ -938,7 +938,7 @@ function FunctionApp() {
 					let magicIndex = 0
 					let newMagics = magicType.abilities.map(ability => {
 						if (magicIndex < magicLoadData[globalIndex].abilities.length) {
-							if (magicLoadData[globalIndex].abilities[magicIndex].ability === ability.ability) {
+							if (magicLoadData[globalIndex].abilities[magicIndex].costAddress === ability.costAddress) {
 								let ret = ability.loadFromJSON(magicLoadData[globalIndex].abilities[magicIndex])
 								magicIndex++
 								return ret
