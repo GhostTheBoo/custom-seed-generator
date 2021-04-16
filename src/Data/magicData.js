@@ -51,7 +51,7 @@ export class MagicAbility {
 			let costAddress = this.costAddress - 0x1CCB300
 			let ret = ''
 			if (this.isReplaced()) {
-				ret += '\tWriteByte(Sys3+0x' + costAddress.toString(16).toUpperCase() + ',0x' + this.replacementCost.toString(16).toUpperCase() + ')'
+				ret += '\tWriteByte(Sys3+0x' + costAddress.toString(16).toUpperCase() + ',0x' + this.replacementCost.toString(16).toUpperCase().padStart(2, '0') + ')'
 				if (isCommented) ret += ' -- ' + this.ability + ' Cost: ' + this.replacementCost
 				ret += '\n'
 			}
