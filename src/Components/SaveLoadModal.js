@@ -36,10 +36,10 @@ function SaveLoadModal(props) {
 						<Col xs='3'>
 							<Form.Check
 								type={'checkbox'}
-								id={`isCommentedCheckbox`}
+								id={`isCommentedPnachCheckbox`}
 								label={`Include Comments?`}
-								checked={props.isCommented}
-								onChange={props.onCommentChange}
+								checked={props.isPnachCommented}
+								onChange={props.onPnachCommentChange}
 							/>
 						</Col>
 						<Col xs='2'>
@@ -71,10 +71,10 @@ function SaveLoadModal(props) {
 						<Col xs='3'>
 							<Form.Check
 								type={'checkbox'}
-								id={`isCommentedCheckbox`}
+								id={`isLuaCommentedCheckbox`}
 								label={`Include Comments?`}
-								checked={props.isCommented}
-								onChange={props.onCommentChange}
+								checked={props.isLuaCommented}
+								onChange={props.onLuaCommentChange}
 							/>
 						</Col>
 						<Col xs='2'>

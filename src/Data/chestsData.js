@@ -12,7 +12,7 @@ export class Chest {
 			return this.replacementReward.index !== this.vanillaReward.index
 		}
 		this.copy = () => {
-			let ret = new Chest(this.room, new Reward(this.vanillaReward.reward, this.vanillaReward.index, this.vanillaReward.iconType), this.vanillaAddress)
+			let ret = this.vanilla()
 			ret.replacementReward = { ...this.replacementReward }
 			ret.toBeReplaced = this.toBeReplaced
 			return ret
@@ -54,7 +54,7 @@ export class Chest {
 			let ret = ''
 			if (this.isReplaced()) {
 				let address = this.vanillaAddress - 0x1CCB300
-				ret += 'WriteShort(Sys3+0x' + address.toString(16).toUpperCase() + ',0x' + this.replacementReward.index.toString(16).toUpperCase() + ')'
+				ret += '\tWriteShort(Sys3+0x' + address.toString(16).toUpperCase() + ',0x' + this.replacementReward.index.toString(16).toUpperCase() + ')'
 				if (isCommented) ret += ' -- ' + this.room + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward
 				ret += '\n'
 			}

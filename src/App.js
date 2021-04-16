@@ -143,7 +143,8 @@ function FunctionApp() {
 		}
 	}, [])
 	const [currentTab, setCurrentTab] = useState('home')
-	const [isCommented, setIsCommented] = useState(true)
+	const [isPnachCommented, setIsPnachCommented] = useState(true)
+	const [isLuaCommented, setIsLuaCommented] = useState(true)
 	//#endregion
 
 	//#region Bonus Jank City
@@ -344,20 +345,16 @@ function FunctionApp() {
 			[name]: parseInt(value)
 		})
 	}
-	function handleTracker() {
+	function handleTracker(isPnach) {
 		//Chest Tracker
 		let chestTracker = allChests.reduce((prevWorlds, currentWorld) => {
-			currentWorld.chests.forEach(chest => {
-				prevWorlds = prevWorlds.update(chest.replacementReward.index)
-			})
+			currentWorld.chests.forEach(chest => { prevWorlds = prevWorlds.update(chest.replacementReward.index) })
 			return prevWorlds
 		}, new Tracker())
 
 		//Popup Tracker
 		let popupTracker = allPopups.reduce((prevWorlds, currentWorld) => {
-			currentWorld.popups.forEach(popup => {
-				prevWorlds = prevWorlds.update(popup.replacementReward.index)
-			})
+			currentWorld.popups.forEach(popup => { prevWorlds = prevWorlds.update(popup.replacementReward.index) })
 			return prevWorlds
 		}, new Tracker())
 
@@ -388,18 +385,23 @@ function FunctionApp() {
 			return prevWorlds
 		}, new Tracker())
 		let finalBonusStatsPnach = '//SORA\'S FINAL STATS IN CRITICAL MODE\n'
+		let finalBonusStatsLua = '--SORA\'S FINAL STATS IN CRITICAL MODE\n'
 		finalBonusStatsPnach += '// HP: ' + finalBonusStats.hp + '\n'
+		finalBonusStatsLua += '-- HP: ' + finalBonusStats.hp + '\n'
 		finalBonusStatsPnach += '// MP: ' + finalBonusStats.mp + '\n'
+		finalBonusStatsLua += '-- MP: ' + finalBonusStats.mp + '\n'
 		finalBonusStatsPnach += '// Armor: ' + finalBonusStats.armor + '\n'
+		finalBonusStatsLua += '-- Armor: ' + finalBonusStats.armor + '\n'
 		finalBonusStatsPnach += '// Accessory: ' + finalBonusStats.accessory + '\n'
+		finalBonusStatsLua += '-- Accessory: ' + finalBonusStats.accessory + '\n'
 		finalBonusStatsPnach += '// Item: ' + finalBonusStats.item + '\n'
+		finalBonusStatsLua += '-- Item: ' + finalBonusStats.item + '\n'
 		finalBonusStatsPnach += '// Drive: ' + Math.min(9, finalBonusStats.drive) + '\n'
+		finalBonusStatsLua += '-- Drive: ' + Math.min(9, finalBonusStats.drive) + '\n'
 
 		//Forms & Summons Tracker
 		let formTracker = allForms.reduce((prevDriveForms, currentDriveForm) => {
-			currentDriveForm.driveLevels.forEach(driveLevel => {
-				prevDriveForms = prevDriveForms.update(driveLevel.replacementReward.index)
-			})
+			currentDriveForm.driveLevels.forEach(driveLevel => { prevDriveForms = prevDriveForms.update(driveLevel.replacementReward.index) })
 			return prevDriveForms
 		}, new Tracker())
 
@@ -421,86 +423,89 @@ function FunctionApp() {
 			return prevStartingAbilities.update(currentStartingAbility.replacementReward.index)
 		}, new Tracker())
 
-		return [
-			'//GAME STATUS\n',
-			chestTracker.saveToPnach('CHEST') + '\n',
-			popupTracker.saveToPnach('POPUP') + '\n',
-			formTracker.saveToPnach('FORM & SUMMON') + '\n',
-			// criticalTracker.saveToPnach('CRITICAL EXTRA') + '\n',
-			stratingAbilityTracker.saveToPnach('SORA\'S STARTING ABILITIES') + '\n',
-			'//LEVEL TALLY\n',
-			levelTracker.sword.saveToPnach('SWORD') + '\n',
-			levelTracker.shield.saveToPnach('SHIELD') + '\n',
-			levelTracker.staff.saveToPnach('STAFF') + '\n',
-			bonusTracker.saveToPnach('BONUS') + '\n',
-			finalBonusStatsPnach
-		]
+		return (isPnach)
+			? [
+				'//GAME STATUS\n',
+				chestTracker.saveToPnach('CHEST') + '\n',
+				popupTracker.saveToPnach('POPUP') + '\n',
+				formTracker.saveToPnach('FORM & SUMMON') + '\n',
+				// criticalTracker.saveToPnach('CRITICAL EXTRA') + '\n',
+				stratingAbilityTracker.saveToPnach('SORA\'S STARTING ABILITIES') + '\n',
+				'//LEVEL TALLY\n',
+				levelTracker.sword.saveToPnach('SWORD') + '\n',
+				levelTracker.shield.saveToPnach('SHIELD') + '\n',
+				levelTracker.staff.saveToPnach('STAFF') + '\n',
+				bonusTracker.saveToPnach('BONUS') + '\n',
+				finalBonusStatsPnach + '\n'
+			]
+			: [
+				'--GAME STATUS\n',
+				chestTracker.saveToLua('CHEST') + '\n',
+				popupTracker.saveToLua('POPUP') + '\n',
+				formTracker.saveToLua('FORM & SUMMON') + '\n',
+				// criticalTracker.saveToLua('CRITICAL EXTRA') + '\n',
+				stratingAbilityTracker.saveToLua('SORA\'S STARTING ABILITIES') + '\n',
+				'--LEVEL TALLY\n',
+				levelTracker.sword.saveToLua('SWORD') + '\n',
+				levelTracker.shield.saveToLua('SHIELD') + '\n',
+				levelTracker.staff.saveToLua('STAFF') + '\n',
+				bonusTracker.saveToLua('BONUS') + '\n',
+				finalBonusStatsLua + '\n'
+			]
 	}
 	function handleSaveAsPnach(fileName) {
-		let trackerPnachCodes = isCommented ? handleTracker() : []
+		let trackerPnachCodes = isPnachCommented ? handleTracker(true) : []
 
 		let chestPnachCodes = allChests.map(worldList => {
-			let ret = isCommented ? '// ' + worldList.world.toUpperCase() + '\n' : ''
-			worldList.chests.forEach(chest => {
-				ret += chest.saveToPnach(isCommented)
-			})
+			let ret = isPnachCommented ? '// ' + worldList.world.toUpperCase() + '\n' : ''
+			worldList.chests.forEach(chest => { ret += chest.saveToPnach(isPnachCommented) })
 			return ret
 		})
 		chestPnachCodes.unshift('\n//CHESTS\n')
 
 		let popupPnachCodes = allPopups.map(worldList => {
-			let ret = isCommented ? '// ' + worldList.world.toUpperCase() + '\n' : ''
-			worldList.popups.forEach(popup => {
-				ret += popup.saveToPnach(isCommented)
-			})
+			let ret = isPnachCommented ? '// ' + worldList.world.toUpperCase() + '\n' : ''
+			worldList.popups.forEach(popup => { ret += popup.saveToPnach(isPnachCommented) })
 			return ret
 		})
 		popupPnachCodes.unshift('\n//POPUPS\n')
 
 		let formPnachCodes = allForms.map(driveFormList => {
-			let ret = isCommented ? '// ' + driveFormList.driveForm.toUpperCase() + '\n' : ''
+			let ret = isPnachCommented ? '// ' + driveFormList.driveForm.toUpperCase() + '\n' : ''
 			if (driveFormList.driveLevels.some(driveFormLevel => driveFormLevel.isRewardReplaced()))
 				if (driveFormList.driveForm !== 'Summon')
-					ret += driveFormList.removeGrowthJankCodes.join('')
-			driveFormList.driveLevels.forEach(driveFormLevel => {
-				ret += driveFormLevel.saveToPnach(isCommented)
-			})
+					ret += driveFormList.removeGrowthJankPnachCodes.join('')
+			driveFormList.driveLevels.forEach(driveFormLevel => { ret += driveFormLevel.saveToPnach(isPnachCommented) })
 			return ret
 		})
 		formPnachCodes.unshift('\n//DRIVE FORMS\n')
 
 		let equipmentPnachCodes = allEquipments.map(equipmentTypeList => {
-			let ret = isCommented ? '// ' + equipmentTypeList.equipmentType.toUpperCase() + '\n' : ''
-			equipmentTypeList.equipments.forEach(equipment => {
-				ret += equipment.saveToPnach(isCommented)
-			})
+			let ret = isPnachCommented ? '// ' + equipmentTypeList.equipmentType.toUpperCase() + '\n' : ''
+			equipmentTypeList.equipments.forEach(equipment => { ret += equipment.saveToPnach(isPnachCommented) })
 			return ret
 		})
 		equipmentPnachCodes.unshift('\n//EQUIPMENT\n')
 
 		let bonusPnachCodes = allBonuses.map(worldList => {
-			let ret = isCommented ? '// ' + worldList.world.toUpperCase() + '\n' : ''
-			worldList.bonusFights.forEach(bonusFight => {
-				ret += bonusFight.saveToPnach(isCommented)
-			})
+			let ret = isPnachCommented ? '// ' + worldList.world.toUpperCase() + '\n' : ''
+			worldList.bonusFights.forEach(bonusFight => { ret += bonusFight.saveToPnach(isPnachCommented) })
 			return ret
 		})
 		bonusPnachCodes.unshift('\n//BONUS REWARDS\n')
 
-		let levelPnachCodes = allLevels.map(level => {
-			return level.saveToPnach(isCommented)
-		})
+		let levelPnachCodes = allLevels.map(level => { return level.saveToPnach(isPnachCommented) })
 		levelPnachCodes.unshift('\n//LEVEL REWARDS\n')
 
 		let magicCostPnachCodes = allMagics.map(magicType => {
-			let prefix = isCommented ? '// ' + magicType.magicType.toUpperCase() + '\n' : ''
+			let prefix = isPnachCommented ? '// ' + magicType.magicType.toUpperCase() + '\n' : ''
 			let ret = ''
 			let tempString = ''
 			let tempLastAbility
 			let magicChangeCount = 0
 			let lastAbility
 			magicType.abilities.forEach(ability => {
-				[tempString, tempLastAbility] = ability.saveToPnach(isCommented)
+				[tempString, tempLastAbility] = ability.saveToPnach(isPnachCommented)
 				if (tempString !== '') {
 					ret += tempString
 					lastAbility = tempLastAbility
@@ -513,7 +518,7 @@ function FunctionApp() {
 				prefix += 'patch=1,EE,E0' + (magicChangeCount + 1).toString(16).toUpperCase().padStart(2, '0') + '0000,extended,1032BAD8 // If not screen transition\n'
 				prefix += 'patch=1,EE,E1' + magicChangeCount.toString(16).toUpperCase().padStart(2, '0') + '00' + lastAbility.replacementCost.toString(16).toUpperCase().padStart(2, '0')
 				prefix += ',extended,1' + lastAbility.costAddress.toString(16).toUpperCase().padStart(7, '0')
-				if (isCommented) prefix += ' // If ' + lastAbility.ability + '\'s MP Cost is not ' + lastAbility.replacementCost
+				if (isPnachCommented) prefix += ' // If ' + lastAbility.ability + '\'s MP Cost is not ' + lastAbility.replacementCost
 				prefix += '\n'
 			}
 			return prefix + ret
@@ -521,16 +526,14 @@ function FunctionApp() {
 		magicCostPnachCodes.unshift('\n//MAGIC COSTS\n')
 
 		let startingAbilityPnachCodes = allStartingAbilities.map(characterAbilities => {
-			let ret = isCommented ? '// ' + characterAbilities.character.toUpperCase() + '\n' : ''
-			characterAbilities.abilities.forEach(ability => {
-				ret += ability.saveToPnach(isCommented)
-			})
+			let ret = isPnachCommented ? '// ' + characterAbilities.character.toUpperCase() + '\n' : ''
+			characterAbilities.abilities.forEach(ability => { ret += ability.saveToPnach(isPnachCommented) })
 			return ret
 		})
 		startingAbilityPnachCodes.unshift('\n//STARTING ABILITIES\n')
 
 		let startingPnachCodes = ['\n//STARTING STATUS\n']
-		startingPnachCodes.push(startingStatus.saveToPnach(isCommented))
+		startingPnachCodes.push(startingStatus.saveToPnach(isPnachCommented))
 
 		let cheatPnachCodes = allCheats.map(cheat => { return cheat.saveToPnach() })
 		cheatPnachCodes.unshift('\n//CHEAT CODES\n')
@@ -546,111 +549,122 @@ function FunctionApp() {
 		element.click()
 	}
 	function handleSaveAsLua(fileName) {
-		// let trackerPnachCodes = isCommented ? handleTracker() : []
+		let trackerLuaCodes = isLuaCommented ? handleTracker(false) : []
 
-		let chestLuaCodes = allChests.map(worldList => {
-			let ret = isCommented ? '-- ' + worldList.world.toUpperCase() + '\n' : ''
-			worldList.chests.forEach(chest => {
-				ret += chest.saveToLua(isCommented)
+		let chestLuaCodes = ['\nfunction Chests()\n'].concat(allChests.map(worldList => {
+			let ret = isLuaCommented ? '\t-- ' + worldList.world.toUpperCase() + '\n' : ''
+			worldList.chests.forEach(chest => { ret += chest.saveToLua(isLuaCommented) })
+			return ret
+		}), ['end\n'])
+
+		let popupLuaCodes = ['\nfunction Popups()\n'].concat(allPopups.map(worldList => {
+			let ret = isLuaCommented ? '\t-- ' + worldList.world.toUpperCase() + '\n' : ''
+			worldList.popups.forEach(popup => { ret += popup.saveToLua(isLuaCommented) })
+			return ret
+		}), ['end\n'])
+
+		let formLuaCodes = ['\nfunction DriveForms()\n'].concat(allForms.map(driveFormList => {
+			let ret = isLuaCommented ? '\t-- ' + driveFormList.driveForm.toUpperCase() + '\n' : ''
+			if (driveFormList.driveLevels.some(driveFormLevel => driveFormLevel.isRewardReplaced()))
+				if (driveFormList.driveForm !== 'Summon')
+					ret += driveFormList.removeGrowthJankLuaCodes.join('')
+			driveFormList.driveLevels.forEach(driveFormLevel => { ret += driveFormLevel.saveToLua(isLuaCommented) })
+			return ret
+		}), ['end\n'])
+
+		let equipmentLuaCodes = ['\nfunction Equipment()\n'].concat(allEquipments.map(equipmentTypeList => {
+			let ret = isLuaCommented ? '\t-- ' + equipmentTypeList.equipmentType.toUpperCase() + '\n' : ''
+			equipmentTypeList.equipments.forEach(equipment => { ret += equipment.saveToLua(isLuaCommented) })
+			return ret
+		}), ['end\n'])
+
+		let bonusLuaCodes = ['\nfunction BonusRewards()\n'].concat(allBonuses.map(worldList => {
+			let ret = isLuaCommented ? '\t-- ' + worldList.world.toUpperCase() + '\n' : ''
+			worldList.bonusFights.forEach(bonusFight => { ret += bonusFight.saveToLua(isLuaCommented) })
+			return ret
+		}), ['end\n'])
+
+		let levelLuaCodes = ['\nfunction LevelRewards()\n'].concat(allLevels.map(level => { return level.saveToLua(isLuaCommented) }), ['end\n'])
+
+		let magicCostLuaCodes = ['\nfunction MagicCosts()\n'].concat(allMagics.map(magicType => {
+			// let prefix = ''
+			let tempString = ''
+			// let tempLastAbility
+			// let lastAbility
+			let ret = isLuaCommented ? '\t-- ' + magicType.magicType.toUpperCase() + '\n' : ''
+			magicType.abilities.forEach(ability => {
+				// [tempString, tempLastAbility] = ability.saveToLua(isLuaCommented)
+				tempString = ability.saveToLua(isLuaCommented)[0]
+				// if (tempString !== '')
+				// 	lastAbility = tempLastAbility
+				ret += tempString
 			})
 			return ret
-		})
-		chestLuaCodes.unshift('\n--CHESTS\n')
+			// if (ret.length() > 0) {
+			// 	prefix += 'if ReadShort(Now+0x0) ~= 0xFFFF '
+			// 	prefix += 'and ReadShort(Now+0x0) ~= 0x2002 '
+			// 	prefix += 'and ReadByte(Sys3+0x' + lastAbility.costAddress.toString(16).toUpperCase() +') ~= 0x' + lastAbility.replacementCost.toString(16).toUpperCase() + ' then\n'
+			// 	prefix += ret + 'end\n'
+			// }
+			// return prefix + ret
+		}), ['end\n'])
 
-		let popupLuaCodes = allPopups.map(worldList => {
-			let ret = isCommented ? '-- ' + worldList.world.toUpperCase() + '\n' : ''
-			worldList.popups.forEach(popup => {
-				ret += popup.saveToLua(isCommented)
-			})
+		let startingAbilityLuaCodes = ['\nfunction StartingAbilities()\n'].concat(allStartingAbilities.map(characterAbilities => {
+			let ret = isLuaCommented ? '\t-- ' + characterAbilities.character.toUpperCase() + '\n' : ''
+			characterAbilities.abilities.forEach(ability => { ret += ability.saveToLua(isLuaCommented) })
 			return ret
-		})
-		popupLuaCodes.unshift('\n--POPUPS\n')
+		}), ['end\n'])
 
-		// let formPnachCodes = allForms.map(driveFormList => {
-		// 	let ret = isCommented ? '// ' + driveFormList.driveForm.toUpperCase() + '\n' : ''
-		// 	if (driveFormList.driveLevels.some(driveFormLevel => driveFormLevel.isRewardReplaced()))
-		// 		if (driveFormList.driveForm !== 'Summon')
-		// 			ret += driveFormList.removeGrowthJankCodes.join('')
-		// 	driveFormList.driveLevels.forEach(driveFormLevel => {
-		// 		ret += driveFormLevel.saveToPnach(isCommented)
-		// 	})
-		// 	return ret
-		// })
-		// formPnachCodes.unshift('\n//DRIVE FORMS\n')
+		let startingLuaCodes = ['\nfunction StartingStatus()\n', startingStatus.saveToLua(isLuaCommented), 'end\n']
 
-		let equipmentLuaCodes = allEquipments.map(equipmentTypeList => {
-			let ret = isCommented ? '-- ' + equipmentTypeList.equipmentType.toUpperCase() + '\n' : ''
-			equipmentTypeList.equipments.forEach(equipment => {
-				ret += equipment.saveToLua(isCommented)
-			})
-			return ret
-		})
-		equipmentLuaCodes.unshift('\n--EQUIPMENT\n')
+		let cheatLuaCodes = ['\nfunction Cheats()\n'].concat(allCheats.map(cheat => { return cheat.saveToLua() }), ['end'])
 
-		// let bonusPnachCodes = allBonuses.map(worldList => {
-		// 	let ret = isCommented ? '// ' + worldList.world.toUpperCase() + '\n' : ''
-		// 	worldList.bonusFights.forEach(bonusFight => {
-		// 		ret += bonusFight.saveToPnach(isCommented)
-		// 	})
-		// 	return ret
-		// })
-		// bonusPnachCodes.unshift('\n//BONUS REWARDS\n')
+		let luaDefaultCodes = [
+			'function _OnFrame()\n',
+			'\tWorld = ReadByte(Now + 0x00)\n',
+			'\tRoom = ReadByte(Now + 0x01)\n',
+			'\tPlace = ReadShort(Now + 0x00)\n',
+			'\tDoor = ReadShort(Now + 0x02)\n',
+			'\tMap = ReadShort(Now + 0x04)\n',
+			'\tBtl = ReadShort(Now + 0x06)\n',
+			'\tEvt = ReadShort(Now + 0x08)\n',
+			'\tChests()\n',
+			'\tPopups()\n',
+			'\tDriveForms()\n',
+			'\tEquipment()\n',
+			'\tBonusRewards()\n',
+			'\tLevelRewards()\n',
+			'\tMagicCosts()\n',
+			'\tStartingAbilities()\n',
+			'\tStartingStatus()\n',
+			'\tCheats()\n',
+			'end\n\n',
+			'function _OnInit()\n',
+			'\tif GAME_ID == 0xF266B00B or GAME_ID == 0xFAF99301 and ENGINE_TYPE == "ENGINE" then--PCSX2\n',
+			'\t\tPlatform = \'PS2\'\n',
+			'\t\tNow = 0x032BAE0 --Current Location\n',
+			'\t\tSave = 0x032BB30 --Save File\n',
+			'\t\tObj0 = 0x1C94100 --00objentry.bin\n',
+			'\t\tSys3 = 0x1CCB300 --03system.bin\n',
+			'\t\tBtl0 = 0x1CE5D80 --00battle.bin\n',
+			'\t\tSlot1 = 0x1C6C750 --Unit Slot 1\n',
+			'\telseif GAME_ID == 0x431219CC and ENGINE_TYPE == \'BACKEND\' then--PC\n',
+			'\t\tPlatform = \'PC\'\n',
+			'\t\tNow = 0x0714DB8 - 0x56450E\n',
+			'\t\tSave = 0x09A7070 - 0x56450E\n',
+			'\t\tObj0 = 0x2A22B90 - 0x56450E\n',
+			'\t\tSys3 = 0x2A59DB0 - 0x56450E\n',
+			'\t\tBtl0 = 0x2A74840 - 0x56450E\n',
+			'\t\tSlot1 = 0x2A20C58 - 0x56450E\n',
+			'\tend\n',
+			'end\n\n',
+			'function Events(M,B,E) --Check for Map, Btl, and Evt\n',
+			'\treturn ((Map == M or not M) and (Btl == B or not B) and (Evt == E or not E))\n',
+			'end\n\n'
+		]
 
-		// let levelPnachCodes = allLevels.map(level => {
-		// 	return level.saveToPnach(isCommented)
-		// })
-		// levelPnachCodes.unshift('\n//LEVEL REWARDS\n')
-
-		// let magicCostLuaCodes = allMagics.map(magicType => {
-		// 	let prefix = isCommented ? '-- ' + magicType.magicType.toUpperCase() + '\n' : ''
-		// 	let ret = ''
-		// 	let tempString = ''
-		// 	let tempLastAbility
-		// 	let magicChangeCount = 0
-		// 	let lastAbility
-		// 	magicType.abilities.forEach(ability => {
-		// 		[tempString, tempLastAbility] = ability.saveToLua(isCommented)
-		// 		if (tempString !== '') {
-		// 			ret += tempString
-		// 			lastAbility = tempLastAbility
-		// 			magicChangeCount++
-		// 		}
-		// 	})
-		// 	if (magicChangeCount > 0) {
-		// 		let checkAddress = (lastAbility.costAddress + 0x10000000).toString(16).toUpperCase().padStart(8, '0')
-		// 		prefix += 'patch=1,EE,E0' + (magicChangeCount + 3).toString(16).toUpperCase().padStart(2, '0') + 'FFFF,extended,1032BAE0 // If not on Title Screen\n'
-		// 		prefix += 'patch=1,EE,E0' + (magicChangeCount + 2).toString(16).toUpperCase().padStart(2, '0') + '2002,extended,1032BAE0 // If not in Station of Serenity\n'
-		// 		prefix += 'patch=1,EE,E0' + (magicChangeCount + 1).toString(16).toUpperCase().padStart(2, '0') + '0000,extended,1032BAD8 // If not screen transition\n'
-		// 		prefix += 'patch=1,EE,E1' + magicChangeCount.toString(16).toUpperCase().padStart(2, '0') + '00' + lastAbility.replacementCost.toString(16).toUpperCase().padStart(2, '0')
-		// 		prefix += ',extended,' + checkAddress
-		// 		if (isCommented) prefix += ' // If ' + lastAbility.ability + '\'s MP Cost is not ' + lastAbility.replacementCost
-		// 		prefix += '\n'
-		// 	}
-		// 	return prefix + ret
-		// })
-		// magicCostLuaCodes.unshift('\n//MAGIC COSTS\n')
-
-		// let startingAbilityPnachCodes = allStartingAbilities.map(characterAbilities => {
-		// 	let ret = isCommented ? '// ' + characterAbilities.character.toUpperCase() + '\n' : ''
-		// 	characterAbilities.abilities.forEach(ability => {
-		// 		ret += ability.saveToPnach(isCommented)
-		// 	})
-		// 	return ret
-		// })
-		// startingAbilityPnachCodes.unshift('\n//STARTING ABILITIES\n')
-
-		// let startingPnachCodes = ['\n//STARTING STATUS\n']
-		// startingPnachCodes.push(startingStatus.saveToPnach(isCommented))
-
-		// let cheatPnachCodes = allCheats.map(cheat => { return cheat.saveToPnach() })
-		// cheatPnachCodes.unshift('\n//CHEAT CODES\n')
-
-		// let pnachCodes = trackerPnachCodes.concat(chestPnachCodes, popupPnachCodes, formPnachCodes, equipmentPnachCodes, bonusPnachCodes, levelPnachCodes, magicCostPnachCodes,
-		// 	startingAbilityPnachCodes, startingPnachCodes, cheatPnachCodes)
-
-
-
-		let luaCodes = [].concat(chestLuaCodes, popupLuaCodes, equipmentLuaCodes)
+		let luaCodes = [].concat(trackerLuaCodes, luaDefaultCodes, chestLuaCodes, popupLuaCodes, formLuaCodes, equipmentLuaCodes, bonusLuaCodes, levelLuaCodes, magicCostLuaCodes,
+			startingAbilityLuaCodes, startingLuaCodes, cheatLuaCodes)
 
 		const element = document.createElement('a')
 		const file = new Blob(luaCodes, { type: 'text/plain;charset=utf-8' })
@@ -1029,6 +1043,22 @@ function FunctionApp() {
 		marginLeft: '10px'
 	}
 
+	let saveLoadModal = <SaveLoadModal
+		isPnachCommented={isPnachCommented}
+		isLuaCommented={isLuaCommented}
+		onPnachCommentChange={() => { setIsPnachCommented(!isPnachCommented) }}
+		onLuaCommentChange={() => { setIsLuaCommented(!isLuaCommented) }}
+		handleSaveAsPnach={handleSaveAsPnach}
+		handleSaveAsLua={handleSaveAsLua}
+		handleSaveAsJSON={handleSaveAsJSON}
+		onFileUpload={(e) => {
+			let file = e.target.files[0]
+			let reader = new FileReader()
+			reader.readAsText(file)
+			reader.onload = (e) => onFileUpload(e.target.result)
+		}}
+	/>
+
 	return (
 		<div style={styles}>
 			<Tabs defaultActiveKey={currentTab} id='allTabs' transition={false} onSelect={(newTab) => setCurrentTab(newTab)}>
@@ -1041,19 +1071,7 @@ function FunctionApp() {
 					/>}
 				>
 					<HomePage>
-						<SaveLoadModal
-							isCommented={isCommented}
-							onCommentChange={() => { setIsCommented(!isCommented) }}
-							handleSaveAsPnach={handleSaveAsPnach}
-							handleSaveAsLua={handleSaveAsLua}
-							handleSaveAsJSON={handleSaveAsJSON}
-							onFileUpload={(e) => {
-								let file = e.target.files[0]
-								let reader = new FileReader()
-								reader.readAsText(file)
-								reader.onload = (e) => onFileUpload(e.target.result)
-							}}
-						/>
+						{saveLoadModal}
 					</HomePage>
 				</Tab>
 				<Tab
@@ -1084,19 +1102,7 @@ function FunctionApp() {
 						}}
 					>
 						<HelpModal tab={currentTab} />
-						<SaveLoadModal
-							isCommented={isCommented}
-							onCommentChange={(e) => { setIsCommented(!isCommented) }}
-							handleSaveAsPnach={handleSaveAsPnach}
-							handleSaveAsLua={handleSaveAsLua}
-							handleSaveAsJSON={handleSaveAsJSON}
-							onFileUpload={(e) => {
-								let file = e.target.files[0]
-								let reader = new FileReader()
-								reader.readAsText(file)
-								reader.onload = (e) => onFileUpload(e.target.result)
-							}}
-						/>
+						{saveLoadModal}
 					</ChestPage>
 				</Tab>
 				<Tab
@@ -1127,19 +1133,7 @@ function FunctionApp() {
 						}}
 					>
 						<HelpModal tab={currentTab} />
-						<SaveLoadModal
-							isCommented={isCommented}
-							onCommentChange={(e) => { setIsCommented(!isCommented) }}
-							handleSaveAsPnach={handleSaveAsPnach}
-							handleSaveAsLua={handleSaveAsLua}
-							handleSaveAsJSON={handleSaveAsJSON}
-							onFileUpload={(e) => {
-								let file = e.target.files[0]
-								let reader = new FileReader()
-								reader.readAsText(file)
-								reader.onload = (e) => onFileUpload(e.target.result)
-							}}
-						/>
+						{saveLoadModal}
 					</PopupPage>
 				</Tab>
 				<Tab
@@ -1187,19 +1181,7 @@ function FunctionApp() {
 						}}
 					>
 						<HelpModal tab={currentTab} />
-						<SaveLoadModal
-							isCommented={isCommented}
-							onCommentChange={(e) => { setIsCommented(!isCommented) }}
-							handleSaveAsPnach={handleSaveAsPnach}
-							handleSaveAsLua={handleSaveAsLua}
-							handleSaveAsJSON={handleSaveAsJSON}
-							onFileUpload={(e) => {
-								let file = e.target.files[0]
-								let reader = new FileReader()
-								reader.readAsText(file)
-								reader.onload = (e) => onFileUpload(e.target.result)
-							}}
-						/>
+						{saveLoadModal}
 					</BonusPage>
 				</Tab>
 				<Tab
@@ -1236,19 +1218,7 @@ function FunctionApp() {
 						}}
 					>
 						<HelpModal tab={currentTab} />
-						<SaveLoadModal
-							isCommented={isCommented}
-							onCommentChange={(e) => { setIsCommented(!isCommented) }}
-							handleSaveAsPnach={handleSaveAsPnach}
-							handleSaveAsLua={handleSaveAsLua}
-							handleSaveAsJSON={handleSaveAsJSON}
-							onFileUpload={(e) => {
-								let file = e.target.files[0]
-								let reader = new FileReader()
-								reader.readAsText(file)
-								reader.onload = (e) => onFileUpload(e.target.result)
-							}}
-						/>
+						{saveLoadModal}
 					</FormPage>
 				</Tab>
 				<Tab
@@ -1297,19 +1267,7 @@ function FunctionApp() {
 						}}
 					>
 						<HelpModal tab={currentTab} />
-						<SaveLoadModal
-							isCommented={isCommented}
-							onCommentChange={(e) => { setIsCommented(!isCommented) }}
-							handleSaveAsPnach={handleSaveAsPnach}
-							handleSaveAsLua={handleSaveAsLua}
-							handleSaveAsJSON={handleSaveAsJSON}
-							onFileUpload={(e) => {
-								let file = e.target.files[0]
-								let reader = new FileReader()
-								reader.readAsText(file)
-								reader.onload = (e) => onFileUpload(e.target.result)
-							}}
-						/>
+						{saveLoadModal}
 					</EquipmentPage>
 				</Tab>
 				<Tab
@@ -1357,19 +1315,7 @@ function FunctionApp() {
 						}}
 					>
 						<HelpModal tab={currentTab} />
-						<SaveLoadModal
-							isCommented={isCommented}
-							onCommentChange={(e) => { setIsCommented(!isCommented) }}
-							handleSaveAsPnach={handleSaveAsPnach}
-							handleSaveAsLua={handleSaveAsLua}
-							handleSaveAsJSON={handleSaveAsJSON}
-							onFileUpload={(e) => {
-								let file = e.target.files[0]
-								let reader = new FileReader()
-								reader.readAsText(file)
-								reader.onload = (e) => onFileUpload(e.target.result)
-							}}
-						/>
+						{saveLoadModal}
 					</LevelPage>
 				</Tab>
 				<Tab
@@ -1399,19 +1345,7 @@ function FunctionApp() {
 						}}
 					>
 						<HelpModal tab={currentTab} />
-						<SaveLoadModal
-							isCommented={isCommented}
-							onCommentChange={(e) => { setIsCommented(!isCommented) }}
-							handleSaveAsPnach={handleSaveAsPnach}
-							handleSaveAsLua={handleSaveAsLua}
-							handleSaveAsJSON={handleSaveAsJSON}
-							onFileUpload={(e) => {
-								let file = e.target.files[0]
-								let reader = new FileReader()
-								reader.readAsText(file)
-								reader.onload = (e) => onFileUpload(e.target.result)
-							}}
-						/>
+						{saveLoadModal}
 					</MagicPage>
 				</Tab>
 				<Tab
@@ -1485,19 +1419,7 @@ function FunctionApp() {
 						}}
 					>
 						<HelpModal tab={currentTab} />
-						<SaveLoadModal
-							isCommented={isCommented}
-							onCommentChange={(e) => { setIsCommented(!isCommented) }}
-							handleSaveAsPnach={handleSaveAsPnach}
-							handleSaveAsLua={handleSaveAsLua}
-							handleSaveAsJSON={handleSaveAsJSON}
-							onFileUpload={(e) => {
-								let file = e.target.files[0]
-								let reader = new FileReader()
-								reader.readAsText(file)
-								reader.onload = (e) => onFileUpload(e.target.result)
-							}}
-						/>
+						{saveLoadModal}
 					</StartingAbilityPage>
 				</Tab>
 				<Tab
@@ -1524,19 +1446,7 @@ function FunctionApp() {
 						}}
 					>
 						<HelpModal tab={currentTab} />
-						<SaveLoadModal
-							isCommented={isCommented}
-							onCommentChange={(e) => { setIsCommented(!isCommented) }}
-							handleSaveAsPnach={handleSaveAsPnach}
-							handleSaveAsLua={handleSaveAsLua}
-							handleSaveAsJSON={handleSaveAsJSON}
-							onFileUpload={(e) => {
-								let file = e.target.files[0]
-								let reader = new FileReader()
-								reader.readAsText(file)
-								reader.onload = (e) => onFileUpload(e.target.result)
-							}}
-						/>
+						{saveLoadModal}
 					</CheatPage>
 				</Tab>
 			</Tabs>

@@ -10,13 +10,13 @@ export class MagicAbility {
 			return this.replacementCost !== this.vanillaCost
 		}
 		this.copy = () => {
-			let ret = new MagicAbility(this.ability, this.costAddress, this.vanillaCost)
+			let ret = this.vanilla()
 			ret.replacementCost = this.replacementCost
 			ret.toBeReplaced = this.toBeReplaced
 			return ret
 		}
 		this.vanilla = () => {
-			return new MagicAbility(this.name, this.costAddress, this.vanillaCost)
+			return new MagicAbility(this.ability, this.costAddress, this.vanillaCost)
 		}
 		this.replace = (newMagicData) => {
 			let ret = this.copy()
@@ -41,16 +41,17 @@ export class MagicAbility {
 		this.saveToPnach = (isCommented) => {
 			let ret = ''
 			if (this.isReplaced()) {
-				ret += 'patch=1,EE,0' + this.costAddress.toString(16).toUpperCase().padStart(8, '0') + ',extended,' + this.replacementCost.toString(16).toUpperCase().padStart(8, '0')
+				ret += 'patch=1,EE,0' + this.costAddress.toString(16).toUpperCase().padStart(7, '0') + ',extended,' + this.replacementCost.toString(16).toUpperCase().padStart(8, '0')
 				if (isCommented) ret += ' // ' + this.ability + ' Cost: ' + this.replacementCost
 				ret += '\n'
 			}
 			return [ret, this]
 		}
 		this.saveToLua = (isCommented) => {
+			let costAddress = this.costAddress - 0x1CCB300
 			let ret = ''
 			if (this.isReplaced()) {
-				ret += 'WriteByte(Sys3+0x' + this.costAddress.toString(16).toUpperCase() + ',0x' + this.replacementCost.toString(16).toUpperCase()
+				ret += '\tWriteByte(Sys3+0x' + costAddress.toString(16).toUpperCase() + ',0x' + this.replacementCost.toString(16).toUpperCase() + ')'
 				if (isCommented) ret += ' -- ' + this.ability + ' Cost: ' + this.replacementCost
 				ret += '\n'
 			}

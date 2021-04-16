@@ -15,7 +15,7 @@ export class Popup {
 			return this.replacementReward.iconType === 'Ability'
 		}
 		this.copy = () => {
-			let ret = new Popup(this.popup, new Reward(this.vanillaReward.reward, this.vanillaReward.index, this.vanillaReward.iconType), this.vanillaAddress)
+			let ret = this.vanilla()
 			ret.replacementReward = { ...this.replacementReward }
 			return ret
 		}
@@ -56,7 +56,7 @@ export class Popup {
 			let ret = ''
 			if (this.isReplaced()) {
 				let address = this.vanillaAddress - 0x1CCB300
-				ret += 'WriteShort(Sys3+0x' + address.toString(16).toUpperCase() + ',0x' + this.replacementReward.index.toString(16).toUpperCase() + ')'
+				ret += '\tWriteShort(Sys3+0x' + address.toString(16).toUpperCase() + ',0x' + this.replacementReward.index.toString(16).toUpperCase() + ')'
 				if (isCommented) ret += ' -- ' + this.popup + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward
 				ret += '\n'
 			}

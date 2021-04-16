@@ -28,10 +28,6 @@ export class Equipment {
 		this.universalResistance = universal
 		this.vanillaUniversalResistance = universal
 		this.baseAddress = address
-		// this.abilityAddress = abilityAddress
-		// this.statAddress = this.abilityAddress + 0x2
-		// this.elementalResistanceAddress = this.statAddress + 0x4
-		// this.otherResistanceAddress = this.elementalResistanceAddress + 0x4
 		this.toBeReplaced = false
 		this.additionalLineCount = 0
 
@@ -49,9 +45,7 @@ export class Equipment {
 			return this.darkResistance !== this.vanillaDarkResistance || this.lightResistance !== this.vanillaLightResistance || this.universalResistance !== this.vanillaUniversalResistance
 		}
 		this.copy = () => {
-			let ret = new Equipment(this.name, new Reward(this.vanillaAbility.reward, this.vanillaAbility.index, this.vanillaAbility.iconType), this.strength, this.magic, this.ap, this.defense,
-				this.fireResistance, this.blizzardResistance, this.thunderResistance, this.darkResistance, this.physicalResistance, this.lightResistance, this.universalResistance,
-				this.baseAddress)
+			let ret = this.vanilla()
 
 			ret.replacementAbility = this.replacementAbility
 			ret.strength = this.strength
@@ -71,9 +65,9 @@ export class Equipment {
 			return ret
 		}
 		this.vanilla = () => {
-			return new Equipment(this.name, new Reward(this.vanillaAbility.reward, this.vanillaAbility.index, this.vanillaAbility.iconType), this.strength, this.magic, this.ap, this.defense,
-				this.fireResistance, this.blizzardResistance, this.thunderResistance, this.darkResistance, this.physicalResistance, this.lightResistance, this.universalResistance,
-				this.baseAddress)
+			return new Equipment(this.name, new Reward(this.vanillaAbility.reward, this.vanillaAbility.index, this.vanillaAbility.iconType), this.vanillaStrength, this.vanillaMagic,
+				this.vanillaAP, this.vanillaDefense, this.vanillaFireResistance, this.vanillaBlizzardResistance, this.vanillaThunderResistance, this.vanillaDarkResistance,
+				this.vanillaPhysicalResistance, this.vanillaLightResistance, this.vanillaUniversalResistance, this.baseAddress)
 		}
 		this.replace = (newEquipmentData) => {
 			let ret = this.copy()
@@ -170,15 +164,11 @@ export class Equipment {
 			if (this.isStatsReplaced()) {
 				ret += 'patch=1,EE,2' + statAddress.toString(16).toUpperCase().padStart(7, 0) + ',extended,'
 				ret += ((this.ap << 24) + (this.defense << 16) + (this.magic << 8) + this.strength).toString(16).toUpperCase().padStart(8, '0')
-				// ret += this.ap.toString(16).toUpperCase().padStart(2, '0') + this.defense.toString(16).toUpperCase().padStart(2, '0')
-				// ret += this.magic.toString(16).toUpperCase().padStart(2, '0') + this.strength.toString(16).toUpperCase().padStart(2, '0')
 				if (isCommented) ret += ' // AP:' + this.ap + ' Defense:' + this.defense + ' Magic:' + this.magic + ' Strength:' + this.strength
 				ret += '\n'
 			}
 			if (this.isElementalResistanceChanged()) {
 				ret += 'patch=1,EE,2' + elementalResistanceAddress.toString(16).toUpperCase().padStart(7, 0) + ',extended,'
-				// ret += (100 - this.thunderResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - this.blizzardResistance).toString(16).toUpperCase().padStart(2, '0')
-				// ret += (100 - this.fireResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - this.physicalResistance).toString(16).toUpperCase().padStart(2, '0')
 				let resistances = (100 - this.thunderResistance << 24) + (100 - this.blizzardResistance << 16) + (100 - this.fireResistance << 8) + (100 - this.physicalResistance)
 				ret += resistances.toString(16).toUpperCase().padStart(8, '0')
 				if (isCommented)
@@ -187,8 +177,6 @@ export class Equipment {
 			}
 			if (this.isOtherResistanceChanged()) {
 				ret += 'patch=1,EE,2' + otherResistanceAddress.toString(16).toUpperCase().padStart(7, 0) + ',extended,00'
-				// ret += (100 - this.universalResistance).toString(16).toUpperCase().padStart(2, '0')
-				// ret += (100 - this.lightResistance).toString(16).toUpperCase().padStart(2, '0') + (100 - this.darkResistance).toString(16).toUpperCase().padStart(2, '0')
 				ret += ((100 - this.universalResistance << 16) + (100 - this.lightResistance << 8) + (100 - this.darkResistance)).toString(16).toUpperCase().padStart(6, '0')
 				if (isCommented) ret += ' // Universal:' + this.universalResistance + '% Light:' + this.lightResistance + '% Dark:' + this.darkResistance + '%'
 				ret += '\n'
@@ -200,24 +188,25 @@ export class Equipment {
 		}
 		this.saveToLua = (isCommented) => {
 			let ret = ''
-			let abilityAddress = this.baseAddress - 0x1CCB300
-			let statAddress = this.baseAddress + 2
-			let elementalResistanceAddress = this.baseAddress + 4
-			let otherResistanceAddress = this.baseAddress + 6
+			let newBase = this.baseAddress - 0x1CCB300
+			let abilityAddress = newBase
+			let statAddress = newBase + 2
+			let elementalResistanceAddress = newBase + 4
+			let otherResistanceAddress = newBase + 6
 
 			if (this.isAbilityReplaced()) {
-				ret += 'WriteShort(Sys3+0x' + abilityAddress.toString(16).toUpperCase() + ',0x' + this.replacementAbility.index.toString(16).toUpperCase() + ')'
+				ret += '\tWriteShort(Sys3+0x' + abilityAddress.toString(16).toUpperCase() + ',0x' + this.replacementAbility.index.toString(16).toUpperCase() + ')'
 				if (isCommented) ret += ' -- Ability: ' + this.replacementAbility.reward
 				ret += '\n'
 			}
 			if (this.isStatsReplaced()) {
-				ret += 'WriteInt(Sys3+0x' + statAddress.toString(16).toUpperCase() + ',0x'
+				ret += '\tWriteInt(Sys3+0x' + statAddress.toString(16).toUpperCase() + ',0x'
 				ret += ((this.ap << 24) + (this.defense << 16) + (this.magic << 8) + this.strength).toString(16).toUpperCase() + ')'
 				if (isCommented) ret += ' -- AP:' + this.ap + ' Defense:' + this.defense + ' Magic:' + this.magic + ' Strength:' + this.strength
 				ret += '\n'
 			}
 			if (this.isElementalResistanceChanged()) {
-				ret += 'WriteInt(Sys3+0x' + elementalResistanceAddress.toString(16).toUpperCase() + ',0x'
+				ret += '\tWriteInt(Sys3+0x' + elementalResistanceAddress.toString(16).toUpperCase() + ',0x'
 				let resistances = (100 - this.thunderResistance << 24) + (100 - this.blizzardResistance << 16) + (100 - this.fireResistance << 8) + (100 - this.physicalResistance)
 				ret += resistances.toString(16).toUpperCase() + ')'
 				if (isCommented)
@@ -225,14 +214,14 @@ export class Equipment {
 				ret += '\n'
 			}
 			if (this.isOtherResistanceChanged()) {
-				ret += 'WriteInt(Sys3+0x' + otherResistanceAddress.toString(16).toUpperCase() + ',0x00'
+				ret += '\tWriteInt(Sys3+0x' + otherResistanceAddress.toString(16).toUpperCase() + ',0x00'
 				ret += ((100 - this.universalResistance << 16) + (100 - this.lightResistance << 8) + (100 - this.darkResistance)).toString(16).toUpperCase() + ')'
 				if (isCommented) ret += ' -- Universal:' + this.universalResistance + '% Light:' + this.lightResistance + '% Dark:' + this.darkResistance + '%'
 				ret += '\n'
 			}
 			if (ret === '') return ret
 			return isCommented
-				? '-- ' + this.name + '\n' + ret
+				? '\t-- ' + this.name + '\n' + ret
 				: ret
 		}
 	}
