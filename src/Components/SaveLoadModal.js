@@ -4,6 +4,7 @@ import { Form, Col, Button, Modal } from 'react-bootstrap'
 function SaveLoadModal(props) {
 	const [show, setShow] = useState(false)
 	const [pnachFileName, setPnachFileName] = useState('')
+	const [luaFileName, setLuaFileName] = useState('')
 	const [jsonFileName, setJSONFileName] = useState('')
 
 	return (
@@ -35,10 +36,10 @@ function SaveLoadModal(props) {
 						<Col xs='3'>
 							<Form.Check
 								type={'checkbox'}
-								id={`isCommentedCheckbox`}
+								id={`isCommentedPnachCheckbox`}
 								label={`Include Comments?`}
-								checked={props.isCommented}
-								onChange={props.onCommentChange}
+								checked={props.isPnachCommented}
+								onChange={props.onPnachCommentChange}
 							/>
 						</Col>
 						<Col xs='2'>
@@ -49,6 +50,41 @@ function SaveLoadModal(props) {
 								onClick={() => props.handleSaveAsPnach(pnachFileName)}
 							>
 								SAVE PNACH
+							</Button>
+						</Col>
+					</Form.Row>
+					<br></br>
+					<Form.Row>
+						<Col xs='7'>
+							<Form.Group controlId='currentLuaFileName'>
+								<Form.Label column='sm' srOnly>Lua File Name: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentLuaFileName'
+									type='text'
+									value={luaFileName}
+									placeholder='Lua File Name'
+									onChange={(e) => setLuaFileName(e.target.value)}
+								/>
+							</Form.Group>
+						</Col>
+						<Col xs='3'>
+							<Form.Check
+								type={'checkbox'}
+								id={`isLuaCommentedCheckbox`}
+								label={`Include Comments?`}
+								checked={props.isLuaCommented}
+								onChange={props.onLuaCommentChange}
+							/>
+						</Col>
+						<Col xs='2'>
+							<Button
+								variant='outline-light'
+								block
+								name='saveLuaButton'
+								onClick={() => props.handleSaveAsLua(luaFileName)}
+							>
+								SAVE LUA
 							</Button>
 						</Col>
 					</Form.Row>
@@ -78,6 +114,7 @@ function SaveLoadModal(props) {
 							</Button>
 						</Col>
 					</Form.Row>
+					<br></br>
 					<Form.Row>
 						<Form.Group controlId='currentLoadFileName'>
 							<Form.Label column='sm'>JSON Save File Name: </Form.Label>

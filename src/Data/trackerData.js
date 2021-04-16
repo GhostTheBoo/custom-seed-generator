@@ -106,5 +106,33 @@ export default class Tracker {
 
 			return ret
 		}
+		this.saveToLua = (pageName) => {
+			let ret = '--' + pageName + ' TALLY\n'
+			ret += this.fire !== 0 ? '-- ' + this.fire + ' Fire spell(s)\n' : ''
+			ret += this.blizzard !== 0 ? '-- ' + this.blizzard + ' Blizzard spell(s)\n' : ''
+			ret += this.thunder !== 0 ? '-- ' + this.thunder + ' Thunder spell(s)\n' : ''
+			ret += this.cure !== 0 ? '-- ' + this.cure + ' Cure spell(s)\n' : ''
+			ret += this.reflect !== 0 ? '-- ' + this.reflect + ' Reflect spell(s)\n' : ''
+			ret += this.magnet !== 0 ? '-- ' + this.magnet + ' Magnet spell(s)\n' : ''
+			ret += this.pages !== 0 ? '-- ' + this.pages + ' Torn Page(s)\n' : ''
+			ret += this.proofs[0] !== 0 ? '-- ' + this.proofs[0] + ' Proof(s) of Connection\n' : ''
+			ret += this.proofs[1] !== 0 ? '-- ' + this.proofs[1] + ' Proof(s) of Nonexistence\n' : ''
+			ret += this.proofs[2] !== 0 ? '-- ' + this.proofs[2] + ' Proof(s) of Peace\n' : ''
+
+			this.reports.forEach((report, index) => {
+				ret += report !== 0 ? '-- ' + report + ' Secret Ansem\'s Report(s) ' + (index + 1) + '\n' : ''
+			})
+			ret += this.drives[0] !== 0 ? '-- ' + this.drives[0] + ' Valor Form(s)\n' : ''
+			ret += this.drives[1] !== 0 ? '-- ' + this.drives[1] + ' Wisdom Form(s)\n' : ''
+			ret += this.drives[2] !== 0 ? '-- ' + this.drives[2] + ' Limit Form(s)\n' : ''
+			ret += this.drives[3] !== 0 ? '-- ' + this.drives[3] + ' Master Form(s)\n' : ''
+			ret += this.drives[4] !== 0 ? '-- ' + this.drives[4] + ' Final Form(s)\n' : ''
+			ret += this.summons[0] !== 0 ? '-- ' + this.summons[0] + ' Baseball Charm(s)\n' : ''
+			ret += this.summons[1] !== 0 ? '-- ' + this.summons[1] + ' Ukulele Charm(s)\n' : ''
+			ret += this.summons[2] !== 0 ? '-- ' + this.summons[2] + ' Lamp Charm(s)\n' : ''
+			ret += this.summons[3] !== 0 ? '-- ' + this.summons[3] + ' Feather Charm(s)\n' : ''
+
+			return ret
+		}
 	}
 }
