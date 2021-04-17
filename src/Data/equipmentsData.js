@@ -191,8 +191,8 @@ export class Equipment {
 			let newBase = this.baseAddress - 0x1CCB300
 			let abilityAddress = newBase
 			let statAddress = newBase + 2
-			let elementalResistanceAddress = newBase + 4
-			let otherResistanceAddress = newBase + 6
+			let elementalResistanceAddress = newBase + 6
+			let otherResistanceAddress = newBase + 10
 
 			if (this.isAbilityReplaced()) {
 				ret += '\tWriteShort(Sys3+0x' + abilityAddress.toString(16).toUpperCase() + ',0x'
