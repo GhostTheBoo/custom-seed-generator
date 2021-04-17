@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/custom-seed-generator/static/css/main.6e57f1ac.chunk.css",
-    "main.js": "/custom-seed-generator/static/js/main.7578eb75.chunk.js",
-    "main.js.map": "/custom-seed-generator/static/js/main.7578eb75.chunk.js.map",
+    "main.js": "/custom-seed-generator/static/js/main.6f13dd9c.chunk.js",
+    "main.js.map": "/custom-seed-generator/static/js/main.6f13dd9c.chunk.js.map",
     "runtime-main.js": "/custom-seed-generator/static/js/runtime-main.fe54423d.js",
     "runtime-main.js.map": "/custom-seed-generator/static/js/runtime-main.fe54423d.js.map",
     "static/css/2.1a02f21c.chunk.css": "/custom-seed-generator/static/css/2.1a02f21c.chunk.css",
@@ -18,6 +18,6 @@
     "static/css/2.1a02f21c.chunk.css",
     "static/js/2.6ea2b0e8.chunk.js",
     "static/css/main.6e57f1ac.chunk.css",
-    "static/js/main.7578eb75.chunk.js"
+    "static/js/main.6f13dd9c.chunk.js"
   ]
 }
