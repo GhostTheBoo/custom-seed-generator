@@ -49,7 +49,7 @@ function FunctionApp() {
 	const [bonusFieldData, setBonusFieldData] = useState({
 		currentWorld: 0,
 		currentFight: 0,
-		currentCharacter: 13,
+		currentCharacter: 0,
 		currentARewardType: 0,
 		currentAReward: 0,
 		currentBRewardType: 0,
