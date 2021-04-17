@@ -152,8 +152,8 @@ export class Equipment {
 			let ret = ''
 			let abilityAddress = this.baseAddress
 			let statAddress = this.baseAddress + 2
-			let elementalResistanceAddress = this.baseAddress + 4
-			let otherResistanceAddress = this.baseAddress + 6
+			let elementalResistanceAddress = this.baseAddress + 6
+			let otherResistanceAddress = this.baseAddress + 10
 
 			if (this.isAbilityReplaced()) {
 				ret += 'patch=1,EE,1' + abilityAddress.toString(16).toUpperCase().padStart(7, '0') + ',extended,0000'
