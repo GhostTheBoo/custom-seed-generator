@@ -50,6 +50,7 @@ export const formTypesData = [
 ]
 
 export const charactersData = [
+	'Vanilla',
 	'Sora/Roxas',
 	'Donald',
 	'Goofy',
@@ -62,8 +63,7 @@ export const charactersData = [
 	'Jack Skellington',
 	'Simba',
 	'Tron',
-	'Riku',
-	'Vanilla'
+	'Riku'
 ]
 
 export const magicCostsData = [

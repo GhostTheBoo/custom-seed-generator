@@ -24,7 +24,7 @@ function BonusTable(props) {
 			}
 
 			let bonusReceiver
-			if (bonus.replacementCharacter === 0) {
+			if (bonus.replacementCharacter === 1) {
 				if (props.currentWorld === 'Simulated Twilight Town')
 					bonusReceiver = 'Roxas'
 				else
