@@ -24,7 +24,8 @@ import PopupPage from './Pages/PopupPage'
 import BonusPage from './Pages/BonusPage'
 import FormPage from './Pages/FormPage'
 import EquipmentPage from './Pages/EquipmentPage'
-import LevelPage from './Pages/LevelPage'
+// import LevelPage from './Pages/LevelPage'
+import LevelPage from './Pages/NewLevelPage'
 import MagicPage from './Pages/MagicPage'
 import StartingAbilityPage from './Pages/StartingAbilityPage'
 import CheatPage from './Pages/CheatPage'
@@ -1270,6 +1271,54 @@ function FunctionApp() {
 						{saveLoadModal}
 					</EquipmentPage>
 				</Tab>
+				{/* <Tab
+					eventKey='level'
+					title={<Icon
+						fileName={'level'}
+						displayText={'Level'}
+						type={'tab'}
+					/>}
+				>
+					<LevelPage
+						style={styles}
+						levelData={allLevels}
+						fieldData={levelFieldData}
+						swordRewardList={rewardsData[levelFieldData.currentSwordRewardType].rewards}
+						shieldRewardList={rewardsData[levelFieldData.currentShieldRewardType].rewards}
+						staffRewardList={rewardsData[levelFieldData.currentStaffRewardType].rewards}
+						onRewardTypeChange={(e) => handleRewardTypeChange(e.target, levelFieldData, setLevelFieldData)}
+						onSelectChange={(e) => handleFieldChange(e.target.name, e.target.value, levelFieldData, setLevelFieldData)}
+						onInputChange={(e) => handleFieldChange(e.target.name,
+							Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))),
+							levelFieldData, setLevelFieldData)
+						}
+						onRowCheck={(e) => onRowCheck(true, e.target.value, '', '', levelFieldData, allLevels, setAllLevels)}
+						onCheckAll={() => onCheckAll(true, '', '', levelFieldData, setLevelFieldData, allLevels, setAllLevels)}
+						onClick={(e) => {
+							let replacement = {
+								currentLevelAP: levelFieldData.currentLevelAP,
+								currentLevelDefense: levelFieldData.currentLevelDefense,
+								currentLevelMagic: levelFieldData.currentLevelMagic,
+								currentLevelStrength: levelFieldData.currentLevelStrength,
+								currentEXP: levelFieldData.currentEXP,
+								currentEXPMultiplierValue: levelFieldData.currentEXPMultiplierValue,
+								sword: {
+									...rewardsData[levelFieldData.currentSwordRewardType].rewards[levelFieldData.currentSwordReward]
+								},
+								shield: {
+									...rewardsData[levelFieldData.currentShieldRewardType].rewards[levelFieldData.currentShieldReward]
+								},
+								staff: {
+									...rewardsData[levelFieldData.currentStaffRewardType].rewards[levelFieldData.currentStaffReward]
+								}
+							}
+							handleReplace(true, e.target.name === 'replaceButton', replacement, '', '', levelFieldData, setLevelFieldData, allLevels, setAllLevels)
+						}}
+					>
+						<HelpModal tab={currentTab} />
+						{saveLoadModal}
+					</LevelPage>
+				</Tab> */}
 				<Tab
 					eventKey='level'
 					title={<Icon
