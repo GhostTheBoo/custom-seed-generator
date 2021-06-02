@@ -125,7 +125,7 @@ export class BonusReward {
 			let characterAddress = this.baseAddress
 			let statAddress = this.baseAddress + 1
 			let slotAddress = this.baseAddress + 3
-			let rewardAddress = this.slotAddress + 7
+			let rewardAddress = this.baseAddress + 7
 			if (this.isCharacterReplaced()) {
 				ret += 'patch=1,EE,0' + characterAddress.toString(16).toUpperCase().padStart(7, '0') + ',extended,' + this.replacementCharacter.toString(16).toUpperCase().padStart(8, '0')
 				if (isCommented) ret += ' // Bonus reward is now given to ' + charactersData[this.replacementCharacter]
