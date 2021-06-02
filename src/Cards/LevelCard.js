@@ -1,21 +1,54 @@
 import React from 'react'
-import { Button, Form, Row, Col, Container, Card } from 'react-bootstrap'
+import { Button, Form, Row, Col, Container, Card, Table } from 'react-bootstrap'
 import RewardSelect from '../Components/RewardSelect'
 import RewardTypeSelect from '../Components/RewardTypeSelect'
 import EXPSelect from '../Components/EXPSelect'
 import Icon from '../Components/Icon'
 
 function LevelCard(props) {
-	console.log(props.selectedLevel)
 	return (
 		<div>
 			<Card border='primary' bg='dark'>
 				<Card.Body>
 					<Card.Title>Level {props.selectedLevel.level}</Card.Title>
-					<Card.Text>
-						This is the card for Level {props.selectedLevel.level}
-    				</Card.Text>
 				</Card.Body>
+				<Table striped hover borderless size='sm' variant='dark'>
+					<thead>
+						<tr>
+							<th></th>
+							<th>Original</th>
+							<th>Replacement</th>
+							<th>Selector</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Total EXP to Next Level</td>
+							<td>{props.selectedLevel.vanillaEXP}</td>
+							<td>{props.selectedLevel.replacementEXP}</td>
+							<td>
+								<Form.Control
+									size='sm'
+									name='currentEXP'
+									type='number'
+									value={69}
+									min="1"
+									max="99999999"
+								/>
+								{/* <Form.Group controlId={'butt'}>
+									<Form.Control
+										size='sm'
+										name='currentEXP'
+										type='number'
+										value={69}
+										min="1"
+										max="99999999"
+									/>
+								</Form.Group> */}
+							</td>
+						</tr>
+					</tbody>
+				</Table>
 			</Card>
 			{/* <Form>
 				<Form.Row>

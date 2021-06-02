@@ -22,7 +22,7 @@ function LevelPage(props) {
 		<div style={props.style}>
 			<Container fluid>
 				<Row>
-					<Col xs={1}>
+					<Col xs={2}>
 						<ListGroup style={styles}>
 							{levelList}
 						</ListGroup>
