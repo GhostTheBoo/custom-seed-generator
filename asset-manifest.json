@@ -5,17 +5,17 @@
     "main.js.map": "/custom-seed-generator/static/js/main.953e8ffd.chunk.js.map",
     "runtime-main.js": "/custom-seed-generator/static/js/runtime-main.fe54423d.js",
     "runtime-main.js.map": "/custom-seed-generator/static/js/runtime-main.fe54423d.js.map",
-    "static/css/2.1a02f21c.chunk.css": "/custom-seed-generator/static/css/2.1a02f21c.chunk.css",
+    "static/css/2.92200efa.chunk.css": "/custom-seed-generator/static/css/2.92200efa.chunk.css",
     "static/js/2.6ea2b0e8.chunk.js": "/custom-seed-generator/static/js/2.6ea2b0e8.chunk.js",
     "static/js/2.6ea2b0e8.chunk.js.map": "/custom-seed-generator/static/js/2.6ea2b0e8.chunk.js.map",
     "index.html": "/custom-seed-generator/index.html",
-    "static/css/2.1a02f21c.chunk.css.map": "/custom-seed-generator/static/css/2.1a02f21c.chunk.css.map",
+    "static/css/2.92200efa.chunk.css.map": "/custom-seed-generator/static/css/2.92200efa.chunk.css.map",
     "static/css/main.6e57f1ac.chunk.css.map": "/custom-seed-generator/static/css/main.6e57f1ac.chunk.css.map",
     "static/js/2.6ea2b0e8.chunk.js.LICENSE.txt": "/custom-seed-generator/static/js/2.6ea2b0e8.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.fe54423d.js",
-    "static/css/2.1a02f21c.chunk.css",
+    "static/css/2.92200efa.chunk.css",
     "static/js/2.6ea2b0e8.chunk.js",
     "static/css/main.6e57f1ac.chunk.css",
     "static/js/main.953e8ffd.chunk.js"
