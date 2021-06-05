@@ -14,7 +14,7 @@ export class StartingStatus {
 		}
 		this.replace = (newStartingData) => {
 			let ret = new StartingStatus()
-			ret.keyblade = { ...newStartingData.keyblade }
+			ret.keyblade = newStartingData.keyblade.index !== undefined ? { ...newStartingData.keyblade } : new Reward('Kingdom Key', 0x0029, 'Keyblade')
 			ret.armor = newStartingData.armor.index !== undefined ? { ...newStartingData.armor } : new Reward('EMPTY', 0x0000, 'EMPTY')
 			ret.accessory = newStartingData.accessory.index !== undefined ? { ...newStartingData.accessory } : new Reward('EMPTY', 0x0000, 'EMPTY')
 			ret.munny = newStartingData.munny
@@ -115,46 +115,46 @@ export class StartingStatus {
 			let statLineCount = 0
 
 			if (this.munny !== 0) {
-				equipmentMods += '\t\tWriteShort(Save+0x2440, 0x' + this.munny.toString(16).toUpperCase().padStart(4,'0') + ')'
+				equipmentMods += '\t\tWriteShort(Save+0x2440, 0x' + this.munny.toString(16).toUpperCase().padStart(4, '0') + ')'
 				if (isCommented) equipmentMods += ' -- Starting Munny: ' + this.munny
 				equipmentMods += '\n'
 				equipmentLineCount++
 			} else if (isCommented) equipmentMods += '\t-- Vanilla starting Munny of 0\n'
 
 			if (this.keyblade.index !== 0x0029) {
-				equipmentMods += '\t\tWriteShort(Save+0x24F0, 0x' + this.keyblade.index.toString(16).toUpperCase().padStart(4,'0') + ')'
+				equipmentMods += '\t\tWriteShort(Save+0x24F0, 0x' + this.keyblade.index.toString(16).toUpperCase().padStart(4, '0') + ')'
 				if (isCommented) equipmentMods += ' -- Starting Keyblade: ' + this.keyblade.reward
 				equipmentMods += '\n'
 				equipmentLineCount++
 			} else if (isCommented) equipmentMods += '\t-- Vanilla starting Keyblade of Kingdom Key\n'
 
 			if (this.armor.index !== 0x0000) {
-				equipmentMods += '\t\tWriteShort(Save+0x2504, 0x' + this.armor.index.toString(16).toUpperCase().padStart(4,'0') + ')'
+				equipmentMods += '\t\tWriteShort(Save+0x2504, 0x' + this.armor.index.toString(16).toUpperCase().padStart(4, '0') + ')'
 				if (isCommented) equipmentMods += ' -- Starting Armor: ' + this.armor.reward
 				equipmentMods += '\n'
 				equipmentLineCount++
 			} else if (isCommented) equipmentMods += '\t-- Vanilla starting Armor of EMPTY\n'
 
 			if (this.accessory.index !== 0x0000) {
-				equipmentMods += '\t\tWriteShort(Save+0x2514, 0x' + this.accessory.index.toString(16).toUpperCase().padStart(4,'0') + ')'
+				equipmentMods += '\t\tWriteShort(Save+0x2514, 0x' + this.accessory.index.toString(16).toUpperCase().padStart(4, '0') + ')'
 				if (isCommented) equipmentMods += ' -- Starting Accessory: ' + this.accessory.reward
 				equipmentMods += '\n'
 				equipmentLineCount++
 			} else if (isCommented) equipmentMods += '\t-- Vanilla starting Accessory of EMPTY\n'
 
 			if (this.hp !== 20) {
-				statMods += '\t\tWriteByte(Slot1+0x0, 0x' + this.hp.toString(16).toUpperCase().padStart(2,'0') + ')'
+				statMods += '\t\tWriteByte(Slot1+0x0, 0x' + this.hp.toString(16).toUpperCase().padStart(2, '0') + ')'
 				if (isCommented) statMods += ' -- Current HP: ' + this.hp
-				statMods += '\n\t\tWriteByte(Slot1+0x4, 0x' + this.hp.toString(16).toUpperCase().padStart(2,'0') + ')'
+				statMods += '\n\t\tWriteByte(Slot1+0x4, 0x' + this.hp.toString(16).toUpperCase().padStart(2, '0') + ')'
 				if (isCommented) statMods += ' -- Max HP: ' + this.hp
 				statMods += '\n'
 				statLineCount++
 			} else if (isCommented) statMods += '\t-- Vanilla starting HP of 20\n'
 
 			if (this.mp !== 100) {
-				statMods += '\t\tWriteByte(Slot1+0x180, 0x' + this.mp.toString(16).toUpperCase().padStart(2,'0') + ')'
+				statMods += '\t\tWriteByte(Slot1+0x180, 0x' + this.mp.toString(16).toUpperCase().padStart(2, '0') + ')'
 				if (isCommented) statMods += ' -- Current MP: ' + this.mp
-				statMods += '\n\t\tWriteByte(Slot1+0x184, 0x' + this.mp.toString(16).toUpperCase().padStart(2,'0') + ')'
+				statMods += '\n\t\tWriteByte(Slot1+0x184, 0x' + this.mp.toString(16).toUpperCase().padStart(2, '0') + ')'
 				if (isCommented) statMods += ' -- Max MP: ' + this.mp
 				statMods += '\n'
 				statLineCount++
