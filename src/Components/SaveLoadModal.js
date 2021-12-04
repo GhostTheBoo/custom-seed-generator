@@ -8,10 +8,10 @@ function SaveLoadModal(props) {
 	const [jsonFileName, setJSONFileName] = useState('')
 
 	return (
-		<Col xl='2'>
+		<>
 			<Button variant="primary" block onClick={() => setShow(true)}>
 				SAVE & LOAD
-      		</Button>
+			</Button>
 			<Modal size="lg" show={show} onHide={() => setShow(false)} centered>
 				<Modal.Header closeButton>
 					<Modal.Title>
@@ -126,7 +126,7 @@ function SaveLoadModal(props) {
 					</Form.Row>
 				</Modal.Body>
 			</Modal>
-		</Col>
+		</>
 	)
 }
 
