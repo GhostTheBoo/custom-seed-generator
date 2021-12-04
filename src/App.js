@@ -650,7 +650,7 @@ function FunctionApp() {
 			'\t\tSlot1 = 0x1C6C750 --Unit Slot 1\n',
 			'\telseif GAME_ID == 0x431219CC and ENGINE_TYPE == \'BACKEND\' then--PC\n',
 			'\t\tPlatform = \'PC\'\n',
-			'\t\tNow = 0x0714DB8 - 0x56450E\n',
+			'\t\tNow = 0x0714DB8 - 0x56454E\n',
 			'\t\tSave = 0x09A7070 - 0x56450E\n',
 			'\t\tObj0 = 0x2A22B90 - 0x56450E\n',
 			'\t\tSys3 = 0x2A59DB0 - 0x56450E\n',
