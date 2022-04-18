@@ -219,7 +219,13 @@ export const rewardsData = [
 			new Reward('Power Boost', 0x114, 'Tent'),
 			new Reward('Magic Boost', 0x115, 'Tent'),
 			new Reward('Defense Boost', 0x116, 'Tent'),
-			new Reward('AP Boost', 0x117, 'Tent')
+			new Reward('AP Boost', 0x117, 'Tent'),
+			new Reward('HP Up', 0x1D6, 'Key'),
+			new Reward('MP Up', 0x1D7, 'Key'),
+			new Reward('Drive Gauge Up', 0x1D8, 'Key'),
+			new Reward('Armor Slot Up', 0x1D9, 'Key'),
+			new Reward('Accessory Slot Up', 0x1DA, 'Key'),
+			new Reward('Item Slot Up', 0x1CF, 'Key')
 		]
 	},
 	{
@@ -274,9 +280,10 @@ export const rewardsData = [
 			new Reward('Fenrir', 0x1F3, 'Keyblade'),
 			new Reward('Ultima Weapon', 0x1F4, 'Keyblade'),
 			new Reward('Winner\'s Proof', 0x220, 'Keyblade'),
-			new Reward('Detection Saber', 0x02C, 'Keyblade'),
-			new Reward('Edge of Ultima', 0x02D, 'Keyblade'),
-			new Reward('FAKE', 0x051, 'Keyblade')
+			new Reward('Alpha Weapon', 0x02C, 'Keyblade'),
+			new Reward('Omega Weapon', 0x02D, 'Keyblade'),
+			new Reward('Pureblood', 0x047, 'Keyblade'),
+			new Reward('Kingdom Key D', 0x051, 'Keyblade')
 		]
 	},
 	{
