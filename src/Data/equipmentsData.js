@@ -255,9 +255,10 @@ export const equipmentsData = [{
 		new Equipment('Fenrir', new Reward('Negative Combo', 0x18A, 'Ability'), 7, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF596),
 		new Equipment('Ultima Weapon', new Reward('MP Hastega', 0x1A6, 'Ability'), 6, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF5A6),
 		new Equipment('Winner\'s Proof', new Reward('No Experience', 0x194, 'Ability'), 5, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF606),
-		new Equipment('FAKE', new Reward('Defender', 0x19E, 'Ability'), 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF3F6),
-		new Equipment('Detection Saber', new Reward('Scan', 0x08A, 'Ability'), 4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF206),
-		new Equipment('Edge of Ultima', new Reward('MP Hastera', 0x1A5, 'Ability'), 5, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF216)
+		new Equipment('Kingdom Key D', new Reward('Defender', 0x19E, 'Ability'), 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF3F6),
+		new Equipment('Alpha Weapon', new Reward('MP Hastera', 0x1A5, 'Ability'), 4, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF206),
+		new Equipment('Omega Weapon', new Reward('Air Combo Boost', 0x187, 'Ability'), 3, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF216),
+		new Equipment('Pureblood', new Reward('Damage Drive', 0x18C, 'Ability'), 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF226)
 	]
 }, {
 	equipmentType: 'Donald Staff',
