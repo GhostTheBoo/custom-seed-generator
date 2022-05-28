@@ -32,9 +32,11 @@ function Icon(props) {
 				onError={handleError}
 				height={iconSize}
 				width={iconSize}
+				style={{ verticalAlign: 'middle' }}
 			/>
 			<span
 				className='iconDescription'
+				style={{ verticalAlign: 'middle' }}
 			>
 				{' ' + props.children}
 			</span>

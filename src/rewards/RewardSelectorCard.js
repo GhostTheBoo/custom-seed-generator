@@ -29,6 +29,11 @@ function RewardSelectorCard(props) {
 					block
 					id={props.rewardCategoryIndex + '_' + index}
 					onClick={(e) => { rewardOnClick(e.target.id) }}
+					style={{
+						margin: 0,
+						padding: 0,
+						textAlign: 'left'
+					}}
 				>
 					<Icon
 						fileName={reward.iconType}
@@ -66,6 +71,13 @@ function RewardSelectorCard(props) {
 				as={Card.Header}
 				eventKey={props.rewardCategory}
 				className='rewardSelectorHeader'
+				style={{
+					textAlign: 'center',
+					borderBottom: '1px solid white',
+					borderTop: '1px solid rgb(100, 100, 100)',
+					borderLeft: '1px solid rgb(100, 100, 100)',
+					borderRight: '1px solid rgb(100, 100, 100)'
+				}}
 			>
 				{props.rewardCategory}
 			</Accordion.Toggle>

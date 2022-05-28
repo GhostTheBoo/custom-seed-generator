@@ -113,11 +113,14 @@ function ChestPage(props) {
 					currentItem={currentWorld}
 					onChange={(e) => setCurrentWorld(parseInt(e.target.value))}
 				/>
-				{/* Room Select? */}
 			</Row>
 			<Container
 				fluid
 				className='cardGrid'
+				style={{
+					overflowY: 'auto',
+					height: '800px'
+				}}
 			>
 				{chestRowList}
 			</Container>

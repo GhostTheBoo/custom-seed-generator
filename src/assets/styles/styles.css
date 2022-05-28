@@ -1,5 +1,5 @@
+/* Main Page Appearance */
 body {
-    color: #fff;
     background-color: #222;
 }
 .nav-tabs .nav-item.show .nav-link,
@@ -17,106 +17,36 @@ a:hover {
     color: #8df;
     text-decoration: underline;
 }
-.table-dark td, .table-dark th, .table-dark thead th {
-    border-color: #222;
-}
+
+/* Modal Appearance */
 .modal-content {
+	color: #fff;
     background-color: #333;
-}
-element.style {
-    background-color: #444;
 }
 .close {
     color: #fff;
     text-shadow: 0 1px 0 #000;
     opacity: .5;
 }
-th {
-	font-size: 1em;
-	height: 36px;
-}
-tr {
-	height: 35px;
-}
 
-
-.icon, .iconDescription {
-	vertical-align: middle;
-}
-
+/* Reward Selector Modal Appearance */
 .rewardSelectorModal {
 	width: 95vw;
 	max-width: 95vw;
 }
-.rewardTypeSelectorList {
-	max-height: 800px;
-	margin-bottom: 10px;
-	overflow-y: auto;
-}
-.rewardTypeSelectorListItem {
-	font-size: 21px;
-}
-.rewardListItem, .categoryListItem {
-	margin: 0;
-	padding: 0;
-	text-align: left;
-}
-.rewardListItem > * {
+.rewardListItem > *, .selectorListItem > * {
 	pointer-events: none;
 }
-
 .card-body {
 	max-height: 450px;
 	flex-wrap: wrap;
 	overflow: auto;
 }
-.rewardSelectorHeader {
-	text-align: center;
-	border-bottom: 1px solid white;
-	border-top: 1px solid rgb(100, 100, 100);
-	border-left: 1px solid rgb(100, 100, 100);
-	border-right: 1px solid rgb(100, 100, 100);
-}
 .accordion {
 	border-bottom: 1px solid rgb(100, 100, 100);
 }
 
-
-.cardGrid {
-	/* border-top: 1px solid white; */
-	overflow-y: auto;
-	height: 800px;
-}
-.chestCard, .popupCard {
-	margin: 10px;
-}
-.cardTitle, .cardText, .cardHeader {
-	text-align: center;
-}
-
-
-
-
-
-.bonusFightSelectorList{
-	border:1px solid white;
-}
-.bonusFightSelectorListItem {
-	font-size: 21px;
-}
-.bonusCard{
-	border: 10px solid;
-	overflow: hidden;
-	background-color: black;
-	border-radius: 50px;
-}
-.bonusCardBody {
-	padding: 0;
-}
-.bonusCardHeader{
-	border-radius: 20px 20px 0 0;
-	padding: 2px 0;
-}
+/* Bonus Card Appearance */
 .getBonus {
 	font-weight: 750;
 	padding: 5px 15px;
@@ -125,8 +55,13 @@ tr {
 	border-radius: 30px 0 0 0;
 	transition-duration: .1s;
 }
-.bonusCharacterName {
+
+/* Form Card Appearance */
+.getFormLevel {
 	font-weight: 750;
-	padding: 5px 0;
-	text-align: right;
+	padding: 5px 15px;
+	background-color: black;
+	border: 1px solid black;
+	border-radius: 30px 0 0 0;
+	transition-duration: .1s;
 }

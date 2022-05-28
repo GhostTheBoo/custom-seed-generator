@@ -19,20 +19,6 @@ function BonusForm(props) {
 	function setCurrentItemSlot(newValue) { props.setCurrentBonusFieldData('currentItem', newValue) }
 	function setCurrentDriveGauge(newValue) { props.setCurrentBonusFieldData('currentDrive', newValue) }
 
-	// function newBonusData() {
-	// 	return {
-	// 		currentCharacter: currentCharacter,
-	// 		currentBonusHP: currentHP,
-	// 		currentBonusMP: currentMP,
-	// 		currentArmor: currentArmorSlot,
-	// 		currentAccessory: currentAccessorySlot,
-	// 		currentItem: currentItemSlot,
-	// 		currentDrive: currentDriveGauge,
-	// 		rewardA: { ...currentRewardA },
-	// 		rewardB: { ...currentRewardB }
-	// 	}
-	// }
-
 	let characterList = [
 		'Vanilla',
 		'Sora/Roxas',
@@ -67,11 +53,6 @@ function BonusForm(props) {
 						Reward A:
 					</Form.Label>
 					<Col xs={4}>
-						<RewardSelector
-							onReplace={(replacementReward) => setCurrentRewardA(replacementReward)}
-						/>
-					</Col>
-					<Col xs={4}>
 						<Icon
 							style={{ margin: '10px' }}
 							fileName={props.currentBonusFieldData.rewardA.iconType}
@@ -80,6 +61,11 @@ function BonusForm(props) {
 							{props.currentBonusFieldData.rewardA.reward}
 						</Icon>
 					</Col>
+					<Col xs={4}>
+						<RewardSelector
+							onReplace={(replacementReward) => setCurrentRewardA(replacementReward)}
+						/>
+					</Col>
 					<Col xs={1} />
 				</Form.Row>
 				<Form.Row>
@@ -87,17 +73,17 @@ function BonusForm(props) {
 						Reward B:
 					</Form.Label>
 					<Col xs={4}>
-						<RewardSelector
-							onReplace={(replacementReward) => setCurrentRewardB(replacementReward)}
-						/>
-					</Col>
-					<Col xs={4}>
 						<Icon
 							fileName={props.currentBonusFieldData.rewardB.iconType}
 							type={'row'}
 						>
 							{props.currentBonusFieldData.rewardB.reward}
 						</Icon>
+					</Col>
+					<Col xs={4}>
+						<RewardSelector
+							onReplace={(replacementReward) => setCurrentRewardB(replacementReward)}
+						/>
 					</Col>
 					<Col xs={1} />
 				</Form.Row>
@@ -236,7 +222,7 @@ function BonusForm(props) {
 							block
 							onClick={() => props.setCurrentBonusFightSlot(props.bonusReward.replace(props.currentBonusFieldData))}
 						>
-							REPLACE
+							CONFIRM
 						</Button>
 					</Col>
 				</Form.Row>

@@ -1,5 +1,6 @@
 import { React } from 'react'
 import { Container, Row, Col, Button, Card } from 'react-bootstrap'
+
 import Icon from '../Components/Icon'
 
 function BonusCard(props) {
@@ -75,7 +76,7 @@ function BonusCard(props) {
 			cardColor: 'orange',
 			buttonType: 'warning',
 			buttonTextColor: 'yellow'
-		},
+		}
 	]
 
 	let currentColor = props.bonusReward.replacementCharacter > 3
@@ -85,11 +86,21 @@ function BonusCard(props) {
 	return (
 		<Card
 			className='bonusCard'
-			style={{ borderColor: currentColor.cardColor, margin: '10px' }}
+			style={{
+				border: `10px solid ${currentColor.cardColor}`,
+				borderRadius: '50px',
+				margin: '10px',
+				overflow: 'hidden',
+				backgroundColor: 'black'
+			}}
 		>
 			<Card.Header
 				className='bonusCardHeader'
-				style={{ backgroundColor: currentColor.cardColor }}
+				style={{
+					backgroundColor: currentColor.cardColor,
+					borderRadius: '20px 20px 0 0',
+					padding: '2px 0'
+				}}
 			>
 				<Container fluid>
 					<Row>
@@ -99,21 +110,27 @@ function BonusCard(props) {
 								disabled={props.isEditting}
 								className='getBonus'
 								style={{ color: currentColor.buttonTextColor }}
-								// style={{ color: props.isEditting ? 'black' : currentColor.buttonTextColor }}
 								onClick={() => updateCurrentBonusFightSlot()}
 							>
 								{props.isEditting ? 'EDITTING...' : 'EDIT BONUS!'}
 							</Button>
 						</Col>
 						<Col xs={6}>
-							<div className='bonusCharacterName'>
+							<div
+								className='bonusCharacterName'
+								style={{
+									fontWeight: 750,
+									padding: '5px 0',
+									textAlign: 'right'
+								}}
+							>
 								{props.bonusReward.replacementCharacterString}
 							</div>
 						</Col>
 					</Row>
 				</Container>
 			</Card.Header>
-			<Card.Body>
+			<Card.Body >
 				<Card.Title>
 					<Container fluid>
 						<Row>

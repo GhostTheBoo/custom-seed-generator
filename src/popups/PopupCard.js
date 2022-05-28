@@ -47,6 +47,7 @@ function PopupCard(props) {
 			border='dark'
 			bg='dark'
 			className='popupCard'
+			style={{ margin: '10px', textAlign: 'center' }}
 		>
 			<Card.Header className='cardHeader'>
 				{props.popup.popup}
