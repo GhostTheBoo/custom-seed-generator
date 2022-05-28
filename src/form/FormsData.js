@@ -34,7 +34,7 @@ export class FormLevel {
 			let ret = this.copy()
 
 			ret.replacementReward = { ...newFormData.reward }
-			ret.replacementEXP = newFormData.currentEXPMultiplierValue === 0 ? newFormData.currentEXP : Math.max(1, Math.floor((2 * this.vanillaEXP) / newFormData.currentEXPMultiplierValue))
+			ret.replacementEXP = newFormData.currentEXPMultiplierValue === 2 ? newFormData.currentEXP : Math.max(1, Math.floor((2 * this.vanillaEXP) / newFormData.currentEXPMultiplierValue))
 			ret.toBeReplaced = false
 
 			return ret

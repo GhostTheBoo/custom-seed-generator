@@ -2,8 +2,8 @@ import { React, useState } from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
 
 import GenericSelect from '../Components/GenericSelect'
+import GenericListGroup from '../Components/GenericListGroup'
 
-import BonusFightList from './BonusFightList'
 import BonusCard from './BonusCard'
 import BonusForm from './BonusForm'
 
@@ -55,8 +55,10 @@ function BonusPage(props) {
 		props.setAllBonuses(props.bonusData.map((world, worldIndex) => {
 			if (worldIndex === currentWorld) {
 				let newBonusFights = world.bonusFights.map((bonusFight, bonusFightIndex) => {
-					if (bonusFightIndex === currentBonusFight)
+					if (bonusFightIndex === currentBonusFight) {
+						console.log(bonusFight)
 						return bonusFight.update(newBonusReward, currentBonusFightSlot)
+					}
 					return bonusFight
 				})
 				return ({
@@ -66,6 +68,7 @@ function BonusPage(props) {
 			}
 			return world
 		}))
+		handleBonusFightSlotChange(-1)
 		setCurrentBonusFieldData({
 			rewardA: { ...newBonusReward.replacementRewardA },
 			rewardB: { ...newBonusReward.replacementRewardB },
@@ -108,10 +111,10 @@ function BonusPage(props) {
 			</Row>
 			<Row>
 				<Col xs={3}>
-					<BonusFightList
-						worldBonusData={props.bonusData[currentWorld]}
-						currentBonusFight={currentBonusFight}
-						setCurrentBonusFight={(newBonusFight) => {
+					<GenericListGroup
+						dataList={props.bonusData[currentWorld].bonusFights.map(fight => { return fight.fight })}
+						currentSelectItem={currentBonusFight}
+						setCurrentSelectItem={(newBonusFight) => {
 							handleBonusFightChange(newBonusFight)
 						}}
 					/>

@@ -49,6 +49,7 @@ function ChestCard(props) {
 			border='dark'
 			bg='dark'
 			className='chestCard'
+			style={{ margin: '10px', textAlign: 'center' }}
 		>
 			<Card.Img
 				variant='top'

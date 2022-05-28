@@ -1,5 +1,5 @@
-import { React, useState, useEffect } from 'react'
-import { Tabs, Tab, Row, Col, Container } from 'react-bootstrap'
+import { React, useState } from 'react'
+import { Tabs, Tab, Col } from 'react-bootstrap'
 
 import SaveLoadModal from './Components/SaveLoadModal'
 import Icon from './Components/Icon'
@@ -15,8 +15,8 @@ import { popupsData } from './popups/PopupsData'
 import PopupPage from './popups/PopupPage'
 import { bonusData } from './bonus/BonusData'
 import BonusPage from './bonus/BonusPage'
-import { formsData } from './form/newFormsData'
-import FormPage from './form/newFormPage'
+import { formsData } from './form/FormsData'
+import FormPage from './form/FormPage'
 
 import RewardSelector from './rewards/RewardSelector'
 
@@ -35,124 +35,7 @@ function FunctionApp() {
 	const [isLuaCommented, setIsLuaCommented] = useState(true)
 	//#endregion
 
-	//#region New General Functions
-	function handleChestReplace(newAllChests) {
-		setAllChests(newAllChests)
-	}
-	//#endregion
-
-
-
-
 	//#region General Functions
-	function handleTableChange(nextIndex, currentIndexFieldName, dataFieldName, fieldData, setFieldData, allData, setAllData) {
-		let newAllData = allData.map((objectList, objectListID) => {
-			if (objectListID === fieldData[currentIndexFieldName]) {
-				return {
-					...objectList,
-					[dataFieldName]: objectList[dataFieldName].map(object => {
-						return object.markForReplacement(false)
-					})
-				}
-			}
-			return objectList
-		})
-		setAllData(newAllData)
-		setFieldData({
-			...fieldData,
-			[currentIndexFieldName]: parseInt(nextIndex),
-			selectAll: false
-		})
-	}
-	function handleReplace(isShallow, toReplace, replacement, currentIndexFieldName, fieldName, fieldData, setFieldData, allData, setAllData) {
-		let newAllData = allData.map((objectList, objectListID) => {
-			if (isShallow) {
-				if (objectList.toBeReplaced)
-					return toReplace
-						? objectList.replace(replacement)
-						: objectList.vanilla()
-			}
-			if (objectListID === fieldData[currentIndexFieldName]) {
-				let newObjectList = objectList[fieldName].map(object => {
-					if (object.toBeReplaced) {
-						return toReplace
-							? object.replace(replacement)
-							: object.vanilla()
-					}
-					return object
-				})
-				return {
-					...objectList,
-					[fieldName]: newObjectList
-				}
-			}
-			return objectList
-		})
-		setAllData(newAllData)
-		setFieldData({
-			...fieldData,
-			selectAll: false
-		})
-	}
-	function onRowCheck(isShallow, row, currentIndexFieldName, dataFieldName, fieldData, allData, setAllData) {
-		let newAllData = allData.map((objectList, objectListID) => {
-			if (isShallow) {
-				if (objectListID === parseInt(row))
-					return objectList.markForReplacement(!objectList.toBeReplaced)
-				return objectList
-			}
-			if (objectListID === fieldData[currentIndexFieldName]) {
-				let newObjectList = objectList[dataFieldName].map((object, objectID) => {
-					if (objectID === parseInt(row)) {
-						return object.markForReplacement(!object.toBeReplaced)
-					}
-					return object
-				})
-				return {
-					...objectList,
-					[dataFieldName]: newObjectList
-				}
-			}
-			return objectList
-		})
-		setAllData(newAllData)
-	}
-	function onCheckAll(isShallow, currentIndexFieldName, dataFieldName, fieldData, setFieldData, allData, setAllData) {
-		let newSelectAll = !fieldData.selectAll
-		let newAllData = allData.map((objectList, objectListID) => {
-			if (isShallow)
-				return objectList.markForReplacement(newSelectAll)
-			if (objectListID === fieldData[currentIndexFieldName]) {
-				let newObjectList = objectList[dataFieldName].map(object => {
-					return object.markForReplacement(newSelectAll)
-				})
-				return {
-					...objectList,
-					[dataFieldName]: newObjectList
-				}
-			}
-			return objectList
-		})
-		setAllData(newAllData)
-		setFieldData({
-			...fieldData,
-			selectAll: newSelectAll
-		})
-	}
-	function handleRewardTypeChange(target, fieldData, setFieldData) {
-		const currentReward = target.name.slice(0, -4)
-		setFieldData({
-			...fieldData,
-			[target.name]: parseInt(target.value),
-			[currentReward]: 0
-		})
-	}
-	function handleFieldChange(name, value, fieldData, setFieldData) {
-		setFieldData({
-			...fieldData,
-			[name]: parseInt(value)
-		})
-	}
 	function handleTracker(isPnach) {
 		//Chest Tracker
 		let chestTracker = allChests.reduce((prevWorlds, currentWorld) => {
@@ -312,7 +195,8 @@ function FunctionApp() {
 		marginTop: '10px',
 		marginRight: '10px',
 		marginBottom: '10px',
-		marginLeft: '10px'
+		marginLeft: '10px',
+		color: '#fff'
 	}
 
 	let saveLoadModal = <SaveLoadModal
@@ -334,6 +218,7 @@ function FunctionApp() {
 	return (
 		<div style={styles}>
 			<Tabs defaultActiveKey={currentTab} id='allTabs' transition={false} onSelect={(newTab) => setCurrentTab(newTab)}>
+				{/* Home */}
 				<Tab
 					eventKey='home'
 					title={
@@ -356,6 +241,7 @@ function FunctionApp() {
 						</Col>
 					</HomePage>
 				</Tab>
+				{/* Chest */}
 				<Tab
 					eventKey='chest'
 					title={
@@ -376,6 +262,7 @@ function FunctionApp() {
 						{saveLoadModal}
 					</ChestPage>
 				</Tab>
+				{/* Popup */}
 				<Tab
 					eventKey='popup'
 					title={
@@ -396,6 +283,7 @@ function FunctionApp() {
 						{saveLoadModal}
 					</PopupPage>
 				</Tab>
+				{/* Bonus */}
 				<Tab
 					eventKey='bonus'
 					title={
@@ -416,6 +304,7 @@ function FunctionApp() {
 						{saveLoadModal}
 					</BonusPage>
 				</Tab>
+				{/* Form */}
 				<Tab
 					eventKey='form'
 					title={

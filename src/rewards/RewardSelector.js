@@ -30,6 +30,7 @@ function RewardSelector(props) {
 				eventKey={rewardTypeIndex}
 				id={rewardTypeIndex}
 				onClick={(e) => setCurrentRewardType(parseInt(e.target.id))}
+				style={{ fontSize: '21px' }}
 			>
 				{rewardType.rewardType}
 			</ListGroup.Item>
@@ -73,6 +74,11 @@ function RewardSelector(props) {
 									className='rewardTypeSelectorList'
 									variant='flush'
 									activeKey={currentRewardType}
+									style={{
+										maxHeight: '800px',
+										marginBottom: '10px',
+										overflowY: 'auto'
+									}}
 								>
 									{rewardTypeList}
 								</ListGroup>
