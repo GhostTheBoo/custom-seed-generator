@@ -21,7 +21,7 @@ function AllFormForm(props) {
 	return (
 		<>
 			<h1>
-				EDITTING ALL {props.currentDriveForm.toUpperCase()} LEVELS
+				EDITING ALL {props.currentDriveForm.toUpperCase()} LEVELS
 			</h1>
 			<Form onSubmit={(e) => e.preventDefault()}>
 				<Form.Row>

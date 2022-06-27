@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect, useRef } from 'react'
 import { Row, Container, Col } from 'react-bootstrap'
 
 import GenericSelect from '../Components/GenericSelect'
@@ -11,6 +11,10 @@ function ChestPage(props) {
 	// setAllChests: parent state function to set all chests -> function
 
 	const [currentWorld, setCurrentWorld] = useState(0)
+	const chestCardGrid = useRef(null)
+	useEffect(() => {
+		chestCardGrid.current.scrollTop = 0
+	}, [currentWorld])
 
 	let columnNum = 5
 	let currentWorldChests = props.chestData[currentWorld].chests
@@ -57,14 +61,14 @@ function ChestPage(props) {
 	let chestList = currentWorldChests.map((chest, chestIndex) => {
 		return (
 			<Col
-				key={currentWorld + '_' + chestIndex}
+				key={'chestCol' + chestIndex}
 				xs
 			>
 				<ChestCard
-					key={chestIndex}
+					key={'chest' + chestIndex}
 					id={chestIndex}
 					chest={chest}
-					currentWorldFolderName={chestFolderNames[currentWorld]}
+					currentFolderName={chestFolderNames[currentWorld]}
 					handleVanilla={(replacedChest) => { updateChest(replacedChest.vanilla()) }}
 					handleReplace={(replacedChest, replacementReward) => { updateChest(replacedChest.replace({ reward: { ...replacementReward } })) }}
 				/>
@@ -74,13 +78,13 @@ function ChestPage(props) {
 
 	chestList.push(
 		<Col
-			key={currentWorld + '_' + currentWorldChests.length}
+			key={'chestColAll'}
 			xs
 		>
 			<AllChestCard
-				key={currentWorldChests.length}
+				key={'chestAll'}
 				id={currentWorldChests.length}
-				currentWorldFolderName={chestFolderNames[currentWorld]}
+				currentFolderName={chestFolderNames[currentWorld]}
 				handleVanilla={() => updateAllChests(currentWorldChests.map(chest => { return chest.vanilla() }))}
 				handleReplace={(replacementReward) => updateAllChests(currentWorldChests.map(chest => { return chest.replace({ reward: { ...replacementReward } }) }))}
 			/>
@@ -88,14 +92,14 @@ function ChestPage(props) {
 	)
 
 	for (let i = chestList.length; chestList.length % columnNum !== 0; i++)
-		chestList.push(<Col key={currentWorld + '_' + i} xs />)
+		chestList.push(<Col key={'chest' + currentWorld + '_empty_' + i} xs />)
 
 	let chestRowList = []
 
 	for (let i = 0; i < chestList.length; i += columnNum) {
 		chestRowList.push(
 			<Row
-				key={currentWorld + '_' + i}
+				key={'chestRows' + currentWorld + '_' + i}
 			>
 				{chestList.slice(i, i + columnNum)}
 			</Row>
@@ -117,6 +121,7 @@ function ChestPage(props) {
 			<Container
 				fluid
 				className='cardGrid'
+				ref={chestCardGrid}
 				style={{
 					overflowY: 'auto',
 					height: '800px'

@@ -2,6 +2,7 @@ import { React } from 'react'
 import { Container, Row, Col, Button, Card } from 'react-bootstrap'
 
 import Icon from '../Components/Icon'
+import EditStatusPopover from '../Components/EditStatusPopover'
 
 function BonusCard(props) {
 	// PROPS:
@@ -83,6 +84,13 @@ function BonusCard(props) {
 		? colors[3]
 		: colors[props.bonusReward.replacementCharacter - 1]
 
+
+	let overlayPopover = <EditStatusPopover
+		text={props.bonusReward.getTotalLineCount() > 2 ? 'WARNING!' : 'NEW!'}
+		message={props.bonusReward.getTotalLineCount() > 2 ? 'Bonus Levels can only give 2 Rewards' : ''}
+		type='bonus'
+	/>
+
 	return (
 		<Card
 			className='bonusCard'
@@ -104,18 +112,21 @@ function BonusCard(props) {
 			>
 				<Container fluid>
 					<Row>
-						<Col xs={6}>
+						<Col xs={5}>
 							<Button
 								variant={currentColor.buttonType}
-								disabled={props.isEditting}
+								disabled={props.isEditing}
 								className='getBonus'
 								style={{ color: currentColor.buttonTextColor }}
 								onClick={() => updateCurrentBonusFightSlot()}
 							>
-								{props.isEditting ? 'EDITTING...' : 'EDIT BONUS!'}
+								{props.isEditing ? 'EDITING...' : 'EDIT BONUS!'}
 							</Button>
 						</Col>
-						<Col xs={6}>
+						<Col xs={3}>
+							{props.bonusReward.isReplaced() ? overlayPopover : <></>}
+						</Col>
+						<Col xs={4}>
 							<div
 								className='bonusCharacterName'
 								style={{

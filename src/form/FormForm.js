@@ -21,7 +21,7 @@ function FormForm(props) {
 	return (
 		<>
 			<h1>
-				EDITTING {props.currentDriveForm.toUpperCase()} LEVEL {props.currentDriveFormLevel + 2}:
+				EDITING {props.currentDriveForm.toUpperCase()} LEVEL {props.currentDriveFormLevel + 2}:
 			</h1>
 			<Form onSubmit={(e) => e.preventDefault()}			>
 				<Form.Row>

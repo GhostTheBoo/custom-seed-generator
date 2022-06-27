@@ -87,7 +87,7 @@ function BonusPage(props) {
 			<BonusCard
 				key={`BonusCard${currentWorld}${currentBonusFight}${slotIndex}`}
 				bonusReward={slot}
-				isEditting={slotIndex === currentBonusFightSlot}
+				isEditing={slotIndex === currentBonusFightSlot}
 				slotIndex={slotIndex}
 				setCurrentBonusFightSlot={(newBonusFightSlot) => {
 					handleBonusFightSlotChange(newBonusFightSlot)
@@ -120,12 +120,12 @@ function BonusPage(props) {
 					/>
 				</Col>
 				<Col
-					xs={3}
+					xs={4}
 					style={{ overflowY: 'auto', height: '800px' }}
 				>
 					{bonusSlotList}
 				</Col>
-				<Col xs={6}>
+				<Col xs={5}>
 					{
 						currentBonusFightSlot !== -1
 							? <BonusForm
@@ -134,6 +134,7 @@ function BonusPage(props) {
 								setCurrentBonusFieldData={(fieldName, newValue) => setCurrentBonusFieldData({ ...currentBonusFieldData, [fieldName]: newValue })}
 								bonusReward={props.bonusData[currentWorld].bonusFights[currentBonusFight].slots[currentBonusFightSlot]}
 								setCurrentBonusFightSlot={updateCurrentBonusFightSlot}
+								closeFormCard={handleBonusFightSlotChange}
 							/>
 							: <></>
 					}

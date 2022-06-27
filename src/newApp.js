@@ -17,6 +17,8 @@ import { bonusData } from './bonus/BonusData'
 import BonusPage from './bonus/BonusPage'
 import { formsData } from './form/FormsData'
 import FormPage from './form/FormPage'
+import { equipmentsData } from './equipment/EquipmentsData'
+import EquipmentPage from './equipment/EquipmentPage'
 
 import RewardSelector from './rewards/RewardSelector'
 
@@ -28,6 +30,7 @@ function FunctionApp() {
 	const [allPopups, setAllPopups] = useState(popupsData)
 	const [allBonuses, setAllBonuses] = useState(bonusData)
 	const [allForms, setAllForms] = useState(formsData)
+	const [allEquipments, setAllEquipments] = useState(equipmentsData)
 
 	const [currentTab, setCurrentTab] = useState('home')
 
@@ -324,6 +327,27 @@ function FunctionApp() {
 						<HelpModal tab={currentTab} />
 						{saveLoadModal}
 					</FormPage>
+				</Tab>
+				{/* Equipment */}
+				<Tab
+					eventKey='equipment'
+					title={
+						<>
+							<Icon
+								fileName={'keyblade'}
+								type={'tab'}
+							>
+								{'Equipment'}
+							</Icon>
+						</>}
+				>
+					<EquipmentPage
+						equipmentData={allEquipments}
+						setAllEquipments={setAllEquipments}
+					>
+						<HelpModal tab={currentTab} />
+						{saveLoadModal}
+					</EquipmentPage>
 				</Tab>
 			</Tabs>
 		</div>

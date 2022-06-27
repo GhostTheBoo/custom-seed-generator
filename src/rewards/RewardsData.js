@@ -259,9 +259,13 @@ export const rewardsData = [
 					new Reward('Fenrir', 0x1F3, 'Keyblade'),
 					new Reward('Ultima Weapon', 0x1F4, 'Keyblade'),
 					new Reward('Winner\'s Proof', 0x220, 'Keyblade'),
-					new Reward('Detection Saber', 0x02C, 'Keyblade'),
-					new Reward('Edge of Ultima', 0x02D, 'Keyblade'),
-					new Reward('FAKE', 0x051, 'Keyblade')
+					new Reward('Alpha Weapon', 0x02C, 'Keyblade'),
+					new Reward('Omega Weapon', 0x02D, 'Keyblade'),
+					new Reward('Pureblood', 0x047, 'Keyblade'),
+					new Reward('Kingdom Key D', 0x051, 'Keyblade'),
+					new Reward('Struggle Sword', 0x180, 'Keyblade'),
+					new Reward('Struggle Hammer', 0x1F5, 'Keyblade'),
+					new Reward('Struggle Wand', 0x1F6, 'Keyblade')
 				]
 			},
 			{

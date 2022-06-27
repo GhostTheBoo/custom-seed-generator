@@ -1,32 +1,42 @@
+@font-face {
+	font-family: 'KHGummi';
+	src: local('KHGummi'),
+		url('../fonts/KHGummi.otf') format('truetype');
+}
+
 /* Main Page Appearance */
 body {
-    background-color: #222;
+	background-color: #222;
 }
+
 .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
-    color: #fff;
-    background-color: #222;
-    border-color: #fff #fff #222;
+	color: #fff;
+	background-color: #222;
+	border-color: #fff #fff #222;
 }
+
 a {
-    color: #5af;
-    text-decoration: none;
-    background-color: transparent;
+	color: #5af;
+	text-decoration: none;
+	background-color: transparent;
 }
+
 a:hover {
-    color: #8df;
-    text-decoration: underline;
+	color: #8df;
+	text-decoration: underline;
 }
 
 /* Modal Appearance */
 .modal-content {
 	color: #fff;
-    background-color: #333;
+	background-color: #333;
 }
+
 .close {
-    color: #fff;
-    text-shadow: 0 1px 0 #000;
-    opacity: .5;
+	color: #fff;
+	text-shadow: 0 1px 0 #000;
+	opacity: .5;
 }
 
 /* Reward Selector Modal Appearance */
@@ -34,14 +44,18 @@ a:hover {
 	width: 95vw;
 	max-width: 95vw;
 }
-.rewardListItem > *, .selectorListItem > * {
+
+.rewardListItem>*,
+.selectorListItem>* {
 	pointer-events: none;
 }
+
 .card-body {
-	max-height: 450px;
+	/* max-height: 450px; */
 	flex-wrap: wrap;
 	overflow: auto;
 }
+
 .accordion {
 	border-bottom: 1px solid rgb(100, 100, 100);
 }

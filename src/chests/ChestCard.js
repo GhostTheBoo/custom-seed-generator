@@ -2,6 +2,7 @@ import { React } from 'react'
 import { Container, Row, Button, Card } from 'react-bootstrap'
 import RewardSelector from '../rewards/RewardSelector'
 import Icon from '../Components/Icon'
+import EditStatusPopover from '../Components/EditStatusPopover'
 
 function ChestCard(props) {
 	// PROPS:
@@ -11,38 +12,13 @@ function ChestCard(props) {
 	// handleReplace: handle reward replacement -> function
 	// id: id of chest card -> number
 
-	let chestImage = require(`../assets/chestImages/${props.currentWorldFolderName}/${props.chest.vanillaAddress.toString(16).toUpperCase()}.png`)
+	let chestImage = require(`../assets/chestImages/${props.currentFolderName}/${props.chest.vanillaAddress.toString(16).toUpperCase()}.png`)
 
-	let vanillaCardTitle = (
-		<Icon
-			key={props.chest.vanillaAddress + '_' + props.chest.vanillaReward}
-			fileName={props.chest.vanillaReward.iconType}
-			type={'card'}
-		>
-			{props.chest.vanillaReward.reward}
-		</Icon>
-	)
-
-	let replacedCardTitle = (
-		<>
-			<s>
-				<Icon
-					key={props.chest.vanillaAddress + '_' + props.chest.vanillaReward}
-					fileName={props.chest.vanillaReward.iconType}
-					type={'card'}
-				>
-					{props.chest.vanillaReward.reward}
-				</Icon>
-			</s>
-			<br />
-			<Icon
-				fileName={props.chest.replacementReward.iconType}
-				type={'card'}
-			>
-				{props.chest.replacementReward.reward}
-			</Icon>
-		</>
-	)
+	let overlayPopover = <EditStatusPopover
+		text='NEW!'
+		message={''}
+		type='chest'
+	/>
 
 	return (
 		<Card
@@ -51,18 +27,26 @@ function ChestCard(props) {
 			className='chestCard'
 			style={{ margin: '10px', textAlign: 'center' }}
 		>
-			<Card.Img
-				variant='top'
-				src={chestImage.default}
-				height='300px'
-				width='300px'
-			/>
+			<div style={{ position: 'relative' }}>
+				<Card.Img
+					variant='top'
+					src={chestImage.default}
+					height='300px'
+					width='300px'
+				/>
+				{props.chest.isReplaced() ? overlayPopover : <></>}
+			</div>
 			<Card.Header className='cardHeader'>
 				{props.chest.room}
 			</Card.Header>
 			<Card.Body>
 				<Card.Title className='cardTitle'>
-					{props.chest.isReplaced() ? replacedCardTitle : vanillaCardTitle}
+					<Icon
+						fileName={props.chest.replacementReward.iconType}
+						type={'card'}
+					>
+						{props.chest.replacementReward.reward}
+					</Icon>
 				</Card.Title>
 			</Card.Body>
 			<Card.Footer>

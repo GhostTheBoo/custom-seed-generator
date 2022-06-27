@@ -23,9 +23,9 @@ export class BonusReward {
 		this.itemSlotIncrease = item
 		this.vanillaDriveGaugeIncrease = drive
 		this.driveGaugeIncrease = drive
-		this.statChangeCount = this.getStatCount()
-		this.slotChangeCount = this.getSlotCount()
-		this.rewardChangeCount = this.getRewardCount()
+		// this.statChangeCount = this.getStatCount()
+		// this.slotChangeCount = this.getSlotCount()
+		// this.rewardChangeCount = this.getRewardCount()
 		this.toBeReplaced = false
 
 		this.isCharacterReplaced = () => {
@@ -41,6 +41,21 @@ export class BonusReward {
 		this.isRewardsReplaced = () => {
 			return this.replacementRewardA.index !== this.vanillaRewardA.index || this.replacementRewardB.index !== this.vanillaRewardB.index
 		}
+		this.isReplaced = () => {
+			return this.isCharacterReplaced() || this.isStatsReplaced() || this.isSlotsReplaced() || this.isRewardsReplaced()
+		}
+		this.getTotalLineCount = () => {
+			let ret = 0
+			ret += this.hpIncrease > 0 ? 1 : 0
+			ret += this.mpIncrease > 0 ? 1 : 0
+			ret += this.armorSlotIncrease > 0 ? 1 : 0
+			ret += this.accessorySlotIncrease > 0 ? 1 : 0
+			ret += this.itemSlotIncrease > 0 ? 1 : 0
+			ret += this.driveGaugeIncrease > 0 ? 1 : 0
+			ret += this.replacementRewardA.index !== 0 ? 1 : 0
+			ret += this.replacementRewardB.index !== 0 ? 1 : 0
+			return ret
+		}
 		this.copy = () => {
 			let ret = this.vanilla()
 
@@ -54,9 +69,9 @@ export class BonusReward {
 			ret.itemSlotIncrease = this.itemSlotIncrease
 			ret.driveGaugeIncrease = this.driveGaugeIncrease
 			ret.replacementCharacterString = ret.getCharacter(ret.replacementCharacter)
-			ret.statChangeCount = ret.getStatCount()
-			ret.slotChangeCount = ret.getSlotCount()
-			ret.rewardChangeCount = ret.getRewardCount()
+			// ret.statChangeCount = ret.getStatCount()
+			// ret.slotChangeCount = ret.getSlotCount()
+			// ret.rewardChangeCount = ret.getRewardCount()
 			ret.toBeReplaced = this.toBeReplaced
 
 			return ret
@@ -81,9 +96,9 @@ export class BonusReward {
 			ret.itemSlotIncrease = newBonusData.currentItem
 			ret.driveGaugeIncrease = newBonusData.currentDrive
 			ret.replacementCharacterString = ret.getCharacter(ret.replacementCharacter)
-			ret.statChangeCount = ret.getStatCount()
-			ret.slotChangeCount = ret.getSlotCount()
-			ret.rewardChangeCount = ret.getRewardCount()
+			// ret.statChangeCount = ret.getStatCount()
+			// ret.slotChangeCount = ret.getSlotCount()
+			// ret.rewardChangeCount = ret.getRewardCount()
 			ret.toBeReplaced = false
 			return ret
 		}
@@ -103,9 +118,9 @@ export class BonusReward {
 			ret.accessorySlotIncrease = bonusRewardJSON.accessorySlotIncrease
 			ret.itemSlotIncrease = bonusRewardJSON.itemSlotIncrease
 			ret.driveGaugeIncrease = bonusRewardJSON.driveGaugeIncrease
-			ret.statChangeCount = ret.getStatCount()
-			ret.slotChangeCount = ret.getSlotCount()
-			ret.rewardChangeCount = ret.getRewardCount()
+			// ret.statChangeCount = ret.getStatCount()
+			// ret.slotChangeCount = ret.getSlotCount()
+			// ret.rewardChangeCount = ret.getRewardCount()
 			ret.toBeReplaced = false
 
 			return ret
@@ -199,26 +214,26 @@ export class BonusReward {
 		]
 		return characters[characterID - 1]
 	}
-	getStatCount() {
-		let ret = 0
-		ret += this.hpIncrease > 0 ? 1 : 0
-		ret += this.mpIncrease > 0 ? 1 : 0
-		return ret
-	}
-	getSlotCount() {
-		let ret = 0
-		ret += this.armorSlotIncrease > 0 ? 1 : 0
-		ret += this.accessorySlotIncrease > 0 ? 1 : 0
-		ret += this.itemSlotIncrease > 0 ? 1 : 0
-		ret += this.driveGaugeIncrease > 0 ? 1 : 0
-		return ret
-	}
-	getRewardCount() {
-		let ret = 0
-		ret += this.replacementRewardA.index !== 0 ? 1 : 0
-		ret += this.replacementRewardB.index !== 0 ? 1 : 0
-		return ret
-	}
+	// getStatCount() {
+	// 	let ret = 0
+	// 	ret += this.hpIncrease > 0 ? 1 : 0
+	// 	ret += this.mpIncrease > 0 ? 1 : 0
+	// 	return ret
+	// }
+	// getSlotCount() {
+	// 	let ret = 0
+	// 	ret += this.armorSlotIncrease > 0 ? 1 : 0
+	// 	ret += this.accessorySlotIncrease > 0 ? 1 : 0
+	// 	ret += this.itemSlotIncrease > 0 ? 1 : 0
+	// 	ret += this.driveGaugeIncrease > 0 ? 1 : 0
+	// 	return ret
+	// }
+	// getRewardCount() {
+	// 	let ret = 0
+	// 	ret += this.replacementRewardA.index !== 0 ? 1 : 0
+	// 	ret += this.replacementRewardB.index !== 0 ? 1 : 0
+	// 	return ret
+	// }
 }
 
 export class BonusFight {

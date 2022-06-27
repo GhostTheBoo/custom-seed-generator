@@ -3,6 +3,7 @@ import { Container, Row, Button, Card } from 'react-bootstrap'
 
 import RewardSelector from '../rewards/RewardSelector'
 import Icon from '../Components/Icon'
+import EditStatusPopover from '../Components/EditStatusPopover'
 
 function PopupCard(props) {
 	// PROPS:
@@ -11,36 +12,11 @@ function PopupCard(props) {
 	// handleReplace: function to replace -> function
 	// id: row number -> number
 
-	let vanillaCardTitle = (
-		<Icon
-			key={props.popup.vanillaAddress + '_' + props.popup.vanillaReward}
-			fileName={props.popup.vanillaReward.iconType}
-			type={'card'}
-		>
-			{props.popup.vanillaReward.reward}
-		</Icon>
-	)
-
-	let replacedCardTitle = (
-		<>
-			<s>
-				<Icon
-					key={props.popup.vanillaAddress + '_' + props.popup.vanillaReward}
-					fileName={props.popup.vanillaReward.iconType}
-					type={'card'}
-				>
-					{props.popup.vanillaReward.reward}
-				</Icon>
-			</s>
-			<br />
-			<Icon
-				fileName={props.popup.replacementReward.iconType}
-				type={'card'}
-			>
-				{props.popup.replacementReward.reward}
-			</Icon>
-		</>
-	)
+	let overlayPopover = <EditStatusPopover
+		text={props.popup.isAbility() ? 'WARNING!' : 'NEW!'}
+		message={props.popup.isAbility() ? 'Popups cannot contain Abilities' : ''}
+		type='popup'
+	/>
 
 	return (
 		<Card
@@ -51,10 +27,17 @@ function PopupCard(props) {
 		>
 			<Card.Header className='cardHeader'>
 				{props.popup.popup}
+
+				{props.popup.isReplaced() ? overlayPopover : <></>}
 			</Card.Header>
 			<Card.Body>
 				<Card.Title className='cardTitle'>
-					{props.popup.isReplaced() ? replacedCardTitle : vanillaCardTitle}
+					<Icon
+						fileName={props.popup.replacementReward.iconType}
+						type={'card'}
+					>
+						{props.popup.replacementReward.reward}
+					</Icon>
 				</Card.Title>
 			</Card.Body>
 			<Card.Footer>

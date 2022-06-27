@@ -3,6 +3,7 @@ import { Row, Col, Container } from 'react-bootstrap'
 
 import GenericSelect from '../Components/GenericSelect'
 import PopupCard from './PopupCard'
+import AllPopupCard from './AllPopupCard'
 
 function PopupPage(props) {
 	// PROPS:
@@ -36,11 +37,11 @@ function PopupPage(props) {
 	let popupList = currentWorldPopups.map((popup, popupIndex) => {
 		return (
 			<Col
-				key={currentWorld + '_' + popupIndex}
+				key={'popup' + currentWorld + '_' + popupIndex}
 				xs
 			>
 				<PopupCard
-					key={popupIndex}
+					key={'popup' + popupIndex}
 					id={popupIndex}
 					popup={popup}
 					handleVanilla={(replacedPopup) => { updatePopups(replacedPopup.vanilla()) }}
@@ -50,20 +51,36 @@ function PopupPage(props) {
 		)
 	})
 
+	popupList.push(
+		<Col
+			key={'chestColAll'}
+			xs
+		>
+			<AllPopupCard
+				key={'chestAll'}
+				id={currentWorldPopups.length}
+				// currentFolderName={chestFolderNames[currentWorld]}
+				handleVanilla={() => updateAllPopups(currentWorldPopups.map(popup => { return popup.vanilla() }))}
+				handleReplace={(replacementReward) => updateAllPopups(currentWorldPopups.map(popup => { return popup.replace({ reward: { ...replacementReward } }) }))}
+			/>
+		</Col>
+	)
+
 	for (let i = popupList.length; popupList.length % columnNum !== 0; i++)
-		popupList.push(<Col key={currentWorld + '_' + i} xs />)
+		popupList.push(<Col key={'popup' + currentWorld + '_' + i} xs />)
 
 	let popupRowList = []
 
 	for (let i = 0; i < popupList.length; i += columnNum) {
 		popupRowList.push(
 			<Row
-				key={currentWorld + '_' + i}
+				key={'popup' + currentWorld + '_' + i}
 			>
 				{popupList.slice(i, i + columnNum)}
 			</Row>
 		)
 	}
+
 	return (
 		<Container fluid>
 			<Row>

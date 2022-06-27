@@ -7,17 +7,18 @@ function AllChestCard(props) {
 	// currentWorldFolderName: current world for use in image lookup -> string
 	// handleReplace: handle reward replacement -> function
 
-	let chestImage = require(`../assets/chestImages/${props.currentWorldFolderName}/${props.currentWorldFolderName}.png`)
+	let worldImage = require(`../assets/chestImages/${props.currentFolderName}/${props.currentFolderName}.png`)
 
 	return (
 		<Card
 			border='dark'
 			bg='dark'
 			className='chestCard'
+			style={{ margin: '10px', textAlign: 'center' }}
 		>
 			<Card.Img
 				variant='top'
-				src={chestImage.default}
+				src={worldImage.default}
 				height='300px'
 				width='100px'
 			/>
