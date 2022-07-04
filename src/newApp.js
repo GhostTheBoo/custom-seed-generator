@@ -7,7 +7,7 @@ import HelpModal from './Components/HelpModal'
 
 import Tracker from './Data/trackerData'
 
-import HomePage from './Home/HomePage'
+import HomePage from './home/HomePage'
 
 import { chestsData } from './chests/ChestsData'
 import ChestPage from './chests/ChestPage'
@@ -15,13 +15,12 @@ import { popupsData } from './popups/PopupsData'
 import PopupPage from './popups/PopupPage'
 import { bonusData } from './bonus/BonusData'
 import BonusPage from './bonus/BonusPage'
-import { formsData } from './form/FormsData'
-import FormPage from './form/FormPage'
+import { formsData } from './forms/FormsData'
+import FormPage from './forms/FormPage'
 import { equipmentsData } from './equipment/EquipmentsData'
 import EquipmentPage from './equipment/EquipmentPage'
-
-import RewardSelector from './rewards/RewardSelector'
-
+import { levelsData } from './levels/LevelData'
+import LevelPage from './levels/LevelPage'
 
 
 function FunctionApp() {
@@ -31,6 +30,7 @@ function FunctionApp() {
 	const [allBonuses, setAllBonuses] = useState(bonusData)
 	const [allForms, setAllForms] = useState(formsData)
 	const [allEquipments, setAllEquipments] = useState(equipmentsData)
+	const [allLevels, setAllLevels] = useState(levelsData)
 
 	const [currentTab, setCurrentTab] = useState('home')
 
@@ -237,9 +237,6 @@ function FunctionApp() {
 				>
 					<HomePage>
 						<Col xs={2}>
-							<RewardSelector></RewardSelector>
-						</Col>
-						<Col xs={2}>
 							{saveLoadModal}
 						</Col>
 					</HomePage>
@@ -348,6 +345,27 @@ function FunctionApp() {
 						<HelpModal tab={currentTab} />
 						{saveLoadModal}
 					</EquipmentPage>
+				</Tab>
+				{/* Level */}
+				<Tab
+					eventKey='level'
+					title={
+						<>
+							<Icon
+								fileName={'level'}
+								type={'tab'}
+							>
+								{'Levels'}
+							</Icon>
+						</>}
+				>
+					<LevelPage
+						levelData={allLevels}
+						setAllLevels={setAllLevels}
+					>
+						<HelpModal tab={currentTab} />
+						{saveLoadModal}
+					</LevelPage>
 				</Tab>
 			</Tabs>
 		</div>

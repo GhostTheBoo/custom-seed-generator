@@ -62,6 +62,7 @@ function AllEquipmentForm(props) {
                                         <Form.Check
                                             type='checkbox'
                                             label='Modify Abilities for All Equipment?'
+                                            style={{ margin: 'auto' }}
                                             value={props.currentAllEquipmentFieldData.modifyAbility}
                                             onChange={() => setModifyAbility()}
                                         />
@@ -92,6 +93,7 @@ function AllEquipmentForm(props) {
                                         <Form.Check
                                             type='checkbox'
                                             label='Modify Base Stats for All Equipment?'
+                                            style={{ margin: 'auto' }}
                                             value={props.currentAllEquipmentFieldData.modifyStats}
                                             onChange={() => setModifyStats()}
                                         />
@@ -163,6 +165,7 @@ function AllEquipmentForm(props) {
                                         <Form.Check
                                             type='checkbox'
                                             label='Modify Resistances for All Equipment?'
+                                            style={{ margin: 'auto' }}
                                             value={props.currentAllEquipmentFieldData.modifyResistances}
                                             onChange={() => setModifyResistances()}
                                         />

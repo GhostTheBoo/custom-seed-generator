@@ -3,6 +3,11 @@
 	src: local('KHGummi'),
 		url('../fonts/KHGummi.otf') format('truetype');
 }
+@font-face {
+	font-family: 'KHMenu';
+	src: local('KHMenu'),
+		url('../fonts/KHMenu.otf') format('truetype');
+}
 
 /* Main Page Appearance */
 body {

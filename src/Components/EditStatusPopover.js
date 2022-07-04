@@ -14,8 +14,8 @@ function EditStatusPopover(props) {
 	// 	textSize = 20
 	else if (props.type === 'equipment')
 		textSize = '1.5rem'
-	// else if (props.type === 'level')
-	// 	textSize = 20
+	else if (props.type === 'level')
+		textSize = '1rem'
 	// else if (props.type === 'magic')
 	// 	textSize = 20
 	else

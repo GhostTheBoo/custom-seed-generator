@@ -1,6 +1,5 @@
 import React from 'react'
 import { Row, Container } from 'react-bootstrap'
-import EditStatusPopover from '../Components/EditStatusPopover'
 
 function HomePage(props) {
 	let lastUpdateDate = 'April 17, 2021'
@@ -38,11 +37,6 @@ function HomePage(props) {
 				<br></br>
 				The site has most recently been updated on {lastUpdateDate}.
 			</p>
-			<EditStatusPopover
-				iconType='new'
-				page='bonus'
-				message={''}
-			/>
 			<Container fluid>
 				<Row>
 					{props.children}

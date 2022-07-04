@@ -1,4 +1,4 @@
-import { Reward } from './rewardsData'
+import { Reward } from '../rewards/RewardsData'
 
 export class Level {
 	constructor(level, exp, address, ap, defense, magic, strength, sword, shield, staff) {
@@ -28,6 +28,9 @@ export class Level {
 
 		this.criticalAP = () => {
 			return Math.floor(((this.standardAP - 2) * 1.5) + 50)
+		}
+		this.isReplaced = () => {
+			return this.isEXPReplaced() || this.isStatsReplaced() || this.isSwordReplaced() || this.isShieldReplaced() || this.isStaffReplaced()
 		}
 		this.isEXPReplaced = () => {
 			return this.replacementEXP !== this.vanillaEXP
@@ -68,21 +71,17 @@ export class Level {
 		this.replace = (newLevelData) => {
 			let ret = this.copy()
 
-			ret.replacementEXP = newLevelData.currentEXPMultiplierValue === 0 ? newLevelData.currentEXP : Math.max(1, Math.floor((2 * this.vanillaEXP) / newLevelData.currentEXPMultiplierValue))
-			ret.standardAP = newLevelData.currentLevelAP
-			ret.defense = newLevelData.currentLevelDefense
-			ret.magic = newLevelData.currentLevelMagic
-			ret.strength = newLevelData.currentLevelStrength
+			// ret.replacementEXP = newLevelData.currentEXPMultiplierValue === 0 ? newLevelData.currentEXP : Math.max(1, Math.floor((2 * this.vanillaEXP) / newLevelData.currentEXPMultiplierValue))
+			ret.replacementEXP = newLevelData.currentEXP
+			ret.standardAP = newLevelData.currentAP
+			ret.defense = newLevelData.currentDefense
+			ret.magic = newLevelData.currentMagic
+			ret.strength = newLevelData.currentStrength
 			ret.replacementSwordReward = { ...newLevelData.sword }
 			ret.replacementShieldReward = { ...newLevelData.shield }
 			ret.replacementStaffReward = { ...newLevelData.staff }
 			ret.toBeReplaced = false
 
-			return ret
-		}
-		this.markForReplacement = (toBeReplaced) => {
-			let ret = this.copy()
-			ret.toBeReplaced = toBeReplaced
 			return ret
 		}
 		this.saveToJSON = () => {
@@ -173,14 +172,14 @@ export class Level {
 			}
 			else
 				if (this.isEXPReplaced()) {
-					ret += '\tWriteInt(Btl0+0x' + expAddress.toString(16).toUpperCase() + ',0x' + this.replacementEXP.toString(16).toUpperCase().padStart(8,'0') + ')'
+					ret += '\tWriteInt(Btl0+0x' + expAddress.toString(16).toUpperCase() + ',0x' + this.replacementEXP.toString(16).toUpperCase().padStart(8, '0') + ')'
 					if (isCommented) ret += ' -- Next level at ' + this.replacementEXP + ' experience'
 					ret += '\n'
 				}
 
 			if (this.isStatsReplaced()) {
 				ret += '\tWriteInt(Btl0+0x' + statAddress.toString(16).toUpperCase() + ',0x'
-				ret += ((this.standardAP << 24) + (this.defense << 16) + (this.magic << 8) + this.strength).toString(16).toUpperCase().padStart(8,'0') + ')'
+				ret += ((this.standardAP << 24) + (this.defense << 16) + (this.magic << 8) + this.strength).toString(16).toUpperCase().padStart(8, '0') + ')'
 				if (isCommented) ret += ' -- AP:' + this.standardAP + ' Magic:' + this.magic + ' Defense:' + this.defense + ' Strength:' + this.strength
 				ret += '\n'
 			}
@@ -190,17 +189,17 @@ export class Level {
 			}
 			else {
 				if (this.isSwordReplaced()) {
-					ret += '\tWriteShort(Btl0+0x' + swordAddress.toString(16).toUpperCase() + ',0x' + this.replacementSwordReward.index.toString(16).toUpperCase().padStart(4,'0') + ')'
+					ret += '\tWriteShort(Btl0+0x' + swordAddress.toString(16).toUpperCase() + ',0x' + this.replacementSwordReward.index.toString(16).toUpperCase().padStart(4, '0') + ')'
 					if (isCommented) ret += ' -- Sword Reward: ' + this.replacementSwordReward.reward
 					ret += '\n'
 				}
 				if (this.isShieldReplaced()) {
-					ret += '\tWriteShort(Btl0+0x' + shieldAddress.toString(16).toUpperCase() + ',0x' + this.replacementShieldReward.index.toString(16).toUpperCase().padStart(4,'0') + ')'
+					ret += '\tWriteShort(Btl0+0x' + shieldAddress.toString(16).toUpperCase() + ',0x' + this.replacementShieldReward.index.toString(16).toUpperCase().padStart(4, '0') + ')'
 					if (isCommented) ret += ' -- Shield Reward: ' + this.replacementShieldReward.reward
 					ret += '\n'
 				}
 				if (this.isStaffReplaced()) {
-					ret += '\tWriteShort(Btl0+0x' + staffAddress.toString(16).toUpperCase() + ',0x' + this.replacementStaffReward.index.toString(16).toUpperCase().padStart(4,'0') + ')'
+					ret += '\tWriteShort(Btl0+0x' + staffAddress.toString(16).toUpperCase() + ',0x' + this.replacementStaffReward.index.toString(16).toUpperCase().padStart(4, '0') + ')'
 					if (isCommented) ret += ' -- Staff Reward: ' + this.replacementStaffReward.reward
 					ret += '\n'
 				}
@@ -209,6 +208,25 @@ export class Level {
 			return isCommented
 				? '\t-- Level: ' + this.level + '\n' + ret
 				: ret
+		}
+		this.changeFromPreviousLevel = (prevLevel) => {
+			if (this.level === 1)
+				return {
+					strengthDif: this.strength,
+					magicDif: this.magic,
+					defenseDif: this.defense,
+					standardAPDif: this.standardAP,
+					criticalAPDif: this.criticalAP(),
+					expDif: this.replacementEXP
+				}
+			return {
+				strengthDif: this.strength - prevLevel.strength,
+				magicDif: this.magic - prevLevel.magic,
+				defenseDif: this.defense - prevLevel.defense,
+				standardAPDif: this.standardAP - prevLevel.standardAP,
+				criticalAPDif: this.criticalAP() - prevLevel.criticalAP(),
+				expDif: this.replacementEXP - prevLevel.replacementEXP
+			}
 		}
 	}
 }

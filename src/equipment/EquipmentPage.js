@@ -157,27 +157,12 @@ function EquipmentPage(props) {
 				newEquipmentData.currentLight = currentEquipmentFieldData.currentLight
 				newEquipmentData.currentUniversal = currentEquipmentFieldData.currentUniversal
 			}
-			console.log(newEquipmentData)
 			return equipment.replace(newEquipmentData)
 		})
 		updateAllEquipment(newEquipmentList)
 	}
 	function vanillaAllEquipment() {
 		let newEquipmentList = props.equipmentData[currentEquipmentType].equipments.map((equipment) => {
-			// let newEquipmentData = {
-			// 	ability: { ...equipment.vanillaAbility },
-			// 	currentAP: equipment.vanillaAP,
-			// 	currentStrength: equipment.vanillaStrength,
-			// 	currentMagic: equipment.vanillaMagic,
-			// 	currentDefense: equipment.vanillaDefense,
-			// 	currentFire: equipment.vanillaFire,
-			// 	currentBlizzard: equipment.vanillaBlizzard,
-			// 	currentThunder: equipment.vanillaThunder,
-			// 	currentPhysical: equipment.vanillaPhysical,
-			// 	currentDark: equipment.vanillaDark,
-			// 	currentLight: equipment.vanillaLight,
-			// 	currentUniversal: equipment.vanillaUniversal
-			// }
 			let newEquipmentData = {
 				ability: { ...equipment.replacementAbility },
 				currentAP: equipment.ap,
