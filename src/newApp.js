@@ -21,6 +21,9 @@ import { equipmentsData } from './equipment/EquipmentsData'
 import EquipmentPage from './equipment/EquipmentPage'
 import { levelsData } from './levels/LevelData'
 import LevelPage from './levels/LevelPage'
+import { magicData } from './magic/MagicData'
+import MagicPage from './magic/MagicPage'
+
 
 
 function FunctionApp() {
@@ -31,6 +34,7 @@ function FunctionApp() {
 	const [allForms, setAllForms] = useState(formsData)
 	const [allEquipments, setAllEquipments] = useState(equipmentsData)
 	const [allLevels, setAllLevels] = useState(levelsData)
+	const [allMagic, setAllMagic] = useState(magicData)
 
 	const [currentTab, setCurrentTab] = useState('home')
 
@@ -366,6 +370,27 @@ function FunctionApp() {
 						<HelpModal tab={currentTab} />
 						{saveLoadModal}
 					</LevelPage>
+				</Tab>
+				{/* Magic and Limits */}
+				<Tab
+					eventKey='magic'
+					title={
+						<>
+							<Icon
+								fileName={'spell'}
+								type={'tab'}
+							>
+								{'Magic & Limits'}
+							</Icon>
+						</>}
+				>
+					<MagicPage
+						magicData={allMagic}
+						setAllMagic={setAllMagic}
+					>
+						<HelpModal tab={currentTab} />
+						{saveLoadModal}
+					</MagicPage>
 				</Tab>
 			</Tabs>
 		</div>
