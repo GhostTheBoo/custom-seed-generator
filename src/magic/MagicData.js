@@ -34,7 +34,6 @@ export class MagicAbility {
 		this.loadFromJSON = (magicJSON) => {
 			let ret = this.copy()
 			ret.replacementCost = magicJSON.replacementCost
-			ret.toBeReplaced = false
 			return ret
 		}
 		this.saveToPnach = (isCommented) => {

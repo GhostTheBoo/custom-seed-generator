@@ -69,7 +69,7 @@ export class Equipment {
 			if (this.blizzard !== this.vanillaBlizzard || this.isArmor()) lineCount++
 			if (this.thunder !== this.vanillaThunder || this.isArmor()) lineCount++
 			if (this.dark !== this.vanillaDark || this.isArmor()) lineCount++
-			
+
 			return lineCount <= 5
 		}
 		this.copy = () => {
@@ -114,13 +114,13 @@ export class Equipment {
 			return ret
 		}
 		this.saveToJSON = () => {
-			return (this.isAbilityReplaced() || this.isStatsReplaced() || this.isElementalChanged() || this.isOtherChanged())
+			return (this.isReplaced())
 				? JSON.stringify(this, ['name', 'replacementAbility', 'reward', 'index', 'iconType', 'ap', 'defense', 'magic', 'strength', 'fire',
 					'blizzard', 'thunder', 'dark', 'physical', 'light', 'universal']) + ','
 				: ''
 		}
 		this.loadFromJSON = (equipmentJSON) => {
-			// will need to fix because oiriginal json called fireResistance, not fire
+			//remove all resistance checks
 			let ret = this.copy()
 
 			ret.replacementAbility = { ...equipmentJSON.replacementAbility }
@@ -128,14 +128,42 @@ export class Equipment {
 			ret.magic = equipmentJSON.magic
 			ret.ap = equipmentJSON.ap
 			ret.defense = equipmentJSON.defense
-			ret.fire = equipmentJSON.fire
-			ret.blizzard = equipmentJSON.blizzard
-			ret.thunder = equipmentJSON.thunder
-			ret.physical = equipmentJSON.physical
-			ret.dark = equipmentJSON.dark
-			ret.light = equipmentJSON.light
-			ret.universal = equipmentJSON.universal
-			ret.toBeReplaced = false
+
+
+			if (equipmentJSON.hasOwnProperty('fire'))
+				ret.fire = equipmentJSON.fire
+			else if (equipmentJSON.hasOwnProperty('fireResistance'))
+				ret.fire = equipmentJSON.fireResistance
+
+			if (equipmentJSON.hasOwnProperty('blizzard'))
+				ret.blizzard = equipmentJSON.blizzard
+			else if (equipmentJSON.hasOwnProperty('blizzardResistance'))
+				ret.blizzard = equipmentJSON.blizzardResistance
+
+			if (equipmentJSON.hasOwnProperty('thunder'))
+				ret.thunder = equipmentJSON.thunder
+			else if (equipmentJSON.hasOwnProperty('thunderResistance'))
+				ret.thunder = equipmentJSON.thunderResistance
+
+			if (equipmentJSON.hasOwnProperty('dark'))
+				ret.dark = equipmentJSON.dark
+			else if (equipmentJSON.hasOwnProperty('darkResistance'))
+				ret.dark = equipmentJSON.darkResistance
+
+			if (equipmentJSON.hasOwnProperty('physical'))
+				ret.physical = equipmentJSON.physical
+			else if (equipmentJSON.hasOwnProperty('physicalResistance'))
+				ret.physical = equipmentJSON.physicalResistance
+
+			if (equipmentJSON.hasOwnProperty('light'))
+				ret.light = equipmentJSON.light
+			else if (equipmentJSON.hasOwnProperty('lightResistance'))
+				ret.light = equipmentJSON.lightResistance
+
+			if (equipmentJSON.hasOwnProperty('universal'))
+				ret.universal = equipmentJSON.universal
+			else if (equipmentJSON.hasOwnProperty('universalResistance'))
+				ret.universal = equipmentJSON.universalResistance
 
 			return ret
 		}

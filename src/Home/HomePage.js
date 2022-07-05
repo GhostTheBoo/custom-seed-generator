@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Container } from 'react-bootstrap'
 
 function HomePage(props) {
-	let lastUpdateDate = 'April 17, 2021'
+	let lastUpdateDate = 'July 4, 2022'
 
 	return (
 		<>

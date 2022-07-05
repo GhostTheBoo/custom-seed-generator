@@ -1,5 +1,5 @@
 import { React } from 'react'
-import { Container, Row, Button, Card } from 'react-bootstrap'
+import { Container, Row, Col, Button, Card } from 'react-bootstrap'
 import Icon from '../Components/Icon'
 import EditStatusPopover from '../Components/EditStatusPopover'
 
@@ -22,77 +22,110 @@ function EquipmentCard(props) {
 	if (props.equipment.isAccessory() || props.equipment.ap !== 0)
 		equipmentStatList.push(
 			<li key={props.equipment.baseAddress + 'ap'}>
-				AP: {props.equipment.ap}
+				<Row>
+					<Col xs={8}>AP:</Col>
+					<Col xs={4}>{props.equipment.ap}</Col>
+				</Row>
 			</li>
 		)
 
 	if (props.equipment.isWeapon() || props.equipment.isAccessory() || props.equipment.isAllyWeapon() || props.equipment.strength !== 0)
 		equipmentStatList.push(
 			<li key={props.equipment.baseAddress + 'strength'}>
-				Strength: {props.equipment.strength}
+				<Row>
+					<Col xs={8}>Strength:</Col>
+					<Col xs={4}>{props.equipment.strength}</Col>
+				</Row>
 			</li>
 		)
 
 	if (props.equipment.isWeapon() || props.equipment.isAccessory() || props.equipment.isAllyWeapon() || props.equipment.magic !== 0)
 		equipmentStatList.push(
 			<li key={props.equipment.baseAddress + 'magic'}>
-				Magic: {props.equipment.magic}
+				<Row>
+					<Col xs={8}>Magic:</Col>
+					<Col xs={4}>{props.equipment.magic}</Col>
+				</Row>
 			</li>
 		)
 
 	if (props.equipment.isArmor() || props.equipment.defense !== 0)
 		equipmentStatList.push(
 			<li key={props.equipment.baseAddress + 'defense'}>
-				Defense: {props.equipment.defense}
+				<Row>
+					<Col xs={8}>Defense:</Col>
+					<Col xs={4}>{props.equipment.defense}</Col>
+				</Row>
 			</li>
 		)
 
 	if (props.equipment.isArmor() || props.equipment.fire !== 0)
 		equipmentStatList.push(
 			<li key={props.equipment.baseAddress + 'fire'}>
-				Fire Resistance: {props.equipment.fire}
+				<Row>
+					<Col xs={8}>Fire Res:</Col>
+					<Col xs={4}>{props.equipment.fire}</Col>
+				</Row>
 			</li>
 		)
 
 	if (props.equipment.isArmor() || props.equipment.blizzard !== 0)
 		equipmentStatList.push(
 			<li key={props.equipment.baseAddress + 'blizzard'}>
-				Blizzard Resistance: {props.equipment.blizzard}
+				<Row>
+					<Col xs={8}>Blizzard Res:</Col>
+					<Col xs={4}>{props.equipment.blizzard}</Col>
+				</Row>
 			</li>
 		)
 
 	if (props.equipment.isArmor() || props.equipment.thunder !== 0)
 		equipmentStatList.push(
 			<li key={props.equipment.baseAddress + 'thunder'}>
-				Thunder Resistance: {props.equipment.thunder}
+				<Row>
+					<Col xs={8}>Thunder Res:</Col>
+					<Col xs={4}>{props.equipment.thunder}</Col>
+				</Row>
 			</li>
 		)
 
 	if (props.equipment.isArmor() || props.equipment.dark !== 0)
 		equipmentStatList.push(
 			<li key={props.equipment.baseAddress + 'dark'}>
-				Dark Resistance: {props.equipment.dark}
+				<Row>
+					<Col xs={8}>Dark Res:</Col>
+					<Col xs={4}>{props.equipment.dark}</Col>
+				</Row>
 			</li>
 		)
 
 	if (props.equipment.physical !== 0)
 		equipmentStatList.push(
 			<li key={props.equipment.baseAddress + 'physical'}>
-				Physical Resistance: {props.equipment.physical}
+				<Row>
+					<Col xs={8}>Physical Res:</Col>
+					<Col xs={4}>{props.equipment.physical}</Col>
+				</Row>
 			</li>
 		)
 
 	if (props.equipment.light !== 0)
 		equipmentStatList.push(
 			<li key={props.equipment.baseAddress + 'light'}>
-				Light Resistance: {props.equipment.light}
+				<Row>
+					<Col xs={8}>Light Res:</Col>
+					<Col xs={4}>{props.equipment.light}</Col>
+				</Row>
 			</li>
 		)
 
 	if (props.equipment.universal !== 0)
 		equipmentStatList.push(
 			<li key={props.equipment.baseAddress + 'universal'}>
-				Universal Resistance: {props.equipment.universal}
+				<Row>
+					<Col xs={8}>Universal Res:</Col>
+					<Col xs={4}>{props.equipment.universal}</Col>
+				</Row>
 			</li>
 		)
 
