@@ -21,7 +21,7 @@ function BonusForm(props) {
 
 	let characterList = [
 		'Vanilla',
-		'Sora/Roxas',
+		'Sora',
 		'Donald',
 		'Goofy',
 		'Mickey',
@@ -33,7 +33,8 @@ function BonusForm(props) {
 		'Jack Skellington',
 		'Simba',
 		'Tron',
-		'Riku'
+		'Riku',
+		'Roxas'
 	]
 
 	let characterOptionList = characterList.map((item, index) => {

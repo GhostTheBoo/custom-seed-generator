@@ -351,6 +351,17 @@ export const rewardsData = [
 				]
 			},
 			{
+				category: 'Stat Increases',
+				rewards: [
+					new Reward(0x1CF, 'Item Slot Up', 'Stat'),
+					new Reward(0x1D6, 'Max HP Up', 'Stat'),
+					new Reward(0x1D7, 'Max MP Up', 'Stat'),
+					new Reward(0x1D8, 'Drive Gauge Up', 'Stat'),
+					new Reward(0x1D9, 'Armor Slot Up', 'Stat'),
+					new Reward(0x1DA, 'Accessory Slot Up', 'Stat')
+				]
+			},
+			{
 				category: 'Proofs',
 				rewards: [
 					new Reward('Proof of Connection', 0x251, 'Connection'),
@@ -364,10 +375,29 @@ export const rewardsData = [
 					new Reward('Torn Page', 0x020, 'Pages'),
 					new Reward('Munny Pouch (Olette)', 0x16A, 'Key'),
 					new Reward('Munny Pouch (Mickey)', 0x217, 'Key'),
-					new Reward('Membership Card', 0x171, 'Key'),
+					new Reward('Unknown Disk', 0x1CE, 'Key'),
 					new Reward('Olympus Stone', 0x172, 'Key'),
+					new Reward('Poster', 0x16E, 'Key'),
 					new Reward('Promise Charm', 0x20C, 'Promise'),
-					new Reward('Hades Cup Trophy', 0x219, 'Key')
+					new Reward('Hades Cup Trophy', 0x219, 'Key'),
+				]
+			},
+			{
+				category: 'Progression Locks',
+				rewards: [
+					new Reward('Sword of the Ancestor (Mulan)', 0x037, 'Ally'),
+					new Reward('Beast\'s Claw (Beast)', 0x03B, 'Ally'),
+					new Reward('Battlefields of War (Auron)', 0x036, 'Ally'),
+					new Reward('Skill and Crossbones (Jack Sparrow)', 0x03E, 'Ally'),
+					new Reward('Scimitar (Aladdin)', 0x048, 'Ally'),
+					new Reward('Bone Fist (Jack Skellington)', 0x03C, 'Ally'),
+					new Reward('Proud Fang (Simba)', 0x03D, 'Ally'),
+					new Reward('Identity Disk (Tron)', 0x04A, 'Ally'),
+					new Reward('Way to the Dawn (Riku)', 0x049, 'Ally'),
+					new Reward('Tournament Poster', 0x16D, 'Key'),
+					new Reward('Membership Card', 0x171, 'Key'),
+					new Reward('Ice Cream', 0x177, 'Key'),
+					new Reward('Picture', 0x178, 'Key')
 				]
 			},
 			{
@@ -375,16 +405,12 @@ export const rewardsData = [
 				rewards: [
 					new Reward('Crystal Orb', 0x16B, 'Key'),
 					new Reward('Seifer\'s Trophy', 0x16C, 'Key'),
-					new Reward('Tournament Poster', 0x16D, 'Key'),
-					new Reward('Poster', 0x16E, 'Key'),
 					new Reward('Letter', 0x16F, 'Key'),
 					new Reward('Namine\'s Sketches', 0x170, 'Key'),
 					new Reward('Auron\'s Statue', 0x173, 'Key'),
 					new Reward('Cursed Medallion', 0x174, 'Key'),
 					new Reward('Presents', 0x175, 'Key'),
 					new Reward('Decoy Presents', 0x176, 'Key'),
-					new Reward('Ice Cream', 0x177, 'Key'),
-					new Reward('Picture', 0x178, 'Key'),
 					new Reward('"The Struggle" Trophy', 0x21A, 'Key')
 				]
 			},
@@ -414,8 +440,8 @@ export const rewardsData = [
 			{
 				category: 'Area Maps',
 				rewards: [
-					new Reward('Navigational Map', 0x059, 'Map'),
-					new Reward('DH Map', 0x216, 'Map'),
+					// new Reward('Navigational Map', 0x059, 'Map'),
+					// new Reward('DH Map', 0x216, 'Map'),
 					new Reward('Tower Map', 0x215, 'Map'),
 					new Reward('Twilight Town Map', 0x0FF, 'Map'),
 					new Reward('Sunset Hill Map', 0x213, 'Map'),
@@ -545,6 +571,12 @@ export const rewardsData = [
 					new Reward('Glide LV2', 0x06B, 'Glide'),
 					new Reward('Glide LV3', 0x06C, 'Glide'),
 					new Reward('Glide MAX', 0x06D, 'Glide')
+				]
+			},
+			{
+				category: 'Anti',
+				rewards: [
+					new Reward('Anti Form', 0x01E, 'Form')
 				]
 			},
 			{

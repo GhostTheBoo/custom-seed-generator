@@ -1,7 +1,7 @@
 import { Reward } from '../rewards/RewardsData'
 
 export class FormLevel {
-	constructor(level, vanilla, rewardAddress, exp, expAddress) {
+	constructor(level, vanilla, rewardAddress, exp, expAddress, zipID) {
 		this.level = level
 		this.vanillaReward = { ...vanilla }
 		this.replacementReward = { ...vanilla }
@@ -9,6 +9,7 @@ export class FormLevel {
 		this.vanillaEXP = exp
 		this.replacementEXP = exp
 		this.EXPAddress = expAddress
+		this.zipID = zipID
 		this.toBeReplaced = false
 
 		this.isEXPReplaced = () => {
@@ -77,16 +78,28 @@ export class FormLevel {
 			let EXPAddress = this.EXPAddress - 0x1CE5D80
 			if (this.isRewardReplaced()) {
 				ret += '\tWriteShort(Btl0+0x' + rewardAddress.toString(16).toUpperCase() + ',0x'
-				ret += this.replacementReward.index.toString(16).toUpperCase().padStart(4,'0') + ')'
+				ret += this.replacementReward.index.toString(16).toUpperCase().padStart(4, '0') + ')'
 				if (isCommented) ret += ' -- ' + this.level + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward
 				ret += '\n'
 			}
 			if (this.isEXPReplaced()) {
 				ret += '\tWriteShort(Btl0+0x' + EXPAddress.toString(16).toUpperCase() + ',0x'
-				ret += this.replacementEXP.toString(16).toUpperCase().padStart(4,'0') + ')'
+				ret += this.replacementEXP.toString(16).toUpperCase().padStart(4, '0') + ')'
 				if (isCommented) ret += ' -- ' + this.replacementEXP + ' experience is now required to reach ' + this.level
 				ret += '\n'
 			}
+			return ret
+		}
+		this.saveToYml = (isCommented, formId) => {
+			// fix this form level bullshit
+			let ret = ''
+			// if (this.isRewardReplaced() || this.isEXPReplaced()) {
+				ret += '- Ability: ' + this.replacementReward.index + '\n  '
+				ret += 'Experience: ' + this.replacementEXP + '\n  '
+				ret += 'FormId: ' + formId + '\n  '
+				ret += 'FormLevel: ' + this.level.slice(-1) + '\n  '
+				ret += 'GrowthAbilityLevel: 0\n'
+			// }
 			return ret
 		}
 	}

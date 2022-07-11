@@ -209,6 +209,25 @@ export class Level {
 				? '\t-- Level: ' + this.level + '\n' + ret
 				: ret
 		}
+		this.saveToYml = (isCommented) => {
+			let ret = ''
+			if (this.isReplaced()) {
+				ret += '  ' + this.level + ':\n    '
+				ret += 'Ap: ' + this.standardAP + '\n    '
+				ret += 'Character: Sora\n    '
+				ret += 'Defense: ' + this.defense + '\n    '
+				ret += 'Exp: ' + this.replacementEXP + '\n    '
+				ret += 'Level: ' + this.level + '\n    '
+				ret += 'Magic: ' + this.magic + '\n    '
+				ret += 'Padding: 0\n    '
+				ret += 'ShieldAbility: ' + this.replacementShieldReward.index + '\n    '
+				ret += 'StaffAbility: ' + this.replacementStaffReward.index + '\n    '
+				ret += 'Strength: 0\n    ' // wtf is this?
+				ret += 'SwordAbility: ' + this.replacementSwordReward.index
+				ret += '\n'
+			}
+			return ret
+		}
 		this.changeFromPreviousLevel = (prevLevel) => {
 			if (this.level === 1)
 				return {

@@ -1,5 +1,8 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import { Tabs, Tab, Col } from 'react-bootstrap'
+
+import JSZip from 'jszip'
+import FileSaver from 'file-saver'
 
 import SaveLoadModal from './Components/SaveLoadModal'
 import Icon from './Components/Icon'
@@ -38,12 +41,25 @@ function FunctionApp() {
 
 	const [currentTab, setCurrentTab] = useState('home')
 
+	const [isZipCommented, setIsZipCommented] = useState(true)
 	const [isPnachCommented, setIsPnachCommented] = useState(true)
 	const [isLuaCommented, setIsLuaCommented] = useState(true)
 	//#endregion
+	const alertUser = e => {
+		e.preventDefault()
+		e.returnValue = ''
+	}
+	useEffect(() => {
+		window.addEventListener('beforeunload', alertUser)
+		return () => {
+			window.removeEventListener('beforeunload', alertUser)
+		}
+	}, [])
 
 	//#region General Functions
 	function handleTracker(isPnach) {
+		let comment = isPnach ? '//' : '--'
+
 		//Chest Tracker
 		let chestTracker = allChests.reduce((prevWorlds, currentWorld) => {
 			currentWorld.chests.forEach(chest => { prevWorlds = prevWorlds.update(chest.replacementReward.index) })
@@ -82,20 +98,13 @@ function FunctionApp() {
 			})
 			return prevWorlds
 		}, new Tracker())
-		let finalBonusStatsPnach = '//SORA\'S FINAL STATS IN CRITICAL MODE\n'
-		let finalBonusStatsLua = '--SORA\'S FINAL STATS IN CRITICAL MODE\n'
-		finalBonusStatsPnach += '// HP: ' + finalBonusStats.hp + '\n'
-		finalBonusStatsLua += '-- HP: ' + finalBonusStats.hp + '\n'
-		finalBonusStatsPnach += '// MP: ' + finalBonusStats.mp + '\n'
-		finalBonusStatsLua += '-- MP: ' + finalBonusStats.mp + '\n'
-		finalBonusStatsPnach += '// Armor: ' + finalBonusStats.armor + '\n'
-		finalBonusStatsLua += '-- Armor: ' + finalBonusStats.armor + '\n'
-		finalBonusStatsPnach += '// Accessory: ' + finalBonusStats.accessory + '\n'
-		finalBonusStatsLua += '-- Accessory: ' + finalBonusStats.accessory + '\n'
-		finalBonusStatsPnach += '// Item: ' + finalBonusStats.item + '\n'
-		finalBonusStatsLua += '-- Item: ' + finalBonusStats.item + '\n'
-		finalBonusStatsPnach += '// Drive: ' + Math.min(9, finalBonusStats.drive) + '\n'
-		finalBonusStatsLua += '-- Drive: ' + Math.min(9, finalBonusStats.drive) + '\n'
+		let finalBonusStatsComment = comment + 'SORA\'S FINAL STATS IN CRITICAL MODE\n'
+		finalBonusStatsComment += comment + ' HP: ' + finalBonusStats.hp + '\n'
+		finalBonusStatsComment += comment + ' MP: ' + finalBonusStats.mp + '\n'
+		finalBonusStatsComment += comment + ' Armor: ' + finalBonusStats.armor + '\n'
+		finalBonusStatsComment += comment + ' Accessory: ' + finalBonusStats.accessory + '\n'
+		finalBonusStatsComment += comment + ' Item: ' + finalBonusStats.item + '\n'
+		finalBonusStatsComment += comment + ' Drive: ' + Math.min(9, finalBonusStats.drive) + '\n'
 
 		//Forms & Summons Tracker
 		let formTracker = allForms.reduce((prevDriveForms, currentDriveForm) => {
@@ -113,28 +122,28 @@ function FunctionApp() {
 
 		return (isPnach)
 			? [
-				'//GAME STATUS\n',
+				comment + 'GAME STATUS\n',
 				chestTracker.saveToPnach('CHEST') + '\n',
 				popupTracker.saveToPnach('POPUP') + '\n',
 				formTracker.saveToPnach('FORM & SUMMON') + '\n',
-				'//LEVEL TALLY\n',
+				comment + 'LEVEL TALLY\n',
 				levelTracker.sword.saveToPnach('SWORD') + '\n',
 				levelTracker.shield.saveToPnach('SHIELD') + '\n',
 				levelTracker.staff.saveToPnach('STAFF') + '\n',
 				bonusTracker.saveToPnach('BONUS') + '\n',
-				finalBonusStatsPnach + '\n'
+				finalBonusStatsComment + '\n'
 			]
 			: [
-				'--GAME STATUS\n',
+				comment + 'GAME STATUS\n',
 				chestTracker.saveToLua('CHEST') + '\n',
 				popupTracker.saveToLua('POPUP') + '\n',
 				formTracker.saveToLua('FORM & SUMMON') + '\n',
-				'--LEVEL TALLY\n',
+				comment + 'LEVEL TALLY\n',
 				levelTracker.sword.saveToLua('SWORD') + '\n',
 				levelTracker.shield.saveToLua('SHIELD') + '\n',
 				levelTracker.staff.saveToLua('STAFF') + '\n',
 				bonusTracker.saveToLua('BONUS') + '\n',
-				finalBonusStatsLua + '\n'
+				finalBonusStatsComment + '\n'
 			]
 	}
 	function handleSaveAsPnach(fileName) {
@@ -319,6 +328,194 @@ function FunctionApp() {
 		element.download = fileName.length !== 0 ? '(' + fileName + ').lua' : 'F266B00B.lua'
 		document.body.appendChild(element)
 		element.click()
+	}
+	function handleSaveAsZip(fileName) {
+		let zip = new JSZip()
+		// let trackerPnachCodes = isPnachCommented ? handleTracker(true) : []
+
+		let TrsrList = allChests.reduce((prev, worldList) => {
+			worldList.chests.forEach(chest => { prev += chest.saveToYml(isPnachCommented) })
+			return prev
+		}, '')
+
+		TrsrList += allPopups.reduce((prev, worldList) => {
+			worldList.popups.forEach(popup => { prev += popup.saveToYml(isPnachCommented) })
+			return prev
+		}, '')
+		if (TrsrList.length > 0) TrsrList.slice(0, -1)
+
+		let BonsList = allBonuses.reduce((prev, worldList) => {
+			worldList.bonusFights.forEach(bonusFight => { prev += bonusFight.saveToYml(isPnachCommented) })
+			return prev
+		}, '')
+		if (BonsList.length > 0) BonsList.slice(0, -1)
+
+		let LvupList = allLevels.reduce((prev, level) => {
+			return prev + level.saveToYml(isPnachCommented)
+		}, '')
+		if (LvupList.length > 0) {
+			LvupList = 'Sora:\n' + LvupList
+			LvupList.slice(0, -1)
+		}
+
+		let FmlvList = allForms.reduce((prev, driveForm, formId) => {
+			// if (driveForm.driveLevels.some((level => level.isRewardReplaced() || level.isEXPReplaced())))
+			prev += driveForm.driveForm + ':\n'
+			let newDriveLevels = [
+				driveForm.driveLevels[0].copy()
+			]
+			newDriveLevels[0].level = newDriveLevels[0].level.slice() + '1'
+			for (let i = 0; i < 6; i++) {
+				newDriveLevels.push(driveForm.driveLevels[i].copy())
+				if (i !== 6) newDriveLevels[i].replacementEXP = driveForm.driveLevels[i].replacementEXP
+			}
+			newDriveLevels.forEach(level => { prev += level.saveToYml(isPnachCommented, formId) })
+			return prev
+		}, '')
+		if (FmlvList.length > 0) FmlvList.slice(0, -1)
+
+		let ItemList = allEquipments.reduce((prev, equipmentType) => {
+			equipmentType.equipments.forEach(equipment => { prev += equipment.saveToYml(isPnachCommented) })
+			return prev
+		}, '')
+		if (ItemList.length > 0) {
+			ItemList = 'Stats:\n' + ItemList
+			ItemList.slice(0, -1)
+		}
+
+		// let sys = ' '
+
+		let jm = ''
+		jm += '- en: Defeat Xemnas at the top of the Castle\n'
+		jm += '  id: 20279\n'
+		jm += '- en: Defeat Storm Rider\n'
+		jm += '  id: 20280\n'
+		jm += '- en: Defeat Xaldin in the Courtyard\n'
+		jm += '  id: 20281\n'
+		jm += '- en: Defeat Dr. Finkelstein\'s Experiment\n'
+		jm += '  id: 20282\n'
+		jm += '- en: Defeat Genie Jafar\n'
+		jm += '  id: 20283\n'
+		jm += '- en: Defeat Hades\n'
+		jm += '  id: 20284\n'
+		jm += '- en: Defeat Groundshaker\n'
+		jm += '  id: 20285\n'
+		jm += '- en: Fight alongside Axel in the world Between\n'
+		jm += '  id: 20286\n'
+		jm += '- en: Defend Hollow Bastion from the Heartless Army\n'
+		jm += '  id: 20287\n'
+		jm += '- en: Defeat Grim Reaper II\n'
+		jm += '  id: 20288\n'
+		jm += '- en: Protect the Cornerstone of Light from Pete\n'
+		jm += '  id: 20289\n'
+		jm += '- en: Defeat the Master Control Program\n'
+		jm += '  id: 20290\n'
+		jm += '- en: Confront DiZ in the Mansion\'s Pod Room\n'
+		jm += '  id: 20291\n'
+
+		let PlrpList = ''
+
+		let mod = 'assets:\n'
+		// if (sys.length > 0) {
+		// 	mod += '- method: binarc\n'
+		// 	mod += '  multi:\n'
+		// 	mod += '  - name: msg/us/sys.bar\n'
+		// 	mod += '  - name: msg/uk/sys.bar\n'
+		// 	mod += '  name: msg/jp/sys.bar\n'
+		// 	mod += '  source:\n'
+		// 	mod += '  - method: kh2msg\n'
+		// 	mod += '    name: sys\n'
+		// 	mod += '    source:\n'
+		// 	mod += '    - language: en\n'
+		// 	mod += '      name: sys.yml\n'
+		// 	mod += '    type: list\n'
+		// }
+		mod += '- method: binarc\n'
+		mod += '  multi:\n'
+		mod += '  - name: msg/us/jm.bar\n'
+		mod += '  - name: msg/uk/jm.bar\n'
+		mod += '  name: msg/jp/jm.bar\n'
+		mod += '  source:\n'
+		mod += '  - method: kh2msg\n'
+		mod += '    name: jm\n'
+		mod += '    source:\n'
+		mod += '    - language: en\n'
+		mod += '      name: jm.yml\n'
+		mod += '    type: list\n'
+		if (FmlvList.length + LvupList.length + BonsList.length + PlrpList.length > 0) {
+			mod += '- method: binarc\n'
+			mod += '  name: 00battle.bin\n'
+			mod += '  source:\n'
+			if (FmlvList.length > 0) {
+				mod += '  - method: listpatch\n'
+				mod += '    name: fmlv\n'
+				mod += '    source:\n'
+				mod += '    - name: FmlvList.yml\n'
+				mod += '      type: fmlv\n'
+				mod += '    type: List\n'
+			}
+			if (LvupList.length > 0) {
+				mod += '  - method: listpatch\n'
+				mod += '    name: lvup\n'
+				mod += '    source:\n'
+				mod += '    - name: LvupList.yml\n'
+				mod += '      type: lvup\n'
+				mod += '    type: List\n'
+			}
+			if (BonsList.length > 0) {
+				mod += '  - method: listpatch\n'
+				mod += '    name: bons\n'
+				mod += '    source:\n'
+				mod += '    - name: BonsList.yml\n'
+				mod += '      type: bons\n'
+				mod += '    type: List\n'
+			}
+			if (PlrpList.length > 0) {
+				mod += '  - method: listpatch\n'
+				mod += '    name: plrp\n'
+				mod += '    source:\n'
+				mod += '    - name: PlrpList.yml\n'
+				mod += '      type: plrp\n'
+				mod += '    type: List\n'
+			}
+		}
+		if (TrsrList.length + ItemList.length > 0) {
+			mod += '- method: binarc\n'
+			mod += '  name: 03system.bin\n'
+			mod += '  source:\n'
+			if (TrsrList.length > 0) {
+				mod += '  - method: listpatch\n'
+				mod += '    name: trsr\n'
+				mod += '    source:\n'
+				mod += '    - name: TrsrList.yml\n'
+				mod += '      type: trsr\n'
+				mod += '    type: List\n'
+			}
+			if (ItemList.length > 0) {
+				mod += '  - method: listpatch\n'
+				mod += '    name: item\n'
+				mod += '    source:\n'
+				mod += '    - name: ItemList.yml\n'
+				mod += '      type: item\n'
+				mod += '    type: List\n'
+			}
+		}
+		mod += 'title: ' + fileName + '\n'
+
+
+		if (TrsrList.length > 0) zip.file('TrsrList.yml', TrsrList) // chests and popups
+		if (LvupList.length > 0) zip.file('LvupList.yml', LvupList) // level up rewards
+		if (FmlvList.length > 0) zip.file('FmlvList.yml', FmlvList) // Form Level Rewards
+		if (BonsList.length > 0) zip.file('BonsList.yml', BonsList) // bonus level rewards
+		if (ItemList.length > 0) zip.file('ItemList.yml', ItemList) // equipment stats
+		// zip.file('PlrpList.yml', PlrpList) // starting items
+		// zip.file('HintFile.hints', HintFile) // hint encoded
+		// if (sys.length > 0) zip.file('sys.yml', sys) // Menu text edits
+		zip.file('jm.yml', jm) // random journal entries
+		zip.file('mod.yml', mod) // enabled mods/scripts
+		zip.generateAsync({ type: 'blob' }).then(function (content) {
+			FileSaver.saveAs(content, fileName + '.zip')
+		})
 	}
 	function handleSaveAsJSON(fileName) {
 		let chestSaveData = allChests.map(world => {
@@ -587,12 +784,15 @@ function FunctionApp() {
 	}
 
 	let saveLoadModal = <SaveLoadModal
+		isZipCommented={isZipCommented}
 		isPnachCommented={isPnachCommented}
 		isLuaCommented={isLuaCommented}
+		onZipCommentChange={() => { setIsZipCommented(!isZipCommented) }}
 		onPnachCommentChange={() => { setIsPnachCommented(!isPnachCommented) }}
 		onLuaCommentChange={() => { setIsLuaCommented(!isLuaCommented) }}
 		handleSaveAsPnach={handleSaveAsPnach}
 		handleSaveAsLua={handleSaveAsLua}
+		handleSaveAsZip={handleSaveAsZip}
 		handleSaveAsJSON={handleSaveAsJSON}
 		onFileUpload={(e) => {
 			let file = e.target.files[0]

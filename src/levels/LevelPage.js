@@ -158,15 +158,15 @@ function LevelPage(props) {
 			}
 			if (currentAllLevelFieldData.modifyMagic) {
 				if (isCorrectLevel)
-					newLevelData.currentMagic = Math.max(0, previousLevel.Magic + currentLevelDifFieldData.magicDif)
+					newLevelData.currentMagic = Math.max(0, previousLevel.magic + currentLevelDifFieldData.magicDif)
 				else
-					newLevelData.currentMagic = Math.max(0, previousLevel.Magic)
+					newLevelData.currentMagic = Math.max(0, previousLevel.magic)
 			}
 			if (currentAllLevelFieldData.modifyDefense) {
 				if (isCorrectLevel)
-					newLevelData.currentDefense = Math.max(0, previousLevel.Defense + currentLevelDifFieldData.defenseDif)
+					newLevelData.currentDefense = Math.max(0, previousLevel.defense + currentLevelDifFieldData.defenseDif)
 				else
-					newLevelData.currentDefense = Math.max(0, previousLevel.Defense)
+					newLevelData.currentDefense = Math.max(0, previousLevel.defense)
 			}
 			if (currentAllLevelFieldData.modifyAP) {
 				if (isCorrectLevel)
