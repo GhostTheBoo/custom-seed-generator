@@ -353,12 +353,12 @@ export const rewardsData = [
 			{
 				category: 'Stat Increases',
 				rewards: [
-					new Reward(0x1CF, 'Item Slot Up', 'Stat'),
-					new Reward(0x1D6, 'Max HP Up', 'Stat'),
-					new Reward(0x1D7, 'Max MP Up', 'Stat'),
-					new Reward(0x1D8, 'Drive Gauge Up', 'Stat'),
-					new Reward(0x1D9, 'Armor Slot Up', 'Stat'),
-					new Reward(0x1DA, 'Accessory Slot Up', 'Stat')
+					new Reward('Item Slot Up', 0x1CF, 'Tent'),//find stat up icon
+					new Reward('Max HP Up', 0x1D6, 'Tent'),//find stat up icon
+					new Reward('Max MP Up', 0x1D7, 'Tent'),//find stat up icon
+					new Reward('Drive Gauge Up', 0x1D8, 'Tent'),//find stat up icon
+					new Reward('Armor Slot Up', 0x1D9, 'Tent'),//find stat up icon
+					new Reward('Accessory Slot Up', 0x1DA, 'Tent')//find stat up icon
 				]
 			},
 			{
@@ -683,3 +683,9 @@ export const rewardsData = [
 		]
 	}
 ]
+
+export const EMPTY = {
+	reward: 'EMPTY',
+	index: 0x000,
+	iconType: 'EMPTY'
+}

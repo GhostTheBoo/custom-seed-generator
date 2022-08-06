@@ -266,6 +266,63 @@ export class Equipment {
 			return ret
 		}
 	}
+
+	static saveToPnach(equipmentData, isCommented) {
+		return ['\n//EQUIPMENT\n'].concat(equipmentData.map(equipmentType => {
+			let ret = isCommented ? '// ' + equipmentType.equipmentType.toUpperCase() + '\n' : ''
+			equipmentType.equipments.forEach(equipment => { ret += equipment.saveToPnach(isCommented) })
+			return ret
+		}))
+	}
+	static saveToLua(equipmentData, isCommented) {
+		return ['\nfunction Equipment()\n'].concat(equipmentData.map(equipmentTypeList => {
+			let ret = isCommented ? '\t-- ' + equipmentTypeList.equipmentType.toUpperCase() + '\n' : ''
+			equipmentTypeList.equipments.forEach(equipment => { ret += equipment.saveToLua(isCommented) })
+			return ret
+		}), ['end\n'])
+	}
+	static saveToYml(equipmentData, isCommented) {
+		return equipmentData.reduce((prev, equipmentType) => {
+			equipmentType.equipments.forEach(equipment => { prev += equipment.saveToYml(isCommented) })
+			return prev
+		}, '')
+	}
+	static saveToJSON(equipmentData) {
+		let equipmentSaveData = equipmentData.map(equipmentType => {
+			let ret = ''
+			equipmentType.equipments.forEach(equipment => { ret += equipment.saveToJSON() })
+			if (ret !== '')
+				return '{"equipmentType":"' + equipmentType.equipmentType + '","equipments":[' + ret.slice(0, -1) + ']}'
+			return ret
+		})
+		return ['"equipmentsData":[', equipmentSaveData.filter(s => s !== '').join(), '],']
+	}
+	static loadFromJSON(equipmentLoadData) {
+		let globalIndex = 0
+		return equipmentsData.map(equipmentType => {
+			if (globalIndex < equipmentLoadData.length) {
+				if (equipmentLoadData[globalIndex].equipmentType === equipmentType.equipmentType) {
+					let equipmentIndex = 0
+					let newEquipments = equipmentType.equipments.map(equipment => {
+						if (equipmentIndex < equipmentLoadData[globalIndex].equipments.length) {
+							if (equipmentLoadData[globalIndex].equipments[equipmentIndex].name === equipment.name) {
+								let ret = equipment.loadFromJSON(equipmentLoadData[globalIndex].equipments[equipmentIndex])
+								equipmentIndex++
+								return ret
+							}
+						}
+						return equipment
+					})
+					globalIndex++
+					return {
+						...equipmentType,
+						equipments: newEquipments
+					}
+				}
+			}
+			return equipmentType
+		})
+	}
 }
 
 export const equipmentsData = [{

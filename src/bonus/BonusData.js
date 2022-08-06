@@ -297,6 +297,64 @@ export class BonusFight {
 			return ''
 		}
 	}
+
+
+	static saveToPnach(bonusData, isCommented) {
+		return ['\n//Bonus Rewards\n'].concat(bonusData.map(worldList => {
+			let ret = isCommented ? '// ' + worldList.world.toUpperCase() + '\n' : ''
+			worldList.bonusFights.forEach(bonusFight => { ret += bonusFight.saveToPnach(isCommented) })
+			return ret
+		}))
+	}
+	static saveToLua(bonusData, isCommented) {
+		return ['\nfunction BonusRewards()\n'].concat(bonusData.map(worldList => {
+			let ret = isCommented ? '\t-- ' + worldList.world.toUpperCase() + '\n' : ''
+			worldList.bonusFights.forEach(bonusFight => { ret += bonusFight.saveToLua(isCommented) })
+			return ret
+		}), ['end\n'])
+	}
+	static saveToYml(bonusData, isCommented) {
+		return bonusData.reduce((prev, worldList) => {
+			worldList.bonusFights.forEach(bonusFight => { prev += bonusFight.saveToYml(isCommented) })
+			return prev
+		}, '')
+	}
+	static saveToJSON(bonusData) {
+		let bonusSaveData = bonusData.map(world => {
+			let ret = ''
+			world.bonusFights.forEach(bonusFight => { ret += bonusFight.saveToJSON() })
+			if (ret !== '')
+				return '{"world":"' + world.world + '","bonusFights":[' + ret.slice(0, -1) + ']}'
+			return ret
+		})
+		return ['"bonusData":[', bonusSaveData.filter(s => s !== '').join(), '],']
+	}
+	static loadFromJSON(bonusLoadData) {
+		let globalIndex = 0
+		return bonusData.map(world => {
+			if (globalIndex < bonusLoadData.length) {
+				if (bonusLoadData[globalIndex].world === world.world) {
+					let bonusIndex = 0
+					let newBonuses = world.bonusFights.map(bonusFight => {
+						if (bonusIndex < bonusLoadData[globalIndex].bonusFights.length) {
+							if (bonusLoadData[globalIndex].bonusFights[bonusIndex].fight === bonusFight.fight) {
+								let ret = bonusFight.loadFromJSON(bonusLoadData[globalIndex].bonusFights[bonusIndex])
+								bonusIndex++
+								return ret
+							}
+						}
+						return bonusFight
+					})
+					globalIndex++
+					return {
+						...world,
+						bonusFights: newBonuses
+					}
+				}
+			}
+			return world
+		})
+	}
 }
 
 export const bonusData = [
@@ -383,17 +441,17 @@ export const bonusData = [
 					new BonusReward(0x1D10D21, 1, new Reward('Auto Summon', 0x185, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 1, 0, 0)
 				]),
 			new BonusFight('Marluxia (Absent Silhouette)', 67,
-			[
-				new BonusReward(0x1D11181, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 1),
-				new BonusReward(0x1D11191, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 3, 0, 0, 0, 0, 0),
-				new BonusReward(0x1D111A1, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0)
-			]),
+				[
+					new BonusReward(0x1D11181, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 1),
+					new BonusReward(0x1D11191, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 3, 0, 0, 0, 0, 0),
+					new BonusReward(0x1D111A1, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0)
+				]),
 			new BonusFight('Lingering Will', 70,
-			[
-				new BonusReward(0x1D111F1, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 1),
-				new BonusReward(0x1D11201, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 3, 0, 0, 0, 0, 0),
-				new BonusReward(0x1D11211, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0)
-			])
+				[
+					new BonusReward(0x1D111F1, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 1),
+					new BonusReward(0x1D11201, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 3, 0, 0, 0, 0, 0),
+					new BonusReward(0x1D11211, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0)
+				])
 		]
 	}, {
 		world: 'Halloween Town',

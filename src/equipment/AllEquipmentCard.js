@@ -1,7 +1,7 @@
 import { React } from 'react'
 import { Container, Row, Button, Card } from 'react-bootstrap'
 
-function AllChestCard(props) {
+function AllEquipmentCard(props) {
 	// PROPS:
 	// currentWorldFolderName: current world for use in image lookup -> string
 	// handleReplace: handle reward replacement -> function
@@ -54,4 +54,4 @@ function AllChestCard(props) {
 	)
 }
 
-export default AllChestCard
+export default AllEquipmentCard

@@ -56,9 +56,88 @@ export class MagicAbility {
 			return [ret, this]
 		}
 	}
+
+	static saveToPnach(magicData, isCommented) {
+		return ['\n//MAGIC COSTS\n'].concat(magicData.map(magicType => {
+			let prefix = isCommented ? '// ' + magicType.magicType.toUpperCase() + '\n' : ''
+			let ret = ''
+			let tempString = ''
+			let tempLastAbility
+			let magicChangeCount = 0
+			let lastAbility
+			magicType.abilities.forEach(ability => {
+				[tempString, tempLastAbility] = ability.saveToPnach(isCommented)
+				if (tempString !== '') {
+					ret += tempString
+					lastAbility = tempLastAbility
+					magicChangeCount++
+				}
+			})
+			if (magicChangeCount > 0) {
+				prefix += 'patch=1,EE,E0' + (magicChangeCount + 3).toString(16).toUpperCase().padStart(2, '0') + 'FFFF,extended,1032BAE0 // If not on Title Screen\n'
+				prefix += 'patch=1,EE,E0' + (magicChangeCount + 2).toString(16).toUpperCase().padStart(2, '0') + '2002,extended,1032BAE0 // If not in Station of Serenity\n'
+				prefix += 'patch=1,EE,E0' + (magicChangeCount + 1).toString(16).toUpperCase().padStart(2, '0') + '0000,extended,1032BAD8 // If not screen transition\n'
+				prefix += 'patch=1,EE,E1' + magicChangeCount.toString(16).toUpperCase().padStart(2, '0') + '00' + lastAbility.replacementCost.toString(16).toUpperCase().padStart(2, '0')
+				prefix += ',extended,1' + lastAbility.costAddress.toString(16).toUpperCase().padStart(7, '0')
+				if (isCommented) prefix += ' // If ' + lastAbility.ability + '\'s MP Cost is not ' + lastAbility.replacementCost
+				prefix += '\n'
+			}
+			return prefix + ret
+		}))
+	}
+	static saveToLua(magicData, isCommented) {
+		return ['\nfunction MagicCosts()\n'].concat(magicData.map(magicType => {
+			let tempString = ''
+			let ret = isCommented ? '\t-- ' + magicType.magicType.toUpperCase() + '\n' : ''
+			magicType.abilities.forEach(ability => {
+				tempString = ability.saveToLua(isCommented)[0]
+				ret += tempString
+			})
+			return ret
+		}), ['end\n'])
+	}
+	static saveToYml(magicData, isCommented) {
+		return ''
+	}
+	static saveToJSON(magicData) {
+		let magicCostSaveData = magicData.map(magicType => {
+			let ret = ''
+			magicType.abilities.forEach(ability => { ret += ability.saveToJSON() })
+			if (ret !== '')
+				return '{"magicType":"' + magicType.magicType + '","abilities":[' + ret.slice(0, -1) + ']}'
+			return ret
+		})
+		return ['"magicData":[', magicCostSaveData.filter(s => s !== '').join(), '],']
+	}
+	static loadFromJSON(magicLoadData) {
+		let globalIndex = 0
+		return magicsData.map(magicType => {
+			if (globalIndex < magicLoadData.length) {
+				if (magicLoadData[globalIndex].magicType === magicType.magicType) {
+					let magicIndex = 0
+					let newMagics = magicType.abilities.map(ability => {
+						if (magicIndex < magicLoadData[globalIndex].abilities.length) {
+							if (magicLoadData[globalIndex].abilities[magicIndex].costAddress === ability.costAddress) {
+								let ret = ability.loadFromJSON(magicLoadData[globalIndex].abilities[magicIndex])
+								magicIndex++
+								return ret
+							}
+						}
+						return ability
+					})
+					globalIndex++
+					return {
+						...magicType,
+						abilities: newMagics
+					}
+				}
+			}
+			return magicType
+		})
+	}
 }
 
-export const magicData = [
+export const magicsData = [
 	{
 		magicType: 'Fire Element',
 		pathName: 'magicImages/fire',

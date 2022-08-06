@@ -103,6 +103,79 @@ export class FormLevel {
 			return ret
 		}
 	}
+
+	static saveToPnach(formData, isCommented) {
+		return ['\n//FORMS & SUMMONS\n'].concat(formData.map(driveForm => {
+			let ret = isCommented ? '// ' + driveForm.driveForm.toUpperCase() + '\n' : ''
+			if (driveForm.driveLevels.some(driveFormLevel => driveFormLevel.isRewardReplaced()))
+				if (driveForm.driveForm !== 'Summon')
+					ret += driveForm.removeGrowthJankPnachCodes.join('')
+			driveForm.driveLevels.forEach(driveLevel => { ret += driveLevel.saveToPnach(isCommented) })
+			return ret
+		}))
+	}
+	static saveToLua(formData, isCommented) {
+		return ['\nfunction DriveForms()\n'].concat(formData.map(driveForm => {
+			let ret = isCommented ? '\t-- ' + driveForm.driveForm.toUpperCase() + '\n' : ''
+			if (driveForm.driveLevels.some(driveFormLevel => driveFormLevel.isRewardReplaced()))
+				if (driveForm.driveForm !== 'Summon')
+					ret += driveForm.removeGrowthJankLuaCodes.join('')
+			driveForm.driveLevels.forEach(driveFormLevel => { ret += driveFormLevel.saveToLua(isCommented) })
+			return ret
+		}), ['end\n'])
+	}
+	static saveToYml(formData, isCommented) {
+		return formData.reduce((prev, driveForm, formId) => {
+			// if (driveForm.driveLevels.some((level => level.isRewardReplaced() || level.isEXPReplaced())))
+			prev += driveForm.driveForm + ':\n'
+			let newDriveLevels = [
+				driveForm.driveLevels[0].copy()
+			]
+			newDriveLevels[0].level = newDriveLevels[0].level.slice() + '1'
+			for (let i = 0; i < 6; i++) {
+				newDriveLevels.push(driveForm.driveLevels[i].copy())
+				if (i !== 6) newDriveLevels[i].replacementEXP = driveForm.driveLevels[i].replacementEXP
+			}
+			newDriveLevels.forEach(level => { prev += level.saveToYml(isCommented, formId) })
+			return prev
+		}, '')
+	}
+	static saveToJSON(formData) {
+		let formSaveData = formData.map(driveForm => {
+			let ret = ''
+			driveForm.driveLevels.forEach(driveLevel => { ret += driveLevel.saveToJSON() })
+			if (ret !== '')
+				return '{"driveForm":"' + driveForm.driveForm + '","driveLevels":[' + ret.slice(0, -1) + ']}'
+			return ret
+		})
+		return ['"formsData":[', formSaveData.filter(s => s !== '').join(), '],']
+	}
+	static loadFromJSON(formLoadData) {
+		let globalIndex = 0
+		return formsData.map(driveForm => {
+			if (globalIndex < formLoadData.length) {
+				if (formLoadData[globalIndex].driveForm === driveForm.driveForm) {
+					let formIndex = 0
+					let newForms = driveForm.driveLevels.map(driveLevel => {
+						if (formIndex < formLoadData[globalIndex].driveLevels.length) {
+							if (formLoadData[globalIndex].driveLevels[formIndex].level === driveLevel.level) {
+								let ret = driveLevel.loadFromJSON(formLoadData[globalIndex].driveLevels[formIndex])
+								formIndex++
+								return ret
+							}
+						}
+						return driveLevel
+					})
+					globalIndex++
+					return {
+						...driveForm,
+						driveLevels: newForms
+					}
+				}
+			}
+			return driveForm
+		})
+	}
 }
 
 export const formsData = [

@@ -29,15 +29,6 @@ export class Popup {
 			ret.toBeReplaced = false
 			return ret
 		}
-		this.saveToJSON = () => {
-			return this.isReplaced() ? JSON.stringify(this, ['replacementReward', 'reward', 'index', 'iconType', 'vanillaAddress', 'zipID']) + ',' : ''
-		}
-		this.loadFromJSON = (popupJSON) => {
-			let ret = this.copy()
-			ret.replacementReward = { ...popupJSON.replacementReward }
-			ret.toBeReplaced = false
-			return ret
-		}
 		this.saveToPnach = (isCommented) => {
 			let ret = ''
 			if (this.isReplaced()) {
@@ -67,6 +58,71 @@ export class Popup {
 			}
 			return ret
 		}
+		this.saveToJSON = () => {
+			return this.isReplaced() ? JSON.stringify(this, ['replacementReward', 'reward', 'index', 'iconType', 'vanillaAddress', 'zipID']) + ',' : ''
+		}
+		this.loadFromJSON = (popupJSON) => {
+			let ret = this.copy()
+			ret.replacementReward = { ...popupJSON.replacementReward }
+			ret.toBeReplaced = false
+			return ret
+		}
+	}
+
+	
+	static saveToPnach(popupData, isCommented) {
+		return ['\n//POPUPS\n'].concat(popupData.map(worldList => {
+			let ret = isCommented ? '// ' + worldList.world.toUpperCase() + '\n' : ''
+			worldList.popups.forEach(popup => { ret += popup.saveToPnach(isCommented) })
+			return ret
+		}))
+	}
+	static saveToLua(popupData, isCommented) {
+		return ['\nfunction Popups()\n'].concat(popupData.map(worldList => {
+			let ret = isCommented ? '\t-- ' + worldList.world.toUpperCase() + '\n' : ''
+			worldList.popups.forEach(popup => { ret += popup.saveToLua(isCommented) })
+			return ret
+		}), ['end\n'])
+	}
+	static saveToYml(popupData, isCommented) {
+		return popupData.reduce((prev, worldList) => {
+			worldList.popups.forEach(popup => { prev += popup.saveToYml(isCommented) })
+			return prev
+		}, '')
+	}
+	static saveToJSON(popupData) {
+		let popupSaveData = popupData.map(world => {
+			let ret = ''
+			world.popups.forEach(popup => { ret += popup.saveToJSON() })
+			return ret === '' ? ret : '{"world":"' + world.world + '","popups":[' + ret.slice(0, -1) + ']}'
+		})
+		return ['"popupsData":[', popupSaveData.filter(s => s !== '').join(), '],']
+	}
+	static loadFromJSON(popupLoadData) {
+		let globalIndex = 0
+		return popupsData.map(world => {
+			if (globalIndex < popupLoadData.length) {
+				if (popupLoadData[globalIndex].world === world.world) {
+					let popupIndex = 0
+					let newPopups = world.popups.map(popup => {
+						if (popupIndex < popupLoadData[globalIndex].popups.length) {
+							if (popupLoadData[globalIndex].popups[popupIndex].vanillaAddress === popup.vanillaAddress) {
+								let ret = popup.loadFromJSON(popupLoadData[globalIndex].popups[popupIndex])
+								popupIndex++
+								return ret
+							}
+						}
+						return popup
+					})
+					globalIndex++
+					return {
+						...world,
+						popups: newPopups
+					}
+				}
+			}
+			return world
+		})
 	}
 }
 

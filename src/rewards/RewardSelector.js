@@ -66,7 +66,7 @@ function RewardSelector(props) {
 						</Icon>
 					</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>
+				<Modal.Body style={{ height: '65vh', maxHeight: '85vh', overflowY: 'auto' }}>
 					<Container fluid>
 						<Row>
 							<Col xs='auto'>

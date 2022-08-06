@@ -27,7 +27,7 @@ export class Level {
 		this.toBeReplaced = false
 
 		this.criticalAP = () => {
-			return Math.floor(((this.standardAP - 2) * 1.5) + 50)
+			return Math.floor((this.standardAP - 2) * 1.5)
 		}
 		this.isReplaced = () => {
 			return this.isEXPReplaced() || this.isStatsReplaced() || this.isSwordReplaced() || this.isShieldReplaced() || this.isStaffReplaced()
@@ -247,6 +247,32 @@ export class Level {
 				expDif: this.replacementEXP - prevLevel.replacementEXP
 			}
 		}
+	}
+
+	static saveToPnach(levelData, isCommented) {
+		return ['\n//SORA LEVELS\n'].concat(levelData.map(level => { return level.saveToPnach(isCommented) }))
+	}
+	static saveToLua(levelData, isCommented) {
+		return ['\nfunction Chests()\n'].concat(levelData.map(level => { return level.saveToLua(isCommented) }), ['end\n'])
+	}
+	static saveToYml(levelData, isCommented) {
+		return levelData.reduce((prev, level) => { return prev + level.saveToYml(isCommented) }, '')
+	}
+	static saveToJSON(levelData) {
+		return ['"levelsData":[', levelData.map(level => { return level.saveToJSON() }).join('').slice(0, -1), '],']
+	}
+	static loadFromJSON(levelLoadData) {
+		let globalIndex = 0
+		return levelsData.map(level => {
+			if (globalIndex < levelLoadData.length) {
+				if (levelLoadData[globalIndex].level === level.level) {
+					let ret = level.loadFromJSON(levelLoadData[globalIndex])
+					globalIndex++
+					return ret
+				}
+			}
+			return level
+		})
 	}
 }
 

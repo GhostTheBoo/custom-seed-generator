@@ -27,15 +27,6 @@ export class Chest {
 			ret.toBeReplaced = false
 			return ret
 		}
-		this.saveToJSON = () => {
-			return this.isReplaced() ? JSON.stringify(this, ['replacementReward', 'reward', 'index', 'iconType', 'vanillaAddress', 'zipID']) + ',' : ''
-		}
-		this.loadFromJSON = (chestJSON) => {
-			let ret = this.copy()
-			ret.replacementReward = { ...chestJSON.replacementReward }
-			ret.toBeReplaced = false
-			return ret
-		}
 		this.saveToPnach = (isCommented) => {
 			let ret = ''
 			if (this.isReplaced()) {
@@ -65,6 +56,70 @@ export class Chest {
 			}
 			return ret
 		}
+		this.saveToJSON = () => {
+			return this.isReplaced() ? JSON.stringify(this, ['replacementReward', 'reward', 'index', 'iconType', 'vanillaAddress', 'zipID']) + ',' : ''
+		}
+		this.loadFromJSON = (chestJSON) => {
+			let ret = this.copy()
+			ret.replacementReward = { ...chestJSON.replacementReward }
+			ret.toBeReplaced = false
+			return ret
+		}
+	}
+
+	static saveToPnach(chestData, isCommented) {
+		return ['\n//CHESTS\n'].concat(chestData.map(worldList => {
+			let ret = isCommented ? '// ' + worldList.world.toUpperCase() + '\n' : ''
+			worldList.chests.forEach(chest => { ret += chest.saveToPnach(isCommented) })
+			return ret
+		}))
+	}
+	static saveToLua(chestData, isCommented) {
+		return ['\nfunction Chests()\n'].concat(chestData.map(worldList => {
+			let ret = isCommented ? '\t-- ' + worldList.world.toUpperCase() + '\n' : ''
+			worldList.chests.forEach(chest => { ret += chest.saveToLua(isCommented) })
+			return ret
+		}), ['end\n'])
+	}
+	static saveToYml(chestData, isCommented) {
+		return chestData.reduce((prev, worldList) => {
+			worldList.chests.forEach(chest => { prev += chest.saveToYml(isCommented) })
+			return prev
+		}, '')
+	}
+	static saveToJSON(chestData) {
+		let chestSaveData = chestData.map(world => {
+			let ret = ''
+			world.chests.forEach(chest => { ret += chest.saveToJSON() })
+			return ret === '' ? ret : '{"world":"' + world.world + '","chests":[' + ret.slice(0, -1) + ']}'
+		})
+		return ['"chestsData":[', chestSaveData.filter(s => s !== '').join(), '],']
+	}
+	static loadFromJSON(chestLoadData) {
+		let globalIndex = 0
+		return chestsData.map(world => {
+			if (globalIndex < chestLoadData.length) {
+				if (chestLoadData[globalIndex].world === world.world) {
+					let chestIndex = 0
+					let newChests = world.chests.map(chest => {
+						if (chestIndex < chestLoadData[globalIndex].chests.length) {
+							if (chestLoadData[globalIndex].chests[chestIndex].vanillaAddress === chest.vanillaAddress) {
+								let ret = chest.loadFromJSON(chestLoadData[globalIndex].chests[chestIndex])
+								chestIndex++
+								return ret
+							}
+						}
+						return chest
+					})
+					globalIndex++
+					return {
+						...world,
+						chests: newChests
+					}
+				}
+			}
+			return world
+		})
 	}
 }
 
