@@ -29,6 +29,8 @@ import { MagicAbility, magicsData } from './magic/MagicData'
 import MagicPage from './magic/MagicPage'
 import { StartingStatus, startingStatusData } from './starting/StartingStatusData'
 import StartingStatusPage from './starting/StartingStatusPage'
+import { Cheat, pnachCheatsData, luaCheatsData } from './cheats/CheatsData'
+import CheatPage from './cheats/CheatPage'
 
 
 
@@ -42,6 +44,8 @@ function FunctionApp() {
 	const [allLevels, setAllLevels] = useState(levelsData)
 	const [allMagic, setAllMagic] = useState(magicsData)
 	const [allStartingStatus, setAllStartingStatus] = useState(startingStatusData)
+	const [allPnachCheats, setAllPnachCheats] = useState(pnachCheatsData)
+	const [allLuaCheats, setAllLuaCheats] = useState(luaCheatsData)
 
 	const [currentTab, setCurrentTab] = useState('home')
 
@@ -162,7 +166,8 @@ function FunctionApp() {
 			Equipment.saveToPnach(allEquipments, isPnachCommented),
 			Level.saveToPnach(allLevels, isPnachCommented),
 			MagicAbility.saveToPnach(allMagic, isPnachCommented),
-			StartingStatus.saveToPnach(allStartingStatus, isPnachCommented)
+			StartingStatus.saveToPnach(allStartingStatus, isPnachCommented),
+			Cheat.saveToPnach(allPnachCheats, isPnachCommented)
 		)
 
 		downloadFile(pnachCodes, fileName.length !== 0 ? '(' + fileName + ').pnach' : 'F266B00B.pnach')
@@ -223,7 +228,8 @@ function FunctionApp() {
 			Equipment.saveToLua(allEquipments, isLuaCommented),
 			Level.saveToLua(allLevels, isLuaCommented),
 			MagicAbility.saveToLua(allMagic, isLuaCommented),
-			StartingStatus.saveToLua(allStartingStatus, isLuaCommented)
+			StartingStatus.saveToLua(allStartingStatus, isLuaCommented),
+			Cheat.saveToLua(allLuaCheats, isPnachCommented)
 		)
 
 		downloadFile(luaCodes, fileName.length !== 0 ? '(' + fileName + ').lua' : 'F266B00B.lua')
@@ -242,6 +248,7 @@ function FunctionApp() {
 		zip.file('sys.yml', zipSeed.generateSys()) // Menu text edits
 		zip.file('jm.yml', zipSeed.generateJm()) // random journal entries
 		zip.file('mod.yml', zipSeed.generateMod(fileName)) // enabled mods/scripts
+
 		zip.generateAsync({ type: 'blob' }).then(function (content) {
 			FileSaver.saveAs(content, fileName + '.zip')
 		})
@@ -266,7 +273,6 @@ function FunctionApp() {
 			magicCostSaveData.join(''),
 			startingStatusSaveData.join('').slice(0, -1),
 			'}']
-
 
 		downloadFile(saveData, fileName.length !== 0 ? fileName + '.json' : 'save_data.json')
 	}
@@ -518,6 +524,29 @@ function FunctionApp() {
 						<HelpModal tab={currentTab} />
 						{saveLoadModal}
 					</StartingStatusPage>
+				</Tab>
+				{/* Cheats */}
+				<Tab
+					eventKey='cheat'
+					title={
+						<>
+							<Icon
+								fileName={'cheat'}
+								type={'tab'}
+							>
+								{'Cheats'}
+							</Icon>
+						</>}
+				>
+					<CheatPage
+						pnachCheatData={allPnachCheats}
+						luaCheatData={allLuaCheats}
+						setAllPnachCheats={setAllPnachCheats}
+						setAllLuaCheats={setAllLuaCheats}
+					>
+						<HelpModal tab={currentTab} />
+						{saveLoadModal}
+					</CheatPage>
 				</Tab>
 			</Tabs>
 		</div>
