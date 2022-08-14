@@ -20,6 +20,8 @@ function Icon(props) {
 		iconSize = 40
 	else if (props.type === 'header')
 		iconSize = 20
+	else if (props.type === 'form')
+		iconSize = 30
 	else
 		iconSize = 0
 

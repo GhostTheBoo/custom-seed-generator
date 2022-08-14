@@ -149,37 +149,27 @@ function LevelPage(props) {
 			if (currentAllLevelFieldData.modifyStaff && isCorrectLevel)
 				newLevelData.staff = { ...currentLevelFieldData.staff }
 
-
+			let maximumChange = 0
 			if (currentAllLevelFieldData.modifyStrength) {
-				if (isCorrectLevel)
-					newLevelData.currentStrength = Math.max(0, previousLevel.strength + currentLevelDifFieldData.strengthDif)
-				else
-					newLevelData.currentStrength = Math.max(0, previousLevel.strength)
+				maximumChange = previousLevel.strength + (isCorrectLevel ? currentLevelDifFieldData.strengthDif : 0)
+				newLevelData.currentStrength = Math.max(0, maximumChange)
 			}
 			if (currentAllLevelFieldData.modifyMagic) {
-				if (isCorrectLevel)
-					newLevelData.currentMagic = Math.max(0, previousLevel.magic + currentLevelDifFieldData.magicDif)
-				else
-					newLevelData.currentMagic = Math.max(0, previousLevel.magic)
+				maximumChange = previousLevel.magic + (isCorrectLevel ? currentLevelDifFieldData.magicDif : 0)
+				newLevelData.currentMagic = Math.max(0, maximumChange)
 			}
 			if (currentAllLevelFieldData.modifyDefense) {
-				if (isCorrectLevel)
-					newLevelData.currentDefense = Math.max(0, previousLevel.defense + currentLevelDifFieldData.defenseDif)
-				else
-					newLevelData.currentDefense = Math.max(0, previousLevel.defense)
+				maximumChange = previousLevel.defense + (isCorrectLevel ? currentLevelDifFieldData.defenseDif : 0)
+				newLevelData.currentDefense = Math.max(0, maximumChange)
 			}
 			if (currentAllLevelFieldData.modifyAP) {
-				if (isCorrectLevel)
-					newLevelData.currentAP = Math.max(0, previousLevel.standardAP + currentLevelDifFieldData.APDif)
-				else
-					newLevelData.currentAP = Math.max(0, previousLevel.standardAP)
+				maximumChange = previousLevel.standardAP + (isCorrectLevel ? currentLevelDifFieldData.APDif : 0)
+				newLevelData.currentAP = Math.max(0, maximumChange)
 			}
 
 			if (currentAllLevelFieldData.modifyEXP) {
-				if (isCorrectLevel)
-					newLevelData.currentEXP = Math.max(0, previousLevel.replacementEXP + currentLevelDifFieldData.expDif)
-				else
-					newLevelData.currentEXP = Math.max(0, previousLevel.replacementEXP)
+				maximumChange = previousLevel.replacementEXP + (isCorrectLevel ? currentLevelDifFieldData.expDif : 0)
+				newLevelData.currentEXP = Math.max(0, maximumChange)
 			}
 			previousLevel = level.replace(newLevelData)
 			return previousLevel

@@ -43,6 +43,10 @@ function PopupCard(props) {
 			<Card.Footer>
 				<Container fluid>
 					<Row>
+						<RewardSelector
+							originalReward={props.popup.vanillaReward}
+							onReplace={(replacementReward) => props.handleReplace(props.popup, replacementReward)}
+						/>
 						<Button
 							variant='secondary'
 							block
@@ -51,10 +55,6 @@ function PopupCard(props) {
 						>
 							Vanilla
 						</Button>
-						<RewardSelector
-							originalReward={props.popup.vanillaReward}
-							onReplace={(replacementReward) => props.handleReplace(props.popup, replacementReward)}
-						/>
 					</Row>
 				</Container>
 			</Card.Footer>

@@ -52,6 +52,10 @@ function ChestCard(props) {
 			<Card.Footer>
 				<Container fluid>
 					<Row>
+						<RewardSelector
+							originalReward={props.chest.vanillaReward}
+							onReplace={(replacementReward) => props.handleReplace(props.chest, replacementReward)}
+						/>
 						<Button
 							variant='secondary'
 							block
@@ -60,10 +64,6 @@ function ChestCard(props) {
 						>
 							Vanilla
 						</Button>
-						<RewardSelector
-							originalReward={props.chest.vanillaReward}
-							onReplace={(replacementReward) => props.handleReplace(props.chest, replacementReward)}
-						/>
 					</Row>
 				</Container>
 			</Card.Footer>

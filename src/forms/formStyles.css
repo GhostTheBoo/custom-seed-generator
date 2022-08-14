@@ -1,0 +1,188 @@
+.summon {
+  --primaryColor: #BD7902;
+  --lighterColor: #c4861b;
+  --evenLighterColor: #d1a14e;
+  --darkerColor: #aa6d02;
+  --evenDarkerColor: #845501;
+}
+
+.valor {
+  --primaryColor: #9E1920;
+  --lighterColor: #A83036;
+  --evenLighterColor: #BB5E63;
+  --darkerColor: #8E171D;
+  --evenDarkerColor: #6F1216;
+}
+
+.wisdom {
+  --primaryColor: #17219B;
+  --lighterColor: #2e37a5;
+  --evenLighterColor: #5d64b9;
+  --darkerColor: #151e8c;
+  --evenDarkerColor: #10176d;
+}
+
+.limit {
+  --primaryColor: #491749;
+  --lighterColor: #5b2e5b;
+  --evenLighterColor: #805d80;
+  --darkerColor: #421542;
+  --evenDarkerColor: #331033;
+}
+
+.master {
+  --primaryColor: #9F7F19;
+  --lighterColor: #a98c30;
+  --evenLighterColor: #bca55e;
+  --darkerColor: #8f7217;
+  --evenDarkerColor: #6f5912;
+}
+
+.final {
+  --primaryColor: #808080;
+  --lighterColor: #8d8d8d;
+  --evenLighterColor: #a6a6a6;
+  --darkerColor: #737373;
+  --evenDarkerColor: #5a5a5a;
+}
+
+.formLevelCard {
+  font-family: KHMenu;
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+  width: 90%;
+  height: 7rem;
+  position: relative;
+  padding: 0;
+  margin-bottom: 1.2rem;
+  box-shadow: inset 0px 1px 0px rgba(255, 255, 255, .5);
+  background-color: var(--primaryColor);
+}
+
+.formLevelName {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: .1rem;
+  height: 33%;
+  width: 90%;
+  top: 0;
+  left: 3em;
+  font-size: 1.5rem;
+  text-shadow: .1rem .1rem 0 black;
+}
+
+.lv {
+  font-size: 1rem;
+  color: #FFF100;
+}
+
+.formRewardBox {
+  border-bottom-left-radius: 2rem;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  background: black;
+  font-size: 2em;
+  color: white;
+  width: 99%;
+  height: 66%;
+  margin: 0;
+  padding: 0 0 0 5rem;
+  position: absolute;
+  bottom: .25rem;
+  left: .1rem;
+  box-shadow: inset -1px -1px 1px rgba(255, 255, 255, .5);
+}
+
+.formCardReward {
+  font-size: 1.5rem;
+  /* height: 50%; */
+}
+
+.afterFormLevelCard {
+  z-index: 1;
+  content: '';
+  height: 7rem;
+  position: absolute;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  left: 90%;
+  border: 40px solid transparent;
+  border-left-color: var(--primaryColor);
+}
+
+.formDriveLogo {
+  position: absolute;
+  background-color: black;
+  border-radius: 50%;
+  height: 4rem;
+  width: 4rem;
+  top: 1px;
+  left: .1em;
+}
+
+.editFormLevelButton {
+  border-radius: 1rem;
+  position: absolute;
+  right: 1rem;
+  top: 40%;
+  width: 30%;
+  height: 50%;
+  white-space: pre-line;
+  color: white;
+  background-color: var(--primaryColor);
+  text-shadow: .1rem .1rem 0 black;
+}
+
+.editFormLevelButton:hover,
+.editFormLevelButton:active {
+  background-color: var(--lighterColor);
+}
+
+.editFormLevelButton:focus {
+  outline: none;
+  border: 0;
+  box-shadow: 0 0 0 3px var(--evenLighterColor);
+}
+
+.editFormLevelButton:disabled {
+  color: white;
+  background-color: var(--primaryColor);
+  border-color: var(--primaryColor);
+  opacity: .65;
+}
+
+.editAllFormLevelButton {
+  font-family: KHMenu;
+  font-size: 2rem;
+  border-width: 0;
+  border-radius: 1rem;
+  white-space: pre-line;
+  width: 95%;
+  height: 5rem;
+  color: white;
+  background-color: var(--primaryColor);
+  text-shadow: .1rem .1rem 0 black;
+}
+
+.editAllFormLevelButton:hover,
+.editAllFormLevelButton:active {
+  background-color: var(--lighterColor);
+}
+
+.editAllFormLevelButton:focus {
+  outline: none;
+  border: 0;
+  box-shadow: 0 0 0 3px var(--evenLighterColor);
+}
+
+.editAllFormLevelButton:disabled {
+  color: white;
+  background-color: var(--primaryColor);
+  border-color: var(--primaryColor);
+  opacity: .65;
+}

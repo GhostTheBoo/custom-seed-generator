@@ -273,6 +273,7 @@ function LevelForm(props) {
                                             size='lg'
                                             type='number'
                                             value={props.currentLevelDifFieldData.expDif}
+                                            disabled={!props.currentAllLevelFieldData.modifyEXP}
                                             onChange={(e) => setCurrentEXP(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
                                             max='0xFFFFFFFF'

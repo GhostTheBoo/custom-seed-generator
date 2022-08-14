@@ -218,7 +218,7 @@ function BonusForm(props) {
 								/>
 							</Col>
 						</Form.Row>
-						<br />
+						<hr />
 						<Form.Row>
 							<Col>
 								<Button

@@ -27,12 +27,6 @@ function EquipmentForm(props) {
             className='equipmentFormCard'
             style={{ margin: '10px', textAlign: 'center' }}
         >
-            {/* <Card.Img
-                variant='top'
-                src={equipmentImage.default}
-                height='230rem'
-                width='230rem'
-            /> */}
             <Card.Body>
                 <Card.Text as='div'>
                     <Row>
@@ -51,8 +45,8 @@ function EquipmentForm(props) {
                     <Image
                         // variant='top'
                         src={equipmentImage.default}
-                        height='190rem'
-                        width='190rem'
+                        height='180rem'
+                        width='180rem'
                     />
                     <hr />
                     <Row>
@@ -245,7 +239,7 @@ function EquipmentForm(props) {
                                         />
                                     </Col>
                                 </Form.Row>
-                                <br />
+                                <hr />
                                 <Form.Row>
                                     <Col>
                                         <Button

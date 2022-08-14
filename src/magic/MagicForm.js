@@ -55,7 +55,7 @@ function MagicForm(props) {
                         <Col>
                             <Form onSubmit={(e) => e.preventDefault()}>
                                 {fieldRowList}
-                                <br />
+                                <hr />
                                 <Form.Row>
                                     <Col>
                                         <Button

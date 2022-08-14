@@ -275,7 +275,7 @@ function EquipmentPage(props) {
 			<Row>
 				<GenericSelect
 					class={'equipment'}
-					selector={'World'}
+					selector={'Equipment Type'}
 					itemList={props.equipmentData.map(equipmentType => { return equipmentType.equipmentType })}
 					name={'currentEquipmentType'}
 					currentItem={currentEquipmentType}

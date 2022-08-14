@@ -10,8 +10,8 @@ function EditStatusPopover(props) {
 		textSize = '1rem'
 	else if (props.type === 'bonus')
 		textSize = '1rem'
-	// else if (props.type === 'form')
-	// 	textSize = 20
+	else if (props.type === 'form')
+		textSize = 20
 	else if (props.type === 'equipment')
 		textSize = '1.5rem'
 	else if (props.type === 'level')
@@ -27,7 +27,7 @@ function EditStatusPopover(props) {
 		textShadow: '-.1rem 0 .2rem #B05927, .1rem 0 .2rem #B05927, .1rem .1rem .2rem #B05927, -.1rem .1rem .2rem #B05927, .1rem -.1rem .2rem #B05927, -.1rem -.1rem .2rem #B05927',
 		color: '#9FA357',
 		position: 'absolute',
-		zIndex: 1,
+		zIndex: 2,
 		top: 0,
 		right: 0
 	}

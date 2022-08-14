@@ -1,5 +1,5 @@
 import { React } from 'react'
-import { Form, Col, Button } from 'react-bootstrap'
+import { Form, Col, Button, Card, Row } from 'react-bootstrap'
 
 import RewardSelector from '../rewards/RewardSelector'
 import Icon from '../Components/Icon'
@@ -8,7 +8,7 @@ function FormForm(props) {
 
 	function setCurrentReward(newValue) { props.setCurrentFormFieldData('reward', newValue) }
 	function setCurrentEXP(newValue) { props.setCurrentFormFieldData('currentEXP', newValue) }
-	function setCurrentEXPMultiplierValue(newValue) { props.setCurrentFormFieldData('currentEXPMultiplierValue', newValue) }
+	// function setCurrentEXPMultiplierValue(newValue) { props.setCurrentFormFieldData('currentEXPMultiplierValue', newValue) }
 
 	let expMultiplierList = []
 
@@ -19,99 +19,93 @@ function FormForm(props) {
 	}
 
 	return (
-		<>
-			<h1>
-				EDITING {props.currentDriveForm.toUpperCase()} LEVEL {props.currentDriveFormLevel + 2}:
-			</h1>
-			<Form onSubmit={(e) => e.preventDefault()}			>
-				<Form.Row>
-					<Form.Label column='lg' xs={3}>
-						Reward:
-					</Form.Label>
-					<Col xs={3}>
-						<Icon
-							style={{ margin: '10px' }}
-							fileName={props.currentFormFieldData.reward.iconType}
-							type={'row'}
-						>
-							{props.currentFormFieldData.reward.reward}
-						</Icon>
-					</Col>
-					<Col xs={5}>
-						<RewardSelector
-							onReplace={(replacementReward) => setCurrentReward(replacementReward)}
-						/>
-					</Col>
-					<Col xs={1} />
-				</Form.Row>
-				<Form.Row>
-					<Form.Label column='lg' xs={3}>
-						Vanilla Experience Multiplier:
-					</Form.Label>
-					<Col xs={2}>
-						<Form.Control
-							size='lg'
-							as='select'
-							value={props.currentFormFieldData.currentEXPMultiplierValue}
-							name='formEXPMultiplierSelect'
-							onChange={(e) => { setCurrentEXPMultiplierValue(parseInt(e.target.value)) }}
-						>
-							{expMultiplierList}
-						</Form.Control>
-					</Col>
-					<Col xs={1} />
-					<Col xs={5}>
-						{
-							props.currentFormFieldData.currentEXPMultiplierValue !== 2
-								? <div className='form-label col-form-label col-form-label-lg' style={{ textAlign: 'center', margin: 'auto' }}>
-									New EXP: {Math.max(1, Math.floor((2 * props.currentDriveFormLevelData.vanillaEXP) / props.currentFormFieldData.currentEXPMultiplierValue))}
-								</div>
-								: <></>
-						}
-					</Col>
-				</Form.Row>
-				{
-					props.currentFormFieldData.currentEXPMultiplierValue === 2
-						? <Form.Row>
-							<Form.Label column='lg' xs={3}>
-								Experience from Level {props.currentDriveFormLevel + 1} → {props.currentDriveFormLevel + 2}:
-							</Form.Label>
-							<Col xs={2}>
-								<Form.Control
-									name={'FormExp'}
-									size='lg'
-									type='number'
-									value={props.currentFormFieldData.currentEXP}
-									onChange={(e) => setCurrentEXP(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-									min='0'
-									max='99999999'
-								/>
-							</Col>
-						</Form.Row>
-						: <></>
-				}
-				<br />
-				<Form.Row>
-					<Col>
-						<Button
-							variant='secondary'
-							block
-							onClick={() => props.setCurrentDriveFormLevel(props.currentDriveFormLevelData.vanilla())}
-						>
-							VANILLA
-						</Button>
-					</Col>
-					<Col>
-						<Button
-							block
-							onClick={() => props.setCurrentDriveFormLevel(props.currentDriveFormLevelData.replace(props.currentFormFieldData))}
-						>
-							CONFIRM
-						</Button>
-					</Col>
-				</Form.Row>
-			</Form>
-		</>
+		<Card
+			border='dark'
+			bg='dark'
+			className='formFormCard'
+			style={{ margin: '10px', textAlign: 'center' }}
+		>
+			<Card.Body>
+				<Card.Text as='div'>
+					<Row>
+						<Col xs={11}>
+							<h1>EDITING {props.currentDriveForm.toUpperCase()} LEVEL {props.currentDriveFormLevel + 2}:</h1>
+						</Col>
+						<Col xs={1}>
+							<button
+								className='close'
+								onClick={() => props.closeFormCard()}
+							>
+								x
+							</button>
+						</Col>
+					</Row>
+					<hr />
+					<Row>
+						<Col>
+							<Form onSubmit={(e) => e.preventDefault()}>
+								<Form.Row>
+									<Form.Label column='lg' xs={4}>
+										Reward:
+									</Form.Label>
+									<Col xs={3}>
+										<Icon
+											style={{ margin: '10px' }}
+											fileName={props.currentFormFieldData.reward.iconType}
+											type={'row'}
+										>
+											{props.currentFormFieldData.reward.reward}
+										</Icon>
+									</Col>
+									<Col xs={5}>
+										<RewardSelector
+											onReplace={(replacementReward) => setCurrentReward(replacementReward)}
+										/>
+									</Col>
+								</Form.Row>
+								<br />
+								<Form.Row>
+									<Form.Label column='lg' xs={4}>
+										EXP from Level {props.currentDriveFormLevel + 1} → {props.currentDriveFormLevel + 2}:
+									</Form.Label>
+									<Col xs={3}>
+										<Form.Control
+											name={'FormExp'}
+											size='lg'
+											type='number'
+											value={props.currentFormFieldData.currentEXP}
+											onChange={(e) => setCurrentEXP(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
+											min='0'
+											max='99999999'
+										/>
+									</Col>
+								</Form.Row>
+								<hr />
+								<Form.Row>
+									<Col>
+										<Button
+											variant='secondary'
+											block
+											onClick={() => props.setCurrentDriveFormLevel(props.currentDriveFormLevelData.vanilla())}
+										>
+											VANILLA
+										</Button>
+									</Col>
+									<Col>
+										<Button
+											block
+											onClick={() => props.setCurrentDriveFormLevel(props.currentDriveFormLevelData.replace(props.currentFormFieldData))}
+										>
+											CONFIRM
+										</Button>
+									</Col>
+								</Form.Row>
+							</Form>
+						</Col>
+					</Row>
+				</Card.Text>
+			</Card.Body>
+		</Card>
 	)
 }
 
