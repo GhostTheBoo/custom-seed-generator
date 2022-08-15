@@ -106,7 +106,7 @@ function LevelPage(props) {
 		setCurrentLevelDifFieldData(levelChangeDif)
 		setCurrentLevelFieldData({
 			...newLevelFieldData,
-			currentCriticalAP: Math.floor(((newLevelFieldData.currentAP - 2) * 1.5) + 50)
+			currentCriticalAP: Math.floor((newLevelFieldData.currentAP - 2) * 1.5)
 		})
 	}
 	function handleDisplayedFormChange(newLevel) {

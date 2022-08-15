@@ -28,8 +28,17 @@ function AllEquipmentForm(props) {
     function setCurrentUniversal(newValue) { props.setCurrentEquipmentFieldData('currentUniversal', newValue) }
 
     function setModifyAbility() { props.setCurrentAllEquipmentFieldData('modifyAbility', !props.currentAllEquipmentFieldData.modifyAbility) }
-    function setModifyStats() { props.setCurrentAllEquipmentFieldData('modifyStats', !props.currentAllEquipmentFieldData.modifyStats) }
-    function setModifyResistances() { props.setCurrentAllEquipmentFieldData('modifyResistances', !props.currentAllEquipmentFieldData.modifyResistances) }
+    function setModifyAP() { props.setCurrentAllEquipmentFieldData('modifyAP', !props.currentAllEquipmentFieldData.modifyAP) }
+    function setModifyStrength() { props.setCurrentAllEquipmentFieldData('modifyStrength', !props.currentAllEquipmentFieldData.modifyStrength) }
+    function setModifyMagic() { props.setCurrentAllEquipmentFieldData('modifyMagic', !props.currentAllEquipmentFieldData.modifyMagic) }
+    function setModifyDefense() { props.setCurrentAllEquipmentFieldData('modifyDefense', !props.currentAllEquipmentFieldData.modifyDefense) }
+    function setModifyFire() { props.setCurrentAllEquipmentFieldData('modifyFire', !props.currentAllEquipmentFieldData.modifyFire) }
+    function setModifyBlizzard() { props.setCurrentAllEquipmentFieldData('modifyBlizzard', !props.currentAllEquipmentFieldData.modifyBlizzard) }
+    function setModifyThunder() { props.setCurrentAllEquipmentFieldData('modifyThunder', !props.currentAllEquipmentFieldData.modifyThunder) }
+    function setModifyDark() { props.setCurrentAllEquipmentFieldData('modifyDark', !props.currentAllEquipmentFieldData.modifyDark) }
+    function setModifyPhysical() { props.setCurrentAllEquipmentFieldData('modifyPhysical', !props.currentAllEquipmentFieldData.modifyPhysical) }
+    function setModifyLight() { props.setCurrentAllEquipmentFieldData('modifyLight', !props.currentAllEquipmentFieldData.modifyLight) }
+    function setModifyUniversal() { props.setCurrentAllEquipmentFieldData('modifyUniversal', !props.currentAllEquipmentFieldData.modifyUniversal) }
 
     return (
         <Card
@@ -58,18 +67,14 @@ function AllEquipmentForm(props) {
                         <Col>
                             <Form onSubmit={(e) => e.preventDefault()}>
                                 <Form.Row>
-                                    <Col>
-                                        <Form.Check
-                                            type='checkbox'
-                                            label='Modify Abilities for All Equipment?'
-                                            style={{ margin: 'auto' }}
-                                            value={props.currentAllEquipmentFieldData.modifyAbility}
-                                            onChange={() => setModifyAbility()}
-                                        />
-                                    </Col>
-                                </Form.Row>
-                                <Form.Row>
-                                    <Form.Label column='lg' xs={4}>
+                                    <Form.Check
+                                        id='allEquipmentAbilitySwitch'
+                                        type='switch'
+                                        style={{ margin: 'auto' }}
+                                        checked={props.currentAllEquipmentFieldData.modifyAbility}
+                                        onChange={() => setModifyAbility()}
+                                    />
+                                    <Form.Label column='lg' xs={3}>
                                         Ability:
                                     </Form.Label>
                                     <Col xs={4}>
@@ -89,18 +94,14 @@ function AllEquipmentForm(props) {
                                 </Form.Row>
                                 <hr />
                                 <Form.Row>
-                                    <Col>
-                                        <Form.Check
-                                            type='checkbox'
-                                            label='Modify Base Stats for All Equipment?'
-                                            style={{ margin: 'auto' }}
-                                            value={props.currentAllEquipmentFieldData.modifyStats}
-                                            onChange={() => setModifyStats()}
-                                        />
-                                    </Col>
-                                </Form.Row>
-                                <Form.Row>
-                                    <Form.Label column='lg' xs={4}>
+                                    <Form.Check
+                                        id='allEquipmentAPSwitch'
+                                        type='switch'
+                                        style={{ margin: 'auto' }}
+                                        checked={props.currentAllEquipmentFieldData.modifyAP}
+                                        onChange={() => setModifyAP()}
+                                    />
+                                    <Form.Label column='lg' xs={3}>
                                         AP:
                                     </Form.Label>
                                     <Col xs={2}>
@@ -111,10 +112,17 @@ function AllEquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentAP}
                                             onChange={(e) => setCurrentAP(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
-                                    <Form.Label column='lg' xs={4}>
+                                    <Form.Check
+                                        id='allEquipmentMagicSwitch'
+                                        type='switch'
+                                        style={{ margin: 'auto' }}
+                                        checked={props.currentAllEquipmentFieldData.modifyMagic}
+                                        onChange={() => setModifyMagic()}
+                                    />
+                                    <Form.Label column='lg' xs={3}>
                                         Magic:
                                     </Form.Label>
                                     <Col xs={2}>
@@ -125,12 +133,19 @@ function AllEquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentMagic}
                                             onChange={(e) => setCurrentMagic(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
                                 </Form.Row>
                                 <Form.Row>
-                                    <Form.Label column='lg' xs={4}>
+                                    <Form.Check
+                                        id='allEquipmentStrengthSwitch'
+                                        type='switch'
+                                        style={{ margin: 'auto' }}
+                                        checked={props.currentAllEquipmentFieldData.modifyStrength}
+                                        onChange={() => setModifyStrength()}
+                                    />
+                                    <Form.Label column='lg' xs={3}>
                                         Strength:
                                     </Form.Label>
                                     <Col xs={2}>
@@ -141,10 +156,17 @@ function AllEquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentStrength}
                                             onChange={(e) => setCurrentStrength(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
-                                    <Form.Label column='lg' xs={4}>
+                                    <Form.Check
+                                        id='allEquipmentDefenseSwitch'
+                                        type='switch'
+                                        style={{ margin: 'auto' }}
+                                        checked={props.currentAllEquipmentFieldData.modifyDefense}
+                                        onChange={() => setModifyDefense()}
+                                    />
+                                    <Form.Label column='lg' xs={3}>
                                         Defense:
                                     </Form.Label>
                                     <Col xs={2}>
@@ -155,25 +177,21 @@ function AllEquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentDefense}
                                             onChange={(e) => setCurrentDefense(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
                                 </Form.Row>
                                 <hr />
                                 <Form.Row>
-                                    <Col>
-                                        <Form.Check
-                                            type='checkbox'
-                                            label='Modify Resistances for All Equipment?'
-                                            style={{ margin: 'auto' }}
-                                            value={props.currentAllEquipmentFieldData.modifyResistances}
-                                            onChange={() => setModifyResistances()}
-                                        />
-                                    </Col>
-                                </Form.Row>
-                                <Form.Row>
-                                    <Form.Label column='lg' xs={4}>
-                                        Fire Resistance:
+                                    <Form.Check
+                                        id='allEquipmentFireSwitch'
+                                        type='switch'
+                                        style={{ margin: 'auto' }}
+                                        checked={props.currentAllEquipmentFieldData.modifyFire}
+                                        onChange={() => setModifyFire()}
+                                    />
+                                    <Form.Label column='lg' xs={3}>
+                                        Fire:
                                     </Form.Label>
                                     <Col xs={2}>
                                         <Form.Control
@@ -183,11 +201,18 @@ function AllEquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentFire}
                                             onChange={(e) => setCurrentFire(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
-                                    <Form.Label column='lg' xs={4}>
-                                        Physical Resistance:
+                                    <Form.Check
+                                        id='allEquipmentPhysicalSwitch'
+                                        type='switch'
+                                        style={{ margin: 'auto' }}
+                                        checked={props.currentAllEquipmentFieldData.modifyPhysical}
+                                        onChange={() => setModifyPhysical()}
+                                    />
+                                    <Form.Label column='lg' xs={3}>
+                                        Physical:
                                     </Form.Label>
                                     <Col xs={2}>
                                         <Form.Control
@@ -197,13 +222,20 @@ function AllEquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentPhysical}
                                             onChange={(e) => setCurrentPhysical(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
                                 </Form.Row>
                                 <Form.Row>
-                                    <Form.Label column='lg' xs={4}>
-                                        Blizzard Resistance:
+                                    <Form.Check
+                                        id='allEquipmentBlizzardSwitch'
+                                        type='switch'
+                                        style={{ margin: 'auto' }}
+                                        checked={props.currentAllEquipmentFieldData.modifyBlizzard}
+                                        onChange={() => setModifyBlizzard()}
+                                    />
+                                    <Form.Label column='lg' xs={3}>
+                                        Blizzard:
                                     </Form.Label>
                                     <Col xs={2}>
                                         <Form.Control
@@ -213,11 +245,18 @@ function AllEquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentBlizzard}
                                             onChange={(e) => setCurrentBlizzard(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
-                                    <Form.Label column='lg' xs={4}>
-                                        Light Resistance:
+                                    <Form.Check
+                                        id='allEquipmentLightSwitch'
+                                        type='switch'
+                                        style={{ margin: 'auto' }}
+                                        checked={props.currentAllEquipmentFieldData.modifyLight}
+                                        onChange={() => setModifyLight()}
+                                    />
+                                    <Form.Label column='lg' xs={3}>
+                                        Light:
                                     </Form.Label>
                                     <Col xs={2}>
                                         <Form.Control
@@ -227,13 +266,20 @@ function AllEquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentLight}
                                             onChange={(e) => setCurrentLight(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
                                 </Form.Row>
                                 <Form.Row>
-                                    <Form.Label column='lg' xs={4}>
-                                        Thunder Resistance:
+                                    <Form.Check
+                                        id='allEquipmentThunderSwitch'
+                                        type='switch'
+                                        style={{ margin: 'auto' }}
+                                        checked={props.currentAllEquipmentFieldData.modifyThunder}
+                                        onChange={() => setModifyThunder()}
+                                    />
+                                    <Form.Label column='lg' xs={3}>
+                                        Thunder:
                                     </Form.Label>
                                     <Col xs={2}>
                                         <Form.Control
@@ -243,11 +289,18 @@ function AllEquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentThunder}
                                             onChange={(e) => setCurrentThunder(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
-                                    <Form.Label column='lg' xs={4}>
-                                        Universal Resistance:
+                                    <Form.Check
+                                        id='allEquipmentUniversalSwitch'
+                                        type='switch'
+                                        style={{ margin: 'auto' }}
+                                        checked={props.currentAllEquipmentFieldData.modifyUniversal}
+                                        onChange={() => setModifyUniversal()}
+                                    />
+                                    <Form.Label column='lg' xs={3}>
+                                        Universal:
                                     </Form.Label>
                                     <Col xs={2}>
                                         <Form.Control
@@ -257,13 +310,20 @@ function AllEquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentUniversal}
                                             onChange={(e) => setCurrentUniversal(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
                                 </Form.Row>
                                 <Form.Row>
-                                    <Form.Label column='lg' xs={4}>
-                                        Dark Resistance:
+                                    <Form.Check
+                                        id='allEquipmentDarkSwitch'
+                                        type='switch'
+                                        style={{ margin: 'auto' }}
+                                        checked={props.currentAllEquipmentFieldData.modifyDark}
+                                        onChange={() => setModifyDark()}
+                                    />
+                                    <Form.Label column='lg' xs={3}>
+                                        Dark:
                                     </Form.Label>
                                     <Col xs={2}>
                                         <Form.Control
@@ -273,9 +333,10 @@ function AllEquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentDark}
                                             onChange={(e) => setCurrentDark(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
+                                    <Col xs={6} />
                                 </Form.Row>
                                 <hr />
                                 <Form.Row>

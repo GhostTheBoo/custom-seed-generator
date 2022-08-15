@@ -84,7 +84,7 @@ function EquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentAP}
                                             onChange={(e) => setCurrentAP(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
                                     <Form.Label column='lg' xs={4}>
@@ -98,7 +98,7 @@ function EquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentMagic}
                                             onChange={(e) => setCurrentMagic(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
                                 </Form.Row>
@@ -114,7 +114,7 @@ function EquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentStrength}
                                             onChange={(e) => setCurrentStrength(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
                                     <Form.Label column='lg' xs={4}>
@@ -128,7 +128,7 @@ function EquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentDefense}
                                             onChange={(e) => setCurrentDefense(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
                                 </Form.Row>
@@ -145,7 +145,7 @@ function EquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentFire}
                                             onChange={(e) => setCurrentFire(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
                                     <Form.Label column='lg' xs={4}>
@@ -159,7 +159,7 @@ function EquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentPhysical}
                                             onChange={(e) => setCurrentPhysical(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
                                 </Form.Row>
@@ -175,7 +175,7 @@ function EquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentBlizzard}
                                             onChange={(e) => setCurrentBlizzard(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
                                     <Form.Label column='lg' xs={4}>
@@ -189,7 +189,7 @@ function EquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentLight}
                                             onChange={(e) => setCurrentLight(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
                                 </Form.Row>
@@ -205,7 +205,7 @@ function EquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentThunder}
                                             onChange={(e) => setCurrentThunder(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
                                     <Form.Label column='lg' xs={4}>
@@ -219,7 +219,7 @@ function EquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentUniversal}
                                             onChange={(e) => setCurrentUniversal(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
                                 </Form.Row>
@@ -235,7 +235,7 @@ function EquipmentForm(props) {
                                             value={props.currentEquipmentFieldData.currentDark}
                                             onChange={(e) => setCurrentDark(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
                                             min='0'
-                                            max='99999999'
+                                            max='255'
                                         />
                                     </Col>
                                 </Form.Row>

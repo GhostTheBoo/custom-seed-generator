@@ -28,8 +28,17 @@ function EquipmentPage(props) {
 	})
 	const [currentAllEquipmentFieldData, setCurrentAllEquipmentFieldData] = useState({
 		modifyAbility: false,
-		modifyStats: false,
-		modifyResistances: false
+		modifyAP: false,
+		modifyStrength: false,
+		modifyMagic: false,
+		modifyDefense: false,
+		modifyFire: false,
+		modifyBlizzard: false,
+		modifyThunder: false,
+		modifyDark: false,
+		modifyPhysical: false,
+		modifyLight: false,
+		modifyUniversal: false
 	})
 	const equipmentCardGrid = useRef(null)
 	useEffect(() => {
@@ -87,8 +96,17 @@ function EquipmentPage(props) {
 		})
 		setCurrentAllEquipmentFieldData({
 			modifyAbility: false,
-			modifyStats: false,
-			modifyResistances: false
+			modifyAP: false,
+			modifyStrength: false,
+			modifyMagic: false,
+			modifyDefense: false,
+			modifyFire: false,
+			modifyBlizzard: false,
+			modifyThunder: false,
+			modifyDark: false,
+			modifyPhysical: false,
+			modifyLight: false,
+			modifyUniversal: false
 		})
 	}
 
@@ -127,35 +145,18 @@ function EquipmentPage(props) {
 	function replaceAllEquipment() {
 		let newEquipmentList = props.equipmentData[currentEquipmentType].equipments.map((equipment) => {
 			let newEquipmentData = {
-				ability: { ...equipment.replacementAbility },
-				currentAP: equipment.ap,
-				currentStrength: equipment.strength,
-				currentMagic: equipment.magic,
-				currentDefense: equipment.defense,
-				currentFire: equipment.fire,
-				currentBlizzard: equipment.blizzard,
-				currentThunder: equipment.thunder,
-				currentPhysical: equipment.physical,
-				currentDark: equipment.dark,
-				currentLight: equipment.light,
-				currentUniversal: equipment.universal
-			}
-			if (currentAllEquipmentFieldData.modifyAbility)
-				newEquipmentData.ability = { ...currentEquipmentFieldData.ability }
-			if (currentAllEquipmentFieldData.modifyStats) {
-				newEquipmentData.currentAP = currentEquipmentFieldData.currentAP
-				newEquipmentData.currentStrength = currentEquipmentFieldData.currentStrength
-				newEquipmentData.currentMagic = currentEquipmentFieldData.currentMagic
-				newEquipmentData.currentDefense = currentEquipmentFieldData.currentDefense
-			}
-			if (currentAllEquipmentFieldData.modifyResistances) {
-				newEquipmentData.currentFire = currentEquipmentFieldData.currentFire
-				newEquipmentData.currentBlizzard = currentEquipmentFieldData.currentBlizzard
-				newEquipmentData.currentThunder = currentEquipmentFieldData.currentThunder
-				newEquipmentData.currentDark = currentEquipmentFieldData.currentDark
-				newEquipmentData.currentPhysical = currentEquipmentFieldData.currentPhysical
-				newEquipmentData.currentLight = currentEquipmentFieldData.currentLight
-				newEquipmentData.currentUniversal = currentEquipmentFieldData.currentUniversal
+				ability: { ...(currentAllEquipmentFieldData.modifyAbility ? currentEquipmentFieldData.ability : equipment.replacementAbility) },
+				currentAP: currentAllEquipmentFieldData.modifyAP ? currentEquipmentFieldData.currentAP : equipment.ap,
+				currentStrength: currentAllEquipmentFieldData.modifyStrength ? currentEquipmentFieldData.currentStrength : equipment.strength,
+				currentMagic: currentAllEquipmentFieldData.modifyMagic ? currentEquipmentFieldData.currentMagic : equipment.magic,
+				currentDefense: currentAllEquipmentFieldData.modifyDefense ? currentEquipmentFieldData.currentDefense : equipment.defense,
+				currentFire: currentAllEquipmentFieldData.modifyFire ? currentEquipmentFieldData.currentFire : equipment.fire,
+				currentBlizzard: currentAllEquipmentFieldData.modifyBlizzard ? currentEquipmentFieldData.currentBlizzard : equipment.blizzard,
+				currentThunder: currentAllEquipmentFieldData.modifyThunder ? currentEquipmentFieldData.currentThunder : equipment.thunder,
+				currentPhysical: currentAllEquipmentFieldData.modifyPhysical ? currentEquipmentFieldData.currentPhysical : equipment.physical,
+				currentDark: currentAllEquipmentFieldData.modifyDark ? currentEquipmentFieldData.currentDark : equipment.dark,
+				currentLight: currentAllEquipmentFieldData.modifyLight ? currentEquipmentFieldData.currentLight : equipment.light,
+				currentUniversal: currentAllEquipmentFieldData.modifyUniversal ? currentEquipmentFieldData.currentUniversal : equipment.universal
 			}
 			return equipment.replace(newEquipmentData)
 		})
@@ -164,35 +165,18 @@ function EquipmentPage(props) {
 	function vanillaAllEquipment() {
 		let newEquipmentList = props.equipmentData[currentEquipmentType].equipments.map((equipment) => {
 			let newEquipmentData = {
-				ability: { ...equipment.replacementAbility },
-				currentAP: equipment.ap,
-				currentStrength: equipment.strength,
-				currentMagic: equipment.magic,
-				currentDefense: equipment.defense,
-				currentFire: equipment.fire,
-				currentBlizzard: equipment.blizzard,
-				currentThunder: equipment.thunder,
-				currentPhysical: equipment.physical,
-				currentDark: equipment.dark,
-				currentLight: equipment.light,
-				currentUniversal: equipment.universal
-			}
-			if (currentAllEquipmentFieldData.modifyAbility)
-				newEquipmentData.ability = { ...equipment.vanillaAbility }
-			if (currentAllEquipmentFieldData.modifyStats) {
-				newEquipmentData.currentAP = equipment.vanillaAP
-				newEquipmentData.currentStrength = equipment.vanillaStrength
-				newEquipmentData.currentMagic = equipment.vanillaMagic
-				newEquipmentData.currentDefense = equipment.vanillaDefense
-			}
-			if (currentAllEquipmentFieldData.modifyResistances) {
-				newEquipmentData.currentFire = equipment.vanillaFire
-				newEquipmentData.currentBlizzard = equipment.vanillaBlizzard
-				newEquipmentData.currentThunder = equipment.vanillaThunder
-				newEquipmentData.currentDark = equipment.vanillaPhysical
-				newEquipmentData.currentPhysical = equipment.vanillaDark
-				newEquipmentData.currentLight = equipment.vanillaLight
-				newEquipmentData.currentUniversal = equipment.vanillaUniversal
+				ability: { ...(currentAllEquipmentFieldData.modifyAbility ? equipment.vanillaAbility : equipment.replacementAbility) },
+				currentAP: currentAllEquipmentFieldData.modifyAP ? equipment.vanillaAP : equipment.ap,
+				currentStrength: currentAllEquipmentFieldData.modifyStrength ? equipment.vanillaStrength : equipment.strength,
+				currentMagic: currentAllEquipmentFieldData.modifyMagic ? equipment.vanillaMagic : equipment.magic,
+				currentDefense: currentAllEquipmentFieldData.modifyDefense ? equipment.vanillaDefense : equipment.defense,
+				currentFire: currentAllEquipmentFieldData.modifyFire ? equipment.vanillaFire : equipment.fire,
+				currentBlizzard: currentAllEquipmentFieldData.modifyBlizzard ? equipment.vanillaBlizzard : equipment.blizzard,
+				currentThunder: currentAllEquipmentFieldData.modifyThunder ? equipment.vanillaThunder : equipment.thunder,
+				currentPhysical: currentAllEquipmentFieldData.modifyPhysical ? equipment.vanillaPhysical : equipment.physical,
+				currentDark: currentAllEquipmentFieldData.modifyDark ? equipment.vanillaDark : equipment.dark,
+				currentLight: currentAllEquipmentFieldData.modifyLight ? equipment.vanillaLight : equipment.light,
+				currentUniversal: currentAllEquipmentFieldData.modifyUniversal ? equipment.vanillaUniversal : equipment.universal
 			}
 			return equipment.replace(newEquipmentData)
 		})

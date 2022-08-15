@@ -18,10 +18,10 @@ function LevelForm(props) {
         let modifiedNum = Math.max(minExp, Math.min(0xFFFFFFFF, Number(parseInt(newValue))))
         props.setCurrentLevelFieldData('currentEXP', modifiedNum)
     }
-    function setCurrentEXPChange(newValue) {
-        let prevEXP = props.previousLevel.replacementEXP
-        props.setCurrentLevelFieldData('currentEXP', Math.max(prevEXP, Math.min(0xFFFFFFFF, Number(parseInt(newValue + prevEXP)))))
-    }
+    // function setCurrentEXPChange(newValue) {
+    //     let prevEXP = props.previousLevel.replacementEXP
+    //     props.setCurrentLevelFieldData('currentEXP', Math.max(prevEXP, Math.min(0xFFFFFFFF, Number(parseInt(newValue + prevEXP)))))
+    // }
 
     function createStylizedStatChange(statChange) {
         let textColor = statChange >= 0 ? '#00F0FA' : '#FA0000'
@@ -251,13 +251,13 @@ function LevelForm(props) {
                                     </Col>
                                     <Col className='form-label col-form-label col-form-label-lg' xs={5}>{createStylizedEXPChange(props.currentLevelDifFieldData.expDif)}</Col>
                                 </Form.Row>
-                                <Form.Row>
+                                {/* <Form.Row>
                                     <Col><Button onClick={() => setCurrentEXPChange(props.currentLevelDifFieldData.expDif / 5)} block variant='info'>1/5</Button></Col>
                                     <Col><Button onClick={() => setCurrentEXPChange(props.currentLevelDifFieldData.expDif / 3)} block variant='info'>1/3</Button></Col>
                                     <Col><Button onClick={() => setCurrentEXPChange(props.currentLevelDifFieldData.expDif / 2)} block variant='info'>1/2</Button></Col>
                                     <Col><Button onClick={() => setCurrentEXP(props.level.vanillaEXP)} block variant='secondary'>Vanilla</Button></Col>
                                     <Col><Button onClick={() => setCurrentEXPChange(props.currentLevelDifFieldData.expDif * 2)} block variant='info'>2x</Button></Col>
-                                </Form.Row>
+                                </Form.Row> */}
                                 <hr />
                                 <Form.Row>
                                     <Col>
