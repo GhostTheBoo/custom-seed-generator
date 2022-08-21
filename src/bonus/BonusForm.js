@@ -122,8 +122,11 @@ function BonusForm(props) {
 						</Form.Row>
 						<hr />
 						<Form.Row>
-							<Form.Label column='lg' xs={4}>
-								HP Increase:
+							<Form.Label column='lg' xs={4} style={{ padding: '0' }}>
+								<Icon
+									fileName={'uphp'}
+									type={'bonusForm'}
+								>:</Icon>
 							</Form.Label>
 							<Col>
 								<Form.Control
@@ -138,8 +141,11 @@ function BonusForm(props) {
 							</Col>
 						</Form.Row>
 						<Form.Row>
-							<Form.Label column='lg' xs={4}>
-								MP Increase:
+							<Form.Label column='lg' xs={4} style={{ padding: '0' }}>
+								<Icon
+									fileName={'upmp'}
+									type={'bonusForm'}
+								>:</Icon>
 							</Form.Label>
 							<Col>
 								<Form.Control
@@ -155,8 +161,11 @@ function BonusForm(props) {
 						</Form.Row>
 						<hr />
 						<Form.Row>
-							<Form.Label column='lg' xs={4}>
-								Armor Slot Increase:
+							<Form.Label column='lg' xs={4} style={{ padding: '0' }}>
+								<Icon
+									fileName={'uparmor'}
+									type={'bonusForm'}
+								>:</Icon>
 							</Form.Label>
 							<Col>
 								<Form.Control
@@ -171,8 +180,11 @@ function BonusForm(props) {
 							</Col>
 						</Form.Row>
 						<Form.Row>
-							<Form.Label column='lg' xs={4}>
-								Accessory Slot Increase:
+							<Form.Label column='lg' xs={4} style={{ padding: '0' }}>
+								<Icon
+									fileName={'upaccessory'}
+									type={'bonusForm'}
+								>:</Icon>
 							</Form.Label>
 							<Col>
 								<Form.Control
@@ -187,8 +199,11 @@ function BonusForm(props) {
 							</Col>
 						</Form.Row>
 						<Form.Row>
-							<Form.Label column='lg' xs={4}>
-								Item Slot Increase:
+							<Form.Label column='lg' xs={4} style={{ padding: '0' }}>
+								<Icon
+									fileName={'upitem'}
+									type={'bonusForm'}
+								>:</Icon>
 							</Form.Label>
 							<Col>
 								<Form.Control
@@ -203,8 +218,11 @@ function BonusForm(props) {
 							</Col>
 						</Form.Row>
 						<Form.Row>
-							<Form.Label column='lg' xs={4}>
-								Drive Gauge Increase:
+							<Form.Label column='lg' xs={4} style={{ padding: '0' }}>
+								<Icon
+									fileName={'updrive'}
+									type={'bonusForm'}
+								>:</Icon>
 							</Form.Label>
 							<Col>
 								<Form.Control

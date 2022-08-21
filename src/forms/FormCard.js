@@ -9,18 +9,18 @@ import EditStatusPopover from '../Components/EditStatusPopover'
 function FormCard(props) {
     let formName = [props.level.level.split(' ')[0]]
 
-	let overlayPopover = <EditStatusPopover
-		text='NEW!'
-		message={''}
-		type='form'
-	/>
+    let overlayPopover = <EditStatusPopover
+        text='NEW!'
+        message={''}
+        type='form'
+    />
 
     if (formName[0] !== 'Summon')
         formName.push('Form')
 
     return (
         <Row style={{ filter: 'drop-shadow(3px 3px 2px black)' }}>
-        {props.level.isEXPReplaced()||props.level.isRewardReplaced() ? overlayPopover : <></>}
+            {props.level.isEXPReplaced() || props.level.isRewardReplaced() ? overlayPopover : <></>}
             <div className={`formLevelCard ${formName[0].toLowerCase()}`}>
                 <div className='formLevelName'>
                     <div style={{ width: '40%' }}>{formName.join(' ')}</div>
@@ -45,8 +45,9 @@ function FormCard(props) {
                     className='editFormLevelButton'
                     onClick={(e) => props.handleDriveFormLevelChange(parseInt(e.target.id))}
                     disabled={props.isEditing}
+                    style={{ fontFamily: 'KHGummi', fontSize: '1.5rem' }}
                 >
-                    {props.isEditing ? 'Editing...' : 'Edit'}<br />Form Level
+                    {props.isEditing ? 'EDITING...' : 'EDIT'}
                 </button>
             </div>
             <div className={`afterFormLevelCard ${formName[0].toLowerCase()}`} />

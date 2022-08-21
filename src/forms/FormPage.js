@@ -1,7 +1,7 @@
 import { React, useState } from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
 
-import GenericListGroup from '../Components/GenericListGroup'
+import FormList from './FormList'
 import FormForm from './FormForm'
 import AllFormForm from './AllFormForm'
 import FormCard from './FormCard'
@@ -162,9 +162,10 @@ function FormPage(props) {
 				className={`editAllFormLevelButton ${props.formData[currentDriveForm].driveForm.toLowerCase()}`}
 				disabled={currentDriveFormLevel === 6}
 				onClick={() => handleDriveFormLevelChange(6)}
+				style={{ fontFamily: 'KHGummi', fontSize: '1.5rem' }}
 			>
-				{(currentDriveFormLevel === 6 ? 'Editing... ' : 'Edit ')}
-				All {props.formData[currentDriveForm].driveForm} Levels
+				{(currentDriveFormLevel === 6 ? 'EDITING... ' : 'EDIT ')} <br />
+				ALL {props.formData[currentDriveForm].driveForm.toUpperCase()} LEVELS
 			</button>
 		</Row>
 	)
@@ -194,9 +195,9 @@ function FormPage(props) {
 	return (
 		<Container fluid style={{ marginTop: '1rem' }}>
 			<Row>
-				<Col xs={2}>
-					<GenericListGroup
-						dataList={props.formData.map(form => { return form.driveForm })}
+				<Col xs={3}>
+					<FormList
+						currentForm={currentDriveForm}
 						currentSelectItem={currentDriveForm}
 						setCurrentSelectItem={(newDriveFormLevel) => { handleDriveFormChange(newDriveFormLevel) }}
 					/>
@@ -204,7 +205,7 @@ function FormPage(props) {
 				<Col xs={5}>
 					{altLevelDataList}
 				</Col>
-				<Col xs={5}>
+				<Col xs={4}>
 					{DisplayedFormForm[currentDisplayedForm]}
 				</Col>
 			</Row>

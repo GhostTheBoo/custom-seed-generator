@@ -1,49 +1,49 @@
 .summon {
-  --primaryColor: #BD7902;
-  --lighterColor: #c4861b;
-  --evenLighterColor: #d1a14e;
-  --darkerColor: #aa6d02;
-  --evenDarkerColor: #845501;
+  --formPrimaryColor: #BD7902;
+  --formLighterColor: #C4861B;
+  --formEvenLighterColor: #D1A14E;
+  --formDarkerColor: #AA6D02;
+  --formEvenDarkerColor: #845501;
 }
 
 .valor {
-  --primaryColor: #9E1920;
-  --lighterColor: #A83036;
-  --evenLighterColor: #BB5E63;
-  --darkerColor: #8E171D;
-  --evenDarkerColor: #6F1216;
+  --formPrimaryColor: #9E1920;
+  --formLighterColor: #A83036;
+  --formEvenLighterColor: #BB5E63;
+  --formDarkerColor: #8E171D;
+  --formEvenDarkerColor: #6F1216;
 }
 
 .wisdom {
-  --primaryColor: #17219B;
-  --lighterColor: #2e37a5;
-  --evenLighterColor: #5d64b9;
-  --darkerColor: #151e8c;
-  --evenDarkerColor: #10176d;
+  --formPrimaryColor: #17219B;
+  --formLighterColor: #2E37A5;
+  --formEvenLighterColor: #5D64B9;
+  --formDarkerColor: #151E8C;
+  --formEvenDarkerColor: #10176D;
 }
 
 .limit {
-  --primaryColor: #491749;
-  --lighterColor: #5b2e5b;
-  --evenLighterColor: #805d80;
-  --darkerColor: #421542;
-  --evenDarkerColor: #331033;
+  --formPrimaryColor: #491749;
+  --formLighterColor: #5B2E5B;
+  --formEvenLighterColor: #805D80;
+  --formDarkerColor: #421542;
+  --formEvenDarkerColor: #331033;
 }
 
 .master {
-  --primaryColor: #9F7F19;
-  --lighterColor: #a98c30;
-  --evenLighterColor: #bca55e;
-  --darkerColor: #8f7217;
-  --evenDarkerColor: #6f5912;
+  --formPrimaryColor: #9F7F19;
+  --formLighterColor: #A98C30;
+  --formEvenLighterColor: #BCA55E;
+  --formDarkerColor: #8F7217;
+  --formEvenDarkerColor: #6F5912;
 }
 
 .final {
-  --primaryColor: #808080;
-  --lighterColor: #8d8d8d;
-  --evenLighterColor: #a6a6a6;
-  --darkerColor: #737373;
-  --evenDarkerColor: #5a5a5a;
+  --formPrimaryColor: #808080;
+  --formLighterColor: #8D8D8D;
+  --formEvenLighterColor: #A6A6A6;
+  --formDarkerColor: #737373;
+  --formEvenDarkerColor: #5A5A5A;
 }
 
 .formLevelCard {
@@ -56,7 +56,7 @@
   padding: 0;
   margin-bottom: 1.2rem;
   box-shadow: inset 0px 1px 0px rgba(255, 255, 255, .5);
-  background-color: var(--primaryColor);
+  background-color: var(--formPrimaryColor);
 }
 
 .formLevelName {
@@ -99,7 +99,6 @@
 
 .formCardReward {
   font-size: 1.5rem;
-  /* height: 50%; */
 }
 
 .afterFormLevelCard {
@@ -112,7 +111,7 @@
   padding: 0;
   left: 90%;
   border: 40px solid transparent;
-  border-left-color: var(--primaryColor);
+  border-left-color: var(--formPrimaryColor);
 }
 
 .formDriveLogo {
@@ -134,25 +133,25 @@
   height: 50%;
   white-space: pre-line;
   color: white;
-  background-color: var(--primaryColor);
+  background-color: var(--formPrimaryColor);
   text-shadow: .1rem .1rem 0 black;
 }
 
 .editFormLevelButton:hover,
 .editFormLevelButton:active {
-  background-color: var(--lighterColor);
+  background-color: var(--formLighterColor);
 }
 
 .editFormLevelButton:focus {
   outline: none;
   border: 0;
-  box-shadow: 0 0 0 3px var(--evenLighterColor);
+  box-shadow: 0 0 0 3px var(--formEvenLighterColor);
 }
 
 .editFormLevelButton:disabled {
   color: white;
-  background-color: var(--primaryColor);
-  border-color: var(--primaryColor);
+  background-color: var(--formPrimaryColor);
+  border-color: var(--formPrimaryColor);
   opacity: .65;
 }
 
@@ -165,24 +164,24 @@
   width: 95%;
   height: 5rem;
   color: white;
-  background-color: var(--primaryColor);
+  background-color: var(--formPrimaryColor);
   text-shadow: .1rem .1rem 0 black;
 }
 
 .editAllFormLevelButton:hover,
 .editAllFormLevelButton:active {
-  background-color: var(--lighterColor);
+  background-color: var(--formLighterColor);
 }
 
 .editAllFormLevelButton:focus {
   outline: none;
   border: 0;
-  box-shadow: 0 0 0 3px var(--evenLighterColor);
+  box-shadow: 0 0 0 3px var(--formEvenLighterColor);
 }
 
 .editAllFormLevelButton:disabled {
   color: white;
-  background-color: var(--primaryColor);
-  border-color: var(--primaryColor);
+  background-color: var(--formPrimaryColor);
+  border-color: var(--formPrimaryColor);
   opacity: .65;
 }

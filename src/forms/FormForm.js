@@ -29,7 +29,7 @@ function FormForm(props) {
 				<Card.Text as='div'>
 					<Row>
 						<Col xs={11}>
-							<h1>EDITING {props.currentDriveForm.toUpperCase()} LEVEL {props.currentDriveFormLevel + 2}:</h1>
+							<h1>EDITING {props.currentDriveForm.toUpperCase()}<br />LEVEL {props.currentDriveFormLevel + 2}:</h1>
 						</Col>
 						<Col xs={1}>
 							<button
@@ -48,7 +48,7 @@ function FormForm(props) {
 									<Form.Label column='lg' xs={4}>
 										Reward:
 									</Form.Label>
-									<Col xs={3}>
+									<Col xs={4}>
 										<Icon
 											style={{ margin: '10px' }}
 											fileName={props.currentFormFieldData.reward.iconType}
@@ -57,7 +57,7 @@ function FormForm(props) {
 											{props.currentFormFieldData.reward.reward}
 										</Icon>
 									</Col>
-									<Col xs={5}>
+									<Col xs={4}>
 										<RewardSelector
 											onReplace={(replacementReward) => setCurrentReward(replacementReward)}
 										/>
@@ -65,7 +65,7 @@ function FormForm(props) {
 								</Form.Row>
 								<br />
 								<Form.Row>
-									<Form.Label column='lg' xs={4}>
+									<Form.Label column='lg' xs={5}>
 										EXP from Level {props.currentDriveFormLevel + 1} → {props.currentDriveFormLevel + 2}:
 									</Form.Label>
 									<Col xs={3}>

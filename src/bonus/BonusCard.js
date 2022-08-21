@@ -1,5 +1,6 @@
 import { React } from 'react'
-import { Container, Row, Col, Button, Card } from 'react-bootstrap'
+
+import bonusLogo from '../assets/icons/form.png'
 
 import Icon from '../Components/Icon'
 import EditStatusPopover from '../Components/EditStatusPopover'
@@ -19,70 +20,49 @@ function BonusCard(props) {
 	let rewardList = []
 
 	if (props.bonusReward.hpIncrease !== 0)
-		rewardList.push(<Row key='bonusHP' className='bonusReward'>Maximum HP Increased by {props.bonusReward.hpIncrease}!</Row>)
+		rewardList.push(<div key='bonusHP' className='bonusReward'>Maximum HP Increased by {props.bonusReward.hpIncrease}!</div>)
 	if (props.bonusReward.mpIncrease !== 0)
-		rewardList.push(<Row key='bonusMP' className='bonusReward'>Maximum MP Increased by {props.bonusReward.mpIncrease}!</Row>)
+		rewardList.push(<div key='bonusMP' className='bonusReward'>Maximum MP Increased by {props.bonusReward.mpIncrease}!</div>)
 	if (props.bonusReward.replacementRewardA.index !== 0x000)
 		rewardList.push(
-			<Row key='bonusRewardA' className='bonusReward'>
+			<div key='bonusRewardA' className='bonusReward'>
 				<Icon
 					fileName={props.bonusReward.replacementRewardA.iconType}
 					type={'row'}
 				>
 					{props.bonusReward.replacementRewardA.reward + '!'}
 				</Icon>
-			</Row>
+			</div>
 		)
 	if (props.bonusReward.replacementRewardB.index !== 0x000)
 		rewardList.push(
-			<Row key='bonusRewardB' className='bonusReward'>
+			<div key='bonusRewardB' className='bonusReward'>
 				<Icon
 					fileName={props.bonusReward.replacementRewardB.iconType}
 					type={'row'}
 				>
 					{props.bonusReward.replacementRewardB.reward + '!'}
 				</Icon>
-			</Row>
+			</div>
 		)
 	if (props.bonusReward.armorSlotIncrease !== 0)
-		rewardList.push(<Row key='bonusArmor' className='bonusReward'>Gained {props.bonusReward.armorSlotIncrease} Armor Slot(s)!</Row>)
+		rewardList.push(<div key='bonusArmor' className='bonusReward'>Gained {props.bonusReward.armorSlotIncrease} Armor Slot(s)!</div>)
 	if (props.bonusReward.accessorySlotIncrease !== 0)
-		rewardList.push(<Row key='bonusAccessory' className='bonusReward'>Gained {props.bonusReward.accessorySlotIncrease} Accessory Slot(s)!</Row>)
+		rewardList.push(<div key='bonusAccessory' className='bonusReward'>Gained {props.bonusReward.accessorySlotIncrease} Accessory Slot(s)!</div>)
 	if (props.bonusReward.itemSlotIncrease !== 0)
-		rewardList.push(<Row key='bonusItem' className='bonusReward'>Gained {props.bonusReward.itemSlotIncrease} Item Slot(s)!</Row>)
+		rewardList.push(<div key='bonusItem' className='bonusReward'>Gained {props.bonusReward.itemSlotIncrease} Item Slot(s)!</div>)
 	if (props.bonusReward.driveGaugeIncrease !== 0)
-		rewardList.push(<Row key='bonusDrive' className='bonusReward'>Drive Gauge Increased by {props.bonusReward.driveGaugeIncrease}!</Row>)
+		rewardList.push(<div key='bonusDrive' className='bonusReward'>Drive Gauge Increased by {props.bonusReward.driveGaugeIncrease}!</div>)
 
-	let colors = [
-		{
-			characterName: 'Sora',
-			cardColor: 'red',
-			buttonType: 'danger',
-			buttonTextColor: 'pink'
-		},
-		{
-			characterName: 'Donald',
-			cardColor: 'blue',
-			buttonType: 'primary',
-			buttonTextColor: 'lightblue'
-		},
-		{
-			characterName: 'Goofy',
-			cardColor: 'green',
-			buttonType: 'success',
-			buttonTextColor: 'lightgreen'
-		},
-		{
-			characterName: 'Other',
-			cardColor: 'orange',
-			buttonType: 'warning',
-			buttonTextColor: 'yellow'
-		}
-	]
-
-	let currentColor = props.bonusReward.replacementCharacter > 3
-		? colors[3]
-		: colors[props.bonusReward.replacementCharacter - 1]
+	let character
+	if (props.bonusReward.replacementCharacter === 1)
+		character = 'sora'
+	else if (props.bonusReward.replacementCharacter === 2)
+		character = 'donald'
+	else if (props.bonusReward.replacementCharacter === 3)
+		character = 'goofy'
+	else
+		character = 'other'
 
 
 	let overlayPopover = <EditStatusPopover
@@ -92,69 +72,28 @@ function BonusCard(props) {
 	/>
 
 	return (
-		<Card
-			className='bonusCard'
-			style={{
-				border: `10px solid ${currentColor.cardColor}`,
-				borderRadius: '50px',
-				margin: '10px',
-				overflow: 'hidden',
-				backgroundColor: 'black'
-			}}
-		>
-			<Card.Header
-				className='bonusCardHeader'
-				style={{
-					backgroundColor: currentColor.cardColor,
-					borderRadius: '20px 20px 0 0',
-					padding: '2px 0'
-				}}
-			>
-				<Container fluid>
-					<Row>
-						<Col xs={5}>
-							<Button
-								variant={currentColor.buttonType}
-								disabled={props.isEditing}
-								className='getBonus'
-								style={{ color: currentColor.buttonTextColor }}
-								onClick={() => updateCurrentBonusFightSlot()}
-							>
-								{props.isEditing ? 'EDITING...' : 'EDIT BONUS!'}
-							</Button>
-						</Col>
-						<Col xs={3}>
-							{props.bonusReward.isReplaced() ? overlayPopover : <></>}
-						</Col>
-						<Col xs={4}>
-							<div
-								className='bonusCharacterName'
-								style={{
-									fontWeight: 750,
-									padding: '5px 0',
-									textAlign: 'right'
-								}}
-							>
-								{props.bonusReward.replacementCharacterString}
-							</div>
-						</Col>
-					</Row>
-				</Container>
-			</Card.Header>
-			<Card.Body >
-				<Card.Title>
-					<Container fluid>
-						<Row>
-							<Col>
-								<Container fluid>
-									{rewardList}
-								</Container>
-							</Col>
-						</Row>
-					</Container>
-				</Card.Title>
-			</Card.Body>
-		</Card>
+		<div className={`bonusLevel  ${character}`}>
+			{props.bonusReward.isReplaced() ? overlayPopover : <></>}
+			<div className='bonusHeader'>
+				<div className='bonusButtonGroup'>
+					<button
+						className='bonusButton'
+						disabled={props.isEditing}
+						onClick={() => updateCurrentBonusFightSlot()}
+					>
+						{props.isEditing ? 'EDITING...' : 'EDIT BONUS!'}
+					</button>
+					<div className='bonusAfterButtonTriangle bonusAfterButton'></div>
+					<div className='bonusAfterButtonTail bonusAfterButton'></div>
+				</div>
+				<div className='bonusHeaderSpace'></div>
+				<div className='bonusCharacter'>{props.bonusReward.replacementCharacterString}</div>
+			</div>
+			<div className='bonusRewardBox'>
+				{rewardList}
+			</div>
+			<img className='bonusLogo' src={bonusLogo} alt='Bonus Logo' />
+		</div>
 	)
 }
 

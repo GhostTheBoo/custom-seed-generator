@@ -1,12 +1,12 @@
 import { React } from 'react'
-import { Container, Row, Button, Card } from 'react-bootstrap'
+import { Container, Row, Button, Col } from 'react-bootstrap'
 
 function AllEquipmentCard(props) {
 	// PROPS:
 	// currentWorldFolderName: current world for use in image lookup -> string
 	// handleReplace: handle reward replacement -> function
 
-	let equipmentTypeImage = require(`../assets/equipmentImages/${props.currentFolderName}/${props.currentFolderName}.png`)
+	let equipmentImage = require(`../assets/equipmentImages/${props.currentFolderName}/${props.currentFolderName}.png`)
 
 	function getfullEquipmentTypeText(equipmentType) {
 		if (equipmentType === 'acc') return 'Accessories'
@@ -18,26 +18,19 @@ function AllEquipmentCard(props) {
 	}
 
 	return (
-		<Card
-			border='dark'
-			bg='dark'
-			className='equipmentCard'
-			style={{ margin: '10px', textAlign: 'center' }}
-		>
-			<div style={{ position: 'relative' }}>
-				<Card.Img
-					variant='top'
-					src={equipmentTypeImage.default}
-					height='200px'
-					width='200px'
-				/>
-			</div>
-			<Card.Header className='cardHeader'>
-				All {getfullEquipmentTypeText(props.currentFolderName)}
-			</Card.Header>
-			<Card.Footer>
-				<Container fluid>
-					<Row>
+		<Container fluid className='equipmentCard'>
+			<Row>
+				<Col xs='auto' className='equipmentColumn equipmentImageColumn'>
+					<Row className='equipmentImage'>
+						<img
+							src={equipmentImage.default}
+							alt={'All Equipment Icon'}
+							height='250px'
+							width='250px'
+						/>
+					</Row>
+					<Row className='equipmentName'>All {getfullEquipmentTypeText(props.currentFolderName)}</Row>
+					<Row className='equipmentEditButton'>
 						<Button
 							variant='primary'
 							block
@@ -48,9 +41,9 @@ function AllEquipmentCard(props) {
 							{props.isEditing ? 'EDITING...' : 'EDIT'}
 						</Button>
 					</Row>
-				</Container>
-			</Card.Footer>
-		</Card>
+				</Col>
+			</Row>
+		</Container>
 	)
 }
 

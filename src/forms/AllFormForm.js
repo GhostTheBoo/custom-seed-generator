@@ -31,7 +31,7 @@ function AllFormForm(props) {
 				<Card.Text as='div'>
 					<Row>
 						<Col xs={11}>
-							<h1>EDITING ALL {props.currentDriveForm.toUpperCase()} LEVELS</h1>
+							<h1>EDITING ALL<br />{props.currentDriveForm.toUpperCase()} LEVELS</h1>
 						</Col>
 						<Col xs={1}>
 							<button

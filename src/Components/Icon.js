@@ -3,7 +3,6 @@ import { React, useState, useEffect } from 'react'
 function Icon(props) {
 	const [iconPath, setIconPath] = useState(props.fileName.toLowerCase())
 	let icon = require(`../assets/icons/${iconPath}.png`)
-
 	useEffect(() => {
 		setIconPath(props.fileName.toLowerCase())
 	}, [props.fileName])
@@ -22,6 +21,8 @@ function Icon(props) {
 		iconSize = 20
 	else if (props.type === 'form')
 		iconSize = 30
+	else if (props.type === 'bonusForm')
+		iconSize = 50
 	else
 		iconSize = 0
 
@@ -38,7 +39,7 @@ function Icon(props) {
 			/>
 			<span
 				className='iconDescription'
-				style={{ verticalAlign: 'middle' }}
+				style={{ verticalAlign: 'middle'}}
 			>
 				{' ' + props.children}
 			</span>

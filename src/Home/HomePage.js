@@ -1,5 +1,6 @@
 import React from 'react'
-import { Row, Container } from 'react-bootstrap'
+import { Row, Col, Container } from 'react-bootstrap'
+import KoFi from '../kofi/KoFi'
 
 function HomePage(props) {
 	let lastUpdateDate = 'August 7, 2022'
@@ -39,7 +40,15 @@ function HomePage(props) {
 			</p>
 			<Container fluid>
 				<Row>
-					{props.children}
+					<Col xs={3}>
+						<KoFi
+							color='#29AB00'
+							id='ghosttheboo'
+							label='Buy me a Sea-Salt Ice Cream!'
+						/>
+					</Col>
+					<Col xs={6} />
+						{props.children}
 				</Row>
 			</Container>
 		</>

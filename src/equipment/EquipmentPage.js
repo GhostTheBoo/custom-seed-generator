@@ -109,8 +109,6 @@ function EquipmentPage(props) {
 			modifyUniversal: false
 		})
 	}
-
-	let columnNum = 4
 	let currentEquipmentList = props.equipmentData[currentEquipmentType].equipments
 
 	const equipmentFolderNames = [
@@ -183,53 +181,28 @@ function EquipmentPage(props) {
 		updateAllEquipment(newEquipmentList)
 	}
 
-	let baseEquipmentList = currentEquipmentList.map((equipment, equipmentIndex) => {
+	let equipmentRowList = currentEquipmentList.map((equipment, equipmentIndex) => {
 		return (
-			<Col
+			<EquipmentCard
 				key={'equipment' + currentEquipmentType + '_' + equipmentIndex}
-				xs
-			>
-				<EquipmentCard
-					key={equipmentIndex}
-					id={equipmentIndex}
-					equipment={equipment}
-					isEditing={equipmentIndex === currentEquipment}
-					currentFolderName={equipmentFolderNames[currentEquipmentType]}
-					setCurrentEquipment={handleCurrentEquipmentChange}
-				/>
-			</Col>
-		)
-	})
-	baseEquipmentList.push(
-		<Col
-			key={'equipment' + currentEquipmentType + '_' + baseEquipmentList.length}
-			xs
-		>
-			<AllEquipmentCard
-				key={baseEquipmentList.length}
-				id={baseEquipmentList.length}
-				isEditing={baseEquipmentList.length === currentEquipment}
+				id={equipmentIndex}
+				equipment={equipment}
+				isEditing={equipmentIndex === currentEquipment}
 				currentFolderName={equipmentFolderNames[currentEquipmentType]}
 				setCurrentEquipment={handleCurrentEquipmentChange}
+				isWide={currentDisplayedForm === 2}
 			/>
-		</Col>
-	)
-
-	let equipmentRowList = []
-
-	for (let i = baseEquipmentList.length; baseEquipmentList.length % columnNum !== 0; i++)
-		baseEquipmentList.push(<Col key={currentEquipmentType + '_empty_' + i} xs />)
-	let j = 0
-	for (let i = 0; i < baseEquipmentList.length; i += columnNum, j++) {
-		equipmentRowList.push(
-			<Row
-				id={'equipmentRow' + j}
-				key={'equipmentRow' + currentEquipmentType + '_' + i}
-			>
-				{baseEquipmentList.slice(i, i + columnNum)}
-			</Row>
 		)
-	}
+	})
+	equipmentRowList.push(
+		<AllEquipmentCard
+			key={equipmentRowList.length}
+			id={equipmentRowList.length}
+			isEditing={equipmentRowList.length === currentEquipment}
+			currentFolderName={equipmentFolderNames[currentEquipmentType]}
+			setCurrentEquipment={handleCurrentEquipmentChange}
+		/>
+	)
 
 	let displayedEquipmentForm = [
 		<EquipmentForm
@@ -267,20 +240,17 @@ function EquipmentPage(props) {
 				/>
 			</Row>
 			<Row>
-				<Col>
-					<Container
-						fluid
-						className='cardGrid'
-						ref={equipmentCardGrid}
-						style={{
-							overflowY: 'auto',
-							height: '800px'
-						}}
-					>
-						{equipmentRowList}
-					</Container>
+				<Col
+					xs={currentDisplayedForm !== 2 ? 7 : 12}
+					ref={equipmentCardGrid}
+					style={{
+						overflowY: 'auto',
+						height: '800px'
+					}}
+				>
+					{equipmentRowList}
 				</Col>
-				<Col xs={5}>
+				<Col xs={currentDisplayedForm !== 2 ? 5 : 0}>
 					{displayedEquipmentForm[currentDisplayedForm]}
 				</Col>
 			</Row>

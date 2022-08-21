@@ -2,8 +2,8 @@ import { React, useState } from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
 
 import GenericSelect from '../Components/GenericSelect'
-import GenericListGroup from '../Components/GenericListGroup'
 
+import BonusFightList from './BonusFightList'
 import BonusCard from './BonusCard'
 import BonusForm from './BonusForm'
 
@@ -111,8 +111,9 @@ function BonusPage(props) {
 			</Row>
 			<Row>
 				<Col xs={3}>
-					<GenericListGroup
-						dataList={props.bonusData[currentWorld].bonusFights.map(fight => { return fight.fight })}
+					<BonusFightList
+						fightList={props.bonusData[currentWorld].bonusFights}
+						currentWorld={currentWorld}
 						currentSelectItem={currentBonusFight}
 						setCurrentSelectItem={(newBonusFight) => {
 							handleBonusFightChange(newBonusFight)
@@ -120,12 +121,12 @@ function BonusPage(props) {
 					/>
 				</Col>
 				<Col
-					xs={4}
+					xs={5}
 					style={{ overflowY: 'auto', height: '800px' }}
 				>
 					{bonusSlotList}
 				</Col>
-				<Col xs={5}>
+				<Col xs={4}>
 					{
 						currentBonusFightSlot !== -1
 							? <BonusForm

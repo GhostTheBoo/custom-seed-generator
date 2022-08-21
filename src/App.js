@@ -352,7 +352,7 @@ function FunctionApp() {
 					}
 				>
 					<HomePage>
-						<Col xs={2}>
+						<Col xs={3}>
 							{saveLoadModal}
 						</Col>
 					</HomePage>
