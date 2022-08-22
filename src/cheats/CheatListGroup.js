@@ -33,7 +33,7 @@ function CheatListGroup(props) {
             style={{
                 fontSize: '15px',
                 overflowY: 'auto',
-                height: '800px'
+                height: '45rem'
             }}
         >
             {listGroup}

@@ -18,7 +18,7 @@ function AllChestCard(props) {
 		>
 			<Card.Img
 				variant='top'
-				src={worldImage.default}
+				src={worldImage}
 				height='300px'
 				width='100px'
 			/>

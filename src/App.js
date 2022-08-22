@@ -469,6 +469,7 @@ function FunctionApp() {
 	let tabList = tabDataList.map(tab => {
 		return (
 			<Tab
+				key={tab.eventKey}
 				eventKey={tab.eventKey}
 				title={
 					<>

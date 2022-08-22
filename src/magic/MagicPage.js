@@ -98,7 +98,7 @@ function MagicPage(props) {
 	return (
 		<Container fluid>
 			<Row>
-				<Col xs={9}>
+				<Col xs='auto'>
 					<Row>
 						<Container
 							fluid
@@ -113,7 +113,13 @@ function MagicPage(props) {
 						</Container>
 					</Row>
 				</Col>
-				<Col xs={3}>
+				<Col>
+					<Row>
+						<Col xs={6} />
+						<Col xs={6} style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
+							{props.children}
+						</Col>
+					</Row>
 					{currentMagicType !== -1
 						? <MagicForm
 							magic={props.magicData[currentMagicType]}

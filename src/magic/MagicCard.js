@@ -32,7 +32,7 @@ function MagicCard(props) {
 			<div style={{ position: 'relative' }}>
 				<Card.Img
 					variant='top'
-					src={magicImage.default}
+					src={magicImage}
 					height='200px'
 					width='200px'
 				/>

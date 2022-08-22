@@ -48,6 +48,10 @@ function CreditsList() {
             contribution: 'BonafideBadass'
         },
         {
+            name: 'Zantetzuken',
+            contribution: 'BonafideBadass'
+        },
+        {
             name: 'Valaxor',
             contribution: 'CoreCreator'
         },
@@ -64,7 +68,7 @@ function CreditsList() {
             contribution: 'CoreCreator'
         },
         {
-            name: 'Sirius902',
+            name: 'desa',
             contribution: 'CoreCreator'
         },
         {
@@ -114,16 +118,12 @@ function CreditsList() {
         {
             name: 'JSmartee',
             contribution: 'CoreCreator'
-        },
-        {
-            name: 'Sirius902',
-            contribution: 'CoreCreator'
         }
     ]
 
     let creditItemList = creditData.map(credit => {
         return (
-            <li className='credit'>
+            <li key={'credit' + credit.name} className='credit'>
                 <div className={credit.contribution}>{credit.name}</div>
                 {/* <div style={{ flexGrow: '1' }} />
                 <div className='creditContribution'>{credit.contribution}</div> */}

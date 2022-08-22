@@ -19,7 +19,7 @@ function FormList(props) {
                     <>
                         <img
                             className='icon'
-                            src={icon.default}
+                            src={icon}
                             alt={form.name + ' Icon'}
                             height={50}
                             width={50}

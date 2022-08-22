@@ -206,6 +206,12 @@ function FormPage(props) {
 					{altLevelDataList}
 				</Col>
 				<Col xs={4}>
+					<Row>
+						<Col xs={7} />
+						<Col xs={5} style={{paddingBottom: '1rem' }}>
+							{props.children}
+						</Col>
+					</Row>
 					{DisplayedFormForm[currentDisplayedForm]}
 				</Col>
 			</Row>

@@ -30,7 +30,7 @@ function Icon(props) {
 		<>
 			<img
 				className='icon'
-				src={icon.default}
+				src={icon}
 				alt={props.fileName.toLowerCase()}
 				onError={handleError}
 				height={iconSize}

@@ -61,12 +61,6 @@ function HomePage(props) {
 					<CreditsList />
 				</Col>
 			</Row>
-			{/* <Row>
-				<Col xs={3}>
-				</Col>
-			</Row>
-			<Row>
-			</Row> */}
 		</Container>
 	)
 }

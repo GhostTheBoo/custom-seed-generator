@@ -14,6 +14,12 @@ function CheatPage(props) {
     return (
         <Container fluid>
             <Row>
+                <Col xs={10} />
+                <Col xs={2} style={{ paddingTop: '1rem' }}>
+                    {props.children}
+                </Col>
+            </Row>
+            <Row>
                 <Col xs={4}>
                     <h1 style={{ margin: '10px', textAlign: 'center' }}>Zip Cheats</h1>
                 </Col>

@@ -324,21 +324,26 @@ function LevelPage(props) {
 			<Row>
 				<Col xs={currentDisplayedForm !== 2 ? 8 : 12}>
 					<Row>
+						<Col xs={2} />
+						<Col xs={8}>
+							<Pagination style={{ paddingTop: '1rem' }}>{pageNumbers}</Pagination>
+						</Col>
+						<Col xs={2} style={{ paddingTop: '1rem' }}>
+							{props.children}
+						</Col>
+					</Row>
+					<Row>
 						<Container
 							fluid
 							className='cardGrid'
 							ref={levelCardList}
 							style={{
-								marginTop: '10px',
 								overflowY: 'auto',
-								height: '825px'
+								height: '800px'
 							}}
 						>
 							{levelRowList[(currentLevelRange - 1) / 10]}
 						</Container>
-					</Row>
-					<Row>
-						<Pagination style={{ margin: 'auto' }}>{pageNumbers}</Pagination>
 					</Row>
 				</Col>
 				<Col xs={currentDisplayedForm !== 2 ? 4 : 0}>

@@ -118,7 +118,7 @@ function EquipmentCard(props) {
                     {props.equipment.isReplaced() ? overlayPopover : <></>}
                     <Row className='equipmentImage'>
                         <img
-                            src={equipmentImage.default}
+                            src={equipmentImage}
                             alt={props.equipment.name + ' image'}
                             height='250px'
                             width='250px'

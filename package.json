@@ -20,7 +20,7 @@
 		"react-kofi-button": "^0.7.1",
 		"react-router": "^5.2.0",
 		"react-router-dom": "^5.2.0",
-		"react-scripts": "4.0.0",
+		"react-scripts": "5.0.1",
 		"styled-components": "^5.3.5",
 		"web-vitals": "^0.2.4"
 	},

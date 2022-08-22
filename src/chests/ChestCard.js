@@ -30,7 +30,7 @@ function ChestCard(props) {
 			<div style={{ position: 'relative' }}>
 				<Card.Img
 					variant='top'
-					src={chestImage.default}
+					src={chestImage}
 					height='300px'
 					width='300px'
 				/>

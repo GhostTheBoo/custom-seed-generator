@@ -23,7 +23,7 @@ function AllEquipmentCard(props) {
 				<Col xs='auto' className='equipmentColumn equipmentImageColumn'>
 					<Row className='equipmentImage'>
 						<img
-							src={equipmentImage.default}
+							src={equipmentImage}
 							alt={'All Equipment Icon'}
 							height='250px'
 							width='250px'

@@ -46,7 +46,7 @@ function MagicForm(props) {
                         </Col>
                     </Row>
                     <Image
-                        src={magicImage.default}
+                        src={magicImage}
                         height='190rem'
                         width='190rem'
                     />

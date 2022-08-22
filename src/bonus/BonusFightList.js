@@ -28,7 +28,7 @@ function BonusFightList(props) {
                     <>
                         <img
                             className='icon'
-                            src={icon.default}
+                            src={icon}
                             alt={fight.fight + ' Icon'}
                             height={75}
                             width={60}

@@ -56,8 +56,8 @@ function StartingStatusPage(props) {
 						onChange={(e) => handleCharacterChange(parseInt(e.target.value))}
 					/>
 				</Col>
-				<Col xs={8} />
-				<Col xs={1}>
+				<Col xs={7} />
+				<Col xs={2}>
 					{props.children}
 				</Col>
 			</Row>
