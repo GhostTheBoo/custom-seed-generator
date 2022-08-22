@@ -32,6 +32,10 @@ function CreditsList() {
             contribution: 'OriginalSquad'
         },
         {
+            name: 'ChocoboXIII',
+            contribution: 'OriginalSquad'
+        },
+        {
             name: 'Expelsword',
             contribution: 'BonafideBadass'
         },

@@ -2,6 +2,9 @@
     list-style: none;
     font-size: 1.2rem;
     overflow-y: auto;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
     /* height: 85vh; */
     scroll-behavior: smooth;
     border-left: .1rem solid black;
