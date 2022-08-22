@@ -13,7 +13,7 @@ function ChestPage(props) {
 	const [currentWorld, setCurrentWorld] = useState(0)
 	const chestCardGrid = useRef(null)
 	useEffect(() => {
-		chestCardGrid.current.scrollTop = 0
+		chestCardGrid.current.scrollTo({ top: 0, behavior: 'smooth' })
 	}, [currentWorld])
 
 	let columnNum = 5
@@ -108,24 +108,26 @@ function ChestPage(props) {
 
 	return (
 		<Container fluid>
-			<Row>
-				<GenericSelect
-					class={'chest'}
-					selector={'World'}
-					itemList={props.chestData.map(world => { return world.world })}
-					name={'currentWorld'}
-					currentItem={currentWorld}
-					onChange={(e) => setCurrentWorld(parseInt(e.target.value))}
-				/>
+			<Row style={{ paddingTop: '1rem' }}>
+				<Col>
+					<GenericSelect
+						class={'chest'}
+						selector={'World'}
+						itemList={props.chestData.map(world => { return world.world })}
+						name={'currentWorld'}
+						currentItem={currentWorld}
+						onChange={(e) => setCurrentWorld(parseInt(e.target.value))}
+					/>
+				</Col>
+				<Col xs={8} />
+				<Col xs={1}>
+					{props.children}
+				</Col>
 			</Row>
 			<Container
 				fluid
 				className='cardGrid'
 				ref={chestCardGrid}
-				style={{
-					overflowY: 'auto',
-					height: '800px'
-				}}
 			>
 				{chestRowList}
 			</Container>

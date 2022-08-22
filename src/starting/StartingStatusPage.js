@@ -45,15 +45,21 @@ function StartingStatusPage(props) {
 
 	return (
 		<Container fluid>
-			<Row>
-				<GenericSelect
-					class={'startingStatus'}
-					selector={'Character'}
-					itemList={props.startingStatusData.map(character => { return character.getCharacter() })}
-					name={'currentCharacter'}
-					currentItem={currentCharacter}
-					onChange={(e) => handleCharacterChange(parseInt(e.target.value))}
-				/>
+			<Row style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
+				<Col xs={3}>
+					<GenericSelect
+						class={'startingStatus'}
+						selector={'Character'}
+						itemList={props.startingStatusData.map(character => { return character.getCharacter() })}
+						name={'currentCharacter'}
+						currentItem={currentCharacter}
+						onChange={(e) => handleCharacterChange(parseInt(e.target.value))}
+					/>
+				</Col>
+				<Col xs={8} />
+				<Col xs={1}>
+					{props.children}
+				</Col>
 			</Row>
 			<Row>
 				<Col xs={8}>

@@ -307,6 +307,157 @@ function FunctionApp() {
 	}
 	//#endregion
 
+	let tabDataList = [
+		{
+			eventKey: 'home',
+			fileName: 'home',
+			title: 'Home',
+			page: (
+				<HomePage>
+					<Col xs={3}>
+						<SaveLoadModal
+							isZipCommented={isZipCommented}
+							isPnachCommented={isPnachCommented}
+							isLuaCommented={isLuaCommented}
+							onZipCommentChange={() => { setIsZipCommented(!isZipCommented) }}
+							onPnachCommentChange={() => { setIsPnachCommented(!isPnachCommented) }}
+							onLuaCommentChange={() => { setIsLuaCommented(!isLuaCommented) }}
+							handleSaveAsPnach={handleSaveAsPnach}
+							handleSaveAsLua={handleSaveAsLua}
+							handleSaveAsZip={handleSaveAsZip}
+							handleSaveAsJSON={handleSaveAsJSON}
+							onFileUpload={(e) => {
+								let file = e.target.files[0]
+								let reader = new FileReader()
+								reader.readAsText(file)
+								reader.onload = (e) => handleLoadFromJSON(e.target.result)
+							}}
+						/>
+					</Col>
+				</HomePage>
+			)
+		},
+		{
+			eventKey: 'chest',
+			fileName: 'chest',
+			title: 'Chest',
+			page: (
+				<ChestPage
+					chestData={allChests}
+					setAllChests={setAllChests}
+				>
+					<HelpModal tab={currentTab} />
+				</ChestPage>
+			)
+		},
+		{
+			eventKey: 'popup',
+			fileName: 'popup',
+			title: 'Popup',
+			page: (
+				<PopupPage
+					popupData={allPopups}
+					setAllPopups={setAllPopups}
+				>
+					<HelpModal tab={currentTab} />
+				</PopupPage>
+			)
+		},
+		{
+			eventKey: 'bonus',
+			fileName: 'key',
+			title: 'Bonus',
+			page: (
+				<BonusPage
+					bonusData={allBonuses}
+					setAllBonuses={setAllBonuses}
+				>
+					<HelpModal tab={currentTab} />
+				</BonusPage>
+			)
+		},
+		{
+			eventKey: 'form',
+			fileName: 'form',
+			title: 'Forms & Summons',
+			page: (
+				<FormPage
+					formData={allForms}
+					setAllForms={setAllForms}
+				>
+					<HelpModal tab={currentTab} />
+				</FormPage>
+			)
+		},
+		{
+			eventKey: 'equipment',
+			fileName: 'keyblade',
+			title: 'Equipment',
+			page: (
+				<EquipmentPage
+					equipmentData={allEquipments}
+					setAllEquipments={setAllEquipments}
+				>
+					<HelpModal tab={currentTab} />
+				</EquipmentPage>
+			)
+		},
+		{
+			eventKey: 'level',
+			fileName: 'level',
+			title: 'Levels',
+			page: (
+				<LevelPage
+					levelData={allLevels}
+					setAllLevels={setAllLevels}
+				>
+					<HelpModal tab={currentTab} />
+				</LevelPage>
+			)
+		},
+		{
+			eventKey: 'magic',
+			fileName: 'spell',
+			title: 'Magic & Limits',
+			page: (
+				<MagicPage
+					magicData={allMagic}
+					setAllMagic={setAllMagic}
+				>
+					<HelpModal tab={currentTab} />
+				</MagicPage>
+			)
+		},
+		{
+			eventKey: 'startingStatus',
+			fileName: 'starting',
+			title: 'Starting Status',
+			page: (
+				<StartingStatusPage
+					startingStatusData={allStartingStatus}
+					setAllStartingStatus={setAllStartingStatus}
+				>
+					<HelpModal tab={currentTab} />
+				</StartingStatusPage>
+			)
+		},
+		{
+			eventKey: 'cheat',
+			fileName: 'cheat',
+			title: 'Cheats',
+			page: (
+				<CheatPage
+					pnachCheatData={allPnachCheats}
+					luaCheatData={allLuaCheats}
+					setAllPnachCheats={setAllPnachCheats}
+					setAllLuaCheats={setAllLuaCheats}
+				>
+					<HelpModal tab={currentTab} />
+				</CheatPage>
+			)
+		}
+	]
+
 	let styles = {
 		marginTop: '10px',
 		marginRight: '10px',
@@ -315,239 +466,35 @@ function FunctionApp() {
 		color: '#fff'
 	}
 
-	let saveLoadModal = <SaveLoadModal
-		isZipCommented={isZipCommented}
-		isPnachCommented={isPnachCommented}
-		isLuaCommented={isLuaCommented}
-		onZipCommentChange={() => { setIsZipCommented(!isZipCommented) }}
-		onPnachCommentChange={() => { setIsPnachCommented(!isPnachCommented) }}
-		onLuaCommentChange={() => { setIsLuaCommented(!isLuaCommented) }}
-		handleSaveAsPnach={handleSaveAsPnach}
-		handleSaveAsLua={handleSaveAsLua}
-		handleSaveAsZip={handleSaveAsZip}
-		handleSaveAsJSON={handleSaveAsJSON}
-		onFileUpload={(e) => {
-			let file = e.target.files[0]
-			let reader = new FileReader()
-			reader.readAsText(file)
-			reader.onload = (e) => handleLoadFromJSON(e.target.result)
-		}}
-	/>
+	let tabList = tabDataList.map(tab => {
+		return (
+			<Tab
+				eventKey={tab.eventKey}
+				title={
+					<>
+						<Icon
+							fileName={tab.fileName}
+							type={'tab'}
+						>
+							{tab.title}
+						</Icon>
+					</>}
+			>
+				{tab.page}
+			</Tab>
+		)
+	})
 
 	return (
 		<div style={styles}>
-			<Tabs defaultActiveKey={currentTab} id='allTabs' transition={false} onSelect={(newTab) => setCurrentTab(newTab)}>
-				{/* Home */}
-				<Tab
-					eventKey='home'
-					title={
-						<>
-							<Icon
-								fileName={'home'}
-								type={'tab'}
-							>
-								{'Home'}
-							</Icon>
-						</>
-					}
-				>
-					<HomePage>
-						<Col xs={3}>
-							{saveLoadModal}
-						</Col>
-					</HomePage>
-				</Tab>
-				{/* Chest */}
-				<Tab
-					eventKey='chest'
-					title={
-						<>
-							<Icon
-								fileName={'chest'}
-								type={'tab'}
-							>
-								{'Chest'}
-							</Icon>
-						</>}
-				>
-					<ChestPage
-						chestData={allChests}
-						setAllChests={setAllChests}
-					>
-						<HelpModal tab={currentTab} />
-						{saveLoadModal}
-					</ChestPage>
-				</Tab>
-				{/* Popup */}
-				<Tab
-					eventKey='popup'
-					title={
-						<>
-							<Icon
-								fileName={'popup'}
-								type={'tab'}
-							>
-								{'Popup'}
-							</Icon>
-						</>}
-				>
-					<PopupPage
-						popupData={allPopups}
-						setAllPopups={setAllPopups}
-					>
-						<HelpModal tab={currentTab} />
-						{saveLoadModal}
-					</PopupPage>
-				</Tab>
-				{/* Bonus */}
-				<Tab
-					eventKey='bonus'
-					title={
-						<>
-							<Icon
-								fileName={'key'}
-								type={'tab'}
-							>
-								{'Bonus'}
-							</Icon>
-						</>}
-				>
-					<BonusPage
-						bonusData={allBonuses}
-						setAllBonuses={setAllBonuses}
-					>
-						<HelpModal tab={currentTab} />
-						{saveLoadModal}
-					</BonusPage>
-				</Tab>
-				{/* Form */}
-				<Tab
-					eventKey='form'
-					title={
-						<>
-							<Icon
-								fileName={'form'}
-								type={'tab'}
-							>
-								{'Forms & Summons'}
-							</Icon>
-						</>}
-				>
-					<FormPage
-						formData={allForms}
-						setAllForms={setAllForms}
-					>
-						<HelpModal tab={currentTab} />
-						{saveLoadModal}
-					</FormPage>
-				</Tab>
-				{/* Equipment */}
-				<Tab
-					eventKey='equipment'
-					title={
-						<>
-							<Icon
-								fileName={'keyblade'}
-								type={'tab'}
-							>
-								{'Equipment'}
-							</Icon>
-						</>}
-				>
-					<EquipmentPage
-						equipmentData={allEquipments}
-						setAllEquipments={setAllEquipments}
-					>
-						<HelpModal tab={currentTab} />
-						{saveLoadModal}
-					</EquipmentPage>
-				</Tab>
-				{/* Level */}
-				<Tab
-					eventKey='level'
-					title={
-						<>
-							<Icon
-								fileName={'level'}
-								type={'tab'}
-							>
-								{'Levels'}
-							</Icon>
-						</>}
-				>
-					<LevelPage
-						levelData={allLevels}
-						setAllLevels={setAllLevels}
-					>
-						<HelpModal tab={currentTab} />
-						{saveLoadModal}
-					</LevelPage>
-				</Tab>
-				{/* Magic and Limits */}
-				<Tab
-					eventKey='magic'
-					title={
-						<>
-							<Icon
-								fileName={'spell'}
-								type={'tab'}
-							>
-								{'Magic & Limits'}
-							</Icon>
-						</>}
-				>
-					<MagicPage
-						magicData={allMagic}
-						setAllMagic={setAllMagic}
-					>
-						<HelpModal tab={currentTab} />
-						{saveLoadModal}
-					</MagicPage>
-				</Tab>
-				{/* StartingStatus */}
-				<Tab
-					eventKey='startingStatus'
-					title={
-						<>
-							<Icon
-								fileName={'starting'}
-								type={'tab'}
-							>
-								{'Starting Status'}
-							</Icon>
-						</>}
-				>
-					<StartingStatusPage
-						startingStatusData={allStartingStatus}
-						setAllStartingStatus={setAllStartingStatus}
-					>
-						<HelpModal tab={currentTab} />
-						{saveLoadModal}
-					</StartingStatusPage>
-				</Tab>
-				{/* Cheats */}
-				<Tab
-					eventKey='cheat'
-					title={
-						<>
-							<Icon
-								fileName={'cheat'}
-								type={'tab'}
-							>
-								{'Cheats'}
-							</Icon>
-						</>}
-				>
-					<CheatPage
-						pnachCheatData={allPnachCheats}
-						luaCheatData={allLuaCheats}
-						setAllPnachCheats={setAllPnachCheats}
-						setAllLuaCheats={setAllLuaCheats}
-					>
-						<HelpModal tab={currentTab} />
-						{saveLoadModal}
-					</CheatPage>
-				</Tab>
+			<Tabs
+				defaultActiveKey={currentTab}
+				id='allTabs'
+				transition={false}
+				unmountOnExit={true}
+				onSelect={(newTab) => setCurrentTab(newTab)}
+			>
+				{tabList}
 			</Tabs>
 		</div>
 	)

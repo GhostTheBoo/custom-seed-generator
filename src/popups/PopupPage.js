@@ -83,15 +83,21 @@ function PopupPage(props) {
 
 	return (
 		<Container fluid>
-			<Row>
-				<GenericSelect
-					class={'popup'}
-					selector={'World'}
-					itemList={props.popupData.map(world => { return world.world })}
-					name={'currentWorld'}
-					currentItem={currentWorld}
-					onChange={(e) => setCurrentWorld(parseInt(e.target.value))}
-				/>
+			<Row style={{paddingTop: '1rem'}}>
+				<Col xs={3}>
+					<GenericSelect
+						class={'popup'}
+						selector={'World'}
+						itemList={props.popupData.map(world => { return world.world })}
+						name={'currentWorld'}
+						currentItem={currentWorld}
+						onChange={(e) => setCurrentWorld(parseInt(e.target.value))}
+					/>
+				</Col>
+				<Col xs={8} />
+				<Col xs={1}>
+					{props.children}
+				</Col>
 			</Row>
 			<Container
 				fluid

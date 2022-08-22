@@ -10,7 +10,7 @@ function RewardSelectorCard(props) {
 	// rewardCategoryIndex: reward category index
 	// rewardList: reward list from category
 
-	let columnNum =4
+	let columnNum = 4
 
 	let rewardOnClick = (id) => {
 		let indeces = id.split('_')

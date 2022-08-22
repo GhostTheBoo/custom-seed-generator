@@ -99,15 +99,21 @@ function BonusPage(props) {
 
 	return (
 		<Container fluid>
-			<Row>
-				<GenericSelect
-					class={'bonus'}
-					selector={'World'}
-					itemList={props.bonusData.map(world => { return world.world })}
-					name={'currentWorld'}
-					currentItem={currentWorld}
-					onChange={(e) => { handleWorldChange(parseInt(e.target.value)) }}
-				/>
+			<Row style={{ paddingTop: '1rem', paddingBottom: '.5rem'  }}>
+				<Col xs={3}>
+					<GenericSelect
+						class={'bonus'}
+						selector={'World'}
+						itemList={props.bonusData.map(world => { return world.world })}
+						name={'currentWorld'}
+						currentItem={currentWorld}
+						onChange={(e) => { handleWorldChange(parseInt(e.target.value)) }}
+					/>
+				</Col>
+				<Col xs={8} />
+				<Col xs={1}>
+					{props.children}
+				</Col>
 			</Row>
 			<Row>
 				<Col xs={3}>

@@ -229,15 +229,21 @@ function EquipmentPage(props) {
 
 	return (
 		<Container fluid>
-			<Row>
-				<GenericSelect
-					class={'equipment'}
-					selector={'Equipment Type'}
-					itemList={props.equipmentData.map(equipmentType => { return equipmentType.equipmentType })}
-					name={'currentEquipmentType'}
-					currentItem={currentEquipmentType}
-					onChange={(e) => handleCurrentEquipmentTypeChange(parseInt(e.target.value))}
-				/>
+			<Row style={{ paddingTop: '1rem' }}>
+				<Col xs={3}>
+					<GenericSelect
+						class={'equipment'}
+						selector={'Equipment Type'}
+						itemList={props.equipmentData.map(equipmentType => { return equipmentType.equipmentType })}
+						name={'currentEquipmentType'}
+						currentItem={currentEquipmentType}
+						onChange={(e) => handleCurrentEquipmentTypeChange(parseInt(e.target.value))}
+					/>
+				</Col>
+				<Col xs={8} />
+				<Col xs={1}>
+					{props.children}
+				</Col>
 			</Row>
 			<Row>
 				<Col

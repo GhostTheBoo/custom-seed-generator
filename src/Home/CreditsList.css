@@ -1,0 +1,34 @@
+.creditsList {
+    list-style: none;
+    font-size: 1.2rem;
+    overflow-y: auto;
+    /* height: 85vh; */
+    scroll-behavior: smooth;
+    border-left: .1rem solid black;
+    /* -ms-overflow-style: none; */
+    /* scrollbar-width: none; */
+}
+
+/* .creditsList::-webkit-scrollbar {
+    display: none;
+} */
+
+.credit {
+    display: flex;
+    padding: 0 3rem;
+    font-family: KHMenu;
+    text-shadow: .05rem .05rem .1rem black;
+}
+
+.ClutchArtist{
+    color:#C0432B;
+}
+.OriginalSquad{
+    color:#3BA55D;
+}
+.BonafideBadass{
+    color:#8F55A7;
+}
+.CoreCreator{
+    color:#F1C40F;
+}

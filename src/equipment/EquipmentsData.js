@@ -445,7 +445,7 @@ export const equipmentsData = [{
 		new Equipment('Thundaga Trinket', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 3, 0, 0, 20, 0, 0, 0, 0, 0x1CDEEF6, 24),
 		new Equipment('Thundagun Trinket', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 3, 0, 0, 25, 0, 0, 0, 0, 0x1CDEF06, 25),
 		new Equipment('Shock Charm', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 3, 0, 0, 40, 0, 0, 0, 0, 0x1CDEE26, 7),
-		new Equipment('Shock Charm+', new Reward('Thunder Boost', 0x19A, 'Ability'), 5, 0, 0, 0, 3, 0, 0, 40, 0, 0, 0, 0, 0x1CDEE36, 8),
+		new Equipment('Shock Charm+', new Reward('Thunder Boost', 0x19A, 'Ability'), 4, 0, 0, 0, 3, 0, 0, 40, 0, 0, 0, 0, 0x1CDEE36, 8),
 		new Equipment('Shadow Anklet', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0, 0x1CDEF16, 27),
 		new Equipment('Dark Anklet', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 2, 0, 0, 0, 20, 0, 0, 0, 0x1CDEF26, 28),
 		new Equipment('Midnight Anklet', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 3, 0, 0, 0, 20, 0, 0, 0, 0x1CDEF36, 29),

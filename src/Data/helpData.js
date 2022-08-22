@@ -7,7 +7,7 @@ export const helpData = [
 				<h6>Bonus</h6>
 				<p>
 					The bonus page displays all fights that give a <strong>Bonus Level</strong> for each world.
-					<strong>Bonus levels</strong> can reward:
+					<strong>Bonus Levels</strong> can reward:
 					<ul>
 						<li>Up to 2 rewards</li>
 						<li>HP and MP increases</li>
@@ -44,12 +44,7 @@ export const helpData = [
 				<h6>Cheat</h6>
 				<p>
 					Select any number of cheats to apply to the game when generating the pncah file.
-					Click toggle include/exclude each cheat in the final file.
-				</p>
-				<h6>Why Am I Red?</h6>
-				<p>
-					Cheats are either included or not.
-					They cannot be red.
+					If the cheat is toggled, then it will be included in the final file.
 				</p>
 			</div>
 		)
@@ -109,7 +104,8 @@ export const helpData = [
 
 					All other equipment draw 3 lines to the screen.
 					That means 1 extra line from the 4 resistances or Defense can be added as a stat.
-					There are technicalities where if only 1 piece of equipment has 2 extra lines it might be fine, however the tool assumes that anything over 1 additional line will crash the game.
+					If only 1 piece of equipment has 2 extra lines it might be fine, however the tool assumes that anything over 1 additional line will crash the game.
+					I recommend thoroughly testing your equipment if anything shows as a warning.
 				</p>
 			</div>
 		)
@@ -121,18 +117,14 @@ export const helpData = [
 			<div id='formPageHelp'>
 				<h6>Forms & Summons</h6>
 				<p>
-					The form page has all drive form levels separated by drive forms.
-					Select the drive form to modify from the drive form selector.
-					Select the reward to replace with from the reward selector.
-					Then select the EXP to replace with.
-					The EXP multiplier can modify EXP relative to what the EXP is in the vanilla game.
-					If vanilla EXP is 100, and a x2 multiplier is selected, the level will be replaced with 50 EXP.
-					The custom EXP value is only read when the custom EXP multiplier value is selected.
-					It will replace the selected level with whatever custom EXP is provided.
+					The Form Page has all drive form levels separated by drive forms.
+					Select the drive form to modify.
+					Select the reward to receive upon reaching that drive level.
+					Select the amount of EXP to reach the currently selected level from the level before.
 
 					Summon modifications work the same way.
-					However summon rewards do not pop up on screen on level up.
-					They will show up in menus though.
+					However, summon rewards do not pop up on screen on level up.
+					They will still be given to Sora.
 				</p>
 				<h6>EXP</h6>
 				<p>
@@ -140,11 +132,6 @@ export const helpData = [
 					For example, Valor Level 3 is reached by gaining 160 experience AFTER Valor Level 2.
 					In other words, it takes a total of 240 EXP to reach Valor Level 3.
 					Summon EXP works the same way.
-				</p>
-				<h6>Why Am I Red?</h6>
-				<p>
-					Form levels will not turn red.
-					Their rewards can be anything and custom EXP is capped by the application between 0 and 99999999.
 				</p>
 			</div>
 		)
@@ -156,34 +143,35 @@ export const helpData = [
 			<div id='levelPageHelp'>
 				<h6>Level</h6>
 				<p>
-					The level page shows all of sora's levels, his stats upon reaching that level, the exp required to reach them, and the rewards given based on dream weapon.
+					The level page shows all of Sora's levels, his stats upon reaching that level, the exp required to reach them, and the rewards given based on dream weapon.
 				</p>
 				<h6>EXP and Stats</h6>
 				<p>
 					Levels do not measure increases in stats or EXP like bonus levels or forms do.
-					Each row represents what Sora's status would look like at that sepcific level, ignoring any stat boosting items.
+					Each level represents what Sora's status would look like at that sepcific level, ignoring any stat boosting items.
 					For example, at level 18 on critical mode, Sora would have 68 AP, 12 Defense, 14 Magic, and 12 Strength.
 					If all of those stats are set to 0 for level 18, then he will have 0 stats for that level.
 					However, if level 19 is unmodified, Sora will return to what his level 19 status should be, which is 71 AP, 13 Defense, 14 Magic, and 12 Strength.
 					This can lead to interesting results.
 					Additonaly, AP entered is based on standard mode.
 					The game does a specific calculation to give critical mode AP for each level.
-					The calculation is equivalent to Critical AP = ((Standard AP - 2) * 1.5) + your starting AP count, rounded down.
-					Experience also works in a similar way measuring the TOTAL amount of experience to reach the next level.
+					The calculation is Critical AP = ((Standard AP - 2) * 1.5) + your starting AP count, rounded down.
+					Your starting AP can be chosen in the Starting Status Page.
+					Experience also works in a similar way, measuring the TOTAL amount of experience to reach the next level.
 					So while it takes 10618 TOTAL experience to reach level 19, only 1804 ADDITONAL EXP is required to level up after reaching level 18.
 
 					The application only allows you to edit the stats Sora has at each level.
-					However, the colored text next to each value represents the change in the stat between levels.
+					However, the colored text next to each value represents the change in the stat between the previous level and currently selected level.
 					Seeing a blue plus means the stat increases by that amount.
 					A red minus means the stat decreases by that amount.
-					The yellow value is the exact amount of experience to reach the next level from your current level.
+					The yellow value is the exact amount of experience to reach the next level from the currently selected level.
 				</p>
 				<h6>Edit All Levels</h6>
 				<p>
 					When editing all levels, you can choose to only edit 1 aspect of every level.
 					This means you can edit only the Sword Reward for each level without touching any stats.
 					You can also creat a simple level curve by applying the change in a pattern based on level count.
-					For example, you can make every tenth level give you a combo plus and leave all other levels alone.
+					For example, you can make every tenth level give you a combo plus only when choosing sword, and leave all other levels alone.
 				</p>
 			</div>
 		)
@@ -234,21 +222,9 @@ export const helpData = [
 				<p>
 					Sora, Donald, and Goofy can all have their starting equipment modified.
 					Select the desired character and then replace each reward with whatever you choose.
-				</p>
-				<p>
-					Only Sora's starting equipment and stats can be modified.
-					Select a starting equipment from the dropdowns for keyblade, armor, and accessory.
-					There is no starting armor or accessory in the vanilla game so their default is just EMPTY.
-					Select the values for Munny, HP, and MP.
-					Defaults are 0, 20, and 100.
-					Select REPLACE to use the inputted starting status.
-					Select Vanilla to revert any changes.
-					Keep in mind starting stats will be replaced everytime REPLACE is pressed so make sure all values are set correctly
-				</p>
-				<h6>Why Am I Red?</h6>
-				<p>
-					Starting status is either changed or left Vanilla.
-					Nothing can be red.
+					Each character can have up to 32 different starting items.
+					For in game purposes, Base Sora and Critical Mode Sora count as 2 separate characters.
+					Additionally, each characters starting hp, mp, ap, armor slots, accessory slots, and item slots can be customized.
 				</p>
 			</div>
 		)
