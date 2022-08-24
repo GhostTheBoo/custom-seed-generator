@@ -1,8 +1,6 @@
 import { React } from 'react'
 import { Row } from 'react-bootstrap'
 
-import formLogo from '../assets/icons/form.png'
-
 import Icon from '../Components/Icon'
 import EditStatusPopover from '../Components/EditStatusPopover'
 
@@ -17,6 +15,8 @@ function FormCard(props) {
 
     if (formName[0] !== 'Summon')
         formName.push('Form')
+
+    let formLogo = require(`../assets/icons/${formName[0].toLowerCase()}D.png`)
 
     return (
         <Row style={{ filter: 'drop-shadow(3px 3px 2px black)' }}>

@@ -1,7 +1,5 @@
 import { React } from 'react'
 
-import bonusLogo from '../assets/icons/form.png'
-
 import Icon from '../Components/Icon'
 import EditStatusPopover from '../Components/EditStatusPopover'
 
@@ -63,6 +61,7 @@ function BonusCard(props) {
 		character = 'goofy'
 	else
 		character = 'other'
+	let bonusLogo = require(`../assets/icons/${character}B.png`)
 
 
 	let overlayPopover = <EditStatusPopover
