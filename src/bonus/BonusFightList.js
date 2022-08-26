@@ -23,7 +23,7 @@ function BonusFightList(props) {
     return (
         <GenericListGroup
             dataList={props.fightList.map(fight => {
-                let icon = require(`../assets/bonusFightImages/${bonusFolderNames[props.currentWorld]}/${fight.zipID.toString()}.png`)
+                let icon = './images/bonusFightImages/' + bonusFolderNames[props.currentWorld] + '/' + fight.zipID.toString() + '.png'
                 return (
                     <>
                         <img
@@ -36,7 +36,7 @@ function BonusFightList(props) {
                         />
                         <span
                             className='iconDescription'
-                            style={{ verticalAlign: 'middle', fontSize: '1.3rem', fontFamily:'KHMenu' }}
+                            style={{ verticalAlign: 'middle', fontSize: '1.3rem', fontFamily: 'KHMenu' }}
                         >
                             {' ' + fight.fightName}
                         </span>

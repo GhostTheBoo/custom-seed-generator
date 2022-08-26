@@ -627,7 +627,7 @@ export const bonusData = [
 	}, {
 		world: 'Pride Lands',
 		bonusFights: [
-			new BonusFight('Hyenas I', 49, 'Hyenas I',
+			new BonusFight('Hyenas I', 49, 'Protect Timon & Pumbaa',
 				[
 					new BonusReward(0x1D10EA1, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
 					new BonusReward(0x1D10EB1, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
@@ -640,7 +640,7 @@ export const bonusData = [
 					new BonusReward(0x1D10BF1, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
 					new BonusReward(0x1D10C01, 11, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 30, 0, 0, 0, 0, 0)
 				]),
-			new BonusFight('Hyenas II', 50, 'Hyenas II',
+			new BonusFight('Hyenas II', 50, 'Hyenas',
 				[
 					new BonusReward(0x1D10ED1, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 1, 0, 0),
 					new BonusReward(0x1D10EE1, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0),

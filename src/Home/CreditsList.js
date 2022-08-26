@@ -1,7 +1,7 @@
 // import React, { useEffect, useRef } from 'react'
 import './CreditsList.css'
 
-function CreditsList() {
+function CreditsList(props) {
     let creditData = [
         {
             name: 'Televo',
@@ -133,7 +133,7 @@ function CreditsList() {
 
     return (
         <ul className='creditsList'>
-            {creditItemList}
+            {creditItemList.slice(props.start, props.end)}
         </ul>
     )
 }

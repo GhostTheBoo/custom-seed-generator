@@ -12,7 +12,7 @@ function ChestCard(props) {
 	// handleReplace: handle reward replacement -> function
 	// id: id of chest card -> number
 
-	let chestImage = require(`../assets/chestImages/${props.currentFolderName}/${props.chest.vanillaAddress.toString(16).toUpperCase()}.png`)
+	let chestImage = './images/chestImages/' + props.currentFolderName + '/' + props.chest.vanillaAddress.toString(16).toUpperCase() + '.png'
 
 	let overlayPopover = <EditStatusPopover
 		text='NEW!'

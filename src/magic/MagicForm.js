@@ -2,7 +2,7 @@ import { React } from 'react'
 import { Form, Col, Card, Button, Row, Image } from 'react-bootstrap'
 
 function MagicForm(props) {
-    let magicImage = require(`../assets/${props.magic.pathName}.png`)
+	let magicImage = './images/' + props.magic.pathName + '.png'
 
     let fieldRowList = props.magic.abilities.map((ability, abilityIndex) => {
         return <Form.Row key={'magicFormRow' + abilityIndex} >

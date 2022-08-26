@@ -5,13 +5,23 @@ import KoFi from './KoFi'
 import CreditsList from './CreditsList'
 
 function HomePage(props) {
-	let lastUpdateDate = 'August 21, 2022'
+	let lastUpdateDate = 'August 26, 2022'
+	let logo = './images/logo.png'
 
 	return (
 		<Container fluid style={{ fontSize: '1.25rem' }}>
 			<Row>
+			</Row>
+			<Row>
 				<Col xs={8}>
-					<h1 style={{ textAlign: 'center' }}>Custom Seed Generator</h1>
+					<img
+						src={logo}
+						alt='Custom Seed Generator'
+						height='200px'
+						width='600px'
+						style={{ display: 'block', margin:'auto' }}
+					/>
+					{/* <h1 style={{ textAlign: 'center' }}>Custom Seed Generator</h1> */}
 					<p style={{ textAlign: 'justify' }}>
 						This tool is used with the Garden of Assemblage mod to customize specific rewards and aspects of Kingdom Hearts 2 Final Mix.
 						It will create a custom pnach, lua, or zip file that can be used alongside the PS2 or PC version of the game to apply any customizations.

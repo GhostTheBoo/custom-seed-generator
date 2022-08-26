@@ -6,7 +6,7 @@ function AllEquipmentCard(props) {
 	// currentWorldFolderName: current world for use in image lookup -> string
 	// handleReplace: handle reward replacement -> function
 
-	let equipmentImage = require(`../assets/equipmentImages/${props.currentFolderName}/${props.currentFolderName}.png`)
+	let equipmentImage = './images/equipmentImages/' + props.currentFolderName + '/' + props.currentFolderName + '.png'
 
 	function getfullEquipmentTypeText(equipmentType) {
 		if (equipmentType === 'acc') return 'Accessories'

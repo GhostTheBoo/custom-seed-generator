@@ -14,7 +14,7 @@ function FormList(props) {
     return (
         <GenericListGroup
             dataList={formNames.map(form => {
-                let icon = require(`../assets/icons/${form.png}.png`)
+                let icon = './images/icons/' + form.png + '.png'
                 return (
                     <>
                         <img

@@ -2,14 +2,15 @@ import { React, useState, useEffect } from 'react'
 
 function Icon(props) {
 	const [iconPath, setIconPath] = useState(props.fileName.toLowerCase())
-	let icon = require(`../assets/icons/${iconPath}.png`)
 	useEffect(() => {
 		setIconPath(props.fileName.toLowerCase())
 	}, [props.fileName])
-
 	function handleError() {
 		setIconPath('empty')
 	}
+
+	let icon = './images/icons/' + iconPath + '.png'
+
 	let iconSize
 	if (props.type === 'row')
 		iconSize = 25
@@ -39,7 +40,7 @@ function Icon(props) {
 			/>
 			<span
 				className='iconDescription'
-				style={{ verticalAlign: 'middle'}}
+				style={{ verticalAlign: 'middle' }}
 			>
 				{' ' + props.children}
 			</span>

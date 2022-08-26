@@ -3,7 +3,7 @@ import { Container, Row, Col, Button, Card } from 'react-bootstrap'
 import EditStatusPopover from '../Components/EditStatusPopover'
 
 function MagicCard(props) {
-	let magicImage = require(`../assets/${props.magic.pathName}.png`)
+	let magicImage = './images/' + props.magic.pathName + '.png'
 
 	let magicCostList = props.magic.abilities.map(ability => {
 		return (

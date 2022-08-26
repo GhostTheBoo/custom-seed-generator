@@ -61,7 +61,8 @@ function BonusCard(props) {
 		character = 'goofy'
 	else
 		character = 'other'
-	let bonusLogo = require(`../assets/icons/${character}B.png`)
+	// let bonusLogo = require(`../assets/icons/${character}B.png`)
+	let bonusLogo = './images/icons/' + character + 'B.png'
 
 
 	let overlayPopover = <EditStatusPopover
@@ -88,7 +89,7 @@ function BonusCard(props) {
 				<div className='bonusHeaderSpace'></div>
 				<div className='bonusCharacter'>{props.bonusReward.replacementCharacterString}</div>
 			</div>
-			<div className='bonusRewardBox'>
+			<div className={rewardList.length <= 1 ? 'smallBonusRewardBox' : 'bigBonusRewardBox'}>
 				{rewardList}
 			</div>
 			<img className='bonusLogo' src={bonusLogo} alt='Bonus Logo' />

@@ -5,7 +5,7 @@ import RewardSelector from '../rewards/RewardSelector'
 import Icon from '../Components/Icon'
 
 function EquipmentForm(props) {
-    let equipmentImage = require(`../assets/equipmentImages/${props.currentFolderName}/${props.equipment.baseAddress.toString(16).toUpperCase()}.png`)
+    let equipmentImage = './images/equipmentImages/' + props.currentFolderName + '/' + props.equipment.baseAddress.toString(16).toUpperCase() + '.png'
 
     function setCurrentAbility(newValue) { props.setCurrentEquipmentFieldData('ability', newValue) }
     function setCurrentAP(newValue) { props.setCurrentEquipmentFieldData('currentAP', newValue) }
