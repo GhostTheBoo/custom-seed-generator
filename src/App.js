@@ -11,7 +11,7 @@ import HelpModal from './Components/HelpModal'
 
 import Tracker from './Data/trackerData'
 
-import HomePage from './home/HomePage'
+import HomePage from './Home/HomePage'
 
 import { Chest, chestsData } from './chests/ChestsData'
 import ChestPage from './chests/ChestPage'

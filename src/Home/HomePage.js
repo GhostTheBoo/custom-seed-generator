@@ -5,7 +5,7 @@ import KoFi from './KoFi'
 import CreditsList from './CreditsList'
 
 function HomePage(props) {
-	let lastUpdateDate = 'August 26, 2022'
+	let lastUpdateDate = 'September 10, 2022'
 	let logo = './images/logo.png'
 
 	return (
@@ -50,7 +50,7 @@ function HomePage(props) {
 					<hr />
 					<h3 style={{ textAlign: 'center' }}>More Information</h3>
 					<p style={{ textAlign: 'justify' }}>
-						The site is hosted using Github Pages.
+						The site is hosted using Firebase.
 						The repository can be found <a target='_blank' rel='noopener noreferrer' href='https://github.com/GhostTheBoo/custom-seed-generator'>here</a>.
 						<br />
 						The site has most recently been updated on {lastUpdateDate}.
