@@ -1,5 +1,5 @@
 import React from 'react'
-import Form from 'react-bootstrap/Form'
+import { Form, Row, Col } from 'react-bootstrap'
 
 function GenericSelect(props) {
 	let optionlist = props.itemList.map((item, index) => {
@@ -7,19 +7,24 @@ function GenericSelect(props) {
 			<option key={index} value={index}>{item}</option>
 		)
 	})
+	let width = (props.selector.length > 8 ? '15rem' : '10rem')
 	return (
-		<Form.Group controlId={props.class + props.selector + 'Selector'}>
-			<Form.Label column='sm'>{props.selector} Selector:</Form.Label>
-			<Form.Control
-				size='sm'
-				as='select'
-				value={props.currentItem}
-				name={props.name}
-				onChange={props.onChange}
-			>
-				{optionlist}
-			</Form.Control>
-		</Form.Group>
+		<Row>
+			<Col xs='auto' className='genericSelectorLabel' style={{width: width}}>
+				<Form.Label>{props.selector + ' Selector:'}</Form.Label>
+			</Col>
+			<Col xs={5}>
+				<Form.Control
+					className='genericSelect'
+					as='select'
+					value={props.currentItem}
+					name={props.name}
+					onChange={props.onChange}
+				>
+					{optionlist}
+				</Form.Control>
+			</Col>
+		</Row>
 	)
 }
 

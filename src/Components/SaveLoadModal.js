@@ -5,13 +5,14 @@ function SaveLoadModal(props) {
 	const [show, setShow] = useState(false)
 	const [pnachFileName, setPnachFileName] = useState('')
 	const [luaFileName, setLuaFileName] = useState('')
+	const [zipFileName, setZipFileName] = useState('')
 	const [jsonFileName, setJSONFileName] = useState('')
 
 	return (
-		<Col xl='2'>
+		<>
 			<Button variant="primary" block onClick={() => setShow(true)}>
 				SAVE & LOAD
-      		</Button>
+			</Button>
 			<Modal size="lg" show={show} onHide={() => setShow(false)} centered>
 				<Modal.Header closeButton>
 					<Modal.Title>
@@ -19,6 +20,41 @@ function SaveLoadModal(props) {
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
+					<Form.Row>
+						<Col xs='7'>
+							<Form.Group controlId='currentZipFileName'>
+								<Form.Label column='sm' srOnly>Zip File Name: </Form.Label>
+								<Form.Control
+									size='sm'
+									name='currentZipFileName'
+									type='text'
+									value={zipFileName}
+									placeholder='Zip File Name'
+									onChange={(e) => setZipFileName(e.target.value)}
+								/>
+							</Form.Group>
+						</Col>
+						<Col xs='3'>
+							<Form.Check
+								type={'checkbox'}
+								id={`isZipCommentedCheckbox`}
+								label={`Include Comments?`}
+								checked={props.isZipCommented}
+								onChange={props.onZipCommentChange}
+							/>
+						</Col>
+						<Col xs='2'>
+							<Button
+								variant='outline-light'
+								block
+								name='saveZipButton'
+								onClick={() => props.handleSaveAsZip(zipFileName)}
+							>
+								SAVE ZIP
+							</Button>
+						</Col>
+					</Form.Row>
+					<br />
 					<Form.Row>
 						<Col xs='7'>
 							<Form.Group controlId='currentPnachFileName'>
@@ -53,7 +89,7 @@ function SaveLoadModal(props) {
 							</Button>
 						</Col>
 					</Form.Row>
-					<br></br>
+					<br />
 					<Form.Row>
 						<Col xs='7'>
 							<Form.Group controlId='currentLuaFileName'>
@@ -88,7 +124,7 @@ function SaveLoadModal(props) {
 							</Button>
 						</Col>
 					</Form.Row>
-					<br></br>
+					<br />
 					<Form.Row>
 						<Col xs='10'>
 							<Form.Group controlId='currentJSONFileName'>
@@ -114,7 +150,7 @@ function SaveLoadModal(props) {
 							</Button>
 						</Col>
 					</Form.Row>
-					<br></br>
+					<br />
 					<Form.Row>
 						<Form.Group controlId='currentLoadFileName'>
 							<Form.Label column='sm'>JSON Save File Name: </Form.Label>
@@ -126,7 +162,7 @@ function SaveLoadModal(props) {
 					</Form.Row>
 				</Modal.Body>
 			</Modal>
-		</Col>
+		</>
 	)
 }
 

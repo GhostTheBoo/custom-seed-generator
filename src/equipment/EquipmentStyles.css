@@ -1,0 +1,66 @@
+.equipmentCard {
+  font-family: 'KHMenu';
+  font-Size: 1.25rem;
+  background-color: #343A40;
+  padding: 2rem;
+  margin: 1rem 0;
+  border-radius: 1rem;
+  box-shadow: .25rem .25rem 1rem black;
+}
+
+.equipmentColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.equipmentImageColumn {
+  width: 18rem;
+}
+
+.equipmentStatRow,
+.equipmentEmptyRow {
+  color: #FF8000;
+  margin: 0 .25rem;
+  align-items: baseline;
+  font-size: 2rem;
+  border-bottom: .1rem solid #FF8000;
+  text-shadow: .05rem .05rem .1rem black;
+}
+
+.equipmentFlexColumn {
+  flex-direction: column;
+  font-Size: 1.25rem;
+}
+
+.equipmentReward {
+  color: #FFF000;
+  border-bottom: .1rem solid #FF8000;
+  align-items: baseline;
+  text-shadow: .05rem .05rem .1rem black;
+}
+
+.equipmentStatNumber {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.equipmentEmptyRow {
+  color: transparent;
+  border-bottom: .1rem solid #FF8000;
+}
+
+.equipmentEmptyRow>.equipmentStatNumber {
+  color: transparent;
+  border: transparent;
+}
+
+.equipmentName {
+  justify-content: center;
+  font-Size: 1.5rem;
+  text-shadow: .05rem .05rem .1rem black;
+}
+
+.equipmentImage {
+  margin: auto;
+}

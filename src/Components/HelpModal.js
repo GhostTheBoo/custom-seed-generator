@@ -1,19 +1,19 @@
 import { React, useState } from 'react'
-import { Button, Modal, Col } from 'react-bootstrap'
+import { Button, Modal } from 'react-bootstrap'
 
 import { helpData } from '../Data/helpData'
 
 function HelpModal(props) {
 	const [show, setShow] = useState(false)
-	let offsetValue = props.tab === 'cheat' ? '6' : '4'
+	// let offsetValue = props.tab === 'cheat' ? '6' : '4'
 	if (props.tab === 'home')
 		return null
 	let pageHelp = helpData.find(page => page.key === props.tab)
 	return (
-		<Col xl={{ span: '2', offset: offsetValue }}>
+		<>
 			<Button block variant="primary" onClick={() => setShow(true)}>
 				Help!
-      		</Button>
+			</Button>
 			<Modal size="lg" show={show} onHide={() => setShow(false)}>
 				<Modal.Header closeButton>
 					<Modal.Title>
@@ -26,10 +26,10 @@ function HelpModal(props) {
 				<Modal.Footer>
 					<Button variant="primary" onClick={() => setShow(false)}>
 						Okay
-          			</Button>
+					</Button>
 				</Modal.Footer>
 			</Modal>
-		</Col>
+		</>
 	)
 }
 
