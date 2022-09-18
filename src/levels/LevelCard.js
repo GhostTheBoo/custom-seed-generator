@@ -1,7 +1,7 @@
 import { React } from 'react'
 import { Row, Col, Button, Card } from 'react-bootstrap'
 import Icon from '../Components/Icon'
-import EditStatusPopover from '../Components/EditStatusPopover'
+import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
 
 function LevelCard(props) {
 	function createStylizedStatChange(statChange) {

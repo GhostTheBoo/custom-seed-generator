@@ -1,6 +1,6 @@
 import { React } from 'react'
 import { Container, Row, Col, Button, Card } from 'react-bootstrap'
-import EditStatusPopover from '../Components/EditStatusPopover'
+import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
 
 function MagicCard(props) {
 	let magicImage = './images/' + props.magic.pathName + '.png'

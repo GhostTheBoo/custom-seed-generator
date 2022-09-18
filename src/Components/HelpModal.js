@@ -11,10 +11,10 @@ function HelpModal(props) {
 	let pageHelp = helpData.find(page => page.key === props.tab)
 	return (
 		<>
-			<Button block variant="primary" onClick={() => setShow(true)}>
+			<Button block variant='primary' className='helpButton' onClick={() => setShow(true)}>
 				Help!
 			</Button>
-			<Modal size="lg" show={show} onHide={() => setShow(false)}>
+			<Modal size='lg' show={show} onHide={() => setShow(false)}>
 				<Modal.Header closeButton>
 					<Modal.Title>
 						{pageHelp.page}
@@ -24,7 +24,7 @@ function HelpModal(props) {
 					{pageHelp.help}
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant="primary" onClick={() => setShow(false)}>
+					<Button variant='primary' onClick={() => setShow(false)}>
 						Okay
 					</Button>
 				</Modal.Footer>

@@ -1,9 +1,10 @@
 import { React, useState, useEffect, useRef } from 'react'
-import { Row, Container, Col } from 'react-bootstrap'
+import { Container, Form } from 'react-bootstrap'
 
 import GenericSelect from '../Components/GenericSelect'
 import ChestCard from './ChestCard'
-import AllChestCard from './AllChestCard'
+import './ChestStyles.css'
+
 
 function ChestPage(props) {
 	// PROPS:
@@ -16,7 +17,6 @@ function ChestPage(props) {
 		chestCardGrid.current.scrollTo({ top: 0, behavior: 'smooth' })
 	}, [currentWorld])
 
-	let columnNum = 5
 	let currentWorldChests = props.chestData[currentWorld].chests
 
 	const chestFolderNames = [
@@ -60,56 +60,33 @@ function ChestPage(props) {
 
 	let chestList = currentWorldChests.map((chest, chestIndex) => {
 		return (
-			<Col
-				key={'chestCol' + chestIndex}
-				xs
-			>
-				<ChestCard
-					key={'chest' + chestIndex}
-					id={chestIndex}
-					chest={chest}
-					currentFolderName={chestFolderNames[currentWorld]}
-					handleVanilla={(replacedChest) => { updateChest(replacedChest.vanilla()) }}
-					handleReplace={(replacedChest, replacementReward) => { updateChest(replacedChest.replace({ reward: { ...replacementReward } })) }}
-				/>
-			</Col>
+			<ChestCard
+				key={'chest' + chestIndex}
+				id={chestIndex}
+				chest={chest}
+				currentFolderName={chestFolderNames[currentWorld]}
+				handleReplace={(replacementReward) => { updateChest(chest.replace({ reward: { ...replacementReward } })) }}
+				handleVanilla={() => { updateChest(chest.vanilla()) }}
+			/>
 		)
 	})
-
 	chestList.push(
-		<Col
-			key={'chestColAll'}
-			xs
-		>
-			<AllChestCard
-				key={'chestAll'}
-				id={currentWorldChests.length}
-				currentFolderName={chestFolderNames[currentWorld]}
-				handleVanilla={() => updateAllChests(currentWorldChests.map(chest => { return chest.vanilla() }))}
-				handleReplace={(replacementReward) => updateAllChests(currentWorldChests.map(chest => { return chest.replace({ reward: { ...replacementReward } }) }))}
-			/>
-		</Col>
+		<ChestCard
+			key={'chestAll'}
+			id={currentWorldChests.length}
+			currentFolderName={chestFolderNames[currentWorld]}
+			handleVanilla={() => updateAllChests(currentWorldChests.map(chest => { return chest.vanilla() }))}
+			handleReplace={(replacementReward) => updateAllChests(currentWorldChests.map(chest => { return chest.replace({ reward: { ...replacementReward } }) }))}
+		/>
 	)
-
-	for (let i = chestList.length; chestList.length % columnNum !== 0; i++)
-		chestList.push(<Col key={'chest' + currentWorld + '_empty_' + i} xs />)
-
-	let chestRowList = []
-
-	for (let i = 0; i < chestList.length; i += columnNum) {
-		chestRowList.push(
-			<Row
-				key={'chestRows' + currentWorld + '_' + i}
-			>
-				{chestList.slice(i, i + columnNum)}
-			</Row>
-		)
-	}
 
 	return (
 		<Container fluid>
-			<Row style={{ paddingTop: '1rem' }}>
-				<Col>
+			<div className='pageHeader'>
+				<div>
+					<Form.Label>World Selector:</Form.Label>
+				</div>
+				<div>
 					<GenericSelect
 						class={'chest'}
 						selector={'World'}
@@ -118,18 +95,18 @@ function ChestPage(props) {
 						currentItem={currentWorld}
 						onChange={(e) => setCurrentWorld(parseInt(e.target.value))}
 					/>
-				</Col>
-				<Col xs={7} />
-				<Col xs={2}>
+				</div>
+				<div className='flexGrow1' />
+				<div>
 					{props.children}
-				</Col>
-			</Row>
+				</div>
+			</div>
 			<Container
 				fluid
-				className='cardGrid'
+				className='chestCardGrid'
 				ref={chestCardGrid}
 			>
-				{chestRowList}
+				{chestList}
 			</Container>
 		</Container>
 	)

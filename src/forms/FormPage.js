@@ -14,7 +14,7 @@ function FormPage(props) {
 	const [currentFormFieldData, setCurrentFormFieldData] = useState({
 		reward: { ...props.formData[currentDriveForm].driveLevels[0].replacementReward },
 		currentEXP: props.formData[currentDriveForm].driveLevels[0].replacementEXP,
-		currentEXPMultiplierValue: 2
+		currentEXPMultiplierValue: 1
 	})
 	const [currentAllFormFieldData, setCurrentAllFormFieldData] = useState({
 		reward: { ...props.formData[currentDriveForm].driveLevels[1].replacementReward },
@@ -22,7 +22,7 @@ function FormPage(props) {
 		EXPMultiplier: false,
 		customEXP: false,
 		currentEXP: 0,
-		currentEXPMultiplierValue: 2
+		currentEXPMultiplierValue: 1
 	})
 
 	function handleDriveFormChange(newDriveForm) {
@@ -57,7 +57,7 @@ function FormPage(props) {
 			EXPMultiplier: false,
 			customEXP: false,
 			currentEXP: 0,
-			currentEXPMultiplierValue: 2
+			currentEXPMultiplierValue: 1
 		})
 	}
 	function updateCurrentDriveFormLevelData(newDriveLevel) {
@@ -93,14 +93,14 @@ function FormPage(props) {
 						newDriveLevelData.currentEXP = driveLevel.vanillaEXP
 					} else {
 						if (currentAllFormFieldData.customEXP) {
-							newDriveLevelData.currentEXP = currentAllFormFieldData.customEXP
+							newDriveLevelData.currentEXP = currentAllFormFieldData.currentEXP
 						}
 						if (currentAllFormFieldData.EXPMultiplier) {
 							newDriveLevelData.currentEXP = driveLevel.vanillaEXP
-							newDriveLevelData.EXPMultiplier = currentAllFormFieldData.EXPMultiplier
+							newDriveLevelData.currentEXPMultiplierValue = currentAllFormFieldData.currentEXPMultiplierValue + 1
 						}
 					}
-
+					console.log(newDriveLevelData)
 					return driveLevel.replace(newDriveLevelData)
 				})
 				return ({
@@ -157,17 +157,15 @@ function FormPage(props) {
 	})
 
 	altLevelDataList.push(
-		<Row key={'allLevels'}>
-			<button
-				className={`editAllFormLevelButton ${props.formData[currentDriveForm].driveForm.toLowerCase()}`}
-				disabled={currentDriveFormLevel === 6}
-				onClick={() => handleDriveFormLevelChange(6)}
-				style={{ fontFamily: 'KHGummi', fontSize: '1.5rem' }}
-			>
-				{(currentDriveFormLevel === 6 ? 'EDITING... ' : 'EDIT ')} <br />
-				ALL {props.formData[currentDriveForm].driveForm.toUpperCase()} LEVELS
-			</button>
-		</Row>
+		<button
+			key='allLevels'
+			className={`editAllFormLevelButton ${props.formData[currentDriveForm].driveForm.toLowerCase()}`}
+			disabled={currentDriveFormLevel === 6}
+			onClick={() => handleDriveFormLevelChange(6)}
+		>
+			{(currentDriveFormLevel === 6 ? 'EDITING... ' : 'EDIT ')} <br />
+			ALL {props.formData[currentDriveForm].driveForm.toUpperCase()} LEVELS
+		</button>
 	)
 
 	let DisplayedFormForm = [
@@ -194,27 +192,27 @@ function FormPage(props) {
 
 	return (
 		<Container fluid style={{ marginTop: '1rem' }}>
-			<Row>
-				<Col xs={3}>
+			<div className='formPageContent'>
+				<div className='formList'>
 					<FormList
 						currentForm={currentDriveForm}
 						currentSelectItem={currentDriveForm}
 						setCurrentSelectItem={(newDriveFormLevel) => { handleDriveFormChange(newDriveFormLevel) }}
 					/>
-				</Col>
-				<Col xs={5}>
+				</div>
+				<div className='formCards flex-grow-1'>
 					{altLevelDataList}
-				</Col>
-				<Col xs={4}>
+				</div>
+				<div className='formForm flex-grow-1'>
 					<Row>
 						<Col xs={7} />
-						<Col xs={5} style={{paddingBottom: '1rem' }}>
+						<Col xs={5} style={{ paddingBottom: '1rem' }}>
 							{props.children}
 						</Col>
 					</Row>
 					{DisplayedFormForm[currentDisplayedForm]}
-				</Col>
-			</Row>
+				</div>
+			</div>
 		</Container>
 	)
 }

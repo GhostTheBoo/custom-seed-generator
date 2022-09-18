@@ -1,0 +1,56 @@
+.popupCardGrid {
+    /* font-family: KHMenu; */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: space-between;
+    column-gap: .5rem;
+	overflow-y: auto;
+	height: 51rem;
+}
+
+.popupCard {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background-color: #343A40;
+    height: 20rem;
+    padding: .5rem;
+    margin: 1rem 0;
+    border-radius: 1rem;
+    box-shadow: 0rem 0rem .5rem black;
+}
+
+.popupCardCheck {
+    font-size: 1.15rem;
+    padding: 1rem 0rem;
+}
+
+.popupCardReward {
+    font-size: 1.25rem;
+    padding: .75rem 0rem;
+}
+
+/* @media(max-width: 90rem) {} */
+
+@media(max-width: 65rem) {
+    .popupCardGrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .popupCardCheck {
+        font-size: 1rem;
+    }
+
+    .popupCardReward {
+        font-size: 1.15rem;
+    }
+}
+
+
+@media(max-width: 48rem) {
+    .popupCardGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

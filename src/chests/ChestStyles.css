@@ -1,0 +1,68 @@
+.chestPageHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: baseline;
+    padding: 1rem 0rem;
+    gap: 1rem;
+}
+
+.chestCardGrid {
+    /* font-family: KHMenu; */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: space-between;
+    column-gap: .5rem;
+	overflow-y: auto;
+	height: 51rem;
+}
+
+.chestCard {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background-color: #343A40;
+    padding: .5rem;
+    margin: 1rem 0;
+    border-radius: 1rem;
+    box-shadow: 0rem 0rem .5rem black;
+}
+
+.chestCardImage {
+    border-radius: .75rem;
+}
+
+.chestCardRoom {
+    font-size: 1.25rem;
+    padding: 1rem 0rem;
+}
+
+.chestCardReward {
+    font-size: 1.5rem;
+    padding: .75rem 0rem;
+}
+
+/* @media(max-width: 90rem) {} */
+
+@media(max-width: 65rem) {
+    .chestCardGrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .chestCardRoom {
+        font-size: 1rem;
+    }
+
+    .chestCardReward {
+        font-size: 1.25rem;
+    }
+}
+
+
+@media(max-width: 48rem) {
+    .chestCardGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

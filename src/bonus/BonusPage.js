@@ -1,11 +1,12 @@
 import { React, useState } from 'react'
-import { Row, Col, Container } from 'react-bootstrap'
+import { Container, Form } from 'react-bootstrap'
 
 import GenericSelect from '../Components/GenericSelect'
 
 import BonusFightList from './BonusFightList'
 import BonusCard from './BonusCard'
 import BonusForm from './BonusForm'
+import './BonusStyles.css'
 
 function BonusPage(props) {
 	// PROPS:
@@ -99,24 +100,27 @@ function BonusPage(props) {
 
 	return (
 		<Container fluid>
-			<Row style={{ paddingTop: '1rem', paddingBottom: '.5rem'  }}>
-				<Col xs={3}>
+			<div className='pageHeader'>
+				<div>
+					<Form.Label>World Selector:</Form.Label>
+				</div>
+				<div>
 					<GenericSelect
 						class={'bonus'}
 						selector={'World'}
 						itemList={props.bonusData.map(world => { return world.world })}
 						name={'currentWorld'}
 						currentItem={currentWorld}
-						onChange={(e) => { handleWorldChange(parseInt(e.target.value)) }}
+						onChange={(e) => handleWorldChange(parseInt(e.target.value))}
 					/>
-				</Col>
-				<Col xs={7} />
-				<Col xs={2}>
+				</div>
+				<div className='flex-grow-1' />
+				<div>
 					{props.children}
-				</Col>
-			</Row>
-			<Row>
-				<Col xs={3}>
+				</div>
+			</div>
+			<div className='bonusPageContent'>
+				<div className='bonusFightList'>
 					<BonusFightList
 						fightList={props.bonusData[currentWorld].bonusFights}
 						currentWorld={currentWorld}
@@ -125,14 +129,12 @@ function BonusPage(props) {
 							handleBonusFightChange(newBonusFight)
 						}}
 					/>
-				</Col>
-				<Col
-					xs={5}
-					style={{ overflowY: 'auto', height: '800px' }}
-				>
+				</div>
+				<div className='bonusLevelCards flex-grow-1'>
+					<div className='bonusFightName'>{props.bonusData[currentWorld].bonusFights[currentBonusFight].fightName}</div>
 					{bonusSlotList}
-				</Col>
-				<Col xs={4}>
+				</div>
+				<div className='bonusForm flex-grow-1'>
 					{
 						currentBonusFightSlot !== -1
 							? <BonusForm
@@ -145,8 +147,8 @@ function BonusPage(props) {
 							/>
 							: <></>
 					}
-				</Col>
-			</Row>
+				</div>
+			</div>
 		</Container>
 	)
 }

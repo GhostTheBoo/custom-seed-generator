@@ -1,7 +1,7 @@
 import { React } from 'react'
 import { Container, Row, Button, Col } from 'react-bootstrap'
 import Icon from '../Components/Icon'
-import EditStatusPopover from '../Components/EditStatusPopover'
+import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
 
 function EquipmentCard(props) {
     let equipmentImage = './images/equipmentImages/' + props.currentFolderName + '/' + props.equipment.baseAddress.toString(16).toUpperCase() + '.png'

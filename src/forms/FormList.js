@@ -4,11 +4,11 @@ import GenericListGroup from '../Components/GenericListGroup'
 function FormList(props) {
     const formNames = [
         { name: 'Summon', png: 'charm' },
-        { name: 'Valor Form', png: 'valor' },
-        { name: 'Wisdom Form', png: 'wisdom' },
-        { name: 'Limit Form', png: 'limit_form' },
-        { name: 'Master Form', png: 'master' },
-        { name: 'Final Form', png: 'final' },
+        { name: 'Valor', png: 'valor' },
+        { name: 'Wisdom', png: 'wisdom' },
+        { name: 'Limit', png: 'limit_form' },
+        { name: 'Master', png: 'master' },
+        { name: 'Final', png: 'final' },
     ]
 
     return (
@@ -18,16 +18,13 @@ function FormList(props) {
                 return (
                     <>
                         <img
-                            className='icon'
+                            className='formIcon'
                             src={icon}
                             alt={form.name + ' Icon'}
-                            height={50}
-                            width={50}
                             style={{ verticalAlign: 'middle' }}
                         />
                         <span
-                            className='iconDescription'
-                            style={{ verticalAlign: 'middle', fontSize: '1.5rem', fontFamily:'KHMenu' }}
+                            className='formIconDescription'
                         >
                             {' ' + form.name}
                         </span>

@@ -1,3 +1,5 @@
+/* General Utilities */
+
 @font-face {
 	font-family: 'KHGummi';
 	src: local('KHGummi'),
@@ -9,6 +11,19 @@
 	src: local('KHMenu'),
 		url('../fonts/KHMenu.otf') format('truetype');
 }
+
+.flex-grow-1 {
+	flex-grow: 1;
+}
+
+.flex {
+	display: flex;
+}
+
+.btn-block+.btn-block {
+	margin-top: 0;
+}
+
 
 /* Main Page Appearance */
 body {
@@ -33,6 +48,27 @@ a:hover {
 	text-decoration: underline;
 }
 
+.pageHeader {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: baseline;
+	padding: 1rem 0rem;
+	gap: 1rem;
+}
+
+input {
+	border-radius: .5rem;
+	padding: 0 1rem;
+	font-size: 1.5rem;
+}
+
+.genericSelect:disabled {
+	background-color: #6C7075;
+	color: #545454;
+	border-color: #767676;
+}
+
 /* Modal Appearance */
 .modal-content {
 	color: #fff;
@@ -43,6 +79,9 @@ a:hover {
 	color: #fff;
 	text-shadow: 0 1px 0 #000;
 	opacity: .5;
+	position: absolute;
+	top: 0;
+	right: 1rem;
 }
 
 /* Reward Selector Modal Appearance */
@@ -77,3 +116,20 @@ a:hover {
 	padding-left: 2rem;
 	margin: .5rem 0;
 }
+
+.helpButton {
+	width: 10rem;
+}
+
+
+
+
+/* @media(max-width: 90rem) {} */
+
+@media(max-width: 66rem) {
+	input {
+		font-size: 1rem;
+	}
+}
+
+/* @media(max-width: 48rem) {} */

@@ -1,9 +1,10 @@
 import { React, useState } from 'react'
-import { Row, Col, Container } from 'react-bootstrap'
+import { Container, Form } from 'react-bootstrap'
 
 import GenericSelect from '../Components/GenericSelect'
 import PopupCard from './PopupCard'
-import AllPopupCard from './AllPopupCard'
+// import AllPopupCard from './AllPopupCard'
+import './PopupStyles.css'
 
 function PopupPage(props) {
 	// PROPS:
@@ -11,7 +12,6 @@ function PopupPage(props) {
 	// setAllPopups: parent state function to set all popups -> function
 
 	const [currentWorld, setCurrentWorld] = useState(0)
-	let columnNum = 5
 	let currentWorldPopups = props.popupData[currentWorld].popups
 
 	function updatePopups(newPopup) {
@@ -36,55 +36,31 @@ function PopupPage(props) {
 
 	let popupList = currentWorldPopups.map((popup, popupIndex) => {
 		return (
-			<Col
-				key={'popup' + currentWorld + '_' + popupIndex}
-				xs
-			>
-				<PopupCard
-					key={'popup' + popupIndex}
-					id={popupIndex}
-					popup={popup}
-					handleVanilla={(replacedPopup) => { updatePopups(replacedPopup.vanilla()) }}
-					handleReplace={(replacedPopup, replacementReward) => { updatePopups(replacedPopup.replace({ reward: { ...replacementReward } })) }}
-				/>
-			</Col>
+			<PopupCard
+				key={'popup' + popupIndex}
+				id={popupIndex}
+				popup={popup}
+				handleVanilla={() => { updatePopups(popup.vanilla()) }}
+				handleReplace={(replacementReward) => { updatePopups(popup.replace({ reward: { ...replacementReward } })) }}
+			/>
 		)
 	})
-
 	popupList.push(
-		<Col
-			key={'chestColAll'}
-			xs
-		>
-			<AllPopupCard
-				key={'chestAll'}
-				id={currentWorldPopups.length}
-				// currentFolderName={chestFolderNames[currentWorld]}
-				handleVanilla={() => updateAllPopups(currentWorldPopups.map(popup => { return popup.vanilla() }))}
-				handleReplace={(replacementReward) => updateAllPopups(currentWorldPopups.map(popup => { return popup.replace({ reward: { ...replacementReward } }) }))}
-			/>
-		</Col>
+		<PopupCard
+			key={'AllPopups'}
+			id={currentWorldPopups.length}
+			handleVanilla={() => updateAllPopups(currentWorldPopups.map(popup => { return popup.vanilla() }))}
+			handleReplace={(replacementReward) => updateAllPopups(currentWorldPopups.map(popup => { return popup.replace({ reward: { ...replacementReward } }) }))}
+		/>
 	)
-
-	for (let i = popupList.length; popupList.length % columnNum !== 0; i++)
-		popupList.push(<Col key={'popup' + currentWorld + '_' + i} xs />)
-
-	let popupRowList = []
-
-	for (let i = 0; i < popupList.length; i += columnNum) {
-		popupRowList.push(
-			<Row
-				key={'popup' + currentWorld + '_' + i}
-			>
-				{popupList.slice(i, i + columnNum)}
-			</Row>
-		)
-	}
 
 	return (
 		<Container fluid>
-			<Row style={{paddingTop: '1rem'}}>
-				<Col xs={3}>
+			<div className='pageHeader'>
+				<div>
+					<Form.Label>World Selector:</Form.Label>
+				</div>
+				<div>
 					<GenericSelect
 						class={'popup'}
 						selector={'World'}
@@ -93,17 +69,17 @@ function PopupPage(props) {
 						currentItem={currentWorld}
 						onChange={(e) => setCurrentWorld(parseInt(e.target.value))}
 					/>
-				</Col>
-				<Col xs={7} />
-				<Col xs={2}>
+				</div>
+				<div className='flexGrow1' />
+				<div>
 					{props.children}
-				</Col>
-			</Row>
+				</div>
+			</div>
 			<Container
 				fluid
-				className='cardGrid'
+				className='popupCardGrid'
 			>
-				{popupRowList}
+				{popupList}
 			</Container>
 		</Container>
 	)

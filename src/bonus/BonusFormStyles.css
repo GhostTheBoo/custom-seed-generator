@@ -1,0 +1,50 @@
+.grid-col-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: .5rem;
+}
+
+.grid-col-4 {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    row-gap: .25rem;
+}
+
+.bonusCharacterSelectorGroup {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.bonusFormCard {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background-color: #343A40;
+    padding: .25rem .75rem;
+    position: relative;
+    margin: 1rem 0;
+    border-radius: 1rem;
+    box-shadow: 0rem 0rem .5rem black;
+}
+
+.bonusReplaceButtonGroup {
+    display: flex;
+    gap: 1rem;
+    padding: 0rem 1rem 1rem;
+}
+.bonusFormCard label{
+    font-size: 1.5rem
+}
+
+@media(max-width: 90rem) {}
+
+@media(max-width: 65rem) {
+    .bonusCharacterSelectorGroup {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media(max-width: 48rem) {}
