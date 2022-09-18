@@ -1,5 +1,5 @@
 import { React, useState } from 'react'
-import { Row, Col, Container } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 
 import FormList from './FormList'
 import FormForm from './FormForm'
@@ -204,12 +204,7 @@ function FormPage(props) {
 					{altLevelDataList}
 				</div>
 				<div className='formForm flex-grow-1'>
-					<Row>
-						<Col xs={7} />
-						<Col xs={5} style={{ paddingBottom: '1rem' }}>
-							{props.children}
-						</Col>
-					</Row>
+					{props.children}
 					{DisplayedFormForm[currentDisplayedForm]}
 				</div>
 			</div>
