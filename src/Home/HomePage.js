@@ -17,8 +17,8 @@ function HomePage(props) {
 					<img
 						src={logo}
 						alt='Custom Seed Generator'
-						height='200px'
-						width='600px'
+						height='180px'
+						width='540px'
 						style={{ display: 'block', margin:'auto' }}
 					/>
 					{/* <h1 style={{ textAlign: 'center' }}>Custom Seed Generator</h1> */}
@@ -65,7 +65,7 @@ function HomePage(props) {
 						{props.children}
 					</Row>
 				</Col>
-				<hr />
+				{/* <hr /> */}
 				<Col xs={4} style={{ textAlign: 'center' }}>
 					<h2>Thank You!</h2>
 					<CreditsList />

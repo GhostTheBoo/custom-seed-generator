@@ -70,7 +70,7 @@ function PopupPage(props) {
 						onChange={(e) => setCurrentWorld(parseInt(e.target.value))}
 					/>
 				</div>
-				<div className='flexGrow1' />
+				<div className='flex-grow-1' />
 				<div>
 					{props.children}
 				</div>

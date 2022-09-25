@@ -262,7 +262,7 @@ export class BonusFight {
 		}
 		this.loadFromJSON = (bonusFightJSON) => {
 			let newSlots = this.slots.map((slot, slotID) => { return slot.loadFromJSON(bonusFightJSON.slots[slotID]) })
-			return new BonusFight(bonusFightJSON.fight, this.zipID, newSlots)
+			return new BonusFight(bonusFightJSON.fight, this.zipID, bonusFightJSON.fight, newSlots)
 		}
 		this.saveToPnach = (isCommented) => {
 			if (this.isReplaced()) {

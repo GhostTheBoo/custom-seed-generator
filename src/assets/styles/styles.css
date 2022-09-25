@@ -69,6 +69,15 @@ input {
 	border-color: #767676;
 }
 
+hr {
+	border: 0;
+	clear: both;
+	display: block;
+	width: 96%;
+	background-color: #2F3439;
+	height: 1px;
+}
+
 /* Modal Appearance */
 .modal-content {
 	color: #fff;

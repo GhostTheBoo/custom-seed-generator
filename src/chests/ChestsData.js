@@ -50,7 +50,9 @@ export class Chest {
 		this.saveToYml = (isCommented) => {
 			let ret = ''
 			if (this.isReplaced()) {
-				ret = this.zipID.toString() + ':\n  ItemId: ' + this.replacementReward.index.toString()
+				ret = this.zipID.toString() + ':\n  ItemId: '
+				let itemID = this.replacementReward.index
+				ret += itemID === 0x000 ? 0x176.toString() : itemID.toString()
 				// if (isCommented) ret += ' // ' + this.room + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward
 				ret += '\n'
 			}

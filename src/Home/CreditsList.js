@@ -52,6 +52,10 @@ function CreditsList(props) {
             contribution: 'BonafideBadass'
         },
         {
+            name: 'TheNja09',
+            contribution: 'BonafideBadass'
+        },
+        {
             name: 'Valaxor',
             contribution: 'CoreCreator'
         },
@@ -139,12 +143,3 @@ function CreditsList(props) {
 }
 
 export default CreditsList
-
-
-
-
-
-
-
-
-

@@ -1,5 +1,5 @@
 import { React, useState } from 'react'
-import { Row, Container, Col } from 'react-bootstrap'
+import { Row, Container, Col, Form } from 'react-bootstrap'
 
 import GenericSelect from '../Components/GenericSelect'
 import StartingStuffList from './StartingStuffList'
@@ -45,8 +45,9 @@ function StartingStatusPage(props) {
 
 	return (
 		<Container fluid>
-			<Row style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
-				<Col xs={3}>
+			<div className='pageHeader'>
+				<div><Form.Label>Character Selector:</Form.Label></div>
+				<div>
 					<GenericSelect
 						class={'startingStatus'}
 						selector={'Character'}
@@ -55,12 +56,10 @@ function StartingStatusPage(props) {
 						currentItem={currentCharacter}
 						onChange={(e) => handleCharacterChange(parseInt(e.target.value))}
 					/>
-				</Col>
-				<Col xs={7} />
-				<Col xs={2}>
-					{props.children}
-				</Col>
-			</Row>
+				</div>
+				<div className='flex-grow-1' />
+				<div>{props.children}</div>
+			</div>
 			<Row>
 				<Col xs={8}>
 					<StartingStuffList

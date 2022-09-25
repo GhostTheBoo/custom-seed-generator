@@ -168,6 +168,7 @@ export class ZipSeed {
     this.generateTrsrList = (chestData, popupData, isCommented) => {
       let ret = Chest.saveToYml(chestData, isCommented)
       ret += Popup.saveToYml(popupData, isCommented)
+      this.TrsrList = ret.length > 0 ? ret.slice(0, -1) : ret
       return ret.length > 0 ? ret.slice(0, -1) : ret
     }
   }

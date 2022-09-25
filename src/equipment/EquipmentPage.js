@@ -1,5 +1,5 @@
 import { React, useState, useEffect, useRef } from 'react'
-import { Row, Container, Col } from 'react-bootstrap'
+import { Container, Form } from 'react-bootstrap'
 
 import GenericSelect from '../Components/GenericSelect'
 import EquipmentCard from './EquipmentCard'
@@ -201,6 +201,7 @@ function EquipmentPage(props) {
 			isEditing={equipmentRowList.length === currentEquipment}
 			currentFolderName={equipmentFolderNames[currentEquipmentType]}
 			setCurrentEquipment={handleCurrentEquipmentChange}
+			isWide={currentDisplayedForm === 2}
 		/>
 	)
 
@@ -229,8 +230,9 @@ function EquipmentPage(props) {
 
 	return (
 		<Container fluid>
-			<Row style={{ paddingTop: '1rem' }}>
-				<Col xs={3}>
+			<div className='pageHeader'>
+				<div><Form.Label>Equipment Type Selector:</Form.Label></div>
+				<div>
 					<GenericSelect
 						class={'equipment'}
 						selector={'Equipment Type'}
@@ -239,27 +241,14 @@ function EquipmentPage(props) {
 						currentItem={currentEquipmentType}
 						onChange={(e) => handleCurrentEquipmentTypeChange(parseInt(e.target.value))}
 					/>
-				</Col>
-				<Col xs={7} />
-				<Col xs={2}>
-					{props.children}
-				</Col>
-			</Row>
-			<Row>
-				<Col
-					xs={currentDisplayedForm !== 2 ? 7 : 12}
-					ref={equipmentCardGrid}
-					style={{
-						overflowY: 'auto',
-						height: '800px'
-					}}
-				>
-					{equipmentRowList}
-				</Col>
-				<Col xs={currentDisplayedForm !== 2 ? 5 : 0}>
-					{displayedEquipmentForm[currentDisplayedForm]}
-				</Col>
-			</Row>
+				</div>
+				<div className='flex-grow-1' />
+				<div>{props.children}</div>
+			</div>
+			<div className='equipmentPageContent'>
+				<div className='equipmentCardList flex-grow-1' ref={equipmentCardGrid}>{equipmentRowList}</div>
+				{displayedEquipmentForm[currentDisplayedForm]}
+			</div>
 		</Container>
 	)
 }

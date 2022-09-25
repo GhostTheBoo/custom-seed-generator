@@ -14,9 +14,9 @@ function LevelForm(props) {
     function setCurrentMagic(newValue) { props.setCurrentLevelFieldData('currentMagic', newValue) }
     function setCurrentDefense(newValue) { props.setCurrentLevelFieldData('currentDefense', newValue) }
     function setCurrentEXP(newValue) {
-        let minExp = props.level.level === 1 ? 0 : props.previousLevel.replacementEXP
-        let modifiedNum = Math.max(minExp, Math.min(0xFFFFFFFF, Number(parseInt(newValue))))
-        props.setCurrentLevelFieldData('currentEXP', modifiedNum)
+        // let minExp = props.level.level === 1 ? 0 : props.previousLevel.replacementEXP
+        // let modifiedNum = Math.max(minExp, Math.min(0xFFFFFFFF, Number(parseInt(newValue))))
+        props.setCurrentLevelFieldData('currentEXP', newValue)
     }
     // function setCurrentEXPChange(newValue) {
     //     let prevEXP = props.previousLevel.replacementEXP

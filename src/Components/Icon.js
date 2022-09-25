@@ -8,7 +8,7 @@ function Icon(props) {
 	function handleError() {
 		setIconPath('empty')
 	}
-
+	let classNameSuffix = ' ' + (props.className !== undefined ? props.className : '')
 	let icon = './images/icons/' + iconPath + '.png'
 
 	let iconSize
@@ -30,16 +30,15 @@ function Icon(props) {
 	return (
 		<>
 			<img
-				className='icon'
+				className={'icon' + classNameSuffix}
 				src={icon}
 				alt={props.fileName.toLowerCase()}
 				onError={handleError}
-				height={iconSize}
 				width={iconSize}
 				style={{ verticalAlign: 'middle' }}
 			/>
 			<span
-				className='iconDescription'
+				className={'iconDescription' + classNameSuffix}
 				style={{ verticalAlign: 'middle' }}
 			>
 				{' ' + props.children}

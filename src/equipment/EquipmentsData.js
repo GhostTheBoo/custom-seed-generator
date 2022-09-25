@@ -261,7 +261,7 @@ export class Equipment {
 				ret += 'Magic: ' + this.magic + '\n  '
 				ret += 'Unknown: 0\n  '
 				ret += 'Unknown08: ' + (100 - this.physical) + '\n  '
-				ret += 'Unknown0d: ' + (100 - this.light) + '\n  '
+				ret += 'Unknown0d: ' + (100 - this.light) + '\n'
 			}
 			return ret
 		}

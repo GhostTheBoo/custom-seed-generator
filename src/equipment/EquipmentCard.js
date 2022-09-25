@@ -1,5 +1,5 @@
 import { React } from 'react'
-import { Container, Row, Button, Col } from 'react-bootstrap'
+import { Container, Button } from 'react-bootstrap'
 import Icon from '../Components/Icon'
 import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
 
@@ -10,100 +10,78 @@ function EquipmentCard(props) {
     let equipmentElementalResList = []
     let equipmentOtherResList = []
 
-    function createStatRow(stat, label, className) {
+    function createStatRow(stat, label, rowType) {
         let suffix = label.slice(-3) === 'Res' ? '%' : ''
+        let className = rowType ? 'equipmentStatRow' : 'equipmentEmptyRow'
         return (
-            <Row key={props.equipment.baseAddress + label.toLowerCase()} className={className + (!props.isWide ? ' equipmentFlexColumn' : '')}>
+            <div key={props.equipment.baseAddress + label.toLowerCase()} className={className + (!props.isWide ? ' equipmentSquishRow' : '')}>
                 <div>{label}</div>
-                <div style={{ flexGrow: '1' }} />
                 <div className='equipmentStatNumber'>{stat + suffix}</div>
-            </Row>
+            </div>
         )
     }
 
-    if (props.equipment.isAccessory() || props.equipment.ap !== 0)
-        equipmentStatList.push(createStatRow(props.equipment.ap, 'AP', 'equipmentStatRow'))
-    else
-        equipmentStatList.push(createStatRow(props.equipment.ap, 'AP', 'equipmentEmptyRow'))
+    equipmentStatList.push(createStatRow(props.equipment.ap, 'AP',
+        props.equipment.isAccessory() || props.equipment.ap !== 0
+    ))
 
-    if (props.equipment.isWeapon() || props.equipment.isAccessory() || props.equipment.isAllyWeapon() || props.equipment.strength !== 0)
-        equipmentStatList.push(createStatRow(props.equipment.strength, 'Strength', 'equipmentStatRow'))
-    else
-        equipmentStatList.push(createStatRow(props.equipment.strength, 'Strength', 'equipmentEmptyRow'))
+    equipmentStatList.push(createStatRow(props.equipment.strength, 'Strength',
+        props.equipment.isWeapon() || props.equipment.isAccessory() || props.equipment.isAllyWeapon() || props.equipment.strength !== 0
+    ))
 
-    if (props.equipment.isWeapon() || props.equipment.isAccessory() || props.equipment.isAllyWeapon() || props.equipment.magic !== 0)
-        equipmentStatList.push(createStatRow(props.equipment.magic, 'Magic', 'equipmentStatRow'))
-    else
-        equipmentStatList.push(createStatRow(props.equipment.magic, 'Magic', 'equipmentEmptyRow'))
+    equipmentStatList.push(createStatRow(props.equipment.magic, 'Magic',
+        props.equipment.isWeapon() || props.equipment.isAccessory() || props.equipment.isAllyWeapon() || props.equipment.magic !== 0
+    ))
 
-    if (props.equipment.isArmor() || props.equipment.defense !== 0)
-        equipmentStatList.push(createStatRow(props.equipment.defense, 'Defense', 'equipmentStatRow'))
-    else
-        equipmentStatList.push(createStatRow(props.equipment.defense, 'Defense', 'equipmentEmptyRow'))
+    equipmentStatList.push(createStatRow(props.equipment.defense, 'Defense',
+        props.equipment.isArmor() || props.equipment.defense !== 0
+    ))
 
 
-
-    if (props.equipment.isArmor() || props.equipment.fire !== 0)
-        equipmentElementalResList.push(createStatRow(props.equipment.fire, 'Fire Res', 'equipmentStatRow'))
-    else
-        equipmentElementalResList.push(createStatRow(props.equipment.fire, 'Fire Res', 'equipmentEmptyRow'))
-
-    if (props.equipment.isArmor() || props.equipment.blizzard !== 0)
-        equipmentElementalResList.push(createStatRow(props.equipment.blizzard, 'Blizzard Res', 'equipmentStatRow'))
-    else
-        equipmentElementalResList.push(createStatRow(props.equipment.blizzard, 'Blizzard Res', 'equipmentEmptyRow'))
-
-    if (props.equipment.isArmor() || props.equipment.thunder !== 0)
-        equipmentElementalResList.push(createStatRow(props.equipment.thunder, 'Thunder Res', 'equipmentStatRow'))
-    else
-        equipmentElementalResList.push(createStatRow(props.equipment.thunder, 'Thunder Res', 'equipmentEmptyRow'))
-
-    if (props.equipment.isArmor() || props.equipment.dark !== 0)
-        equipmentElementalResList.push(createStatRow(props.equipment.dark, 'Dark Res', 'equipmentStatRow'))
-    else
-        equipmentElementalResList.push(createStatRow(props.equipment.dark, 'Dark Res', 'equipmentEmptyRow'))
+    equipmentElementalResList.push(createStatRow(props.equipment.fire, 'Fire',
+        props.equipment.isArmor() || props.equipment.fire !== 0
+    ))
+    equipmentElementalResList.push(createStatRow(props.equipment.blizzard, 'Blizzard',
+        props.equipment.isArmor() || props.equipment.blizzard !== 0
+    ))
+    equipmentElementalResList.push(createStatRow(props.equipment.thunder, 'Thunder',
+        props.equipment.isArmor() || props.equipment.thunder !== 0
+    ))
+    equipmentElementalResList.push(createStatRow(props.equipment.dark, 'Dark',
+        props.equipment.isArmor() || props.equipment.dark !== 0
+    ))
 
 
+    equipmentOtherResList.push(createStatRow(props.equipment.physical, 'Physical',
+        props.equipment.physical !== 0)
+    )
+    equipmentOtherResList.push(createStatRow(props.equipment.light, 'Light',
+        props.equipment.light !== 0
+    ))
+    equipmentOtherResList.push(createStatRow(props.equipment.universal, 'Universal',
+        props.equipment.universal !== 0
+    ))
 
-    if (props.equipment.physical !== 0)
-        equipmentOtherResList.push(createStatRow(props.equipment.physical, 'Physical Res', 'equipmentStatRow'))
-    else
-        equipmentOtherResList.push(createStatRow(props.equipment.physical, 'Physical Res', 'equipmentEmptyRow'))
-
-    if (props.equipment.light !== 0)
-        equipmentOtherResList.push(createStatRow(props.equipment.light, 'Light Res', 'equipmentStatRow'))
-    else
-        equipmentOtherResList.push(createStatRow(props.equipment.light, 'Light Res', 'equipmentEmptyRow'))
-
-    if (props.equipment.universal !== 0)
-        equipmentOtherResList.push(createStatRow(props.equipment.universal, 'Universal Res', 'equipmentStatRow'))
-    else
-        equipmentOtherResList.push(createStatRow(props.equipment.universal, 'Universal Res', 'equipmentEmptyRow'))
-
-    let rewardClassName = 'equipmentEmptyRow'
-    if (props.equipment.isWeapon() || props.equipment.replacementAbility.index !== 0)
-        rewardClassName = 'equipmentStatRow'
+    let rewardClassName = props.equipment.isWeapon() || props.equipment.replacementAbility.index !== 0
+        ? 'equipmentStatRow'
+        : 'equipmentEmptyRow'
 
     equipmentOtherResList.push(
-        <Row
+        <div
             key={props.equipment.baseAddress + ''}
-            className={rewardClassName + ' equipmentReward'}
-            style={{
-                fontSize: (!props.isWide ? '1.25rem' : ''),
-                flexDirection: (!props.isWide ? 'column' : 'row')
-            }}
+            className={rewardClassName + ' equipmentReward' + (!props.isWide ? ' equipmentSquishRow' : '')}
         >
             <div>Ability</div>
-            <div style={{ flexGrow: '1' }} />
             <div>
                 <Icon
                     fileName={props.equipment.replacementAbility.iconType}
                     type={'form'}
+                    className={'equipmentAbilityIcon'}
                 >
                     {props.equipment.replacementAbility.reward}
                 </Icon>
             </div>
-        </Row>
+        </div>
     )
 
     let overlayPopover = <EditStatusPopover
@@ -114,34 +92,29 @@ function EquipmentCard(props) {
 
     return (
         <Container fluid className='equipmentCard'>
-            <Row>
-                <Col xs='auto' className='equipmentColumn equipmentImageColumn'>
-                    {props.equipment.isReplaced() ? overlayPopover : <></>}
-                    <Row className='equipmentImage'>
-                        <img
-                            src={equipmentImage}
-                            alt={props.equipment.name + ' image'}
-                            height='250px'
-                            width='250px'
-                        />
-                    </Row>
-                    <Row className='equipmentName'>{props.equipment.name}</Row>
-                    <Row className='equipmentEditButton'>
-                        <Button
-                            variant='primary'
-                            block
-                            id={props.id}
-                            disabled={props.isEditing}
-                            onClick={() => props.setCurrentEquipment(props.id)}
-                        >
-                            {props.isEditing ? 'EDITING...' : 'EDIT'}
-                        </Button>
-                    </Row>
-                </Col>
-                <Col className='equipmentColumn'>{equipmentStatList}</Col>
-                <Col className='equipmentColumn'>{equipmentElementalResList}</Col>
-                <Col xs={4} className='equipmentColumn'>{equipmentOtherResList}</Col>
-            </Row>
+            {props.equipment.isReplaced() ? overlayPopover : <></>}
+            <div className={'equipmentColumn equipmentImageColumn' + (!props.isWide ? ' equipmentSquishColumn' : '')}>
+                <img
+                    className={'equipmentImage' + (!props.isWide ? ' equipmentSquishImage' : '')}
+                    src={equipmentImage}
+                    alt={props.equipment.name + ' image'}
+                />
+                <div className={'equipmentName' + (!props.isWide ? ' equipmentSquishName' : '')}>{props.equipment.name}</div>
+                <div className='equipmentEditButton'>
+                    <Button
+                        variant='primary'
+                        block
+                        id={props.id}
+                        disabled={props.isEditing}
+                        onClick={() => props.setCurrentEquipment(props.id)}
+                    >
+                        {props.isEditing ? 'EDITING...' : 'EDIT'}
+                    </Button>
+                </div>
+            </div>
+            <div className='equipmentColumn equipmentStatColumn'>{equipmentStatList}</div>
+            <div className='equipmentColumn equipmentResColumn'>{equipmentElementalResList}</div>
+            <div className='equipmentColumn equipmentOtherColumn'>{equipmentOtherResList}</div>
         </Container>
     )
 }
