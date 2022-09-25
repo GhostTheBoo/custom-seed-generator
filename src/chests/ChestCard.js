@@ -68,6 +68,7 @@ function ChestCard(props) {
 			</div>
 			{chestRoom}
 			{chestReward}
+			<div className='flex-grow-1'/>
 			{chestRewardSelector}
 			<Button
 				variant='secondary'

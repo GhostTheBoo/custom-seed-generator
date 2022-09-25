@@ -3,7 +3,7 @@ import { Container, Form } from 'react-bootstrap'
 
 import GenericSelect from '../Components/GenericSelect'
 import PopupCard from './PopupCard'
-// import AllPopupCard from './AllPopupCard'
+
 import './PopupStyles.css'
 
 function PopupPage(props) {

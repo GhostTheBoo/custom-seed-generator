@@ -56,6 +56,7 @@ function PopupCard(props) {
 			</div>
 			{popupCheck}
 			{popupReward}
+			<div className='flex-grow-1'/>
 			{popupRewardSelector}
 			<Button
 				variant='secondary'
