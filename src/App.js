@@ -243,6 +243,7 @@ function FunctionApp() {
 		zip.file('FmlvList.yml', zipSeed.generateFmlvList(allForms, true)) // Form Level Rewards
 		zip.file('BonsList.yml', zipSeed.generateBonsList(allBonuses, true)) // bonus level rewards
 		zip.file('ItemList.yml', zipSeed.generateItemList(allEquipments, true)) // equipment stats
+		zip.file('CmdList.yml', zipSeed.generateCmdList(allMagic, true)) // starting items
 		zip.file('PlrpList.yml', zipSeed.generatePlrpList(allStartingStatus, true)) // starting items
 		// zip.file('HintFile.hints', HintFile) // encoded hints
 		zip.file('sys.yml', zipSeed.generateSys()) // Menu text edits
