@@ -1,10 +1,12 @@
 import { React, useState, useRef, useEffect } from 'react'
-import { Row, Container, Col, Pagination } from 'react-bootstrap'
+import { Container, Pagination, Form } from 'react-bootstrap'
 
 import LevelCard from './LevelCard'
-import AllLevelCard from './AllLevelCard'
 import LevelForm from './LevelForm'
 import AllLevelForm from './AllLevelForm'
+
+import './LevelStyles.css'
+import './LevelFormStyles.css'
 
 function LevelPage(props) {
 	const [currentLevel, setCurrentLevel] = useState(-1)
@@ -229,26 +231,17 @@ function LevelPage(props) {
 	}
 
 	let prevLevel = props.levelData[0]
-	let levelDataList = [
-		<LevelCard
-			key={prevLevel.level}
-			id={prevLevel.level}
-			level={prevLevel}
-			prevLevelExp={0}
-			levelChangeData={prevLevel.changeFromPreviousLevel(prevLevel)}
-			isEditing={currentLevel === prevLevel.level}
-			setCurrentLevel={handleCurrentLevelChange}
-		/>
-	]
-	for (let i = 1; i < props.levelData.length; i++) {
+	let levelDataList = []
+	for (let i = 0; i < props.levelData.length; i++) {
 		let ret = (
 			<LevelCard
 				key={props.levelData[i].level}
 				id={props.levelData[i].level}
 				level={props.levelData[i]}
-				prevLevelExp={prevLevel.replacementEXP}
 				levelChangeData={props.levelData[i].changeFromPreviousLevel(prevLevel)}
 				isEditing={currentLevel === props.levelData[i].level}
+				isAllLevel={false}
+				isSmall={currentDisplayedForm !== 2}
 				setCurrentLevel={handleCurrentLevelChange}
 			/>
 		)
@@ -256,30 +249,17 @@ function LevelPage(props) {
 		levelDataList.push(ret)
 	}
 	levelDataList.push(
-		<AllLevelCard
+		<LevelCard
 			key={100}
 			id={100}
+			level={prevLevel}
+			levelChangeData={props.levelData[98].changeFromPreviousLevel(prevLevel)}
 			isEditing={currentLevel === 100}
+			isAllLevel={true}
+			isSmall={currentDisplayedForm !== 2}
 			setCurrentLevel={handleCurrentLevelChange}
 		/>
 	)
-
-	let levelRowList = []
-	for (let i = 0; i < levelDataList.length; i += 10) {
-		let tempArr = []
-		for (let j = 0; j < 10; j++)
-			tempArr.push(
-				<Row
-					key={'levelRow_' + (i + j)}
-					id={'levelRow_' + (i + j)}
-				>
-					<Col>
-						{levelDataList[i + j]}
-					</Col>
-				</Row>
-			)
-		levelRowList.push(tempArr)
-	}
 
 	let displayedLevelForm = [
 		<LevelForm
@@ -314,42 +294,27 @@ function LevelPage(props) {
 				active={i === currentLevelRange}
 				onClick={() => setCurrentLevelRange(i)}
 			>
-				{i} - {i !== 91 ? i + 9 : 'All'}
+				{i}-{i !== 91 ? i + 9 : 'All'}
 			</Pagination.Item>
 		)
 	}
 
 	return (
 		<Container fluid>
-			<Row>
-				<Col xs={currentDisplayedForm !== 2 ? 8 : 12}>
-					<Row>
-						<Col xs={2} />
-						<Col xs={8}>
-							<Pagination style={{ paddingTop: '1rem' }}>{pageNumbers}</Pagination>
-						</Col>
-						<Col xs={2} style={{ paddingTop: '1rem' }}>
-							{props.children}
-						</Col>
-					</Row>
-					<Row>
-						<Container
-							fluid
-							className='cardGrid'
-							ref={levelCardList}
-							style={{
-								overflowY: 'auto',
-								height: '800px'
-							}}
-						>
-							{levelRowList[(currentLevelRange - 1) / 10]}
-						</Container>
-					</Row>
-				</Col>
-				<Col xs={currentDisplayedForm !== 2 ? 4 : 0}>
-					{displayedLevelForm[currentDisplayedForm]}
-				</Col>
-			</Row>
+			<div className='pageHeader'>
+				<div className='levelRangeSelectorLabel'><Form.Label>Level Range Selector:</Form.Label></div>
+				<Pagination>
+					{pageNumbers}
+				</Pagination>
+				<div className='flex-grow-1' />
+				<div className='helpButton'>{props.children}</div>
+			</div>
+			<div className='levelPageContent'>
+				<div className='levelCardList flex-grow-1' ref={levelCardList}>
+					{levelDataList.slice(currentLevelRange - 1, currentLevelRange + 9)}
+				</div>
+				{displayedLevelForm[currentDisplayedForm]}
+			</div>
 		</Container>
 	)
 }

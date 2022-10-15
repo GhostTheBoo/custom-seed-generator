@@ -356,9 +356,9 @@ export const equipmentsData = [{
 		new Equipment('Alpha Weapon', new Reward('MP Hastera', 0x1A5, 'Ability'), 0, 4, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF206, 83),
 		new Equipment('Omega Weapon', new Reward('Air Combo Boost', 0x187, 'Ability'), 0, 3, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF216, 84),
 		new Equipment('Pureblood', new Reward('Damage Drive', 0x18C, 'Ability'), 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF226, 85),
-		// new Equipment('Struggle Sword', new Reward('MP Hastera', 0x1A5, 'Ability'), 0, 4, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF206, 122),
-		// new Equipment('Struggle Hammer', new Reward('Air Combo Boost', 0x187, 'Ability'), 0, 3, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF216, 145),
-		// new Equipment('Struggle Wand', new Reward('Damage Drive', 0x18C, 'Ability'), 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF226, 144),
+		new Equipment('Struggle Sword', new Reward('Draw', 0x195, 'Ability'), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF416, 122),
+		new Equipment('Struggle Wand', new Reward('Draw', 0x195, 'Ability'), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF42E, 144),
+		new Equipment('Struggle Hammer', new Reward('Draw', 0x195, 'Ability'), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF446, 145),
 	]
 }, {
 	equipmentType: 'Donald Staff',

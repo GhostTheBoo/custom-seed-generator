@@ -1,0 +1,118 @@
+.levelCard {
+  font-family: 'KHMenu';
+  font-Size: 1rem;
+  background-color: #343A40;
+  display: grid;
+  gap: .75rem;
+  grid-template-columns: 7fr 14fr 10fr 15fr;
+  padding: 2rem;
+  margin: 1rem 0;
+  border-radius: 1rem;
+  box-shadow: .25rem .25rem .5rem black;
+  position: relative;
+}
+
+.levelCardList {
+  overflow-y: auto;
+  height: 800px;
+  padding: .5rem;
+}
+
+.levelPageContent {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+
+.smallLevelCard .levelCardStylizedNumber {
+  display: none;
+}
+
+.smallLevelCard .levelBigStatRow,
+.smallLevelCard .levelStatRow {
+  grid-template-columns: 2fr 1fr;
+}
+
+.smallLevelCard {
+  grid-template-columns: 7fr 14fr 9fr 15fr;
+}
+
+.smallLevelCard .levelNumber {
+  font-size: 1.25rem;
+}
+
+.levelCardNumber,
+.levelCardRewards,
+.levelCardStats,
+.levelCardBigStats {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+}
+
+.levelCardNumber {
+  justify-content: space-between;
+}
+
+.levelNumber {
+  margin: auto;
+  font-size: 2rem;
+}
+
+.levelRewardRow {
+  display: grid;
+  grid-template-columns: 1.25fr 4fr;
+}
+
+.levelStatRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+}
+
+.levelBigStatRow {
+  display: grid;
+  grid-template-columns: 3fr 2fr 2fr;
+}
+
+@media(max-width: 90rem) {}
+
+@media(max-width: 65rem) {
+
+  .levelRangeSelectorLabel,
+  .pageHeader>.flex-grow-1 {
+    display: none;
+  }
+
+  .pageHeader>.pagination {
+    flex-grow: 1;
+  }
+
+  .levelCard {
+    font-Size: .75rem;
+  }
+
+  .levelNumber {
+    font-size: 1.25rem;
+  }
+
+  .levelStatRow,
+  .levelBigStatRow {
+    grid-template-columns: 2fr 1fr 0fr;
+  }
+
+  .levelCard .levelCardStylizedNumber {
+    display: none;
+  }
+
+
+  .smallLevelCard {
+    grid-template-columns: 40% 60%;
+  }
+}
+
+@media(max-width: 48rem) {
+  .pageHeader {
+    align-items: start;
+    flex-direction: column-reverse;
+  }
+}

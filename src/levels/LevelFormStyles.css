@@ -1,0 +1,225 @@
+.levelFormCard {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    background-color: #343A40;
+    padding: .75rem 1rem;
+    position: relative;
+    margin: 0;
+    border-radius: 1rem;
+    box-shadow: 0rem 0rem .5rem black;
+    width: 35%;
+}
+
+.levelFormReward {
+    display: grid;
+    grid-template-columns: 20% 40% 40%;
+    row-gap: 1rem;
+}
+
+.levelFormReward.allLevelFormReward {
+    grid-template-columns: 10% 15% 35% 40%;
+}
+
+.levelReplaceButtonGroup {
+    display: flex;
+    gap: 1rem;
+    padding: 0rem 1rem 1rem;
+}
+
+.levelLabel,
+.levelInput span {
+    font-size: 1.5rem;
+}
+
+.levelInput,
+.levelEXPInput {
+    display: grid;
+    grid-template-columns: 40% 25% 35%;
+    gap: .25rem;
+}
+
+.levelLabel {
+    text-align: start;
+}
+
+.levelCriticalAPLabel {
+    padding-left: 1rem;
+}
+
+.allLevelInput {
+    display: grid;
+    grid-template-columns: 10% 15% 35% 40%;
+}
+
+.allLevelInput>.levelLabel {
+    grid-column: 2 / span 2;
+}
+
+.allLevelInput>.levelCriticalAPLabel {
+    grid-column: 4 / span 1;
+}
+
+.allLevelFormRewardRow {
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+}
+
+.levelAbilityLabel {
+    text-align: center;
+}
+
+.levelEXPInput {
+    grid-template-columns: 50% 10% 40%;
+}
+
+.levelEXPInput .levelInputField {
+    grid-column: 2 / 4;
+}
+
+.levelEXPInput .levelCardStylizedNumber {
+    grid-column: 2 / 4;
+}
+
+.levelEXPInput .levelLabel {
+    grid-row: 1 / 3;
+}
+
+.levelEXPInput.allLevelEXPInput {
+    grid-template-columns: 10% 15% 35% 40%;
+}
+
+.allLevelEXPInput>.levelLabel {
+    grid-column: 2 / 4;
+}
+
+.allLevelEXPInput>.levelInputField {
+    grid-column: 4 / 5;
+}
+
+.allLevelSkips {
+    display: grid;
+    grid-template-columns: 40% 10% 40% 10%;
+}
+
+.allLevelSkips>.levelLabel:nth-child(3) {
+    padding-left: 1rem;
+}
+
+@media(max-width: 90rem) {
+
+    .allLevelInput .levelLabel,
+    .allLevelEXPInput .levelLabel,
+    .allLevelSkips .levelLabel,
+    .allLevelFormReward .levelLabel {
+        font-size: 1.25rem;
+        text-align: start;
+    }
+
+    .allLevelInput .three-digit-input,
+    .allLevelEXPInput .three-digit-input,
+    .allLevelSkips .three-digit-input {
+        font-size: 1rem;
+    }
+
+    .allLevelSkips {
+        padding: 0;
+        grid-template-columns: 60% 40%;
+    }
+    .allLevelSkips>.levelLabel:nth-child(3) {
+        padding-left: 0;
+    }
+
+    .levelFormReward.allLevelFormReward {
+        grid-template-columns: 25% 35% 40%;
+    }
+
+    .allLevelFormReward>button {
+        grid-column: 1/ 4;
+    }
+}
+
+@media(max-width: 65rem) {
+    .levelFormName {
+        font-size: 2rem;
+    }
+
+    .levelLabel {
+        font-size: 1rem
+    }
+
+
+    .allLevelInput .levelLabel,
+    .allLevelEXPInput .levelLabel,
+    .allLevelSkips .levelLabel,
+    .allLevelFormReward .levelLabel {
+        font-size: 1rem;
+    }
+
+    .levelLabel,
+    .levelInput span,
+    .allLevelInput>.levelLabel,
+    .allLevelEXPInput>.levelLabel,
+    .allLevelSkips>.levelLabel {
+        font-size: 1rem;
+    }
+
+    .levelAbilityLabel {
+        margin-top: 0.6rem;
+    }
+
+    .levelInputField {
+        padding: 0 .25rem;
+        margin: 0 .5rem;
+    }
+
+    .levelFormReward {
+        grid-template-columns: 30% 70%;
+    }
+
+    .levelFormReward button {
+        grid-column: 1/ 3;
+    }
+
+    .allLevelFormReward>button {
+        grid-column: 1/ 4;
+    }
+
+    .allLevelInput {
+        grid-template-columns: 15% 45% 40%;
+    }
+
+    .levelEXPInput.allLevelEXPInput {
+        grid-template-columns: 15% 45% 40%;
+    }
+
+    .allLevelEXPInput>.levelLabel,
+    .allLevelInput>.levelLabel {
+        grid-column: 2 / 3;
+    }
+
+    .allLevelEXPInput>.levelInputField,
+    .allLevelInput>.levelCriticalAPLabel {
+        grid-column: 3 / 4;
+    }
+
+    .allLevelSkips {
+        padding: 0;
+    }
+
+    .allLevelSkips>.levelLabel:nth-child(3) {
+        padding: 0;
+    }
+}
+
+@media(max-width: 48rem) {
+    .levelInput {
+        grid-template-columns: 45% 30% 25%;
+    }
+
+    .allLevelInput {
+        grid-template-columns: 15% 45% 40%;
+    }
+}
