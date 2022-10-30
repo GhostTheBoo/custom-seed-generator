@@ -139,6 +139,17 @@ hr {
 	input {
 		font-size: 1rem;
 	}
+
+	.nav-link>.iconDescription {
+		display: none;
+	}
+	.nav-link.active>.iconDescription{
+		display: inline;
+	}
 }
 
-/* @media(max-width: 48rem) {} */
+@media(max-width: 48rem) {
+	.nav-link>.iconDescription {
+		display: none;
+	}
+}

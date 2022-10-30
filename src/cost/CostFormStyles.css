@@ -1,0 +1,51 @@
+.costFormBody {
+    display: grid;
+    font-family: KHGummi;
+    grid-template-columns: 3fr 6fr;
+    gap: 2rem;
+}
+
+.costFormImage {
+    grid-row: 1 / 4;
+}
+
+.abilityCostEditRow {
+    display: grid;
+    grid-template-columns: 3fr 1fr 2fr;
+    grid-column-start: 2;
+}
+
+.costLabel,
+.costVanillaLabel{
+    font-size: 2rem;
+}
+.costInputField {
+    margin-bottom: 2rem;
+}
+@media(max-width: 90rem) {
+    .costCardImage {
+        border-radius: .75rem;
+        width: 7rem;
+    }
+}
+
+@media(max-width: 65rem) {
+    .costCardGrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .costAbilityName {
+        font-size: 1rem;
+    }
+
+    .costCardReward {
+        font-size: 1.25rem;
+    }
+}
+
+
+@media(max-width: 48rem) {
+    .costCardGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

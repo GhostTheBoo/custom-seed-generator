@@ -47,6 +47,17 @@ export class Equipment {
 		this.isReplaced = () => {
 			return this.isAbilityReplaced() || this.isStatsReplaced() || this.isElementalResistanceChanged() || this.isOtherResistanceChanged()
 		}
+		this.shouldShowStat = (statName, stat) => {
+			if (stat !== 0) return true
+			else if (statName === 'AP')
+				return this.isAccessory()
+			else if (statName === 'Strength' || statName === 'Magic')
+				return this.isWeapon() || this.isAllyWeapon() || this.isAccessory()
+			else if (statName === 'Defense' || statName === 'Fire' || statName === 'Blizzard' || statName === 'Thunder' || statName === 'Dark')
+				return this.isArmor()
+			else
+				return false
+		}
 		this.isWeapon = () => {
 			return this.equipmentType === 0 || this.equipmentType === 1 || this.equipmentType === 2
 		}

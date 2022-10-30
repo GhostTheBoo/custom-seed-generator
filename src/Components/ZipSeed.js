@@ -4,7 +4,7 @@ import { BonusFight } from '../bonus/BonusData'
 import { FormLevel } from '../forms/FormsData'
 import { Equipment } from '../equipment/EquipmentsData'
 import { Level } from '../levels/LevelData'
-import { MagicAbility } from '../magic/MagicData'
+import { AbilityCost } from '../cost/CostsData'
 import { StartingStatus } from '../starting/StartingStatusData'
 
 export class ZipSeed {
@@ -87,8 +87,8 @@ export class ZipSeed {
       this.sys = ret.length > 0 ? ret.slice(0, -1) : ret
       return this.sys
     }
-    this.generateCmdList = (magicData, isCommented) => {
-      let ret = MagicAbility.saveToYml(magicData, isCommented)
+    this.generateCmdList = (costData, isCommented) => {
+      let ret = AbilityCost.saveToYml(costData, isCommented)
       this.CmdList = ret.length > 0 ? ret.slice(0, -1) : ret
       return ret.length > 0 ? ret.slice(0, -1) : ret
     }

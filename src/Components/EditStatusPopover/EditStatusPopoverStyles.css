@@ -20,7 +20,7 @@
 }
 
 .editStatusPopover.equipment,
-.editStatusPopover.magic,
+.editStatusPopover.cost,
 .editStatusPopover.bonus {
     font-size: 1.5rem;
 }
@@ -39,7 +39,7 @@
     }
 
     .editStatusPopover.equipment,
-    .editStatusPopover.magic,
+    .editStatusPopover.cost,
     .editStatusPopover.bonus {
         font-size: 1.25rem;
     }
@@ -58,7 +58,7 @@
     }
 
     .editStatusPopover.equipment,
-    .editStatusPopover.magic,
+    .editStatusPopover.cost,
     .editStatusPopover.bonus {
         font-size: 1.25rem;
     }

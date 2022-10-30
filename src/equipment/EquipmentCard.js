@@ -10,9 +10,9 @@ function EquipmentCard(props) {
     let equipmentElementalResList = []
     let equipmentOtherResList = []
 
-    function createStatRow(stat, label, rowType) {
+    function createStatRow(label, stat) {
         let suffix = label.slice(-3) === 'Res' ? '%' : ''
-        let className = rowType ? 'equipmentStatRow' : 'equipmentEmptyRow'
+        let className = props.equipment.shouldShowStat(label, stat) ? 'equipmentStatRow' : 'equipmentEmptyRow'
         return (
             <div key={props.equipment.baseAddress + label.toLowerCase()} className={className + (!props.isWide ? ' equipmentSquishRow' : '')}>
                 <div>{label}</div>
@@ -21,46 +21,19 @@ function EquipmentCard(props) {
         )
     }
 
-    equipmentStatList.push(createStatRow(props.equipment.ap, 'AP',
-        props.equipment.isAccessory() || props.equipment.ap !== 0
-    ))
+    equipmentStatList.push(createStatRow('AP', props.equipment.ap))
+    equipmentStatList.push(createStatRow('Strength', props.equipment.strength))
+    equipmentStatList.push(createStatRow('Magic', props.equipment.magic))
+    equipmentStatList.push(createStatRow('Defense', props.equipment.defense))
 
-    equipmentStatList.push(createStatRow(props.equipment.strength, 'Strength',
-        props.equipment.isWeapon() || props.equipment.isAccessory() || props.equipment.isAllyWeapon() || props.equipment.strength !== 0
-    ))
+    equipmentElementalResList.push(createStatRow('Fire', props.equipment.fire))
+    equipmentElementalResList.push(createStatRow('Blizzard', props.equipment.blizzard))
+    equipmentElementalResList.push(createStatRow('Thunder', props.equipment.thunder))
+    equipmentElementalResList.push(createStatRow('Dark', props.equipment.dark))
 
-    equipmentStatList.push(createStatRow(props.equipment.magic, 'Magic',
-        props.equipment.isWeapon() || props.equipment.isAccessory() || props.equipment.isAllyWeapon() || props.equipment.magic !== 0
-    ))
-
-    equipmentStatList.push(createStatRow(props.equipment.defense, 'Defense',
-        props.equipment.isArmor() || props.equipment.defense !== 0
-    ))
-
-
-    equipmentElementalResList.push(createStatRow(props.equipment.fire, 'Fire',
-        props.equipment.isArmor() || props.equipment.fire !== 0
-    ))
-    equipmentElementalResList.push(createStatRow(props.equipment.blizzard, 'Blizzard',
-        props.equipment.isArmor() || props.equipment.blizzard !== 0
-    ))
-    equipmentElementalResList.push(createStatRow(props.equipment.thunder, 'Thunder',
-        props.equipment.isArmor() || props.equipment.thunder !== 0
-    ))
-    equipmentElementalResList.push(createStatRow(props.equipment.dark, 'Dark',
-        props.equipment.isArmor() || props.equipment.dark !== 0
-    ))
-
-
-    equipmentOtherResList.push(createStatRow(props.equipment.physical, 'Physical',
-        props.equipment.physical !== 0)
-    )
-    equipmentOtherResList.push(createStatRow(props.equipment.light, 'Light',
-        props.equipment.light !== 0
-    ))
-    equipmentOtherResList.push(createStatRow(props.equipment.universal, 'Universal',
-        props.equipment.universal !== 0
-    ))
+    equipmentOtherResList.push(createStatRow('Physical', props.equipment.physical))
+    equipmentOtherResList.push(createStatRow('Light', props.equipment.light))
+    equipmentOtherResList.push(createStatRow('Universal', props.equipment.universal))
 
     let rewardClassName = props.equipment.isWeapon() || props.equipment.replacementAbility.index !== 0
         ? 'equipmentStatRow'

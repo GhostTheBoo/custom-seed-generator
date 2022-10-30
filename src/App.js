@@ -25,8 +25,8 @@ import { Equipment, equipmentsData } from './equipment/EquipmentsData'
 import EquipmentPage from './equipment/EquipmentPage'
 import { Level, levelsData } from './levels/LevelData'
 import LevelPage from './levels/LevelPage'
-import { MagicAbility, magicsData } from './magic/MagicData'
-import MagicPage from './magic/MagicPage'
+import { AbilityCost, costsData } from './cost/CostsData'
+import CostPage from './cost/CostPage'
 import { StartingStatus, startingStatusData } from './starting/StartingStatusData'
 import StartingStatusPage from './starting/StartingStatusPage'
 import { Cheat, pnachCheatsData, luaCheatsData } from './cheats/CheatsData'
@@ -42,7 +42,7 @@ function FunctionApp() {
 	const [allForms, setAllForms] = useState(formsData)
 	const [allEquipments, setAllEquipments] = useState(equipmentsData)
 	const [allLevels, setAllLevels] = useState(levelsData)
-	const [allMagic, setAllMagic] = useState(magicsData)
+	const [allCosts, setAllCosts] = useState(costsData)
 	const [allStartingStatus, setAllStartingStatus] = useState(startingStatusData)
 	const [allPnachCheats, setAllPnachCheats] = useState(pnachCheatsData)
 	const [allLuaCheats, setAllLuaCheats] = useState(luaCheatsData)
@@ -156,7 +156,7 @@ function FunctionApp() {
 	}
 	function handleSaveAsPnach(fileName) {
 		let trackerPnachCodes = isPnachCommented ? handleTracker(true) : []
-
+		
 		let pnachCodes = [].concat(
 			trackerPnachCodes,
 			Chest.saveToPnach(allChests, isPnachCommented),
@@ -165,7 +165,7 @@ function FunctionApp() {
 			FormLevel.saveToPnach(allForms, isPnachCommented),
 			Equipment.saveToPnach(allEquipments, isPnachCommented),
 			Level.saveToPnach(allLevels, isPnachCommented),
-			MagicAbility.saveToPnach(allMagic, isPnachCommented),
+			AbilityCost.saveToPnach(allCosts, isPnachCommented),
 			StartingStatus.saveToPnach(allStartingStatus, isPnachCommented),
 			Cheat.saveToPnach(allPnachCheats, isPnachCommented)
 		)
@@ -190,7 +190,7 @@ function FunctionApp() {
 			'\tDriveForms()\n',
 			'\tEquipment()\n',
 			'\tLevelRewards()\n',
-			'\tMagicCosts()\n',
+			'\tAbilityCosts()\n',
 			'\tStartingStatus()\n',
 			'\tCheats()\n',
 			'end\n\n',
@@ -227,7 +227,7 @@ function FunctionApp() {
 			FormLevel.saveToLua(allForms, isLuaCommented),
 			Equipment.saveToLua(allEquipments, isLuaCommented),
 			Level.saveToLua(allLevels, isLuaCommented),
-			MagicAbility.saveToLua(allMagic, isLuaCommented),
+			AbilityCost.saveToLua(allCosts, isLuaCommented),
 			StartingStatus.saveToLua(allStartingStatus, isLuaCommented),
 			Cheat.saveToLua(allLuaCheats, isPnachCommented)
 		)
@@ -243,7 +243,7 @@ function FunctionApp() {
 		zip.file('FmlvList.yml', zipSeed.generateFmlvList(allForms, true)) // Form Level Rewards
 		zip.file('BonsList.yml', zipSeed.generateBonsList(allBonuses, true)) // bonus level rewards
 		zip.file('ItemList.yml', zipSeed.generateItemList(allEquipments, true)) // equipment stats
-		zip.file('CmdList.yml', zipSeed.generateCmdList(allMagic, true)) // starting items
+		zip.file('CmdList.yml', zipSeed.generateCmdList(allCosts, true)) // starting items
 		zip.file('PlrpList.yml', zipSeed.generatePlrpList(allStartingStatus, true)) // starting items
 		// zip.file('HintFile.hints', HintFile) // encoded hints
 		zip.file('sys.yml', zipSeed.generateSys()) // Menu text edits
@@ -261,7 +261,7 @@ function FunctionApp() {
 		let formSaveData = FormLevel.saveToJSON(allForms)
 		let equipmentSaveData = Equipment.saveToJSON(allEquipments)
 		let levelSaveData = Level.saveToJSON(allLevels)
-		let magicCostSaveData = MagicAbility.saveToJSON(allMagic)
+		let costSaveData = AbilityCost.saveToJSON(allCosts)
 		let startingStatusSaveData = StartingStatus.saveToJSON(allStartingStatus)
 
 		let saveData = ['{',
@@ -271,7 +271,7 @@ function FunctionApp() {
 			formSaveData.join(''),
 			equipmentSaveData.join(''),
 			levelSaveData.join(''),
-			magicCostSaveData.join(''),
+			costSaveData.join(''),
 			startingStatusSaveData.join('').slice(0, -1),
 			'}']
 
@@ -286,7 +286,7 @@ function FunctionApp() {
 		let newAllForms = allLoadData.hasOwnProperty('formsData') ? allLoadData.formsData : []
 		let newAllEquipments = allLoadData.hasOwnProperty('equipmentsData') ? allLoadData.equipmentsData : []
 		let newAllLevels = allLoadData.hasOwnProperty('levelsData') ? allLoadData.levelsData : []
-		let newAllMagics = allLoadData.hasOwnProperty('magicData') ? allLoadData.magicData : []
+		let newAllCosts = allLoadData.hasOwnProperty('costsData') ? allLoadData.costsData : []
 		let newAllStartingStatus = allLoadData.hasOwnProperty('startingStatusData') ? allLoadData.startingStatusData : []
 
 		setAllChests(Chest.loadFromJSON(newAllChests))
@@ -295,7 +295,7 @@ function FunctionApp() {
 		setAllForms(FormLevel.loadFromJSON(newAllForms))
 		setAllEquipments(Equipment.loadFromJSON(newAllEquipments))
 		setAllLevels(Level.loadFromJSON(newAllLevels))
-		setAllMagic(MagicAbility.loadFromJSON(newAllMagics))
+		setAllCosts(AbilityCost.loadFromJSON(newAllCosts))
 		setAllStartingStatus(StartingStatus.loadFromJSON(newAllStartingStatus))
 	}
 	function downloadFile(contentArray, fileName) {
@@ -419,14 +419,14 @@ function FunctionApp() {
 		{
 			eventKey: 'magic',
 			fileName: 'spell',
-			title: 'Magic & Limits',
+			title: 'Ability Costs',
 			page: (
-				<MagicPage
-					magicData={allMagic}
-					setAllMagic={setAllMagic}
+				<CostPage
+					costData={allCosts}
+					setAllCosts={setAllCosts}
 				>
 					<HelpModal tab={currentTab} />
-				</MagicPage>
+				</CostPage>
 			)
 		},
 		{
