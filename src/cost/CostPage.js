@@ -1,5 +1,4 @@
 import { React, useState, useEffect, useRef } from 'react'
-import { Form, Container } from 'react-bootstrap'
 import './CostStyles.css'
 
 import GenericSelect from '../Components/GenericSelect'
@@ -91,9 +90,11 @@ function CostPage(props) {
 	})
 
 	return (
-		<Container fluid>
+		<div className='fullPageContent'>
 			<div className='pageHeader'>
-				<div><Form.Label>Ability Type Selector:</Form.Label></div>
+				<div className='pageHeaderSelectorLabel'>
+					Ability Type Selector:
+				</div>
 				<div>
 					<GenericSelect
 						class={'categoryIndex'}
@@ -122,7 +123,7 @@ function CostPage(props) {
 						: <></>
 				}
 			</div>
-		</Container>
+		</div>
 	)
 }
 

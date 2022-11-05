@@ -1,5 +1,5 @@
 import { React, useState } from 'react'
-import { Row, Container, Col, Form } from 'react-bootstrap'
+import './StartingStatusStyles.css'
 
 import GenericSelect from '../Components/GenericSelect'
 import StartingStuffList from './StartingStuffList'
@@ -44,9 +44,11 @@ function StartingStatusPage(props) {
 	}
 
 	return (
-		<Container fluid>
+		<div className='fullPageContent'>
 			<div className='pageHeader'>
-				<div><Form.Label>Character Selector:</Form.Label></div>
+				<div className='pageHeaderSelectorLabel'>
+					Character Selector:
+				</div>
 				<div>
 					<GenericSelect
 						class={'startingStatus'}
@@ -60,26 +62,22 @@ function StartingStatusPage(props) {
 				<div className='flex-grow-1' />
 				<div>{props.children}</div>
 			</div>
-			<Row>
-				<Col xs={8}>
-					<StartingStuffList
-						dataList={props.startingStatusData[currentCharacter].startingStuff}
-						handleReplace={handleStartingRewardReplace}
-						handleDelete={(rewardIndex) => handleStartingRewardReplace(EMPTY, rewardIndex)}
-						handleAdd={(newReward) => handleStartingRewardReplace(newReward, 31)}
-					/>
-				</Col>
-				<Col xs={4}>
-					<StartingStatsForm
-						startingStats={props.startingStatusData[currentCharacter]}
-						startingStatusFieldData={currentStartingStatusFieldData}
-						setCurrentStartingStatusFieldData={(fieldName, newValue) => setCurrentStartingStatusFieldData({ ...currentStartingStatusFieldData, [fieldName]: newValue })}
-						handleReplace={() => updateStartingStatus(props.startingStatusData[currentCharacter].replaceStartingStats(currentStartingStatusFieldData))}
-						handleVanilla={() => updateStartingStatus(props.startingStatusData[currentCharacter].vanillaStartingStats())}
-					/>
-				</Col>
-			</Row>
-		</Container>
+			<div className='startingStatusPageContent'>
+				<StartingStuffList
+					dataList={props.startingStatusData[currentCharacter].startingStuff}
+					handleReplace={handleStartingRewardReplace}
+					handleDelete={(rewardIndex) => handleStartingRewardReplace(EMPTY, rewardIndex)}
+					handleAdd={(newReward) => handleStartingRewardReplace(newReward, 31)}
+				/>
+				<StartingStatsForm
+					startingStats={props.startingStatusData[currentCharacter]}
+					startingStatusFieldData={currentStartingStatusFieldData}
+					setCurrentStartingStatusFieldData={(fieldName, newValue) => setCurrentStartingStatusFieldData({ ...currentStartingStatusFieldData, [fieldName]: newValue })}
+					handleReplace={() => updateStartingStatus(props.startingStatusData[currentCharacter].replaceStartingStats(currentStartingStatusFieldData))}
+					handleVanilla={() => updateStartingStatus(props.startingStatusData[currentCharacter].vanillaStartingStats())}
+				/>
+			</div>
+		</div>
 	)
 }
 

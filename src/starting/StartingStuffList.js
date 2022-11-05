@@ -71,7 +71,7 @@ function StartingStuffList(props) {
 
 	return (
 		<ListGroup
-			className='selectorList'
+			className='flex-grow-1 selectorList'
 			style={{
 				fontSize: '21px',
 				overflowY: 'auto',

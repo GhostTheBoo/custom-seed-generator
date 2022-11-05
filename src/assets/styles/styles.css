@@ -48,6 +48,11 @@ a:hover {
 	text-decoration: underline;
 }
 
+.fullPageContent {
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
+
 .pageHeader {
 	display: flex;
 	flex-direction: row;
@@ -119,10 +124,9 @@ hr {
 	border-bottom: 1px solid rgb(100, 100, 100);
 }
 
-.genericSelectorLabel {
-	/* width: 15rem; */
+.pageHeaderSelectorLabel {
+	font-family: KHMenu;
 	text-align: end;
-	padding-left: 2rem;
 	margin: .5rem 0;
 }
 
@@ -143,7 +147,8 @@ hr {
 	.nav-link>.iconDescription {
 		display: none;
 	}
-	.nav-link.active>.iconDescription{
+
+	.nav-link.active>.iconDescription {
 		display: inline;
 	}
 }

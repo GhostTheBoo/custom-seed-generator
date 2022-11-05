@@ -1,0 +1,8 @@
+.startingStatusPageContent {
+    display: flex;
+    gap: 5rem;
+}
+
+.startingStatusForm {
+    width: 40rem;
+}

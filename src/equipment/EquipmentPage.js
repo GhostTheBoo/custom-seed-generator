@@ -1,5 +1,4 @@
 import { React, useState, useEffect, useRef } from 'react'
-import { Container, Form } from 'react-bootstrap'
 
 import GenericSelect from '../Components/GenericSelect'
 import EquipmentCard from './EquipmentCard'
@@ -229,9 +228,11 @@ function EquipmentPage(props) {
 	]
 
 	return (
-		<Container fluid>
+		<div className='fullPageContent'>
 			<div className='pageHeader'>
-				<div><Form.Label>Equipment Type Selector:</Form.Label></div>
+				<div className='pageHeaderSelectorLabel'>
+					Equipment Type Selector:
+				</div>
 				<div>
 					<GenericSelect
 						class={'equipment'}
@@ -249,7 +250,7 @@ function EquipmentPage(props) {
 				<div className='equipmentCardList flex-grow-1' ref={equipmentCardGrid}>{equipmentRowList}</div>
 				{displayedEquipmentForm[currentDisplayedForm]}
 			</div>
-		</Container>
+		</div>
 	)
 }
 

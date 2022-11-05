@@ -1,5 +1,4 @@
 import { React, useState } from 'react'
-import { Container, Form } from 'react-bootstrap'
 
 import GenericSelect from '../Components/GenericSelect'
 
@@ -99,10 +98,10 @@ function BonusPage(props) {
 	})
 
 	return (
-		<Container fluid>
+		<div className='fullPageContent'>
 			<div className='pageHeader'>
-				<div>
-					<Form.Label>World Selector:</Form.Label>
+				<div className='pageHeaderSelectorLabel'>
+					World Selector:
 				</div>
 				<div>
 					<GenericSelect
@@ -149,7 +148,7 @@ function BonusPage(props) {
 					}
 				</div>
 			</div>
-		</Container>
+		</div>
 	)
 }
 

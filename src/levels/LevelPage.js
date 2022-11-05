@@ -1,5 +1,5 @@
 import { React, useState, useRef, useEffect } from 'react'
-import { Container, Pagination, Form } from 'react-bootstrap'
+import { Pagination } from 'react-bootstrap'
 
 import LevelCard from './LevelCard'
 import LevelForm from './LevelForm'
@@ -300,9 +300,11 @@ function LevelPage(props) {
 	}
 
 	return (
-		<Container fluid>
+		<div className='fullPageContent'>
 			<div className='pageHeader'>
-				<div className='levelRangeSelectorLabel'><Form.Label>Level Range Selector:</Form.Label></div>
+				<div className='levelRangeSelectorLabel pageHeaderSelectorLabel'>
+					Level Range Selector:
+				</div>
 				<Pagination>
 					{pageNumbers}
 				</Pagination>
@@ -315,7 +317,7 @@ function LevelPage(props) {
 				</div>
 				{displayedLevelForm[currentDisplayedForm]}
 			</div>
-		</Container>
+		</div>
 	)
 }
 

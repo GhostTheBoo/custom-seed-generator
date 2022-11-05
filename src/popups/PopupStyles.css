@@ -24,11 +24,13 @@
 }
 
 .popupCardCheck {
+    font-family: KHMenu;
     font-size: 1.15rem;
     padding: 1rem 0rem;
 }
 
 .popupCardReward {
+    font-family: KHMenu;
     font-size: 1.25rem;
     padding: .75rem 0rem;
 }

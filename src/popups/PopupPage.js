@@ -1,5 +1,4 @@
 import { React, useState } from 'react'
-import { Container, Form } from 'react-bootstrap'
 
 import GenericSelect from '../Components/GenericSelect'
 import PopupCard from './PopupCard'
@@ -55,10 +54,10 @@ function PopupPage(props) {
 	)
 
 	return (
-		<Container fluid>
+		<div className='fullPageContent'>
 			<div className='pageHeader'>
-				<div>
-					<Form.Label>World Selector:</Form.Label>
+				<div className='pageHeaderSelectorLabel'>
+					World Selector:
 				</div>
 				<div>
 					<GenericSelect
@@ -75,13 +74,10 @@ function PopupPage(props) {
 					{props.children}
 				</div>
 			</div>
-			<Container
-				fluid
-				className='popupCardGrid'
-			>
+			<div className='popupCardGrid'>
 				{popupList}
-			</Container>
-		</Container>
+			</div>
+		</div>
 	)
 }
 

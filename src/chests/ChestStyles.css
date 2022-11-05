@@ -36,11 +36,13 @@
 }
 
 .chestCardRoom {
+    font-family: KHMenu;
     font-size: 1.25rem;
     padding: 1rem 0rem;
 }
 
 .chestCardReward {
+    font-family: KHMenu;
     font-size: 1.5rem;
     padding: .75rem 0rem;
 }

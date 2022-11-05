@@ -1,5 +1,4 @@
 import { React, useState, useEffect, useRef } from 'react'
-import { Container, Form } from 'react-bootstrap'
 
 import GenericSelect from '../Components/GenericSelect'
 import ChestCard from './ChestCard'
@@ -81,10 +80,10 @@ function ChestPage(props) {
 	)
 
 	return (
-		<Container fluid>
+		<div className='fullPageContent'>
 			<div className='pageHeader'>
-				<div>
-					<Form.Label>World Selector:</Form.Label>
+				<div className='pageHeaderSelectorLabel'>
+					World Selector:
 				</div>
 				<div>
 					<GenericSelect
@@ -101,14 +100,10 @@ function ChestPage(props) {
 					{props.children}
 				</div>
 			</div>
-			<Container
-				fluid
-				className='chestCardGrid'
-				ref={chestCardGrid}
-			>
+			<div className='chestCardGrid' ref={chestCardGrid}>
 				{chestList}
-			</Container>
-		</Container>
+			</div>
+		</div>
 	)
 }
 

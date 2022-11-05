@@ -1,5 +1,4 @@
 import { React, useState } from 'react'
-import { Container } from 'react-bootstrap'
 
 import FormList from './FormList'
 import FormForm from './FormForm'
@@ -191,7 +190,7 @@ function FormPage(props) {
 	]
 
 	return (
-		<Container fluid style={{ marginTop: '1rem' }}>
+		<div className='fullPageContent' style={{ marginTop: '1rem' }}>
 			<div className='formPageContent'>
 				<div className='formList'>
 					<FormList
@@ -208,7 +207,7 @@ function FormPage(props) {
 					{DisplayedFormForm[currentDisplayedForm]}
 				</div>
 			</div>
-		</Container>
+		</div>
 	)
 }
 

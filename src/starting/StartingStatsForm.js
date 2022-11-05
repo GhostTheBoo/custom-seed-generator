@@ -18,7 +18,7 @@ function StartingStatsForm(props) {
     }
 
     return (
-        <Form onSubmit={(e) => e.preventDefault()}>
+        <Form className='startingStatusForm' onSubmit={(e) => e.preventDefault()}>
             <Form.Row>
                 <Form.Label column='lg' xs={3}>
                     HP:
