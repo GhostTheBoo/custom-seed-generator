@@ -177,13 +177,13 @@ export const helpData = [
 		)
 	},
 	{
-		key: 'magic',
-		page: 'Magic & Limits',
+		key: 'cost',
+		page: 'Ability Costs',
 		help: (
-			<div id='magicPageHelp'>
-				<h6>Magic & Limits</h6>
+			<div id='costPageHelp'>
+				<h6>Ability Cost</h6>
 				<p>
-					The magic and limits page allows for customization of the mp cost of magic spells, party limits, and limit form limits.
+					The ability cost page allows for customization of the mp cost of magic spells, party limits, and limit form limits.
 					Click on <strong>EDIT</strong> for the ability you wish to modify to open the editing form.
 					Change the cost for any specific abilities.
 					Click <strong>EDIT</strong> to modify the value to what you have entered.

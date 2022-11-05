@@ -1,12 +1,18 @@
 .costFormBody {
     display: grid;
     font-family: KHGummi;
-    grid-template-columns: 3fr 6fr;
+    grid-template-columns: 2fr 6fr;
     gap: 2rem;
 }
 
-.costFormImage {
+/* .costFormImage {
     grid-row: 1 / 4;
+} */
+
+.costEditFieldGroup {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
 }
 
 .abilityCostEditRow {
@@ -16,11 +22,19 @@
 }
 
 .costLabel,
-.costVanillaLabel{
+.costAbilityTitle {
+    font-family: KHMenu;
+}
+
+.costLabel,
+.costVanillaLabel {
     font-size: 2rem;
 }
-.costInputField {
-    margin-bottom: 2rem;
+
+.costVanillaLabel{
+    font-family: KHGummi;
+    color: #FFF100;
+    /* text-align: start; */
 }
 @media(max-width: 90rem) {
     .costCardImage {

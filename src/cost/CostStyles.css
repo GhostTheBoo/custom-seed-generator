@@ -31,10 +31,6 @@
     gap: .25rem;
 }
 
-.specificAbilityCost {
-    font-family: KHGummi;
-}
-
 .costCardImage {
     border-radius: .75rem;
     width: 10rem;
@@ -47,8 +43,18 @@
 
 .abilityCostRow {
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 1fr 12fr 4fr 1fr;
     gap: 1rem;
+}
+
+.specificAbilityName{
+    grid-column: 2;
+    text-align: start;
+}
+.specificAbilityCost {
+    font-family: KHGummi;
+    color: #FFF100;
+    grid-column: 3;
 }
 
 @media(max-width: 90rem) {

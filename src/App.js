@@ -417,7 +417,7 @@ function FunctionApp() {
 			)
 		},
 		{
-			eventKey: 'magic',
+			eventKey: 'cost',
 			fileName: 'spell',
 			title: 'Ability Costs',
 			page: (

@@ -32,7 +32,7 @@ function CostForm(props) {
     return (
         <Modal show={props.abilityIndex !== -1} onHide={props.closeModal} className='costFormModal' size='xl'>
             <Modal.Header closeButton>
-                <Modal.Title>{props.ability[0].category}</Modal.Title>
+                <Modal.Title className='costAbilityTitle'>{props.ability[0].category}</Modal.Title>
             </Modal.Header>
             <Modal.Body className='costFormBody'>
                 <img
@@ -42,7 +42,9 @@ function CostForm(props) {
                     width='100%'
                     height='auto'
                 />
-                {costEditFields}
+                <div className='costEditFieldGroup'>
+                    {costEditFields}
+                </div>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant='primary' onClick={() => props.updateCost()}>

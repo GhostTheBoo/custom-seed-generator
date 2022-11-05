@@ -34,8 +34,10 @@ function CostCard(props) {
 				/>
 			</div>
 			<div className='costAbilityName'>{props.ability[0].category}</div>
+			<hr />
 			{abilityCostList}
 			<div className='flex-grow-1' />
+			<hr />
 			<Button onClick={() => props.setAbility(props.abilityIndex)}>
 				EDIT
 			</Button>
