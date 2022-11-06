@@ -1,5 +1,5 @@
 import { React } from 'react'
-import { Container, Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 import RewardSelector from '../rewards/RewardSelector'
 import Icon from '../Components/Icon'
@@ -20,7 +20,7 @@ function FormForm(props) {
 	}
 
 	return (
-		<Container fluid className='formFormCard'>
+		<div className='formFormCard'>
 			<h1>LEVEL {props.currentDriveFormLevel + 2}:</h1>
 			<button
 				className='close'
@@ -73,7 +73,7 @@ function FormForm(props) {
 					CONFIRM
 				</Button>
 			</div>
-		</Container>
+		</div>
 	)
 }
 

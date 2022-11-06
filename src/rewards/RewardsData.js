@@ -435,7 +435,7 @@ export const rewardsData = [
 		]
 	},
 	{
-		rewardType: 'Maps & Recipes',
+		rewardType: 'Maps',
 		categories: [
 			{
 				category: 'Area Maps',
@@ -496,7 +496,12 @@ export const rewardsData = [
 					new Reward('Dark City Map', 0x100, 'Map'),
 					new Reward('Castle That Never Was Map', 0x218, 'Map')
 				]
-			},
+			}
+		]
+	},
+	{
+		rewardType: 'Recipes',
+		categories: [
 			{
 				category: 'Recipes',
 				rewards: [

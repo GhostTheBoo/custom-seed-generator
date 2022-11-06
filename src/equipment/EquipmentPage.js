@@ -1,4 +1,5 @@
 import { React, useState, useEffect, useRef } from 'react'
+import './EquipmentStyles.css'
 
 import GenericSelect from '../Components/GenericSelect'
 import EquipmentCard from './EquipmentCard'

@@ -1,8 +1,11 @@
 import { React, useState } from 'react'
-import { ListGroup, Row, Col, Button, Modal, Container } from 'react-bootstrap'
+import { Tabs, Tab, Button, Modal } from 'react-bootstrap'
+
+import './RewardStyles.css'
+
 import Icon from '../Components/Icon'
 import { rewardsData } from './RewardsData'
-import RewardSelectorAccordion from './RewardSelectorAccordion'
+import RewardListGroup from './RewardListGroup'
 
 function RewardSelector(props) {
 	// PROPS:
@@ -20,20 +23,22 @@ function RewardSelector(props) {
 
 	let emptyReward = rewardsData[8].categories[0].rewards[0]
 
-	let rewardTypeList = rewardsData.slice(0, -1).map((rewardType, rewardTypeIndex) => {
+	let rewardCategories = rewardsData.slice(0, -1).map((rewardType, rewardTypeIndex) => {
 		return (
-			<ListGroup.Item
-				className='rewardTypeSelectorListItem'
-				action
-				variant='dark'
+			<Tab
 				key={rewardTypeIndex}
 				eventKey={rewardTypeIndex}
-				id={rewardTypeIndex}
-				onClick={(e) => setCurrentRewardType(parseInt(e.target.id))}
-				style={{ fontSize: '21px' }}
+				title={rewardType.rewardType}
 			>
-				{rewardType.rewardType}
-			</ListGroup.Item>
+				<div className='rewardCategories'>
+					<RewardListGroup
+						setCurrentReplacementReward={(categoryIndex, rewardIndex) => setCurrentReplacementReward(rewardsData[currentRewardType].categories[categoryIndex].rewards[rewardIndex])}
+						rewardTypeIndex={currentRewardType}
+						rewardType={rewardsData[currentRewardType].rewardType}
+						rewardCategoryList={rewardsData[currentRewardType].categories}
+					/>
+				</div>
+			</Tab>
 		)
 	})
 
@@ -53,9 +58,7 @@ function RewardSelector(props) {
 				onHide={() => setShow(false)}
 				centered
 			>
-				<Modal.Header
-					closeButton
-				>
+				<Modal.Header closeButton>
 					<Modal.Title>
 						{/* {props.originalReward.reward} will be replaced with: */}
 						<Icon
@@ -66,59 +69,31 @@ function RewardSelector(props) {
 						</Icon>
 					</Modal.Title>
 				</Modal.Header>
-				<Modal.Body style={{ height: '65vh', maxHeight: '85vh', overflowY: 'auto' }}>
-					<Container fluid>
-						<Row>
-							<Col xs='auto'>
-								<ListGroup
-									className='rewardTypeSelectorList'
-									variant='flush'
-									activeKey={currentRewardType}
-									style={{
-										maxHeight: '800px',
-										marginBottom: '10px',
-										overflowY: 'auto'
-									}}
-								>
-									{rewardTypeList}
-								</ListGroup>
-							</Col>
-							<Col>
-								<RewardSelectorAccordion
-									setCurrentReplacementReward={(categoryIndex, rewardIndex) =>
-										setCurrentReplacementReward(rewardsData[currentRewardType].categories[categoryIndex].rewards[rewardIndex])
-									}
-									rewardTypeIndex={currentRewardType}
-									rewardType={rewardsData[currentRewardType].rewardType}
-									rewardCategoryList={rewardsData[currentRewardType].categories}
-								/>
-							</Col>
-						</Row>
-					</Container>
+				<Modal.Body className='rewardSelectorModalBody'>
+					<Tabs
+						defaultActiveKey={currentRewardType}
+						className='allRewardTabs'
+						unmountOnExit={true}
+						onSelect={(e) => setCurrentRewardType(parseInt(e))}
+					>
+						{rewardCategories}
+					</Tabs>
 				</Modal.Body>
-				<Modal.Footer>
-					<Container>
-						<Row>
-							<Col xs={{ span: 2, offset: 8 }}>
-								<Button
-									variant='secondary'
-									block
-									onClick={() => onClick(emptyReward)}
-								>
-									EMPTY
-								</Button>
-							</Col>
-							<Col xs={2}>
-								<Button
-									variant='primary'
-									block
-									onClick={() => onClick(currentReplacementReward)}
-								>
-									REPLACE
-								</Button>
-							</Col>
-						</Row>
-					</Container>
+				<Modal.Footer className='rewardSelectorModalButtonGroup'>
+					<Button
+						variant='secondary'
+						block
+						onClick={() => onClick(emptyReward)}
+					>
+						EMPTY
+					</Button>
+					<Button
+						variant='primary'
+						block
+						onClick={() => onClick(currentReplacementReward)}
+					>
+						REPLACE
+					</Button>
 				</Modal.Footer>
 			</Modal>
 		</>

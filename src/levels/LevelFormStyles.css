@@ -101,7 +101,7 @@
 
 .allLevelSkips {
     display: grid;
-    grid-template-columns: 40% 10% 40% 10%;
+    grid-template-columns: 38% 12% 38% 12%;
 }
 
 .allLevelSkips>.levelLabel:nth-child(3) {

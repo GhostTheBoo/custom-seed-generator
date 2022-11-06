@@ -1,5 +1,5 @@
 import { React } from 'react'
-import { Container, Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import Icon from '../Components/Icon'
 import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
 
@@ -64,7 +64,7 @@ function EquipmentCard(props) {
     />
 
     return (
-        <Container fluid className='equipmentCard'>
+        <div className='equipmentCard'>
             {props.equipment.isReplaced() ? overlayPopover : <></>}
             <div className={'equipmentColumn equipmentImageColumn' + (!props.isWide ? ' equipmentSquishColumn' : '')}>
                 <img
@@ -88,7 +88,7 @@ function EquipmentCard(props) {
             <div className='equipmentColumn equipmentStatColumn'>{equipmentStatList}</div>
             <div className='equipmentColumn equipmentResColumn'>{equipmentElementalResList}</div>
             <div className='equipmentColumn equipmentOtherColumn'>{equipmentOtherResList}</div>
-        </Container>
+        </div>
     )
 }
 

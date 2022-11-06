@@ -79,11 +79,11 @@
 @media(max-width: 65rem) {
 
   .levelRangeSelectorLabel,
-  .pageHeader>.flex-grow-1 {
+  .level.fullPageContent>.pageHeader>.flex-grow-1 {
     display: none;
   }
 
-  .pageHeader>.pagination {
+  .level.fullPageContent>.pageHeader>.pagination {
     flex-grow: 1;
   }
 
@@ -111,7 +111,7 @@
 }
 
 @media(max-width: 48rem) {
-  .pageHeader {
+  .level.fullPageContent>.pageHeader {
     align-items: start;
     flex-direction: column-reverse;
   }

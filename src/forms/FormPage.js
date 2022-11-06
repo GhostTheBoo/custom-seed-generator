@@ -1,4 +1,5 @@
 import { React, useState } from 'react'
+import './FormStyles.css'
 
 import FormList from './FormList'
 import FormForm from './FormForm'

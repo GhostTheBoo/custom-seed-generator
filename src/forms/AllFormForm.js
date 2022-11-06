@@ -1,5 +1,5 @@
 import { React } from 'react'
-import { Container, Button, Form } from 'react-bootstrap'
+import { Button, Form } from 'react-bootstrap'
 
 import GenericSelect from '../Components/GenericSelect'
 import RewardSelector from '../rewards/RewardSelector'
@@ -20,7 +20,7 @@ function AllFormForm(props) {
 	}
 
 	return (
-		<Container fluid className='formFormCard'>
+		<div className='formFormCard'>
 			<h1>EDITING ALL LEVELS:</h1>
 			<button
 				className='close'
@@ -111,7 +111,7 @@ function AllFormForm(props) {
 					CONFIRM
 				</Button>
 			</div>
-		</Container>
+		</div>
 	)
 }
 

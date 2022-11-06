@@ -63,18 +63,18 @@ function StartingStatusPage(props) {
 				<div>{props.children}</div>
 			</div>
 			<div className='startingStatusPageContent'>
-				<StartingStuffList
-					dataList={props.startingStatusData[currentCharacter].startingStuff}
-					handleReplace={handleStartingRewardReplace}
-					handleDelete={(rewardIndex) => handleStartingRewardReplace(EMPTY, rewardIndex)}
-					handleAdd={(newReward) => handleStartingRewardReplace(newReward, 31)}
-				/>
 				<StartingStatsForm
 					startingStats={props.startingStatusData[currentCharacter]}
 					startingStatusFieldData={currentStartingStatusFieldData}
 					setCurrentStartingStatusFieldData={(fieldName, newValue) => setCurrentStartingStatusFieldData({ ...currentStartingStatusFieldData, [fieldName]: newValue })}
 					handleReplace={() => updateStartingStatus(props.startingStatusData[currentCharacter].replaceStartingStats(currentStartingStatusFieldData))}
 					handleVanilla={() => updateStartingStatus(props.startingStatusData[currentCharacter].vanillaStartingStats())}
+				/>
+				<StartingStuffList
+					dataList={props.startingStatusData[currentCharacter].startingStuff}
+					handleReplace={handleStartingRewardReplace}
+					handleDelete={(rewardIndex) => handleStartingRewardReplace(EMPTY, rewardIndex)}
+					handleAdd={(newReward) => handleStartingRewardReplace(newReward, 31)}
 				/>
 			</div>
 		</div>

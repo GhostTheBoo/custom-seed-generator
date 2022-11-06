@@ -98,32 +98,6 @@ hr {
 	right: 1rem;
 }
 
-/* Reward Selector Modal Appearance */
-.rewardSelectorModal {
-	width: 95vw;
-	max-width: 95vw;
-}
-
-.rewardListItem>*,
-.selectorListItem>* {
-	pointer-events: none;
-}
-
-.card-body {
-	/* max-height: 450px; */
-	flex-wrap: wrap;
-	overflow: auto;
-}
-
-.cardGrid {
-	overflow-y: auto;
-	height: 800px;
-}
-
-.accordion {
-	border-bottom: 1px solid rgb(100, 100, 100);
-}
-
 .pageHeaderSelectorLabel {
 	font-family: KHMenu;
 	text-align: end;

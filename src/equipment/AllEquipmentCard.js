@@ -1,5 +1,5 @@
 import { React } from 'react'
-import { Container, Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 function AllEquipmentCard(props) {
 	// PROPS:
@@ -18,7 +18,7 @@ function AllEquipmentCard(props) {
 	}
 
 	return (
-		<Container fluid className='equipmentCard'>
+		<div className='equipmentCard'>
 			<div className={'equipmentColumn equipmentImageColumn' + (!props.isWide ? ' equipmentSquishColumn' : '')}>
 				<img
 					className={'equipmentImage' + (!props.isWide ? ' equipmentSquishImage' : '')}
@@ -38,7 +38,7 @@ function AllEquipmentCard(props) {
 					</Button>
 				</div>
 			</div>
-		</Container>
+		</div>
 	)
 }
 

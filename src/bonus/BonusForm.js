@@ -1,5 +1,5 @@
 import { React } from 'react'
-import { Button, Container } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 import GenericSelect from '../Components/GenericSelect'
 import RewardSelector from '../rewards/RewardSelector'
@@ -40,7 +40,7 @@ function BonusForm(props) {
 	]
 
 	return (
-		<Container fluid className='bonusFormCard'>
+		<div className='bonusFormCard'>
 			<h1>SLOT {props.currentSlotNumber + 1}:</h1>
 			<button
 				className='close'
@@ -215,7 +215,7 @@ function BonusForm(props) {
 					CONFIRM
 				</Button>
 			</div>
-		</Container>
+		</div>
 	)
 }
 

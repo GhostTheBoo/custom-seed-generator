@@ -1,8 +1,65 @@
 .startingStatusPageContent {
-    display: flex;
-    gap: 5rem;
+    display: grid;
+    grid-template-columns: 5fr 9fr;
+    gap: 4rem;
 }
 
-.startingStatusForm {
-    width: 40rem;
+.startingStuffRow,
+.startingStuffFinalRow {
+    font-family: KHMenu;
+    display: grid;
+    grid-template-columns: 1fr 6fr 4fr 3fr;
+    gap: 2rem;
 }
+
+.startingStuffItem {
+    font-family: KHMenu;
+}
+
+.startingStuffIndex {
+    text-align: end;
+}
+
+.startingStuffFinalLabel {
+    grid-column: 2;
+}
+
+.startingStuffFinalRow>.btn-primary {
+    grid-column: 3 / span 2;
+}
+
+@media(max-width: 90rem) {}
+
+@media(max-width: 65rem) {
+    .startingStatusPageContent {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .startingStuffRow,
+    .startingStuffFinalRow {
+        grid-template-columns: repeat(8, 1fr);
+        row-gap: .5rem;
+    }
+
+    .startingStuffItem {
+        grid-column: 2 / span 7;
+    }
+
+    .startingStuffRow>.btn-primary {
+        grid-column: 1 / span 8;
+    }
+
+    .startingStuffRow>.btn-secondary {
+        grid-column: 1 / span 8;
+    }
+
+    .startingStuffFinalLabel,
+    .startingStuffFinalRow>.btn-primary {
+        grid-column: 1 / span 8;
+    }
+    .startingStuffFinalLabel{
+        text-align: center;
+    }
+}
+
+@media(max-width: 48rem) {}

@@ -15,7 +15,8 @@
     left: .5rem;
 }
 
-.editStatusPopover.chest {
+.editStatusPopover.chest,
+.editStatusPopover.starting {
     font-size: 2rem;
 }
 

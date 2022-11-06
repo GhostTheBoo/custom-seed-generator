@@ -300,7 +300,7 @@ function LevelPage(props) {
 	}
 
 	return (
-		<div className='fullPageContent'>
+		<div className='fullPageContent level'>
 			<div className='pageHeader'>
 				<div className='levelRangeSelectorLabel pageHeaderSelectorLabel'>
 					Level Range Selector:

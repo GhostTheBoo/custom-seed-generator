@@ -1,5 +1,5 @@
 import { React } from 'react'
-import { Button, Container } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
 
@@ -22,7 +22,7 @@ function CostCard(props) {
 	/>
 
 	return (
-		<Container fluid className='costCard'>
+		<div className='costCard'>
 			<div style={{ position: 'relative' }}>
 				{props.ability.some(ability => ability.isReplaced()) ? overlayPopover : <></>}
 				<img
@@ -44,7 +44,7 @@ function CostCard(props) {
 			<Button onClick={() => props.setVanilla(props.abilityIndex)} variant='secondary' >
 				VANILLA
 			</Button>
-		</Container>
+		</div>
 	)
 }
 

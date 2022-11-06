@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 import RewardSelector from '../rewards/RewardSelector'
 import Icon from '../Components/Icon'
@@ -50,7 +50,7 @@ function PopupCard(props) {
 	}
 
 	return (
-		<Container fluid className='popupCard'>
+		<div className='popupCard'>
 			<div style={{ position: 'relative' }}>
 				{overlayPopover}
 			</div>
@@ -67,7 +67,7 @@ function PopupCard(props) {
 			>
 				Vanilla
 			</Button>
-		</Container>
+		</div>
 	)
 }
 

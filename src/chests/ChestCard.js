@@ -1,5 +1,5 @@
 import { React } from 'react'
-import { Container, Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 import RewardSelector from '../rewards/RewardSelector'
 import Icon from '../Components/Icon'
@@ -55,7 +55,7 @@ function ChestCard(props) {
 	}
 
 	return (
-		<Container fluid className='chestCard'>
+		<div className='chestCard'>
 			<div style={{ position: 'relative' }}>
 				{overlayPopover}
 				<img
@@ -79,7 +79,7 @@ function ChestCard(props) {
 			>
 				Vanilla
 			</Button>
-		</Container>
+		</div>
 	)
 }
 
