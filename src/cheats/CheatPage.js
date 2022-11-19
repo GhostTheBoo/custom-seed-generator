@@ -26,24 +26,24 @@ function CheatPage(props) {
                 />
             </div>
             <div className='cheatPageContent'>
-                <h1 className='cheatTypeHeader' style={{ margin: '10px', textAlign: 'center' }}>Zip Cheats</h1>
-                <h1 className='cheatTypeHeader' style={{ margin: '10px', textAlign: 'center' }}>Pnach Cheats</h1>
                 <h1 className='cheatTypeHeader' style={{ margin: '10px', textAlign: 'center' }}>Lua Cheats</h1>
+                <h1 className='cheatTypeHeader' style={{ margin: '10px', textAlign: 'center' }}>Zip Cheats</h1>
+                {/* <h1 className='cheatTypeHeader' style={{ margin: '10px', textAlign: 'center' }}>Pnach Cheats</h1> */}
                 {/* <CheatListGroup
                     dataList={props.zipCheatData}
                     toggleActiveCheat={(cheatIndex) => toggleActiveCheat(props.zipCheatData, props.setAllZipCheats, cheatIndex)}
                 /> */}
-                <div className='temp'></div>
-                <CheatListGroup
+                {/* <CheatListGroup
                     dataList={props.pnachCheatData}
                     cheatType={'pnach'}
                     toggleActiveCheat={(allCheats, cheatIndex) => toggleActiveCheat(allCheats, props.setAllPnachCheats, cheatIndex)}
-                />
+                /> */}
                 <CheatListGroup
                     dataList={props.luaCheatData}
                     cheatType={'lua'}
                     toggleActiveCheat={(allCheats, cheatIndex) => toggleActiveCheat(allCheats, props.setAllLuaCheats, cheatIndex)}
                 />
+                <div className='temp'>Under Construction</div>
             </div>
         </div>
     )

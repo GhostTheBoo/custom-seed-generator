@@ -1,10 +1,16 @@
 .cheatPageContent{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     column-gap: 2rem;
 }
 
 .cheatListItem{
     display: grid;
     grid-template-columns: 1fr 20fr;
+}
+
+.temp{
+    font-family: KHGummi;
+    font-size: 2rem;
+    margin: auto;
 }

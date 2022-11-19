@@ -101,7 +101,6 @@ function FormPage(props) {
 							newDriveLevelData.currentEXPMultiplierValue = currentAllFormFieldData.currentEXPMultiplierValue + 1
 						}
 					}
-					console.log(newDriveLevelData)
 					return driveLevel.replace(newDriveLevelData)
 				})
 				return ({

@@ -184,7 +184,6 @@ export class StartingStatus {
 					})
 				}
 			}
-			console.log(ret)
 			return ret
 		}
 		this.saveToYml = (isCommented) => { 

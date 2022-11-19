@@ -15,6 +15,31 @@ function BonusCard(props) {
 		props.setCurrentBonusFightSlot(props.slotIndex)
 	}
 
+	function newRewardIcon(key, fileName, text) {
+		return (
+			<div key={key} className='bonusReward'>
+				<Icon
+					fileName={fileName}
+					type={'form'}
+				>
+					{text}
+				</Icon>
+			</div>
+		)
+	}
+	function newReplacementRewardIcon(key, replacementReward) {
+		return (
+			<div key={'bonusReward' + key} className='bonusReward'>
+				<Icon
+					fileName={replacementReward.iconType}
+					type={'row'}
+				>
+					{replacementReward.reward + '!'}
+				</Icon>
+			</div>
+		)
+	}
+
 	let rewardList = []
 	let smallRewardList = []
 	let hpUpText = `Max HP Increased by ${props.bonusReward.hpIncrease}!`
@@ -36,27 +61,9 @@ function BonusCard(props) {
 	if (props.bonusReward.mpIncrease !== 0)
 		rewardList.push(<div key='bonusMP' className='bonusReward'>{mpUpText}</div>)
 	if (props.bonusReward.replacementRewardA.index !== 0x000)
-		rewardList.push(
-			<div key='bonusRewardA' className='bonusReward'>
-				<Icon
-					fileName={props.bonusReward.replacementRewardA.iconType}
-					type={'row'}
-				>
-					{props.bonusReward.replacementRewardA.reward + '!'}
-				</Icon>
-			</div>
-		)
+		rewardList.push(newReplacementRewardIcon('A', props.bonusReward.replacementRewardA))
 	if (props.bonusReward.replacementRewardB.index !== 0x000)
-		rewardList.push(
-			<div key='bonusRewardB' className='bonusReward'>
-				<Icon
-					fileName={props.bonusReward.replacementRewardB.iconType}
-					type={'row'}
-				>
-					{props.bonusReward.replacementRewardB.reward + '!'}
-				</Icon>
-			</div>
-		)
+		rewardList.push(newReplacementRewardIcon('B', props.bonusReward.replacementRewardB))
 	if (props.bonusReward.armorSlotIncrease !== 0)
 		rewardList.push(<div key='bonusArmor' className='bonusReward'>{armorUpText}</div>)
 	if (props.bonusReward.accessorySlotIncrease !== 0)
@@ -65,97 +72,29 @@ function BonusCard(props) {
 		rewardList.push(<div key='bonusItem' className='bonusReward'>{itemText}</div>)
 	if (props.bonusReward.driveGaugeIncrease !== 0)
 		rewardList.push(<div key='bonusDrive' className='bonusReward'>{driveUpText}</div>)
+	if (rewardList.length === 0)
+		rewardList.push(newReplacementRewardIcon('A', props.bonusReward.replacementRewardA))
 	//#endregion
 
 	//#region Small Reward List Init
 	if (props.bonusReward.hpIncrease !== 0)
-		smallRewardList.push(
-			<div key='bonusHP' className='bonusReward'>
-				<Icon
-					fileName='uphp'
-					type={'form'}
-				>
-					{smallHpUpText}
-				</Icon>
-			</div>
-		)
+		smallRewardList.push(newRewardIcon('bonusHP', 'uphp', smallHpUpText))
 	if (props.bonusReward.mpIncrease !== 0)
-		smallRewardList.push(
-			<div key='bonusMP' className='bonusReward'>
-				<Icon
-					fileName='upmp'
-					type={'form'}
-				>
-					{smallMpUpText}
-				</Icon>
-			</div>
-		)
+		smallRewardList.push(newRewardIcon('bonusMP', 'upmp', smallMpUpText))
 	if (props.bonusReward.replacementRewardA.index !== 0x000)
-		smallRewardList.push(
-			<div key='bonusRewardA' className='bonusReward'>
-				<Icon
-					fileName={props.bonusReward.replacementRewardA.iconType}
-					type={'form'}
-				>
-					{props.bonusReward.replacementRewardA.reward}
-				</Icon>
-			</div>
-		)
+		smallRewardList.push(newReplacementRewardIcon('A', props.bonusReward.replacementRewardA))
 	if (props.bonusReward.replacementRewardB.index !== 0x000)
-		smallRewardList.push(
-			<div key='bonusRewardB' className='bonusReward'>
-				<Icon
-					fileName={props.bonusReward.replacementRewardB.iconType}
-					type={'form'}
-				>
-					{props.bonusReward.replacementRewardB.reward}
-				</Icon>
-			</div>
-		)
+		smallRewardList.push(newReplacementRewardIcon('B', props.bonusReward.replacementRewardB))
 	if (props.bonusReward.armorSlotIncrease !== 0)
-		smallRewardList.push(
-			<div key='bonusArmor' className='bonusReward'>
-				<Icon
-					fileName='uparmor'
-					type={'form'}
-				>
-					{smallArmorUpText}
-				</Icon>
-			</div>
-		)
+		smallRewardList.push(newRewardIcon('bonusArmor', 'uparmor', smallArmorUpText))
 	if (props.bonusReward.accessorySlotIncrease !== 0)
-		smallRewardList.push(
-			<div key='bonusAccessory' className='bonusReward'>
-				<Icon
-					fileName='upaccessory'
-					type={'form'}
-				>
-					{smallAccessoryText}
-				</Icon>
-			</div>
-		)
+		smallRewardList.push(newRewardIcon('bonusAccessory', 'upaccessory', smallAccessoryText))
 	if (props.bonusReward.itemSlotIncrease !== 0)
-		smallRewardList.push(
-			<div key='bonusItem' className='bonusReward'>
-				<Icon
-					fileName='upitem'
-					type={'form'}
-				>
-					{smallItemText}
-				</Icon>
-			</div>
-		)
+		smallRewardList.push(newRewardIcon('bonusItem', 'upitem', smallItemText))
 	if (props.bonusReward.driveGaugeIncrease !== 0)
-		smallRewardList.push(
-			<div key='bonusDrive' className='bonusReward'>
-				<Icon
-					fileName='updrive'
-					type={'form'}
-				>
-					{smallDriveUpText}
-				</Icon>
-			</div>
-		)
+		smallRewardList.push(newRewardIcon('bonusDrive', 'updrive', smallDriveUpText))
+	if (smallRewardList.length === 0)
+		smallRewardList.push(newReplacementRewardIcon('A', props.bonusReward.replacementRewardA))
 	//#endregion
 
 	let character

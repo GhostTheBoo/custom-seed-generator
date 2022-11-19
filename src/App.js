@@ -1,5 +1,4 @@
-// import React, { useState, useEffect } from 'react'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import JSZip from 'jszip'
 import FileSaver from 'file-saver'
@@ -55,16 +54,16 @@ function FunctionApp() {
 	const handleCloseNavbar = () => setShowNavbar(false);
 	const handleShowNavbar = () => setShowNavbar(true);
 	//#endregion
-	// const alertUser = e => {
-	// 	e.preventDefault()
-	// 	e.returnValue = ''
-	// }
-	// useEffect(() => {
-	// 	window.addEventListener('beforeunload', alertUser)
-	// 	return () => {
-	// 		window.removeEventListener('beforeunload', alertUser)
-	// 	}
-	// }, [])
+	const alertUser = e => {
+		e.preventDefault()
+		e.returnValue = ''
+	}
+	useEffect(() => {
+		window.addEventListener('beforeunload', alertUser)
+		return () => {
+			window.removeEventListener('beforeunload', alertUser)
+		}
+	}, [])
 
 	//#region General Functions
 	function handleTracker(isPnach) {

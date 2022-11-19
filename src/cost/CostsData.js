@@ -134,7 +134,6 @@ export class AbilityCost {
 						if (categoryIndex < costLoadData[globalIndex].abilities.length) {
 							let abilityIndex = 0
 							let newAbilities = category.specificAbilities.map(ability => {
-								console.log(costLoadData[globalIndex].abilities[categoryIndex])
 								if (abilityIndex < costLoadData[globalIndex].abilities[categoryIndex].specificAbilities.length) {
 									if (costLoadData[globalIndex].abilities[categoryIndex].specificAbilities[abilityIndex].costAddress === ability.costAddress) {
 										let ret = ability.loadFromJSON(costLoadData[globalIndex].abilities[categoryIndex].specificAbilities[abilityIndex])
@@ -145,7 +144,6 @@ export class AbilityCost {
 								return ability
 							})
 							categoryIndex++
-							// console.log(newAbilities)
 							return {
 								...category,
 								specificAbilities: newAbilities

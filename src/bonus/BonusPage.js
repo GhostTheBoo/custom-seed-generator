@@ -57,7 +57,6 @@ function BonusPage(props) {
 			if (worldIndex === currentWorld) {
 				let newBonusFights = world.bonusFights.map((bonusFight, bonusFightIndex) => {
 					if (bonusFightIndex === currentBonusFight) {
-						console.log(bonusFight)
 						return bonusFight.update(newBonusReward, currentBonusFightSlot)
 					}
 					return bonusFight

@@ -7,7 +7,7 @@ import CreditsList from './CreditsList'
 import SaveLoad from './SaveLoad'
 
 function HomePage(props) {
-	let lastUpdateDate = 'September 10, 2022'
+	let lastUpdateDate = 'November 19, 2022'
 	let logo = './images/logo.png'
 
 	return (
@@ -44,27 +44,26 @@ function HomePage(props) {
 						<h3>About</h3>
 						<p className='siteDescription'>
 							This tool is used with the Garden of Assemblage mod to customize specific rewards and aspects of Kingdom Hearts 2 Final Mix.
-							It will create a custom pnach, lua, or zip file that can be used alongside the PS2 or PC version of the game to apply any customizations.
+							It will create a custom lua or zip file that can be used alongside the PS2 or PC version of the game to apply any customizations.
 							This will let you make a planned out instance of a randomized seed (or a plando for short).
-							The site was last updated on {lastUpdateDate}.
 						</p>
 						<p style={{ textAlign: 'justify' }}>
 							Each page has its own rules for how to customize and change rewards and equipment.
-							Checking rows and clicking replace will modify that reward in game.
-							Clicking vanilla instead will have the reward be exactly how it is in the regular game.
-							Anything that will end up being replaced in the game will be shown as a green row.
-							Anything that may cause crashes or issues in game will be shown as a red row.
-							Red rows will still be generated to use as described but use at your own risk.
-							After all rewards are modified to your liking, the save button will download a pnach file ready to be used.
+							Check out the Help Button on each page for further info on how it works.
 						</p>
 						<p style={{ textAlign: 'justify' }}>
-							By clicking the save data button, a json file will be generated storing all the data of the current session.
-							Whenever loading up the site again, select the downloaded json file.
-							This will bring up all the modified values from the previous session.
-							It is unrealistic for me to promise this feature works perfectly.
-							If any issues come up let me know and be sure not to delete the json file even if it does not seem to work.
+							When you're finished editing, come back to the home page to export your seed.
+							Type in the Seed Name and click Save Zip Seed or Save Lua Seed to start downloading the file.
+						</p>
+						<p style={{ textAlign: 'justify' }}>
+							If you want to take a break and come back to your seed later, click on Save Progress.
+							This will download a file containing info on all the edits you've done so far.
+							When you return, click on Choose File to upload your progress data and pick up where you left off.
+							If any issues come up, let me know and I'll try to help out.
+							Be sure to hold on to the JSON file even if it does not seem to work as data might still be recoverable.
 						</p>
 						The repository can be found <a target='_blank' rel='noopener noreferrer' href='https://github.com/GhostTheBoo/custom-seed-generator'>here</a>.
+						The site was last updated on {lastUpdateDate}.
 					</div>
 					<div>
 						<SaveLoad
@@ -79,7 +78,6 @@ function HomePage(props) {
 						</SaveLoad>
 					</div>
 				</div>
-				<hr />
 			</div>
 		</div>
 	)
