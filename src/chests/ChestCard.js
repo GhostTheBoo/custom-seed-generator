@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 
 import RewardSelectorButton from '../rewards/RewardSelectorButton'
+import { EMPTY } from '../rewards/RewardsData'
 import Icon from '../Components/Icon'
 import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
 
@@ -20,6 +21,13 @@ function ChestCard(props) {
 	let chestRewardSelector = (
 		<RewardSelectorButton
 			onReplace={(replacementReward) => props.handleReplace(replacementReward)}
+		/>
+	)
+	let emptyChestRewardSelector = (
+		<RewardSelectorButton
+			onReplace={(replacementReward) => props.handleReplaceAllEmpty(replacementReward)}
+			textOverride='Replace All Empty'
+			variantOverride='dark'
 		/>
 	)
 
@@ -45,6 +53,16 @@ function ChestCard(props) {
 				onReplace={(replacementReward) => props.handleReplace(replacementReward)}
 			/>
 		)
+		emptyChestRewardSelector = (
+			<Button
+				variant='dark'
+				id={props.id}
+				className='chestCardEMPTY'
+				onClick={() => props.handleReplace(EMPTY)}
+			>
+				Empty
+			</Button>
+		)
 		overlayPopover = props.chest.isReplaced()
 			? <EditStatusPopover
 				text='NEW!'
@@ -68,7 +86,7 @@ function ChestCard(props) {
 			</div>
 			{chestRoom}
 			{chestReward}
-			<div className='flex-grow-1'/>
+			<div className='flex-grow-1' />
 			{chestRewardSelector}
 			<Button
 				variant='secondary'
@@ -78,6 +96,7 @@ function ChestCard(props) {
 			>
 				Vanilla
 			</Button>
+			{emptyChestRewardSelector}
 		</div>
 	)
 }

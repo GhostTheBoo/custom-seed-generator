@@ -26,6 +26,14 @@ function PopupPage(props) {
 		})
 		updateAllPopups(newWorldPopups)
 	}
+	function updateAllEmptyPopups(newReward) {
+		let newWorldPopups = currentWorldPopups.map(popup => {
+			if (popup.replacementReward.index === 0)
+				return popup.replace({ reward: { ...newReward } })
+			return popup
+		})
+		updateAllPopups(newWorldPopups)
+	}
 	function updateAllPopups(newWorldPopups) {
 		let newPopupData = props.popupData.map((world, worldIndex) => {
 			if (currentWorld === worldIndex)
@@ -52,9 +60,11 @@ function PopupPage(props) {
 	popupList.push(
 		<PopupCard
 			key={'AllPopups'}
+			world={props.popupData[currentWorld].world}
 			id={currentWorldPopups.length}
 			handleVanilla={() => updateAllPopups(currentWorldPopups.map(popup => { return popup.vanilla() }))}
 			handleReplace={(replacementReward) => updateAllPopups(currentWorldPopups.map(popup => { return popup.replace({ reward: { ...replacementReward } }) }))}
+			handleReplaceAllEmpty={(replacementReward) => updateAllEmptyPopups(replacementReward)}
 		/>
 	)
 

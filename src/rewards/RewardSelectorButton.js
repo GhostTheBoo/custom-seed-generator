@@ -16,6 +16,13 @@ function RewardSelector(props) {
 	const [currentRewardType, setCurrentRewardType] = useState(0)
 	const [currentReplacementReward, setCurrentReplacementReward] = useState(rewardsData[rewardsData.length - 1].rewards[0])
 
+	let buttonText = 'Select a Reward!'
+	if (props.textOverride !== undefined)
+		buttonText = props.textOverride
+	let buttonVariant = 'primary'
+	if (props.variantOverride !== undefined)
+		buttonVariant = props.variantOverride
+
 	function onClick(replacement) {
 		props.onReplace(replacement)
 		setShow(false)
@@ -23,11 +30,10 @@ function RewardSelector(props) {
 	return (
 		<>
 			<Button
-				variant='primary'
+				variant={buttonVariant}
 				onClick={() => setShow(true)}
 			>
-				{/* {props.originalReward ? `Replace ${props.originalReward.reward}` : 'Select a Reward!'} */}
-				Select a Reward!
+				{buttonText}
 			</Button>
 			{show
 				? <RewardSelectorModal

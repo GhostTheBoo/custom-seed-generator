@@ -8,7 +8,7 @@ function EditStatusPopover(props) {
 			? <OverlayTrigger
 				placement='bottom'
 				delay={{ show: 100, hide: 200 }}
-				overlay={<Popover><Popover.Content>{props.message}</Popover.Content></Popover>}
+				overlay={<Popover><Popover.Body>{props.message}</Popover.Body></Popover>}
 			>
 				<div className={`editStatusPopover ${props.type}`}>{props.text}</div>
 			</OverlayTrigger>

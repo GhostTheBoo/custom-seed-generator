@@ -46,6 +46,14 @@ function ChestPage(props) {
 		})
 		updateAllChests(newWorldChests)
 	}
+	function updateAllEmptyChests(newReward) {
+		let newWorldChests = currentWorldChests.map(chest => {
+			if (chest.replacementReward.index === 0)
+				return chest.replace({ reward: { ...newReward } })
+			return chest
+		})
+		updateAllChests(newWorldChests)
+	}
 	function updateAllChests(newWorldChests) {
 		let newChestData = props.chestData.map((world, worldIndex) => {
 			if (currentWorld === worldIndex)
@@ -77,6 +85,7 @@ function ChestPage(props) {
 			currentFolderName={chestFolderNames[currentWorld]}
 			handleVanilla={() => updateAllChests(currentWorldChests.map(chest => { return chest.vanilla() }))}
 			handleReplace={(replacementReward) => updateAllChests(currentWorldChests.map(chest => { return chest.replace({ reward: { ...replacementReward } }) }))}
+			handleReplaceAllEmpty={(replacementReward) => updateAllEmptyChests(replacementReward)}
 		/>
 	)
 

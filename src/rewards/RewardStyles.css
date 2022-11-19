@@ -98,6 +98,11 @@
     background-color: #400000;
 }
 
+.rewardListItem.selected {
+    border-color: #00F000;
+    background-color: #004000;
+}
+
 /* .rewardCategoryGroup {
     display: grid;
     grid-template-columns: 1fr 4fr;
@@ -108,18 +113,16 @@
     grid-template-columns: repeat(2, 1fr);
 }
 
+.currentReplacementText {
+    font-family: KHMenu;
+    font-size: 1.5rem;
+    /* grid-column-start: 2; */
+}
+
 .rewardSelectorModalButtonGroup {
     display: grid;
-    grid-template-columns: 5fr 1fr 1fr;
+    grid-template-columns: 4fr 1fr 1fr;
     gap: 2rem;
-}
-
-.rewardSelectorModalButtonGroup>.btn-secondary {
-    grid-column-start: 2;
-}
-
-.rewardSelectorModalButtonGroup>.btn-primary {
-    grid-column-start: 3;
 }
 
 .rewardSelectorModalButtonGroup>.btn-secondary,
@@ -137,13 +140,19 @@
     .rewardTypeSelector {
         font-size: 1rem;
     }
+
     .allRewardTabs {
         gap: 1rem;
     }
+
     .rewardListItem {
         font-size: 1rem;
     }
 }
 
 
-@media(max-width: 48rem) {}
+@media(max-width: 48rem) {
+    .currentReplacementText {
+        font-size: 1rem;
+    }
+}

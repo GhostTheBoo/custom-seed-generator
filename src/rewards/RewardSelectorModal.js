@@ -3,6 +3,8 @@ import { Button, Modal } from 'react-bootstrap'
 
 import './RewardStyles.css'
 import RewardListGroup from './RewardListGroup'
+import Icon from '../Components/Icon'
+import { EMPTY } from './RewardsData'
 
 function RewardSelectorModal(props) {
     const rewardRef = useRef(null)
@@ -40,7 +42,7 @@ function RewardSelectorModal(props) {
         props.setCurrentRewardType(newIndex)
     }
 
-    let emptyReward = props.empty
+    // let emptyReward = props.empty
 
     let rewardTypeGroup = []
     let rewardButtonGroup = []
@@ -69,6 +71,7 @@ function RewardSelectorModal(props) {
                     rewardTypeIndex={rewardTypeIndex}
                     rewardType={props.rewardsData[rewardTypeIndex].rewardType}
                     rewardList={props.rewardsData[rewardTypeIndex].rewards}
+                    currentRewardIndex={props.currentReplacementReward.index}
                 />
             </div>
         )
@@ -80,18 +83,9 @@ function RewardSelectorModal(props) {
             show={props.show}
             onHide={() => props.setShow(false)}
             centered
+            animation={true}
         >
-            <Modal.Header closeButton closeVariant="white" >
-                {/* <Modal.Title>
-						{props.originalReward.reward} will be replaced with:
-						<Icon
-							fileName={currentReplacementReward.iconType}
-							type={'row'}
-						>
-							{currentReplacementReward.reward}
-						</Icon>
-					</Modal.Title> */}
-            </Modal.Header>
+            <Modal.Header closeButton closeVariant='white' />
             <Modal.Body className='rewardSelectorModalBody'>
                 <div className='allRewardTabs'>
                     <div className='rewardTabGroup'>
@@ -103,17 +97,26 @@ function RewardSelectorModal(props) {
                 </div>
             </Modal.Body>
             <Modal.Footer className='rewardSelectorModalButtonGroup'>
+                <div className='currentReplacementText'>
+                    {'Replacing with:\t'}
+                    <Icon
+                        fileName={props.currentReplacementReward.iconType}
+                        type={'row'}
+                    >
+                        {props.currentReplacementReward.reward}
+                    </Icon>
+                </div>
                 <Button
                     variant='secondary'
-                    onClick={() => props.onClick(emptyReward)}
+                    onClick={() => props.onClick(EMPTY)}
                 >
-                    EMPTY
+                    Empty
                 </Button>
                 <Button
                     variant='primary'
                     onClick={() => props.onClick(props.currentReplacementReward)}
                 >
-                    REPLACE
+                    Confirm
                 </Button>
             </Modal.Footer>
         </Modal>

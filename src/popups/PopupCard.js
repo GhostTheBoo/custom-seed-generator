@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 
 import RewardSelectorButton from '../rewards/RewardSelectorButton'
+import { EMPTY } from '../rewards/RewardsData'
 import Icon from '../Components/Icon'
 import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
 
@@ -12,11 +13,18 @@ function PopupCard(props) {
 	// handleReplace: function to replace -> function
 	// id: row number -> number
 
-	let popupCheck = (<></>)
+	let popupCheck = (<div className='popupCardCheck'>{props.world}</div>)
 	let popupReward = (<div className='popupCardReward flex-grow-1'>All Popups</div>)
 	let popupRewardSelector = (
 		<RewardSelectorButton
 			onReplace={(replacementReward) => props.handleReplace(replacementReward)}
+		/>
+	)
+	let emptyPopupRewardSelector = (
+		<RewardSelectorButton
+			onReplace={(replacementReward) => props.handleReplaceAllEmpty(replacementReward)}
+			textOverride='Replace All Empty'
+			variantOverride='dark'
 		/>
 	)
 
@@ -39,6 +47,16 @@ function PopupCard(props) {
 				originalReward={props.popup.vanillaReward}
 				onReplace={(replacementReward) => props.handleReplace(replacementReward)}
 			/>
+		)
+		emptyPopupRewardSelector = (
+			<Button
+				variant='dark'
+				id={props.id}
+				className='popupCardEMPTY'
+				onClick={() => props.handleReplace(EMPTY)}
+			>
+				Empty
+			</Button>
 		)
 		overlayPopover = props.popup.isReplaced()
 			? <EditStatusPopover
@@ -66,6 +84,7 @@ function PopupCard(props) {
 			>
 				Vanilla
 			</Button>
+			{emptyPopupRewardSelector}
 		</div>
 	)
 }
