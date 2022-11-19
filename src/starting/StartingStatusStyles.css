@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 5fr 9fr;
     gap: 4rem;
+    align-items: flex-start;
 }
 
 .startingStuffRow,

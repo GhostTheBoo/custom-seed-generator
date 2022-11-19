@@ -1,7 +1,8 @@
-import { React, useState } from 'react'
+import React, { useState } from 'react'
 import './StartingStatusStyles.css'
 
 import GenericSelect from '../Components/GenericSelect'
+import NavbarIcon from '../navbar/NavbarIcon'
 import StartingStuffList from './StartingStuffList'
 import StartingStatsForm from './StartingStatsForm'
 import { EMPTY } from '../rewards/RewardsData'
@@ -61,6 +62,11 @@ function StartingStatusPage(props) {
 				</div>
 				<div className='flex-grow-1' />
 				<div>{props.children}</div>
+				<NavbarIcon
+					showNavbar={props.handleShowNavbar}
+					fileName={'starting'}
+					title={'Starting Status'}
+				/>
 			</div>
 			<div className='startingStatusPageContent'>
 				<StartingStatsForm

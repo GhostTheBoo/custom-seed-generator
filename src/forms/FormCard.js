@@ -1,4 +1,4 @@
-import { React } from 'react'
+import React from 'react'
 
 import Icon from '../Components/Icon'
 import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'

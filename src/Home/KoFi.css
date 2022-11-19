@@ -54,6 +54,7 @@ img.kofiimg {
     display: inline-block !important;
     background-color: #29abe0;
     padding: 2px 12px !important;
+    margin: 1rem;
     text-align: center !important;
     border-radius: 7px;
     color: #fff;

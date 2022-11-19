@@ -1,6 +1,7 @@
-import { React, useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 import GenericSelect from '../Components/GenericSelect'
+import NavbarIcon from '../navbar/NavbarIcon'
 import ChestCard from './ChestCard'
 import './ChestStyles.css'
 
@@ -99,6 +100,11 @@ function ChestPage(props) {
 				<div>
 					{props.children}
 				</div>
+				<NavbarIcon
+					showNavbar={props.handleShowNavbar}
+					fileName={'chest'}
+					title={'Chest'}
+				/>
 			</div>
 			<div className='chestCardGrid' ref={chestCardGrid}>
 				{chestList}

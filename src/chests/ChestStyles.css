@@ -14,7 +14,7 @@
     justify-content: space-between;
     column-gap: .5rem;
 	overflow-y: auto;
-	height: 51rem;
+	height: 90vh;
 }
 
 .chestCard {

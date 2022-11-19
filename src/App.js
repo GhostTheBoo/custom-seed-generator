@@ -1,11 +1,9 @@
-import { React, useState, useEffect } from 'react'
-import { Tabs, Tab, Col } from 'react-bootstrap'
+// import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import JSZip from 'jszip'
 import FileSaver from 'file-saver'
 
-import SaveLoadModal from './Components/SaveLoadModal'
-import Icon from './Components/Icon'
 import { ZipSeed } from './Components/ZipSeed'
 import HelpModal from './Components/HelpModal'
 
@@ -31,6 +29,7 @@ import { StartingStatus, startingStatusData } from './starting/StartingStatusDat
 import StartingStatusPage from './starting/StartingStatusPage'
 import { Cheat, pnachCheatsData, luaCheatsData } from './cheats/CheatsData'
 import CheatPage from './cheats/CheatPage'
+import PageNavbar from './navbar/PageNavbar'
 
 
 
@@ -47,22 +46,25 @@ function FunctionApp() {
 	const [allPnachCheats, setAllPnachCheats] = useState(pnachCheatsData)
 	const [allLuaCheats, setAllLuaCheats] = useState(luaCheatsData)
 
-	const [currentTab, setCurrentTab] = useState('home')
+	const [currentTab, setCurrentTab] = useState(0)
 
-	const [isZipCommented, setIsZipCommented] = useState(true)
-	const [isPnachCommented, setIsPnachCommented] = useState(true)
-	const [isLuaCommented, setIsLuaCommented] = useState(true)
+	const [isCommented, setIsCommented] = useState(true)
+
+	const [showNavbar, setShowNavbar] = useState(false);
+
+	const handleCloseNavbar = () => setShowNavbar(false);
+	const handleShowNavbar = () => setShowNavbar(true);
 	//#endregion
-	const alertUser = e => {
-		e.preventDefault()
-		e.returnValue = ''
-	}
-	useEffect(() => {
-		window.addEventListener('beforeunload', alertUser)
-		return () => {
-			window.removeEventListener('beforeunload', alertUser)
-		}
-	}, [])
+	// const alertUser = e => {
+	// 	e.preventDefault()
+	// 	e.returnValue = ''
+	// }
+	// useEffect(() => {
+	// 	window.addEventListener('beforeunload', alertUser)
+	// 	return () => {
+	// 		window.removeEventListener('beforeunload', alertUser)
+	// 	}
+	// }, [])
 
 	//#region General Functions
 	function handleTracker(isPnach) {
@@ -154,26 +156,26 @@ function FunctionApp() {
 				finalBonusStatsComment + '\n'
 			]
 	}
-	function handleSaveAsPnach(fileName) {
-		let trackerPnachCodes = isPnachCommented ? handleTracker(true) : []
-		
-		let pnachCodes = [].concat(
-			trackerPnachCodes,
-			Chest.saveToPnach(allChests, isPnachCommented),
-			Popup.saveToPnach(allPopups, isPnachCommented),
-			BonusFight.saveToPnach(allBonuses, isPnachCommented),
-			FormLevel.saveToPnach(allForms, isPnachCommented),
-			Equipment.saveToPnach(allEquipments, isPnachCommented),
-			Level.saveToPnach(allLevels, isPnachCommented),
-			AbilityCost.saveToPnach(allCosts, isPnachCommented),
-			StartingStatus.saveToPnach(allStartingStatus, isPnachCommented),
-			Cheat.saveToPnach(allPnachCheats, isPnachCommented)
-		)
+	// function handleSaveAsPnach(fileName) {
+	// 	let trackerPnachCodes = isCommented ? handleTracker(true) : []
 
-		downloadFile(pnachCodes, fileName.length !== 0 ? '(' + fileName + ').pnach' : 'F266B00B.pnach')
-	}
+	// 	let pnachCodes = [].concat(
+	// 		trackerPnachCodes,
+	// 		Chest.saveToPnach(allChests, isCommented),
+	// 		Popup.saveToPnach(allPopups, isCommented),
+	// 		BonusFight.saveToPnach(allBonuses, isCommented),
+	// 		FormLevel.saveToPnach(allForms, isCommented),
+	// 		Equipment.saveToPnach(allEquipments, isCommented),
+	// 		Level.saveToPnach(allLevels, isCommented),
+	// 		AbilityCost.saveToPnach(allCosts, isCommented),
+	// 		StartingStatus.saveToPnach(allStartingStatus, isCommented),
+	// 		Cheat.saveToPnach(allPnachCheats, isCommented)
+	// 	)
+
+	// 	downloadFile(pnachCodes, fileName.length !== 0 ? '(' + fileName + ').pnach' : 'F266B00B.pnach')
+	// }
 	function handleSaveAsLua(fileName) {
-		let trackerLuaCodes = isLuaCommented ? handleTracker(false) : []
+		let trackerLuaCodes = isCommented ? handleTracker(false) : []
 
 		let luaDefaultCodes = [
 			'function _OnFrame()\n',
@@ -221,15 +223,15 @@ function FunctionApp() {
 		let luaCodes = [].concat(
 			trackerLuaCodes,
 			luaDefaultCodes,
-			Chest.saveToLua(allChests, isLuaCommented),
-			Popup.saveToLua(allPopups, isLuaCommented),
-			BonusFight.saveToLua(allBonuses, isLuaCommented),
-			FormLevel.saveToLua(allForms, isLuaCommented),
-			Equipment.saveToLua(allEquipments, isLuaCommented),
-			Level.saveToLua(allLevels, isLuaCommented),
-			AbilityCost.saveToLua(allCosts, isLuaCommented),
-			StartingStatus.saveToLua(allStartingStatus, isLuaCommented),
-			Cheat.saveToLua(allLuaCheats, isPnachCommented)
+			Chest.saveToLua(allChests, isCommented),
+			Popup.saveToLua(allPopups, isCommented),
+			BonusFight.saveToLua(allBonuses, isCommented),
+			FormLevel.saveToLua(allForms, isCommented),
+			Equipment.saveToLua(allEquipments, isCommented),
+			Level.saveToLua(allLevels, isCommented),
+			AbilityCost.saveToLua(allCosts, isCommented),
+			StartingStatus.saveToLua(allStartingStatus, isCommented),
+			Cheat.saveToLua(allLuaCheats, isCommented)
 		)
 
 		downloadFile(luaCodes, fileName.length !== 0 ? '(' + fileName + ').lua' : 'F266B00B.lua')
@@ -288,7 +290,6 @@ function FunctionApp() {
 		let newAllLevels = allLoadData.hasOwnProperty('levelsData') ? allLoadData.levelsData : []
 		let newAllCosts = allLoadData.hasOwnProperty('costsData') ? allLoadData.costsData : []
 		let newAllStartingStatus = allLoadData.hasOwnProperty('startingStatusData') ? allLoadData.startingStatusData : []
-
 		setAllChests(Chest.loadFromJSON(newAllChests))
 		setAllPopups(Popup.loadFromJSON(newAllPopups))
 		setAllBonuses(BonusFight.loadFromJSON(newAllBonuses))
@@ -310,40 +311,36 @@ function FunctionApp() {
 
 	let tabDataList = [
 		{
+			key: 'home',
 			eventKey: 'home',
 			fileName: 'home',
 			title: 'Home',
 			page: (
-				<HomePage>
-					<Col xs={3}>
-						<SaveLoadModal
-							isZipCommented={isZipCommented}
-							isPnachCommented={isPnachCommented}
-							isLuaCommented={isLuaCommented}
-							onZipCommentChange={() => { setIsZipCommented(!isZipCommented) }}
-							onPnachCommentChange={() => { setIsPnachCommented(!isPnachCommented) }}
-							onLuaCommentChange={() => { setIsLuaCommented(!isLuaCommented) }}
-							handleSaveAsPnach={handleSaveAsPnach}
-							handleSaveAsLua={handleSaveAsLua}
-							handleSaveAsZip={handleSaveAsZip}
-							handleSaveAsJSON={handleSaveAsJSON}
-							onFileUpload={(e) => {
-								let file = e.target.files[0]
-								let reader = new FileReader()
-								reader.readAsText(file)
-								reader.onload = (e) => handleLoadFromJSON(e.target.result)
-							}}
-						/>
-					</Col>
-				</HomePage>
+				<HomePage
+					handleShowNavbar={handleShowNavbar}
+					isCommented={isCommented}
+					onCommentChange={() => { setIsCommented(!isCommented) }}
+					// handleSaveAsPnach={handleSaveAsPnach}
+					handleSaveAsLua={handleSaveAsLua}
+					handleSaveAsZip={handleSaveAsZip}
+					handleSaveAsJSON={handleSaveAsJSON}
+					onFileUpload={(e) => {
+						let file = e.target.files[0]
+						let reader = new FileReader()
+						reader.readAsText(file)
+						reader.onload = (e) => handleLoadFromJSON(e.target.result)
+					}}
+				/>
 			)
 		},
 		{
+			key: 'chest',
 			eventKey: 'chest',
 			fileName: 'chest',
 			title: 'Chest',
 			page: (
 				<ChestPage
+					handleShowNavbar={handleShowNavbar}
 					chestData={allChests}
 					setAllChests={setAllChests}
 				>
@@ -352,11 +349,13 @@ function FunctionApp() {
 			)
 		},
 		{
+			key: 'popup',
 			eventKey: 'popup',
 			fileName: 'popup',
 			title: 'Popup',
 			page: (
 				<PopupPage
+					handleShowNavbar={handleShowNavbar}
 					popupData={allPopups}
 					setAllPopups={setAllPopups}
 				>
@@ -365,11 +364,13 @@ function FunctionApp() {
 			)
 		},
 		{
+			key: 'bonus',
 			eventKey: 'bonus',
 			fileName: 'key',
 			title: 'Bonus',
 			page: (
 				<BonusPage
+					handleShowNavbar={handleShowNavbar}
 					bonusData={allBonuses}
 					setAllBonuses={setAllBonuses}
 				>
@@ -378,11 +379,13 @@ function FunctionApp() {
 			)
 		},
 		{
+			key: 'form',
 			eventKey: 'form',
 			fileName: 'form',
 			title: 'Forms & Summons',
 			page: (
 				<FormPage
+					handleShowNavbar={handleShowNavbar}
 					formData={allForms}
 					setAllForms={setAllForms}
 				>
@@ -391,11 +394,13 @@ function FunctionApp() {
 			)
 		},
 		{
+			key: 'equipment',
 			eventKey: 'equipment',
 			fileName: 'keyblade',
 			title: 'Equipment',
 			page: (
 				<EquipmentPage
+					handleShowNavbar={handleShowNavbar}
 					equipmentData={allEquipments}
 					setAllEquipments={setAllEquipments}
 				>
@@ -404,11 +409,13 @@ function FunctionApp() {
 			)
 		},
 		{
+			key: 'level',
 			eventKey: 'level',
 			fileName: 'level',
 			title: 'Levels',
 			page: (
 				<LevelPage
+					handleShowNavbar={handleShowNavbar}
 					levelData={allLevels}
 					setAllLevels={setAllLevels}
 				>
@@ -417,11 +424,13 @@ function FunctionApp() {
 			)
 		},
 		{
+			key: 'cost',
 			eventKey: 'cost',
 			fileName: 'spell',
 			title: 'Ability Costs',
 			page: (
 				<CostPage
+					handleShowNavbar={handleShowNavbar}
 					costData={allCosts}
 					setAllCosts={setAllCosts}
 				>
@@ -430,11 +439,13 @@ function FunctionApp() {
 			)
 		},
 		{
+			key: 'startingStatus',
 			eventKey: 'startingStatus',
 			fileName: 'starting',
 			title: 'Starting Status',
 			page: (
 				<StartingStatusPage
+					handleShowNavbar={handleShowNavbar}
 					startingStatusData={allStartingStatus}
 					setAllStartingStatus={setAllStartingStatus}
 				>
@@ -443,11 +454,13 @@ function FunctionApp() {
 			)
 		},
 		{
+			key: 'cheat',
 			eventKey: 'cheat',
 			fileName: 'cheat',
 			title: 'Cheats',
 			page: (
 				<CheatPage
+					handleShowNavbar={handleShowNavbar}
 					pnachCheatData={allPnachCheats}
 					luaCheatData={allLuaCheats}
 					setAllPnachCheats={setAllPnachCheats}
@@ -460,44 +473,22 @@ function FunctionApp() {
 	]
 
 	let styles = {
-		marginTop: '10px',
-		marginRight: '10px',
-		marginBottom: '10px',
-		marginLeft: '10px',
+		marginTop: '0',
+		marginRight: '.25rem',
+		marginBottom: '.25rem',
+		marginLeft: '.25rem',
 		color: '#fff'
 	}
-
-	let tabList = tabDataList.map(tab => {
-		return (
-			<Tab
-				key={tab.eventKey}
-				eventKey={tab.eventKey}
-				title={
-					<>
-						<Icon
-							fileName={tab.fileName}
-							type={'tab'}
-						>
-							{tab.title}
-						</Icon>
-					</>}
-			>
-				{tab.page}
-			</Tab>
-		)
-	})
-
 	return (
 		<div style={styles}>
-			<Tabs
-				defaultActiveKey={currentTab}
-				id='allTabs'
-				transition={false}
-				unmountOnExit={true}
+			<PageNavbar
+				show={showNavbar}
 				onSelect={(newTab) => setCurrentTab(newTab)}
-			>
-				{tabList}
-			</Tabs>
+				onHide={handleCloseNavbar}
+				pages={tabDataList}
+				currentTab={currentTab}
+			/>
+			{tabDataList[currentTab].page}
 		</div>
 	)
 }

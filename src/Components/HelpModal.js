@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 
 import { helpData } from '../Data/helpData'
@@ -6,12 +6,12 @@ import { helpData } from '../Data/helpData'
 function HelpModal(props) {
 	const [show, setShow] = useState(false)
 	// let offsetValue = props.tab === 'cheat' ? '6' : '4'
-	if (props.tab === 'home')
+	if (props.tab === 0)
 		return null
-	let pageHelp = helpData.find(page => page.key === props.tab)
+	let pageHelp = helpData[props.tab - 1]
 	return (
 		<>
-			<Button block variant='primary' className='helpButton' onClick={() => setShow(true)}>
+			<Button variant='primary' className='helpButton' onClick={() => setShow(true)}>
 				Help!
 			</Button>
 			<Modal size='lg' show={show} onHide={() => setShow(false)}>

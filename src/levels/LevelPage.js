@@ -1,5 +1,6 @@
-import { React, useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Pagination } from 'react-bootstrap'
+import NavbarIcon from '../navbar/NavbarIcon'
 
 import LevelCard from './LevelCard'
 import LevelForm from './LevelForm'
@@ -310,6 +311,11 @@ function LevelPage(props) {
 				</Pagination>
 				<div className='flex-grow-1' />
 				<div className='helpButton'>{props.children}</div>
+				<NavbarIcon
+					showNavbar={props.handleShowNavbar}
+					fileName={'level'}
+					title={'Levels'}
+				/>
 			</div>
 			<div className='levelPageContent'>
 				<div className='levelCardList flex-grow-1' ref={levelCardList}>

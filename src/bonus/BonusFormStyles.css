@@ -30,7 +30,8 @@
 }
 
 .bonusReplaceButtonGroup {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
     padding: 0rem 1rem 1rem;
 }

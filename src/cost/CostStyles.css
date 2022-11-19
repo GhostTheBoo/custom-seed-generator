@@ -13,7 +13,8 @@
     justify-content: space-between;
     column-gap: .5rem;
     overflow-y: auto;
-    /* height: 51rem; */
+    height: 90vh;
+    align-items: flex-start;
 }
 
 .costCard {
@@ -21,7 +22,7 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-content: center;
     background-color: #343A40;
     padding: 1rem;
@@ -29,6 +30,7 @@
     border-radius: 1rem;
     box-shadow: 0rem 0rem .5rem black;
     gap: .25rem;
+    /* max-height: 35rem; */
 }
 
 .costCardImage {

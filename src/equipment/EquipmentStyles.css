@@ -14,13 +14,14 @@
 .equipmentCardList {
   /* min-width: 60%; */
   overflow-y: auto;
-  height: 800px;
+  height: 90vh;
   padding: .5rem;
 }
 
 .equipmentPageContent {
   width: 100%;
   display: flex;
+  align-items: flex-start;
   gap: 1rem;
 }
 
@@ -107,6 +108,11 @@
 
 .equipmentImage {
   margin: auto;
+}
+
+.equipmentEditButton{
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
 

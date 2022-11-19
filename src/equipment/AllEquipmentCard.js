@@ -1,4 +1,4 @@
-import { React } from 'react'
+import React from 'react'
 import { Button } from 'react-bootstrap'
 
 function AllEquipmentCard(props) {
@@ -29,7 +29,6 @@ function AllEquipmentCard(props) {
 				<div className='equipmentEditButton'>
 					<Button
 						variant='primary'
-						block
 						id={props.id}
 						disabled={props.isEditing}
 						onClick={() => props.setCurrentEquipment(props.id)}

@@ -1,7 +1,8 @@
-import { React, useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './EquipmentStyles.css'
 
 import GenericSelect from '../Components/GenericSelect'
+import NavbarIcon from '../navbar/NavbarIcon'
 import EquipmentCard from './EquipmentCard'
 import AllEquipmentCard from './AllEquipmentCard'
 import EquipmentForm from './EquipmentForm'
@@ -246,6 +247,11 @@ function EquipmentPage(props) {
 				</div>
 				<div className='flex-grow-1' />
 				<div>{props.children}</div>
+				<NavbarIcon
+					showNavbar={props.handleShowNavbar}
+					fileName={'keyblade'}
+					title={'Equipment'}
+				/>
 			</div>
 			<div className='equipmentPageContent'>
 				<div className='equipmentCardList flex-grow-1' ref={equipmentCardGrid}>{equipmentRowList}</div>

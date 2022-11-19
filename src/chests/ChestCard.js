@@ -1,7 +1,7 @@
-import { React } from 'react'
+import React from 'react'
 import { Button } from 'react-bootstrap'
 
-import RewardSelector from '../rewards/RewardSelector'
+import RewardSelectorButton from '../rewards/RewardSelectorButton'
 import Icon from '../Components/Icon'
 import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
 
@@ -18,7 +18,7 @@ function ChestCard(props) {
 	let chestRoom = (<></>)
 	let chestReward = (<div className='chestCardReward flexGrow1'>All Chests</div>)
 	let chestRewardSelector = (
-		<RewardSelector
+		<RewardSelectorButton
 			onReplace={(replacementReward) => props.handleReplace(replacementReward)}
 		/>
 	)
@@ -40,7 +40,7 @@ function ChestCard(props) {
 			</div>
 		)
 		chestRewardSelector = (
-			<RewardSelector
+			<RewardSelectorButton
 				originalReward={props.chest.vanillaReward}
 				onReplace={(replacementReward) => props.handleReplace(replacementReward)}
 			/>
@@ -72,7 +72,6 @@ function ChestCard(props) {
 			{chestRewardSelector}
 			<Button
 				variant='secondary'
-				block
 				id={props.id}
 				className='chestCardVanilla'
 				onClick={() => props.handleVanilla()}

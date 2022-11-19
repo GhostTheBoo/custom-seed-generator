@@ -1,7 +1,7 @@
-import { React } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import React from 'react'
+import { Form, Button, CloseButton } from 'react-bootstrap'
 
-import RewardSelector from '../rewards/RewardSelector'
+import RewardSelectorButton from '../rewards/RewardSelectorButton'
 import Icon from '../Components/Icon'
 
 function LevelForm(props) {
@@ -31,12 +31,7 @@ function LevelForm(props) {
     return (
         <div className='levelFormCard'>
             <h1 className='levelFormNumber'>ALL LEVELS:</h1>
-            <button
-                className='close'
-                onClick={() => props.closeFormCard(-1)}
-            >
-                x
-            </button>
+            <CloseButton className='close' onClick={() => props.closeFormCard(-1)} />
             <hr />
             <div className='levelFormReward allLevelFormReward'>
                 <Form.Check
@@ -56,7 +51,7 @@ function LevelForm(props) {
                         {props.currentLevelFieldData.sword.reward}
                     </Icon>
                 </div>
-                <RewardSelector
+                <RewardSelectorButton
                     onReplace={(replacementReward) => setCurrentSword(replacementReward)}
                 />
                 <Form.Check
@@ -76,7 +71,7 @@ function LevelForm(props) {
                         {props.currentLevelFieldData.shield.reward}
                     </Icon>
                 </div>
-                <RewardSelector
+                <RewardSelectorButton
                     onReplace={(replacementReward) => setCurrentShield(replacementReward)}
                 />
                 <Form.Check
@@ -96,7 +91,7 @@ function LevelForm(props) {
                         {props.currentLevelFieldData.staff.reward}
                     </Icon>
                 </div>
-                <RewardSelector
+                <RewardSelectorButton
                     onReplace={(replacementReward) => setCurrentStaff(replacementReward)}
                 />
             </div>
@@ -225,13 +220,11 @@ function LevelForm(props) {
             <div className='levelReplaceButtonGroup'>
                 <Button
                     variant='secondary'
-                    block
                     onClick={() => props.handleVanilla(props.level)}
                 >
                     VANILLA
                 </Button>
                 <Button
-                    block
                     onClick={() => props.handleReplace(props.level, props.currentLevelFieldData)}
                 >
                     CONFIRM

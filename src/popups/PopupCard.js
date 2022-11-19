@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 
-import RewardSelector from '../rewards/RewardSelector'
+import RewardSelectorButton from '../rewards/RewardSelectorButton'
 import Icon from '../Components/Icon'
 import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
 
@@ -15,7 +15,7 @@ function PopupCard(props) {
 	let popupCheck = (<></>)
 	let popupReward = (<div className='popupCardReward flex-grow-1'>All Popups</div>)
 	let popupRewardSelector = (
-		<RewardSelector
+		<RewardSelectorButton
 			onReplace={(replacementReward) => props.handleReplace(replacementReward)}
 		/>
 	)
@@ -35,7 +35,7 @@ function PopupCard(props) {
 			</div>
 		)
 		popupRewardSelector = (
-			<RewardSelector
+			<RewardSelectorButton
 				originalReward={props.popup.vanillaReward}
 				onReplace={(replacementReward) => props.handleReplace(replacementReward)}
 			/>
@@ -60,7 +60,6 @@ function PopupCard(props) {
 			{popupRewardSelector}
 			<Button
 				variant='secondary'
-				block
 				id={props.id}
 				className='popupCardVanilla'
 				onClick={() => props.handleVanilla()}

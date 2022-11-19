@@ -1,7 +1,7 @@
-import { React } from 'react'
-import { Button } from 'react-bootstrap'
+import React from 'react'
+import { Button, CloseButton } from 'react-bootstrap'
 
-import RewardSelector from '../rewards/RewardSelector'
+import RewardSelectorButton from '../rewards/RewardSelectorButton'
 import Icon from '../Components/Icon'
 import './EquipmentFormStyles.css'
 
@@ -24,12 +24,7 @@ function EquipmentForm(props) {
     return (
         <div className='equipmentFormCard'>
             <h1 className='equipmentFormName'>{props.equipment.name.toUpperCase()}:</h1>
-            <button
-                className='close'
-                onClick={() => props.closeFormCard(-1)}
-            >
-                x
-            </button>
+			<CloseButton className='close' onClick={() => props.closeFormCard(-1)} />
             <img
                 className='equipmentFormImage'
                 src={equipmentImage}
@@ -47,7 +42,7 @@ function EquipmentForm(props) {
                         {props.currentEquipmentFieldData.ability.reward}
                     </Icon>
                 </div>
-                <RewardSelector
+                <RewardSelectorButton
                     onReplace={(replacementReward) => setCurrentAbility(replacementReward)}
                 />
             </div>
@@ -171,13 +166,11 @@ function EquipmentForm(props) {
             <div className='equipmentReplaceButtonGroup'>
                 <Button
                     variant='secondary'
-                    block
                     onClick={() => props.handleVanilla(props.equipment)}
                 >
                     VANILLA
                 </Button>
                 <Button
-                    block
                     onClick={() => props.handleReplace(props.equipment, props.currentEquipmentFieldData)}
                 >
                     CONFIRM

@@ -101,13 +101,11 @@ function StartingStatsForm(props) {
             <div className='startingStuffReplaceButtonGroup'>
                 <Button
                     variant='secondary'
-                    block
                     onClick={() => props.handleVanilla()}
                 >
                     VANILLA
                 </Button>
                 <Button
-                    block
                     onClick={() => props.handleReplace()}
                 >
                     CONFIRM

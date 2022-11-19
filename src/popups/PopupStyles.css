@@ -2,10 +2,11 @@
     /* font-family: KHMenu; */
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    align-items: flex-start;
     column-gap: .5rem;
 	overflow-y: auto;
-	height: 51rem;
+	height: 90vh;
 }
 
 .popupCard {

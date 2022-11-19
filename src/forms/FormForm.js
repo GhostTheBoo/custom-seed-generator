@@ -1,7 +1,7 @@
-import { React } from 'react'
-import { Button } from 'react-bootstrap'
+import React from 'react'
+import { Button, CloseButton } from 'react-bootstrap'
 
-import RewardSelector from '../rewards/RewardSelector'
+import RewardSelectorButton from '../rewards/RewardSelectorButton'
 import Icon from '../Components/Icon'
 import './FormFormStyles.css'
 
@@ -22,14 +22,9 @@ function FormForm(props) {
 	return (
 		<div className='formFormCard'>
 			<h1>LEVEL {props.currentDriveFormLevel + 2}:</h1>
-			<button
-				className='close'
-				onClick={() => props.closeFormCard()}
-			>
-				x
-			</button>
+			<CloseButton className='close' onClick={() => props.closeFormCard()} />
 			<hr />
-			<div style={{ display: 'flex', flexDirection: 'column' }}>
+			<div className='formRewardEditGroup'>
 				<label>Reward:</label>
 				<div>
 					<Icon
@@ -40,7 +35,7 @@ function FormForm(props) {
 						{props.currentFormFieldData.reward.reward}
 					</Icon>
 				</div>
-				<RewardSelector
+				<RewardSelectorButton
 					onReplace={(replacementReward) => setCurrentReward(replacementReward)}
 				/>
 			</div>
@@ -61,13 +56,11 @@ function FormForm(props) {
 			<div className='formReplaceButtonGroup'>
 				<Button
 					variant='secondary'
-					block
 					onClick={() => props.setCurrentDriveFormLevel(props.currentDriveFormLevelData.vanilla())}
 				>
 					VANILLA
 				</Button>
 				<Button
-					block
 					onClick={() => props.setCurrentDriveFormLevel(props.currentDriveFormLevelData.replace(props.currentFormFieldData))}
 				>
 					CONFIRM

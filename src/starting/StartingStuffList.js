@@ -3,7 +3,7 @@ import { ListGroup, Button } from 'react-bootstrap'
 
 import Icon from '../Components/Icon'
 import { EMPTY } from '../rewards/RewardsData'
-import RewardSelector from '../rewards/RewardSelector'
+import RewardSelectorButton from '../rewards/RewardSelectorButton'
 
 function StartingStuffList(props) {
 
@@ -26,7 +26,7 @@ function StartingStuffList(props) {
 						{data.reward}
 					</Icon>
 				</div>
-				<RewardSelector
+				<RewardSelectorButton
 					originalReward={data}
 					onReplace={(replacementReward) => props.handleReplace(replacementReward, index)}
 				/>
@@ -53,7 +53,7 @@ function StartingStuffList(props) {
 				<div className='startingStuffFinalLabel'>
 					Add Starting Item
 				</div>
-				<RewardSelector
+				<RewardSelectorButton
 					originalReward={EMPTY}
 					onReplace={(replacementReward) => props.handleAdd(replacementReward)}
 				/>

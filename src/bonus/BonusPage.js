@@ -1,6 +1,7 @@
-import { React, useState } from 'react'
+import React, { useState } from 'react'
 
 import GenericSelect from '../Components/GenericSelect'
+import NavbarIcon from '../navbar/NavbarIcon'
 
 import BonusFightList from './BonusFightList'
 import BonusCard from './BonusCard'
@@ -117,6 +118,11 @@ function BonusPage(props) {
 				<div>
 					{props.children}
 				</div>
+				<NavbarIcon
+					showNavbar={props.handleShowNavbar}
+					fileName={'key'}
+					title={'Bonus'}
+				/>
 			</div>
 			<div className='bonusPageContent'>
 				<div className='bonusFightList'>

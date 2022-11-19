@@ -1,8 +1,8 @@
-import { React } from 'react'
-import { Button } from 'react-bootstrap'
+import React from 'react'
+import { Button, CloseButton } from 'react-bootstrap'
 
 import GenericSelect from '../Components/GenericSelect'
-import RewardSelector from '../rewards/RewardSelector'
+import RewardSelectorButton from '../rewards/RewardSelectorButton'
 import Icon from '../Components/Icon'
 import './BonusFormStyles.css'
 
@@ -42,12 +42,7 @@ function BonusForm(props) {
 	return (
 		<div className='bonusFormCard'>
 			<h1>SLOT {props.currentSlotNumber + 1}:</h1>
-			<button
-				className='close'
-				onClick={() => props.closeFormCard(-1)}
-			>
-				x
-			</button>
+			<CloseButton className='close' onClick={() => props.closeFormCard(-1)} />
 			<hr />
 			<div className='grid-col-2'>
 				<label>Reward A:</label>
@@ -68,10 +63,10 @@ function BonusForm(props) {
 						{props.currentBonusFieldData.rewardB.reward}
 					</Icon>
 				</div>
-				<RewardSelector
+				<RewardSelectorButton
 					onReplace={(replacementReward) => setCurrentRewardA(replacementReward)}
 				/>
-				<RewardSelector
+				<RewardSelectorButton
 					onReplace={(replacementReward) => setCurrentRewardB(replacementReward)}
 				/>
 			</div>
@@ -203,13 +198,11 @@ function BonusForm(props) {
 			<div className='bonusReplaceButtonGroup'>
 				<Button
 					variant='secondary'
-					block
 					onClick={() => props.setCurrentBonusFightSlot(props.bonusReward.vanilla())}
 				>
 					VANILLA
 				</Button>
 				<Button
-					block
 					onClick={() => props.setCurrentBonusFightSlot(props.bonusReward.replace(props.currentBonusFieldData))}
 				>
 					CONFIRM

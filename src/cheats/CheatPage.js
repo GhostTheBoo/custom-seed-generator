@@ -1,7 +1,8 @@
-import { React } from 'react'
+import React from 'react'
 import './CheatStyles.css'
 
 import CheatListGroup from './CheatListGroup'
+import NavbarIcon from '../navbar/NavbarIcon'
 
 function CheatPage(props) {
     function toggleActiveCheat(allCheatData, setAllCheatData, cheatIndex) {
@@ -18,6 +19,11 @@ function CheatPage(props) {
                 <div>
                     {props.children}
                 </div>
+                <NavbarIcon
+                    showNavbar={props.handleShowNavbar}
+                    fileName={'cheat'}
+                    title={'Cheats'}
+                />
             </div>
             <div className='cheatPageContent'>
                 <h1 className='cheatTypeHeader' style={{ margin: '10px', textAlign: 'center' }}>Zip Cheats</h1>

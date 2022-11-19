@@ -1,5 +1,4 @@
 /* General Utilities */
-
 @font-face {
 	font-family: 'KHGummi';
 	src: local('KHGummi'),
@@ -30,6 +29,17 @@ body {
 	background-color: #222;
 }
 
+.nav-item>button {
+	color: #5af;
+	text-decoration: none;
+	background-color: transparent;
+}
+
+.nav-item>button:hover {
+	color: #8df;
+	text-decoration: none;
+}
+
 .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
 	color: #fff;
@@ -37,15 +47,16 @@ body {
 	border-color: #fff #fff #222;
 }
 
-a {
-	color: #5af;
-	text-decoration: none;
-	background-color: transparent;
+.pageNavbarIcon {
+	color: #fff;
+	background-color: #222;
+	border: none;
 }
 
-a:hover {
+.pageNavbarIcon:hover {
 	color: #8df;
-	text-decoration: underline;
+	/* border: .1rem solid; */
+	border-color: #222 #fff;
 }
 
 .fullPageContent {
@@ -58,8 +69,17 @@ a:hover {
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: baseline;
-	padding: 1rem 0rem;
+	margin: 0;
+	padding: 1rem 0;
 	gap: 1rem;
+	background-color: #222;
+	position: sticky;
+	top: 0;
+	z-index: 100;
+}
+
+.form-check-input {
+	font-size: 1rem;
 }
 
 input {
@@ -90,11 +110,8 @@ hr {
 }
 
 .close {
-	color: #fff;
-	text-shadow: 0 1px 0 #000;
-	opacity: .5;
 	position: absolute;
-	top: 0;
+	top: 1rem;
 	right: 1rem;
 }
 
@@ -108,8 +125,18 @@ hr {
 	width: 10rem;
 }
 
+.rewardListItem>*,
+.selectorListItem>*,
+.pageSelectorItem>*,
+.pageNavbarIcon>* {
+	pointer-events: none;
+}
 
-
+.pageTitle {
+	font-family: KHMenu;
+	font-size: 2rem;
+	text-align: end;
+}
 
 /* @media(max-width: 90rem) {} */
 
@@ -118,17 +145,17 @@ hr {
 		font-size: 1rem;
 	}
 
-	.nav-link>.iconDescription {
+	/* .nav-link>.iconDescription {
 		display: none;
 	}
 
 	.nav-link.active>.iconDescription {
 		display: inline;
-	}
+	} */
 }
 
 @media(max-width: 48rem) {
-	.nav-link>.iconDescription {
+	/* .nav-link>.iconDescription {
 		display: none;
-	}
+	} */
 }

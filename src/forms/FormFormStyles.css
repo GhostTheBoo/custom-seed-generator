@@ -14,13 +14,19 @@
 }
 
 .formReplaceButtonGroup {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
     padding: 0rem 1rem 1rem;
 }
 
 .formFormCard label {
     font-size: 1.5rem
+}
+
+.formRewardEditGroup {
+    display: grid;
+    grid-template-columns: 1fr;
 }
 
 .allFormRewardRow {
@@ -50,9 +56,11 @@
     .allFormOptionRow {
         flex-wrap: wrap;
     }
+
     .allFormLabel {
         width: 80%;
     }
+
     .allFormInput {
         width: 100%;
     }

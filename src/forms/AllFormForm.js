@@ -1,8 +1,8 @@
-import { React } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import React from 'react'
+import { Button, Form, CloseButton } from 'react-bootstrap'
 
 import GenericSelect from '../Components/GenericSelect'
-import RewardSelector from '../rewards/RewardSelector'
+import RewardSelectorButton from '../rewards/RewardSelectorButton'
 import Icon from '../Components/Icon'
 
 function AllFormForm(props) {
@@ -22,12 +22,7 @@ function AllFormForm(props) {
 	return (
 		<div className='formFormCard'>
 			<h1>EDITING ALL LEVELS:</h1>
-			<button
-				className='close'
-				onClick={() => props.closeFormCard()}
-			>
-				x
-			</button>
+			<CloseButton className='close' onClick={() => props.closeFormCard()} />
 			<hr />
 			<div className='allFormRewardRow'>
 				<div style={{ width: '10%', marginTop: '.6rem' }}>
@@ -50,7 +45,7 @@ function AllFormForm(props) {
 					</Icon>
 				</div>
 			</div>
-			<RewardSelector
+			<RewardSelectorButton
 				onReplace={(replacementReward) => setCurrentReward(replacementReward)}
 			/>
 			<hr />
@@ -99,13 +94,11 @@ function AllFormForm(props) {
 			<div className='formReplaceButtonGroup'>
 				<Button
 					variant='secondary'
-					block
 					onClick={() => props.setAllLevels('vanilla')}
 				>
 					VANILLA
 				</Button>
 				<Button
-					block
 					onClick={() => props.setAllLevels('replace')}
 				>
 					CONFIRM

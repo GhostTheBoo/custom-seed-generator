@@ -14,7 +14,7 @@
 
 .levelCardList {
   overflow-y: auto;
-  height: 800px;
+  height: 90vh;
   padding: .5rem;
 }
 
@@ -22,6 +22,12 @@
   width: 100%;
   display: flex;
   gap: 1rem;
+  align-items: flex-start;
+}
+
+.levelEditButton {
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
 .smallLevelCard .levelCardStylizedNumber {

@@ -1,5 +1,4 @@
-import { React } from 'react'
-import { Button } from 'react-bootstrap'
+import React from 'react'
 import Icon from '../Components/Icon'
 
 function RewardListGroup(props) {
@@ -11,45 +10,37 @@ function RewardListGroup(props) {
 
     let rewardOnClick = (id) => {
         let indeces = id.split('_')
-        props.setCurrentReplacementReward(parseInt(indeces[0]), parseInt(indeces[1]))
+        props.setCurrentReplacementReward(parseInt(indeces[1]))
     }
 
-    let rewardCategories = props.rewardCategoryList.map((category, categoryIndex) => {
-        let rewardList = category.rewards.map((reward, rewardIndex) => {
-            return (
-                <Button
-                    className='rewardListItem'
-                    variant='dark'
-
-                    id={categoryIndex + '_' + rewardIndex}
-                    key={categoryIndex + '_' + rewardIndex}
-                    onClick={(e) => { rewardOnClick(e.target.id) }}
-                    style={{
-                        margin: 0,
-                        padding: 0,
-                        textAlign: 'left'
-                    }}
-                >
-                    <Icon
-                        fileName={reward.iconType}
-                        type={'row'}
-                    >
-                        {reward.reward}
-                    </Icon>
-                </Button>
-            )
-        })
+    let rewardList = props.rewardList.map((reward, rewardIndex) => {
         return (
-            <div className='rewardCategoryGroup' key={category.category}>
-                <h1 className='rewardCategoryName'>{category.category}</h1>
-                <div className='rewardCategoryButtonGroup'>
-                    {rewardList}
-                </div>
-            </div>
+            <button
+                className='rewardListItem'
+                id={props.rewardTypeIndex + '_' + rewardIndex}
+                key={props.rewardTypeIndex + '_' + rewardIndex}
+                onClick={(e) => { rewardOnClick(e.target.id) }}
+            >
+                <Icon
+                    fileName={reward.iconType}
+                    type={'row'}
+                >
+                    {reward.reward}
+                </Icon>
+            </button>
         )
     })
     return (
-        <>{rewardCategories}</>
+        // <div className='rewardCategoryGroup' key={props.rewardTypeIndex}>
+        //     <h1 className='rewardCategoryName'>{props.rewardTypeIndex}</h1>
+        //     <div className='rewardCategoryButtonGroup'>
+        //         {rewardList}
+        //     </div>
+        // </div>
+        <>
+            {/* <h1 className='rewardCategoryName'>{props.rewardTypeIndex}</h1> */}
+            {rewardList}
+        </>
     )
 }
 

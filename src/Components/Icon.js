@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 function Icon(props) {
 	const [iconPath, setIconPath] = useState(props.fileName.toLowerCase())
@@ -17,12 +17,14 @@ function Icon(props) {
 	else if (props.type === 'card')
 		iconSize = 21
 	else if (props.type === 'tab')
-		iconSize = 40
+		iconSize = 75
 	else if (props.type === 'header')
 		iconSize = 20
 	else if (props.type === 'form')
 		iconSize = 30
 	else if (props.type === 'bonusForm')
+		iconSize = 50
+	else if (props.type === 'navbarIcon')
 		iconSize = 50
 	else
 		iconSize = 0

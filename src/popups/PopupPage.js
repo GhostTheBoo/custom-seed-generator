@@ -1,6 +1,7 @@
-import { React, useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 
 import GenericSelect from '../Components/GenericSelect'
+import NavbarIcon from '../navbar/NavbarIcon'
 import PopupCard from './PopupCard'
 
 import './PopupStyles.css'
@@ -12,6 +13,10 @@ function PopupPage(props) {
 
 	const [currentWorld, setCurrentWorld] = useState(0)
 	let currentWorldPopups = props.popupData[currentWorld].popups
+	const popupCardGrid = useRef(null)
+	useEffect(() => {
+		popupCardGrid.current.scrollTo({ top: 0, behavior: 'smooth' })
+	}, [currentWorld])
 
 	function updatePopups(newPopup) {
 		let newWorldPopups = currentWorldPopups.map(popup => {
@@ -73,8 +78,13 @@ function PopupPage(props) {
 				<div>
 					{props.children}
 				</div>
+				<NavbarIcon
+					showNavbar={props.handleShowNavbar}
+					fileName={'popup'}
+					title={'Popup'}
+				/>
 			</div>
-			<div className='popupCardGrid'>
+			<div className='popupCardGrid' ref={popupCardGrid}>
 				{popupList}
 			</div>
 		</div>

@@ -1,4 +1,4 @@
-import { React } from 'react'
+import React from 'react'
 import { OverlayTrigger, Popover } from 'react-bootstrap'
 import './EditStatusPopoverStyles.css'
 

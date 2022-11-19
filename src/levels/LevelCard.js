@@ -1,4 +1,4 @@
-import { React } from 'react'
+import React from 'react'
 import { Button } from 'react-bootstrap'
 
 import Icon from '../Components/Icon'
@@ -21,7 +21,6 @@ function LevelCard(props) {
 					<div className='levelEditButton'>
 						<Button
 							variant='primary'
-							block
 							id={props.id}
 							disabled={props.isEditing}
 							onClick={() => props.setCurrentLevel(props.id)}
@@ -41,7 +40,6 @@ function LevelCard(props) {
 					<div className='levelEditButton'>
 						<Button
 							variant='primary'
-							block
 							id={props.id}
 							disabled={props.isEditing}
 							onClick={() => props.setCurrentLevel(props.id)}

@@ -1,7 +1,9 @@
-// import React, { useEffect, useRef } from 'react'
-import './CreditsList.css'
+import React from 'react'
+import Marquee from "react-fast-marquee"
 
-function CreditsList(props) {
+import './CreditsListStyles.css'
+
+function CreditsList() {
     let creditData = [
         {
             name: 'Televo',
@@ -125,21 +127,43 @@ function CreditsList(props) {
         }
     ]
 
+    function shuffle(array) {
+        let currentIndex = array.length, randomIndex;
+
+        // While there remain elements to shuffle.
+        while (currentIndex !== 0) {
+
+            // Pick a remaining element.
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            // And swap it with the current element.
+            [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]];
+        }
+
+        return array;
+    }
+
     let creditItemList = creditData.map(credit => {
         return (
             <li key={'credit' + credit.name} className='credit'>
                 <div className={credit.contribution}>{credit.name}</div>
-                {/* <div style={{ flexGrow: '1' }} />
-                <div className='creditContribution'>{credit.contribution}</div> */}
             </li>
         )
     })
 
     return (
-        <ul className='creditsList'>
-            {creditItemList.slice(props.start, props.end)}
-        </ul>
+        <div className='creditListGroup'>
+            <div className='creditsLabel'>Thank You!</div>
+            <Marquee
+                speed={50}
+                gradientColor={[34, 34, 34]}
+            >
+                {shuffle(creditItemList).slice()}
+            </Marquee>
+        </div>
     )
 }
 
-export default CreditsList
+export default React.memo(CreditsList, () => { return true })

@@ -1,4 +1,4 @@
-import { React } from 'react'
+import React from 'react'
 import { Button } from 'react-bootstrap'
 import Icon from '../Components/Icon'
 import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
@@ -76,7 +76,6 @@ function EquipmentCard(props) {
                 <div className='equipmentEditButton'>
                     <Button
                         variant='primary'
-                        block
                         id={props.id}
                         disabled={props.isEditing}
                         onClick={() => props.setCurrentEquipment(props.id)}

@@ -1,6 +1,7 @@
-import { React, useState } from 'react'
+import React, { useState } from 'react'
 import './FormStyles.css'
 
+import NavbarIcon from '../navbar/NavbarIcon'
 import FormList from './FormList'
 import FormForm from './FormForm'
 import AllFormForm from './AllFormForm'
@@ -192,6 +193,15 @@ function FormPage(props) {
 
 	return (
 		<div className='fullPageContent' style={{ marginTop: '1rem' }}>
+			<div className='pageHeader'>
+				<div className='flex-grow-1' />
+				{props.children}
+				<NavbarIcon
+					showNavbar={props.handleShowNavbar}
+					fileName={'form'}
+					title={'Forms & Summons'}
+				/>
+			</div>
 			<div className='formPageContent'>
 				<div className='formList'>
 					<FormList
@@ -204,7 +214,6 @@ function FormPage(props) {
 					{altLevelDataList}
 				</div>
 				<div className='formForm flex-grow-1'>
-					{props.children}
 					{DisplayedFormForm[currentDisplayedForm]}
 				</div>
 			</div>

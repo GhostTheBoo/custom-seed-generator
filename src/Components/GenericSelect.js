@@ -9,16 +9,15 @@ function GenericSelect(props) {
 		)
 	})
 	return (
-		<Form.Control
+		<Form.Select
 			className='genericSelect'
-			as='select'
 			value={props.currentItem}
 			disabled={isDisabled}
 			name={props.name}
 			onChange={props.onChange}
 		>
 			{optionlist}
-		</Form.Control>
+		</Form.Select>
 	)
 }
 

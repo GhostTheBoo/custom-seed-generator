@@ -1,4 +1,4 @@
-import { React } from 'react'
+import React from 'react'
 import GenericListGroup from '../Components/GenericListGroup'
 
 function FormList(props) {

@@ -1,0 +1,35 @@
+.pageNavbar {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    align-items: flex-end;
+    justify-content: center;
+    background-color: #444;
+}
+
+.pageSelectorItem {
+    background-color: #444;
+    border: none;
+    font-family: KHMenu;
+    color: #5af;
+    text-align: start;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.pageNavbarIcon{
+    font-family: KHMenu;
+}
+
+.iconDescription.tabNavbar {
+    font-size: 1.5rem;
+}
+
+.pageSelectorItem:hover {
+    color: #8df;
+}
+
+.pageSelectorItem.selected {
+    color: #fff;
+}
