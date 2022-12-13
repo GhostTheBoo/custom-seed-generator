@@ -3,7 +3,7 @@
     flex-direction: column;
     gap: .5rem;
     align-items: flex-end;
-    justify-content: center;
+    justify-content: flex-start;
     background-color: #444;
 }
 

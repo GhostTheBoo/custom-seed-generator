@@ -170,7 +170,7 @@ export const chestsData = [
 			new Chest('The West Hall', new Reward('Hi-Potion', 0x002, 'Consumable'), 0x1CDFC46, 41),
 			new Chest('The West Hall', new Reward('Mythril Shard', 0x159, 'Synthesis'), 0x1CDFC52, 206), // WEIRD
 			new Chest('The West Hall', new Reward('Power Shard', 0x149, 'Synthesis'), 0x1CDFC5E, 207),
-			new Chest('The West Hall', new Reward('Mythril Shard', 0x159, 'Synthesis'), 0x1CDFC6A, 44), // WEIRD
+			new Chest('The West Hall', new Reward('Mythril Shard', 0x159, 'Synthesis'), 0x1CDFC6A, 208), // WEIRD
 			new Chest('The West Hall', new Reward('AP Boost', 0x117, 'Tent'), 0x1CDFC76, 158),
 			new Chest('The West Hall', new Reward('Bright Stone', 0x15E, 'Synthesis'), 0x1CDFC82, 159),
 			new Chest('Dungeon', new Reward('Basement Map', 0x05B, 'Map'), 0x1CDFC8E, 239),

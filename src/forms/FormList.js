@@ -3,12 +3,12 @@ import GenericListGroup from '../Components/GenericListGroup'
 
 function FormList(props) {
     const formNames = [
-        { name: 'Summon', png: 'charm' },
         { name: 'Valor', png: 'valor' },
         { name: 'Wisdom', png: 'wisdom' },
         { name: 'Limit', png: 'limit_form' },
         { name: 'Master', png: 'master' },
         { name: 'Final', png: 'final' },
+        { name: 'Summon', png: 'charm' }
     ]
 
     return (
