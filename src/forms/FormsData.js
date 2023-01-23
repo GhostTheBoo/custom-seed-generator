@@ -180,6 +180,19 @@ export class FormLevel {
 
 export const formsData = [
 	{
+		driveForm: 'Summon',
+		removeGrowthJankPnachCodes: [],
+		removeGrowthJankLuaCodes: [],
+		driveLevels: [
+			new FormLevel('Summon LV2', new Reward('EMPTY', 0x000, 'EMPTY'), 0x1D1A1EE, 6, 0x1D1A1F0),
+			new FormLevel('Summon LV3', new Reward('EMPTY', 0x000, 'EMPTY'), 0x1D1A1F6, 16, 0x1D1A1F8),
+			new FormLevel('Summon LV4', new Reward('EMPTY', 0x000, 'EMPTY'), 0x1D1A1FE, 25, 0x1D1A200),
+			new FormLevel('Summon LV5', new Reward('EMPTY', 0x000, 'EMPTY'), 0x1D1A206, 42, 0x1D1A208),
+			new FormLevel('Summon LV6', new Reward('EMPTY', 0x000, 'EMPTY'), 0x1D1A20E, 63, 0x1D1A210),
+			new FormLevel('Summon LV7', new Reward('EMPTY', 0x000, 'EMPTY'), 0x1D1A216, 98, 0x1D1A218)
+		]
+	},
+	{
 		driveForm: 'Valor',
 		removeGrowthJankPnachCodes: [
 			'//Remove High Jump LV1\n',
@@ -452,19 +465,6 @@ export const formsData = [
 			new FormLevel('Final LV5', new Reward('Glide LV 2', 0x06B, 'Glide'), 0x1D1A326, 76, 0x1D1A320),
 			new FormLevel('Final LV6', new Reward('Form Boost', 0x18E, 'Ability'), 0x1D1A32E, 133, 0x1D1A328),
 			new FormLevel('Final LV7', new Reward('Glide LV 3', 0x06C, 'Glide'), 0x1D1A336, 157, 0x1D1A330)
-		]
-	},
-	{
-		driveForm: 'Summon',
-		removeGrowthJankPnachCodes: [],
-		removeGrowthJankLuaCodes: [],
-		driveLevels: [
-			new FormLevel('Summon LV2', new Reward('EMPTY', 0x000, 'EMPTY'), 0x1D1A1EE, 6, 0x1D1A1F0),
-			new FormLevel('Summon LV3', new Reward('EMPTY', 0x000, 'EMPTY'), 0x1D1A1F6, 16, 0x1D1A1F8),
-			new FormLevel('Summon LV4', new Reward('EMPTY', 0x000, 'EMPTY'), 0x1D1A1FE, 25, 0x1D1A200),
-			new FormLevel('Summon LV5', new Reward('EMPTY', 0x000, 'EMPTY'), 0x1D1A206, 42, 0x1D1A208),
-			new FormLevel('Summon LV6', new Reward('EMPTY', 0x000, 'EMPTY'), 0x1D1A20E, 63, 0x1D1A210),
-			new FormLevel('Summon LV7', new Reward('EMPTY', 0x000, 'EMPTY'), 0x1D1A216, 98, 0x1D1A218)
 		]
 	}
 ]

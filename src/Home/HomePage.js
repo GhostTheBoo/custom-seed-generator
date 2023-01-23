@@ -7,7 +7,7 @@ import CreditsList from './CreditsList'
 import SaveLoad from './SaveLoad'
 
 function HomePage(props) {
-	let lastUpdateDate = 'November 19, 2022'
+	let lastUpdateDate = 'January 22, 2023'
 	let logo = './images/logo.png'
 
 	return (
