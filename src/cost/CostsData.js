@@ -53,7 +53,7 @@ export class AbilityCost {
 		this.saveToYml = (isCommented) => {
 			let ret = ''
 			if (this.isReplaced()) {
-				ret = this.zipID.toString() + ':\n  Cost: ' + this.replacementCost
+				ret = '- Id: ' + this.zipID.toString() + '\n  Cost: ' + this.replacementCost
 				ret += '\n'
 			}
 			return ret
