@@ -1,0 +1,32 @@
+.creditListGroup {
+    display: flex;
+    margin: 2rem 0;
+}
+
+.creditsLabel {
+    font-family: KHMenu;
+    width: 10rem;
+}
+
+.credit {
+    display: flex;
+    padding: 0 3rem;
+    font-family: KHMenu;
+    text-shadow: .05rem .05rem .1rem black;
+}
+
+.ClutchArtist {
+    color: #C0432B;
+}
+
+.OriginalSquad {
+    color: #3BA55D;
+}
+
+.BonafideBadass {
+    color: #8F55A7;
+}
+
+.CoreCreator {
+    color: #F1C40F;
+}

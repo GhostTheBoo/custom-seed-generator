@@ -1,8 +1,7 @@
-import { React } from 'react'
-import { Row } from 'react-bootstrap'
+import React from 'react'
 
 import Icon from '../Components/Icon'
-import EditStatusPopover from '../Components/EditStatusPopover'
+import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
 
 function FormCard(props) {
     let formName = [props.level.level.split(' ')[0]]
@@ -19,12 +18,13 @@ function FormCard(props) {
     let formLogo = './images/icons/' + formName[0].toLowerCase() + 'D.png'
 
     return (
-        <Row style={{ filter: 'drop-shadow(3px 3px 2px black)' }}>
+        <div className='formLevelCardGroup'>
             {props.level.isEXPReplaced() || props.level.isRewardReplaced() ? overlayPopover : <></>}
             <div className={`formLevelCard ${formName[0].toLowerCase()}`}>
                 <div className='formLevelName'>
-                    <div style={{ width: '40%' }}>{formName.join(' ')}</div>
-                    <div style={{ flexGrow: '1' }}></div>
+                    <div style={{ width: '5%' }}></div>
+                    <div className='formType'>{formName.join(' ')}</div>
+                    <div className='flex-grow-1'></div>
                     <div className='lv'>LV.</div>
                     <div style={{ width: '10%' }}>{props.level.level.slice(-1)}</div>
                 </div>
@@ -40,19 +40,18 @@ function FormCard(props) {
                     <div className='formCardReward'>
                         EXP: <span style={{ fontFamily: 'KHGummi', color: '#FFF100', textAlign: 'start' }}>{props.level.replacementEXP}</span>
                     </div>
+                    <button
+                        className='editFormLevelButton'
+                        onClick={(e) => props.handleDriveFormLevelChange(parseInt(e.target.id))}
+                        disabled={props.isEditing}
+                    >
+                        {props.isEditing ? 'EDITING' : 'EDIT'}
+                    </button>
                 </div>
-                <button
-                    className='editFormLevelButton'
-                    onClick={(e) => props.handleDriveFormLevelChange(parseInt(e.target.id))}
-                    disabled={props.isEditing}
-                    style={{ fontFamily: 'KHGummi', fontSize: '1.5rem' }}
-                >
-                    {props.isEditing ? 'EDITING...' : 'EDIT'}
-                </button>
             </div>
             <div className={`afterFormLevelCard ${formName[0].toLowerCase()}`} />
             <img className='formDriveLogo' src={formLogo} alt="Drive Logo" />
-        </Row>
+        </div>
     )
 }
 

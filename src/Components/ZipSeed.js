@@ -4,7 +4,7 @@ import { BonusFight } from '../bonus/BonusData'
 import { FormLevel } from '../forms/FormsData'
 import { Equipment } from '../equipment/EquipmentsData'
 import { Level } from '../levels/LevelData'
-// import { MagicAbility } from '../magic/MagicData'
+import { AbilityCost } from '../cost/CostsData'
 import { StartingStatus } from '../starting/StartingStatusData'
 
 export class ZipSeed {
@@ -18,6 +18,7 @@ export class ZipSeed {
     this.PlrpList = ''
     this.sys = ''
     this.TrsrList = ''
+    this.CmdList = ''
 
     this.generateBonsList = (bonusData, isCommented) => {
       let ret = BonusFight.saveToYml(bonusData, isCommented)
@@ -69,6 +70,27 @@ export class ZipSeed {
       let ret = Level.saveToYml(levelData, isCommented)
       this.LvupList = ret.length > 0 ? ret = 'Sora:\n' + ret.slice(0, -1) : ret
       return this.LvupList
+    }
+    this.generatePlrpList = (startingStatusData, isCommented) => {
+      let ret = StartingStatus.saveToYml(startingStatusData, isCommented)
+      this.PlrpList = ret.length > 0 ? ret.slice(0, -1) : ret
+      return this.PlrpList
+    }
+    this.generateTrsrList = (chestData, popupData, isCommented) => {
+      let ret = Chest.saveToYml(chestData, isCommented)
+      ret += Popup.saveToYml(popupData, isCommented)
+      this.TrsrList = ret.length > 0 ? ret.slice(0, -1) : ret
+      return ret.length > 0 ? ret.slice(0, -1) : ret
+    }
+    this.generateSys = () => {
+      let ret = ''
+      this.sys = ret.length > 0 ? ret.slice(0, -1) : ret
+      return this.sys
+    }
+    this.generateCmdList = (costData, isCommented) => {
+      let ret = AbilityCost.saveToYml(costData, isCommented)
+      this.CmdList = ret.length > 0 ? ret.slice(0, -1) : ret
+      return ret.length > 0 ? ret.slice(0, -1) : ret
     }
     this.generateMod = (fileName) => {
       let ret =
@@ -127,7 +149,7 @@ export class ZipSeed {
             '    type: List\n'
         }
       }
-      if (this.TrsrList.length + this.ItemList.length > 0) {
+      if (this.TrsrList.length + this.ItemList.length + this.CmdList.length > 0) {
         ret +=
           '- method: binarc\n' +
           '  name: 03system.bin\n' +
@@ -150,25 +172,19 @@ export class ZipSeed {
             '      type: item\n' +
             '    type: List\n'
         }
+        if (this.CmdList.length > 0) {
+          ret +=
+            '  - method: listpatch\n' +
+            '    name: cmd\n' +
+            '    source:\n' +
+            '    - name: CmdList.yml\n' +
+            '      type: cmd\n' +
+            '    type: List\n'
+        }
       }
       ret += 'title: ' + fileName + '\n'
       this.mod = ret
       return this.mod
-    }
-    this.generatePlrpList = (startingStatusData, isCommented) => {
-      let ret = StartingStatus.saveToYml(startingStatusData, isCommented)
-      this.PlrpList = ret.length > 0 ? ret.slice(0, -1) : ret
-      return this.PlrpList
-    }
-    this.generateSys = () => {
-      let ret = ''
-      this.sys = ret.length > 0 ? ret.slice(0, -1) : ret
-      return this.sys
-    }
-    this.generateTrsrList = (chestData, popupData, isCommented) => {
-      let ret = Chest.saveToYml(chestData, isCommented)
-      ret += Popup.saveToYml(popupData, isCommented)
-      return ret.length > 0 ? ret.slice(0, -1) : ret
     }
   }
 }

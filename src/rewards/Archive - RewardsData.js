@@ -8,7 +8,7 @@ export function Reward(reward, index, iconType) {
 
 export const rewardsData = [
 	{
-		rewardType: 'Sora\'s Abilities',
+		rewardType: 'Active Abilities',
 		categories: [
 			{
 				category: 'Combo Modifiers',
@@ -54,7 +54,62 @@ export const rewardsData = [
 					new Reward('Auto Final', 0x184, 'Ability'),
 					new Reward('Auto Summon', 0x185, 'Ability')
 				]
+			}
+		]
+	},
+	{
+		rewardType: 'Growth Abilities',
+		categories: [
+			{
+				category: 'High Jump',
+				rewards: [
+					new Reward('High Jump LV1', 0x05E, 'HighJump'),
+					new Reward('High Jump LV2', 0x05F, 'HighJump'),
+					new Reward('High Jump LV3', 0x060, 'HighJump'),
+					new Reward('High Jump MAX', 0x061, 'HighJump')
+				]
 			},
+			{
+				category: 'Quick Run',
+				rewards: [
+					new Reward('Quick Run LV1', 0x062, 'QuickRun'),
+					new Reward('Quick Run LV2', 0x063, 'QuickRun'),
+					new Reward('Quick Run LV3', 0x064, 'QuickRun'),
+					new Reward('Quick Run MAX', 0x065, 'QuickRun')
+				]
+			},
+			{
+				category: 'Dodge Roll',
+				rewards: [
+					new Reward('Dodge Roll LV1', 0x234, 'DodgeRoll'),
+					new Reward('Dodge Roll LV2', 0x235, 'DodgeRoll'),
+					new Reward('Dodge Roll LV3', 0x236, 'DodgeRoll'),
+					new Reward('Dodge Roll MAX', 0x237, 'DodgeRoll')
+				]
+			},
+			{
+				category: 'Aerial Dodge',
+				rewards: [
+					new Reward('Aerial Dodge LV1', 0x066, 'AerialDodge'),
+					new Reward('Aerial Dodge LV2', 0x067, 'AerialDodge'),
+					new Reward('Aerial Dodge LV3', 0x068, 'AerialDodge'),
+					new Reward('Aerial Dodge MAX', 0x069, 'AerialDodge')
+				]
+			},
+			{
+				category: 'Glide',
+				rewards: [
+					new Reward('Glide LV1', 0x06A, 'Glide'),
+					new Reward('Glide LV2', 0x06B, 'Glide'),
+					new Reward('Glide LV3', 0x06C, 'Glide'),
+					new Reward('Glide MAX', 0x06D, 'Glide')
+				]
+			},
+		]
+	},
+	{
+		rewardType: 'Support Abilities',
+		categories: [
 			{
 				category: 'Boost Abilities',
 				rewards: [
@@ -83,7 +138,7 @@ export const rewardsData = [
 				]
 			},
 			{
-				category: 'Sora Only Support Abilities',
+				category: 'Sora Only Abilities',
 				rewards: [
 					new Reward('Scan', 0x08A, 'Ability'),
 					new Reward('Aerial Recovery', 0x09E, 'Ability'),
@@ -99,7 +154,7 @@ export const rewardsData = [
 		]
 	},
 	{
-		rewardType: 'Universal Abilities',
+		rewardType: 'Party Abilities',
 		categories: [
 			{
 				category: 'Party Action Abilities',
@@ -353,14 +408,19 @@ export const rewardsData = [
 			{
 				category: 'Stat Increases',
 				rewards: [
-					new Reward('Item Slot Up', 0x1CF, 'Tent'),//find stat up icon
-					new Reward('Max HP Up', 0x1D6, 'Tent'),//find stat up icon
-					new Reward('Max MP Up', 0x1D7, 'Tent'),//find stat up icon
-					new Reward('Drive Gauge Up', 0x1D8, 'Tent'),//find stat up icon
-					new Reward('Armor Slot Up', 0x1D9, 'Tent'),//find stat up icon
-					new Reward('Accessory Slot Up', 0x1DA, 'Tent')//find stat up icon
+					new Reward('Item Slot Up', 0x1CF, 'upitem'),//find stat up icon
+					new Reward('Max HP Up', 0x1D6, 'uphp'),//find stat up icon
+					new Reward('Max MP Up', 0x1D7, 'upmp'),//find stat up icon
+					new Reward('Drive Gauge Up', 0x1D8, 'updrive'),//find stat up icon
+					new Reward('Armor Slot Up', 0x1D9, 'uparmor'),//find stat up icon
+					new Reward('Accessory Slot Up', 0x1DA, 'upaccessory')//find stat up icon
 				]
-			},
+			}
+		]
+	},
+	{
+		rewardType: 'Key Items',
+		categories: [
 			{
 				category: 'Proofs',
 				rewards: [
@@ -435,7 +495,7 @@ export const rewardsData = [
 		]
 	},
 	{
-		rewardType: 'Maps & Recipes',
+		rewardType: 'Maps',
 		categories: [
 			{
 				category: 'Area Maps',
@@ -496,7 +556,12 @@ export const rewardsData = [
 					new Reward('Dark City Map', 0x100, 'Map'),
 					new Reward('Castle That Never Was Map', 0x218, 'Map')
 				]
-			},
+			}
+		]
+	},
+	{
+		rewardType: 'Recipes',
+		categories: [
 			{
 				category: 'Recipes',
 				rewards: [
@@ -524,58 +589,13 @@ export const rewardsData = [
 		rewardType: 'Forms, Summons, & Magic',
 		categories: [
 			{
-				category: 'Valor',
+				category: 'Forms',
 				rewards: [
 					new Reward('Valor Form', 0x01A, 'Form'),
-					new Reward('High Jump LV1', 0x05E, 'HighJump'),
-					new Reward('High Jump LV2', 0x05F, 'HighJump'),
-					new Reward('High Jump LV3', 0x060, 'HighJump'),
-					new Reward('High Jump MAX', 0x061, 'HighJump')
-				]
-			},
-			{
-				category: 'Wisdom',
-				rewards: [
 					new Reward('Wisdom Form', 0x01B, 'Form'),
-					new Reward('Quick Run LV1', 0x062, 'QuickRun'),
-					new Reward('Quick Run LV2', 0x063, 'QuickRun'),
-					new Reward('Quick Run LV3', 0x064, 'QuickRun'),
-					new Reward('Quick Run MAX', 0x065, 'QuickRun')
-				]
-			},
-			{
-				category: 'Limit',
-				rewards: [
 					new Reward('Limit Form', 0x233, 'Form'),
-					new Reward('Dodge Roll LV1', 0x234, 'DodgeRoll'),
-					new Reward('Dodge Roll LV2', 0x235, 'DodgeRoll'),
-					new Reward('Dodge Roll LV3', 0x236, 'DodgeRoll'),
-					new Reward('Dodge Roll MAX', 0x237, 'DodgeRoll')
-				]
-			},
-			{
-				category: 'Master',
-				rewards: [
 					new Reward('Master Form', 0x01F, 'Form'),
-					new Reward('Aerial Dodge LV1', 0x066, 'AerialDodge'),
-					new Reward('Aerial Dodge LV2', 0x067, 'AerialDodge'),
-					new Reward('Aerial Dodge LV3', 0x068, 'AerialDodge'),
-					new Reward('Aerial Dodge MAX', 0x069, 'AerialDodge')
-				]
-			},
-			{
-				category: 'Final',
-				rewards: [
 					new Reward('Final Form', 0x01D, 'Form'),
-					new Reward('Glide LV1', 0x06A, 'Glide'),
-					new Reward('Glide LV2', 0x06B, 'Glide'),
-					new Reward('Glide LV3', 0x06C, 'Glide'),
-					new Reward('Glide MAX', 0x06D, 'Glide')
-				]
-			},
-			{
-				category: 'Anti',
-				rewards: [
 					new Reward('Anti Form', 0x01E, 'Form')
 				]
 			},

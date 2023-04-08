@@ -1,0 +1,16 @@
+.saveLoadModalBody {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.saveLoad {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+.saveLoadInputField,
+.loadSeedButton {
+    grid-column: 2/-1;
+}

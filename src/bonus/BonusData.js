@@ -198,7 +198,7 @@ export class BonusReward {
 			if (this.isReplaced()) {
 				ret += '  ' + this.replacementCharacterString + ':\n    '
 				ret += 'AccessorySlotUpgrade: ' + this.accessorySlotIncrease + '\n    '
-				ret += 'ArmorSlotUpgrade: ' + this.accessorySlotIncrease + '\n    '
+				ret += 'ArmorSlotUpgrade: ' + this.armorSlotIncrease + '\n    '
 				ret += 'BonusItem1: ' + this.replacementRewardA.index + '\n    '
 				ret += 'BonusItem2: ' + this.replacementRewardB.index + '\n    '
 				ret += 'CharacterId: ' + this.replacementCharacter + '\n    '
@@ -262,7 +262,7 @@ export class BonusFight {
 		}
 		this.loadFromJSON = (bonusFightJSON) => {
 			let newSlots = this.slots.map((slot, slotID) => { return slot.loadFromJSON(bonusFightJSON.slots[slotID]) })
-			return new BonusFight(bonusFightJSON.fight, this.zipID, newSlots)
+			return new BonusFight(bonusFightJSON.fight, this.zipID, bonusFightJSON.fight, newSlots)
 		}
 		this.saveToPnach = (isCommented) => {
 			if (this.isReplaced()) {

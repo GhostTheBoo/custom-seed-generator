@@ -1,6 +1,7 @@
-import { React, useState } from 'react'
-import { Row, Col, Container } from 'react-bootstrap'
+import React, { useState } from 'react'
+import './FormStyles.css'
 
+import NavbarIcon from '../navbar/NavbarIcon'
 import FormList from './FormList'
 import FormForm from './FormForm'
 import AllFormForm from './AllFormForm'
@@ -14,7 +15,7 @@ function FormPage(props) {
 	const [currentFormFieldData, setCurrentFormFieldData] = useState({
 		reward: { ...props.formData[currentDriveForm].driveLevels[0].replacementReward },
 		currentEXP: props.formData[currentDriveForm].driveLevels[0].replacementEXP,
-		currentEXPMultiplierValue: 2
+		currentEXPMultiplierValue: 1
 	})
 	const [currentAllFormFieldData, setCurrentAllFormFieldData] = useState({
 		reward: { ...props.formData[currentDriveForm].driveLevels[1].replacementReward },
@@ -22,7 +23,7 @@ function FormPage(props) {
 		EXPMultiplier: false,
 		customEXP: false,
 		currentEXP: 0,
-		currentEXPMultiplierValue: 2
+		currentEXPMultiplierValue: 1
 	})
 
 	function handleDriveFormChange(newDriveForm) {
@@ -57,7 +58,7 @@ function FormPage(props) {
 			EXPMultiplier: false,
 			customEXP: false,
 			currentEXP: 0,
-			currentEXPMultiplierValue: 2
+			currentEXPMultiplierValue: 1
 		})
 	}
 	function updateCurrentDriveFormLevelData(newDriveLevel) {
@@ -93,14 +94,13 @@ function FormPage(props) {
 						newDriveLevelData.currentEXP = driveLevel.vanillaEXP
 					} else {
 						if (currentAllFormFieldData.customEXP) {
-							newDriveLevelData.currentEXP = currentAllFormFieldData.customEXP
+							newDriveLevelData.currentEXP = currentAllFormFieldData.currentEXP
 						}
 						if (currentAllFormFieldData.EXPMultiplier) {
 							newDriveLevelData.currentEXP = driveLevel.vanillaEXP
-							newDriveLevelData.EXPMultiplier = currentAllFormFieldData.EXPMultiplier
+							newDriveLevelData.currentEXPMultiplierValue = currentAllFormFieldData.currentEXPMultiplierValue + 1
 						}
 					}
-
 					return driveLevel.replace(newDriveLevelData)
 				})
 				return ({
@@ -157,17 +157,15 @@ function FormPage(props) {
 	})
 
 	altLevelDataList.push(
-		<Row key={'allLevels'}>
-			<button
-				className={`editAllFormLevelButton ${props.formData[currentDriveForm].driveForm.toLowerCase()}`}
-				disabled={currentDriveFormLevel === 6}
-				onClick={() => handleDriveFormLevelChange(6)}
-				style={{ fontFamily: 'KHGummi', fontSize: '1.5rem' }}
-			>
-				{(currentDriveFormLevel === 6 ? 'EDITING... ' : 'EDIT ')} <br />
-				ALL {props.formData[currentDriveForm].driveForm.toUpperCase()} LEVELS
-			</button>
-		</Row>
+		<button
+			key='allLevels'
+			className={`editAllFormLevelButton ${props.formData[currentDriveForm].driveForm.toLowerCase()}`}
+			disabled={currentDriveFormLevel === 6}
+			onClick={() => handleDriveFormLevelChange(6)}
+		>
+			{(currentDriveFormLevel === 6 ? 'EDITING... ' : 'EDIT ')} <br />
+			ALL {props.formData[currentDriveForm].driveForm.toUpperCase()} LEVELS
+		</button>
 	)
 
 	let DisplayedFormForm = [
@@ -193,29 +191,32 @@ function FormPage(props) {
 	]
 
 	return (
-		<Container fluid style={{ marginTop: '1rem' }}>
-			<Row>
-				<Col xs={3}>
+		<div className='fullPageContent' style={{ marginTop: '1rem' }}>
+			<div className='pageHeader'>
+				<div className='flex-grow-1' />
+				{props.children}
+				<NavbarIcon
+					showNavbar={props.handleShowNavbar}
+					fileName={'form'}
+					title={'Forms & Summons'}
+				/>
+			</div>
+			<div className='formPageContent'>
+				<div className='formList'>
 					<FormList
 						currentForm={currentDriveForm}
 						currentSelectItem={currentDriveForm}
 						setCurrentSelectItem={(newDriveFormLevel) => { handleDriveFormChange(newDriveFormLevel) }}
 					/>
-				</Col>
-				<Col xs={5}>
+				</div>
+				<div className='formCards flex-grow-1'>
 					{altLevelDataList}
-				</Col>
-				<Col xs={4}>
-					<Row>
-						<Col xs={7} />
-						<Col xs={5} style={{paddingBottom: '1rem' }}>
-							{props.children}
-						</Col>
-					</Row>
+				</div>
+				<div className='formForm flex-grow-1'>
 					{DisplayedFormForm[currentDisplayedForm]}
-				</Col>
-			</Row>
-		</Container>
+				</div>
+			</div>
+		</div>
 	)
 }
 

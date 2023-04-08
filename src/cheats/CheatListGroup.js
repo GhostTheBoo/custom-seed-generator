@@ -1,5 +1,5 @@
 import React from 'react'
-import { ListGroup, Row, Col, Form } from 'react-bootstrap'
+import { ListGroup, Form } from 'react-bootstrap'
 
 function CheatListGroup(props) {
     let listGroup = props.dataList.map((data, index) => {
@@ -9,20 +9,18 @@ function CheatListGroup(props) {
                 key={props.cheatType + index}
                 id={props.cheatType + index}
             >
-                <Row>
-                    <Col xs={1}>
-                        <Form.Check
-                            id={'cheatActiveSwitch' + props.cheatType + index}
-                            type='switch'
-                            style={{ margin: 'auto' }}
-                            checked={data.isActive}
-                            onChange={() => props.toggleActiveCheat(props.dataList, index)}
-                        />
-                    </Col>
-                    <Col xs={11}>
+                <div className='cheatListItem'>
+                    <Form.Check
+                        id={'cheatActiveSwitch' + props.cheatType + index}
+                        type='switch'
+                        style={{ margin: 'auto' }}
+                        checked={data.isActive}
+                        onChange={() => props.toggleActiveCheat(props.dataList, index)}
+                    />
+                    <div>
                         {data.name}
-                    </Col>
-                </Row>
+                    </div>
+                </div>
             </ListGroup.Item>
         )
     })

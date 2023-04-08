@@ -1,5 +1,5 @@
-import { React } from 'react'
-import { Container, Row, Button, Col } from 'react-bootstrap'
+import React from 'react'
+import { Button } from 'react-bootstrap'
 
 function AllEquipmentCard(props) {
 	// PROPS:
@@ -18,32 +18,26 @@ function AllEquipmentCard(props) {
 	}
 
 	return (
-		<Container fluid className='equipmentCard'>
-			<Row>
-				<Col xs='auto' className='equipmentColumn equipmentImageColumn'>
-					<Row className='equipmentImage'>
-						<img
-							src={equipmentImage}
-							alt={'All Equipment Icon'}
-							height='250px'
-							width='250px'
-						/>
-					</Row>
-					<Row className='equipmentName'>All {getfullEquipmentTypeText(props.currentFolderName)}</Row>
-					<Row className='equipmentEditButton'>
-						<Button
-							variant='primary'
-							block
-							id={props.id}
-							disabled={props.isEditing}
-							onClick={() => props.setCurrentEquipment(props.id)}
-						>
-							{props.isEditing ? 'EDITING...' : 'EDIT'}
-						</Button>
-					</Row>
-				</Col>
-			</Row>
-		</Container>
+		<div className='equipmentCard'>
+			<div className={'equipmentColumn equipmentImageColumn' + (!props.isWide ? ' equipmentSquishColumn' : '')}>
+				<img
+					className={'equipmentImage' + (!props.isWide ? ' equipmentSquishImage' : '')}
+					src={equipmentImage}
+					alt={'All Equipment Icon'}
+				/>
+				<div className={'equipmentName' + (!props.isWide ? ' equipmentSquishName' : '')}>All {getfullEquipmentTypeText(props.currentFolderName)}</div>
+				<div className='equipmentEditButton'>
+					<Button
+						variant='primary'
+						id={props.id}
+						disabled={props.isEditing}
+						onClick={() => props.setCurrentEquipment(props.id)}
+					>
+						{props.isEditing ? 'EDITING...' : 'EDIT'}
+					</Button>
+				</div>
+			</div>
+		</div>
 	)
 }
 

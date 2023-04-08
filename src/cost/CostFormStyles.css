@@ -1,0 +1,87 @@
+.costFormBody {
+    display: grid;
+    font-family: KHGummi;
+    grid-template-columns: 2fr 6fr;
+    gap: 2rem;
+}
+
+/* .costFormImage {
+    grid-row: 1 / 4;
+} */
+
+.costEditFieldGroup {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.abilityCostEditRow {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 2fr;
+    gap: .5rem;
+    grid-column-start: 2;
+}
+
+.costLabel,
+.costAbilityTitle {
+    font-family: KHMenu;
+}
+
+.costLabel,
+.costVanillaLabel,
+.costReplacementLabel {
+    font-size: 2rem;
+}
+
+.costVanillaLabel,
+.costReplacementLabel {
+    font-family: KHGummi;
+    color: #FFF100;
+    /* text-align: start; */
+}
+
+.costReplacementLabel {
+    color: #00F0FA;
+}
+
+@media(max-width: 90rem) {
+    .costCardImage {
+        border-radius: .75rem;
+        width: 7rem;
+    }
+}
+
+@media(max-width: 65rem) {
+    .costCardGrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .costLabel {
+        grid-column: 1 / -1;
+    }
+
+    .costCardReward {
+        font-size: 1.25rem;
+    }
+
+    .costLabel,
+    .costVanillaLabel,
+    .costReplacementLabel {
+        font-size: 1.5rem;
+    }
+
+    .costFormImage{
+        width: 200px;
+    }
+
+    .abilityCostEditRow {
+        grid-template-columns: 1fr 1fr 2fr;
+    }
+}
+
+
+@media(max-width: 48rem) {
+    .costCardGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

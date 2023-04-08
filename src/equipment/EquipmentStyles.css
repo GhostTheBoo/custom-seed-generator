@@ -2,35 +2,91 @@
   font-family: 'KHMenu';
   font-Size: 1.25rem;
   background-color: #343A40;
+  display: flex;
+  gap: .5rem;
   padding: 2rem;
   margin: 1rem 0;
   border-radius: 1rem;
-  box-shadow: .25rem .25rem 1rem black;
+  box-shadow: .25rem .25rem .5rem black;
+  position: relative;
+}
+
+.equipmentCardList {
+  /* min-width: 60%; */
+  overflow-y: auto;
+  height: 90vh;
+  padding: .5rem;
+}
+
+.equipmentPageContent {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
 .equipmentColumn {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 25%;
 }
 
+.equipmentStatColumn {
+  width: 22%;
+}
+
+.equipmentResColumn {
+  width: 20%;
+}
+
+.equipmentOtherColumn {
+  flex-grow: 1
+}
+
+.equipmentImage,
 .equipmentImageColumn {
-  width: 18rem;
+  width: 15rem;
+}
+
+.equipmentSquishImage,
+.equipmentSquishColumn {
+  width: 10rem;
 }
 
 .equipmentStatRow,
 .equipmentEmptyRow {
+  display: flex;
+  flex-wrap: wrap;
   color: #FF8000;
   margin: 0 .25rem;
+  justify-content: space-between;
   align-items: baseline;
   font-size: 2rem;
   border-bottom: .1rem solid #FF8000;
   text-shadow: .05rem .05rem .1rem black;
 }
 
+.equipmentEmptyRow {
+  color: transparent;
+  border-bottom: .1rem solid #FF8000;
+}
+
+.equipmentStatNumber {
+  color: white;
+}
+
+.equipmentEmptyRow>.equipmentStatNumber {
+  color: transparent;
+  border: transparent;
+}
+
+.equipmentSquishRow {
+  font-size: 1.3rem;
+}
+
 .equipmentFlexColumn {
   flex-direction: column;
-  font-Size: 1.25rem;
 }
 
 .equipmentReward {
@@ -40,27 +96,92 @@
   text-shadow: .05rem .05rem .1rem black;
 }
 
-.equipmentStatNumber {
-  font-size: 1.5rem;
-  color: white;
-}
-
-.equipmentEmptyRow {
-  color: transparent;
-  border-bottom: .1rem solid #FF8000;
-}
-
-.equipmentEmptyRow>.equipmentStatNumber {
-  color: transparent;
-  border: transparent;
-}
-
 .equipmentName {
-  justify-content: center;
+  margin: auto;
   font-Size: 1.5rem;
   text-shadow: .05rem .05rem .1rem black;
 }
 
+.equipmentSquishName {
+  font-size: 1.2rem;
+}
+
 .equipmentImage {
   margin: auto;
+}
+
+.equipmentEditButton{
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+
+@media(max-width: 90rem) {
+
+  .equipmentImage,
+  .equipmentImageColumn {
+    width: 13rem;
+  }
+
+  .equipmentSquishImage,
+  .equipmentSquishColumn {
+    width: 9rem;
+  }
+
+  .equipmentStatRow,
+  .equipmentEmptyRow {
+    font-size: 1.5rem;
+  }
+
+  .equipmentSquishRow {
+    font-size: 1.25rem;
+  }
+  .equipmentFormCard {
+    width: 40%;
+  }
+}
+
+@media(max-width: 65rem) {
+
+  .equipmentImage,
+  .equipmentImageColumn {
+    width: 10rem;
+  }
+
+  .equipmentSquishImage,
+  .equipmentSquishColumn {
+    width: 7rem;
+  }
+
+  .equipmentName {
+    font-size: 1rem;
+  }
+
+  .equipmentSquishName {
+    font-size: .75rem;
+  }
+
+  .equipmentStatRow,
+  .equipmentEmptyRow {
+    font-size: 1rem;
+    flex-direction: column;
+  }
+
+  .equipmentSquishRow {
+    font-size: .75rem;
+  }
+
+  .equipmentAbilityIcon {
+    width: 1rem;
+  }
+
+  .equipmentFormCard {
+    width: 40%;
+  }
+}
+
+@media(max-width: 48rem) {
+  .equipmentFormCard {
+    width: 30%;
+  }
 }

@@ -1,0 +1,78 @@
+.homePageHeader {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+.homePageHeader>img {
+    grid-column-start: 2;
+    grid-row: 1/3;
+}
+
+.homePageNavbarIcon {
+    display: flex;
+    grid-column-start: 3;
+}
+
+.homePageKofi {
+    display: flex;
+}
+
+.homePageContent {
+    margin: 0 2rem;
+}
+
+.homePageText {
+    display: grid;
+    grid-template-columns: 5fr 4fr;
+    gap: 2rem;
+}
+
+.homeTabGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.allHomeTabs {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    gap: 1rem;
+}
+
+.siteDescription {
+    text-align: justify;
+}
+
+.homePageSections {
+    display: grid;
+    grid-template-columns: 10fr 9fr;
+    gap: 3rem;
+}
+
+.homePageButtonGroup {
+    display: flex;
+    flex-direction: row;
+    margin: 0 1rem;
+}
+
+@media(max-width: 65rem) {
+    .homePageText {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 48rem) {
+    .homePageHeader {
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .homePageHeader>img {
+        grid-column-start: 1;
+        grid-row: 1/3;
+    }
+
+    .homePageNavbarIcon {
+        display: flex;
+        grid-column-start: 2;
+    }
+
+}

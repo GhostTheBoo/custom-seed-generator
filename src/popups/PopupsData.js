@@ -43,7 +43,7 @@ export class Popup {
 			let ret = ''
 			if (this.isReplaced()) {
 				let address = this.vanillaAddress - 0x1CCB300
-				ret += '\tWriteShort(Sys3+0x' + address.toString(16).toUpperCase() + ',0x' + this.replacementReward.index.toString(16).toUpperCase().padStart(4,'0') + ')'
+				ret += '\tWriteShort(Sys3+0x' + address.toString(16).toUpperCase() + ',0x' + this.replacementReward.index.toString(16).toUpperCase().padStart(4, '0') + ')'
 				if (isCommented) ret += ' -- ' + this.popup + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward
 				ret += '\n'
 			}
@@ -52,7 +52,9 @@ export class Popup {
 		this.saveToYml = (isCommented) => {
 			let ret = ''
 			if (this.isReplaced()) {
-				ret = this.zipID.toString() + ':\n  ItemId: ' + this.replacementReward.index.toString()
+				ret = this.zipID.toString() + ':\n  ItemId: '
+				let itemID = this.replacementReward.index
+				ret += itemID === 0x000 ? 0x176.toString() : itemID.toString()
 				// if (isCommented) ret += ' // ' + this.room + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward
 				ret += '\n'
 			}
@@ -69,7 +71,7 @@ export class Popup {
 		}
 	}
 
-	
+
 	static saveToPnach(popupData, isCommented) {
 		return ['\n//POPUPS\n'].concat(popupData.map(worldList => {
 			let ret = isCommented ? '// ' + worldList.world.toUpperCase() + '\n' : ''
@@ -299,8 +301,8 @@ export const popupsData = [
 			new Popup('New Outfit (Star Seeker)', new Reward('Star Seeker', 0x1E0, 'Keyblade'), 0x1CE0672, 304),
 			new Popup('New Outfit (Valor Form)', new Reward('Valor Form', 0x01A, 'Form'), 0x1CE067E, 286),
 			new Popup('Seifer\'s Trophy', new Reward('Seifer\'s Trophy', 0x16C, 'Key'), 0x1CE07E6, 294),
-			new Popup('Beating Twilight Town 1 (Oathkeeper)', new Reward('Oathkeeper', 0x02A, 'Keyblade'), 0x1CE07F2, 265),
-			new Popup('Beating Twilight Town 1 (Limit Form)', new Reward('Limit Form', 0x233, 'Form'), 0x1CE07FE, 543),
+			new Popup('Beating Twilight Town 2 (Oathkeeper)', new Reward('Oathkeeper', 0x02A, 'Keyblade'), 0x1CE07F2, 265),
+			new Popup('Beating Twilight Town 2 (Limit Form)', new Reward('Limit Form', 0x233, 'Form'), 0x1CE07FE, 543),
 			new Popup('After Betwixt and Between fight', new Reward('Bond of Flame', 0x1F2, 'Keyblade'), 0x1CE0966, 317),
 			new Popup('Station Plaza Nobodies', new Reward('Secret Ansem\'s Report 2', 0x0E3, 'Report'), 0x1CE09AE, 526),
 			new Popup('Twilight Town 3', new Reward('Secret Ansem\'s Report 10', 0x0EB, 'Report'), 0x1CE0A0E, 534),

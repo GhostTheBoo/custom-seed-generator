@@ -1,4 +1,4 @@
-import { React } from 'react'
+import React from 'react'
 import GenericListGroup from '../Components/GenericListGroup'
 
 function BonusFightList(props) {
@@ -25,22 +25,18 @@ function BonusFightList(props) {
             dataList={props.fightList.map(fight => {
                 let icon = './images/bonusFightImages/' + bonusFolderNames[props.currentWorld] + '/' + fight.zipID.toString() + '.png'
                 return (
-                    <>
+                    <div className='bonusFightButton flex'>
                         <img
-                            className='icon'
+                            className='bonusFightIcon'
                             src={icon}
                             alt={fight.fight + ' Icon'}
-                            height={75}
-                            width={60}
-                            style={{ verticalAlign: 'middle' }}
                         />
                         <span
-                            className='iconDescription'
-                            style={{ verticalAlign: 'middle', fontSize: '1.3rem', fontFamily: 'KHMenu' }}
+                            className='bonusFightIconDescription flex-grow-1'
                         >
                             {' ' + fight.fightName}
                         </span>
-                    </>
+                    </div>
                 )
             })}
             currentSelectItem={props.currentSelectItem}

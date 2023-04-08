@@ -1,7 +1,8 @@
-import { React, useState } from 'react'
-import { Row, Container, Col } from 'react-bootstrap'
+import React, { useState } from 'react'
+import './StartingStatusStyles.css'
 
 import GenericSelect from '../Components/GenericSelect'
+import NavbarIcon from '../navbar/NavbarIcon'
 import StartingStuffList from './StartingStuffList'
 import StartingStatsForm from './StartingStatsForm'
 import { EMPTY } from '../rewards/RewardsData'
@@ -44,9 +45,12 @@ function StartingStatusPage(props) {
 	}
 
 	return (
-		<Container fluid>
-			<Row style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
-				<Col xs={3}>
+		<div className='fullPageContent'>
+			<div className='pageHeader'>
+				<div className='pageHeaderSelectorLabel'>
+					Character Selector:
+				</div>
+				<div>
 					<GenericSelect
 						class={'startingStatus'}
 						selector={'Character'}
@@ -55,32 +59,31 @@ function StartingStatusPage(props) {
 						currentItem={currentCharacter}
 						onChange={(e) => handleCharacterChange(parseInt(e.target.value))}
 					/>
-				</Col>
-				<Col xs={7} />
-				<Col xs={2}>
-					{props.children}
-				</Col>
-			</Row>
-			<Row>
-				<Col xs={8}>
-					<StartingStuffList
-						dataList={props.startingStatusData[currentCharacter].startingStuff}
-						handleReplace={handleStartingRewardReplace}
-						handleDelete={(rewardIndex) => handleStartingRewardReplace(EMPTY, rewardIndex)}
-						handleAdd={(newReward) => handleStartingRewardReplace(newReward, 31)}
-					/>
-				</Col>
-				<Col xs={4}>
-					<StartingStatsForm
-						startingStats={props.startingStatusData[currentCharacter]}
-						startingStatusFieldData={currentStartingStatusFieldData}
-						setCurrentStartingStatusFieldData={(fieldName, newValue) => setCurrentStartingStatusFieldData({ ...currentStartingStatusFieldData, [fieldName]: newValue })}
-						handleReplace={() => updateStartingStatus(props.startingStatusData[currentCharacter].replaceStartingStats(currentStartingStatusFieldData))}
-						handleVanilla={() => updateStartingStatus(props.startingStatusData[currentCharacter].vanillaStartingStats())}
-					/>
-				</Col>
-			</Row>
-		</Container>
+				</div>
+				<div className='flex-grow-1' />
+				<div>{props.children}</div>
+				<NavbarIcon
+					showNavbar={props.handleShowNavbar}
+					fileName={'starting'}
+					title={'Starting Status'}
+				/>
+			</div>
+			<div className='startingStatusPageContent'>
+				<StartingStatsForm
+					startingStats={props.startingStatusData[currentCharacter]}
+					startingStatusFieldData={currentStartingStatusFieldData}
+					setCurrentStartingStatusFieldData={(fieldName, newValue) => setCurrentStartingStatusFieldData({ ...currentStartingStatusFieldData, [fieldName]: newValue })}
+					handleReplace={() => updateStartingStatus(props.startingStatusData[currentCharacter].replaceStartingStats(currentStartingStatusFieldData))}
+					handleVanilla={() => updateStartingStatus(props.startingStatusData[currentCharacter].vanillaStartingStats())}
+				/>
+				<StartingStuffList
+					dataList={props.startingStatusData[currentCharacter].startingStuff}
+					handleReplace={handleStartingRewardReplace}
+					handleDelete={(rewardIndex) => handleStartingRewardReplace(EMPTY, rewardIndex)}
+					handleAdd={(newReward) => handleStartingRewardReplace(newReward, 31)}
+				/>
+			</div>
+		</div>
 	)
 }
 

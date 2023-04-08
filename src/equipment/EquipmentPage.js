@@ -1,7 +1,8 @@
-import { React, useState, useEffect, useRef } from 'react'
-import { Row, Container, Col } from 'react-bootstrap'
+import React, { useState, useEffect, useRef } from 'react'
+import './EquipmentStyles.css'
 
 import GenericSelect from '../Components/GenericSelect'
+import NavbarIcon from '../navbar/NavbarIcon'
 import EquipmentCard from './EquipmentCard'
 import AllEquipmentCard from './AllEquipmentCard'
 import EquipmentForm from './EquipmentForm'
@@ -201,6 +202,7 @@ function EquipmentPage(props) {
 			isEditing={equipmentRowList.length === currentEquipment}
 			currentFolderName={equipmentFolderNames[currentEquipmentType]}
 			setCurrentEquipment={handleCurrentEquipmentChange}
+			isWide={currentDisplayedForm === 2}
 		/>
 	)
 
@@ -228,9 +230,12 @@ function EquipmentPage(props) {
 	]
 
 	return (
-		<Container fluid>
-			<Row style={{ paddingTop: '1rem' }}>
-				<Col xs={3}>
+		<div className='fullPageContent'>
+			<div className='pageHeader'>
+				<div className='pageHeaderSelectorLabel'>
+					Equipment Type Selector:
+				</div>
+				<div>
 					<GenericSelect
 						class={'equipment'}
 						selector={'Equipment Type'}
@@ -239,28 +244,20 @@ function EquipmentPage(props) {
 						currentItem={currentEquipmentType}
 						onChange={(e) => handleCurrentEquipmentTypeChange(parseInt(e.target.value))}
 					/>
-				</Col>
-				<Col xs={7} />
-				<Col xs={2}>
-					{props.children}
-				</Col>
-			</Row>
-			<Row>
-				<Col
-					xs={currentDisplayedForm !== 2 ? 7 : 12}
-					ref={equipmentCardGrid}
-					style={{
-						overflowY: 'auto',
-						height: '800px'
-					}}
-				>
-					{equipmentRowList}
-				</Col>
-				<Col xs={currentDisplayedForm !== 2 ? 5 : 0}>
-					{displayedEquipmentForm[currentDisplayedForm]}
-				</Col>
-			</Row>
-		</Container>
+				</div>
+				<div className='flex-grow-1' />
+				<div>{props.children}</div>
+				<NavbarIcon
+					showNavbar={props.handleShowNavbar}
+					fileName={'keyblade'}
+					title={'Equipment'}
+				/>
+			</div>
+			<div className='equipmentPageContent'>
+				<div className='equipmentCardList flex-grow-1' ref={equipmentCardGrid}>{equipmentRowList}</div>
+				{displayedEquipmentForm[currentDisplayedForm]}
+			</div>
+		</div>
 	)
 }
 

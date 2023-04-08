@@ -1,8 +1,10 @@
-import { React } from 'react'
-import { Form, Row, Col, Button, Card } from 'react-bootstrap'
+import React from 'react'
+import { Button, CloseButton } from 'react-bootstrap'
 
-import RewardSelector from '../rewards/RewardSelector'
+import GenericSelect from '../Components/GenericSelect'
+import RewardSelectorButton from '../rewards/RewardSelectorButton'
 import Icon from '../Components/Icon'
+import './BonusFormStyles.css'
 
 function BonusForm(props) {
 	// PROPS:
@@ -37,229 +39,176 @@ function BonusForm(props) {
 		'Roxas'
 	]
 
-	let characterOptionList = characterList.map((item, index) => {
-		return (
-			<option key={index} value={index}>{item}</option>
-		)
-	})
-
 	return (
-		<Card
-			border='dark'
-			bg='dark'
-			className='equipmentFormCard'
-			style={{ margin: '10px', textAlign: 'center' }}
-		>
-			<Card.Body>
-				<Card.Text as='div'>
-					<Row>
-						<Col xs={11}>
-							<h1>EDITING SLOT {props.currentSlotNumber + 1}:</h1>
-						</Col>
-						<Col xs={1}>
-							<button
-								className='close'
-								onClick={() => props.closeFormCard(-1)}
-							>
-								x
-							</button>
-						</Col>
-					</Row>
-					<hr />
-					<Form>
-						<Form.Row>
-							<Form.Label column='lg' xs={4}>
-								Reward A:
-							</Form.Label>
-							<Col xs={4}>
-								<Icon
-									style={{ margin: '10px' }}
-									fileName={props.currentBonusFieldData.rewardA.iconType}
-									type={'row'}
-								>
-									{props.currentBonusFieldData.rewardA.reward}
-								</Icon>
-							</Col>
-							<Col xs={4}>
-								<RewardSelector
-									onReplace={(replacementReward) => setCurrentRewardA(replacementReward)}
-								/>
-							</Col>
-						</Form.Row>
-						<Form.Row>
-							<Form.Label column='lg' xs={4}>
-								Reward B:
-							</Form.Label>
-							<Col xs={4}>
-								<Icon
-									fileName={props.currentBonusFieldData.rewardB.iconType}
-									type={'row'}
-								>
-									{props.currentBonusFieldData.rewardB.reward}
-								</Icon>
-							</Col>
-							<Col xs={4}>
-								<RewardSelector
-									onReplace={(replacementReward) => setCurrentRewardB(replacementReward)}
-								/>
-							</Col>
-						</Form.Row>
-						<Form.Row>
-							<Form.Label column='lg' xs={4}>
-								Character:
-							</Form.Label>
-							<Col>
-								<Form.Control
-									name={'Character'}
-									size='lg'
-									as='select'
-									value={props.currentBonusFieldData.currentCharacter}
-									onChange={(e) => setCurrentCharacter(parseInt(e.target.value))}
-								>
-									{characterOptionList}
-								</Form.Control>
-							</Col>
-						</Form.Row>
-						<hr />
-						<Form.Row>
-							<Form.Label column='lg' xs={4} style={{ padding: '0' }}>
-								<Icon
-									fileName={'uphp'}
-									type={'bonusForm'}
-								>:</Icon>
-							</Form.Label>
-							<Col>
-								<Form.Control
-									name={'HP'}
-									size='lg'
-									type='number'
-									value={props.currentBonusFieldData.currentBonusHP}
-									onChange={(e) => setCurrentHP(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-									min='0'
-									max='255'
-								/>
-							</Col>
-						</Form.Row>
-						<Form.Row>
-							<Form.Label column='lg' xs={4} style={{ padding: '0' }}>
-								<Icon
-									fileName={'upmp'}
-									type={'bonusForm'}
-								>:</Icon>
-							</Form.Label>
-							<Col>
-								<Form.Control
-									name={'MP'}
-									size='lg'
-									type='number'
-									value={props.currentBonusFieldData.currentBonusMP}
-									onChange={(e) => setCurrentMP(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-									min='0'
-									max='255'
-								/>
-							</Col>
-						</Form.Row>
-						<hr />
-						<Form.Row>
-							<Form.Label column='lg' xs={4} style={{ padding: '0' }}>
-								<Icon
-									fileName={'uparmor'}
-									type={'bonusForm'}
-								>:</Icon>
-							</Form.Label>
-							<Col>
-								<Form.Control
-									name={'ArmorSlot'}
-									size='lg'
-									type='number'
-									value={props.currentBonusFieldData.currentArmor}
-									onChange={(e) => setCurrentArmorSlot(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-									min='0'
-									max='255'
-								/>
-							</Col>
-						</Form.Row>
-						<Form.Row>
-							<Form.Label column='lg' xs={4} style={{ padding: '0' }}>
-								<Icon
-									fileName={'upaccessory'}
-									type={'bonusForm'}
-								>:</Icon>
-							</Form.Label>
-							<Col>
-								<Form.Control
-									name={'AccessorySlot'}
-									size='lg'
-									type='number'
-									value={props.currentBonusFieldData.currentAccessory}
-									onChange={(e) => setCurrentAccessorySlot(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-									min='0'
-									max='255'
-								/>
-							</Col>
-						</Form.Row>
-						<Form.Row>
-							<Form.Label column='lg' xs={4} style={{ padding: '0' }}>
-								<Icon
-									fileName={'upitem'}
-									type={'bonusForm'}
-								>:</Icon>
-							</Form.Label>
-							<Col>
-								<Form.Control
-									name={'ItemSlot'}
-									size='lg'
-									type='number'
-									value={props.currentBonusFieldData.currentItem}
-									onChange={(e) => setCurrentItemSlot(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-									min='0'
-									max='255'
-								/>
-							</Col>
-						</Form.Row>
-						<Form.Row>
-							<Form.Label column='lg' xs={4} style={{ padding: '0' }}>
-								<Icon
-									fileName={'updrive'}
-									type={'bonusForm'}
-								>:</Icon>
-							</Form.Label>
-							<Col>
-								<Form.Control
-									name={'DriveGauge'}
-									size='lg'
-									type='number'
-									value={props.currentBonusFieldData.currentDrive}
-									onChange={(e) => setCurrentDriveGauge(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-									min='0'
-									max='255'
-								/>
-							</Col>
-						</Form.Row>
-						<hr />
-						<Form.Row>
-							<Col>
-								<Button
-									variant='secondary'
-									block
-									onClick={() => props.setCurrentBonusFightSlot(props.bonusReward.vanilla())}
-								>
-									VANILLA
-								</Button>
-							</Col>
-							<Col>
-								<Button
-									block
-									onClick={() => props.setCurrentBonusFightSlot(props.bonusReward.replace(props.currentBonusFieldData))}
-								>
-									CONFIRM
-								</Button>
-							</Col>
-						</Form.Row>
-					</Form>
-				</Card.Text>
-			</Card.Body>
-		</Card>
+		<div className='bonusFormCard'>
+			<h1>SLOT {props.currentSlotNumber + 1}:</h1>
+			<CloseButton className='close' onClick={() => props.closeFormCard(-1)} />
+			<hr />
+			<div className='grid-col-2'>
+				<label>Reward A:</label>
+				<label>Reward B:</label>
+				<div>
+					<Icon
+						fileName={props.currentBonusFieldData.rewardA.iconType}
+						type={'row'}
+					>
+						{props.currentBonusFieldData.rewardA.reward}
+					</Icon>
+				</div>
+				<div>
+					<Icon
+						fileName={props.currentBonusFieldData.rewardB.iconType}
+						type={'row'}
+					>
+						{props.currentBonusFieldData.rewardB.reward}
+					</Icon>
+				</div>
+				<RewardSelectorButton
+					onReplace={(replacementReward) => setCurrentRewardA(replacementReward)}
+				/>
+				<RewardSelectorButton
+					onReplace={(replacementReward) => setCurrentRewardB(replacementReward)}
+				/>
+			</div>
+			<hr />
+			<div className='bonusCharacterSelectorGroup'>
+				<label>Character:</label>
+				<GenericSelect
+					class={'bonusCharacter'}
+					selector={'Character'}
+					itemList={characterList}
+					name={'currentCharacterSelector'}
+					currentItem={props.currentBonusFieldData.currentCharacter}
+					onChange={(e) => setCurrentCharacter(parseInt(e.target.value))}
+				/>
+			</div>
+			<hr />
+			<div className='grid-col-4'>
+				<div>
+					<Icon
+						fileName={'uphp'}
+						type={'bonusForm'}
+					>
+						:
+					</Icon>
+				</div>
+				<input
+					name={'HP'}
+					className='three-digit-input'
+					type='number'
+					value={props.currentBonusFieldData.currentBonusHP}
+					onChange={(e) => setCurrentHP(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
+					min='0'
+					max='255'
+				/>
+				<div>
+					<Icon
+						fileName={'upmp'}
+						type={'bonusForm'}
+					>
+						:
+					</Icon>
+				</div>
+				<input
+					name={'MP'}
+					className='three-digit-input'
+					type='number'
+					value={props.currentBonusFieldData.currentBonusMP}
+					onChange={(e) => setCurrentMP(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
+					min='0'
+					max='255'
+				/>
+			</div>
+			<hr />
+			<div className='grid-col-4'>
+				<div>
+					<Icon
+						fileName={'uparmor'}
+						type={'bonusForm'}
+					>
+						:
+					</Icon>
+				</div>
+				<input
+					name={'ArmorSlot'}
+					className='three-digit-input'
+					size='lg'
+					type='number'
+					value={props.currentBonusFieldData.currentArmor}
+					onChange={(e) => setCurrentArmorSlot(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
+					min='0'
+					max='255'
+				/>
+				<div>
+					<Icon
+						fileName={'upaccessory'}
+						type={'bonusForm'}
+					>
+						:
+					</Icon>
+				</div>
+				<input
+					name={'AccessorySlot'}
+					className='three-digit-input'
+					size='lg'
+					type='number'
+					value={props.currentBonusFieldData.currentAccessory}
+					onChange={(e) => setCurrentAccessorySlot(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
+					min='0'
+					max='255'
+				/>
+				<div>
+					<Icon
+						fileName={'upitem'}
+						type={'bonusForm'}
+					>
+						:
+					</Icon>
+				</div>
+				<input
+					name={'itemSlot'}
+					className='three-digit-input'
+					size='lg'
+					type='number'
+					value={props.currentBonusFieldData.currentItem}
+					onChange={(e) => setCurrentItemSlot(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
+					min='0'
+					max='255'
+				/>
+				<div>
+					<Icon
+						fileName={'updrive'}
+						type={'bonusForm'}
+					>
+						:
+					</Icon>
+				</div>
+				<input
+					name={'DriveGauge'}
+					className='three-digit-input'
+					size='lg'
+					type='number'
+					value={props.currentBonusFieldData.currentDrive}
+					onChange={(e) => setCurrentDriveGauge(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
+					min='0'
+					max='255'
+				/>
+			</div>
+			<hr />
+			<div className='bonusReplaceButtonGroup'>
+				<Button
+					variant='secondary'
+					onClick={() => props.setCurrentBonusFightSlot(props.bonusReward.vanilla())}
+				>
+					VANILLA
+				</Button>
+				<Button
+					onClick={() => props.setCurrentBonusFightSlot(props.bonusReward.replace(props.currentBonusFieldData))}
+				>
+					CONFIRM
+				</Button>
+			</div>
+		</div>
 	)
 }
 

@@ -1,0 +1,158 @@
+.rewardSelectorModal {
+    /* width: 95vw; */
+    max-width: 95vw;
+}
+
+.rewardSelectorModal>.modal-content {
+    background-color: #000000CC;
+    /* opacity: 0.5; */
+    background-image: linear-gradient(0deg, #E5E5F733 50%, #444CF733 50%);
+    background-size: .4rem .4rem;
+    box-shadow: inset .1rem .1rem .5rem rgba(255, 255, 255, .5),
+        .1rem .1rem .5rem black;
+}
+
+.rewardSelectorModal>.modal-content>.modal-header,
+.rewardSelectorModal>.modal-content>.modal-footer {
+    border: none;
+}
+
+.rewardSelectorModalBody {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 1rem;
+    height: 65vh;
+    max-height: 85vh;
+    padding-top: 0;
+    /* overflow-y: auto; */
+}
+
+.rewardTypeSelector {
+    font-family: KHMenu;
+    border: none;
+    background-clip: padding-box;
+    border-radius: 1rem 0 1rem 0;
+    text-align: start;
+    padding-left: 1rem;
+    margin: .25rem;
+    color: #808080;
+    background-color: #000000DD;
+    box-shadow: inset .1rem .1rem .1rem rgba(255, 255, 255, .5),
+        .1rem .25rem .1rem black;
+    transition: transform .1s;
+    transform: translateX(0);
+}
+
+.activeRewardType {
+    color: white;
+    border: solid .25rem #FF0000;
+    margin: 0;
+    background-color: #400000;
+    transition: transform .1s;
+    transform: translateX(1rem);
+}
+
+.allRewardTabs {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: 4rem;
+}
+
+.rewardTabGroup {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 18rem;
+    gap: 0rem;
+}
+
+.rewardCategories {
+    display: grid;
+    grid-template-columns: 1fr;
+    flex-grow: 1;
+    row-gap: 5rem;
+    height: 62vh;
+    overflow-y: auto;
+}
+
+.rewardCategoryName {
+    font-size: 1.5rem;
+}
+
+.rewardListItem {
+    font-size: 1.25rem;
+    font-family: KHMenu;
+    margin: 0;
+    padding-left: .25rem;
+    text-align: start;
+    border-radius: 5rem;
+    border: solid .25rem #F0000000;
+    background-color: #00000000;
+    color: white;
+    text-shadow: .15rem .05rem #000000;
+}
+
+.rewardListItem:hover {
+    border-color: #F00000;
+    background-color: #400000;
+}
+
+.rewardListItem.selected {
+    border-color: #00F000;
+    background-color: #004000;
+}
+
+/* .rewardCategoryGroup {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+} */
+
+.rewardCategoryButtonGroup {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.currentReplacementText {
+    font-family: KHMenu;
+    font-size: 1.5rem;
+    /* grid-column-start: 2; */
+}
+
+.rewardSelectorModalButtonGroup {
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr;
+    gap: 2rem;
+}
+
+.rewardSelectorModalButtonGroup>.btn-secondary,
+.rewardSelectorModalButtonGroup>.btn-primary {
+    margin-top: 0;
+}
+
+@media(max-width: 90rem) {}
+
+@media(max-width: 65rem) {
+    /* .rewardTabGroup {
+        width: 20rem;
+    } */
+
+    .rewardTypeSelector {
+        font-size: 1rem;
+    }
+
+    .allRewardTabs {
+        gap: 1rem;
+    }
+
+    .rewardListItem {
+        font-size: 1rem;
+    }
+}
+
+
+@media(max-width: 48rem) {
+    .currentReplacementText {
+        font-size: 1rem;
+    }
+}

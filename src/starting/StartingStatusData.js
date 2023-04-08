@@ -131,7 +131,7 @@ export class StartingStatus {
 					ret += this.accessorySlots.toString(16).toUpperCase().padStart(2, '0')
 					if (isCommented) ret += '// Starting Accessory Slots: ' + this.accessorySlots + ' Starting Item Slots: ' + this.itemSlots + '\n'
 				}
-				if (this.isStatsReplaced()) {
+				if (this.isStartingStuffReplaced()) {
 					if (isCommented) ret += '// Starting Stuff:\n'
 					this.startingStuff.forEach(startingThing => {
 						ret += 'patch=1,EE,1' + stuffAddress.toString(16).toUpperCase().padStart(7, '0') + ',extended,0000'
@@ -174,10 +174,10 @@ export class StartingStatus {
 					if (isCommented) ret += ' -- Starting Accessory Slots: ' + this.accessorySlots + ' Starting Item Slots: ' + this.itemSlots
 					ret += '\n'
 				}
-				if (this.isStatsReplaced()) {
+				if (this.isStartingStuffReplaced()) {
 					if (isCommented) ret += '-- Starting Stuff:\n'
 					this.startingStuff.forEach(startingThing => {
-						ret += '\tWriteShort(Btl0+0x' + (stuffAddress + 1).toString(16).toUpperCase() + ',0x'
+						ret += '\tWriteShort(Btl0+0x' + stuffAddress.toString(16).toUpperCase() + ',0x'
 						ret += startingThing.index.toString(16).toUpperCase().padStart(4, '0') + ')'
 						if (isCommented) ret += '-- Starting with: ' + startingThing.reward + '\n'
 						stuffAddress += 0x2

@@ -1,9 +1,10 @@
-import { React, useState } from 'react'
-import { Row, Col, Container } from 'react-bootstrap'
+import React, { useState, useRef, useEffect } from 'react'
 
 import GenericSelect from '../Components/GenericSelect'
+import NavbarIcon from '../navbar/NavbarIcon'
 import PopupCard from './PopupCard'
-import AllPopupCard from './AllPopupCard'
+
+import './PopupStyles.css'
 
 function PopupPage(props) {
 	// PROPS:
@@ -11,13 +12,24 @@ function PopupPage(props) {
 	// setAllPopups: parent state function to set all popups -> function
 
 	const [currentWorld, setCurrentWorld] = useState(0)
-	let columnNum = 5
 	let currentWorldPopups = props.popupData[currentWorld].popups
+	const popupCardGrid = useRef(null)
+	useEffect(() => {
+		popupCardGrid.current.scrollTo({ top: 0, behavior: 'smooth' })
+	}, [currentWorld])
 
 	function updatePopups(newPopup) {
 		let newWorldPopups = currentWorldPopups.map(popup => {
 			if (newPopup.vanillaAddress === popup.vanillaAddress)
 				return newPopup
+			return popup
+		})
+		updateAllPopups(newWorldPopups)
+	}
+	function updateAllEmptyPopups(newReward) {
+		let newWorldPopups = currentWorldPopups.map(popup => {
+			if (popup.replacementReward.index === 0)
+				return popup.replace({ reward: { ...newReward } })
 			return popup
 		})
 		updateAllPopups(newWorldPopups)
@@ -36,55 +48,33 @@ function PopupPage(props) {
 
 	let popupList = currentWorldPopups.map((popup, popupIndex) => {
 		return (
-			<Col
-				key={'popup' + currentWorld + '_' + popupIndex}
-				xs
-			>
-				<PopupCard
-					key={'popup' + popupIndex}
-					id={popupIndex}
-					popup={popup}
-					handleVanilla={(replacedPopup) => { updatePopups(replacedPopup.vanilla()) }}
-					handleReplace={(replacedPopup, replacementReward) => { updatePopups(replacedPopup.replace({ reward: { ...replacementReward } })) }}
-				/>
-			</Col>
+			<PopupCard
+				key={'popup' + popupIndex}
+				id={popupIndex}
+				popup={popup}
+				handleVanilla={() => { updatePopups(popup.vanilla()) }}
+				handleReplace={(replacementReward) => { updatePopups(popup.replace({ reward: { ...replacementReward } })) }}
+			/>
 		)
 	})
-
 	popupList.push(
-		<Col
-			key={'chestColAll'}
-			xs
-		>
-			<AllPopupCard
-				key={'chestAll'}
-				id={currentWorldPopups.length}
-				// currentFolderName={chestFolderNames[currentWorld]}
-				handleVanilla={() => updateAllPopups(currentWorldPopups.map(popup => { return popup.vanilla() }))}
-				handleReplace={(replacementReward) => updateAllPopups(currentWorldPopups.map(popup => { return popup.replace({ reward: { ...replacementReward } }) }))}
-			/>
-		</Col>
+		<PopupCard
+			key={'AllPopups'}
+			world={props.popupData[currentWorld].world}
+			id={currentWorldPopups.length}
+			handleVanilla={() => updateAllPopups(currentWorldPopups.map(popup => { return popup.vanilla() }))}
+			handleReplace={(replacementReward) => updateAllPopups(currentWorldPopups.map(popup => { return popup.replace({ reward: { ...replacementReward } }) }))}
+			handleReplaceAllEmpty={(replacementReward) => updateAllEmptyPopups(replacementReward)}
+		/>
 	)
 
-	for (let i = popupList.length; popupList.length % columnNum !== 0; i++)
-		popupList.push(<Col key={'popup' + currentWorld + '_' + i} xs />)
-
-	let popupRowList = []
-
-	for (let i = 0; i < popupList.length; i += columnNum) {
-		popupRowList.push(
-			<Row
-				key={'popup' + currentWorld + '_' + i}
-			>
-				{popupList.slice(i, i + columnNum)}
-			</Row>
-		)
-	}
-
 	return (
-		<Container fluid>
-			<Row style={{paddingTop: '1rem'}}>
-				<Col xs={3}>
+		<div className='fullPageContent'>
+			<div className='pageHeader'>
+				<div className='pageHeaderSelectorLabel'>
+					World Selector:
+				</div>
+				<div>
 					<GenericSelect
 						class={'popup'}
 						selector={'World'}
@@ -93,19 +83,21 @@ function PopupPage(props) {
 						currentItem={currentWorld}
 						onChange={(e) => setCurrentWorld(parseInt(e.target.value))}
 					/>
-				</Col>
-				<Col xs={7} />
-				<Col xs={2}>
+				</div>
+				<div className='flex-grow-1' />
+				<div>
 					{props.children}
-				</Col>
-			</Row>
-			<Container
-				fluid
-				className='cardGrid'
-			>
-				{popupRowList}
-			</Container>
-		</Container>
+				</div>
+				<NavbarIcon
+					showNavbar={props.handleShowNavbar}
+					fileName={'popup'}
+					title={'Popup'}
+				/>
+			</div>
+			<div className='popupCardGrid' ref={popupCardGrid}>
+				{popupList}
+			</div>
+		</div>
 	)
 }
 

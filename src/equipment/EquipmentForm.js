@@ -1,8 +1,9 @@
-import { React } from 'react'
-import { Form, Col, Card, Button, Row, Image } from 'react-bootstrap'
+import React from 'react'
+import { Button, CloseButton } from 'react-bootstrap'
 
-import RewardSelector from '../rewards/RewardSelector'
+import RewardSelectorButton from '../rewards/RewardSelectorButton'
 import Icon from '../Components/Icon'
+import './EquipmentFormStyles.css'
 
 function EquipmentForm(props) {
     let equipmentImage = './images/equipmentImages/' + props.currentFolderName + '/' + props.equipment.baseAddress.toString(16).toUpperCase() + '.png'
@@ -21,249 +22,161 @@ function EquipmentForm(props) {
     function setCurrentUniversal(newValue) { props.setCurrentEquipmentFieldData('currentUniversal', newValue) }
 
     return (
-        <Card
-            border='dark'
-            bg='dark'
-            className='equipmentFormCard'
-            style={{ margin: '10px', textAlign: 'center' }}
-        >
-            <Card.Body>
-                <Card.Text as='div'>
-                    <Row>
-                        <Col xs={11}>
-                            <h1>EDITING {props.equipment.name.toUpperCase()}:</h1>
-                        </Col>
-                        <Col xs={1}>
-                            <button
-                                className='close'
-                                onClick={() => props.closeFormCard(-1)}
-                            >
-                                x
-                            </button>
-                        </Col>
-                    </Row>
-                    <Image
-                        src={equipmentImage}
-                        height='180rem'
-                        width='180rem'
-                    />
-                    <hr />
-                    <Row>
-                        <Col>
-                            <Form onSubmit={(e) => e.preventDefault()}>
-                                <Form.Row>
-                                    <Form.Label column='lg' xs={4}>
-                                        Ability:
-                                    </Form.Label>
-                                    <Col xs={4}>
-                                        <Icon
-                                            style={{ margin: '10px' }}
-                                            fileName={props.currentEquipmentFieldData.ability.iconType}
-                                            type={'row'}
-                                        >
-                                            {props.currentEquipmentFieldData.ability.reward}
-                                        </Icon>
-                                    </Col>
-                                    <Col xs={4}>
-                                        <RewardSelector
-                                            onReplace={(replacementReward) => setCurrentAbility(replacementReward)}
-                                        />
-                                    </Col>
-                                </Form.Row>
-                                <hr />
-                                <Form.Row>
-                                    <Form.Label column='lg' xs={4}>
-                                        AP:
-                                    </Form.Label>
-                                    <Col xs={2}>
-                                        <Form.Control
-                                            name={'EquipmentAP'}
-                                            size='lg'
-                                            type='number'
-                                            value={props.currentEquipmentFieldData.currentAP}
-                                            onChange={(e) => setCurrentAP(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                                            min='0'
-                                            max='255'
-                                        />
-                                    </Col>
-                                    <Form.Label column='lg' xs={4}>
-                                        Magic:
-                                    </Form.Label>
-                                    <Col xs={2}>
-                                        <Form.Control
-                                            name={'EquipmentMagic'}
-                                            size='lg'
-                                            type='number'
-                                            value={props.currentEquipmentFieldData.currentMagic}
-                                            onChange={(e) => setCurrentMagic(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                                            min='0'
-                                            max='255'
-                                        />
-                                    </Col>
-                                </Form.Row>
-                                <Form.Row>
-                                    <Form.Label column='lg' xs={4}>
-                                        Strength:
-                                    </Form.Label>
-                                    <Col xs={2}>
-                                        <Form.Control
-                                            name={'EquipmentStrength'}
-                                            size='lg'
-                                            type='number'
-                                            value={props.currentEquipmentFieldData.currentStrength}
-                                            onChange={(e) => setCurrentStrength(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                                            min='0'
-                                            max='255'
-                                        />
-                                    </Col>
-                                    <Form.Label column='lg' xs={4}>
-                                        Defense:
-                                    </Form.Label>
-                                    <Col xs={2}>
-                                        <Form.Control
-                                            name={'EquipmentDefense'}
-                                            size='lg'
-                                            type='number'
-                                            value={props.currentEquipmentFieldData.currentDefense}
-                                            onChange={(e) => setCurrentDefense(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                                            min='0'
-                                            max='255'
-                                        />
-                                    </Col>
-                                </Form.Row>
-                                <hr />
-                                <Form.Row>
-                                    <Form.Label column='lg' xs={4}>
-                                        Fire Resistance:
-                                    </Form.Label>
-                                    <Col xs={2}>
-                                        <Form.Control
-                                            name={'EquipmentFire'}
-                                            size='lg'
-                                            type='number'
-                                            value={props.currentEquipmentFieldData.currentFire}
-                                            onChange={(e) => setCurrentFire(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                                            min='-150'
-                                            max='100'
-                                        />
-                                    </Col>
-                                    <Form.Label column='lg' xs={4}>
-                                        Physical Resistance:
-                                    </Form.Label>
-                                    <Col xs={2}>
-                                        <Form.Control
-                                            name={'EquipmentPhysical'}
-                                            size='lg'
-                                            type='number'
-                                            value={props.currentEquipmentFieldData.currentPhysical}
-                                            onChange={(e) => setCurrentPhysical(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                                            min='-150'
-                                            max='100'
-                                        />
-                                    </Col>
-                                </Form.Row>
-                                <Form.Row>
-                                    <Form.Label column='lg' xs={4}>
-                                        Blizzard Resistance:
-                                    </Form.Label>
-                                    <Col xs={2}>
-                                        <Form.Control
-                                            name={'EquipmentBlizzard'}
-                                            size='lg'
-                                            type='number'
-                                            value={props.currentEquipmentFieldData.currentBlizzard}
-                                            onChange={(e) => setCurrentBlizzard(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                                            min='-150'
-                                            max='100'
-                                        />
-                                    </Col>
-                                    <Form.Label column='lg' xs={4}>
-                                        Light Resistance:
-                                    </Form.Label>
-                                    <Col xs={2}>
-                                        <Form.Control
-                                            name={'EquipmentLight'}
-                                            size='lg'
-                                            type='number'
-                                            value={props.currentEquipmentFieldData.currentLight}
-                                            onChange={(e) => setCurrentLight(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                                            min='-150'
-                                            max='100'
-                                        />
-                                    </Col>
-                                </Form.Row>
-                                <Form.Row>
-                                    <Form.Label column='lg' xs={4}>
-                                        Thunder Resistance:
-                                    </Form.Label>
-                                    <Col xs={2}>
-                                        <Form.Control
-                                            name={'EquipmentThunder'}
-                                            size='lg'
-                                            type='number'
-                                            value={props.currentEquipmentFieldData.currentThunder}
-                                            onChange={(e) => setCurrentThunder(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                                            min='-150'
-                                            max='100'
-                                        />
-                                    </Col>
-                                    <Form.Label column='lg' xs={4}>
-                                        Universal Resistance:
-                                    </Form.Label>
-                                    <Col xs={2}>
-                                        <Form.Control
-                                            name={'EquipmentUniversal'}
-                                            size='lg'
-                                            type='number'
-                                            value={props.currentEquipmentFieldData.currentUniversal}
-                                            onChange={(e) => setCurrentUniversal(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                                            min='-150'
-                                            max='100'
-                                        />
-                                    </Col>
-                                </Form.Row>
-                                <Form.Row>
-                                    <Form.Label column='lg' xs={4}>
-                                        Dark Resistance:
-                                    </Form.Label>
-                                    <Col xs={2}>
-                                        <Form.Control
-                                            name={'EquipmentDark'}
-                                            size='lg'
-                                            type='number'
-                                            value={props.currentEquipmentFieldData.currentDark}
-                                            onChange={(e) => setCurrentDark(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                                            min='-150'
-                                            max='100'
-                                        />
-                                    </Col>
-                                </Form.Row>
-                                <hr />
-                                <Form.Row>
-                                    <Col>
-                                        <Button
-                                            variant='secondary'
-                                            block
-                                            onClick={() => props.handleVanilla(props.equipment)}
-                                        >
-                                            VANILLA
-                                        </Button>
-                                    </Col>
-                                    <Col>
-                                        <Button
-                                            block
-                                            onClick={() => props.handleReplace(props.equipment, props.currentEquipmentFieldData)}
-                                        >
-                                            CONFIRM
-                                        </Button>
-                                    </Col>
-                                </Form.Row>
-                            </Form>
-                        </Col>
-                    </Row>
-                </Card.Text>
-            </Card.Body>
-        </Card>
+        <div className='equipmentFormCard'>
+            <h1 className='equipmentFormName'>{props.equipment.name.toUpperCase()}:</h1>
+			<CloseButton className='close' onClick={() => props.closeFormCard(-1)} />
+            <img
+                className='equipmentFormImage'
+                src={equipmentImage}
+                alt={props.equipment.name + ' Form'}
+            />
+            <hr />
+            <div className='equipmentFormReward'>
+                <label className='equipmentLabel'>Reward:</label>
+                <div>
+                    <Icon
+                        style={{ margin: '10px' }}
+                        fileName={props.currentEquipmentFieldData.ability.iconType}
+                        type={'row'}
+                    >
+                        {props.currentEquipmentFieldData.ability.reward}
+                    </Icon>
+                </div>
+                <RewardSelectorButton
+                    onReplace={(replacementReward) => setCurrentAbility(replacementReward)}
+                />
+            </div>
+            <hr />
+            <div className='equipmentInput grid-col-4'>
+                <label className='equipmentLabel'>AP:</label>
+                <input
+                    name={'EquipmentAP'}
+                    className='equipmentInputField three-digit-input'
+                    type='number'
+                    value={props.currentEquipmentFieldData.currentAP}
+                    onChange={(e) => setCurrentAP(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
+                    min='0'
+                    max='255'
+                />
+                <label className='equipmentLabel'>Magic:</label>
+                <input
+                    name={'EquipmentMagic'}
+                    className='equipmentInputField three-digit-input'
+                    type='number'
+                    value={props.currentEquipmentFieldData.currentMagic}
+                    onChange={(e) => setCurrentMagic(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
+                    min='0'
+                    max='255'
+                />
+                <label className='equipmentLabel'>Strength:</label>
+                <input
+                    name={'EquipmentStrength'}
+                    className='equipmentInputField three-digit-input'
+                    type='number'
+                    value={props.currentEquipmentFieldData.currentStrength}
+                    onChange={(e) => setCurrentStrength(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
+                    min='0'
+                    max='255'
+                />
+                <label className='equipmentLabel'>Defense:</label>
+                <input
+                    name={'EquipmentDefense'}
+                    className='equipmentInputField three-digit-input'
+                    type='number'
+                    value={props.currentEquipmentFieldData.currentDefense}
+                    onChange={(e) => setCurrentDefense(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
+                    min='0'
+                    max='255'
+                />
+            </div>
+            <hr />
+            <div className='equipmentInput grid-col-4'>
+                <label className='equipmentLabel'>Fire:</label>
+                <input
+                    name={'EquipmentFire'}
+                    className='equipmentInputField three-digit-input'
+                    type='number'
+                    value={props.currentEquipmentFieldData.currentFire}
+                    onChange={(e) => setCurrentFire(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
+                    min='-150'
+                    max='100'
+                />
+                <label className='equipmentLabel'>Physical:</label>
+                <input
+                    name={'EquipmentPhysical'}
+                    className='equipmentInputField three-digit-input'
+                    type='number'
+                    value={props.currentEquipmentFieldData.currentPhysical}
+                    onChange={(e) => setCurrentPhysical(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
+                    min='-150'
+                    max='100'
+                />
+                <label className='equipmentLabel'>Blizzard:</label>
+                <input
+                    name={'EquipmentBlizzard'}
+                    className='equipmentInputField three-digit-input'
+                    type='number'
+                    value={props.currentEquipmentFieldData.currentBlizzard}
+                    onChange={(e) => setCurrentBlizzard(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
+                    min='-150'
+                    max='100'
+                />
+                <label className='equipmentLabel'>Light:</label>
+                <input
+                    name={'EquipmentLight'}
+                    className='equipmentInputField three-digit-input'
+                    type='number'
+                    value={props.currentEquipmentFieldData.currentLight}
+                    onChange={(e) => setCurrentLight(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
+                    min='-150'
+                    max='100'
+                />
+                <label className='equipmentLabel'>Thunder:</label>
+                <input
+                    name={'EquipmentThunder'}
+                    className='equipmentInputField three-digit-input'
+                    type='number'
+                    value={props.currentEquipmentFieldData.currentThunder}
+                    onChange={(e) => setCurrentThunder(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
+                    min='-150'
+                    max='100'
+                />
+                <label className='equipmentLabel'>Universal:</label>
+                <input
+                    name={'EquipmentUniversal'}
+                    className='equipmentInputField three-digit-input'
+                    type='number'
+                    value={props.currentEquipmentFieldData.currentUniversal}
+                    onChange={(e) => setCurrentUniversal(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
+                    min='-150'
+                    max='100'
+                />
+                <label className='equipmentLabel'>Dark:</label>
+                <input
+                    name={'EquipmentDark'}
+                    className='equipmentInputField three-digit-input'
+                    type='number'
+                    value={props.currentEquipmentFieldData.currentDark}
+                    onChange={(e) => setCurrentDark(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
+                    min='-150'
+                    max='100'
+                />
+            </div>
+            <hr />
+            <div className='equipmentReplaceButtonGroup'>
+                <Button
+                    variant='secondary'
+                    onClick={() => props.handleVanilla(props.equipment)}
+                >
+                    VANILLA
+                </Button>
+                <Button
+                    onClick={() => props.handleReplace(props.equipment, props.currentEquipmentFieldData)}
+                >
+                    CONFIRM
+                </Button>
+            </div>
+        </div>
     )
 }
 

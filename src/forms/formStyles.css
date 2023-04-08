@@ -46,20 +46,57 @@
   --formEvenDarkerColor: #5A5A5A;
 }
 
+.formLevelCardGroup {
+  filter: drop-shadow(3px 3px 2px black);
+  display: grid;
+  grid-template-columns: 9fr 1fr;
+  margin-bottom: 1.2rem;
+}
+
 .formLevelCard {
   font-family: KHMenu;
   border-top-left-radius: 2rem;
   border-bottom-left-radius: 2rem;
-  width: 90%;
-  height: 7rem;
   position: relative;
   padding: 0;
-  margin-bottom: 1.2rem;
   box-shadow: inset 0px 1px 0px rgba(255, 255, 255, .5);
   background-color: var(--formPrimaryColor);
 }
 
+.formPageContent {
+  display: flex;
+  gap: 1rem;
+}
+
+.formList {
+  width: 20%;
+}
+
+.formCards {
+  width: 40%;
+}
+
+.formForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 30%;
+}
+
+.formIcon {
+  height: 50px;
+  width: 50px;
+  vertical-align: middle;
+}
+
+.formIconDescription {
+  font-family: KHMenu;
+  font-size: 1.5rem;
+  vertical-align: middle;
+}
+
 .formLevelName {
+  z-index: 10;
   position: absolute;
   display: flex;
   flex-direction: row;
@@ -68,8 +105,9 @@
   height: 33%;
   width: 85%;
   top: 0;
-  left: 6rem;
+  right: 0;
   font-size: 1.5rem;
+  padding-left: 1rem;
   text-shadow: .1rem .1rem 0 black;
 }
 
@@ -82,34 +120,26 @@
   border-bottom-left-radius: 2rem;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
   background: black;
   font-size: 2em;
   color: white;
-  width: 99%;
-  height: 66%;
-  margin: 0;
+  margin: 2.2rem 0 0 .1rem;
   padding: 0 0 0 6rem;
-  position: absolute;
-  bottom: .1rem;
-  left: .1rem;
   box-shadow: inset -1px -1px 1px rgba(255, 255, 255, .5);
 }
 
 .formCardReward {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .afterFormLevelCard {
   z-index: 1;
   content: '';
-  height: 7rem;
-  position: absolute;
+  height: 100%;
   display: inline-block;
-  margin: 0;
-  padding: 0;
-  left: 90%;
+  margin-bottom: 1.5rem;
   border: 40px solid transparent;
   border-left-color: var(--formPrimaryColor);
 }
@@ -120,21 +150,22 @@
   border-radius: 50%;
   height: 5rem;
   width: 5rem;
-  top: 1px;
-  left: .1em;
+  top: .1rem;
+  left: .1rem;
 }
 
 .editFormLevelButton {
+  font-family: KHGummi;
+  font-size: 1.25rem;
   border-radius: 1rem;
-  position: absolute;
-  right: 1rem;
-  top: 40%;
-  width: 20%;
-  height: 50%;
+  display: block;
   white-space: pre-line;
   color: white;
   background-color: var(--formPrimaryColor);
   text-shadow: .1rem .1rem 0 black;
+  margin: .5rem;
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 2;
 }
 
 .editFormLevelButton:hover,
@@ -156,12 +187,12 @@
 }
 
 .editAllFormLevelButton {
-  font-family: KHMenu;
-  font-size: 2rem;
+  font-family: KHGummi;
+  font-size: 1.5rem;
   border-width: 0;
   border-radius: 1rem;
   white-space: pre-line;
-  width: 95%;
+  width: 90%;
   height: 5rem;
   color: white;
   background-color: var(--formPrimaryColor);
@@ -184,4 +215,51 @@
   background-color: var(--formPrimaryColor);
   border-color: var(--formPrimaryColor);
   opacity: .65;
+}
+
+@media(max-width: 91rem) {
+  .formCardReward {
+    font-size: 1rem;
+  }
+
+  .editFormLevelButton {
+    font-size: 1rem;
+  }
+
+  .formIconDescription {
+    font-family: KHMenu;
+    font-size: 1rem;
+    vertical-align: middle;
+  }
+  .editAllFormLevelButton {
+    font-size: 1.25rem;
+  }
+}
+
+@media(max-width: 66rem) {
+  .formType {
+    display: none;
+  }
+
+  .formRewardBox {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .formList {
+    width: 90px;
+  }
+
+  .formIconDescription {
+    display: none;
+  }
+  .editAllFormLevelButton {
+    font-size: 1rem;
+  }
+}
+
+@media(max-width: 53rem) {
+  .editAllFormLevelButton {
+    font-size: .75rem;
+  }
 }

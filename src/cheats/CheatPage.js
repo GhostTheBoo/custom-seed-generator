@@ -1,7 +1,8 @@
-import { React } from 'react'
-import { Row, Container, Col } from 'react-bootstrap'
+import React from 'react'
+import './CheatStyles.css'
 
 import CheatListGroup from './CheatListGroup'
+import NavbarIcon from '../navbar/NavbarIcon'
 
 function CheatPage(props) {
     function toggleActiveCheat(allCheatData, setAllCheatData, cheatIndex) {
@@ -12,47 +13,39 @@ function CheatPage(props) {
         setAllCheatData(newCheatData)
     }
     return (
-        <Container fluid>
-            <Row>
-                <Col xs={10} />
-                <Col xs={2} style={{ paddingTop: '1rem' }}>
+        <div className='fullPageContent'>
+            <div className='pageHeader'>
+                <div className='flex-grow-1' />
+                <div>
                     {props.children}
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={4}>
-                    <h1 style={{ margin: '10px', textAlign: 'center' }}>Zip Cheats</h1>
-                </Col>
-                <Col xs={4}>
-                    <h1 style={{ margin: '10px', textAlign: 'center' }}>Pnach Cheats</h1>
-                </Col>
-                <Col xs={4}>
-                    <h1 style={{ margin: '10px', textAlign: 'center' }}>Lua Cheats</h1>
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={4}>
-                    {/* <CheatListGroup
-                        dataList={props.zipCheatData}
-                        toggleActiveCheat={(cheatIndex) => toggleActiveCheat(props.zipCheatData, props.setAllZipCheats, cheatIndex)}
-                    /> */}
-                </Col>
-                <Col xs={4}>
-                    <CheatListGroup
-                        dataList={props.pnachCheatData}
-                        cheatType={'pnach'}
-                        toggleActiveCheat={(allCheats, cheatIndex) => toggleActiveCheat(allCheats, props.setAllPnachCheats, cheatIndex)}
-                    />
-                </Col>
-                <Col xs={4}>
-                    <CheatListGroup
-                        dataList={props.luaCheatData}
-                        cheatType={'lua'}
-                        toggleActiveCheat={(allCheats, cheatIndex) => toggleActiveCheat(allCheats, props.setAllLuaCheats, cheatIndex)}
-                    />
-                </Col>
-            </Row>
-        </Container>
+                </div>
+                <NavbarIcon
+                    showNavbar={props.handleShowNavbar}
+                    fileName={'cheat'}
+                    title={'Cheats'}
+                />
+            </div>
+            <div className='cheatPageContent'>
+                <h1 className='cheatTypeHeader' style={{ margin: '10px', textAlign: 'center' }}>Lua Cheats</h1>
+                <h1 className='cheatTypeHeader' style={{ margin: '10px', textAlign: 'center' }}>Zip Cheats</h1>
+                {/* <h1 className='cheatTypeHeader' style={{ margin: '10px', textAlign: 'center' }}>Pnach Cheats</h1> */}
+                {/* <CheatListGroup
+                    dataList={props.zipCheatData}
+                    toggleActiveCheat={(cheatIndex) => toggleActiveCheat(props.zipCheatData, props.setAllZipCheats, cheatIndex)}
+                /> */}
+                {/* <CheatListGroup
+                    dataList={props.pnachCheatData}
+                    cheatType={'pnach'}
+                    toggleActiveCheat={(allCheats, cheatIndex) => toggleActiveCheat(allCheats, props.setAllPnachCheats, cheatIndex)}
+                /> */}
+                <CheatListGroup
+                    dataList={props.luaCheatData}
+                    cheatType={'lua'}
+                    toggleActiveCheat={(allCheats, cheatIndex) => toggleActiveCheat(allCheats, props.setAllLuaCheats, cheatIndex)}
+                />
+                <div className='temp'>Under Construction</div>
+            </div>
+        </div>
     )
 }
 

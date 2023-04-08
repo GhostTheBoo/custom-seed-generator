@@ -1,11 +1,8 @@
-import { React, useState, useEffect } from 'react'
-import { Tabs, Tab, Col } from 'react-bootstrap'
+import React, { useState, useEffect } from 'react'
 
 import JSZip from 'jszip'
 import FileSaver from 'file-saver'
 
-import SaveLoadModal from './Components/SaveLoadModal'
-import Icon from './Components/Icon'
 import { ZipSeed } from './Components/ZipSeed'
 import HelpModal from './Components/HelpModal'
 
@@ -25,12 +22,13 @@ import { Equipment, equipmentsData } from './equipment/EquipmentsData'
 import EquipmentPage from './equipment/EquipmentPage'
 import { Level, levelsData } from './levels/LevelData'
 import LevelPage from './levels/LevelPage'
-import { MagicAbility, magicsData } from './magic/MagicData'
-import MagicPage from './magic/MagicPage'
+import { AbilityCost, costsData } from './cost/CostsData'
+import CostPage from './cost/CostPage'
 import { StartingStatus, startingStatusData } from './starting/StartingStatusData'
 import StartingStatusPage from './starting/StartingStatusPage'
 import { Cheat, pnachCheatsData, luaCheatsData } from './cheats/CheatsData'
 import CheatPage from './cheats/CheatPage'
+import PageNavbar from './navbar/PageNavbar'
 
 
 
@@ -42,16 +40,19 @@ function FunctionApp() {
 	const [allForms, setAllForms] = useState(formsData)
 	const [allEquipments, setAllEquipments] = useState(equipmentsData)
 	const [allLevels, setAllLevels] = useState(levelsData)
-	const [allMagic, setAllMagic] = useState(magicsData)
+	const [allCosts, setAllCosts] = useState(costsData)
 	const [allStartingStatus, setAllStartingStatus] = useState(startingStatusData)
 	const [allPnachCheats, setAllPnachCheats] = useState(pnachCheatsData)
 	const [allLuaCheats, setAllLuaCheats] = useState(luaCheatsData)
 
-	const [currentTab, setCurrentTab] = useState('home')
+	const [currentTab, setCurrentTab] = useState(0)
 
-	const [isZipCommented, setIsZipCommented] = useState(true)
-	const [isPnachCommented, setIsPnachCommented] = useState(true)
-	const [isLuaCommented, setIsLuaCommented] = useState(true)
+	const [isCommented, setIsCommented] = useState(true)
+
+	const [showNavbar, setShowNavbar] = useState(false);
+
+	const handleCloseNavbar = () => setShowNavbar(false);
+	const handleShowNavbar = () => setShowNavbar(true);
 	//#endregion
 	const alertUser = e => {
 		e.preventDefault()
@@ -154,26 +155,26 @@ function FunctionApp() {
 				finalBonusStatsComment + '\n'
 			]
 	}
-	function handleSaveAsPnach(fileName) {
-		let trackerPnachCodes = isPnachCommented ? handleTracker(true) : []
+	// function handleSaveAsPnach(fileName) {
+	// 	let trackerPnachCodes = isCommented ? handleTracker(true) : []
 
-		let pnachCodes = [].concat(
-			trackerPnachCodes,
-			Chest.saveToPnach(allChests, isPnachCommented),
-			Popup.saveToPnach(allPopups, isPnachCommented),
-			BonusFight.saveToPnach(allBonuses, isPnachCommented),
-			FormLevel.saveToPnach(allForms, isPnachCommented),
-			Equipment.saveToPnach(allEquipments, isPnachCommented),
-			Level.saveToPnach(allLevels, isPnachCommented),
-			MagicAbility.saveToPnach(allMagic, isPnachCommented),
-			StartingStatus.saveToPnach(allStartingStatus, isPnachCommented),
-			Cheat.saveToPnach(allPnachCheats, isPnachCommented)
-		)
+	// 	let pnachCodes = [].concat(
+	// 		trackerPnachCodes,
+	// 		Chest.saveToPnach(allChests, isCommented),
+	// 		Popup.saveToPnach(allPopups, isCommented),
+	// 		BonusFight.saveToPnach(allBonuses, isCommented),
+	// 		FormLevel.saveToPnach(allForms, isCommented),
+	// 		Equipment.saveToPnach(allEquipments, isCommented),
+	// 		Level.saveToPnach(allLevels, isCommented),
+	// 		AbilityCost.saveToPnach(allCosts, isCommented),
+	// 		StartingStatus.saveToPnach(allStartingStatus, isCommented),
+	// 		Cheat.saveToPnach(allPnachCheats, isCommented)
+	// 	)
 
-		downloadFile(pnachCodes, fileName.length !== 0 ? '(' + fileName + ').pnach' : 'F266B00B.pnach')
-	}
+	// 	downloadFile(pnachCodes, fileName.length !== 0 ? '(' + fileName + ').pnach' : 'F266B00B.pnach')
+	// }
 	function handleSaveAsLua(fileName) {
-		let trackerLuaCodes = isLuaCommented ? handleTracker(false) : []
+		let trackerLuaCodes = isCommented ? handleTracker(false) : []
 
 		let luaDefaultCodes = [
 			'function _OnFrame()\n',
@@ -190,7 +191,7 @@ function FunctionApp() {
 			'\tDriveForms()\n',
 			'\tEquipment()\n',
 			'\tLevelRewards()\n',
-			'\tMagicCosts()\n',
+			'\tAbilityCosts()\n',
 			'\tStartingStatus()\n',
 			'\tCheats()\n',
 			'end\n\n',
@@ -221,15 +222,15 @@ function FunctionApp() {
 		let luaCodes = [].concat(
 			trackerLuaCodes,
 			luaDefaultCodes,
-			Chest.saveToLua(allChests, isLuaCommented),
-			Popup.saveToLua(allPopups, isLuaCommented),
-			BonusFight.saveToLua(allBonuses, isLuaCommented),
-			FormLevel.saveToLua(allForms, isLuaCommented),
-			Equipment.saveToLua(allEquipments, isLuaCommented),
-			Level.saveToLua(allLevels, isLuaCommented),
-			MagicAbility.saveToLua(allMagic, isLuaCommented),
-			StartingStatus.saveToLua(allStartingStatus, isLuaCommented),
-			Cheat.saveToLua(allLuaCheats, isPnachCommented)
+			Chest.saveToLua(allChests, isCommented),
+			Popup.saveToLua(allPopups, isCommented),
+			BonusFight.saveToLua(allBonuses, isCommented),
+			FormLevel.saveToLua(allForms, isCommented),
+			Equipment.saveToLua(allEquipments, isCommented),
+			Level.saveToLua(allLevels, isCommented),
+			AbilityCost.saveToLua(allCosts, isCommented),
+			StartingStatus.saveToLua(allStartingStatus, isCommented),
+			Cheat.saveToLua(allLuaCheats, isCommented)
 		)
 
 		downloadFile(luaCodes, fileName.length !== 0 ? '(' + fileName + ').lua' : 'F266B00B.lua')
@@ -243,6 +244,7 @@ function FunctionApp() {
 		zip.file('FmlvList.yml', zipSeed.generateFmlvList(allForms, true)) // Form Level Rewards
 		zip.file('BonsList.yml', zipSeed.generateBonsList(allBonuses, true)) // bonus level rewards
 		zip.file('ItemList.yml', zipSeed.generateItemList(allEquipments, true)) // equipment stats
+		zip.file('CmdList.yml', zipSeed.generateCmdList(allCosts, true)) // starting items
 		zip.file('PlrpList.yml', zipSeed.generatePlrpList(allStartingStatus, true)) // starting items
 		// zip.file('HintFile.hints', HintFile) // encoded hints
 		zip.file('sys.yml', zipSeed.generateSys()) // Menu text edits
@@ -260,7 +262,7 @@ function FunctionApp() {
 		let formSaveData = FormLevel.saveToJSON(allForms)
 		let equipmentSaveData = Equipment.saveToJSON(allEquipments)
 		let levelSaveData = Level.saveToJSON(allLevels)
-		let magicCostSaveData = MagicAbility.saveToJSON(allMagic)
+		let costSaveData = AbilityCost.saveToJSON(allCosts)
 		let startingStatusSaveData = StartingStatus.saveToJSON(allStartingStatus)
 
 		let saveData = ['{',
@@ -270,7 +272,7 @@ function FunctionApp() {
 			formSaveData.join(''),
 			equipmentSaveData.join(''),
 			levelSaveData.join(''),
-			magicCostSaveData.join(''),
+			costSaveData.join(''),
 			startingStatusSaveData.join('').slice(0, -1),
 			'}']
 
@@ -285,16 +287,15 @@ function FunctionApp() {
 		let newAllForms = allLoadData.hasOwnProperty('formsData') ? allLoadData.formsData : []
 		let newAllEquipments = allLoadData.hasOwnProperty('equipmentsData') ? allLoadData.equipmentsData : []
 		let newAllLevels = allLoadData.hasOwnProperty('levelsData') ? allLoadData.levelsData : []
-		let newAllMagics = allLoadData.hasOwnProperty('magicData') ? allLoadData.magicData : []
+		let newAllCosts = allLoadData.hasOwnProperty('costsData') ? allLoadData.costsData : []
 		let newAllStartingStatus = allLoadData.hasOwnProperty('startingStatusData') ? allLoadData.startingStatusData : []
-
 		setAllChests(Chest.loadFromJSON(newAllChests))
 		setAllPopups(Popup.loadFromJSON(newAllPopups))
 		setAllBonuses(BonusFight.loadFromJSON(newAllBonuses))
 		setAllForms(FormLevel.loadFromJSON(newAllForms))
 		setAllEquipments(Equipment.loadFromJSON(newAllEquipments))
 		setAllLevels(Level.loadFromJSON(newAllLevels))
-		setAllMagic(MagicAbility.loadFromJSON(newAllMagics))
+		setAllCosts(AbilityCost.loadFromJSON(newAllCosts))
 		setAllStartingStatus(StartingStatus.loadFromJSON(newAllStartingStatus))
 	}
 	function downloadFile(contentArray, fileName) {
@@ -309,40 +310,36 @@ function FunctionApp() {
 
 	let tabDataList = [
 		{
+			key: 'home',
 			eventKey: 'home',
 			fileName: 'home',
 			title: 'Home',
 			page: (
-				<HomePage>
-					<Col xs={3}>
-						<SaveLoadModal
-							isZipCommented={isZipCommented}
-							isPnachCommented={isPnachCommented}
-							isLuaCommented={isLuaCommented}
-							onZipCommentChange={() => { setIsZipCommented(!isZipCommented) }}
-							onPnachCommentChange={() => { setIsPnachCommented(!isPnachCommented) }}
-							onLuaCommentChange={() => { setIsLuaCommented(!isLuaCommented) }}
-							handleSaveAsPnach={handleSaveAsPnach}
-							handleSaveAsLua={handleSaveAsLua}
-							handleSaveAsZip={handleSaveAsZip}
-							handleSaveAsJSON={handleSaveAsJSON}
-							onFileUpload={(e) => {
-								let file = e.target.files[0]
-								let reader = new FileReader()
-								reader.readAsText(file)
-								reader.onload = (e) => handleLoadFromJSON(e.target.result)
-							}}
-						/>
-					</Col>
-				</HomePage>
+				<HomePage
+					handleShowNavbar={handleShowNavbar}
+					isCommented={isCommented}
+					onCommentChange={() => { setIsCommented(!isCommented) }}
+					// handleSaveAsPnach={handleSaveAsPnach}
+					handleSaveAsLua={handleSaveAsLua}
+					handleSaveAsZip={handleSaveAsZip}
+					handleSaveAsJSON={handleSaveAsJSON}
+					onFileUpload={(e) => {
+						let file = e.target.files[0]
+						let reader = new FileReader()
+						reader.readAsText(file)
+						reader.onload = (e) => handleLoadFromJSON(e.target.result)
+					}}
+				/>
 			)
 		},
 		{
+			key: 'chest',
 			eventKey: 'chest',
 			fileName: 'chest',
 			title: 'Chest',
 			page: (
 				<ChestPage
+					handleShowNavbar={handleShowNavbar}
 					chestData={allChests}
 					setAllChests={setAllChests}
 				>
@@ -351,11 +348,13 @@ function FunctionApp() {
 			)
 		},
 		{
+			key: 'popup',
 			eventKey: 'popup',
 			fileName: 'popup',
 			title: 'Popup',
 			page: (
 				<PopupPage
+					handleShowNavbar={handleShowNavbar}
 					popupData={allPopups}
 					setAllPopups={setAllPopups}
 				>
@@ -364,11 +363,13 @@ function FunctionApp() {
 			)
 		},
 		{
+			key: 'bonus',
 			eventKey: 'bonus',
 			fileName: 'key',
 			title: 'Bonus',
 			page: (
 				<BonusPage
+					handleShowNavbar={handleShowNavbar}
 					bonusData={allBonuses}
 					setAllBonuses={setAllBonuses}
 				>
@@ -377,11 +378,13 @@ function FunctionApp() {
 			)
 		},
 		{
+			key: 'form',
 			eventKey: 'form',
 			fileName: 'form',
 			title: 'Forms & Summons',
 			page: (
 				<FormPage
+					handleShowNavbar={handleShowNavbar}
 					formData={allForms}
 					setAllForms={setAllForms}
 				>
@@ -390,11 +393,13 @@ function FunctionApp() {
 			)
 		},
 		{
+			key: 'equipment',
 			eventKey: 'equipment',
 			fileName: 'keyblade',
 			title: 'Equipment',
 			page: (
 				<EquipmentPage
+					handleShowNavbar={handleShowNavbar}
 					equipmentData={allEquipments}
 					setAllEquipments={setAllEquipments}
 				>
@@ -403,11 +408,13 @@ function FunctionApp() {
 			)
 		},
 		{
+			key: 'level',
 			eventKey: 'level',
 			fileName: 'level',
 			title: 'Levels',
 			page: (
 				<LevelPage
+					handleShowNavbar={handleShowNavbar}
 					levelData={allLevels}
 					setAllLevels={setAllLevels}
 				>
@@ -416,24 +423,28 @@ function FunctionApp() {
 			)
 		},
 		{
-			eventKey: 'magic',
+			key: 'cost',
+			eventKey: 'cost',
 			fileName: 'spell',
-			title: 'Magic & Limits',
+			title: 'Ability Costs',
 			page: (
-				<MagicPage
-					magicData={allMagic}
-					setAllMagic={setAllMagic}
+				<CostPage
+					handleShowNavbar={handleShowNavbar}
+					costData={allCosts}
+					setAllCosts={setAllCosts}
 				>
 					<HelpModal tab={currentTab} />
-				</MagicPage>
+				</CostPage>
 			)
 		},
 		{
+			key: 'startingStatus',
 			eventKey: 'startingStatus',
 			fileName: 'starting',
 			title: 'Starting Status',
 			page: (
 				<StartingStatusPage
+					handleShowNavbar={handleShowNavbar}
 					startingStatusData={allStartingStatus}
 					setAllStartingStatus={setAllStartingStatus}
 				>
@@ -442,11 +453,13 @@ function FunctionApp() {
 			)
 		},
 		{
+			key: 'cheat',
 			eventKey: 'cheat',
 			fileName: 'cheat',
 			title: 'Cheats',
 			page: (
 				<CheatPage
+					handleShowNavbar={handleShowNavbar}
 					pnachCheatData={allPnachCheats}
 					luaCheatData={allLuaCheats}
 					setAllPnachCheats={setAllPnachCheats}
@@ -459,44 +472,22 @@ function FunctionApp() {
 	]
 
 	let styles = {
-		marginTop: '10px',
-		marginRight: '10px',
-		marginBottom: '10px',
-		marginLeft: '10px',
+		marginTop: '0',
+		marginRight: '.25rem',
+		marginBottom: '.25rem',
+		marginLeft: '.25rem',
 		color: '#fff'
 	}
-
-	let tabList = tabDataList.map(tab => {
-		return (
-			<Tab
-				key={tab.eventKey}
-				eventKey={tab.eventKey}
-				title={
-					<>
-						<Icon
-							fileName={tab.fileName}
-							type={'tab'}
-						>
-							{tab.title}
-						</Icon>
-					</>}
-			>
-				{tab.page}
-			</Tab>
-		)
-	})
-
 	return (
 		<div style={styles}>
-			<Tabs
-				defaultActiveKey={currentTab}
-				id='allTabs'
-				transition={false}
-				unmountOnExit={true}
+			<PageNavbar
+				show={showNavbar}
 				onSelect={(newTab) => setCurrentTab(newTab)}
-			>
-				{tabList}
-			</Tabs>
+				onHide={handleCloseNavbar}
+				pages={tabDataList}
+				currentTab={currentTab}
+			/>
+			{tabDataList[currentTab].page}
 		</div>
 	)
 }

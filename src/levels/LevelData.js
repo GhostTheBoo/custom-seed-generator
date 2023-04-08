@@ -219,10 +219,10 @@ export class Level {
 				ret += 'Exp: ' + this.replacementEXP + '\n    '
 				ret += 'Level: ' + this.level + '\n    '
 				ret += 'Magic: ' + this.magic + '\n    '
-				ret += 'Padding: 0\n    '
+				ret += 'Padding: 0\n    ' // wtf is this?: 
 				ret += 'ShieldAbility: ' + this.replacementShieldReward.index + '\n    '
 				ret += 'StaffAbility: ' + this.replacementStaffReward.index + '\n    '
-				ret += 'Strength: 0\n    ' // wtf is this?
+				ret += 'Strength: ' + this.strength + '\n    '
 				ret += 'SwordAbility: ' + this.replacementSwordReward.index
 				ret += '\n'
 			}
@@ -253,7 +253,7 @@ export class Level {
 		return ['\n//SORA LEVELS\n'].concat(levelData.map(level => { return level.saveToPnach(isCommented) }))
 	}
 	static saveToLua(levelData, isCommented) {
-		return ['\nfunction Chests()\n'].concat(levelData.map(level => { return level.saveToLua(isCommented) }), ['end\n'])
+		return ['\nfunction LevelRewards()\n'].concat(levelData.map(level => { return level.saveToLua(isCommented) }), ['end\n'])
 	}
 	static saveToYml(levelData, isCommented) {
 		return levelData.reduce((prev, level) => { return prev + level.saveToYml(isCommented) }, '')

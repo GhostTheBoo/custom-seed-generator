@@ -1,0 +1,88 @@
+.costPageHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: baseline;
+    padding: 1rem 0rem;
+    gap: 1rem;
+}
+
+.costCardGrid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    justify-content: space-between;
+    column-gap: .5rem;
+    overflow-y: auto;
+    height: 90vh;
+    align-items: flex-start;
+}
+
+.costCard {
+    font-family: KHMenu;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background-color: #343A40;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 1rem;
+    box-shadow: 0rem 0rem .5rem black;
+    gap: .25rem;
+    /* max-height: 35rem; */
+}
+
+.costCardImage {
+    border-radius: .75rem;
+    width: 10rem;
+}
+
+.costAbilityName {
+    font-size: 1.25rem;
+    padding: 1rem 0rem;
+}
+
+.abilityCostRow {
+    display: grid;
+    grid-template-columns: 1fr 12fr 4fr 1fr;
+    gap: 1rem;
+}
+
+.specificAbilityName{
+    grid-column: 2;
+    text-align: start;
+}
+.specificAbilityCost {
+    font-family: KHGummi;
+    color: #FFF100;
+    grid-column: 3;
+}
+
+@media(max-width: 90rem) {
+    .costCardImage {
+        border-radius: .75rem;
+        width: 7rem;
+    }
+}
+
+@media(max-width: 65rem) {
+    .costCardGrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .costAbilityName {
+        font-size: 1rem;
+    }
+
+    .costCardReward {
+        font-size: 1.25rem;
+    }
+}
+
+
+@media(max-width: 48rem) {
+    .costCardGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

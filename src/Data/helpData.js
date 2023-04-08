@@ -1,4 +1,43 @@
+import React from 'react'
+
 export const helpData = [
+	{
+		key: 'chest',
+		page: 'Chest',
+		help: (
+			<div id='chestPageHelp'>
+				<h6>Chest</h6>
+				<p>
+					The <strong>Chest Page</strong> includes details for every chest in the game.
+					Use the <strong>World Selector</strong> to select a world.
+					Each card represents a chest in that world, including a picture of the chest and the name of the room it's in.
+					Click <strong>Select a Reward!</strong> to pick a replacement reward for that chest.
+					Click <strong>Vanilla</strong> to revert the chest to its default reward.
+				</p>
+			</div>
+		)
+	},
+	{
+		key: 'popup',
+		page: 'Popup',
+		help: (
+			<div id='popupPageHelp'>
+				<h6>Popup</h6>
+				<p>
+					The <strong>Popup Page</strong> includes details for every popup in the game.
+					Use the <strong>World Selector</strong> to select a world.
+					Each card represents a popup in that world, including a picture of the popup and the name of the room it's in.
+					Click <strong>Select a Reward!</strong> to pick a replacement reward for that popup.
+					Click <strong>Vanilla</strong> to revert the popup to its default reward.
+				</p>
+				<h6>Warning</h6>
+				<p>
+					If a popup reward is an ability, there is a chance the reward won't actually be given to Sora.
+					Be mindful of rewarding abilities in popups.
+				</p>
+			</div>
+		)
+	},
 	{
 		key: 'bonus',
 		page: 'Bonus',
@@ -37,30 +76,27 @@ export const helpData = [
 		)
 	},
 	{
-		key: 'cheat',
-		page: 'Cheat',
+		key: 'form',
+		page: 'Forms & Summons',
 		help: (
-			<div id='cheatPageHelp'>
-				<h6>Cheat</h6>
+			<div id='formPageHelp'>
+				<h6>Forms & Summons</h6>
 				<p>
-					Select any number of cheats to apply to the game when generating the pncah file.
-					If the cheat is toggled, then it will be included in the final file.
+					The Form Page has all drive form levels separated by drive forms.
+					Select the drive form to modify.
+					Select the reward to receive upon reaching that drive level.
+					Select the amount of EXP to reach the currently selected level from the level before.
+
+					Summon modifications work the same way.
+					However, summon rewards do not pop up on screen on level up.
+					They will still be given to Sora.
 				</p>
-			</div>
-		)
-	},
-	{
-		key: 'chest',
-		page: 'Chest',
-		help: (
-			<div id='chestPageHelp'>
-				<h6>Chest</h6>
+				<h6>EXP</h6>
 				<p>
-					The <strong>Chest Page</strong> includes details for every chest in the game.
-					Use the <strong>World Selector</strong> to select a world.
-					Each card represents a chest in that world, including a picture of the chest and the name of the room it's in.
-					Click <strong>Select a Reward!</strong> to pick a replacement reward for that chest.
-					Click <strong>Vanilla</strong> to revert the chest to its default reward.
+					EXP for form levels is how much EXP is required to reach that specific level from the previous level.
+					For example, Valor Level 3 is reached by gaining 160 experience AFTER Valor Level 2.
+					In other words, it takes a total of 240 EXP to reach Valor Level 3.
+					Summon EXP works the same way.
 				</p>
 			</div>
 		)
@@ -111,32 +147,6 @@ export const helpData = [
 		)
 	},
 	{
-		key: 'form',
-		page: 'Forms & Summons',
-		help: (
-			<div id='formPageHelp'>
-				<h6>Forms & Summons</h6>
-				<p>
-					The Form Page has all drive form levels separated by drive forms.
-					Select the drive form to modify.
-					Select the reward to receive upon reaching that drive level.
-					Select the amount of EXP to reach the currently selected level from the level before.
-
-					Summon modifications work the same way.
-					However, summon rewards do not pop up on screen on level up.
-					They will still be given to Sora.
-				</p>
-				<h6>EXP</h6>
-				<p>
-					EXP for form levels is how much EXP is required to reach that specific level from the previous level.
-					For example, Valor Level 3 is reached by gaining 160 experience AFTER Valor Level 2.
-					In other words, it takes a total of 240 EXP to reach Valor Level 3.
-					Summon EXP works the same way.
-				</p>
-			</div>
-		)
-	},
-	{
 		key: 'level',
 		page: 'Level',
 		help: (
@@ -177,38 +187,17 @@ export const helpData = [
 		)
 	},
 	{
-		key: 'magic',
-		page: 'Magic & Limits',
+		key: 'cost',
+		page: 'Ability Costs',
 		help: (
-			<div id='magicPageHelp'>
-				<h6>Magic & Limits</h6>
+			<div id='costPageHelp'>
+				<h6>Ability Cost</h6>
 				<p>
-					The magic and limits page allows for customization of the mp cost of magic spells, party limits, and limit form limits.
+					The ability cost page allows for customization of the mp cost of magic spells, party limits, and limit form limits.
 					Click on <strong>EDIT</strong> for the ability you wish to modify to open the editing form.
 					Change the cost for any specific abilities.
 					Click <strong>EDIT</strong> to modify the value to what you have entered.
 					Click <strong>Vanilla</strong> to return all costs to their default value.
-				</p>
-			</div>
-		)
-	},
-	{
-		key: 'popup',
-		page: 'Popup',
-		help: (
-			<div id='popupPageHelp'>
-				<h6>Popup</h6>
-				<p>
-					The <strong>Popup Page</strong> includes details for every popup in the game.
-					Use the <strong>World Selector</strong> to select a world.
-					Each card represents a popup in that world, including a picture of the popup and the name of the room it's in.
-					Click <strong>Select a Reward!</strong> to pick a replacement reward for that popup.
-					Click <strong>Vanilla</strong> to revert the popup to its default reward.
-				</p>
-				<h6>Warning</h6>
-				<p>
-					If a popup reward is an ability, there is a chance the reward won't actually be given to Sora.
-					Be mindful of rewarding abilities in popups.
 				</p>
 			</div>
 		)
@@ -225,6 +214,19 @@ export const helpData = [
 					Each character can have up to 32 different starting items.
 					For in game purposes, Base Sora and Critical Mode Sora count as 2 separate characters.
 					Additionally, each characters starting hp, mp, ap, armor slots, accessory slots, and item slots can be customized.
+				</p>
+			</div>
+		)
+	},
+	{
+		key: 'cheat',
+		page: 'Cheat',
+		help: (
+			<div id='cheatPageHelp'>
+				<h6>Cheat</h6>
+				<p>
+					Select any number of cheats to apply to the game when generating the pncah file.
+					If the cheat is toggled, then it will be included in the final file.
 				</p>
 			</div>
 		)
