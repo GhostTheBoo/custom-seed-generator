@@ -1,10 +1,10 @@
 import React from 'react'
 import { Button, CloseButton } from 'react-bootstrap'
 
-import RewardSelectorButton from '../rewards/RewardSelectorButton'
-import Icon from '../Components/Icon'
+import RewardSelectorButton from '../../rewards/RewardSelectorButton'
+import Icon from '../../Components/Icon'
 
-import LevelStatChange from './LevelStatChange'
+import LevelStatChange from '../LevelStatChange'
 import LevelEXPChange from './LevelEXPChange'
 
 function LevelForm(props) {

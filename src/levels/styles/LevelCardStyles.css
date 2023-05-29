@@ -1,0 +1,166 @@
+.sora {
+    --primaryColor: #9E1921;
+    --lighterColor: #a83037;
+    --evenLighterColor: #bb5e64;
+    --darkerColor: #8e171e;
+    --evenDarkerColor: #6f1217;
+}
+
+.levelCard {
+    font-family: KHMenu;
+    border-radius: 1rem 1rem 1rem 0rem;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+    padding: 0 0 .25rem .25rem;
+    background-color: var(--primaryColor);
+    justify-content: flex-start;
+    box-shadow: inset 0rem .1rem .1rem rgba(255, 255, 255, .5),
+        0rem .1rem .5rem black;
+}
+
+.levelHeader {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0rem;
+    font-size: 2rem;
+    text-shadow: .1rem .1rem .1rem black;
+}
+
+.levelButtonGroup {
+    font-family: KHGummi;
+    display: flex;
+    flex-direction: row;
+    width: 30rem;
+    padding-right: 5rem;
+}
+
+.levelHeader.allLevels>.levelButtonGroup {
+    width: 25rem;
+}
+
+.levelButton {
+    margin: .25rem 0;
+    width: 100%;
+    border: 0;
+    border-top-left-radius: 1rem;
+    white-space: pre-line;
+    color: var(--evenLighterColor);
+    background-color: black;
+}
+
+.levelAfterButtonTriangle {
+    margin: .25rem 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 3.3rem 2rem 0 0;
+    border-color: black transparent transparent transparent;
+}
+
+.levelAfterButtonTail {
+    margin: .25rem 0;
+    margin-left: -.5rem;
+    width: 1rem;
+    height: .75rem;
+    background: black;
+}
+
+.levelButton:hover,
+.levelButton:hover~.levelAfterButtonTail {
+    background-color: var(--lighterColor);
+}
+
+.levelButton:hover~.levelAfterButtonTriangle {
+    border-color: var(--lighterColor) transparent transparent transparent;
+}
+
+.levelButton:focus,
+.levelButton:focus~.levelAfterButtonTail {
+    background-color: var(--evenDarkerColor);
+}
+
+.levelButton:focus~.levelAfterButtonTriangle {
+    border-color: var(--evenDarkerColor) transparent transparent transparent;
+}
+
+.levelButton:disabled,
+.levelButton:disabled~.levelAfterButtonTail {
+    color: white;
+    background-color: var(--evenDarkerColor);
+}
+
+.levelButton:disabled~.levelAfterButtonTriangle {
+    border-color: var(--evenDarkerColor) transparent transparent transparent;
+}
+
+.levelLVGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 20%;
+    padding-right: 1rem;
+}
+
+.levelHeader.allLevels>.levelLVGroup {
+    width: 37%
+}
+
+.levelLV {
+    font-size: 1.75rem;
+    color: #FFF100;
+    text-align: end;
+    align-self: end;
+    padding-bottom: .4rem;
+}
+
+.levelLVNumber {
+    font-size: 2.5rem;
+    align-self: end;
+    padding-left: 1rem;
+}
+
+.levelRewardBox {
+    position: relative;
+    background-color: black;
+    border-radius: 0rem 1rem 1rem 0rem;
+    margin-right: .1rem;
+    padding: 1rem 0rem 1rem 2.5rem;
+    font-size: 2rem;
+    overflow: hidden;
+}
+
+.levelRewardBox:after {
+    content: "";
+    position: absolute;
+    top: -1.75rem;
+    left: -1.75rem;
+    border-radius: 0rem;
+    width: 3rem;
+    height: 3rem;
+    transform: rotate(45deg);
+    background-color: var(--primaryColor);
+}
+
+.levelCardCloseButton {
+    display: none;
+}
+
+.levelCardCloseButton.editing {
+    display: flex;
+    align-items: center;
+    padding-right: 1rem;
+    ;
+}
+
+.levelCardCloseButton>button {
+    position: static;
+}
+
+@media(max-width: 66rem) {
+    .levelHeader {
+        font-size: 1.5rem;
+    }
+}

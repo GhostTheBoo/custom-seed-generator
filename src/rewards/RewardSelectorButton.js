@@ -23,6 +23,8 @@ function RewardSelector(props) {
 	if (props.variantOverride !== undefined)
 		buttonVariant = props.variantOverride
 
+	let isDisabled = props.isDisabled !== undefined ? props.isDisabled : false
+
 	function onClick(replacement) {
 		props.onReplace(replacement)
 		setShow(false)
@@ -32,6 +34,7 @@ function RewardSelector(props) {
 			<Button
 				variant={buttonVariant}
 				onClick={() => setShow(true)}
+				disabled={isDisabled}
 			>
 				{buttonText}
 			</Button>

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Form, Button, CloseButton } from 'react-bootstrap'
 
-import RewardSelectorButton from '../rewards/RewardSelectorButton'
-import Icon from '../Components/Icon'
+import RewardSelectorButton from '../../rewards/RewardSelectorButton'
+import Icon from '../../Components/Icon'
 
 function LevelForm(props) {
 

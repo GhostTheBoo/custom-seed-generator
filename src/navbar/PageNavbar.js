@@ -1,6 +1,6 @@
 import React from 'react'
 import { Offcanvas } from 'react-bootstrap'
-import './PageNavbarStyles.css'
+// import './PageNavbarStyles.css'
 import Icon from '../Components/Icon'
 
 function PageNavbar(props) {

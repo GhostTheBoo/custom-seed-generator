@@ -16,7 +16,8 @@
 }
 
 .editStatusPopover.chest,
-.editStatusPopover.starting {
+.editStatusPopover.starting,
+.editStatusPopover.level {
     font-size: 2rem;
 }
 
@@ -27,9 +28,13 @@
 }
 
 .editStatusPopover.popup,
-.editStatusPopover.level,
 .editStatusPopover.form {
     font-size: 1rem;
+}
+
+.editStatusPopover.level {
+    left: auto;
+    right: 5rem;
 }
 
 /* @media(max-width: 90rem) {} */

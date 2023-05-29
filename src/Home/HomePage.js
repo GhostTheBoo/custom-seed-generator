@@ -11,7 +11,8 @@ function HomePage(props) {
 	let logo = './images/logo.png'
 
 	return (
-		<div style={{ fontSize: '1.25rem' }}>
+		// <div style={{ fontSize: '1.25rem' }}>
+		<div className='fullPageContent'>
 			<div className='homePageHeader'>
 				<div className='homePageKofi'>
 					<KoFi
@@ -38,7 +39,8 @@ function HomePage(props) {
 				</div>
 			</div>
 			<div className='homePageContent'>
-				<CreditsList />
+				{/* <CreditsList /> */}
+				{/* TODO Fix Credit List */}
 				<div className='homePageText'>
 					<div>
 						<h3>About</h3>

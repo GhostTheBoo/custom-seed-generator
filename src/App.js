@@ -28,7 +28,7 @@ import { StartingStatus, startingStatusData } from './starting/StartingStatusDat
 import StartingStatusPage from './starting/StartingStatusPage'
 import { Cheat, pnachCheatsData, luaCheatsData } from './cheats/CheatsData'
 import CheatPage from './cheats/CheatPage'
-import PageNavbar from './navbar/PageNavbar'
+import SideNav from './navbar/SideNav'
 
 
 
@@ -50,20 +50,18 @@ function FunctionApp() {
 	const [isCommented, setIsCommented] = useState(true)
 
 	const [showNavbar, setShowNavbar] = useState(false);
-
-	const handleCloseNavbar = () => setShowNavbar(false);
 	const handleShowNavbar = () => setShowNavbar(true);
 	//#endregion
-	const alertUser = e => {
-		e.preventDefault()
-		e.returnValue = ''
-	}
-	useEffect(() => {
-		window.addEventListener('beforeunload', alertUser)
-		return () => {
-			window.removeEventListener('beforeunload', alertUser)
-		}
-	}, [])
+	// const alertUser = e => {
+	// 	e.preventDefault()
+	// 	e.returnValue = ''
+	// }
+	// useEffect(() => {
+	// 	window.addEventListener('beforeunload', alertUser)
+	// 	return () => {
+	// 		window.removeEventListener('beforeunload', alertUser)
+	// 	}
+	// }, [])
 
 	//#region General Functions
 	function handleTracker(isPnach) {
@@ -470,20 +468,17 @@ function FunctionApp() {
 			)
 		}
 	]
-
-	let styles = {
-		marginTop: '0',
-		marginRight: '.25rem',
-		marginBottom: '.25rem',
-		marginLeft: '.25rem',
-		color: '#fff'
-	}
 	return (
-		<div style={styles}>
-			<PageNavbar
+		<div className='App'>
+			{/* <PageNavbar
 				show={showNavbar}
 				onSelect={(newTab) => setCurrentTab(newTab)}
 				onHide={handleCloseNavbar}
+				pages={tabDataList}
+				currentTab={currentTab}
+			/> */}
+			<SideNav
+				onSelect={(newTab) => setCurrentTab(newTab)}
 				pages={tabDataList}
 				currentTab={currentTab}
 			/>

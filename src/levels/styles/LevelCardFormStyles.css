@@ -1,0 +1,99 @@
+.levelFormReward {
+    display: grid;
+    grid-template-columns: 20% 55% 25%;
+    row-gap: 1rem;
+    padding-right: 1rem;
+    font-size: 1.75rem;
+}
+
+.allLevelMultiSelectGroup {
+    padding-right: 1rem;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 1rem;
+}
+
+.allLevelMultiSelect {
+    font-size: 1rem !important;
+}
+
+.levelFormReward.allLevels {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: min-content max-content 2fr 1fr;
+}
+
+.levelFormStats {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 3fr 1fr 2fr 1fr;
+}
+
+.levelFormStats.allLevels {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: max-content max-content max-content min-content;
+    padding-right: 1rem;
+}
+
+.levelFormExp.allLevels {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: min-content min-content max-content 1fr;
+    padding-right: 1rem;
+}
+
+.levelInputField {
+    width: 15rem;
+}
+
+.levelReplaceButtonGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-right: 1rem;
+}
+
+.levelReplaceButtonGroup>button {
+    width: 20rem;
+}
+
+@media(max-width: 90rem) {}
+
+@media(max-width: 66rem) {
+    .levelFormReward {
+        grid-template-columns: 20% 50% 30%;
+        font-size: 1.5rem;
+    }
+
+    .levelFormStats,
+    .levelFormExp {
+        font-size: 1.5rem;
+    }
+}
+
+@media(max-width: 48rem) {
+    .levelFormReward {
+        grid-template-columns: 30% 70%;
+        font-size: 1.25rem;
+    }
+
+    .levelFormReward>button {
+        grid-column: 1/3;
+    }
+
+    .levelFormReward.allLevels {
+        grid-template-columns: min-content max-content 1fr;
+        font-size: 1.25rem;
+    }
+
+    .levelFormReward.allLevels>button {
+        grid-column: 1/4;
+    }
+
+    .levelFormStats,
+    .levelFormExp {
+        font-size: 1.25rem;
+    }
+}
