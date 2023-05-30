@@ -1,5 +1,7 @@
 import React from 'react'
+
 import { Button } from 'react-bootstrap'
+import { motion } from 'framer-motion'
 
 import RewardSelectorButton from '../rewards/RewardSelectorButton'
 import { EMPTY } from '../rewards/RewardsData'
@@ -73,7 +75,14 @@ function ChestCard(props) {
 	}
 
 	return (
-		<div className='chestCard'>
+		<motion.div
+			initial={{ opacity: .25, x: 500 }}
+			animate={{ opacity: 1, x: 0 }}
+			exit={{ opacity: 0, y: 500 }}
+			transition={{ type: 'spring', duration: .65 }}
+			key={`levelCard${chestImage}`}
+			className='chestCard'
+		>
 			<div style={{ position: 'relative' }}>
 				{overlayPopover}
 				<img
@@ -97,7 +106,7 @@ function ChestCard(props) {
 				Vanilla
 			</Button>
 			{emptyChestRewardSelector}
-		</div>
+		</motion.div>
 	)
 }
 

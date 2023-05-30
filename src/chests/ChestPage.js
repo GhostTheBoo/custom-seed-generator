@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-import GenericSelect from '../Components/GenericSelect'
-import NavbarIcon from '../navbar/NavbarIcon'
-import ChestCard from './ChestCard'
-import './ChestStyles.css'
+import { motion } from 'framer-motion'
 
+import GenericSelect from '../Components/GenericSelect'
+import ChestCard from './ChestCard'
+
+import './ChestStyles.css'
 
 function ChestPage(props) {
 	// PROPS:
@@ -20,22 +21,7 @@ function ChestPage(props) {
 	let currentWorldChests = props.chestData[currentWorld].chests
 
 	const chestFolderNames = [
-		'agr',
-		'bc',
-		'cor',
-		'dc',
-		'ht',
-		'hb',
-		'lod',
-		'oc',
-		'pooh',
-		'pr',
-		'pl',
-		'stt',
-		'sp',
-		'tr',
-		'tt',
-		'twtnw'
+		'agr', 'bc', 'cor', 'dc', 'ht', 'hb', 'lod', 'oc', 'pooh', 'pr', 'pl', 'stt', 'sp', 'tr', 'tt', 'twtnw'
 	]
 
 	function updateChest(newChest) {
@@ -77,8 +63,7 @@ function ChestPage(props) {
 				handleVanilla={() => { updateChest(chest.vanilla()) }}
 			/>
 		)
-	})
-	chestList.push(
+	}).concat([
 		<ChestCard
 			key={'chestAll'}
 			id={currentWorldChests.length}
@@ -87,11 +72,16 @@ function ChestPage(props) {
 			handleReplace={(replacementReward) => updateAllChests(currentWorldChests.map(chest => { return chest.replace({ reward: { ...replacementReward } }) }))}
 			handleReplaceAllEmpty={(replacementReward) => updateAllEmptyChests(replacementReward)}
 		/>
-	)
+	])
 
 	return (
-		<div className='fullPageContent'>
-			<div className='pageHeader'>
+		<div className='pageContent chestPageContent' ref={chestCardGrid}>
+			<motion.div
+				initial={{ opacity: .25, x: 500 }}
+				animate={{ opacity: 1, x: 0 }}
+				transition={{ type: 'spring', duration: .65 }}
+				className='pageHeader'
+			>
 				<div className='pageHeaderSelectorLabel'>
 					World Selector:
 				</div>
@@ -109,13 +99,8 @@ function ChestPage(props) {
 				<div>
 					{props.children}
 				</div>
-				<NavbarIcon
-					showNavbar={props.handleShowNavbar}
-					fileName={'chest'}
-					title={'Chest'}
-				/>
-			</div>
-			<div className='chestCardGrid' ref={chestCardGrid}>
+			</motion.div>
+			<div className='chestCardGrid'>
 				{chestList}
 			</div>
 		</div>

@@ -1,10 +1,9 @@
 import React from 'react'
 
 import { CloseButton } from 'react-bootstrap'
+import { motion } from 'framer-motion'
 
 import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
-
-import { motion } from 'framer-motion'
 
 function LevelCard(props) {
     let overlayPopover = <EditStatusPopover

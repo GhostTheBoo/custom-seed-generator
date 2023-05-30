@@ -191,7 +191,7 @@ function LevelPage(props) {
 	}
 
 	return (
-		<div className='levelPageContent'>
+		<div className='pageContent levelPageContent'>
 			<AnimatePresence>
 				{
 					currentLevel === -1
