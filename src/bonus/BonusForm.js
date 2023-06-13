@@ -1,25 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, CloseButton } from 'react-bootstrap'
+
+import { motion } from 'framer-motion'
 
 import GenericSelect from '../Components/GenericSelect'
 import RewardSelectorButton from '../rewards/RewardSelectorButton'
 import Icon from '../Components/Icon'
 import './BonusFormStyles.css'
 
-function BonusForm(props) {
+const BonusForm = React.forwardRef((props, ref) => {
 	// PROPS:
 	// bonusReward: current reward being editted -> bonusReward
 	// setCurrentBonusFightSlot: set current bonus reward -> function
+	const [currentFieldData, setCurrentFieldData] = useState({
+		rewardA: { ...props.bonusReward.replacementRewardA },
+		rewardB: { ...props.bonusReward.replacementRewardB },
+		currentCharacter: props.bonusReward.replacementCharacter,
+		currentBonusHP: props.bonusReward.hpIncrease,
+		currentBonusMP: props.bonusReward.mpIncrease,
+		currentArmor: props.bonusReward.armorSlotIncrease,
+		currentAccessory: props.bonusReward.accessorySlotIncrease,
+		currentItem: props.bonusReward.itemSlotIncrease,
+		currentDrive: props.bonusReward.driveGaugeIncrease
+	})
 
-	function setCurrentRewardA(newValue) { props.setCurrentBonusFieldData('rewardA', newValue) }
-	function setCurrentRewardB(newValue) { props.setCurrentBonusFieldData('rewardB', newValue) }
-	function setCurrentCharacter(newValue) { props.setCurrentBonusFieldData('currentCharacter', newValue) }
-	function setCurrentHP(newValue) { props.setCurrentBonusFieldData('currentBonusHP', newValue) }
-	function setCurrentMP(newValue) { props.setCurrentBonusFieldData('currentBonusMP', newValue) }
-	function setCurrentArmorSlot(newValue) { props.setCurrentBonusFieldData('currentArmor', newValue) }
-	function setCurrentAccessorySlot(newValue) { props.setCurrentBonusFieldData('currentAccessory', newValue) }
-	function setCurrentItemSlot(newValue) { props.setCurrentBonusFieldData('currentItem', newValue) }
-	function setCurrentDriveGauge(newValue) { props.setCurrentBonusFieldData('currentDrive', newValue) }
+	// function setCurrentRewardA(newValue) { props.setCurrentBonusFieldData('rewardA', newValue) }
+	// function setCurrentRewardB(newValue) { props.setCurrentBonusFieldData('rewardB', newValue) }
+	// function setCurrentCharacter(newValue) { props.setCurrentBonusFieldData('currentCharacter', newValue) }
+	// function setCurrentHP(newValue) { props.setCurrentBonusFieldData('currentBonusHP', newValue) }
+	// function setCurrentMP(newValue) { props.setCurrentBonusFieldData('currentBonusMP', newValue) }
+	// function setCurrentArmorSlot(newValue) { props.setCurrentBonusFieldData('currentArmor', newValue) }
+	// function setCurrentAccessorySlot(newValue) { props.setCurrentBonusFieldData('currentAccessory', newValue) }
+	// function setCurrentItemSlot(newValue) { props.setCurrentBonusFieldData('currentItem', newValue) }
+	// function setCurrentDriveGauge(newValue) { props.setCurrentBonusFieldData('currentDrive', newValue) }
 
 	let characterList = [
 		'Vanilla',
@@ -39,177 +52,93 @@ function BonusForm(props) {
 		'Roxas'
 	]
 
+
+
+	function createBonusRewardFormRow(rewardLabel, replacementReward) {
+		function setCurrentReward(newValue) { setCurrentFieldData({ ...currentFieldData, ['reward' + rewardLabel]: newValue }) }
+		return (
+			<>
+				<label className='bonusFormRewardLabel' style={{ color: '#00FF00' }}>{rewardLabel}:</label>
+				<div className='bonusFormReward'><Icon fileName={replacementReward.iconType} type={'card'}>{replacementReward.reward}</Icon></div>
+				<RewardSelectorButton onReplace={(replacementReward) => setCurrentReward(replacementReward)} />
+			</>
+		)
+	}
+
+	function createBonusStatFormRow(statName, fileName, statLabel) {
+		let statValue = currentFieldData[statName]
+		function setCurrentStat(newValue, statName) { setCurrentFieldData({ ...currentFieldData, [statName]: newValue }) }
+
+		return (
+			<>
+				<div><Icon fileName={fileName} type={'bonusForm'}></Icon></div>
+				<input
+					name={'bonus' + statLabel}
+					className='bonusInputField three-digit-input'
+					type='number'
+					value={isNaN(statValue) ? '' : statValue}
+					onChange={(e) => setCurrentStat(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))), statName)}
+					min={0}
+					max={255}
+				/>
+			</>
+		)
+	}
+
 	return (
-		<div className='bonusFormCard'>
+		<motion.div
+			initial={{ opacity: .25, x: 500 }}
+			animate={{ opacity: 1, x: 0 }}
+			exit={{ opacity: 0, y: 500 }}
+			transition={{ type: 'spring', duration: .5 }}
+			ref={ref}
+			key={props.keyValue}
+			className='bonusFormCard'
+		>
 			<h1>SLOT {props.currentSlotNumber + 1}:</h1>
 			<CloseButton className='close' onClick={() => props.closeFormCard(-1)} />
 			<hr />
-			<div className='grid-col-2'>
-				<label>Reward A:</label>
-				<label>Reward B:</label>
-				<div>
-					<Icon
-						fileName={props.currentBonusFieldData.rewardA.iconType}
-						type={'row'}
-					>
-						{props.currentBonusFieldData.rewardA.reward}
-					</Icon>
+			<div className='bonusCardContent'>
+				<div className='bonusFormRewards'>
+					{createBonusRewardFormRow('A', currentFieldData.rewardA)}
+					{createBonusRewardFormRow('B', currentFieldData.rewardB)}
 				</div>
-				<div>
-					<Icon
-						fileName={props.currentBonusFieldData.rewardB.iconType}
-						type={'row'}
-					>
-						{props.currentBonusFieldData.rewardB.reward}
-					</Icon>
+				<hr />
+				<div className='bonusCharacterSelectorGroup'>
+					<label>Character:</label>
+					<GenericSelect
+						class={'bonusCharacter'}
+						selector={'Character'}
+						itemList={characterList}
+						name={'currentCharacterSelector'}
+						currentItem={currentFieldData.currentCharacter}
+						onChange={(e) => setCurrentFieldData({ ...currentFieldData, currentCharacter: e.target.value })}
+					/>
 				</div>
-				<RewardSelectorButton
-					onReplace={(replacementReward) => setCurrentRewardA(replacementReward)}
-				/>
-				<RewardSelectorButton
-					onReplace={(replacementReward) => setCurrentRewardB(replacementReward)}
-				/>
+				<hr />
+				<div className='bonusFormStats'>
+					{createBonusStatFormRow('currentBonusHP', 'uphp', 'HP Increase')}
+					{createBonusStatFormRow('currentBonusMP', 'upmp', 'MP Increase')}
+					{createBonusStatFormRow('currentArmor', 'uparmor', 'Armor Slot Increase')}
+					{createBonusStatFormRow('currentAccessory', 'upaccessory', 'Accessory Slot Increase')}
+					{createBonusStatFormRow('currentItem', 'upitem', 'Item Slot Increase')}
+					{createBonusStatFormRow('currentDrive', 'updrive', 'Drive Gauge Increase')}
+				</div>
+				<hr />
+				<div className='bonusReplaceButtonGroup'>
+					<Button
+						variant='secondary'
+						onClick={() => props.setCurrentBonusFightSlot(props.bonusReward.vanilla())}
+					>
+						VANILLA
+					</Button>
+					<Button onClick={() => props.setCurrentBonusFightSlot(props.bonusReward.replace(currentFieldData))}				>
+						CONFIRM
+					</Button>
+				</div>
 			</div>
-			<hr />
-			<div className='bonusCharacterSelectorGroup'>
-				<label>Character:</label>
-				<GenericSelect
-					class={'bonusCharacter'}
-					selector={'Character'}
-					itemList={characterList}
-					name={'currentCharacterSelector'}
-					currentItem={props.currentBonusFieldData.currentCharacter}
-					onChange={(e) => setCurrentCharacter(parseInt(e.target.value))}
-				/>
-			</div>
-			<hr />
-			<div className='grid-col-4'>
-				<div>
-					<Icon
-						fileName={'uphp'}
-						type={'bonusForm'}
-					>
-						:
-					</Icon>
-				</div>
-				<input
-					name={'HP'}
-					className='three-digit-input'
-					type='number'
-					value={props.currentBonusFieldData.currentBonusHP}
-					onChange={(e) => setCurrentHP(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-					min='0'
-					max='255'
-				/>
-				<div>
-					<Icon
-						fileName={'upmp'}
-						type={'bonusForm'}
-					>
-						:
-					</Icon>
-				</div>
-				<input
-					name={'MP'}
-					className='three-digit-input'
-					type='number'
-					value={props.currentBonusFieldData.currentBonusMP}
-					onChange={(e) => setCurrentMP(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-					min='0'
-					max='255'
-				/>
-			</div>
-			<hr />
-			<div className='grid-col-4'>
-				<div>
-					<Icon
-						fileName={'uparmor'}
-						type={'bonusForm'}
-					>
-						:
-					</Icon>
-				</div>
-				<input
-					name={'ArmorSlot'}
-					className='three-digit-input'
-					size='lg'
-					type='number'
-					value={props.currentBonusFieldData.currentArmor}
-					onChange={(e) => setCurrentArmorSlot(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-					min='0'
-					max='255'
-				/>
-				<div>
-					<Icon
-						fileName={'upaccessory'}
-						type={'bonusForm'}
-					>
-						:
-					</Icon>
-				</div>
-				<input
-					name={'AccessorySlot'}
-					className='three-digit-input'
-					size='lg'
-					type='number'
-					value={props.currentBonusFieldData.currentAccessory}
-					onChange={(e) => setCurrentAccessorySlot(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-					min='0'
-					max='255'
-				/>
-				<div>
-					<Icon
-						fileName={'upitem'}
-						type={'bonusForm'}
-					>
-						:
-					</Icon>
-				</div>
-				<input
-					name={'itemSlot'}
-					className='three-digit-input'
-					size='lg'
-					type='number'
-					value={props.currentBonusFieldData.currentItem}
-					onChange={(e) => setCurrentItemSlot(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-					min='0'
-					max='255'
-				/>
-				<div>
-					<Icon
-						fileName={'updrive'}
-						type={'bonusForm'}
-					>
-						:
-					</Icon>
-				</div>
-				<input
-					name={'DriveGauge'}
-					className='three-digit-input'
-					size='lg'
-					type='number'
-					value={props.currentBonusFieldData.currentDrive}
-					onChange={(e) => setCurrentDriveGauge(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-					min='0'
-					max='255'
-				/>
-			</div>
-			<hr />
-			<div className='bonusReplaceButtonGroup'>
-				<Button
-					variant='secondary'
-					onClick={() => props.setCurrentBonusFightSlot(props.bonusReward.vanilla())}
-				>
-					VANILLA
-				</Button>
-				<Button
-					onClick={() => props.setCurrentBonusFightSlot(props.bonusReward.replace(props.currentBonusFieldData))}
-				>
-					CONFIRM
-				</Button>
-			</div>
-		</div>
+		</motion.div>
 	)
-}
+})
 
 export default BonusForm

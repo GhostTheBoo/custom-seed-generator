@@ -30,7 +30,7 @@ function LevelCard(props) {
             initial={{ opacity: .25, x: isDisabled ? 0 : 500 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, y: isDisabled ? 0 : 500 }}
-            transition={{ type: 'spring', duration: isDisabled ? .4 : .65 }}
+            transition={{ type: 'spring', duration: isDisabled ? .4 : .5 }}
             key={`levelCard${levelNumber}`}
             ref={el => props.updateRef(el, levelNumber)}
             className={`sora levelCard${props.isEditingThisLevel ? ' editing' : ''}`}

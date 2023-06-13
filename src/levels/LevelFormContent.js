@@ -21,8 +21,6 @@ function LevelFormContent(props) {
         replacementEXP: props.level.replacementEXP
     })
 
-    function setCurrentStat(newValue, statName) { setCurrentFieldData({ ...currentFieldData, [statName]: newValue }) }
-
     function createLevelRewardFormRow(dreamWeapon, replacementReward) {
         let dreamLabel = dreamWeapon.charAt(0).toUpperCase() + dreamWeapon.slice(1)
         function setCurrentReward(newValue) { setCurrentFieldData({ ...currentFieldData, [dreamWeapon]: newValue }) }
@@ -35,6 +33,8 @@ function LevelFormContent(props) {
         )
     }
 
+    function setCurrentStat(newValue, statName) { setCurrentFieldData({ ...currentFieldData, [statName]: newValue }) }
+    
     function createLevelStatFormRow(statName, statLabel) {
         let prevLevelStat = props.prevLevel[statName]
         let statChange = currentFieldData[statName]

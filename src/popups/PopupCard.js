@@ -1,10 +1,14 @@
 import React from 'react'
+
 import { Button } from 'react-bootstrap'
+import { motion } from 'framer-motion'
+
+import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
 
 import RewardSelectorButton from '../rewards/RewardSelectorButton'
 import { EMPTY } from '../rewards/RewardsData'
+
 import Icon from '../Components/Icon'
-import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
 
 function PopupCard(props) {
 	// PROPS:
@@ -68,7 +72,13 @@ function PopupCard(props) {
 	}
 
 	return (
-		<div className='popupCard'>
+		<motion.div
+			initial={{ opacity: .25, x: 500 }}
+			animate={{ opacity: 1, x: 0 }}
+			transition={{ type: 'spring', duration: .5 }}
+			key={`popupCard${props.world}${props.id}`}
+			className='popupCard'
+		>
 			<div style={{ position: 'relative' }}>
 				{overlayPopover}
 			</div>
@@ -85,7 +95,7 @@ function PopupCard(props) {
 				Vanilla
 			</Button>
 			{emptyPopupRewardSelector}
-		</div>
+		</motion.div>
 	)
 }
 

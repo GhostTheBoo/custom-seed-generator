@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 import GenericSelect from '../Components/GenericSelect'
+
 import ChestCard from './ChestCard'
 
 import './ChestStyles.css'
@@ -79,7 +80,7 @@ function ChestPage(props) {
 			<motion.div
 				initial={{ opacity: .25, x: 500 }}
 				animate={{ opacity: 1, x: 0 }}
-				transition={{ type: 'spring', duration: .65 }}
+				transition={{ type: 'spring', duration: .5 }}
 				className='pageHeader'
 			>
 				<div className='pageHeaderSelectorLabel'>

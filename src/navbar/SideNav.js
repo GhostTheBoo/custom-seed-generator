@@ -11,15 +11,15 @@ function SideNav(props) {
 
     let tabList = props.pages.map((tab, tabIndex) => {
         return (
-            <OverlayTrigger
-                key={tabIndex}
-                placement={'right'}
-                overlay={
-                    <Tooltip id={`tooltip-${tabIndex}`}>
-                        {tab.title}
-                    </Tooltip>
-                }
-            >
+            // <OverlayTrigger
+            //     key={tabIndex}
+            //     placement={'right'}
+            //     overlay={
+            //         <Tooltip id={`tooltip-${tabIndex}`}>
+            //             {tab.title}
+            //         </Tooltip>
+            //     }
+            // >
                 <button
                     key={tabIndex}
                     id={tabIndex}
@@ -32,7 +32,7 @@ function SideNav(props) {
                         className='tabNavbar'
                     />
                 </button>
-            </OverlayTrigger>
+            // </OverlayTrigger>
         )
     })
     return (<div className='sideNav'>{tabList}</div>)

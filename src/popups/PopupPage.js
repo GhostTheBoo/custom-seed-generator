@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react'
 
+import { motion } from 'framer-motion'
+
 import GenericSelect from '../Components/GenericSelect'
-import NavbarIcon from '../navbar/NavbarIcon'
+
 import PopupCard from './PopupCard'
 
 import './PopupStyles.css'
@@ -51,26 +53,31 @@ function PopupPage(props) {
 			<PopupCard
 				key={'popup' + popupIndex}
 				id={popupIndex}
+				world={props.popupData[currentWorld].world}
 				popup={popup}
 				handleVanilla={() => { updatePopups(popup.vanilla()) }}
 				handleReplace={(replacementReward) => { updatePopups(popup.replace({ reward: { ...replacementReward } })) }}
 			/>
 		)
-	})
-	popupList.push(
+	}).concat([
 		<PopupCard
 			key={'AllPopups'}
-			world={props.popupData[currentWorld].world}
 			id={currentWorldPopups.length}
+			world={props.popupData[currentWorld].world}
 			handleVanilla={() => updateAllPopups(currentWorldPopups.map(popup => { return popup.vanilla() }))}
 			handleReplace={(replacementReward) => updateAllPopups(currentWorldPopups.map(popup => { return popup.replace({ reward: { ...replacementReward } }) }))}
 			handleReplaceAllEmpty={(replacementReward) => updateAllEmptyPopups(replacementReward)}
 		/>
-	)
+	])
 
 	return (
-		<div className='fullPageContent'>
-			<div className='pageHeader'>
+		<div className='pageContent popupPageContent' ref={popupCardGrid}>
+			<motion.div
+				initial={{ opacity: .25, x: 500 }}
+				animate={{ opacity: 1, x: 0 }}
+				transition={{ type: 'spring', duration: .5 }}
+				className='pageHeader'
+			>
 				<div className='pageHeaderSelectorLabel'>
 					World Selector:
 				</div>
@@ -88,13 +95,8 @@ function PopupPage(props) {
 				<div>
 					{props.children}
 				</div>
-				<NavbarIcon
-					showNavbar={props.handleShowNavbar}
-					fileName={'popup'}
-					title={'Popup'}
-				/>
-			</div>
-			<div className='popupCardGrid' ref={popupCardGrid}>
+			</motion.div>
+			<div className='popupCardGrid'>
 				{popupList}
 			</div>
 		</div>

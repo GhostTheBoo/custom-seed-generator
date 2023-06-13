@@ -1,21 +1,11 @@
-.grid-col-2 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: .5rem;
-}
-
-.grid-col-4 {
-    display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
-    row-gap: .25rem;
-}
-
 .bonusCharacterSelectorGroup {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
 .bonusFormCard {
+    font-family: 'KHMenu';
+    width: 40%;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -24,9 +14,30 @@
     background-color: #343A40;
     padding: .25rem .75rem;
     position: relative;
-    margin: 1rem 0;
+    margin: 1rem;
     border-radius: 1rem;
     box-shadow: 0rem 0rem .5rem black;
+}
+
+.bonusFormRewards {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: max-content 50% 1fr;
+}
+
+.bonusFormReward {
+    display: flex;
+    align-items: center;
+}
+
+.bonusFormStats {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: max-content 1fr max-content 1fr;
+}
+
+.bonusFormRewardLabel {
+    font-size: 2rem;
 }
 
 .bonusReplaceButtonGroup {
@@ -34,9 +45,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
     padding: 0rem 1rem 1rem;
-}
-.bonusFormCard label{
-    font-size: 1.5rem
 }
 
 @media(max-width: 90rem) {}

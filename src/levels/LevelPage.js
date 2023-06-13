@@ -204,7 +204,7 @@ function LevelPage(props) {
 									initial={{ opacity: .25, x: 500 }}
 									animate={{ opacity: 1, x: 0 }}
 									exit={{ opacity: 0, y: 500 }}
-									transition={{ type: 'spring', duration: .65 }}
+									transition={{ type: 'spring', duration: .5 }}
 									key='levelPageHeader'
 									className='pageHeader'
 								>

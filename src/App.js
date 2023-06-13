@@ -337,7 +337,6 @@ function FunctionApp() {
 			title: 'Chest',
 			page: (
 				<ChestPage
-					handleShowNavbar={handleShowNavbar}
 					chestData={allChests}
 					setAllChests={setAllChests}
 				>

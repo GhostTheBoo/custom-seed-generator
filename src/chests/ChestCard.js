@@ -79,8 +79,8 @@ function ChestCard(props) {
 			initial={{ opacity: .25, x: 500 }}
 			animate={{ opacity: 1, x: 0 }}
 			exit={{ opacity: 0, y: 500 }}
-			transition={{ type: 'spring', duration: .65 }}
-			key={`levelCard${chestImage}`}
+			transition={{ type: 'spring', duration: .5 }}
+			key={`chestCard${chestImage}`}
 			className='chestCard'
 		>
 			<div style={{ position: 'relative' }}>
