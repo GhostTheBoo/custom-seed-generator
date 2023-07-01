@@ -1,16 +1,16 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 
-import { motion, AnimatePresence, LayoutGroup } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 import GenericSelect from '../Components/GenericSelect'
 
 import BonusFightList from './BonusFightList'
-import BonusCard from './BonusCard'
+import BonusCardList from './BonusCardList'
 import BonusForm from './BonusForm'
+
 import './BonusStyles.css'
 import './BonusCardStyles.css'
 import './BonusFightListStyles.css'
-import BonusCardList from './BonusCardList'
 
 function BonusPage(props) {
 	// PROPS:

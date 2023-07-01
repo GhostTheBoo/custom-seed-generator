@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { motion, AnimatePresence, LayoutGroup } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import BonusCard from './BonusCard'
 
 function BonusCardList(props) {

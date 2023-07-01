@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { motion } from 'framer-motion'
-
 import Icon from '../Components/Icon'
 import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
 
