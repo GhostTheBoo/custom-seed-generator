@@ -97,15 +97,13 @@ function BonusCard(props) {
 		smallRewardList.push(newReplacementRewardIcon('A', props.bonusReward.replacementRewardA))
 	//#endregion
 
-	let character
+	let character = 'other'
 	if (props.bonusReward.replacementCharacter === 1)
 		character = 'sora'
 	else if (props.bonusReward.replacementCharacter === 2)
 		character = 'donald'
 	else if (props.bonusReward.replacementCharacter === 3)
 		character = 'goofy'
-	else
-		character = 'other'
 	let bonusLogo = './images/icons/' + character + 'B.png'
 
 

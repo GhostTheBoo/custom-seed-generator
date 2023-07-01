@@ -24,16 +24,6 @@ function BonusForm(props) {
 		currentDrive: props.bonusReward.driveGaugeIncrease
 	})
 
-	// function setCurrentRewardA(newValue) { props.setCurrentBonusFieldData('rewardA', newValue) }
-	// function setCurrentRewardB(newValue) { props.setCurrentBonusFieldData('rewardB', newValue) }
-	// function setCurrentCharacter(newValue) { props.setCurrentBonusFieldData('currentCharacter', newValue) }
-	// function setCurrentHP(newValue) { props.setCurrentBonusFieldData('currentBonusHP', newValue) }
-	// function setCurrentMP(newValue) { props.setCurrentBonusFieldData('currentBonusMP', newValue) }
-	// function setCurrentArmorSlot(newValue) { props.setCurrentBonusFieldData('currentArmor', newValue) }
-	// function setCurrentAccessorySlot(newValue) { props.setCurrentBonusFieldData('currentAccessory', newValue) }
-	// function setCurrentItemSlot(newValue) { props.setCurrentBonusFieldData('currentItem', newValue) }
-	// function setCurrentDriveGauge(newValue) { props.setCurrentBonusFieldData('currentDrive', newValue) }
-
 	let characterList = [
 		'Vanilla',
 		'Sora',
@@ -56,7 +46,7 @@ function BonusForm(props) {
 		function setCurrentReward(newValue) { setCurrentFieldData({ ...currentFieldData, ['reward' + rewardLabel]: newValue }) }
 		return (
 			<>
-				<label className='bonusFormRewardLabel' style={{ color: '#00FF00' }}>{rewardLabel}:</label>
+				<label className='bonusFormRewardLabel'>{rewardLabel}:</label>
 				<div className='bonusFormReward'><Icon fileName={replacementReward.iconType} type={'card'}>{replacementReward.reward}</Icon></div>
 				<RewardSelectorButton onReplace={(replacementReward) => setCurrentReward(replacementReward)} />
 			</>
