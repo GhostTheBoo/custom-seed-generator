@@ -27,9 +27,9 @@ function LevelCard(props) {
 
     return (
         <motion.div
-            initial={{ opacity: .25, x: isDisabled ? 0 : 500 }}
+            initial={{ opacity: .25, x: isDisabled ? 0 : 100 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, y: isDisabled ? 0 : 500 }}
+            exit={{ opacity: 0, y: isDisabled ? 0 : 100 }}
             transition={{ type: 'spring', duration: isDisabled ? .4 : .5 }}
             key={`levelCard${levelNumber}`}
             ref={el => props.updateRef(el, levelNumber)}

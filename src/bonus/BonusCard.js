@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import Icon from '../Components/Icon'
 import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
 
-const BonusCard = React.forwardRef((props, ref) => {
+function BonusCard(props) {
 	// PROPS:
 	// bonusReward: bonus reward for selected fight -> Bonus
 	// isEditting
@@ -118,15 +118,7 @@ const BonusCard = React.forwardRef((props, ref) => {
 	/>
 
 	return (
-		<motion.div
-			initial={{ opacity: .25, x: 500 }}
-			animate={{ opacity: 1, x: 0 }}
-			exit={{ opacity: 0, y: 500 }}
-			transition={{ type: 'spring', duration: .5 }}
-			className={`bonusLevel ${character}`}
-			key='bonusLevelCards'
-			ref={ref}
-		>
+		<div className={`bonusLevel ${character}`}>
 			{props.bonusReward.isReplaced() ? overlayPopover : <></>}
 			<div className='bonusHeader'>
 				<div className='bonusButtonGroup'>
@@ -148,8 +140,8 @@ const BonusCard = React.forwardRef((props, ref) => {
 				<div className='smallBonusRewardList'>{smallRewardList}</div>
 			</div>
 			<img className='bonusLogo' src={bonusLogo} alt='Bonus Logo' />
-		</motion.div>
+		</div>
 	)
-})
+}
 
 export default BonusCard

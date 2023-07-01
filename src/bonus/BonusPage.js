@@ -9,6 +9,8 @@ import BonusCard from './BonusCard'
 import BonusForm from './BonusForm'
 import './BonusStyles.css'
 import './BonusCardStyles.css'
+import './BonusFightListStyles.css'
+import BonusCardList from './BonusCardList'
 
 function BonusPage(props) {
 	// PROPS:
@@ -18,8 +20,6 @@ function BonusPage(props) {
 	const [currentWorld, setCurrentWorld] = useState(0)
 	const [currentBonusFight, setCurrentBonusFight] = useState(0)
 	const [currentBonusFightSlot, setCurrentBonusFightSlot] = useState(-1)
-	const bonusCardRefs = useRef([])
-	const bonusFormRef = useRef()
 
 	function handleWorldChange(newWorld) {
 		setCurrentWorld(newWorld)
@@ -51,23 +51,10 @@ function BonusPage(props) {
 		handleBonusFightSlotChange(-1)
 	}
 
-	let bonusSlotList = props.bonusData[currentWorld].bonusFights[currentBonusFight].slots.map((slot, slotIndex) => {
-		return (
-			<BonusCard
-				key={`BonusCard${currentWorld}${currentBonusFight}${slotIndex}`}
-				ref={(element) => bonusCardRefs.current.push(element)}
-				bonusReward={slot}
-				isEditing={slotIndex === currentBonusFightSlot}
-				slotIndex={slotIndex}
-				setCurrentBonusFightSlot={(newBonusFightSlot) => { handleBonusFightSlotChange(newBonusFightSlot) }}
-			/>
-		)
-	})
-
 	return (
 		<div className='fullPageContent'>
 			<motion.div
-				initial={{ opacity: .25, x: 500 }}
+				initial={{ opacity: .25, x: 100 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ type: 'spring', duration: .5 }}
 				className='pageHeader'
@@ -91,43 +78,25 @@ function BonusPage(props) {
 				</div>
 			</motion.div>
 			<div className='bonusPageContent'>
-				<AnimatePresence mode='popLayout'>
-					<motion.div
-						initial={{ opacity: .25, x: 500 }}
-						animate={{ opacity: 1, x: 0 }}
-						exit={{ opacity: 0, y: 500 }}
-						transition={{ type: 'spring', duration: .5 }}
-						className='bonusFightList'
-						key='bonusFightList'
-					>
-						<BonusFightList
-							fightList={props.bonusData[currentWorld].bonusFights}
-							// displayFightName={currentBonusFightSlot === -1}
-							currentWorld={currentWorld}
-							currentSelectItem={currentBonusFight}
-							setCurrentSelectItem={(newBonusFight) => {
-								handleBonusFightChange(newBonusFight)
-							}}
-						/>
-					</motion.div>
-					<motion.div
-						layout
-						layoutId='bonusCards'
-						className='bonusLevelCards'
-						key='bonusLevelCards'
-					>
-						<div className='bonusFightName'>{props.bonusData[currentWorld].bonusFights[currentBonusFight].fightName}</div>
-						<AnimatePresence mode='popLayout'>
-							{bonusSlotList}
-						</AnimatePresence>
-					</motion.div>
+				<BonusFightList
+					fightList={props.bonusData[currentWorld].bonusFights}
+					currentWorld={currentWorld}
+					currentFight={currentBonusFight}
+					setCurrentFight={(newBonusFight) => { handleBonusFightChange(newBonusFight) }}
+				/>
+				<BonusCardList
+					slots={props.bonusData[currentWorld].bonusFights[currentBonusFight].slots}
+					currentWorld={currentWorld}
+					currentFight={currentBonusFight}
+					currentSlot={currentBonusFightSlot}
+					setCurrentBonusFightSlot={(newBonusFightSlot) => { handleBonusFightSlotChange(newBonusFightSlot) }}
+				/>
+				<AnimatePresence>
 					{
 						currentBonusFightSlot !== -1
 							?
 							<BonusForm
 								key={`bonusFormCard${currentWorld}${currentBonusFight}${currentBonusFightSlot}`}
-								keyValue={`bonusFormCard${currentWorld}${currentBonusFight}${currentBonusFightSlot}`}
-								ref={bonusFormRef}
 								currentSlotNumber={currentBonusFightSlot}
 								bonusReward={props.bonusData[currentWorld].bonusFights[currentBonusFight].slots[currentBonusFightSlot]}
 								setCurrentBonusFightSlot={updateCurrentBonusFightSlot}

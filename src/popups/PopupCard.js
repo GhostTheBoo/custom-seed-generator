@@ -73,7 +73,7 @@ function PopupCard(props) {
 
 	return (
 		<motion.div
-			initial={{ opacity: .25, x: 500 }}
+			initial={{ opacity: .25, x: 100 }}
 			animate={{ opacity: 1, x: 0 }}
 			transition={{ type: 'spring', duration: .5 }}
 			key={`popupCard${props.world}${props.id}`}

@@ -44,6 +44,7 @@
     justify-content: flex-start;
     box-shadow: inset 0rem .1rem .1rem rgba(255, 255, 255, .5),
         0rem .1rem .5rem black;
+    grid-column-start: 1;
 }
 
 .smallBonusRewardBox {

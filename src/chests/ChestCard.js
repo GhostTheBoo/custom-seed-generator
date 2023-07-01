@@ -76,9 +76,9 @@ function ChestCard(props) {
 
 	return (
 		<motion.div
-			initial={{ opacity: .25, x: 500 }}
+			initial={{ opacity: .25, x: 100 }}
 			animate={{ opacity: 1, x: 0 }}
-			exit={{ opacity: 0, y: 500 }}
+			exit={{ opacity: 0, y: 100 }}
 			transition={{ type: 'spring', duration: .5 }}
 			key={`chestCard${chestImage}`}
 			className='chestCard'

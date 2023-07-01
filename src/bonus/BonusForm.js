@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { Button, CloseButton } from 'react-bootstrap'
 
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 import GenericSelect from '../Components/GenericSelect'
 import RewardSelectorButton from '../rewards/RewardSelectorButton'
 import Icon from '../Components/Icon'
 import './BonusFormStyles.css'
 
-const BonusForm = React.forwardRef((props, ref) => {
+function BonusForm(props) {
 	// PROPS:
 	// bonusReward: current reward being editted -> bonusReward
 	// setCurrentBonusFightSlot: set current bonus reward -> function
@@ -52,8 +52,6 @@ const BonusForm = React.forwardRef((props, ref) => {
 		'Roxas'
 	]
 
-
-
 	function createBonusRewardFormRow(rewardLabel, replacementReward) {
 		function setCurrentReward(newValue) { setCurrentFieldData({ ...currentFieldData, ['reward' + rewardLabel]: newValue }) }
 		return (
@@ -68,7 +66,6 @@ const BonusForm = React.forwardRef((props, ref) => {
 	function createBonusStatFormRow(statName, fileName, statLabel) {
 		let statValue = currentFieldData[statName]
 		function setCurrentStat(newValue, statName) { setCurrentFieldData({ ...currentFieldData, [statName]: newValue }) }
-
 		return (
 			<>
 				<div><Icon fileName={fileName} type={'bonusForm'}></Icon></div>
@@ -87,12 +84,11 @@ const BonusForm = React.forwardRef((props, ref) => {
 
 	return (
 		<motion.div
-			initial={{ opacity: .25, x: 500 }}
+			initial={{ opacity: .25, x: 100 }}
 			animate={{ opacity: 1, x: 0 }}
-			exit={{ opacity: 0, y: 500 }}
+			exit={{ opacity: 0, y: 100 }}
 			transition={{ type: 'spring', duration: .5 }}
-			ref={ref}
-			key={props.keyValue}
+			key={props.bonusReward.address}
 			className='bonusFormCard'
 		>
 			<h1>SLOT {props.currentSlotNumber + 1}:</h1>
@@ -138,7 +134,8 @@ const BonusForm = React.forwardRef((props, ref) => {
 				</div>
 			</div>
 		</motion.div>
+
 	)
-})
+}
 
 export default BonusForm
