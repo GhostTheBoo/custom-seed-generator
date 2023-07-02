@@ -118,7 +118,7 @@ function BonusForm(props) {
 					>
 						VANILLA
 					</Button>
-					<Button onClick={() => props.setCurrentBonusFightSlot(props.bonusReward.replace(currentFieldData))}				>
+					<Button onClick={() => props.setCurrentBonusFightSlot(props.bonusReward.replace(currentFieldData))}>
 						CONFIRM
 					</Button>
 				</div>
