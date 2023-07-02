@@ -46,6 +46,12 @@
   --formEvenDarkerColor: #5A5A5A;
 }
 
+.formLevelList{
+  list-style-type: none;
+  padding: 0;
+  grid-row: span 6;
+}
+
 .formLevelCardGroup {
   filter: drop-shadow(3px 3px 2px black);
   display: grid;
@@ -64,23 +70,9 @@
 }
 
 .formPageContent {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 1rem;
-}
-
-.formList {
-  width: 20%;
-}
-
-.formCards {
-  width: 40%;
-}
-
-.formForm {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  width: 30%;
 }
 
 .formIcon {
@@ -197,6 +189,7 @@
   color: white;
   background-color: var(--formPrimaryColor);
   text-shadow: .1rem .1rem 0 black;
+  grid-column-start: 1;
 }
 
 .editAllFormLevelButton:hover,

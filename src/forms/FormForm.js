@@ -1,72 +1,57 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, CloseButton } from 'react-bootstrap'
+
+import { motion } from 'framer-motion'
 
 import RewardSelectorButton from '../rewards/RewardSelectorButton'
 import Icon from '../Components/Icon'
 import './FormFormStyles.css'
 
 function FormForm(props) {
-
-	function setCurrentReward(newValue) { props.setCurrentFormFieldData('reward', newValue) }
-	function setCurrentEXP(newValue) { props.setCurrentFormFieldData('currentEXP', newValue) }
-	// function setCurrentEXPMultiplierValue(newValue) { props.setCurrentFormFieldData('currentEXPMultiplierValue', newValue) }
-
-	let expMultiplierList = []
-
-	for (let i = 1; i <= 10; i++) {
-		expMultiplierList.push(
-			<option key={i} value={i}>{i === 2 ? 'CUSTOM' : `${i / 2}x`}</option>
-		)
-	}
+	const [currentFieldData, setCurrentFieldData] = useState({
+		replacementReward: { ...props.currentLevel.replacementReward },
+		currentEXP: props.currentLevel.replacementEXP,
+		currentEXPMultiplierValue: 1
+	})
 
 	return (
-		<div className='formFormCard'>
-			<h1>LEVEL {props.currentDriveFormLevel + 2}:</h1>
-			<CloseButton className='close' onClick={() => props.closeFormCard()} />
+		<>
+			<h1>LEVEL {props.currentLevel.level.slice(-1)}:</h1>
+			<CloseButton className='close' onClick={() => props.closeFormCard(-1)} />
 			<hr />
-			<div className='formRewardEditGroup'>
-				<label>Reward:</label>
-				<div>
-					<Icon
-						style={{ margin: '10px' }}
-						fileName={props.currentFormFieldData.reward.iconType}
-						type={'row'}
-					>
-						{props.currentFormFieldData.reward.reward}
-					</Icon>
+			<div className='formCardContent'>
+				<div className='formFormRewards'>
+					<label className='formFormLabel'>Reward:</label>
+					<div className='formFormReward'><Icon fileName={currentFieldData.replacementReward.iconType} type={'card'}>{currentFieldData.replacementReward.reward}</Icon></div>
+					<RewardSelectorButton onReplace={(newReward) => setCurrentFieldData({ ...currentFieldData, replacementReward: newReward })} />
 				</div>
-				<RewardSelectorButton
-					onReplace={(replacementReward) => setCurrentReward(replacementReward)}
-				/>
+				<hr />
+				<div className='formFormEXP'>
+					<label className='formFormLabel'>Experience:</label>
+					<input
+						name='formEXP'
+						className='formInputField three-digit-input'
+						type='number'
+						value={isNaN(currentFieldData.currentEXP) ? '' : currentFieldData.currentEXP}
+						onChange={(e) => setCurrentFieldData({ ...currentFieldData, currentEXP: Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))) })}
+						min={0}
+						max={255}
+					/>
+				</div>
+				<hr />
+				<div className='bonusReplaceButtonGroup'>
+					<Button
+						variant='secondary'
+						onClick={() => props.setCurrentLevel(props.currentLevel.vanilla())}
+					>
+						VANILLA
+					</Button>
+					<Button onClick={() => props.setCurrentLevel(props.currentLevel.replace(currentFieldData))}>
+						CONFIRM
+					</Button>
+				</div>
 			</div>
-			<hr />
-			<div style={{ display: 'flex', flexDirection: 'column' }}>
-				<label>EXP from Level {props.currentDriveFormLevel + 1} → {props.currentDriveFormLevel + 2}:</label>
-				<input
-					name={'FormExp'}
-					className='three-digit-input'
-					type='number'
-					value={props.currentFormFieldData.currentEXP}
-					onChange={(e) => setCurrentEXP(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-					min='0'
-					max='99999999'
-				/>
-			</div>
-			<hr />
-			<div className='formReplaceButtonGroup'>
-				<Button
-					variant='secondary'
-					onClick={() => props.setCurrentDriveFormLevel(props.currentDriveFormLevelData.vanilla())}
-				>
-					VANILLA
-				</Button>
-				<Button
-					onClick={() => props.setCurrentDriveFormLevel(props.currentDriveFormLevelData.replace(props.currentFormFieldData))}
-				>
-					CONFIRM
-				</Button>
-			</div>
-		</div>
+		</>
 	)
 }
 

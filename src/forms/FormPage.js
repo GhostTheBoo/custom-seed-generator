@@ -1,73 +1,40 @@
 import React, { useState } from 'react'
+
+import { motion, AnimatePresence } from 'framer-motion'
+
 import './FormStyles.css'
 
-import NavbarIcon from '../navbar/NavbarIcon'
-import FormList from './FormList'
 import FormForm from './FormForm'
 import AllFormForm from './AllFormForm'
 import FormCard from './FormCard'
+import GenericSelect from '../Components/GenericSelect'
 
 function FormPage(props) {
-
 	const [currentDriveForm, setCurrentDriveForm] = useState(0)
 	const [currentDriveFormLevel, setCurrentDriveFormLevel] = useState(-1)
 	const [currentDisplayedForm, setCurrentDisplayedForm] = useState(2)
-	const [currentFormFieldData, setCurrentFormFieldData] = useState({
-		reward: { ...props.formData[currentDriveForm].driveLevels[0].replacementReward },
-		currentEXP: props.formData[currentDriveForm].driveLevels[0].replacementEXP,
-		currentEXPMultiplierValue: 1
-	})
-	const [currentAllFormFieldData, setCurrentAllFormFieldData] = useState({
-		reward: { ...props.formData[currentDriveForm].driveLevels[1].replacementReward },
-		modifyReward: false,
-		EXPMultiplier: false,
-		customEXP: false,
-		currentEXP: 0,
-		currentEXPMultiplierValue: 1
-	})
 
 	function handleDriveFormChange(newDriveForm) {
-		updateCurrentFormFieldData(newDriveForm, 0)
 		setCurrentDisplayedForm(2)
 		setCurrentDriveForm(newDriveForm)
 		setCurrentDriveFormLevel(-1)
 	}
 	function handleDriveFormLevelChange(newDriveFormLevel) {
-		if (newDriveFormLevel === 6) {
-			updateCurrentAllFormFieldData(currentDriveForm)
+		if (newDriveFormLevel === 6)
 			setCurrentDisplayedForm(1)
-		} else {
-			updateCurrentFormFieldData(currentDriveForm, newDriveFormLevel)
-			setCurrentDisplayedForm(newDriveFormLevel === -1 ? 2 : 0)
-		}
+		else if (newDriveFormLevel === -1)
+			setCurrentDisplayedForm(2)
+		else
+			setCurrentDisplayedForm(0)
 		setCurrentDriveFormLevel(newDriveFormLevel)
 	}
-	function updateCurrentFormFieldData(currentDriveForm, currentDriveFormLevel) {
-		let currentLevel = currentDriveFormLevel
-		if (currentDriveFormLevel === -1) currentLevel = 0
-		setCurrentFormFieldData({
-			reward: { ...props.formData[currentDriveForm].driveLevels[currentLevel].replacementReward },
-			currentEXP: props.formData[currentDriveForm].driveLevels[currentLevel].replacementEXP,
-			currentEXPMultiplierValue: 2
-		})
-	}
-	function updateCurrentAllFormFieldData(currentDriveForm) {
-		setCurrentAllFormFieldData({
-			reward: { ...props.formData[currentDriveForm].driveLevels[1].replacementReward },
-			modifyReward: false,
-			EXPMultiplier: false,
-			customEXP: false,
-			currentEXP: 0,
-			currentEXPMultiplierValue: 1
-		})
-	}
-	function updateCurrentDriveFormLevelData(newDriveLevel) {
+	function updateAllDriveForms(newDriveLevel) {
 		props.setAllForms(props.formData.map((driveForm, driveFormIndex) => {
 			if (driveFormIndex === currentDriveForm) {
 				let newDriveLevels = driveForm.driveLevels.map((driveLevel, driveLevelIndex) => {
-					if (driveLevelIndex === currentDriveFormLevel)
-						return newDriveLevel
-					return driveLevel
+					return driveLevelIndex === currentDriveFormLevel
+						? newDriveLevel
+						: driveLevel
 				})
 				return ({
 					...driveForm,
@@ -76,145 +43,160 @@ function FormPage(props) {
 			}
 			return driveForm
 		}))
-		resetPage()
-	}
-	function updateAllDriveFormLevelData(replaceType) {
-		props.setAllForms(props.formData.map((driveForm, driveFormIndex) => {
-			if (driveFormIndex === currentDriveForm) {
-				let newDriveLevels = driveForm.driveLevels.map(driveLevel => {
-					let newDriveLevelData = {
-						reward: { ...driveLevel.replacementReward },
-						currentEXP: driveLevel.replacementEXP,
-						currentEXPMultiplierValue: 2
-					}
-					if (currentAllFormFieldData.modifyReward) {
-						newDriveLevelData.reward = { ...(replaceType === 'vanilla' ? driveLevel.vanillaReward : currentAllFormFieldData.reward) }
-					}
-					if (replaceType === 'vanilla' && (currentAllFormFieldData.customEXP || currentAllFormFieldData.EXPMultiplier)) {
-						newDriveLevelData.currentEXP = driveLevel.vanillaEXP
-					} else {
-						if (currentAllFormFieldData.customEXP) {
-							newDriveLevelData.currentEXP = currentAllFormFieldData.currentEXP
-						}
-						if (currentAllFormFieldData.EXPMultiplier) {
-							newDriveLevelData.currentEXP = driveLevel.vanillaEXP
-							newDriveLevelData.currentEXPMultiplierValue = currentAllFormFieldData.currentEXPMultiplierValue + 1
-						}
-					}
-					return driveLevel.replace(newDriveLevelData)
-				})
-				return ({
-					...driveForm,
-					driveLevels: newDriveLevels
-				})
-			}
-			return driveForm
-		}))
-		resetPage()
-	}
-	function handleAllEXPSwitch(expSwitchName) {
-		let newEXPMultiplier = false
-		let newCustomEXP = false
-		if (expSwitchName === 'EXPMultiplier') {
-			if (!currentAllFormFieldData.EXPMultiplier)
-				newEXPMultiplier = true
-		} else {
-			if (!currentAllFormFieldData.customEXP)
-				newCustomEXP = true
-		}
-		setCurrentAllFormFieldData({
-			...currentAllFormFieldData,
-			EXPMultiplier: newEXPMultiplier,
-			customEXP: newCustomEXP
-		})
-	}
-	function resetPage() {
-		setCurrentDriveFormLevel(-1)
-		setCurrentDisplayedForm(2)
-		setCurrentFormFieldData({
-			reward: { ...props.formData[currentDriveForm].driveLevels[0].replacementReward },
-			currentEXP: props.formData[currentDriveForm].driveLevels[0].replacementEXP,
-			currentEXPMultiplierValue: 2
-		})
-		setCurrentAllFormFieldData({
-			reward: { ...props.formData[currentDriveForm].driveLevels[1].replacementReward },
-			modifyReward: false,
-			EXPMultiplier: false,
-			customEXP: false,
-			currentEXP: 0,
-			currentEXPMultiplierValue: 2
-		})
+		handleDriveFormLevelChange(-1)
 	}
 
-	let altLevelDataList = props.formData[currentDriveForm].driveLevels.map((level, index) => {
+	function replaceAllLevels(fieldData, enabledData) {
+		let newLevelList = props.formData.map((driveForm, driveFormIndex) => {
+			if (driveFormIndex === currentDriveForm) {
+				let newDriveLevels = driveForm.driveLevels.map(driveFormLevel => {
+					let newFieldData = {
+						replacementReward: enabledData.modifyReward ? { ...fieldData.replacementReward } : { ...driveFormLevel.replacementReward },
+						currentEXP: enabledData.customEXP ? fieldData.currentEXP : driveFormLevel.replacementEXP,
+						currentEXPMultiplierValue: enabledData.EXPMultiplier ? fieldData.currentEXPMultiplierValue : 1
+					}
+					return driveFormLevel.replace(newFieldData)
+				})
+				return ({
+					...driveForm,
+					driveLevels: newDriveLevels
+				})
+			}
+			return driveForm
+		})
+		props.setAllForms(newLevelList)
+		handleDriveFormLevelChange(-1)
+	}
+
+	function vanillaAllLevels(enabledData) {
+		let newLevelList = props.formData.map((driveForm, driveFormIndex) => {
+			if (driveFormIndex === currentDriveForm) {
+				let newDriveLevels = driveForm.driveLevels.map(driveFormLevel => {
+					let newFieldData = {
+						replacementReward: enabledData.modifyReward ? { ...driveFormLevel.vanillaReward } : { ...driveFormLevel.replacementReward },
+						currentEXP: enabledData.customEXP || enabledData.EXPMultiplier ? driveFormLevel.vanillaEXP : driveFormLevel.replacementEXP,
+						currentEXPMultiplierValue: 1
+					}
+					return driveFormLevel.replace(newFieldData)
+				})
+				return ({
+					...driveForm,
+					driveLevels: newDriveLevels
+				})
+			}
+			return driveForm
+		})
+		props.setAllForms(newLevelList)
+		handleDriveFormLevelChange(-1)
+	}
+
+	let levelDataList = props.formData[currentDriveForm].driveLevels.map((level, index) => {
 		return (
-			<FormCard
-				key={level.level}
-				level={level}
-				isEditing={currentDriveFormLevel === index}
-				handleDriveFormLevelChange={() => handleDriveFormLevelChange(index)}
-			/>)
+			<li key={`formCard${level.level}`}>
+				<FormCard
+					level={level}
+					isEditing={currentDriveFormLevel === index}
+					handleDriveFormLevelChange={() => handleDriveFormLevelChange(index)}
+				/>
+			</li>
+		)
 	})
 
-	altLevelDataList.push(
-		<button
-			key='allLevels'
-			className={`editAllFormLevelButton ${props.formData[currentDriveForm].driveForm.toLowerCase()}`}
-			disabled={currentDriveFormLevel === 6}
-			onClick={() => handleDriveFormLevelChange(6)}
-		>
-			{(currentDriveFormLevel === 6 ? 'EDITING... ' : 'EDIT ')} <br />
-			ALL {props.formData[currentDriveForm].driveForm.toUpperCase()} LEVELS
-		</button>
+	levelDataList.push(
+		<li key='allLevels'>
+			<button
+				className={`editAllFormLevelButton ${props.formData[currentDriveForm].driveForm.toLowerCase()}`}
+				disabled={currentDriveFormLevel === 6}
+				onClick={() => handleDriveFormLevelChange(6)}
+			>
+				{(currentDriveFormLevel === 6 ? 'EDITING... ' : 'EDIT ')} <br />
+				ALL {props.formData[currentDriveForm].driveForm.toUpperCase()} LEVELS
+			</button>
+		</li>
 	)
 
-	let DisplayedFormForm = [
-		<FormForm
-			currentDriveFormLevelData={props.formData[currentDriveForm].driveLevels[currentDriveFormLevel]}
-			currentDriveForm={props.formData[currentDriveForm].driveForm}
-			currentDriveFormLevel={currentDriveFormLevel}
-			currentFormFieldData={currentFormFieldData}
-			closeFormCard={() => handleDriveFormLevelChange(-1)}
-			setCurrentFormFieldData={(fieldName, newValue) => setCurrentFormFieldData({ ...currentFormFieldData, [fieldName]: newValue })}
-			setCurrentDriveFormLevel={updateCurrentDriveFormLevelData}
-		/>,
-		<AllFormForm
-			currentDriveFormLevelData={props.formData[currentDriveForm].driveLevels[currentDriveFormLevel]}
-			currentDriveForm={props.formData[currentDriveForm].driveForm}
-			currentAllFormFieldData={currentAllFormFieldData}
-			closeFormCard={() => handleDriveFormLevelChange(-1)}
-			setCurrentAllFormFieldData={(fieldName, newValue) => setCurrentAllFormFieldData({ ...currentAllFormFieldData, [fieldName]: newValue })}
-			handleAllEXPSwitch={handleAllEXPSwitch}
-			setAllLevels={updateAllDriveFormLevelData}
-		/>,
-		<></>
-	]
-
+	// console.log(props.formData[currentDriveForm].driveLevels[currentDriveFormLevel].level)
 	return (
-		<div className='fullPageContent' style={{ marginTop: '1rem' }}>
-			<div className='pageHeader'>
-				<div className='flex-grow-1' />
-				{props.children}
-				<NavbarIcon
-					showNavbar={props.handleShowNavbar}
-					fileName={'form'}
-					title={'Forms & Summons'}
-				/>
-			</div>
-			<div className='formPageContent'>
-				<div className='formList'>
-					<FormList
-						currentForm={currentDriveForm}
-						currentSelectItem={currentDriveForm}
-						setCurrentSelectItem={(newDriveFormLevel) => { handleDriveFormChange(newDriveFormLevel) }}
+		<div className='fullPageContent'>
+			<motion.div
+				initial={{ opacity: .25, x: 100 }}
+				animate={{ opacity: 1, x: 0 }}
+				transition={{ type: 'spring', duration: .5 }}
+				className='pageHeader'
+			>
+				<div className='pageHeaderSelectorLabel'>
+					Form Selector:
+				</div>
+				<div>
+					<GenericSelect
+						class={'form'}
+						selector={'Form'}
+						itemList={props.formData.map(form => { return form.driveForm })}
+						name={'currentForm'}
+						currentItem={currentDriveForm}
+						onChange={(e) => handleDriveFormChange(parseInt(e.target.value))}
 					/>
 				</div>
-				<div className='formCards flex-grow-1'>
-					{altLevelDataList}
+				<div className='flex-grow-1' />
+				<div>
+					{props.children}
 				</div>
-				<div className='formForm flex-grow-1'>
-					{DisplayedFormForm[currentDisplayedForm]}
-				</div>
+			</motion.div>
+			<div className='formPageContent'>
+				<AnimatePresence mode='popLayout'>
+					<motion.ul
+						initial={{ opacity: .25, x: 100 }}
+						animate={{ opacity: 1, x: 0 }}
+						exit={{ opacity: 0, y: 100 }}
+						transition={{ type: 'spring', duration: .5 }}
+						key={`${props.formData[currentDriveForm].driveForm}LevelList`}
+						className='formLevelList'
+					>
+						{levelDataList}
+					</motion.ul>
+				</AnimatePresence>
+				<AnimatePresence mode='popLayout'>
+					{
+						currentDisplayedForm === 0
+							? <motion.div
+								initial={{ opacity: .25, x: 100 }}
+								animate={{ opacity: 1, x: 0 }}
+								exit={{ opacity: 0, y: 100 }}
+								transition={{ type: 'spring', duration: .5 }}
+								key={props.formData[currentDriveForm].driveLevels[currentDriveFormLevel].level}
+								className='formFormCard'
+							>
+								<FormForm
+									key={props.formData[currentDriveForm].driveLevels[currentDriveFormLevel].level}
+									currentLevel={props.formData[currentDriveForm].driveLevels[currentDriveFormLevel]}
+									currentDriveForm={props.formData[currentDriveForm].driveForm}
+									closeFormCard={() => handleDriveFormLevelChange(-1)}
+									setCurrentLevel={updateAllDriveForms}
+								/>
+							</motion.div>
+							: <React.Fragment key='formFragment'></React.Fragment>
+					}
+					{
+						currentDisplayedForm === 1
+							? <motion.div
+								initial={{ opacity: .25, x: 100 }}
+								animate={{ opacity: 1, x: 0 }}
+								exit={{ opacity: 0, y: 100 }}
+								transition={{ type: 'spring', duration: .5 }}
+								key={`${props.formData[currentDriveForm].driveForm}form`}
+								className='formFormCard'
+							>
+								<AllFormForm
+									key={props.formData[currentDriveForm].driveForm}
+									currentDriveLevels={props.formData[currentDriveForm].driveLevels}
+									closeFormCard={() => handleDriveFormLevelChange(-1)}
+									handleVanilla={vanillaAllLevels}
+									handleReplace={replaceAllLevels}
+								/>
+							</motion.div>
+							: <React.Fragment key='allFormFragment'></React.Fragment>
+					}
+				</AnimatePresence>
 			</div>
 		</div>
 	)

@@ -88,7 +88,7 @@ function BonusCard(props) {
 	/>
 
 	return (
-		<div className={`bonusLevel ${character}`}>
+		<li className={`bonusLevel ${character}`}>
 			{props.bonusReward.isReplaced() ? overlayPopover : <></>}
 			<div className='bonusHeader'>
 				<div className='bonusButtonGroup'>
@@ -110,7 +110,7 @@ function BonusCard(props) {
 				<div className='smallBonusRewardList'>{smallRewardList}</div>
 			</div>
 			<img className='bonusLogo' src={bonusLogo} alt='Bonus Logo' />
-		</div>
+		</li>
 	)
 }
 

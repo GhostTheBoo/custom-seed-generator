@@ -1,7 +1,7 @@
 import { Reward } from '../rewards/RewardsData'
 
 export class FormLevel {
-	constructor(level, vanilla, rewardAddress, exp, expAddress, zipID) {
+	constructor(level, vanilla, rewardAddress, exp, expAddress) {
 		this.level = level
 		this.vanillaReward = { ...vanilla }
 		this.replacementReward = { ...vanilla }
@@ -9,7 +9,6 @@ export class FormLevel {
 		this.vanillaEXP = exp
 		this.replacementEXP = exp
 		this.EXPAddress = expAddress
-		this.zipID = zipID
 		this.toBeReplaced = false
 
 		this.isEXPReplaced = () => {
@@ -34,8 +33,8 @@ export class FormLevel {
 		this.replace = (newFormData) => {
 			let ret = this.copy()
 
-			ret.replacementReward = { ...newFormData.reward }
-			ret.replacementEXP = newFormData.currentEXPMultiplierValue === 2 ? newFormData.currentEXP : Math.max(1, Math.floor((2 * this.vanillaEXP) / newFormData.currentEXPMultiplierValue))
+			ret.replacementReward = { ...newFormData.replacementReward }
+			ret.replacementEXP = newFormData.currentEXPMultiplierValue === 1 ? newFormData.currentEXP : Math.max(1, Math.floor((2 * this.vanillaEXP) / (newFormData.currentEXPMultiplierValue + 1)))
 			ret.toBeReplaced = false
 
 			return ret
@@ -94,11 +93,11 @@ export class FormLevel {
 			// fix this form level bullshit
 			let ret = ''
 			// if (this.isRewardReplaced() || this.isEXPReplaced()) {
-				ret += '- Ability: ' + this.replacementReward.index + '\n  '
-				ret += 'Experience: ' + this.replacementEXP + '\n  '
-				ret += 'FormId: ' + formId + '\n  '
-				ret += 'FormLevel: ' + this.level.slice(-1) + '\n  '
-				ret += 'GrowthAbilityLevel: 0\n'
+			ret += '- Ability: ' + this.replacementReward.index + '\n  '
+			ret += 'Experience: ' + this.replacementEXP + '\n  '
+			ret += 'FormId: ' + formId + '\n  '
+			ret += 'FormLevel: ' + this.level.slice(-1) + '\n  '
+			ret += 'GrowthAbilityLevel: 0\n'
 			// }
 			return ret
 		}
