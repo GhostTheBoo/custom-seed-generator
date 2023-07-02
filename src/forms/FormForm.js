@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { Button, CloseButton } from 'react-bootstrap'
 
-import { motion } from 'framer-motion'
-
 import RewardSelectorButton from '../rewards/RewardSelectorButton'
 import Icon from '../Components/Icon'
 import './FormFormStyles.css'
