@@ -21,7 +21,6 @@
     font-size: 2rem;
 }
 
-.editStatusPopover.equipment,
 .editStatusPopover.cost,
 .editStatusPopover.bonus {
     font-size: 1.5rem;
@@ -37,6 +36,13 @@
     right: 5rem;
 }
 
+.editStatusPopover.equipment {
+    font-size: 1rem;
+    top: -1rem;
+    left: auto;
+    right: 1rem;
+}
+
 /* @media(max-width: 90rem) {} */
 
 @media(max-width: 65rem) {
@@ -44,7 +50,6 @@
         font-size: 1.75rem;
     }
 
-    .editStatusPopover.equipment,
     .editStatusPopover.cost,
     .editStatusPopover.bonus {
         font-size: 1.25rem;
@@ -63,7 +68,6 @@
         font-size: 1.5rem;
     }
 
-    .editStatusPopover.equipment,
     .editStatusPopover.cost,
     .editStatusPopover.bonus {
         font-size: 1.25rem;

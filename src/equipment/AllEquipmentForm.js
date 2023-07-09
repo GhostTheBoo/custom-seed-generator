@@ -1,10 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Form, Button, CloseButton } from 'react-bootstrap'
+import { motion } from 'framer-motion'
 
 import RewardSelectorButton from '../rewards/RewardSelectorButton'
+import { EMPTY } from '../rewards/RewardsData'
 import Icon from '../Components/Icon'
 
 function AllEquipmentForm(props) {
+    const [currentFieldData, setCurrentFieldData] = useState({
+        ability: { ...EMPTY },
+        currentAP: 0,
+        currentStrength: 0,
+        currentMagic: 0,
+        currentDefense: 0,
+        currentFire: 0,
+        currentBlizzard: 0,
+        currentThunder: 0,
+        currentDark: 0,
+        currentPhysical: 0,
+        currentLight: 0,
+        currentUniversal: 0
+    })
+    const [currentEnabledData, setCurrentEnabledData] = useState({
+        modifyAbility: false,
+        modifyAP: false,
+        modifyStrength: false,
+        modifyMagic: false,
+        modifyDefense: false,
+        modifyFire: false,
+        modifyBlizzard: false,
+        modifyThunder: false,
+        modifyDark: false,
+        modifyPhysical: false,
+        modifyLight: false,
+        modifyUniversal: false
+    })
+
     function getFullEquipmentTypeText(equipmentType) {
         if (equipmentType === 'acc') return 'Accessories'
         if (equipmentType === 'alw') return 'Ally Weapons'
@@ -14,268 +45,125 @@ function AllEquipmentForm(props) {
         if (equipmentType === 'key') return 'Keyblades'
     }
 
-    function setCurrentAbility(newValue) { props.setCurrentEquipmentFieldData('ability', newValue) }
-    function setCurrentAP(newValue) { props.setCurrentEquipmentFieldData('currentAP', newValue) }
-    function setCurrentStrength(newValue) { props.setCurrentEquipmentFieldData('currentStrength', newValue) }
-    function setCurrentMagic(newValue) { props.setCurrentEquipmentFieldData('currentMagic', newValue) }
-    function setCurrentDefense(newValue) { props.setCurrentEquipmentFieldData('currentDefense', newValue) }
-    function setCurrentFire(newValue) { props.setCurrentEquipmentFieldData('currentFire', newValue) }
-    function setCurrentBlizzard(newValue) { props.setCurrentEquipmentFieldData('currentBlizzard', newValue) }
-    function setCurrentThunder(newValue) { props.setCurrentEquipmentFieldData('currentThunder', newValue) }
-    function setCurrentPhysical(newValue) { props.setCurrentEquipmentFieldData('currentPhysical', newValue) }
-    function setCurrentDark(newValue) { props.setCurrentEquipmentFieldData('currentDark', newValue) }
-    function setCurrentLight(newValue) { props.setCurrentEquipmentFieldData('currentLight', newValue) }
-    function setCurrentUniversal(newValue) { props.setCurrentEquipmentFieldData('currentUniversal', newValue) }
+    function createEquipmentStatFormRow(statName, fileName, statLabel, isRes, modifyFlag) {
+        let statValue = currentFieldData[statName]
+        let min = 0
+        let max = 255
+        if (isRes) {
+            min = -100
+            max = 150
+        }
+        function setCurrentStat(newValue, statName) { setCurrentFieldData({ ...currentFieldData, [statName]: newValue }) }
+        return (
+            <>
+                {!props.isEditing
+                    ? <></>
+                    : <Form.Check type='checkbox' checked={currentEnabledData[modifyFlag]} onChange={() => toggleApplyFlag(modifyFlag)} />
+                }
+                <Icon fileName={fileName} type={'form'} />
+                <span className='equipmentStatName'>{statLabel}</span>
+                {!props.isEditing
+                    ? <span className='equipmentStatValue'>{isRes ? statValue + '%' : statValue}</span>
+                    : <input
+                        name={'equipment' + statLabel}
+                        className='equipmentInputField three-digit-input'
+                        type='number'
+                        value={isNaN(statValue) ? '' : statValue}
+                        onChange={(e) => setCurrentStat(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))), statName)}
+                        disabled={!currentEnabledData[modifyFlag]}
+                        min={min}
+                        max={max}
+                    />
+                }
+            </>
+        )
+    }
 
-    function setModifyAbility() { props.setCurrentAllEquipmentFieldData('modifyAbility', !props.currentAllEquipmentFieldData.modifyAbility) }
-    function setModifyAP() { props.setCurrentAllEquipmentFieldData('modifyAP', !props.currentAllEquipmentFieldData.modifyAP) }
-    function setModifyStrength() { props.setCurrentAllEquipmentFieldData('modifyStrength', !props.currentAllEquipmentFieldData.modifyStrength) }
-    function setModifyMagic() { props.setCurrentAllEquipmentFieldData('modifyMagic', !props.currentAllEquipmentFieldData.modifyMagic) }
-    function setModifyDefense() { props.setCurrentAllEquipmentFieldData('modifyDefense', !props.currentAllEquipmentFieldData.modifyDefense) }
-    function setModifyFire() { props.setCurrentAllEquipmentFieldData('modifyFire', !props.currentAllEquipmentFieldData.modifyFire) }
-    function setModifyBlizzard() { props.setCurrentAllEquipmentFieldData('modifyBlizzard', !props.currentAllEquipmentFieldData.modifyBlizzard) }
-    function setModifyThunder() { props.setCurrentAllEquipmentFieldData('modifyThunder', !props.currentAllEquipmentFieldData.modifyThunder) }
-    function setModifyDark() { props.setCurrentAllEquipmentFieldData('modifyDark', !props.currentAllEquipmentFieldData.modifyDark) }
-    function setModifyPhysical() { props.setCurrentAllEquipmentFieldData('modifyPhysical', !props.currentAllEquipmentFieldData.modifyPhysical) }
-    function setModifyLight() { props.setCurrentAllEquipmentFieldData('modifyLight', !props.currentAllEquipmentFieldData.modifyLight) }
-    function setModifyUniversal() { props.setCurrentAllEquipmentFieldData('modifyUniversal', !props.currentAllEquipmentFieldData.modifyUniversal) }
+    function toggleApplyFlag(statName) {
+        let prevValue = currentEnabledData[statName]
+        setCurrentEnabledData({ ...currentEnabledData, [statName]: !prevValue })
+    }
+
+    let equipmentImage = './images/equipmentImages/' + props.currentFolderName + '/' + props.currentFolderName + '.png'
+
 
     return (
-        <div className='equipmentFormCard'>
-            <h1 className='equipmentFormName'>ALL {getFullEquipmentTypeText(props.currentFolderName).toUpperCase()}:</h1>
-            <CloseButton className='close' onClick={() => props.closeFormCard(-1)} />
-            <div className='allequipmentFormRewardRow'>
-                <div style={{ width: '10%', marginTop: '.6rem' }}>
-                    <Form.Check
-                        id='allEquipmentAbilitySwitch'
-                        type='switch'
-                        style={{ margin: 'auto' }}
-                        checked={props.currentAllEquipmentFieldData.modifyAbility}
-                        onChange={() => setModifyAbility()}
-                    />
+        <>
+            <div className='equipmentFormImageColumn'>
+                <div className='equipmentFormCardHeader'>
+                    {!props.isEditing
+                        ? <CloseButton className='close' onClick={() => props.closeFormCard(-1)} />
+                        : <Button variant='info'
+                            onClick={() => props.setIsEditing(false)}
+                        >
+                            CANCEL
+                        </Button>
+                    }
                 </div>
-                <label className='equipmentAbilityLabel equipmentLabel'>Ability:</label>
+                <h1 className='equipmentFormName'>ALL {getFullEquipmentTypeText(props.currentFolderName).toUpperCase()}:</h1>
+                <motion.img
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ type: 'spring', duration: .5, delay: .1 }}
+                    layout
+                    key={equipmentImage}
+                    className='equipmentFormImage'
+                    src={equipmentImage}
+                    alt='All Equipment Form'
+                />
             </div>
-            <div>
-                <Icon
-                    style={{ margin: '10px' }}
-                    fileName={props.currentEquipmentFieldData.ability.iconType}
-                    type={'row'}
-                >
-                    {props.currentEquipmentFieldData.ability.reward}
-                </Icon>
-            </div>
-            <RewardSelectorButton
-                onReplace={(replacementReward) => setCurrentAbility(replacementReward)}
-            />
-            <hr />
-            <div className='allEquipmentInput'>
-                <Form.Check
-                    id='allEquipmentAPSwitch'
-                    type='switch'
-                    style={{ margin: 'auto' }}
-                    checked={props.currentAllEquipmentFieldData.modifyAP}
-                    onChange={() => setModifyAP()}
-                />
-                <label className='equipmentLabel'>AP:</label>
-                <input
-                    name={'EquipmentAP'}
-                    className='equipmentInputField three-digit-input'
-                    type='number'
-                    value={props.currentEquipmentFieldData.currentAP}
-                    onChange={(e) => setCurrentAP(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                    min='0'
-                    max='255'
-                />
-                <Form.Check
-                    id='allEquipmentMagicSwitch'
-                    type='switch'
-                    style={{ margin: 'auto' }}
-                    checked={props.currentAllEquipmentFieldData.modifyMagic}
-                    onChange={() => setModifyMagic()}
-                />
-                <label className='equipmentLabel'>Magic:</label>
-                <input
-                    name={'EquipmentMagic'}
-                    className='equipmentInputField three-digit-input'
-                    type='number'
-                    value={props.currentEquipmentFieldData.currentMagic}
-                    onChange={(e) => setCurrentMagic(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                    min='0'
-                    max='255'
-                />
-                <Form.Check
-                    id='allEquipmentStrengthSwitch'
-                    type='switch'
-                    style={{ margin: 'auto' }}
-                    checked={props.currentAllEquipmentFieldData.modifyStrength}
-                    onChange={() => setModifyStrength()}
-                />
-                <label className='equipmentLabel'>Strength:</label>
-                <input
-                    name={'EquipmentStrength'}
-                    className='equipmentInputField three-digit-input'
-                    type='number'
-                    value={props.currentEquipmentFieldData.currentStrength}
-                    onChange={(e) => setCurrentStrength(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                    min='0'
-                    max='255'
-                />
-                <Form.Check
-                    id='allEquipmentDefenseSwitch'
-                    type='switch'
-                    style={{ margin: 'auto' }}
-                    checked={props.currentAllEquipmentFieldData.modifyDefense}
-                    onChange={() => setModifyDefense()}
-                />
-                <label className='equipmentLabel'>Defense:</label>
-                <input
-                    name={'EquipmentDefense'}
-                    className='equipmentInputField three-digit-input'
-                    type='number'
-                    value={props.currentEquipmentFieldData.currentDefense}
-                    onChange={(e) => setCurrentDefense(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                    min='0'
-                    max='255'
-                />
+            <div className='equipmentFormAbility'>
+                {!props.isEditing
+                    ? <></>
+                    : <Form.Check type='checkbox' checked={currentEnabledData.modifyAbility} onChange={() => toggleApplyFlag('modifyAbility')} />
+                }
+                <div><Icon fileName={currentFieldData.ability.iconType} type={'card'}>{currentFieldData.ability.reward}</Icon></div>
+                {!props.isEditing
+                    ? <></>
+                    : <RewardSelectorButton
+                        onReplace={(newReward) => setCurrentFieldData({ ...currentFieldData, ability: newReward })}
+                        isDisabled={!currentEnabledData.modifyReward}
+                    />
+                }
             </div>
             <hr />
-            <div className='allEquipmentInput grid-col-4'>
-                <Form.Check
-                    id='allEquipmentFireSwitch'
-                    type='switch'
-                    style={{ margin: 'auto' }}
-                    checked={props.currentAllEquipmentFieldData.modifyFire}
-                    onChange={() => setModifyFire()}
-                />
-                <label className='equipmentLabel'>Fire:</label>
-                <input
-                    name={'EquipmentFire'}
-                    className='equipmentInputField three-digit-input'
-                    type='number'
-                    value={props.currentEquipmentFieldData.currentFire}
-                    onChange={(e) => setCurrentFire(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                    min='-150'
-                    max='100'
-                />
-                <Form.Check
-                    id='allEquipmentPhysicalSwitch'
-                    type='switch'
-                    style={{ margin: 'auto' }}
-                    checked={props.currentAllEquipmentFieldData.modifyPhysical}
-                    onChange={() => setModifyPhysical()}
-                />
-                <label className='equipmentLabel'>Physical:</label>
-                <input
-                    name={'EquipmentPhysical'}
-                    className='equipmentInputField three-digit-input'
-                    type='number'
-                    value={props.currentEquipmentFieldData.currentPhysical}
-                    onChange={(e) => setCurrentPhysical(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                    min='-150'
-                    max='100'
-                />
-                <Form.Check
-                    id='allEquipmentBlizzardSwitch'
-                    type='switch'
-                    style={{ margin: 'auto' }}
-                    checked={props.currentAllEquipmentFieldData.modifyBlizzard}
-                    onChange={() => setModifyBlizzard()}
-                />
-                <label className='equipmentLabel'>Blizzard:</label>
-                <input
-                    name={'EquipmentBlizzard'}
-                    className='equipmentInputField three-digit-input'
-                    type='number'
-                    value={props.currentEquipmentFieldData.currentBlizzard}
-                    onChange={(e) => setCurrentBlizzard(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                    min='-150'
-                    max='100'
-                />
-                <Form.Check
-                    id='allEquipmentLightSwitch'
-                    type='switch'
-                    style={{ margin: 'auto' }}
-                    checked={props.currentAllEquipmentFieldData.modifyLight}
-                    onChange={() => setModifyLight()}
-                />
-                <label className='equipmentLabel'>Light:</label>
-                <input
-                    name={'EquipmentLight'}
-                    className='equipmentInputField three-digit-input'
-                    type='number'
-                    value={props.currentEquipmentFieldData.currentLight}
-                    onChange={(e) => setCurrentLight(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                    min='-150'
-                    max='100'
-                />
-                <Form.Check
-                    id='allEquipmentThunderSwitch'
-                    type='switch'
-                    style={{ margin: 'auto' }}
-                    checked={props.currentAllEquipmentFieldData.modifyThunder}
-                    onChange={() => setModifyThunder()}
-                />
-                <label className='equipmentLabel'>Thunder:</label>
-                <input
-                    name={'EquipmentThunder'}
-                    className='equipmentInputField three-digit-input'
-                    type='number'
-                    value={props.currentEquipmentFieldData.currentThunder}
-                    onChange={(e) => setCurrentThunder(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                    min='-150'
-                    max='100'
-                />
-                <Form.Check
-                    id='allEquipmentUniversalSwitch'
-                    type='switch'
-                    style={{ margin: 'auto' }}
-                    checked={props.currentAllEquipmentFieldData.modifyUniversal}
-                    onChange={() => setModifyUniversal()}
-                />
-                <label className='equipmentLabel'>Universal:</label>
-                <input
-                    name={'EquipmentUniversal'}
-                    className='equipmentInputField three-digit-input'
-                    type='number'
-                    value={props.currentEquipmentFieldData.currentUniversal}
-                    onChange={(e) => setCurrentUniversal(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                    min='-150'
-                    max='100'
-                />
-                <Form.Check
-                    id='allEquipmentDarkSwitch'
-                    type='switch'
-                    style={{ margin: 'auto' }}
-                    checked={props.currentAllEquipmentFieldData.modifyDark}
-                    onChange={() => setModifyDark()}
-                />
-                <label className='equipmentLabel'>Dark:</label>
-                <input
-                    name={'EquipmentDark'}
-                    className='equipmentInputField three-digit-input'
-                    type='number'
-                    value={props.currentEquipmentFieldData.currentDark}
-                    onChange={(e) => setCurrentDark(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                    min='-150'
-                    max='100'
-                />
+            <div className='equipmentStats'>
+                {createEquipmentStatFormRow('currentAP', 'tent', 'AP', false, 'modifyAP')}
+                {createEquipmentStatFormRow('currentStrength', 'keyblade', 'Strength', false, 'modifyStrength')}
+                {createEquipmentStatFormRow('currentMagic', 'spell', 'Magic', false, 'modifyMagic')}
+                {createEquipmentStatFormRow('currentDefense', 'armor', 'Defense', false, 'modifyDefense')}
             </div>
             <hr />
-            <div className='equipmentReplaceButtonGroup'>
-                <Button
-                    variant='secondary'
-                    onClick={() => props.handleVanilla()}
-                >
-                    VANILLA
-                </Button>
-                <Button
-                    onClick={() => props.handleReplace()}
-                >
-                    CONFIRM
-                </Button>
+            <div className='equipmentStats'>
+                {createEquipmentStatFormRow('currentFire', 'fire', 'Fire', true, 'modifyFire')}
+                {createEquipmentStatFormRow('currentBlizzard', 'blizzard', 'Blizzard', true, 'modifyBlizzard')}
+                {createEquipmentStatFormRow('currentThunder', 'thunder', 'Thunder', true, 'modifyThunder')}
+                {createEquipmentStatFormRow('currentDark', 'critical', 'Dark', true, 'modifyDark')}
             </div>
-        </div>
+            <hr />
+            <div className='equipmentStats'>
+                {createEquipmentStatFormRow('currentPhysical', 'shield', 'Physical', true, 'modifyPhysical')}
+                {createEquipmentStatFormRow('currentLight', 'shield', 'Light', true, 'modifyLight')}
+                {createEquipmentStatFormRow('currentUniversal', 'shield', 'Universal', true, 'modifyUniversal')}
+            </div>
+            {!props.isEditing
+                ? <></>
+                : <>
+                    <hr />
+                    <div className='formReplaceButtonGroup'>
+                        <Button
+                            variant='secondary'
+                            onClick={() => props.handleVanilla(currentEnabledData)}
+                        >
+                            VANILLA
+                        </Button>
+                        <Button onClick={() => props.handleReplace(currentFieldData, currentEnabledData)}>
+                            CONFIRM
+                        </Button>
+                    </div>
+                </>
+            }
+        </>
     )
 }
 

@@ -3,7 +3,7 @@ import React from 'react'
 import Icon from '../Components/Icon'
 
 import LevelStatChange from './util/LevelStatChange'
-import LevelStat from './util/LevelStat'
+import GenericStatValue from '../Components/GenericStatValue'
 import LevelStatName from './util/LevelStatName'
 
 function LevelCardContent(props) {
@@ -34,7 +34,7 @@ function LevelCardContent(props) {
             <div className={`levelStatRow ${statName.toLowerCase().replace(/\s/g, '')}`}>
                 <LevelStatName statName={statName} />
                 {levelDif === 0 ? <div /> : <LevelStatChange stat={levelDif} />}
-                <LevelStat stat={level} statName={statName} />
+                <GenericStatValue stat={level} statName={statName} />
             </div>
         )
     }
@@ -50,9 +50,9 @@ function LevelCardContent(props) {
                         {critDif}
                     </LevelStatChange>
                 }
-                <LevelStat stat={props.level.standardAP} statName='ap'>
+                <GenericStatValue stat={props.level.standardAP} statName='ap'>
                     {` [${props.level.criticalAP()}]`}
-                </LevelStat>
+                </GenericStatValue>
             </div>
         )
     }

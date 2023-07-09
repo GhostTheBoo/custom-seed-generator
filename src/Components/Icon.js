@@ -42,12 +42,15 @@ function Icon(props) {
 				width={iconSize}
 				style={{ verticalAlign: 'middle' }}
 			/>
-			<span
-				className={'iconDescription' + classNameSuffix}
-				style={{ verticalAlign: 'middle' }}
-			>
-				{text}
-			</span>
+			{text.length !== 0
+				? <span
+					className={'iconDescription' + classNameSuffix}
+					style={{ verticalAlign: 'middle' }}
+				>
+					{text}
+				</span>
+				: <></>
+			}
 		</>
 	)
 }

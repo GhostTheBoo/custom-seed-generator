@@ -19,6 +19,10 @@
 	margin-top: 0;
 }
 
+.invis {
+	visibility: hidden;
+}
+
 /* Main Page Appearance */
 body {
 	background-color: #222;

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function LevelStat(props) {
+function GenericStatValue(props) {
     let textColor = '#FFFFFF'
 
     if (props.statName.toLowerCase() === 'strength')
@@ -21,4 +21,4 @@ function LevelStat(props) {
     )
 }
 
-export default LevelStat
+export default GenericStatValue

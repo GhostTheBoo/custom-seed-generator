@@ -82,7 +82,6 @@ function LevelGraphModal(props) {
                         <XAxis allowDecimals={false} type='number' dataKey='level' />
                         <YAxis yAxisId='exp' orientation='right' domain={[0, 'dataMax + 1']} />
                         <YAxis yAxisId='stats' domain={[0, '']} />
-                        <YAxis yAxisId='exp' orientation='right' domain={[0, 'dataMax + 1']} />
                         <Tooltip content={<></>} />
                         <Legend formatter={formatStatNames} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
                         <Line yAxisId='stats' dot={false} type='monotone' dataKey='strength' strokeOpacity={lineOpacity.strength} stroke='#FF8080' strokeWidth={5} />

@@ -4,48 +4,62 @@ import Icon from '../Components/Icon'
 import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
 
 function EquipmentCard(props) {
-    let equipmentImage = './images/equipmentImages/' + props.currentFolderName + '/' + props.equipment.baseAddress.toString(16).toUpperCase() + '.png'
-
-    let equipmentStatList = []
-    let equipmentElementalResList = []
-    let equipmentOtherResList = []
-
-    function createStatRow(label, stat) {
-        let suffix = label.slice(-3) === 'Res' ? '%' : ''
-        let className = props.equipment.shouldShowStat(label, stat) ? 'equipmentStatRow' : 'equipmentEmptyRow'
+    function createStatRow(fileName, label, stat, shouldDisplay) {
+        let isRes = label.slice(-3) === 'Res' ? '%' : ''
         return (
-            <div key={props.equipment.baseAddress + label.toLowerCase()} className={className + (!props.isWide ? ' equipmentSquishRow' : '')}>
-                <div>{label}</div>
-                <div className='equipmentStatNumber'>{stat + suffix}</div>
-            </div>
+            <Icon
+                key={`${props.equipment.name}${label}`}
+                fileName={fileName}
+                type={'row'}
+                className={`equipmentStatIcon${isRes ? ' resistance' : ''}${!shouldDisplay && stat === 0 ? ' invis' : ''}`}
+            >
+                {stat}
+            </Icon>
         )
     }
 
-    equipmentStatList.push(createStatRow('AP', props.equipment.ap))
-    equipmentStatList.push(createStatRow('Strength', props.equipment.strength))
-    equipmentStatList.push(createStatRow('Magic', props.equipment.magic))
-    equipmentStatList.push(createStatRow('Defense', props.equipment.defense))
+    function handleMouseEnter() {
+        if (props.isFormOpen && !props.isEditing) props.setCurrentEquipment(props.id)
+    }
 
-    equipmentElementalResList.push(createStatRow('Fire', props.equipment.fire))
-    equipmentElementalResList.push(createStatRow('Blizzard', props.equipment.blizzard))
-    equipmentElementalResList.push(createStatRow('Thunder', props.equipment.thunder))
-    equipmentElementalResList.push(createStatRow('Dark', props.equipment.dark))
+    function handleEditOnClick() {
+        props.setCurrentEquipment(props.id)
+        props.setIsEditing(true)
+    }
 
-    equipmentOtherResList.push(createStatRow('Physical', props.equipment.physical))
-    equipmentOtherResList.push(createStatRow('Light', props.equipment.light))
-    equipmentOtherResList.push(createStatRow('Universal', props.equipment.universal))
+    let overlayPopover = <EditStatusPopover
+        text={!props.equipment.isValidEquipment() ? 'WARNING!' : 'NEW!'}
+        message={!props.equipment.isValidEquipment() ? 'Equipment can only draw 5 stats on screen' : ''}
+        type='equipment'
+    />
 
-    let rewardClassName = props.equipment.isWeapon() || props.equipment.replacementAbility.index !== 0
-        ? 'equipmentStatRow'
-        : 'equipmentEmptyRow'
+    let currentState = ''
+    if (props.isSelected)
+        currentState = props.isEditing ? 'selected' : 'hovered'
 
-    equipmentOtherResList.push(
+    let fileNameList = [
+        'keyblade',
+        'donald',
+        'goofy',
+        'ally',
+        'armor',
+        'accessory'
+    ]
+
+    return (
         <div
-            key={props.equipment.baseAddress + ''}
-            className={rewardClassName + ' equipmentReward' + (!props.isWide ? ' equipmentSquishRow' : '')}
+            className={`equipmentCard ${currentState}`}
+            onMouseEnter={handleMouseEnter}
         >
-            <div>Ability</div>
-            <div>
+            {props.equipment.isReplaced() ? overlayPopover : <></>}
+            <Icon
+                fileName={fileNameList[props.equipment.equipmentType]}
+                type={'form'}
+                className={'equipmentTypeIcon'}
+            >
+                {props.equipment.name}
+            </Icon>
+            <div className='equipmentCardDetails'>
                 <Icon
                     fileName={props.equipment.replacementAbility.iconType}
                     type={'form'}
@@ -54,39 +68,19 @@ function EquipmentCard(props) {
                     {props.equipment.replacementAbility.reward}
                 </Icon>
             </div>
-        </div>
-    )
-
-    let overlayPopover = <EditStatusPopover
-        text={!props.equipment.isValidEquipment() ? 'WARNING!' : 'NEW!'}
-        message={!props.equipment.isValidEquipment() ? 'Equipment can only draw 5 stats on screen' : ''}
-        type='equipment'
-    />
-
-    return (
-        <div className='equipmentCard'>
-            {props.equipment.isReplaced() ? overlayPopover : <></>}
-            <div className={'equipmentColumn equipmentImageColumn' + (!props.isWide ? ' equipmentSquishColumn' : '')}>
-                <img
-                    className={'equipmentImage' + (!props.isWide ? ' equipmentSquishImage' : '')}
-                    src={equipmentImage}
-                    alt={props.equipment.name + ' image'}
-                />
-                <div className={'equipmentName' + (!props.isWide ? ' equipmentSquishName' : '')}>{props.equipment.name}</div>
-                <div className='equipmentEditButton'>
-                    <Button
-                        variant='primary'
-                        id={props.id}
-                        disabled={props.isEditing}
-                        onClick={() => props.setCurrentEquipment(props.id)}
-                    >
-                        {props.isEditing ? 'EDITING...' : 'EDIT'}
-                    </Button>
-                </div>
+            <div className='equipmentCardStats'>
+                {createStatRow('tent', 'AP', props.equipment.ap, props.equipment.isAccessory())}
+                {createStatRow('keyblade', 'Strength', props.equipment.strength, props.equipment.isWeapon() || props.equipment.isAllyWeapon() || props.equipment.isAccessory())}
+                {createStatRow('spell', 'Magic', props.equipment.magic, props.equipment.isWeapon() || props.equipment.isAllyWeapon() || props.equipment.isAccessory())}
+                {createStatRow('armor', 'Defense', props.equipment.defense, props.equipment.isArmor())}
+                {createStatRow('fire', 'Fire Res', props.equipment.fire, props.equipment.isArmor())}
+                {createStatRow('blizzard', 'Blizzard Res', props.equipment.blizzard, props.equipment.isArmor())}
+                {createStatRow('thunder', 'Thunder Res', props.equipment.thunder, props.equipment.isArmor())}
+                {createStatRow('critical', 'Dark Res', props.equipment.dark, props.equipment.isArmor())}
             </div>
-            <div className='equipmentColumn equipmentStatColumn'>{equipmentStatList}</div>
-            <div className='equipmentColumn equipmentResColumn'>{equipmentElementalResList}</div>
-            <div className='equipmentColumn equipmentOtherColumn'>{equipmentOtherResList}</div>
+            <Button variant='outline-info' onClick={handleEditOnClick} disabled={currentState === 'selected'}>
+                {currentState !== 'selected' ? 'EDIT' : 'EDITING...'}
+            </Button>
         </div>
     )
 }
