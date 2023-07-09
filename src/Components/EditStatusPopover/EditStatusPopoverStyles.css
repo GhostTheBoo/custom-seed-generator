@@ -15,7 +15,6 @@
     left: .5rem;
 }
 
-.editStatusPopover.chest,
 .editStatusPopover.starting,
 .editStatusPopover.level {
     font-size: 2rem;
@@ -26,6 +25,7 @@
     font-size: 1.5rem;
 }
 
+.editStatusPopover.chest,
 .editStatusPopover.popup,
 .editStatusPopover.form {
     font-size: 1rem;
@@ -46,10 +46,6 @@
 /* @media(max-width: 90rem) {} */
 
 @media(max-width: 65rem) {
-    .editStatusPopover.chest {
-        font-size: 1.75rem;
-    }
-
     .editStatusPopover.cost,
     .editStatusPopover.bonus {
         font-size: 1.25rem;
@@ -64,10 +60,6 @@
 
 
 @media(max-width: 48rem) {
-    .editStatusPopover.chest {
-        font-size: 1.5rem;
-    }
-
     .editStatusPopover.cost,
     .editStatusPopover.bonus {
         font-size: 1.25rem;

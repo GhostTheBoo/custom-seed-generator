@@ -1,7 +1,6 @@
 import React from 'react'
 import './HomeStyles.css'
 
-import NavbarIcon from '../navbar/NavbarIcon'
 import KoFi from './KoFi'
 import CreditsList from './CreditsList'
 import SaveLoad from './SaveLoad'
@@ -29,14 +28,7 @@ function HomePage(props) {
 					width='540px'
 					style={{ display: 'block', margin: 'auto' }}
 				/>
-				<div className='homePageNavbarIcon'>
-					<div className='flex-grow-1' />
-					<NavbarIcon
-						showNavbar={props.handleShowNavbar}
-						fileName={'home'}
-						title={'Home'}
-					/>
-				</div>
+				<div className='flex-grow-1' />
 			</div>
 			<div className='homePageContent'>
 				{/* <CreditsList /> */}

@@ -1,8 +1,5 @@
 import React from 'react'
 
-import { Button } from 'react-bootstrap'
-import { motion } from 'framer-motion'
-
 import RewardSelectorButton from '../rewards/RewardSelectorButton'
 import { EMPTY } from '../rewards/RewardsData'
 import Icon from '../Components/Icon'
@@ -16,17 +13,20 @@ function ChestCard(props) {
 	// handleReplace: handle reward replacement -> function
 	// id: id of chest card -> number
 
-	let chestImage = './images/chestImages/' + props.currentFolderName + '/' + props.currentFolderName + '.png'
-	let chestAltText = props.currentFolderName + 'All Chests'
-	let chestRoom = (<></>)
-	let chestReward = (<div className='chestCardReward flexGrow1'>All Chests</div>)
+	let chestRoom = <div className='chestCardRoom'>All Chests</div>
+	let key = 'all'
+	let chestReward = <></>
 	let chestRewardSelector = (
 		<RewardSelectorButton
+			useIcon={true}
+			iconPath={'./images/extra/edit.svg'}
 			onReplace={(replacementReward) => props.handleReplace(replacementReward)}
 		/>
 	)
 	let emptyChestRewardSelector = (
 		<RewardSelectorButton
+			useIcon={true}
+			iconPath={'./images/extra/fill.svg'}
 			onReplace={(replacementReward) => props.handleReplaceAllEmpty(replacementReward)}
 			textOverride='Replace All Empty'
 			variantOverride='dark'
@@ -36,34 +36,36 @@ function ChestCard(props) {
 	let overlayPopover = <></>
 
 	if (props.chest !== undefined) {
-		chestImage = './images/chestImages/' + props.currentFolderName + '/' + props.chest.vanillaAddress.toString(16).toUpperCase() + '.png'
-		chestAltText = props.chest.room + ' ' + props.chest.replacementReward.reward
-		chestRoom = (<div className='chestCardRoom flexGrow1'>{props.chest.room}</div>)
+		chestRoom = <div className='chestCardRoom'>{props.chest.room !== props.prevChestRoom ? props.chest.room : ''}</div>
+		key = props.chest.address
 		chestReward = (
-			<div className='chestCardReward'>
+			<>
 				<Icon
 					fileName={props.chest.replacementReward.iconType}
-					type={'card'}
+					type={'row'}
+					className='chestCardIcon'
 				>
 					{props.chest.replacementReward.reward}
 				</Icon>
-			</div>
+			</>
 		)
 		chestRewardSelector = (
 			<RewardSelectorButton
+				useIcon={true}
+				iconPath={'./images/extra/edit.svg'}
 				originalReward={props.chest.vanillaReward}
 				onReplace={(replacementReward) => props.handleReplace(replacementReward)}
 			/>
 		)
 		emptyChestRewardSelector = (
-			<Button
-				variant='dark'
-				id={props.id}
-				className='chestCardEMPTY'
+			<img
+				className='chestCardEditIcon empty btn btn-dark'
+				src='./images/extra/trash.svg'
+				alt='edit'
+				width='100%'
+				height='auto'
 				onClick={() => props.handleReplace(EMPTY)}
-			>
-				Empty
-			</Button>
+			/>
 		)
 		overlayPopover = props.chest.isReplaced()
 			? <EditStatusPopover
@@ -74,39 +76,33 @@ function ChestCard(props) {
 			: <></>
 	}
 
+	function handleMouseEnter() {
+		props.setCurrentChest(props.id)
+	}
+
 	return (
-		<motion.div
-			initial={{ opacity: .25, x: 100 }}
-			animate={{ opacity: 1, x: 0 }}
-			exit={{ opacity: 0, y: 100 }}
-			transition={{ type: 'spring', duration: .5 }}
-			key={`chestCard${chestImage}`}
-			className='chestCard'
+		<div
+			key={`chestCard${key}`}
+			className={`chestCard${props.isHovered ? ' hovered' : ''}`}
+			onMouseEnter={handleMouseEnter}
 		>
-			<div style={{ position: 'relative' }}>
-				{overlayPopover}
-				<img
-					className='chestCardImage'
-					src={chestImage}
-					alt={chestAltText}
-					width='100%'
-					height='auto'
-				/>
-			</div>
+			{overlayPopover}
 			{chestRoom}
 			{chestReward}
-			<div className='flex-grow-1' />
-			{chestRewardSelector}
-			<Button
-				variant='secondary'
-				id={props.id}
-				className='chestCardVanilla'
-				onClick={() => props.handleVanilla()}
-			>
-				Vanilla
-			</Button>
-			{emptyChestRewardSelector}
-		</motion.div>
+			<div />
+			<div className='chestCardIconGroup'>
+				{chestRewardSelector}
+				<img
+					className='chestCardEditIcon vanilla btn btn-secondary'
+					src='./images/extra/undo.svg'
+					alt='edit'
+					width='100%'
+					height='auto'
+					onClick={() => props.handleVanilla()}
+				/>
+				{emptyChestRewardSelector}
+			</div>
+		</div>
 	)
 }
 

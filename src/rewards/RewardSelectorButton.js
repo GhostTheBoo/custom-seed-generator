@@ -31,13 +31,23 @@ function RewardSelector(props) {
 	}
 	return (
 		<>
-			<Button
-				variant={buttonVariant}
-				onClick={() => setShow(true)}
-				disabled={isDisabled}
-			>
-				{buttonText}
-			</Button>
+			{props.useIcon !== undefined && props.useIcon
+				? <img
+					className={`editIcon edit btn btn-${buttonVariant}`}
+					src={props.iconPath}
+					alt='edit'
+					width='100%'
+					height='auto'
+					onClick={() => setShow(true)}
+				/>
+				: <Button
+					variant={buttonVariant}
+					onClick={() => setShow(true)}
+					disabled={isDisabled}
+				>
+					{buttonText}
+				</Button>
+			}
 			{show
 				? <RewardSelectorModal
 					show={show}
