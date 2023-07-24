@@ -197,7 +197,7 @@ function LevelPage(props) {
 					currentLevel === -1
 						? <>
 							<div
-								className={`levelCardList flex-grow-1 ${currentDisplayedForm !== 2 ? 'editing' : ''}`}
+								className={`levelCardList${currentDisplayedForm !== 2 ? ' editing' : ''}`}
 								ref={levelCardListRef}
 							>
 								<motion.div

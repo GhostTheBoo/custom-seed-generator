@@ -6,14 +6,18 @@
 
 .levelCardList {
   overflow-y: auto;
-  height: 98vh;
+  display: grid;
+  grid-template-columns: 1rem 1fr;
+  height: 96vh;
   width: 100%;
   padding: 0 .5rem .5rem .5rem;
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  row-gap: 1.5rem;
   z-index: 1;
+}
+
+.levelCardList>.pageHeader {
+  grid-column: span 2;
 }
 
 .levelPageContent>div:first-child {
@@ -47,9 +51,4 @@
 
 @media(max-width: 65rem) {}
 
-@media(max-width: 48rem) {
-  .level.fullPageContent>.pageHeader {
-    align-items: start;
-    flex-direction: column-reverse;
-  }
-}
+@media(max-width: 48rem) {}

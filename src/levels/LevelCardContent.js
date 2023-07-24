@@ -33,8 +33,8 @@ function LevelCardContent(props) {
         return (
             <div className={`levelStatRow ${statName.toLowerCase().replace(/\s/g, '')}`}>
                 <LevelStatName statName={statName} />
-                {levelDif === 0 ? <div /> : <LevelStatChange stat={levelDif} />}
                 <GenericStatValue stat={level} statName={statName} />
+                {levelDif === 0 ? <div /> : <LevelStatChange stat={levelDif} />}
             </div>
         )
     }
@@ -44,15 +44,15 @@ function LevelCardContent(props) {
         return (
             <div className='levelStatRow ap'>
                 <LevelStatName statName='Standard [Critical] AP' />
+                <GenericStatValue stat={props.level.standardAP} statName='ap'>
+                    {` [${props.level.criticalAP()}]`}
+                </GenericStatValue>
                 {dif === 0
                     ? <div />
                     : <LevelStatChange stat={dif}>
                         {critDif}
                     </LevelStatChange>
                 }
-                <GenericStatValue stat={props.level.standardAP} statName='ap'>
-                    {` [${props.level.criticalAP()}]`}
-                </GenericStatValue>
             </div>
         )
     }
