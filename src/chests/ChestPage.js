@@ -12,8 +12,8 @@ function ChestPage(props) {
 	// chestData: array of worlds + chest objects -> {world, chests[]}[]
 	// setAllChests: parent state function to set all chests -> function
 
-	const [currentWorld, setCurrentWorld] = useState(0)
 	const [currentChest, setCurrentChest] = useState(0)
+	const [currentWorld, setCurrentWorld] = useState(0)
 	const chestCardGrid = useRef(null)
 	useEffect(() => {
 		chestCardGrid.current.scrollTo({ top: 0, behavior: 'smooth' })
@@ -52,8 +52,12 @@ function ChestPage(props) {
 	}
 
 	let prevChestRoom = ''
-	let chestList = currentWorldChests.map((chest, chestIndex) => {
-		let newChest = (
+	let chestList = []
+	currentWorldChests.forEach((chest, chestIndex) => {
+		if (chest.room !== prevChestRoom) {
+			chestList.push(<h1 className='chestRoomHeader' key={chest.room + 'header' + chestIndex}>{chest.room}</h1>)
+		}
+		chestList.push(
 			<ChestCard
 				key={'chest' + chestIndex}
 				id={chestIndex}
@@ -67,8 +71,9 @@ function ChestPage(props) {
 			/>
 		)
 		prevChestRoom = chest.room
-		return newChest
-	}).concat([
+	})
+	chestList.push(<hr key='whyDoINeedAKey' />)
+	chestList.push(
 		<ChestCard
 			key={'chestAll'}
 			id={currentWorldChests.length}
@@ -79,7 +84,7 @@ function ChestPage(props) {
 			handleReplace={(replacementReward) => updateAllChests(currentWorldChests.map(chest => { return chest.replace({ reward: { ...replacementReward } }) }))}
 			handleReplaceAllEmpty={(replacementReward) => updateAllEmptyChests(replacementReward)}
 		/>
-	])
+	)
 
 	return (
 		<div className='pageContent chestPageContent' ref={chestCardGrid}>

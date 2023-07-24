@@ -1,8 +1,5 @@
 import React from 'react'
 
-import { Button } from 'react-bootstrap'
-import { motion } from 'framer-motion'
-
 import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
 
 import RewardSelectorButton from '../rewards/RewardSelectorButton'
@@ -17,15 +14,20 @@ function PopupCard(props) {
 	// handleReplace: function to replace -> function
 	// id: row number -> number
 
-	let popupCheck = (<div className='popupCardCheck'>{props.world}</div>)
-	let popupReward = (<div className='popupCardReward flex-grow-1'>All Popups</div>)
+	let popupName = <div className='popupCardName'>All Popups</div>
+	let key = 'all'
+	let popupReward = <></>
 	let popupRewardSelector = (
 		<RewardSelectorButton
+			useIcon={true}
+			iconPath={'./images/extra/edit.svg'}
 			onReplace={(replacementReward) => props.handleReplace(replacementReward)}
 		/>
 	)
 	let emptyPopupRewardSelector = (
 		<RewardSelectorButton
+			useIcon={true}
+			iconPath={'./images/extra/fill.svg'}
 			onReplace={(replacementReward) => props.handleReplaceAllEmpty(replacementReward)}
 			textOverride='Replace All Empty'
 			variantOverride='dark'
@@ -35,32 +37,36 @@ function PopupCard(props) {
 	let overlayPopover = <></>
 
 	if (props.popup !== undefined) {
-		popupCheck = (<div className='popupCardCheck flex-grow-1'>{props.popup.popup}</div>)
+		popupName = <div className='popupCardName'>{props.popup.popup}</div>
+		key = props.popup.vanillaAddress
 		popupReward = (
-			<div className='popupCardReward flex-grow-1'>
+			<>
 				<Icon
 					fileName={props.popup.replacementReward.iconType}
-					type={'card'}
+					type={'row'}
+					className='popupCardIcon'
 				>
 					{props.popup.replacementReward.reward}
 				</Icon>
-			</div>
+			</>
 		)
 		popupRewardSelector = (
 			<RewardSelectorButton
+				useIcon={true}
+				iconPath='./images/extra/edit.svg'
 				originalReward={props.popup.vanillaReward}
 				onReplace={(replacementReward) => props.handleReplace(replacementReward)}
 			/>
 		)
 		emptyPopupRewardSelector = (
-			<Button
-				variant='dark'
-				id={props.id}
-				className='popupCardEMPTY'
+			<img
+				className='popupCardEditIcon empty btn btn-dark'
+				src='./images/extra/trash.svg'
+				alt='edit'
+				width='100%'
+				height='auto'
 				onClick={() => props.handleReplace(EMPTY)}
-			>
-				Empty
-			</Button>
+			/>
 		)
 		overlayPopover = props.popup.isReplaced()
 			? <EditStatusPopover
@@ -72,30 +78,28 @@ function PopupCard(props) {
 	}
 
 	return (
-		<motion.div
-			initial={{ opacity: .25, x: 100 }}
-			animate={{ opacity: 1, x: 0 }}
-			transition={{ type: 'spring', duration: .5 }}
-			key={`popupCard${props.world}${props.id}`}
-			className='popupCard'
+		<div
+			key={`popupCard${key}`}
+			className={`popupCard${props.isHovered ? ' hovered' : ''}`}
+			onMouseEnter={() => props.setCurrentPopup(props.id)}
 		>
-			<div style={{ position: 'relative' }}>
-				{overlayPopover}
-			</div>
-			{popupCheck}
+			{overlayPopover}
+			{popupName}
 			{popupReward}
-			<div className='flex-grow-1'/>
-			{popupRewardSelector}
-			<Button
-				variant='secondary'
-				id={props.id}
-				className='popupCardVanilla'
-				onClick={() => props.handleVanilla()}
-			>
-				Vanilla
-			</Button>
-			{emptyPopupRewardSelector}
-		</motion.div>
+			<div />
+			<div className='popupCardIconGroup'>
+				{popupRewardSelector}
+				<img
+					className='popupCardEditIcon vanilla btn btn-secondary'
+					src='./images/extra/undo.svg'
+					alt='edit'
+					width='100%'
+					height='auto'
+					onClick={() => props.handleVanilla()}
+				/>
+				{emptyPopupRewardSelector}
+			</div>
+		</div>
 	)
 }
 

@@ -13,9 +13,17 @@ function ChestCard(props) {
 	// handleReplace: handle reward replacement -> function
 	// id: id of chest card -> number
 
-	let chestRoom = <div className='chestCardRoom'>All Chests</div>
 	let key = 'all'
-	let chestReward = <></>
+	let chestReward =
+		<>
+			<Icon
+				fileName={EMPTY.iconType}
+				type={'row'}
+				className='chestCardIcon'
+			>
+				All Chests
+			</Icon>
+		</>
 	let chestRewardSelector = (
 		<RewardSelectorButton
 			useIcon={true}
@@ -36,8 +44,7 @@ function ChestCard(props) {
 	let overlayPopover = <></>
 
 	if (props.chest !== undefined) {
-		chestRoom = <div className='chestCardRoom'>{props.chest.room !== props.prevChestRoom ? props.chest.room : ''}</div>
-		key = props.chest.address
+		key = props.chest.vanillaAddress
 		chestReward = (
 			<>
 				<Icon
@@ -76,18 +83,13 @@ function ChestCard(props) {
 			: <></>
 	}
 
-	function handleMouseEnter() {
-		props.setCurrentChest(props.id)
-	}
-
 	return (
 		<div
 			key={`chestCard${key}`}
 			className={`chestCard${props.isHovered ? ' hovered' : ''}`}
-			onMouseEnter={handleMouseEnter}
+			onMouseEnter={() => props.setCurrentChest(props.id)}
 		>
 			{overlayPopover}
-			{chestRoom}
 			{chestReward}
 			<div />
 			<div className='chestCardIconGroup'>

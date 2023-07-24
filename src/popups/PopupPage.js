@@ -1,20 +1,23 @@
 import React, { useState, useRef, useEffect } from 'react'
 
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 import GenericSelect from '../Components/GenericSelect'
 
 import PopupCard from './PopupCard'
 
 import './PopupStyles.css'
+import PopupImageCard from './PopupImageCard'
 
 function PopupPage(props) {
 	// PROPS:
 	// popupData: array of worlds + popup objects -> {world, popups[]}[]
 	// setAllPopups: parent state function to set all popups -> function
 
+	const [currentPopup, setCurrentPopup] = useState(0)
 	const [currentWorld, setCurrentWorld] = useState(0)
 	let currentWorldPopups = props.popupData[currentWorld].popups
+	const popupFolderNames = ['agr', 'atl', 'bc', 'dc', 'ht', 'hb', 'lod', 'oc', 'cups', 'pooh', 'pr', 'pl', 'stt', 'sp', 'tr', 'tt', 'twtnw']
 	const popupCardGrid = useRef(null)
 	useEffect(() => {
 		popupCardGrid.current.scrollTo({ top: 0, behavior: 'smooth' })
@@ -55,6 +58,9 @@ function PopupPage(props) {
 				id={popupIndex}
 				world={props.popupData[currentWorld].world}
 				popup={popup}
+				isHovered={popupIndex === currentPopup}
+				setCurrentPopup={setCurrentPopup}
+				currentFolderName={popupFolderNames[currentWorld]}
 				handleVanilla={() => { updatePopups(popup.vanilla()) }}
 				handleReplace={(replacementReward) => { updatePopups(popup.replace({ reward: { ...replacementReward } })) }}
 			/>
@@ -64,6 +70,8 @@ function PopupPage(props) {
 			key={'AllPopups'}
 			id={currentWorldPopups.length}
 			world={props.popupData[currentWorld].world}
+			setCurrentPopup={setCurrentPopup}
+			currentFolderName={popupFolderNames[currentWorld]}
 			handleVanilla={() => updateAllPopups(currentWorldPopups.map(popup => { return popup.vanilla() }))}
 			handleReplace={(replacementReward) => updateAllPopups(currentWorldPopups.map(popup => { return popup.replace({ reward: { ...replacementReward } }) }))}
 			handleReplaceAllEmpty={(replacementReward) => updateAllEmptyPopups(replacementReward)}
@@ -96,9 +104,32 @@ function PopupPage(props) {
 					{props.children}
 				</div>
 			</motion.div>
-			<div className='popupCardGrid'>
-				{popupList}
-			</div>
+			<AnimatePresence mode='popLayout'>
+				<motion.div
+					initial={{ opacity: .25, x: 100 }}
+					animate={{ opacity: 1, x: 0 }}
+					exit={{ opacity: 0, y: 100 }}
+					transition={{ type: 'spring', duration: .5 }}
+					key={currentWorld}
+					className='popupCardGrid'
+				>
+					{popupList}
+				</motion.div>
+				<motion.div
+					initial={{ opacity: .25, x: 100 }}
+					animate={{ opacity: 1, x: 0 }}
+					exit={{ opacity: 0, y: 100 }}
+					transition={{ type: 'spring', duration: .5 }}
+					key={currentWorld + 'image'}
+				>
+					<PopupImageCard
+						key={'popupImage'}
+						id='popupImageCard'
+						currentPopup={props.popupData[currentWorld].popups[currentPopup]}
+						currentFolderName={popupFolderNames[currentWorld]}
+					/>
+				</motion.div>
+			</AnimatePresence>
 		</div>
 	)
 }
