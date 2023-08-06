@@ -98,7 +98,12 @@ function CostPage(props) {
 
 	return (
 		<div className='fullPageContent'>
-			<div className='pageHeader'>
+			<motion.div
+				initial={{ opacity: .25, x: 100 }}
+				animate={{ opacity: 1, x: 0 }}
+				transition={{ type: 'spring', duration: .5 }}
+				className='pageHeader'
+			>
 				<div className='pageHeaderSelectorLabel'>
 					Ability Type Selector:
 				</div>
@@ -114,27 +119,19 @@ function CostPage(props) {
 				</div>
 				<div className='flex-grow-1' />
 				<div>{props.children}</div>
-				<NavbarIcon
-					showNavbar={props.handleShowNavbar}
-					fileName={'spell'}
-					title={'Ability Costs'}
-				/>
-			</div>
-			<div className='costPageContent'>
+			</motion.div>
+			<AnimatePresence mode='popLayout'>
+				<motion.div
+					initial={{ opacity: .25, x: 100 }}
+					animate={{ opacity: 1, x: 0 }}
+					exit={{ opacity: 0, y: 100 }}
+					transition={{ type: 'spring', duration: .5 }}
+					key={`cost${currentAbilityType}`}
+					className='costPageContent'
+				>
 				<div className='costCardGrid flex-grow-1' ref={costCardGrid}>{costList}</div>
-				{
-					currentCategory !== -1
-						? <CostForm
-							category={props.costData[currentAbilityType].abilities[currentCategory]}
-							categoryIndex={currentCategory}
-							currentCostFieldData={currentCostFieldData}
-							setCurrentCostFieldData={setCurrentCostFieldData}
-							closeModal={() => handleCurrentCategoryChange(-1)}
-							updateCost={updateCost}
-						/>
-						: <></>
-				}
-			</div>
+				</motion.div>
+			</AnimatePresence>
 		</div>
 	)
 }

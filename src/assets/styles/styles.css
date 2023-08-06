@@ -29,7 +29,6 @@ body {
 }
 
 .App {
-	margin: 0 .25rem .25rem .25rem;
 	color: #fff;
 	display: grid;
 	grid-template-columns: auto 1fr;
@@ -37,19 +36,13 @@ body {
 	overflow: hidden;
 }
 
-.pageContent {
-	/* width: %; */
-	height: 98vh;
-	padding-top: 1rem;
-	position: relative;
-	overflow: hidden
-}
-
-/* 
 .fullPageContent {
-	margin-left: 1rem;
-	margin-right: 1rem;
-} */
+	position: relative;
+	overflow-y: auto;
+	overflow-x: hidden;
+	height: 98vh;
+	padding: 0 .5rem .5rem .5rem;
+}
 
 .pageHeader {
 	display: flex;

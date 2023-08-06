@@ -117,7 +117,7 @@ function FormPage(props) {
 
 	// console.log(props.formData[currentDriveForm].driveLevels[currentDriveFormLevel].level)
 	return (
-		<div className='fullPageContent'>
+		<div className='fullPageContent formPageContent'>
 			<motion.div
 				initial={{ opacity: .25, x: 100 }}
 				animate={{ opacity: 1, x: 0 }}
@@ -142,62 +142,60 @@ function FormPage(props) {
 					{props.children}
 				</div>
 			</motion.div>
-			<div className='formPageContent'>
-				<AnimatePresence mode='popLayout'>
-					<motion.ul
-						initial={{ opacity: .25, x: 100 }}
-						animate={{ opacity: 1, x: 0 }}
-						exit={{ opacity: 0, y: 100 }}
-						transition={{ type: 'spring', duration: .5 }}
-						key={`${props.formData[currentDriveForm].driveForm}LevelList`}
-						className='formLevelList'
-					>
-						{levelDataList}
-					</motion.ul>
-				</AnimatePresence>
-				<AnimatePresence mode='popLayout'>
-					{
-						currentDisplayedForm === 0
-							? <motion.div
-								initial={{ opacity: .25, x: 100 }}
-								animate={{ opacity: 1, x: 0 }}
-								exit={{ opacity: 0, y: 100 }}
-								transition={{ type: 'spring', duration: .5 }}
+			<AnimatePresence mode='popLayout'>
+				<motion.ul
+					initial={{ opacity: .25, x: 100 }}
+					animate={{ opacity: 1, x: 0 }}
+					exit={{ opacity: 0, y: 100 }}
+					transition={{ type: 'spring', duration: .5 }}
+					key={`${props.formData[currentDriveForm].driveForm}LevelList`}
+					className='formLevelList'
+				>
+					{levelDataList}
+				</motion.ul>
+			</AnimatePresence>
+			<AnimatePresence mode='popLayout'>
+				{
+					currentDisplayedForm === 0
+						? <motion.div
+							initial={{ opacity: .25, x: 100 }}
+							animate={{ opacity: 1, x: 0 }}
+							exit={{ opacity: 0, y: 100 }}
+							transition={{ type: 'spring', duration: .5 }}
+							key={props.formData[currentDriveForm].driveLevels[currentDriveFormLevel].level}
+							className='formFormCard'
+						>
+							<FormForm
 								key={props.formData[currentDriveForm].driveLevels[currentDriveFormLevel].level}
-								className='formFormCard'
-							>
-								<FormForm
-									key={props.formData[currentDriveForm].driveLevels[currentDriveFormLevel].level}
-									currentLevel={props.formData[currentDriveForm].driveLevels[currentDriveFormLevel]}
-									currentDriveForm={props.formData[currentDriveForm].driveForm}
-									closeFormCard={() => handleDriveFormLevelChange(-1)}
-									setCurrentLevel={updateAllDriveForms}
-								/>
-							</motion.div>
-							: <React.Fragment key='formFragment'></React.Fragment>
-					}
-					{
-						currentDisplayedForm === 1
-							? <motion.div
-								initial={{ opacity: .25, x: 100 }}
-								animate={{ opacity: 1, x: 0 }}
-								exit={{ opacity: 0, y: 100 }}
-								transition={{ type: 'spring', duration: .5 }}
-								key={`${props.formData[currentDriveForm].driveForm}form`}
-								className='formFormCard'
-							>
-								<AllFormForm
-									key={props.formData[currentDriveForm].driveForm}
-									currentDriveLevels={props.formData[currentDriveForm].driveLevels}
-									closeFormCard={() => handleDriveFormLevelChange(-1)}
-									handleVanilla={vanillaAllLevels}
-									handleReplace={replaceAllLevels}
-								/>
-							</motion.div>
-							: <React.Fragment key='allFormFragment'></React.Fragment>
-					}
-				</AnimatePresence>
-			</div>
+								currentLevel={props.formData[currentDriveForm].driveLevels[currentDriveFormLevel]}
+								currentDriveForm={props.formData[currentDriveForm].driveForm}
+								closeFormCard={() => handleDriveFormLevelChange(-1)}
+								setCurrentLevel={updateAllDriveForms}
+							/>
+						</motion.div>
+						: <React.Fragment key='formFragment'></React.Fragment>
+				}
+				{
+					currentDisplayedForm === 1
+						? <motion.div
+							initial={{ opacity: .25, x: 100 }}
+							animate={{ opacity: 1, x: 0 }}
+							exit={{ opacity: 0, y: 100 }}
+							transition={{ type: 'spring', duration: .5 }}
+							key={`${props.formData[currentDriveForm].driveForm}form`}
+							className='formFormCard'
+						>
+							<AllFormForm
+								key={props.formData[currentDriveForm].driveForm}
+								currentDriveLevels={props.formData[currentDriveForm].driveLevels}
+								closeFormCard={() => handleDriveFormLevelChange(-1)}
+								handleVanilla={vanillaAllLevels}
+								handleReplace={replaceAllLevels}
+							/>
+						</motion.div>
+						: <React.Fragment key='allFormFragment'></React.Fragment>
+				}
+			</AnimatePresence>
 		</div>
 	)
 }

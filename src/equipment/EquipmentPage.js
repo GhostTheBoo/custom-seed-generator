@@ -136,7 +136,7 @@ function EquipmentPage(props) {
 
 
 	return (
-		<div className='equipmentPageContent pageContent'>
+		<div className='equipmentPageContent fullPageContent'>
 			<motion.div
 				initial={{ opacity: .25, x: 100 }}
 				animate={{ opacity: 1, x: 0 }}

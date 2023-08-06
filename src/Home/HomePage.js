@@ -1,4 +1,6 @@
 import React from 'react'
+import { motion } from 'framer-motion'
+
 import './HomeStyles.css'
 
 import KoFi from './KoFi'
@@ -10,8 +12,12 @@ function HomePage(props) {
 	let logo = './images/logo.png'
 
 	return (
-		// <div style={{ fontSize: '1.25rem' }}>
-		<div className='fullPageContent'>
+		<motion.div
+			initial={{ opacity: .25, x: 100 }}
+			animate={{ opacity: 1, x: 0 }}
+			transition={{ type: 'spring', duration: .5 }}
+			className='fullPageContent'
+		>
 			<div className='homePageHeader'>
 				<div className='homePageKofi'>
 					<KoFi
@@ -73,7 +79,7 @@ function HomePage(props) {
 					</div>
 				</div>
 			</div>
-		</div>
+		</motion.div>
 	)
 }
 

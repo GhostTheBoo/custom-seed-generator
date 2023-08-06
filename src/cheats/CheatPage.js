@@ -1,8 +1,8 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import './CheatStyles.css'
 
 import CheatListGroup from './CheatListGroup'
-import NavbarIcon from '../navbar/NavbarIcon'
 
 function CheatPage(props) {
     function toggleActiveCheat(allCheatData, setAllCheatData, cheatIndex) {
@@ -14,18 +14,23 @@ function CheatPage(props) {
     }
     return (
         <div className='fullPageContent'>
-            <div className='pageHeader'>
+            <motion.div
+                initial={{ opacity: .25, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ type: 'spring', duration: .5 }}
+                className='pageHeader'
+            >
                 <div className='flex-grow-1' />
                 <div>
                     {props.children}
                 </div>
-                <NavbarIcon
-                    showNavbar={props.handleShowNavbar}
-                    fileName={'cheat'}
-                    title={'Cheats'}
-                />
-            </div>
-            <div className='cheatPageContent'>
+            </motion.div>
+            <motion.div
+                initial={{ opacity: .25, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ type: 'spring', duration: .5 }}
+                className='cheatPageContent'
+            >
                 <h1 className='cheatTypeHeader' style={{ margin: '10px', textAlign: 'center' }}>Lua Cheats</h1>
                 <h1 className='cheatTypeHeader' style={{ margin: '10px', textAlign: 'center' }}>Zip Cheats</h1>
                 {/* <h1 className='cheatTypeHeader' style={{ margin: '10px', textAlign: 'center' }}>Pnach Cheats</h1> */}
@@ -44,7 +49,7 @@ function CheatPage(props) {
                     toggleActiveCheat={(allCheats, cheatIndex) => toggleActiveCheat(allCheats, props.setAllLuaCheats, cheatIndex)}
                 />
                 <div className='temp'>Under Construction</div>
-            </div>
+            </motion.div>
         </div>
     )
 }

@@ -79,7 +79,7 @@ function PopupPage(props) {
 	])
 
 	return (
-		<div className='pageContent popupPageContent' ref={popupCardGrid}>
+		<div className='fullPageContent popupPageContent' ref={popupCardGrid}>
 			<motion.div
 				initial={{ opacity: .25, x: 100 }}
 				animate={{ opacity: 1, x: 0 }}

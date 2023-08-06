@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import './StartingStatusStyles.css'
 
 import GenericSelect from '../Components/GenericSelect'
-import NavbarIcon from '../navbar/NavbarIcon'
 import StartingStuffList from './StartingStuffList'
 import StartingStatsForm from './StartingStatsForm'
 import { EMPTY } from '../rewards/RewardsData'
@@ -46,7 +46,12 @@ function StartingStatusPage(props) {
 
 	return (
 		<div className='fullPageContent'>
-			<div className='pageHeader'>
+			<motion.div
+				initial={{ opacity: .25, x: 100 }}
+				animate={{ opacity: 1, x: 0 }}
+				transition={{ type: 'spring', duration: .5 }}
+				className='pageHeader'
+			>
 				<div className='pageHeaderSelectorLabel'>
 					Character Selector:
 				</div>
@@ -62,13 +67,16 @@ function StartingStatusPage(props) {
 				</div>
 				<div className='flex-grow-1' />
 				<div>{props.children}</div>
-				<NavbarIcon
-					showNavbar={props.handleShowNavbar}
-					fileName={'starting'}
-					title={'Starting Status'}
-				/>
-			</div>
-			<div className='startingStatusPageContent'>
+			</motion.div>
+			<AnimatePresence mode='popLayout'>
+				<motion.div
+					initial={{ opacity: .25, x: 100 }}
+					animate={{ opacity: 1, x: 0 }}
+					exit={{ opacity: 0, y: 100 }}
+					transition={{ type: 'spring', duration: .5 }}
+					key={`startingStatus${currentCharacter}`}
+					className='startingStatusPageContent'
+				>
 				<StartingStatsForm
 					startingStats={props.startingStatusData[currentCharacter]}
 					startingStatusFieldData={currentStartingStatusFieldData}
@@ -82,7 +90,8 @@ function StartingStatusPage(props) {
 					handleDelete={(rewardIndex) => handleStartingRewardReplace(EMPTY, rewardIndex)}
 					handleAdd={(newReward) => handleStartingRewardReplace(newReward, 31)}
 				/>
-			</div>
+				</motion.div>
+			</AnimatePresence>
 		</div>
 	)
 }
