@@ -83,7 +83,6 @@ function BonusForm(props) {
 		>
 			<h1>SLOT {props.currentSlotNumber + 1}:</h1>
 			<CloseButton className='close' onClick={() => props.closeFormCard(-1)} />
-			<hr />
 			<div className='bonusCardContent'>
 				<div className='bonusFormRewards'>
 					{createBonusRewardFormRow('A', currentFieldData.rewardA)}
