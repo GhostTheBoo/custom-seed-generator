@@ -92,7 +92,7 @@ export class ZipSeed {
       this.CmdList = ret.length > 0 ? ret.slice(0, -1) : ret
       return ret.length > 0 ? ret.slice(0, -1) : ret
     }
-    this.generateMod = (fileName) => {
+    this.generateMod = (fileName, seedDescription) => {
       let ret =
         'assets:\n' +
         '- method: binarc\n' +
@@ -183,6 +183,7 @@ export class ZipSeed {
         }
       }
       ret += 'title: ' + fileName + '\n'
+      ret += 'description: ' + seedDescription + '\n'
       this.mod = ret
       return this.mod
     }
