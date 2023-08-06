@@ -1,9 +1,8 @@
 .popupPageContent {
     display: grid;
-    grid-template-columns: 70vw minmax(18rem, 30vw);
+    grid-template-columns: minmax(auto, 64vw) minmax(20rem, 1fr);
     height: 97vh;
     padding: 0 .5rem .5rem .5rem;
-    margin-top: 1rem;
     gap: 1rem;
 }
 
@@ -22,7 +21,7 @@
 .popupCard {
     position: relative;
     display: grid;
-    grid-template-columns: 20rem max-content max-content 1fr max-content;
+    grid-template-columns: minmax(15rem, 19rem) max-content auto 1fr max-content;
     align-items: center;
     background-color: #343A40;
     margin-bottom: 1rem;
@@ -85,7 +84,6 @@
     text-align: start;
     font-family: KHMenu;
     padding: 1rem 0rem 1rem 1rem;
-    text-shadow: black 3px 3px;
 }
 
 .popupImageCard .popupCardName {
