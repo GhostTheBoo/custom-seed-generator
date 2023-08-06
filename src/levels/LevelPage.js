@@ -15,6 +15,7 @@ import './styles/LevelStyles.css'
 import './styles/LevelCardStyles.css'
 import './styles/LevelCardContentStyles.css'
 import './styles/LevelCardFormStyles.css'
+import './styles/LevelGraphDetailsStyles.css'
 
 function LevelPage(props) {
 	const [currentLevel, setCurrentLevel] = useState(-1)
@@ -62,6 +63,10 @@ function LevelPage(props) {
 
 	function replaceAllLevels(appliedLevels, fieldData, enabledData) {
 		let prevLevel = level0
+		if (appliedLevels.includes('All')) {
+			appliedLevels = []
+			for (let i = 0; i < 99; i++) { appliedLevels.push(i + 1) }
+		}
 		let newLevelList = props.levelData.map(level => {
 			let newLevel = level
 			if (appliedLevels.includes(newLevel.level)) {
@@ -86,6 +91,10 @@ function LevelPage(props) {
 	}
 
 	function vanillaAllLevels(appliedLevels, enabledData) {
+		if (appliedLevels.includes('All')) {
+			appliedLevels = []
+			for (let i = 0; i < 99; i++) { appliedLevels.push(i + 1) }
+		}
 		let newLevelList = props.levelData.map(level => {
 			let newLevel = level
 			if (appliedLevels.includes(newLevel.level)) {
@@ -195,27 +204,27 @@ function LevelPage(props) {
 			<AnimatePresence>
 				{
 					currentLevel === -1
-						? <>
-							<div
-								className={`levelCardList${currentDisplayedForm !== 2 ? ' editing' : ''}`}
-								ref={levelCardListRef}
+						? <div
+							className={`levelCardList${currentDisplayedForm !== 2 ? ' editing' : ''}`}
+							ref={levelCardListRef}
+						>
+							<motion.div
+								initial={{ opacity: .25, x: 100 }}
+								animate={{ opacity: 1, x: 0 }}
+								exit={{ opacity: 0, y: 100 }}
+								transition={{ type: 'spring', duration: .5 }}
+								key='levelPageHeader'
+								className='pageHeader'
 							>
-								<motion.div
-									initial={{ opacity: .25, x: 100 }}
-									animate={{ opacity: 1, x: 0 }}
-									exit={{ opacity: 0, y: 100 }}
-									transition={{ type: 'spring', duration: .5 }}
-									key='levelPageHeader'
-									className='pageHeader'
-								>
-									<Pagination>{pageNumbers}</Pagination>
-									<Button onClick={() => handleDisplayedFormChange(100)}>
-										ALL LEVELS
-									</Button>
-								</motion.div>
-								{levelContentList}
-							</div>
-						</>
+								<Pagination>{pageNumbers}</Pagination>
+								<Button onClick={() => handleDisplayedFormChange(100)}>
+									ALL LEVELS
+								</Button>
+								<div className='flex-grow-1' />
+								{props.children}
+							</motion.div>
+							{levelContentList}
+						</div>
 						: levelForm[currentDisplayedForm]
 				}
 			</AnimatePresence>

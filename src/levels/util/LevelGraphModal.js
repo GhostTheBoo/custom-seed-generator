@@ -1,13 +1,13 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 
 import { Modal } from 'react-bootstrap'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
 import { Reward } from '../../rewards/RewardsData'
 
-import LevelCard from '../LevelCard'
-import LevelCardContent from '../LevelCardContent'
 import { Level } from '../LevelData'
+import LevelGraphDetails from './LevelGraphDetails'
+import EditStatusPopover from '../../Components/EditStatusPopover/EditStatusPopover'
 
 function LevelGraphModal(props) {
     let level0 = new Level(0, 0, 0x0, 0, 0, 0, 0, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'))
@@ -56,6 +56,12 @@ function LevelGraphModal(props) {
 
         return <span>{text}</span>;
     }
+    let overlayPopover = <EditStatusPopover
+        text='NEW!'
+        message={''}
+        type='level'
+    />
+    
     return (
         <Modal
             dialogClassName='levelGraphModal'
@@ -67,7 +73,7 @@ function LevelGraphModal(props) {
         >
             <Modal.Header closeButton closeVariant='white' />
             <Modal.Body className='levelGraphModalBody'>
-                <ResponsiveContainer width='100%' maxHeight='30rem'>
+                <ResponsiveContainer width='100%' max-height='50rem'>
                     <LineChart
                         data={props.levelData}
                         margin={{
@@ -81,7 +87,7 @@ function LevelGraphModal(props) {
                         <CartesianGrid strokeDasharray='3 3' />
                         <XAxis allowDecimals={false} type='number' dataKey='level' />
                         <YAxis yAxisId='exp' orientation='right' domain={[0, 'dataMax + 1']} />
-                        <YAxis yAxisId='stats' domain={[0, '']} />
+                        <YAxis yAxisId='stats' domain={[0, 'dataMax + 1']} />
                         <Tooltip content={<></>} />
                         <Legend formatter={formatStatNames} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
                         <Line yAxisId='stats' dot={false} type='monotone' dataKey='strength' strokeOpacity={lineOpacity.strength} stroke='#FF8080' strokeWidth={5} />
@@ -91,19 +97,13 @@ function LevelGraphModal(props) {
                         <Line yAxisId='exp' dot={false} type='monotone' dataKey='replacementEXP' strokeOpacity={lineOpacity.replacementEXP} stroke='#FFFF00' strokeWidth={5} />
                     </LineChart>
                 </ResponsiveContainer>
-                <LevelCard
-                    key={currentLevel}
-                    id={currentLevel}
-                    level={props.levelData[currentLevel - 1]}
-                    isDisabled={true}
-                    isEditingThisLevel={false}
-                    updateRef={(element, index) => { return 1 }}
-                >
-                    <LevelCardContent
+                <div className='levelGraphDetailsContainer'>
+                    {props.levelData[currentLevel - 1].isReplaced() ? overlayPopover : <></>}
+                    <LevelGraphDetails
                         level={props.levelData[currentLevel - 1]}
                         prevLevel={currentLevel === 1 ? level0 : props.levelData[currentLevel - 2]}
                     />
-                </LevelCard>
+                </div>
             </Modal.Body>
         </Modal>
     )

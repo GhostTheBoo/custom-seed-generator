@@ -100,7 +100,8 @@ function AllLevelFormContent(props) {
     }
 
     let levelOptions = []
-    for (let i = 0; i < 100; i++) { levelOptions.push(i + 1) }
+    for (let i = 0; i < 99; i++) { levelOptions.push(i + 1) }
+    levelOptions.push('All')
 
     return (
         <div className='levelCardContent'>

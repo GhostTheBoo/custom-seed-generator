@@ -3,13 +3,13 @@ import React from 'react'
 function LevelStatName(props) {
     let textColor = '#FFFFFF'
 
-    if (props.statName.toLowerCase() === 'strength')
+    if (props.statName.toLowerCase().includes('str'))
         textColor = '#FF8080'
-    else if (props.statName.toLowerCase() === 'magic')
+    else if (props.statName.toLowerCase().includes('mag'))
         textColor = '#C080FF'
-    else if (props.statName.toLowerCase() === 'defense')
+    else if (props.statName.toLowerCase().includes('def'))
         textColor = '#FFF34B'
-    else if (props.statName.toLowerCase() === 'exp' || props.statName.toLowerCase() === 'experience')
+    else if (props.statName.toLowerCase().includes('exp'))
         textColor = '#FFFF00'
     // else if (props.statName.toLowerCase() === 'standard ap')
     //     textColor = '#63C6F5'
@@ -17,7 +17,10 @@ function LevelStatName(props) {
         textColor = '#63C6F5'
 
     return (
-        <span style={{ color: textColor }}>
+        <span
+            className={props.className !== undefined ? props.className : ''}
+            style={{ color: textColor }}
+        >
             {props.statName}
         </span>
     )
