@@ -18,6 +18,7 @@ function HomePage(props) {
 			transition={{ type: 'spring', duration: .5 }}
 			className='fullPageContent'
 		>
+			<CreditsList />
 			<div className='homePageHeader'>
 				<div className='homePageKofi'>
 					<KoFi
@@ -37,8 +38,6 @@ function HomePage(props) {
 				<div className='flex-grow-1' />
 			</div>
 			<div className='homePageContent'>
-				{/* <CreditsList /> */}
-				{/* TODO Fix Credit List */}
 				<div className='homePageText'>
 					<div>
 						<h3>About</h3>
