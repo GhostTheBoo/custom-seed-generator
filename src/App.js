@@ -48,20 +48,17 @@ function FunctionApp() {
 	const [currentTab, setCurrentTab] = useState(0)
 
 	const [isCommented, setIsCommented] = useState(true)
-
-	const [showNavbar, setShowNavbar] = useState(false);
-	const handleShowNavbar = () => setShowNavbar(true);
 	//#endregion
-	// const alertUser = e => {
-	// 	e.preventDefault()
-	// 	e.returnValue = ''
-	// }
-	// useEffect(() => {
-	// 	window.addEventListener('beforeunload', alertUser)
-	// 	return () => {
-	// 		window.removeEventListener('beforeunload', alertUser)
-	// 	}
-	// }, [])
+	const alertUser = e => {
+		e.preventDefault()
+		e.returnValue = ''
+	}
+	useEffect(() => {
+		window.addEventListener('beforeunload', alertUser)
+		return () => {
+			window.removeEventListener('beforeunload', alertUser)
+		}
+	}, [])
 
 	//#region General Functions
 	function handleTracker(isPnach) {
@@ -314,7 +311,6 @@ function FunctionApp() {
 			title: 'Home',
 			page: (
 				<HomePage
-					handleShowNavbar={handleShowNavbar}
 					isCommented={isCommented}
 					onCommentChange={() => { setIsCommented(!isCommented) }}
 					// handleSaveAsPnach={handleSaveAsPnach}
@@ -351,7 +347,6 @@ function FunctionApp() {
 			title: 'Popup',
 			page: (
 				<PopupPage
-					handleShowNavbar={handleShowNavbar}
 					popupData={allPopups}
 					setAllPopups={setAllPopups}
 				>
@@ -366,7 +361,6 @@ function FunctionApp() {
 			title: 'Bonus',
 			page: (
 				<BonusPage
-					handleShowNavbar={handleShowNavbar}
 					bonusData={allBonuses}
 					setAllBonuses={setAllBonuses}
 				>
@@ -381,7 +375,6 @@ function FunctionApp() {
 			title: 'Forms & Summons',
 			page: (
 				<FormPage
-					handleShowNavbar={handleShowNavbar}
 					formData={allForms}
 					setAllForms={setAllForms}
 				>
@@ -396,7 +389,6 @@ function FunctionApp() {
 			title: 'Equipment',
 			page: (
 				<EquipmentPage
-					handleShowNavbar={handleShowNavbar}
 					equipmentData={allEquipments}
 					setAllEquipments={setAllEquipments}
 				>
@@ -411,7 +403,6 @@ function FunctionApp() {
 			title: 'Levels',
 			page: (
 				<LevelPage
-					handleShowNavbar={handleShowNavbar}
 					levelData={allLevels}
 					setAllLevels={setAllLevels}
 				>
@@ -426,7 +417,6 @@ function FunctionApp() {
 			title: 'Ability Costs',
 			page: (
 				<CostPage
-					handleShowNavbar={handleShowNavbar}
 					costData={allCosts}
 					setAllCosts={setAllCosts}
 				>
@@ -441,7 +431,6 @@ function FunctionApp() {
 			title: 'Starting Status',
 			page: (
 				<StartingStatusPage
-					handleShowNavbar={handleShowNavbar}
 					startingStatusData={allStartingStatus}
 					setAllStartingStatus={setAllStartingStatus}
 				>
@@ -456,7 +445,6 @@ function FunctionApp() {
 			title: 'Cheats',
 			page: (
 				<CheatPage
-					handleShowNavbar={handleShowNavbar}
 					pnachCheatData={allPnachCheats}
 					luaCheatData={allLuaCheats}
 					setAllPnachCheats={setAllPnachCheats}
@@ -467,15 +455,21 @@ function FunctionApp() {
 			)
 		}
 	]
+
+	/* TODO:
+	Clean up all level graph view
+	Clean up magic page
+	Clean up starting status page
+	Clean up home page and add back in credits list
+	
+	Add inline editing to equipment page and remove form, add equipment image small to each card
+	Condense Form Page and add inline editing instead of form
+	Add text and description editing to equipment page
+	Add inline editing to levels
+	*/
+
 	return (
 		<div className='App'>
-			{/* <PageNavbar
-				show={showNavbar}
-				onSelect={(newTab) => setCurrentTab(newTab)}
-				onHide={handleCloseNavbar}
-				pages={tabDataList}
-				currentTab={currentTab}
-			/> */}
 			<SideNav
 				onSelect={(newTab) => setCurrentTab(newTab)}
 				pages={tabDataList}
