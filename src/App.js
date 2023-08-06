@@ -59,6 +59,7 @@ function FunctionApp() {
 			window.removeEventListener('beforeunload', alertUser)
 		}
 	}, [])
+	const currentVersion = '10.10'
 
 	//#region General Functions
 	function handleTracker(isPnach) {
@@ -230,21 +231,21 @@ function FunctionApp() {
 
 		downloadFile(luaCodes, fileName.length !== 0 ? '(' + fileName + ').lua' : 'F266B00B.lua')
 	}
-	function handleSaveAsZip(fileName) {
+	function handleSaveAsZip(fileName, seedDescription) {
 		let zip = new JSZip()
 		let zipSeed = new ZipSeed()
 
-		zip.file('TrsrList.yml', zipSeed.generateTrsrList(allChests, allPopups, true)) // chests and popups
-		zip.file('LvupList.yml', zipSeed.generateLvupList(allLevels, true)) // level up rewards
-		zip.file('FmlvList.yml', zipSeed.generateFmlvList(allForms, true)) // Form Level Rewards
-		zip.file('BonsList.yml', zipSeed.generateBonsList(allBonuses, true)) // bonus level rewards
-		zip.file('ItemList.yml', zipSeed.generateItemList(allEquipments, true)) // equipment stats
-		zip.file('CmdList.yml', zipSeed.generateCmdList(allCosts, true)) // starting items
-		zip.file('PlrpList.yml', zipSeed.generatePlrpList(allStartingStatus, true)) // starting items
+		zip.file('TrsrList.yml', zipSeed.generateTrsrList(allChests, allPopups, isCommented)) // chests and popups
+		zip.file('LvupList.yml', zipSeed.generateLvupList(allLevels, isCommented)) // level up rewards
+		zip.file('FmlvList.yml', zipSeed.generateFmlvList(allForms, isCommented)) // Form Level Rewards
+		zip.file('BonsList.yml', zipSeed.generateBonsList(allBonuses, isCommented)) // bonus level rewards
+		zip.file('ItemList.yml', zipSeed.generateItemList(allEquipments, isCommented)) // equipment stats
+		zip.file('CmdList.yml', zipSeed.generateCmdList(allCosts, isCommented)) // starting items
+		zip.file('PlrpList.yml', zipSeed.generatePlrpList(allStartingStatus, isCommented)) // starting items
 		// zip.file('HintFile.hints', HintFile) // encoded hints
 		zip.file('sys.yml', zipSeed.generateSys()) // Menu text edits
 		zip.file('jm.yml', zipSeed.generateJm()) // random journal entries
-		zip.file('mod.yml', zipSeed.generateMod(fileName)) // enabled mods/scripts
+		zip.file('mod.yml', zipSeed.generateMod(fileName, seedDescription)) // enabled mods/scripts
 
 		zip.generateAsync({ type: 'blob' }).then(function (content) {
 			FileSaver.saveAs(content, fileName + '.zip')
@@ -261,6 +262,7 @@ function FunctionApp() {
 		let startingStatusSaveData = StartingStatus.saveToJSON(allStartingStatus)
 
 		let saveData = ['{',
+			'"version":"' + currentVersion + '",',
 			chestSaveData.join(''),
 			popupSaveData.join(''),
 			bonusSaveData.join(''),
@@ -275,6 +277,7 @@ function FunctionApp() {
 	}
 	function handleLoadFromJSON(loadData) {
 		let allLoadData = JSON.parse(loadData)
+		let loadVersion = allLoadData.version
 
 		let newAllChests = allLoadData.hasOwnProperty('chestsData') ? allLoadData.chestsData : []
 		let newAllPopups = allLoadData.hasOwnProperty('popupsData') ? allLoadData.popupsData : []
@@ -289,7 +292,7 @@ function FunctionApp() {
 		setAllBonuses(BonusFight.loadFromJSON(newAllBonuses))
 		setAllForms(FormLevel.loadFromJSON(newAllForms))
 		setAllEquipments(Equipment.loadFromJSON(newAllEquipments))
-		setAllLevels(Level.loadFromJSON(newAllLevels))
+		setAllLevels(Level.loadFromJSON(newAllLevels, loadVersion))
 		setAllCosts(AbilityCost.loadFromJSON(newAllCosts))
 		setAllStartingStatus(StartingStatus.loadFromJSON(newAllStartingStatus))
 	}

@@ -73,7 +73,7 @@ export class Level {
 
 			function updateIfNotEqual(original, newValue) {
 				if (isNaN(newValue)) return original
-				if(original + newValue >= 255) return 255
+				if (original + newValue >= 255) return 255
 				return original + newValue
 			}
 
@@ -99,10 +99,13 @@ export class Level {
 					'replacementSwordReward', 'replacementShieldReward', 'replacementStaffReward', 'reward', 'index', 'iconType']) + ','
 				: ''
 		}
-		this.loadFromJSON = (levelJSON) => {
+		this.loadFromJSON = (levelJSON, loadVersion) => {
 			let ret = this.copy()
 
-			ret.replacementEXP = levelJSON.replacementEXP
+			ret.replacementEXP = loadVersion === undefined
+				? ret.vanillaEXP
+				: levelJSON.replacementEXP
+
 			ret.standardAP = levelJSON.standardAP
 			ret.defense = levelJSON.defense
 			ret.magic = levelJSON.magic
