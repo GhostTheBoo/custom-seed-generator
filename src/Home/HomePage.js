@@ -8,7 +8,7 @@ import CreditsList from './CreditsList'
 import SaveLoad from './SaveLoad'
 
 function HomePage(props) {
-	let lastUpdateDate = 'March 22, 2023'
+	let lastUpdateDate = 'August 5, 2023'
 	let logo = './images/logo.png'
 
 	return (
@@ -39,43 +39,36 @@ function HomePage(props) {
 			</div>
 			<div className='homePageContent'>
 				<div className='homePageText'>
-					<div>
-						<h3>About</h3>
-						<p className='siteDescription'>
-							This tool is used with the Garden of Assemblage mod to customize specific rewards and aspects of Kingdom Hearts 2 Final Mix.
-							It will create a custom lua or zip file that can be used alongside the PS2 or PC version of the game to apply any customizations.
-							This will let you make a planned out instance of a randomized seed (or a plando for short).
-						</p>
-						<p style={{ textAlign: 'justify' }}>
-							Each page has its own rules for how to customize and change rewards and equipment.
-							Check out the Help Button on each page for further info on how it works.
-						</p>
-						<p style={{ textAlign: 'justify' }}>
-							When you're finished editing, come back to the home page to export your seed.
-							Type in the Seed Name and click Save Zip Seed or Save Lua Seed to start downloading the file.
-						</p>
-						<p style={{ textAlign: 'justify' }}>
-							If you want to take a break and come back to your seed later, click on Save Progress.
-							This will download a file containing info on all the edits you've done so far.
-							When you return, click on Choose File to upload your progress data and pick up where you left off.
-							If any issues come up, let me know and I'll try to help out.
-							Be sure to hold on to the JSON file even if it does not seem to work as data might still be recoverable.
-						</p>
-						The repository can be found <a target='_blank' rel='noopener noreferrer' href='https://github.com/GhostTheBoo/custom-seed-generator'>here</a>.
-						The site was last updated on {lastUpdateDate}.
+					<div className='homePageDetails'>
+						<div>
+							<h1>About</h1>
+							<p className='siteDescription'>
+								This tool is used with the Garden of Assemblage mod to customize specific rewards and aspects of Kingdom Hearts 2 Final Mix.
+								It will create a custom lua or zip file that can be used alongside the PS2 or PC version of the game to apply any customizations.
+								This will let you make a planned out instance of a randomized seed (or a plando for short).
+							</p>
+							<p>The site was last updated on {lastUpdateDate}.</p>
+						</div>
+						<div>
+							<h1>Links</h1>
+							<ul>
+								<li><a target='_blank' rel='noopener noreferrer' href='https://tommadness.github.io/KH2Randomizer/'>KH2 Rando</a></li>
+								<li><a target='_blank' rel='noopener noreferrer' href='https://openkh.dev/kh2/'>OpenKh</a></li>
+								<li><a target='_blank' rel='noopener noreferrer' href='https://discord.com/invite/KH2FMRando'>KH2FM Rando Discord</a></li>
+								<li><a target='_blank' rel='noopener noreferrer' href='https://discord.gg/kt4Nsj6'>KH2FM Plando Dev Discord</a></li>
+								<li><a target='_blank' rel='noopener noreferrer' href='https://github.com/GhostTheBoo/custom-seed-generator'>Repository</a></li>
+							</ul>
+						</div>
 					</div>
-					<div>
-						<SaveLoad
-							isCommented={props.isCommented}
-							onCommentChange={props.onCommentChange}
-							// handleSaveAsPnach={props.handleSaveAsPnach}
-							handleSaveAsLua={props.handleSaveAsLua}
-							handleSaveAsZip={props.handleSaveAsZip}
-							handleSaveAsJSON={props.handleSaveAsJSON}
-							onFileUpload={props.onFileUpload}
-						>
-						</SaveLoad>
-					</div>
+					<SaveLoad
+						isCommented={props.isCommented}
+						onCommentChange={props.onCommentChange}
+						// handleSaveAsPnach={props.handleSaveAsPnach}
+						handleSaveAsLua={props.handleSaveAsLua}
+						handleSaveAsZip={props.handleSaveAsZip}
+						handleSaveAsJSON={props.handleSaveAsJSON}
+						onFileUpload={props.onFileUpload}
+					/>
 				</div>
 			</div>
 		</motion.div>
