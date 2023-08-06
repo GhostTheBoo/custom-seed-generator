@@ -33,7 +33,7 @@ function RewardSelector(props) {
 		<>
 			{props.useIcon !== undefined && props.useIcon
 				? <img
-					className={`editIcon edit btn btn-${buttonVariant}`}
+					className={`editIcon edit btn btn-${buttonVariant}${props.className !== undefined ? ' ' + props.className : ''}`}
 					src={props.iconPath}
 					alt='edit'
 					width='100%'
@@ -41,11 +41,16 @@ function RewardSelector(props) {
 					onClick={() => setShow(true)}
 				/>
 				: <Button
+					className={props.className !== undefined ? ' ' + props.className : ''}
 					variant={buttonVariant}
 					onClick={() => setShow(true)}
 					disabled={isDisabled}
 				>
-					{buttonText}
+					{
+						props.children !== undefined
+							? props.children
+							: buttonText
+					}
 				</Button>
 			}
 			{show
