@@ -12,8 +12,7 @@ function CheatListGroup(props) {
                 <div className='cheatListItem'>
                     <Form.Check
                         id={'cheatActiveSwitch' + props.cheatType + index}
-                        type='switch'
-                        style={{ margin: 'auto' }}
+                        type='checkBox'
                         checked={data.isActive}
                         onChange={() => props.toggleActiveCheat(props.dataList, index)}
                     />
@@ -28,11 +27,6 @@ function CheatListGroup(props) {
     return (
         <ListGroup
             className='selectorList'
-            style={{
-                fontSize: '15px',
-                overflowY: 'auto',
-                height: '45rem'
-            }}
         >
             {listGroup}
         </ListGroup>

@@ -1,15 +1,23 @@
-.cheatPageContent{
+.cheatPageContent {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 2rem;
+    font-family: KHMenu;
 }
 
-.cheatListItem{
+.cheatListItem {
     display: grid;
-    grid-template-columns: 1fr 20fr;
+    grid-template-columns: max-content 1fr;
+    gap: 1rem;
+    align-items: center;
 }
 
-.temp{
+.selectorList {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.temp {
     font-family: KHGummi;
     font-size: 2rem;
     margin: auto;
