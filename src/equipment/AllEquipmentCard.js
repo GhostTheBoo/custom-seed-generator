@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
 import Icon from '../Components/Icon'
 
 function AllEquipmentCard(props) {
@@ -43,17 +42,24 @@ function AllEquipmentCard(props) {
 			className={`equipmentCard all${currentState}`}
 			onMouseEnter={handleMouseEnter}
 		>
-			<Icon
-				fileName={fileNameList[props.currentEquipmentType]}
-				type={'form'}
-				className={'equipmentTypeIcon'}
-			>
-				{`All ${getfullEquipmentTypeText(props.currentFolderName)}`}
-			</Icon>
+			<div className='equipmentCardName'>
+				<Icon
+					fileName={fileNameList[props.currentEquipmentType]}
+					type={'form'}
+					className={'equipmentTypeIcon'}
+				>
+					{`All ${getfullEquipmentTypeText(props.currentFolderName)}`}
+				</Icon>
+			</div>
 			<div />
-			<Button variant='outline-info' onClick={handleEditOnClick} disabled={currentState === ' selected'}>
-				{currentState !== ' selected' ? 'EDIT' : 'EDITING...'}
-			</Button>
+            <img
+                className='cardEditIcon btn btn-primary'
+                src='./images/extra/edit.svg'
+                alt='edit'
+                width='100%'
+                height='auto'
+                onClick={handleEditOnClick}
+            />
 		</div>
 	)
 }

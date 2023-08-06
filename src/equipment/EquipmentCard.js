@@ -1,17 +1,17 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
 import Icon from '../Components/Icon'
 import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
 
 function EquipmentCard(props) {
     function createStatRow(fileName, label, stat, shouldDisplay) {
         let isRes = label.slice(-3) === 'Res' ? '%' : ''
+        let className = `equipmentStatIcon${isRes ? ' resistance' : ''}${!shouldDisplay && stat === 0 ? ' opaque' : ''}`
         return (
             <Icon
                 key={`${props.equipment.name}${label}`}
                 fileName={fileName}
                 type={'row'}
-                className={`equipmentStatIcon${isRes ? ' resistance' : ''}${!shouldDisplay && stat === 0 ? ' invis' : ''}`}
+                className={className}
             >
                 {stat}
             </Icon>
@@ -52,13 +52,15 @@ function EquipmentCard(props) {
             onMouseEnter={handleMouseEnter}
         >
             {props.equipment.isReplaced() ? overlayPopover : <></>}
-            <Icon
-                fileName={fileNameList[props.equipment.equipmentType]}
-                type={'form'}
-                className={'equipmentTypeIcon'}
-            >
-                {props.equipment.name}
-            </Icon>
+            <div className='equipmentCardName'>
+                <Icon
+                    fileName={fileNameList[props.equipment.equipmentType]}
+                    type={'form'}
+                    className={'equipmentTypeIcon'}
+                >
+                    {props.equipment.name}
+                </Icon>
+            </div>
             <div className='equipmentCardDetails'>
                 <Icon
                     fileName={props.equipment.replacementAbility.iconType}
@@ -77,10 +79,18 @@ function EquipmentCard(props) {
                 {createStatRow('blizzard', 'Blizzard Res', props.equipment.blizzard, props.equipment.isArmor())}
                 {createStatRow('thunder', 'Thunder Res', props.equipment.thunder, props.equipment.isArmor())}
                 {createStatRow('critical', 'Dark Res', props.equipment.dark, props.equipment.isArmor())}
+                {createStatRow('sword', 'Physical Res', props.equipment.physical, props.equipment.isArmor())}
+                {createStatRow('finalD', 'Light Res', props.equipment.light, props.equipment.isArmor())}
+                {createStatRow('shield', 'Universal Res', props.equipment.universal, props.equipment.isArmor())}
             </div>
-            <Button variant='outline-info' onClick={handleEditOnClick} disabled={currentState === 'selected'}>
-                {currentState !== 'selected' ? 'EDIT' : 'EDITING...'}
-            </Button>
+            <img
+                className='cardEditIcon btn btn-primary'
+                src='./images/extra/edit.svg'
+                alt='edit'
+                width='100%'
+                height='auto'
+                onClick={handleEditOnClick}
+            />
         </div>
     )
 }

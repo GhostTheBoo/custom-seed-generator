@@ -77,10 +77,11 @@
     grid-template-columns: max-content max-content 1fr 8rem;
 }
 
-.equipmentFormCard.all.editing .equipmentFormAbility {
+.equipmentFormCard.all.editing>.equipmentFormAbility {
     width: 100%;
     display: grid;
-    grid-template-columns: max-content 1fr max-content;
+    grid-template-columns: max-content 1fr;
+    gap: 1rem;
 }
 
 .equipmentStatName,

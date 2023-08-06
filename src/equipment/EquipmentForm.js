@@ -46,8 +46,8 @@ function EquipmentForm(props) {
         let min = 0
         let max = 255
         if (isRes) {
-            min = -100
-            max = 150
+            min = -150
+            max = 100
         }
         function setCurrentStat(newValue, statName) { setCurrentFieldData({ ...currentFieldData, [statName]: newValue }) }
         return (
@@ -94,14 +94,17 @@ function EquipmentForm(props) {
                     alt={props.equipment.name + ' Form'}
                 />
             </div>
-            <div className='equipmentFormAbility'>
-                <Icon fileName={currentFieldData.ability.iconType} type={'card'}>{currentFieldData.ability.reward}</Icon>
-            </div>
             {!props.isEditing
-                ? <></>
+                ?
+                <div className='equipmentFormAbility'>
+                    <Icon fileName={currentFieldData.ability.iconType} type={'card'}>{currentFieldData.ability.reward}</Icon>
+                </div>
                 : <RewardSelectorButton
+                    className='equipmentFormAbility'
                     onReplace={(newReward) => setCurrentFieldData({ ...currentFieldData, ability: { ...newReward } })}
-                />
+                >
+                    <Icon fileName={currentFieldData.ability.iconType} type={'card'}>{currentFieldData.ability.reward}</Icon>
+                </RewardSelectorButton>
             }
             <hr />
             <div className='equipmentStats'>
@@ -119,8 +122,8 @@ function EquipmentForm(props) {
             </div>
             <hr />
             <div className='equipmentStats'>
-                {createEquipmentStatFormRow('currentPhysical', 'shield', 'Physical', true)}
-                {createEquipmentStatFormRow('currentLight', 'shield', 'Light', true)}
+                {createEquipmentStatFormRow('currentPhysical', 'sword', 'Physical', true)}
+                {createEquipmentStatFormRow('currentLight', 'finalD', 'Light', true)}
                 {createEquipmentStatFormRow('currentUniversal', 'shield', 'Universal', true)}
             </div>
             {!props.isEditing

@@ -117,13 +117,18 @@ function AllEquipmentForm(props) {
                     ? <></>
                     : <Form.Check type='checkbox' checked={currentEnabledData.modifyAbility} onChange={() => toggleApplyFlag('modifyAbility')} />
                 }
-                <div><Icon fileName={currentFieldData.ability.iconType} type={'card'}>{currentFieldData.ability.reward}</Icon></div>
                 {!props.isEditing
-                    ? <></>
+                    ?
+                    <div className='equipmentFormAbility'>
+                        <Icon fileName={currentFieldData.ability.iconType} type={'card'}>{currentFieldData.ability.reward}</Icon>
+                    </div>
                     : <RewardSelectorButton
+                        className='equipmentFormAbility'
                         onReplace={(newReward) => setCurrentFieldData({ ...currentFieldData, ability: newReward })}
-                        isDisabled={!currentEnabledData.modifyReward}
-                    />
+                        isDisabled={!currentEnabledData.modifyAbility}
+                    >
+                        <Icon fileName={currentFieldData.ability.iconType} type={'card'}>{currentFieldData.ability.reward}</Icon>
+                    </RewardSelectorButton>
                 }
             </div>
             <hr />
