@@ -90,15 +90,14 @@ export class FormLevel {
 			return ret
 		}
 		this.saveToYml = (isCommented, formId) => {
-			// fix this form level bullshit
 			let ret = ''
-			// if (this.isRewardReplaced() || this.isEXPReplaced()) {
-			ret += '- Ability: ' + this.replacementReward.index + '\n  '
-			ret += 'Experience: ' + this.replacementEXP + '\n  '
-			ret += 'FormId: ' + formId + '\n  '
-			ret += 'FormLevel: ' + this.level.slice(-1) + '\n  '
-			ret += 'GrowthAbilityLevel: 0\n'
-			// }
+			ret += '- FormId: ' + formId
+			ret += '\n  FormLevel: ' + this.level.slice(-1)
+			ret += '\n  Ability: ' + this.replacementReward.index
+			ret += ((isCommented && this.vanillaReward.index !== this.replacementReward.index) ? ' # ' + this.level + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward : '')
+			ret += '\n  Experience: ' + this.replacementEXP
+			ret += ((isCommented && this.vanillaEXP !== this.replacementEXP) ? ' # ' + this.replacementEXP + ' experience is now required to reach ' + this.level : '')
+			ret += '\n  GrowthAbilityLevel: 0\n'
 			return ret
 		}
 	}
@@ -125,7 +124,6 @@ export class FormLevel {
 	}
 	static saveToYml(formData, isCommented) {
 		return formData.reduce((prev, driveForm, formId) => {
-			// if (driveForm.driveLevels.some((level => level.isRewardReplaced() || level.isEXPReplaced())))
 			prev += driveForm.driveForm + ':\n'
 			let newDriveLevels = [
 				driveForm.driveLevels[0].copy()
@@ -150,26 +148,18 @@ export class FormLevel {
 		return ['"formsData":[', formSaveData.filter(s => s !== '').join(), '],']
 	}
 	static loadFromJSON(formLoadData) {
-		let globalIndex = 0
 		return formsData.map(driveForm => {
-			if (globalIndex < formLoadData.length) {
-				if (formLoadData[globalIndex].driveForm === driveForm.driveForm) {
-					let formIndex = 0
-					let newForms = driveForm.driveLevels.map(driveLevel => {
-						if (formIndex < formLoadData[globalIndex].driveLevels.length) {
-							if (formLoadData[globalIndex].driveLevels[formIndex].level === driveLevel.level) {
-								let ret = driveLevel.loadFromJSON(formLoadData[globalIndex].driveLevels[formIndex])
-								formIndex++
-								return ret
-							}
-						}
-						return driveLevel
-					})
-					globalIndex++
-					return {
-						...driveForm,
-						driveLevels: newForms
-					}
+			let foundDriveForm = formLoadData.find(loadDriveForm => loadDriveForm.driveForm === driveForm.driveForm)
+			if (foundDriveForm !== undefined) {
+				let newDriveLevels = driveForm.driveLevels.map(driveLevel => {
+					let foundDriveLevel = foundDriveForm.driveLevels.find(loadDriveLevel => loadDriveLevel.level === driveLevel.level)
+					if (foundDriveLevel !== undefined)
+						return driveLevel.loadFromJSON(foundDriveLevel)
+					return driveLevel
+				})
+				return {
+					...driveForm,
+					driveLevels: newDriveLevels
 				}
 			}
 			return driveForm

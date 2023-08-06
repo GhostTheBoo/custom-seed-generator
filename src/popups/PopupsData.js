@@ -55,7 +55,7 @@ export class Popup {
 				ret = this.zipID.toString() + ':\n  ItemId: '
 				let itemID = this.replacementReward.index
 				ret += itemID === 0x000 ? 0x176.toString() : itemID.toString()
-				// if (isCommented) ret += ' // ' + this.room + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward
+				if (isCommented) ret += ' # ' + this.popup + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward
 				ret += '\n'
 			}
 			return ret
@@ -88,7 +88,10 @@ export class Popup {
 	}
 	static saveToYml(popupData, isCommented) {
 		return popupData.reduce((prev, worldList) => {
-			worldList.popups.forEach(popup => { prev += popup.saveToYml(isCommented) })
+			if (worldList.popups.find(popup => popup.isReplaced())) {
+				prev += isCommented ? '# ' + worldList.world + '\n' : ''
+				worldList.popups.forEach(popup => { prev += popup.saveToYml(isCommented) })
+			}
 			return prev
 		}, '')
 	}

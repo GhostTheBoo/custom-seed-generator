@@ -186,7 +186,7 @@ export class StartingStatus {
 			}
 			return ret
 		}
-		this.saveToYml = (isCommented) => { 
+		this.saveToYml = (isCommented) => {
 			let ret = ''
 			if (this.isReplaced()) {
 				ret += '- AccessorySlotMax: ' + this.accessorySlots + '\n  '
@@ -238,15 +238,10 @@ export class StartingStatus {
 		return ['"startingStatusData":[', startingData.map(startingStatus => { return startingStatus.saveToJSON() }).join('').slice(0, -1), '],']
 	}
 	static loadFromJSON(startingLoadData) {
-		let globalIndex = 0
 		return startingStatusData.map(character => {
-			if (globalIndex < startingLoadData.length) {
-				if (startingLoadData[globalIndex].character === character.character) {
-					let ret = character.loadFromJSON(startingLoadData[globalIndex])
-					globalIndex++
-					return ret
-				}
-			}
+			let foundCharacter = startingLoadData.find(loadCharacter => loadCharacter.character === character.character)
+			if (foundCharacter !== undefined)
+				return character.loadFromJSON(foundCharacter)
 			return character
 		})
 	}

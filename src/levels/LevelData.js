@@ -220,43 +220,23 @@ export class Level {
 		}
 		this.saveToYml = (isCommented, gameEXPValue) => {
 			let ret = ''
-			if (!this.isReplaced()) {
-				ret += '  ' + this.level + ':\n    '
-				ret += 'Ap: ' + this.standardAP + '\n    '
-				ret += 'Character: Sora\n    '
-				ret += 'Defense: ' + this.defense + '\n    '
-				ret += 'Exp: ' + gameEXPValue + '\n    '
-				ret += 'Level: ' + this.level + '\n    '
-				ret += 'Magic: ' + this.magic + '\n    '
-				ret += 'Padding: 0\n    ' // wtf is this?: 
-				ret += 'ShieldAbility: ' + this.replacementShieldReward.index + '\n    '
-				ret += 'StaffAbility: ' + this.replacementStaffReward.index + '\n    '
-				ret += 'Strength: ' + this.strength + '\n    '
-				ret += 'SwordAbility: ' + this.replacementSwordReward.index
-				ret += '\n'
-			}
+			ret += '  ' + this.level + ':'
+			ret += '\n    Character: Sora'
+			ret += '\n    Level: ' + this.level
+			ret += '\n    Strength: ' + this.strength
+			ret += '\n    Magic: ' + this.magic
+			ret += '\n    Defense: ' + this.defense
+			ret += '\n    Ap: ' + this.standardAP
+			ret += '\n    Exp: ' + gameEXPValue
+			ret += '\n    SwordAbility: ' + this.replacementSwordReward.index
+			if (isCommented) ret += ' # ' + this.replacementSwordReward.reward
+			ret += '\n    ShieldAbility: ' + this.replacementShieldReward.index
+			if (isCommented) ret += ' # ' + this.replacementShieldReward.reward
+			ret += '\n    StaffAbility: ' + this.replacementStaffReward.index
+			if (isCommented) ret += ' # ' + this.replacementStaffReward.reward
+			ret += '\n    Padding: 0' // wtf is this?: 
+			ret += '\n'
 			return ret
-		}
-		this.changeFromPreviousLevel = (prevLevel) => {
-			if (this.level === 1)
-				return {
-					strengthDif: this.strength,
-					magicDif: this.magic,
-					defenseDif: this.defense,
-					standardAPDif: this.standardAP,
-					criticalAPDif: this.criticalAP(),
-					expDif: this.replacementEXP
-					// TODO: Not Needed ^
-				}
-			return {
-				strengthDif: this.strength - prevLevel.strength,
-				magicDif: this.magic - prevLevel.magic,
-				defenseDif: this.defense - prevLevel.defense,
-				standardAPDif: this.standardAP - prevLevel.standardAP,
-				criticalAPDif: this.criticalAP() - prevLevel.criticalAP(),
-				expDif: this.replacementEXP - prevLevel.replacementEXP
-				// TODO: Not Needed ^
-			}
 		}
 	}
 
@@ -272,16 +252,11 @@ export class Level {
 	static saveToJSON(levelData) {
 		return ['"levelsData":[', levelData.map(level => { return level.saveToJSON() }).join('').slice(0, -1), '],']
 	}
-	static loadFromJSON(levelLoadData) {
-		let globalIndex = 0
+	static loadFromJSON(levelLoadData, loadVersion) {
 		return levelsData.map(level => {
-			if (globalIndex < levelLoadData.length) {
-				if (levelLoadData[globalIndex].level === level.level) {
-					let ret = level.loadFromJSON(levelLoadData[globalIndex])
-					globalIndex++
-					return ret
-				}
-			}
+			let foundLevel = levelLoadData.find(loadLevel => loadLevel.level === level.level)
+			if (foundLevel !== undefined)
+				return level.loadFromJSON(foundLevel, loadVersion)
 			return level
 		})
 	}

@@ -53,7 +53,7 @@ export class Chest {
 				ret = this.zipID.toString() + ':\n  ItemId: '
 				let itemID = this.replacementReward.index
 				ret += itemID === 0x000 ? 0x176.toString() : itemID.toString()
-				// if (isCommented) ret += ' // ' + this.room + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward
+				if (isCommented) ret += ' # ' + this.room + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward
 				ret += '\n'
 			}
 			return ret
@@ -85,7 +85,10 @@ export class Chest {
 	}
 	static saveToYml(chestData, isCommented) {
 		return chestData.reduce((prev, worldList) => {
-			worldList.chests.forEach(chest => { prev += chest.saveToYml(isCommented) })
+			if (worldList.chests.find(chest => chest.isReplaced())) {
+				prev += isCommented ? '# ' + worldList.world + '\n' : ''
+				worldList.chests.forEach(chest => { prev += chest.saveToYml(isCommented) })
+			}
 			return prev
 		}, '')
 	}

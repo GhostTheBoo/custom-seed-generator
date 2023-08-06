@@ -19,7 +19,8 @@ export class AbilityCost {
 		}
 		this.replace = (newAbilityCost) => {
 			let ret = this.copy()
-			ret.replacementCost = newAbilityCost
+			if (!isNaN(newAbilityCost))
+				ret.replacementCost = newAbilityCost
 			ret.toBeReplaced = false
 			return ret
 		}
@@ -53,7 +54,9 @@ export class AbilityCost {
 		this.saveToYml = (isCommented) => {
 			let ret = ''
 			if (this.isReplaced()) {
-				ret = '- Id: ' + this.zipID.toString() + '\n  Cost: ' + this.replacementCost
+				ret = isCommented ? '# ' + this.ability + '\n' : ''
+				ret += '- Id: ' + this.zipID.toString()
+				ret += '\n  Cost: ' + this.replacementCost + ''
 				ret += '\n'
 			}
 			return ret
@@ -105,7 +108,10 @@ export class AbilityCost {
 	}
 	static saveToYml(costData, isCommented) {
 		return costData.reduce((prev, abilityType) => {
-			abilityType.abilities.forEach(category => { category.specificAbilities.forEach(ability => { prev += ability.saveToYml(isCommented) }) })
+			if (abilityType.abilities.find(category => category.specificAbilities.find(specAbility => specAbility.isReplaced()))) {
+				prev += isCommented ? '# ' + abilityType.type + '\n' : ''
+				abilityType.abilities.forEach(category => { category.specificAbilities.forEach(ability => { prev += ability.saveToYml(isCommented) }) })
+			}
 			return prev
 		}, '')
 	}
@@ -125,37 +131,28 @@ export class AbilityCost {
 		return ['"costsData":[', costSaveData.filter(s => s !== '').join(), '],']
 	}
 	static loadFromJSON(costLoadData) {
-		let globalIndex = 0
 		return costsData.map(abilityType => {
-			if (globalIndex < costLoadData.length) {
-				if (costLoadData[globalIndex].type === abilityType.type) {
-					let categoryIndex = 0
-					let newCategories = abilityType.abilities.map(category => {
-						if (categoryIndex < costLoadData[globalIndex].abilities.length) {
-							let abilityIndex = 0
-							let newAbilities = category.specificAbilities.map(ability => {
-								if (abilityIndex < costLoadData[globalIndex].abilities[categoryIndex].specificAbilities.length) {
-									if (costLoadData[globalIndex].abilities[categoryIndex].specificAbilities[abilityIndex].costAddress === ability.costAddress) {
-										let ret = ability.loadFromJSON(costLoadData[globalIndex].abilities[categoryIndex].specificAbilities[abilityIndex])
-										abilityIndex++
-										return ret
-									}
-								}
-								return ability
-							})
-							categoryIndex++
-							return {
-								...category,
-								specificAbilities: newAbilities
-							}
+			let foundAbilityType = costLoadData.find(loadAbilityType => loadAbilityType.type === abilityType.type)
+			if (foundAbilityType !== undefined) {
+				let newAbilities = abilityType.abilities.map(category => {
+					let foundCategory = foundAbilityType.abilities.find(loadAbility => loadAbility.category === category.category)
+					if (foundCategory !== undefined) {
+						let newSpecificAbilities = category.specificAbilities.map(specificAbility => {
+							let foundSpec = foundCategory.specificAbilities.find(loadSpec => loadSpec.costAddress === specificAbility.costAddress)
+							if (foundSpec !== undefined)
+								return specificAbility.loadFromJSON(foundSpec)
+							return specificAbility
+						})
+						return {
+							...category,
+							specificAbilities: newSpecificAbilities
 						}
-						return category
-					})
-					globalIndex++
-					return {
-						...abilityType,
-						abilities: newCategories
 					}
+					return category
+				})
+				return {
+					...abilityType,
+					abilities: newAbilities
 				}
 			}
 			return abilityType

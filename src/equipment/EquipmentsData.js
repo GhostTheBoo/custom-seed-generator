@@ -259,20 +259,22 @@ export class Equipment {
 		this.saveToYml = (isCommented) => {
 			let ret = ''
 			if (this.isReplaced()) {
-				ret += '- Ability: ' + this.replacementAbility.index + '\n  '
-				ret += 'AbilityPoints: ' + this.ap + '\n  '
-				ret += 'Attack: ' + this.strength + '\n  '
-				ret += 'DarkResistance: ' + (100 - this.dark) + '\n  '
-				ret += 'Defense: ' + this.defense + '\n  '
-				ret += 'FireResistance: ' + (100 - this.fire) + '\n  '
-				ret += 'GeneralResistance: ' + (100 - this.universal) + '\n  '
-				ret += 'IceResistance: ' + (100 - this.blizzard) + '\n  '
-				ret += 'Id: ' + this.zipID + '\n  '
-				ret += 'LightningResistance: ' + (100 - this.thunder) + '\n  '
-				ret += 'Magic: ' + this.magic + '\n  '
-				ret += 'Unknown: 0\n  '
-				ret += 'Unknown08: ' + (100 - this.physical) + '\n  '
-				ret += 'Unknown0d: ' + (100 - this.light) + '\n'
+				ret += isCommented ? '# ' + this.name + '\n' : ''
+				ret += '- Id: ' + this.zipID
+				ret += '\n  Ability: ' + this.replacementAbility.index + (isCommented ? ' # ' + this.replacementAbility.reward : '')
+				ret += '\n  AbilityPoints: ' + this.ap
+				ret += '\n  Attack: ' + this.strength
+				ret += '\n  Magic: ' + this.magic
+				ret += '\n  Defense: ' + this.defense
+				ret += '\n  FireResistance: ' + (100 - this.fire)
+				ret += '\n  IceResistance: ' + (100 - this.blizzard)
+				ret += '\n  LightningResistance: ' + (100 - this.thunder)
+				ret += '\n  DarkResistance: ' + (100 - this.dark)
+				ret += '\n  Unknown08: ' + (100 - this.physical) + (isCommented ? ' # Physical' : '')
+				ret += '\n  Unknown0d: ' + (100 - this.light) + (isCommented ? ' # Light' : '')
+				ret += '\n  GeneralResistance: ' + (100 - this.universal) + (isCommented ? ' # Universal' : '')
+				ret += '\n  Unknown: 0'
+				ret += '\n'
 			}
 			return ret
 		}
@@ -294,7 +296,10 @@ export class Equipment {
 	}
 	static saveToYml(equipmentData, isCommented) {
 		return equipmentData.reduce((prev, equipmentType) => {
-			equipmentType.equipments.forEach(equipment => { prev += equipment.saveToYml(isCommented) })
+			if (equipmentType.equipments.find(equipment => equipment.isReplaced())) {
+				prev += isCommented ? '# ' + equipmentType.equipmentType + '\n' : ''
+				equipmentType.equipments.forEach(equipment => { prev += equipment.saveToYml(isCommented) })
+			}
 			return prev
 		}, '')
 	}
@@ -309,26 +314,18 @@ export class Equipment {
 		return ['"equipmentsData":[', equipmentSaveData.filter(s => s !== '').join(), '],']
 	}
 	static loadFromJSON(equipmentLoadData) {
-		let globalIndex = 0
 		return equipmentsData.map(equipmentType => {
-			if (globalIndex < equipmentLoadData.length) {
-				if (equipmentLoadData[globalIndex].equipmentType === equipmentType.equipmentType) {
-					let equipmentIndex = 0
-					let newEquipments = equipmentType.equipments.map(equipment => {
-						if (equipmentIndex < equipmentLoadData[globalIndex].equipments.length) {
-							if (equipmentLoadData[globalIndex].equipments[equipmentIndex].name === equipment.name) {
-								let ret = equipment.loadFromJSON(equipmentLoadData[globalIndex].equipments[equipmentIndex])
-								equipmentIndex++
-								return ret
-							}
-						}
-						return equipment
-					})
-					globalIndex++
-					return {
-						...equipmentType,
-						equipments: newEquipments
-					}
+			let foundEquipmentType = equipmentLoadData.find(loadEquipmentType => loadEquipmentType.equipmentType === equipmentType.equipmentType)
+			if (foundEquipmentType !== undefined) {
+				let newEquipments = equipmentType.equipments.map(equipment => {
+					let foundEquipment = foundEquipmentType.equipments.find(loadEquipment => loadEquipment.name === equipment.name)
+					if (foundEquipment !== undefined)
+						return equipment.loadFromJSON(foundEquipment)
+					return equipment
+				})
+				return {
+					...equipmentType,
+					equipments: newEquipments
 				}
 			}
 			return equipmentType
@@ -340,6 +337,7 @@ export const equipmentsData = [{
 	equipmentType: 'Keyblade',
 	equipments: [
 		new Equipment('Kingdom Key', new Reward('Damage Control', 0x21E, 'Ability'), 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF1D6, 80),
+		// new Equipment('Kingdom Key', new Reward('Damage Control', 0x21E, 'Ability'), 0, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 0x1CDF1D6, 80),
 		new Equipment('Oathkeeper', new Reward('Form Boost', 0x18E, 'Ability'), 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF1E6, 81),
 		new Equipment('Oblivion', new Reward('Drive Boost', 0x18D, 'Ability'), 0, 6, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF1F6, 82),
 		new Equipment('Star Seeker', new Reward('Air Combo Plus', 0x0A3, 'Ability'), 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF466, 123),
