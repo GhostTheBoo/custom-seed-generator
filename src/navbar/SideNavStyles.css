@@ -1,0 +1,22 @@
+.sideNav {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 99vh;
+    padding-top: 1rem;
+}
+
+.pageSelectorItem {
+    background-color: transparent;
+    border: none;
+    text-align: start;
+    border-radius: 1rem;
+}
+
+.pageSelectorItem:hover {
+    background-color: #111;
+}
+
+.pageSelectorItem.selected {
+    background-color: #444;
+}

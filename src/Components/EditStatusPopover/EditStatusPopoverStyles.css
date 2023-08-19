@@ -15,31 +15,37 @@
     left: .5rem;
 }
 
-.editStatusPopover.chest,
-.editStatusPopover.starting {
+.editStatusPopover.starting,
+.editStatusPopover.level {
     font-size: 2rem;
 }
 
-.editStatusPopover.equipment,
 .editStatusPopover.cost,
 .editStatusPopover.bonus {
     font-size: 1.5rem;
 }
 
+.editStatusPopover.chest,
 .editStatusPopover.popup,
-.editStatusPopover.level,
 .editStatusPopover.form {
     font-size: 1rem;
+}
+
+.editStatusPopover.level {
+    left: auto;
+    right: 5rem;
+}
+
+.editStatusPopover.equipment {
+    font-size: 1rem;
+    top: -1rem;
+    left: auto;
+    right: 1rem;
 }
 
 /* @media(max-width: 90rem) {} */
 
 @media(max-width: 65rem) {
-    .editStatusPopover.chest {
-        font-size: 1.75rem;
-    }
-
-    .editStatusPopover.equipment,
     .editStatusPopover.cost,
     .editStatusPopover.bonus {
         font-size: 1.25rem;
@@ -54,11 +60,6 @@
 
 
 @media(max-width: 48rem) {
-    .editStatusPopover.chest {
-        font-size: 1.5rem;
-    }
-
-    .editStatusPopover.equipment,
     .editStatusPopover.cost,
     .editStatusPopover.bonus {
         font-size: 1.25rem;

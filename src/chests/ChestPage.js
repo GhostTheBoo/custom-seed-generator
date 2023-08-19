@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 
 import GenericSelect from '../Components/GenericSelect'
-import NavbarIcon from '../navbar/NavbarIcon'
-import ChestCard from './ChestCard'
-import './ChestStyles.css'
 
+import ChestCard from './ChestCard'
+import ChestImageCard from './ChestImageCard'
+import './ChestStyles.css'
 
 function ChestPage(props) {
 	// PROPS:
 	// chestData: array of worlds + chest objects -> {world, chests[]}[]
 	// setAllChests: parent state function to set all chests -> function
 
+	const [currentChest, setCurrentChest] = useState(0)
 	const [currentWorld, setCurrentWorld] = useState(0)
 	const chestCardGrid = useRef(null)
 	useEffect(() => {
@@ -19,24 +21,7 @@ function ChestPage(props) {
 
 	let currentWorldChests = props.chestData[currentWorld].chests
 
-	const chestFolderNames = [
-		'agr',
-		'bc',
-		'cor',
-		'dc',
-		'ht',
-		'hb',
-		'lod',
-		'oc',
-		'pooh',
-		'pr',
-		'pl',
-		'stt',
-		'sp',
-		'tr',
-		'tt',
-		'twtnw'
-	]
+	const chestFolderNames = ['agr', 'bc', 'cor', 'dc', 'ht', 'hb', 'lod', 'oc', 'pooh', 'pr', 'pl', 'stt', 'sp', 'tr', 'tt', 'twtnw']
 
 	function updateChest(newChest) {
 		let newWorldChests = currentWorldChests.map(chest => {
@@ -66,22 +51,34 @@ function ChestPage(props) {
 		props.setAllChests(newChestData)
 	}
 
-	let chestList = currentWorldChests.map((chest, chestIndex) => {
-		return (
+	let prevChestRoom = ''
+	let chestList = []
+	currentWorldChests.forEach((chest, chestIndex) => {
+		if (chest.room !== prevChestRoom) {
+			chestList.push(<h1 className='chestRoomHeader' key={chest.room + 'header' + chestIndex}>{chest.room}</h1>)
+		}
+		chestList.push(
 			<ChestCard
 				key={'chest' + chestIndex}
 				id={chestIndex}
+				prevChestRoom={prevChestRoom}
 				chest={chest}
+				isHovered={chestIndex === currentChest}
+				setCurrentChest={setCurrentChest}
 				currentFolderName={chestFolderNames[currentWorld]}
 				handleReplace={(replacementReward) => { updateChest(chest.replace({ reward: { ...replacementReward } })) }}
 				handleVanilla={() => { updateChest(chest.vanilla()) }}
 			/>
 		)
+		prevChestRoom = chest.room
 	})
+	chestList.push(<hr key='whyDoINeedAKey' />)
 	chestList.push(
 		<ChestCard
 			key={'chestAll'}
 			id={currentWorldChests.length}
+			prevChestRoom={prevChestRoom}
+			setCurrentChest={setCurrentChest}
 			currentFolderName={chestFolderNames[currentWorld]}
 			handleVanilla={() => updateAllChests(currentWorldChests.map(chest => { return chest.vanilla() }))}
 			handleReplace={(replacementReward) => updateAllChests(currentWorldChests.map(chest => { return chest.replace({ reward: { ...replacementReward } }) }))}
@@ -90,8 +87,13 @@ function ChestPage(props) {
 	)
 
 	return (
-		<div className='fullPageContent'>
-			<div className='pageHeader'>
+		<div className='fullPageContent chestPageContent' ref={chestCardGrid}>
+			<motion.div
+				initial={{ opacity: .25, x: 100 }}
+				animate={{ opacity: 1, x: 0 }}
+				transition={{ type: 'spring', duration: .5 }}
+				className='pageHeader'
+			>
 				<div className='pageHeaderSelectorLabel'>
 					World Selector:
 				</div>
@@ -109,15 +111,33 @@ function ChestPage(props) {
 				<div>
 					{props.children}
 				</div>
-				<NavbarIcon
-					showNavbar={props.handleShowNavbar}
-					fileName={'chest'}
-					title={'Chest'}
-				/>
-			</div>
-			<div className='chestCardGrid' ref={chestCardGrid}>
-				{chestList}
-			</div>
+			</motion.div>
+			<AnimatePresence mode='popLayout'>
+				<motion.div
+					initial={{ opacity: .25, x: 100 }}
+					animate={{ opacity: 1, x: 0 }}
+					exit={{ opacity: 0, y: 100 }}
+					transition={{ type: 'spring', duration: .5 }}
+					key={currentWorld}
+					className='chestCardGrid'
+				>
+					{chestList}
+				</motion.div>
+				<motion.div
+					initial={{ opacity: .25, x: 100 }}
+					animate={{ opacity: 1, x: 0 }}
+					exit={{ opacity: 0, y: 100 }}
+					transition={{ type: 'spring', duration: .5 }}
+					key={currentWorld + 'image'}
+				>
+					<ChestImageCard
+						key={'chestImage'}
+						id='chestImageCard'
+						currentChest={props.chestData[currentWorld].chests[currentChest]}
+						currentFolderName={chestFolderNames[currentWorld]}
+					/>
+				</motion.div>
+			</AnimatePresence>
 		</div>
 	)
 }

@@ -1,9 +1,9 @@
 .startingStuffFormCard {
+    font-family: KHMenu;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-content: center;
     background-color: #343A40;
     padding: .75rem 1rem;
     position: relative;
@@ -20,9 +20,47 @@
 }
 
 .startingStuffInputGroup {
+    text-align: start;
+    font-size: 1.25rem;
     display: grid;
-    grid-template-columns: 3fr 1fr 1fr;
+    grid-template-columns: 15rem max-content 1fr max-content;
+    row-gap: .5rem;
     padding: 0 1rem;
+}
+
+.startingStuffInputGroup .statValue {
+    font-family: KHGummi;
+    text-align: start;
+    font-size: 1.5rem;
+    padding: 0 1rem;
+    margin: 0 1rem;
+    color: #FFF100;
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+    width: 10rem;
+}
+
+.startingStuffInputGroup .statValue.new {
+    color: #63C6F5;
+}
+
+.startingStuffInputGroup span.statValue:hover {
+    border-color: black;
+}
+
+.startingStuffInputGroup .statValueInputField {
+    color: black;
+}
+
+.editIcon {
+    border-radius: 50%;
+    border: 1px solid transparent;
+    padding: .75rem;
+    width: 3rem;
+}
+
+.editIcon.isHidden {
+    visibility: hidden;
 }
 
 .startingStuffLabel {

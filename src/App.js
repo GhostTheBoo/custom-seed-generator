@@ -28,7 +28,7 @@ import { StartingStatus, startingStatusData } from './starting/StartingStatusDat
 import StartingStatusPage from './starting/StartingStatusPage'
 import { Cheat, pnachCheatsData, luaCheatsData } from './cheats/CheatsData'
 import CheatPage from './cheats/CheatPage'
-import PageNavbar from './navbar/PageNavbar'
+import SideNav from './navbar/SideNav'
 
 
 
@@ -48,11 +48,6 @@ function FunctionApp() {
 	const [currentTab, setCurrentTab] = useState(0)
 
 	const [isCommented, setIsCommented] = useState(true)
-
-	const [showNavbar, setShowNavbar] = useState(false);
-
-	const handleCloseNavbar = () => setShowNavbar(false);
-	const handleShowNavbar = () => setShowNavbar(true);
 	//#endregion
 	const alertUser = e => {
 		e.preventDefault()
@@ -64,6 +59,7 @@ function FunctionApp() {
 			window.removeEventListener('beforeunload', alertUser)
 		}
 	}, [])
+	const currentVersion = '10.10'
 
 	//#region General Functions
 	function handleTracker(isPnach) {
@@ -235,21 +231,21 @@ function FunctionApp() {
 
 		downloadFile(luaCodes, fileName.length !== 0 ? '(' + fileName + ').lua' : 'F266B00B.lua')
 	}
-	function handleSaveAsZip(fileName) {
+	function handleSaveAsZip(fileName, seedDescription) {
 		let zip = new JSZip()
 		let zipSeed = new ZipSeed()
 
-		zip.file('TrsrList.yml', zipSeed.generateTrsrList(allChests, allPopups, true)) // chests and popups
-		zip.file('LvupList.yml', zipSeed.generateLvupList(allLevels, true)) // level up rewards
-		zip.file('FmlvList.yml', zipSeed.generateFmlvList(allForms, true)) // Form Level Rewards
-		zip.file('BonsList.yml', zipSeed.generateBonsList(allBonuses, true)) // bonus level rewards
-		zip.file('ItemList.yml', zipSeed.generateItemList(allEquipments, true)) // equipment stats
-		zip.file('CmdList.yml', zipSeed.generateCmdList(allCosts, true)) // starting items
-		zip.file('PlrpList.yml', zipSeed.generatePlrpList(allStartingStatus, true)) // starting items
+		zip.file('TrsrList.yml', zipSeed.generateTrsrList(allChests, allPopups, isCommented)) // chests and popups
+		zip.file('LvupList.yml', zipSeed.generateLvupList(allLevels, isCommented)) // level up rewards
+		zip.file('FmlvList.yml', zipSeed.generateFmlvList(allForms, isCommented)) // Form Level Rewards
+		zip.file('BonsList.yml', zipSeed.generateBonsList(allBonuses, isCommented)) // bonus level rewards
+		zip.file('ItemList.yml', zipSeed.generateItemList(allEquipments, isCommented)) // equipment stats
+		zip.file('CmdList.yml', zipSeed.generateCmdList(allCosts, isCommented)) // starting items
+		zip.file('PlrpList.yml', zipSeed.generatePlrpList(allStartingStatus, isCommented)) // starting items
 		// zip.file('HintFile.hints', HintFile) // encoded hints
 		zip.file('sys.yml', zipSeed.generateSys()) // Menu text edits
 		zip.file('jm.yml', zipSeed.generateJm()) // random journal entries
-		zip.file('mod.yml', zipSeed.generateMod(fileName)) // enabled mods/scripts
+		zip.file('mod.yml', zipSeed.generateMod(fileName, seedDescription)) // enabled mods/scripts
 
 		zip.generateAsync({ type: 'blob' }).then(function (content) {
 			FileSaver.saveAs(content, fileName + '.zip')
@@ -266,6 +262,7 @@ function FunctionApp() {
 		let startingStatusSaveData = StartingStatus.saveToJSON(allStartingStatus)
 
 		let saveData = ['{',
+			'"version":"' + currentVersion + '",',
 			chestSaveData.join(''),
 			popupSaveData.join(''),
 			bonusSaveData.join(''),
@@ -280,6 +277,7 @@ function FunctionApp() {
 	}
 	function handleLoadFromJSON(loadData) {
 		let allLoadData = JSON.parse(loadData)
+		let loadVersion = allLoadData.version
 
 		let newAllChests = allLoadData.hasOwnProperty('chestsData') ? allLoadData.chestsData : []
 		let newAllPopups = allLoadData.hasOwnProperty('popupsData') ? allLoadData.popupsData : []
@@ -294,7 +292,7 @@ function FunctionApp() {
 		setAllBonuses(BonusFight.loadFromJSON(newAllBonuses))
 		setAllForms(FormLevel.loadFromJSON(newAllForms))
 		setAllEquipments(Equipment.loadFromJSON(newAllEquipments))
-		setAllLevels(Level.loadFromJSON(newAllLevels))
+		setAllLevels(Level.loadFromJSON(newAllLevels, loadVersion))
 		setAllCosts(AbilityCost.loadFromJSON(newAllCosts))
 		setAllStartingStatus(StartingStatus.loadFromJSON(newAllStartingStatus))
 	}
@@ -316,7 +314,6 @@ function FunctionApp() {
 			title: 'Home',
 			page: (
 				<HomePage
-					handleShowNavbar={handleShowNavbar}
 					isCommented={isCommented}
 					onCommentChange={() => { setIsCommented(!isCommented) }}
 					// handleSaveAsPnach={handleSaveAsPnach}
@@ -339,7 +336,6 @@ function FunctionApp() {
 			title: 'Chest',
 			page: (
 				<ChestPage
-					handleShowNavbar={handleShowNavbar}
 					chestData={allChests}
 					setAllChests={setAllChests}
 				>
@@ -354,7 +350,6 @@ function FunctionApp() {
 			title: 'Popup',
 			page: (
 				<PopupPage
-					handleShowNavbar={handleShowNavbar}
 					popupData={allPopups}
 					setAllPopups={setAllPopups}
 				>
@@ -369,7 +364,6 @@ function FunctionApp() {
 			title: 'Bonus',
 			page: (
 				<BonusPage
-					handleShowNavbar={handleShowNavbar}
 					bonusData={allBonuses}
 					setAllBonuses={setAllBonuses}
 				>
@@ -384,7 +378,6 @@ function FunctionApp() {
 			title: 'Forms & Summons',
 			page: (
 				<FormPage
-					handleShowNavbar={handleShowNavbar}
 					formData={allForms}
 					setAllForms={setAllForms}
 				>
@@ -399,7 +392,6 @@ function FunctionApp() {
 			title: 'Equipment',
 			page: (
 				<EquipmentPage
-					handleShowNavbar={handleShowNavbar}
 					equipmentData={allEquipments}
 					setAllEquipments={setAllEquipments}
 				>
@@ -414,7 +406,6 @@ function FunctionApp() {
 			title: 'Levels',
 			page: (
 				<LevelPage
-					handleShowNavbar={handleShowNavbar}
 					levelData={allLevels}
 					setAllLevels={setAllLevels}
 				>
@@ -429,7 +420,6 @@ function FunctionApp() {
 			title: 'Ability Costs',
 			page: (
 				<CostPage
-					handleShowNavbar={handleShowNavbar}
 					costData={allCosts}
 					setAllCosts={setAllCosts}
 				>
@@ -444,7 +434,6 @@ function FunctionApp() {
 			title: 'Starting Status',
 			page: (
 				<StartingStatusPage
-					handleShowNavbar={handleShowNavbar}
 					startingStatusData={allStartingStatus}
 					setAllStartingStatus={setAllStartingStatus}
 				>
@@ -459,7 +448,6 @@ function FunctionApp() {
 			title: 'Cheats',
 			page: (
 				<CheatPage
-					handleShowNavbar={handleShowNavbar}
 					pnachCheatData={allPnachCheats}
 					luaCheatData={allLuaCheats}
 					setAllPnachCheats={setAllPnachCheats}
@@ -471,19 +459,22 @@ function FunctionApp() {
 		}
 	]
 
-	let styles = {
-		marginTop: '0',
-		marginRight: '.25rem',
-		marginBottom: '.25rem',
-		marginLeft: '.25rem',
-		color: '#fff'
-	}
+	/* TODO:
+	Clean up all level graph view
+	Clean up magic page
+	Clean up starting status page
+	Clean up home page and add back in credits list
+	
+	Add inline editing to equipment page and remove form, add equipment image small to each card
+	Condense Form Page and add inline editing instead of form
+	Add text and description editing to equipment page
+	Add inline editing to levels
+	*/
+
 	return (
-		<div style={styles}>
-			<PageNavbar
-				show={showNavbar}
+		<div className='App'>
+			<SideNav
 				onSelect={(newTab) => setCurrentTab(newTab)}
-				onHide={handleCloseNavbar}
 				pages={tabDataList}
 				currentTab={currentTab}
 			/>

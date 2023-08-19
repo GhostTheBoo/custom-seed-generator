@@ -1,0 +1,31 @@
+.levelCardContent {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.75rem;
+}
+
+.levelCardRewards {
+    display: flex;
+    flex-direction: column;
+}
+
+.levelRewardRow {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.levelStatRow {
+    display: grid;
+    grid-template-columns: 3fr 2fr 3fr;
+}
+
+.expChange {
+    font-family: 'KHGummi';
+    color: #FFFF00;
+}
+
+@media(max-width: 66rem) {
+    .levelCardContent {
+        font-size: 1.2rem;
+    }
+}

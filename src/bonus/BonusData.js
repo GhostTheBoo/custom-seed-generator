@@ -196,18 +196,20 @@ export class BonusReward {
 		this.saveToYml = (isCommented, zipID) => {
 			let ret = ''
 			if (this.isReplaced()) {
-				ret += '  ' + this.replacementCharacterString + ':\n    '
-				ret += 'AccessorySlotUpgrade: ' + this.accessorySlotIncrease + '\n    '
-				ret += 'ArmorSlotUpgrade: ' + this.armorSlotIncrease + '\n    '
-				ret += 'BonusItem1: ' + this.replacementRewardA.index + '\n    '
-				ret += 'BonusItem2: ' + this.replacementRewardB.index + '\n    '
-				ret += 'CharacterId: ' + this.replacementCharacter + '\n    '
-				ret += 'DriveGaugeUpgrade: ' + this.driveGaugeIncrease + '\n    '
-				ret += 'HpIncrease: ' + this.hpIncrease + '\n    '
-				ret += 'ItemSlotUpgrade: ' + this.itemSlotIncrease + '\n    '
-				ret += 'MpIncrease: ' + this.mpIncrease + '\n    '
-				ret += 'Padding: 0\n    ' // wtf is this?
-				ret += 'RewardId: ' + zipID
+				ret += '  ' + this.replacementCharacterString + ':'
+				ret += '\n    RewardId: ' + zipID
+				ret += '\n    CharacterId: ' + this.replacementCharacter
+				ret += '\n    BonusItem1: ' + this.replacementRewardA.index
+				if (isCommented) ret += ' # ' + this.replacementRewardA.reward
+				ret += '\n    BonusItem2: ' + this.replacementRewardB.index
+				if (isCommented) ret += ' # ' + this.replacementRewardB.reward
+				ret += '\n    HpIncrease: ' + this.hpIncrease
+				ret += '\n    MpIncrease: ' + this.mpIncrease
+				ret += '\n    ArmorSlotUpgrade: ' + this.armorSlotIncrease
+				ret += '\n    AccessorySlotUpgrade: ' + this.accessorySlotIncrease
+				ret += '\n    ItemSlotUpgrade: ' + this.itemSlotIncrease
+				ret += '\n    DriveGaugeUpgrade: ' + this.driveGaugeIncrease
+				ret += '\n    Padding: 0\n    ' // wtf is this?
 				ret += '\n'
 			}
 			return ret
@@ -288,9 +290,10 @@ export class BonusFight {
 		}
 		this.saveToYml = (isCommented) => {
 			if (this.isReplaced()) {
-				let ret = this.zipID + ':\n'
-				this.slots.forEach((slot, slotID) => {
-					// if (isCommented) ret += '\t-- Bonus Slot #' + (slotID + 1) + '\n'
+				let ret = ''
+				if (isCommented) ret += '#' + this.fight + '\n'
+				ret += this.zipID + ':\n'
+				this.slots.forEach(slot => {
 					ret += slot.saveToYml(isCommented, this.zipID)
 				})
 				return ret
@@ -331,6 +334,7 @@ export class BonusFight {
 		return ['"bonusData":[', bonusSaveData.filter(s => s !== '').join(), '],']
 	}
 	static loadFromJSON(bonusLoadData) {
+		// This needs to be cleaned up, my brain hurts looking at it
 		let globalIndex = 0
 		return bonusData.map(world => {
 			if (globalIndex < bonusLoadData.length) {

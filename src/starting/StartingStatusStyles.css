@@ -3,13 +3,14 @@
     grid-template-columns: 5fr 9fr;
     gap: 4rem;
     align-items: flex-start;
+    padding-top: .5rem;
 }
 
 .startingStuffRow,
 .startingStuffFinalRow {
     font-family: KHMenu;
     display: grid;
-    grid-template-columns: 1fr 6fr 4fr 3fr;
+    grid-template-columns: 3rem 1fr max-content max-content;
     gap: 2rem;
 }
 
@@ -27,6 +28,13 @@
 
 .startingStuffFinalRow>.btn-primary {
     grid-column: 3 / span 2;
+}
+
+.startingStuffRow .editIcon {
+    border-radius: 50%;
+    border: 1px solid transparent;
+    padding: .75rem;
+    width: 3rem;
 }
 
 @media(max-width: 90rem) {}
@@ -58,7 +66,8 @@
     .startingStuffFinalRow>.btn-primary {
         grid-column: 1 / span 8;
     }
-    .startingStuffFinalLabel{
+
+    .startingStuffFinalLabel {
         text-align: center;
     }
 }

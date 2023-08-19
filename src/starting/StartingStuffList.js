@@ -1,5 +1,5 @@
 import React from 'react'
-import { ListGroup, Button } from 'react-bootstrap'
+import { ListGroup } from 'react-bootstrap'
 
 import Icon from '../Components/Icon'
 import { EMPTY } from '../rewards/RewardsData'
@@ -27,16 +27,19 @@ function StartingStuffList(props) {
 					</Icon>
 				</div>
 				<RewardSelectorButton
+					useIcon={true}
+					iconPath={'./images/extra/edit.svg'}
 					originalReward={data}
 					onReplace={(replacementReward) => props.handleReplace(replacementReward, index)}
 				/>
-				<Button
-					variant='secondary'
-					id={props.id}
+				<img
+					className='editIcon empty btn btn-dark'
+					src='./images/extra/trash.svg'
+					alt='edit'
+					width='100%'
+					height='auto'
 					onClick={() => props.handleDelete(index)}
-				>
-					Delete
-				</Button>
+				/>
 			</ListGroup.Item>
 		)
 	})

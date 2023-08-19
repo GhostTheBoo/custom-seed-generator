@@ -29,6 +29,9 @@ function Icon(props) {
 	else
 		iconSize = 0
 
+	let text = ''
+	if (props.children !== undefined) text = ' ' + props.children
+
 	return (
 		<>
 			<img
@@ -39,12 +42,15 @@ function Icon(props) {
 				width={iconSize}
 				style={{ verticalAlign: 'middle' }}
 			/>
-			<span
-				className={'iconDescription' + classNameSuffix}
-				style={{ verticalAlign: 'middle' }}
-			>
-				{' ' + props.children}
-			</span>
+			{text.length !== 0
+				? <span
+					className={'iconDescription' + classNameSuffix}
+					style={{ verticalAlign: 'middle' }}
+				>
+					{text}
+				</span>
+				: <></>
+			}
 		</>
 	)
 }

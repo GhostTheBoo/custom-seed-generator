@@ -1,212 +1,12 @@
-.sora {
-  --bonusPrimaryColor: #9E1921;
-  --bonusLighterColor: #a83037;
-  --bonusEvenLighterColor: #bb5e64;
-  --bonusDarkerColor: #8e171e;
-  --bonusEvenDarkerColor: #6f1217;
-}
-
-.donald {
-  --bonusPrimaryColor: #1620A2;
-  --bonusLighterColor: #2d36ab;
-  --bonusEvenLighterColor: #5c63be;
-  --bonusDarkerColor: #141d92;
-  --bonusEvenDarkerColor: #0f1671;
-}
-
-.goofy {
-  --bonusPrimaryColor: #21A219;
-  --bonusLighterColor: #37ab30;
-  --bonusEvenLighterColor: #64be5e;
-  --bonusDarkerColor: #1e9217;
-  --bonusEvenDarkerColor: #177112;
-}
-
-.other {
-  --bonusPrimaryColor: #9F7F19;
-  --bonusLighterColor: #a98c30;
-  --bonusEvenLighterColor: #bca55e;
-  --bonusDarkerColor: #8f7217;
-  --bonusEvenDarkerColor: #6f5912;
-}
-
 .bonusPageContent {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 
 .bonusFightList {
-  width: 20%;
+  width: 30rem;
 }
-
-.bonusLevelCards {
-  width: 40%;
-  overflow-y: auto;
-}
-
-.bonusForm {
-  width: 40%;
-}
-
-.bonusFightIcon {
-  height: 75px;
-  width: 60px;
-  vertical-align: middle;
-}
-
-.bonusFightIconDescription {
-  font-family: KHMenu;
-  font-size: 1.3rem;
-}
-
-.bonusFightName {
-  display: none;
-  font-family: KHMenu;
-  text-align: center;
-  font-size: 1.25rem;
-  padding: .25rem 0;
-}
-
-.bonusLevel {
-  font-family: KHMenu;
-  border-radius: 3rem 2rem 2rem 3rem;
-  width: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0rem;
-  padding: 0 0 .25rem .25rem;
-  margin-bottom: 3%;
-  background-color: var(--bonusPrimaryColor);
-  justify-content: flex-start;
-  box-shadow: inset 0rem .1rem .1rem rgba(255, 255, 255, .5),
-    0rem .1rem .5rem black;
-}
-
-.smallBonusRewardBox {
-  border-radius: 0 2rem 2rem 2rem;
-  display: flex;
-  flex-direction: column;
-  background: black;
-  font-size: 1.5em;
-  color: white;
-  margin: 0 .5rem 0 1.5rem;
-}
-
-.bigBonusRewardBox {
-  border-radius: 0 2rem 2rem 2.5rem;
-  display: flex;
-  flex-direction: column;
-  background: black;
-  font-size: 1.5em;
-  color: white;
-  margin: 0 .5rem 0 .25rem;
-  padding-left: 1rem;
-}
-
-.smallBonusRewardList {
-  display: none;
-}
-
-.bonusReward {
-  padding-left: 5rem;
-  max-height: 36px;
-}
-
-.bonusHeader {
-  display: flex;
-  flex-direction: row;
-  padding-left: 6rem;
-  font-size: 1.5rem;
-}
-
-.bonusCharacter {
-  color: white;
-  text-shadow: .1rem .1rem .1rem black;
-  width: 60%;
-  text-align: right;
-  padding-right: 2rem;
-}
-
-.bonusHeaderSpace {
-  flex-grow: 1;
-}
-
-.bonusButtonGroup {
-  font-family: KHGummi;
-  display: flex;
-  flex-direction: row;
-  width: 70%;
-}
-
-.bonusButton {
-  margin: .25rem 0;
-  padding: 0 1rem;
-  width: 100%;
-  height: 2.6rem;
-  font-size: 1rem;
-  border: 0;
-  border-top-left-radius: 2rem;
-  white-space: pre-line;
-  color: var(--bonusEvenLighterColor);
-  background-color: black;
-}
-
-.bonusAfterButtonTriangle {
-  margin: .25rem 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 2.6rem 2rem 0 0;
-  border-color: black transparent transparent transparent;
-}
-
-.bonusAfterButtonTail {
-  margin: .25rem 0;
-  margin-left: -.4rem;
-  width: 1rem;
-  height: .5rem;
-  background: black;
-}
-
-.bonusButton:hover,
-.bonusButton:hover~.bonusAfterButtonTail {
-  background-color: var(--bonusLighterColor);
-}
-
-.bonusButton:hover~.bonusAfterButtonTriangle {
-  border-color: var(--bonusLighterColor) transparent transparent transparent;
-}
-
-.bonusButton:focus,
-.bonusButton:focus~.bonusAfterButtonTail {
-  background-color: var(--bonusEvenDarkerColor);
-}
-
-.bonusButton:focus~.bonusAfterButtonTriangle {
-  border-color: var(--bonusEvenDarkerColor) transparent transparent transparent;
-}
-
-.bonusButton:disabled,
-.bonusButton:disabled~.bonusAfterButtonTail {
-  color: white;
-  background-color: var(--bonusEvenDarkerColor);
-}
-
-.bonusButton:disabled~.bonusAfterButtonTriangle {
-  border-color: var(--bonusEvenDarkerColor) transparent transparent transparent;
-}
-
-.bonusLogo {
-  position: absolute;
-  background-color: black;
-  border-radius: 100%;
-  height: 5rem;
-  width: 5rem;
-  top: .35rem;
-  left: .5rem;
-}
-
 
 @media(max-width: 91rem) {
   .bonusReward {
@@ -239,31 +39,11 @@
     border-bottom-left-radius: 3.5rem;
     font-size: .75rem;
   }
-
-  .bonusFightIcon {
-    height: 50px;
-    width: 40px;
-    vertical-align: middle;
-  }
-
-  .bonusFightIconDescription {
-    font-family: KHMenu;
-    font-size: 1rem;
-    vertical-align: middle;
-  }
 }
 
 @media(max-width: 66rem) {
   .bonusFightList {
     width: 80px;
-  }
-
-  .bonusFightIconDescription {
-    display: none;
-  }
-
-  .bonusFightName {
-    display: block;
   }
 }
 

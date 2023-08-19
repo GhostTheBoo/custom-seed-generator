@@ -23,18 +23,36 @@ function RewardSelector(props) {
 	if (props.variantOverride !== undefined)
 		buttonVariant = props.variantOverride
 
+	let isDisabled = props.isDisabled !== undefined ? props.isDisabled : false
+
 	function onClick(replacement) {
 		props.onReplace(replacement)
 		setShow(false)
 	}
 	return (
 		<>
-			<Button
-				variant={buttonVariant}
-				onClick={() => setShow(true)}
-			>
-				{buttonText}
-			</Button>
+			{props.useIcon !== undefined && props.useIcon
+				? <img
+					className={`editIcon edit btn btn-${buttonVariant}${props.className !== undefined ? ' ' + props.className : ''}`}
+					src={props.iconPath}
+					alt='edit'
+					width='100%'
+					height='auto'
+					onClick={() => setShow(true)}
+				/>
+				: <Button
+					className={props.className !== undefined ? ' ' + props.className : ''}
+					variant={buttonVariant}
+					onClick={() => setShow(true)}
+					disabled={isDisabled}
+				>
+					{
+						props.children !== undefined
+							? props.children
+							: buttonText
+					}
+				</Button>
+			}
 			{show
 				? <RewardSelectorModal
 					show={show}

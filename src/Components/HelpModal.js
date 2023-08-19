@@ -5,13 +5,12 @@ import { helpData } from '../Data/helpData'
 
 function HelpModal(props) {
 	const [show, setShow] = useState(false)
-	// let offsetValue = props.tab === 'cheat' ? '6' : '4'
 	if (props.tab === 0)
 		return null
 	let pageHelp = helpData[props.tab - 1]
 	return (
 		<>
-			<Button variant='primary' className='helpButton' onClick={() => setShow(true)}>
+			<Button variant='outline-info' className='helpButton' onClick={() => setShow(true)}>
 				Help!
 			</Button>
 			<Modal size='lg' show={show} onHide={() => setShow(false)}>
@@ -23,11 +22,6 @@ function HelpModal(props) {
 				<Modal.Body>
 					{pageHelp.help}
 				</Modal.Body>
-				<Modal.Footer>
-					<Button variant='primary' onClick={() => setShow(false)}>
-						Okay
-					</Button>
-				</Modal.Footer>
 			</Modal>
 		</>
 	)

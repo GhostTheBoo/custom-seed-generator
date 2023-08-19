@@ -8,29 +8,39 @@
 }
 
 .costCardGrid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    justify-content: space-between;
-    column-gap: .5rem;
+    display: flex;
+    flex-direction: column;
     overflow-y: auto;
-    height: 90vh;
-    align-items: flex-start;
+    padding: 0rem 1rem 1rem 1rem;
+    height: 87vh;
+    gap: 3rem;
+}
+
+.costGridGroup {
+    display: grid;
+    grid-template-columns: 15rem 1fr;
+}
+
+.abilityHeader {
+    grid-column: span 2;
+}
+
+.costCategoryImage {
+    grid-row: span 4;
 }
 
 .costCard {
     font-family: KHMenu;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
+    position: relative;
+    display: grid;
+    grid-template-columns: 15rem auto 1fr max-content;
+    align-items: center;
     background-color: #343A40;
-    padding: 1rem;
+    padding: .5rem .5rem .5rem 6rem;
     margin: 1rem 0;
     border-radius: 1rem;
     box-shadow: 0rem 0rem .5rem black;
     gap: .25rem;
-    /* max-height: 35rem; */
 }
 
 .costCardImage {
@@ -39,24 +49,49 @@
 }
 
 .costAbilityName {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     padding: 1rem 0rem;
 }
 
-.abilityCostRow {
-    display: grid;
-    grid-template-columns: 1fr 12fr 4fr 1fr;
-    gap: 1rem;
+.specificAbilityName {
+    text-align: start;
+    font-size: 1.5rem;
+    padding-top: .5rem;
 }
 
-.specificAbilityName{
-    grid-column: 2;
-    text-align: start;
-}
 .specificAbilityCost {
     font-family: KHGummi;
+    text-align: start;
+    font-size: 1.5rem;
+    padding: 0 1rem;
+    margin: 0 1rem;
     color: #FFF100;
-    grid-column: 3;
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+    width: 10rem;
+}
+
+.specificAbilityCost.new {
+    color: #63C6F5;
+}
+
+span.specificAbilityCost:hover {
+    border-color: black;
+}
+
+.costInputField {
+    color: black;
+}
+
+.costEditIcon {
+    border-radius: 50%;
+    border: 1px solid transparent;
+    padding: .75rem;
+    width: 3rem;
+}
+
+.costEditIcon.isHidden {
+    visibility: hidden;
 }
 
 @media(max-width: 90rem) {

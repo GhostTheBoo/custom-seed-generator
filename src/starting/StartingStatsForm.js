@@ -1,16 +1,79 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './StartingStatusFormStyles.css'
 
-import { Button } from 'react-bootstrap'
 import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
+import { useEffect } from 'react'
 
 function StartingStatsForm(props) {
-    function setCurrentHP(newValue) { props.setCurrentStartingStatusFieldData('currentHP', newValue) }
-    function setCurrentMP(newValue) { props.setCurrentStartingStatusFieldData('currentMP', newValue) }
-    function setCurrentAP(newValue) { props.setCurrentStartingStatusFieldData('currentAP', newValue) }
-    function setCurrentArmor(newValue) { props.setCurrentStartingStatusFieldData('currentArmor', newValue) }
-    function setCurrentAccessory(newValue) { props.setCurrentStartingStatusFieldData('currentAccessory', newValue) }
-    function setCurrentItem(newValue) { props.setCurrentStartingStatusFieldData('currentItem', newValue) }
+    const [currentFieldData, setCurrentFieldData] = useState({
+        currentHP: props.startingStats.hp,
+        currentMP: props.startingStats.mp,
+        currentAP: props.startingStats.ap,
+        currentArmor: props.startingStats.armorSlots,
+        currentAccessory: props.startingStats.accessorySlots,
+        currentItem: props.startingStats.itemSlots
+    })
+    useEffect(() => {
+        setCurrentFieldData({
+            currentHP: props.startingStats.hp,
+            currentMP: props.startingStats.mp,
+            currentAP: props.startingStats.ap,
+            currentArmor: props.startingStats.armorSlots,
+            currentAccessory: props.startingStats.accessorySlots,
+            currentItem: props.startingStats.itemSlots
+        })
+    }, [props.startingStats, props.isEditing])
+
+    function handleUpdate(fieldName, newValue) {
+        let newStartingStats = {
+            ...currentFieldData,
+            [fieldName]: newValue
+        }
+        props.updateRow(newStartingStats)
+        props.updateFocus(-1)
+    }
+
+    function createStatRow(statName, statLabel, currentValue, vanillaValue, isSlot) {
+        let statValue = currentFieldData[statName]
+        let max = isSlot ? 19 : 255
+        function setCurrentStat(newValue, statName) { setCurrentFieldData({ ...currentFieldData, [statName]: newValue }) }
+        return (
+            <>
+                <span className='statName'>{statLabel}</span>
+                {
+                    props.currentFocus === statName
+                        ? <input
+                            name={`statInput${statName}`}
+                            className='statValue statValueInputField'
+                            type='number'
+                            value={isNaN(statValue) ? '' : statValue}
+                            onChange={(e) => setCurrentStat(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))), statName)}
+                            autoFocus
+                            onBlur={() => handleUpdate(statName, currentFieldData[statName])}
+                            onKeyDown={(e) => { if (e.key === 'Enter') handleUpdate(statName, currentFieldData[statName]) }}
+                            min='0'
+                            max={max}
+                            size={4}
+                        />
+                        : <span
+                            className={`statValue ${statValue !== vanillaValue ? ' new' : ''}`}
+                            onClick={() => props.updateFocus(statName)}
+                        >
+                            {statValue}
+                        </span>
+                }
+                <div />
+                <img
+                    className={`editIcon${currentValue === vanillaValue ? ' isHidden' : ''} btn btn-secondary`}
+                    src='./images/extra/undo.svg'
+                    alt='vanilla'
+                    width='100%'
+                    height='auto'
+                    onClick={() => handleUpdate(statName, vanillaValue)}
+                />
+            </>
+        )
+    }
 
     let overlayPopover = <EditStatusPopover
         text={'NEW!'}
@@ -24,80 +87,17 @@ function StartingStatsForm(props) {
             <h1 className='startingStuffFormName'>{props.startingStats.getCharacter()}:</h1>
             <hr />
             <div className='startingStuffInputGroup'>
-                <label className='startingStuffLabel'>HP:</label>
-                <div className='startingStuffCurrentStatLabel'>{props.startingStats.hp}</div>
-                <input
-                    name={'StartingHP'}
-                    className='startingStuffInputField three-digit-input'
-                    type='number'
-                    value={props.startingStatusFieldData.currentHP}
-                    onChange={(e) => setCurrentHP(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                    min='0'
-                    max='255'
-                />
-                <label className='startingStuffLabel'>MP:</label>
-                <div className='startingStuffCurrentStatLabel'>{props.startingStats.mp}</div>
-                <input
-                    name={'StartingMP'}
-                    className='startingStuffInputField three-digit-input'
-                    type='number'
-                    value={props.startingStatusFieldData.currentMP}
-                    onChange={(e) => setCurrentMP(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                    min='0'
-                    max='255'
-                />
-                <label className='startingStuffLabel'>AP:</label>
-                <div className='startingStuffCurrentStatLabel'>{props.startingStats.ap}</div>
-                <input
-                    name={'StartingAP'}
-                    className='startingStuffInputField three-digit-input'
-                    type='number'
-                    value={props.startingStatusFieldData.currentAP}
-                    onChange={(e) => setCurrentAP(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                    min='0'
-                    max='255'
-                />
+                {createStatRow('currentHP', 'HP', props.startingStats.hp, props.startingStats.vanillaHp, false)}
+                {createStatRow('currentMP', 'MP', props.startingStats.mp, props.startingStats.vanillaMp, false)}
+                {createStatRow('currentAP', 'AP', props.startingStats.ap, props.startingStats.vanillaAp, false)}
             </div>
             <hr />
             <div className='startingStuffInputGroup'>
-                <label className='startingStuffLabel large'>Armor Slots:</label>
-                <label className='startingStuffLabel small'>Armor:</label>
-                <div className='startingStuffCurrentStatLabel'>{props.startingStats.armorSlots}</div>
-                <input
-                    name={'StartingArmor'}
-                    className='startingStuffInputField three-digit-input'
-                    type='number'
-                    value={props.startingStatusFieldData.currentArmor}
-                    onChange={(e) => setCurrentArmor(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                    min='0'
-                    max='19'
-                />
-                <label className='startingStuffLabel large'>Accessory Slots:</label>
-                <label className='startingStuffLabel small'>Accessory:</label>
-                <div className='startingStuffCurrentStatLabel'>{props.startingStats.accessorySlots}</div>
-                <input
-                    name={'StartingAccessory'}
-                    className='startingStuffInputField three-digit-input'
-                    type='number'
-                    value={props.startingStatusFieldData.currentAccessory}
-                    onChange={(e) => setCurrentAccessory(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                    min='0'
-                    max='19'
-                />
-                <label className='startingStuffLabel large'>Item Slots:</label>
-                <label className='startingStuffLabel small'>Item:</label>
-                <div className='startingStuffCurrentStatLabel'>{props.startingStats.itemSlots}</div>
-                <input
-                    name={'StartingItem'}
-                    className='startingStuffInputField three-digit-input'
-                    type='number'
-                    value={props.startingStatusFieldData.currentItem}
-                    onChange={(e) => setCurrentItem(Math.max(Number(e.target.min), Math.min(Number(e.target.max), Number(parseInt(e.target.value)))))}
-                    min='0'
-                    max='19'
-                />
+                {createStatRow('currentArmor', 'Armor Slots', props.startingStats.armorSlots, props.startingStats.vanillaArmorSlots, true)}
+                {createStatRow('currentAccessory', 'Accessory Slots', props.startingStats.accessorySlots, props.startingStats.vanillaAccessorySlots, true)}
+                {createStatRow('currentItem', 'Item Slots', props.startingStats.itemSlots, props.startingStats.vanillaItemSlots, true)}
             </div>
-            <hr />
+            {/* <hr />
             <div className='startingStuffReplaceButtonGroup'>
                 <Button
                     variant='secondary'
@@ -105,12 +105,7 @@ function StartingStatsForm(props) {
                 >
                     VANILLA
                 </Button>
-                <Button
-                    onClick={() => props.handleReplace()}
-                >
-                    CONFIRM
-                </Button>
-            </div>
+            </div> */}
         </div>
     )
 }

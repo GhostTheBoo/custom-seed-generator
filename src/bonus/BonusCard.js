@@ -15,14 +15,14 @@ function BonusCard(props) {
 		props.setCurrentBonusFightSlot(props.slotIndex)
 	}
 
-	function newRewardIcon(key, fileName, text) {
+	function newRewardIcon(key, fileName, stat) {
 		return (
 			<div key={key} className='bonusReward'>
 				<Icon
 					fileName={fileName}
 					type={'form'}
 				>
-					{text}
+					{`: ${stat}`}
 				</Icon>
 			</div>
 		)
@@ -42,70 +42,42 @@ function BonusCard(props) {
 
 	let rewardList = []
 	let smallRewardList = []
-	let hpUpText = `Max HP Increased by ${props.bonusReward.hpIncrease}!`
-	let smallHpUpText = `: ${props.bonusReward.hpIncrease}`
-	let mpUpText = `Max MP Increased by ${props.bonusReward.mpIncrease}!`
-	let smallMpUpText = `: ${props.bonusReward.mpIncrease}`
-	let armorUpText = `Gained ${props.bonusReward.armorSlotIncrease} Armor Slot(s)!`
-	let smallArmorUpText = `: ${props.bonusReward.armorSlotIncrease}`
-	let accessoryText = `Gained ${props.bonusReward.accessorySlotIncrease} Accessory Slot(s)!`
-	let smallAccessoryText = `: ${props.bonusReward.accessorySlotIncrease}`
-	let itemText = `Gained ${props.bonusReward.itemSlotIncrease} Item Slot(s)!`
-	let smallItemText = `: ${props.bonusReward.itemSlotIncrease}`
-	let driveUpText = `Drive Gauge Increased by ${props.bonusReward.driveGaugeIncrease}!`
-	let smallDriveUpText = `: ${props.bonusReward.driveGaugeIncrease}`
 
-	//#region Regular Reward List Init
-	if (props.bonusReward.hpIncrease !== 0)
-		rewardList.push(<div key='bonusHP' className='bonusReward'>{hpUpText}</div>)
-	if (props.bonusReward.mpIncrease !== 0)
-		rewardList.push(<div key='bonusMP' className='bonusReward'>{mpUpText}</div>)
-	if (props.bonusReward.replacementRewardA.index !== 0x000)
+	function addStatRow(key, text, stat, fileName) {
+		if (stat !== 0) {
+			rewardList.push(<div key={key} className='bonusReward'>{text}</div>)
+			smallRewardList.push(newRewardIcon(key, fileName, stat))
+		}
+	}
+
+	//#region Reward List Init
+	addStatRow('bonusHP', `Max HP Increased by ${props.bonusReward.hpIncrease}!`, props.bonusReward.hpIncrease, 'uphp')
+	addStatRow('bonusMP', `Max MP Increased by ${props.bonusReward.mpIncrease}!`, props.bonusReward.mpIncrease, 'upmp')
+	if (props.bonusReward.replacementRewardA.index !== 0x000) {
 		rewardList.push(newReplacementRewardIcon('A', props.bonusReward.replacementRewardA))
-	if (props.bonusReward.replacementRewardB.index !== 0x000)
+		smallRewardList.push(newReplacementRewardIcon('A', props.bonusReward.replacementRewardA))
+	}
+	if (props.bonusReward.replacementRewardB.index !== 0x000) {
 		rewardList.push(newReplacementRewardIcon('B', props.bonusReward.replacementRewardB))
-	if (props.bonusReward.armorSlotIncrease !== 0)
-		rewardList.push(<div key='bonusArmor' className='bonusReward'>{armorUpText}</div>)
-	if (props.bonusReward.accessorySlotIncrease !== 0)
-		rewardList.push(<div key='bonusAccessory' className='bonusReward'>{accessoryText}</div>)
-	if (props.bonusReward.itemSlotIncrease !== 0)
-		rewardList.push(<div key='bonusItem' className='bonusReward'>{itemText}</div>)
-	if (props.bonusReward.driveGaugeIncrease !== 0)
-		rewardList.push(<div key='bonusDrive' className='bonusReward'>{driveUpText}</div>)
-	if (rewardList.length === 0)
-		rewardList.push(newReplacementRewardIcon('A', props.bonusReward.replacementRewardA))
-	//#endregion
-
-	//#region Small Reward List Init
-	if (props.bonusReward.hpIncrease !== 0)
-		smallRewardList.push(newRewardIcon('bonusHP', 'uphp', smallHpUpText))
-	if (props.bonusReward.mpIncrease !== 0)
-		smallRewardList.push(newRewardIcon('bonusMP', 'upmp', smallMpUpText))
-	if (props.bonusReward.replacementRewardA.index !== 0x000)
-		smallRewardList.push(newReplacementRewardIcon('A', props.bonusReward.replacementRewardA))
-	if (props.bonusReward.replacementRewardB.index !== 0x000)
 		smallRewardList.push(newReplacementRewardIcon('B', props.bonusReward.replacementRewardB))
-	if (props.bonusReward.armorSlotIncrease !== 0)
-		smallRewardList.push(newRewardIcon('bonusArmor', 'uparmor', smallArmorUpText))
-	if (props.bonusReward.accessorySlotIncrease !== 0)
-		smallRewardList.push(newRewardIcon('bonusAccessory', 'upaccessory', smallAccessoryText))
-	if (props.bonusReward.itemSlotIncrease !== 0)
-		smallRewardList.push(newRewardIcon('bonusItem', 'upitem', smallItemText))
-	if (props.bonusReward.driveGaugeIncrease !== 0)
-		smallRewardList.push(newRewardIcon('bonusDrive', 'updrive', smallDriveUpText))
-	if (smallRewardList.length === 0)
+	}
+	addStatRow('bonusArmor', `Gained ${props.bonusReward.armorSlotIncrease} Armor Slot(s)!`, props.bonusReward.armorSlotIncrease, 'uparmor')
+	addStatRow('bonusAccessory', `Gained ${props.bonusReward.accessorySlotIncrease} Accessory Slot(s)!`, props.bonusReward.accessorySlotIncrease, 'upaccessory')
+	addStatRow('bonusItem', `Gained ${props.bonusReward.itemSlotIncrease} Item Slot(s)!`, props.bonusReward.itemSlotIncrease, 'upitem')
+	addStatRow('bonusDrive', `Drive Gauge Increased by ${props.bonusReward.driveGaugeIncrease}!`, props.bonusReward.driveGaugeIncrease, 'updrive')
+	if (rewardList.length === 0) {
+		rewardList.push(newReplacementRewardIcon('A', props.bonusReward.replacementRewardA))
 		smallRewardList.push(newReplacementRewardIcon('A', props.bonusReward.replacementRewardA))
+	}
 	//#endregion
 
-	let character
+	let character = 'other'
 	if (props.bonusReward.replacementCharacter === 1)
 		character = 'sora'
 	else if (props.bonusReward.replacementCharacter === 2)
 		character = 'donald'
 	else if (props.bonusReward.replacementCharacter === 3)
 		character = 'goofy'
-	else
-		character = 'other'
 	let bonusLogo = './images/icons/' + character + 'B.png'
 
 
@@ -116,7 +88,7 @@ function BonusCard(props) {
 	/>
 
 	return (
-		<div className={`bonusLevel ${character}`}>
+		<li className={`bonusLevel ${character}`}>
 			{props.bonusReward.isReplaced() ? overlayPopover : <></>}
 			<div className='bonusHeader'>
 				<div className='bonusButtonGroup'>
@@ -138,7 +110,7 @@ function BonusCard(props) {
 				<div className='smallBonusRewardList'>{smallRewardList}</div>
 			</div>
 			<img className='bonusLogo' src={bonusLogo} alt='Bonus Logo' />
-		</div>
+		</li>
 	)
 }
 

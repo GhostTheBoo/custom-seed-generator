@@ -11,10 +11,6 @@
 		url('../fonts/KHMenu.otf') format('truetype');
 }
 
-.flex-grow-1 {
-	flex-grow: 1;
-}
-
 .flex {
 	display: flex;
 }
@@ -23,45 +19,29 @@
 	margin-top: 0;
 }
 
+.invis {
+	visibility: hidden;
+}
 
 /* Main Page Appearance */
 body {
 	background-color: #222;
 }
 
-.nav-item>button {
-	color: #5af;
-	text-decoration: none;
-	background-color: transparent;
-}
-
-.nav-item>button:hover {
-	color: #8df;
-	text-decoration: none;
-}
-
-.nav-tabs .nav-item.show .nav-link,
-.nav-tabs .nav-link.active {
+.App {
 	color: #fff;
-	background-color: #222;
-	border-color: #fff #fff #222;
-}
-
-.pageNavbarIcon {
-	color: #fff;
-	background-color: #222;
-	border: none;
-}
-
-.pageNavbarIcon:hover {
-	color: #8df;
-	/* border: .1rem solid; */
-	border-color: #222 #fff;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: .5rem;
+	overflow: hidden;
 }
 
 .fullPageContent {
-	margin-left: 1rem;
-	margin-right: 1rem;
+	position: relative;
+	overflow-y: auto;
+	overflow-x: hidden;
+	height: 98vh;
+	padding: 0 .5rem .5rem .5rem;
 }
 
 .pageHeader {
@@ -76,10 +56,6 @@ body {
 	position: sticky;
 	top: 0;
 	z-index: 100;
-}
-
-.form-check-input {
-	font-size: 1rem;
 }
 
 input {
@@ -123,6 +99,7 @@ hr {
 
 .helpButton {
 	width: 10rem;
+	font-family: KHMenu;
 }
 
 .rewardListItem>*,
@@ -136,26 +113,4 @@ hr {
 	font-family: KHMenu;
 	font-size: 2rem;
 	text-align: end;
-}
-
-/* @media(max-width: 90rem) {} */
-
-@media(max-width: 66rem) {
-	input {
-		font-size: 1rem;
-	}
-
-	/* .nav-link>.iconDescription {
-		display: none;
-	}
-
-	.nav-link.active>.iconDescription {
-		display: inline;
-	} */
-}
-
-@media(max-width: 48rem) {
-	/* .nav-link>.iconDescription {
-		display: none;
-	} */
 }

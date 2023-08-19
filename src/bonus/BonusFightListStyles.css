@@ -1,0 +1,77 @@
+.bonusFightList {
+    display: flex;
+    flex-direction: row;
+    grid-column: 1/-1;
+    padding-left: 0;
+}
+
+.bonusFightSelectorItem {
+    background-color: transparent;
+    color: #EEE;
+    border: none;
+    text-align: start;
+    border-radius: 1rem 1rem 0 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 1rem;
+    position: relative;
+}
+
+.bonusFightIcon {
+    height: 75px;
+    width: 60px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+
+.bonusFightIconDescription {
+    font-family: KHMenu;
+    font-size: 1.3rem;
+    pointer-events: none;
+    width: max-content;
+}
+
+.bonusFightSelectorItem:hover {
+    background-color: #111;
+    color: #5AF;
+}
+
+.bonusFightSelectorItem.selected {
+    background-color: #444;
+    color: #49F;
+}
+
+.underline {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #49F;
+}
+
+
+@media(max-width: 91rem) {
+    .bonusFightIcon {
+        height: 50px;
+        width: 40px;
+        vertical-align: middle;
+    }
+
+    .bonusFightIconDescription {
+        font-family: KHMenu;
+        font-size: 1rem;
+        vertical-align: middle;
+    }
+}
+
+@media(max-width: 66rem) {
+    .bonusFightIconDescription {
+        display: none;
+    }
+
+    .bonusFightSelectorItem.selected>.bonusFightIconDescription {
+        display: inline;
+    }
+}

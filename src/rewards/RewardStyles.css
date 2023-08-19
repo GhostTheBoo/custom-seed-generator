@@ -27,6 +27,13 @@
     /* overflow-y: auto; */
 }
 
+.editIcon {
+    border-radius: 50%;
+    border: 1px solid transparent;
+    padding: 1rem;
+    width: 4rem;
+}
+
 .rewardTypeSelector {
     font-family: KHMenu;
     border: none;

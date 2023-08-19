@@ -2,6 +2,7 @@ import React from 'react'
 import { ListGroup } from 'react-bootstrap'
 
 function GenericListGroup(props) {
+	let customClass = props.customClass !== undefined ? ' ' + props.customClass : ''
 
 	let listGroup = props.dataList.map((data, index) => {
 		return (
@@ -21,7 +22,7 @@ function GenericListGroup(props) {
 
 	return (
 		<ListGroup
-			className='selectorList'
+			className={`selectorList${customClass}`}
 			variant='flush'
 			activeKey={props.currentSelectItem}
 			style={{ border: '1px solid white', fontSize: '21px' }}

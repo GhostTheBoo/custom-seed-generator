@@ -53,7 +53,7 @@ export class Chest {
 				ret = this.zipID.toString() + ':\n  ItemId: '
 				let itemID = this.replacementReward.index
 				ret += itemID === 0x000 ? 0x176.toString() : itemID.toString()
-				// if (isCommented) ret += ' // ' + this.room + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward
+				if (isCommented) ret += ' # ' + this.room + ', ' + this.vanillaReward.reward + ' is now ' + this.replacementReward.reward
 				ret += '\n'
 			}
 			return ret
@@ -85,7 +85,10 @@ export class Chest {
 	}
 	static saveToYml(chestData, isCommented) {
 		return chestData.reduce((prev, worldList) => {
-			worldList.chests.forEach(chest => { prev += chest.saveToYml(isCommented) })
+			if (worldList.chests.find(chest => chest.isReplaced())) {
+				prev += isCommented ? '# ' + worldList.world + '\n' : ''
+				worldList.chests.forEach(chest => { prev += chest.saveToYml(isCommented) })
+			}
 			return prev
 		}, '')
 	}
@@ -98,26 +101,18 @@ export class Chest {
 		return ['"chestsData":[', chestSaveData.filter(s => s !== '').join(), '],']
 	}
 	static loadFromJSON(chestLoadData) {
-		let globalIndex = 0
 		return chestsData.map(world => {
-			if (globalIndex < chestLoadData.length) {
-				if (chestLoadData[globalIndex].world === world.world) {
-					let chestIndex = 0
-					let newChests = world.chests.map(chest => {
-						if (chestIndex < chestLoadData[globalIndex].chests.length) {
-							if (chestLoadData[globalIndex].chests[chestIndex].vanillaAddress === chest.vanillaAddress) {
-								let ret = chest.loadFromJSON(chestLoadData[globalIndex].chests[chestIndex])
-								chestIndex++
-								return ret
-							}
-						}
-						return chest
-					})
-					globalIndex++
-					return {
-						...world,
-						chests: newChests
-					}
+			let foundWorld = chestLoadData.find(loadWorld => loadWorld.world === world.world)
+			if (foundWorld !== undefined) {
+				let newChests = world.chests.map(chest => {
+					let foundChest = foundWorld.chests.find(loadChest => loadChest.vanillaAddress === chest.vanillaAddress)
+					if (foundChest !== undefined)
+						return chest.loadFromJSON(foundChest)
+					return chest
+				})
+				return {
+					...world,
+					chests: newChests
 				}
 			}
 			return world
