@@ -23,3 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 temp.*
 /Archive
+.eslintcache
+.firebaserc
+.firebase/
