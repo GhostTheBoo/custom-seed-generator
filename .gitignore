@@ -25,4 +25,4 @@ temp.*
 /Archive
 .eslintcache
 .firebaserc
-.firebase/
+/.firebase/
