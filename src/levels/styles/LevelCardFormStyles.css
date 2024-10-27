@@ -39,7 +39,7 @@
 .levelFormExp.allLevels {
     display: grid;
     gap: 1rem;
-    grid-template-columns: min-content min-content max-content 1fr;
+    grid-template-columns: min-content min-content max-content max-content max-content;
     padding-right: 1rem;
 }
 

@@ -61,7 +61,7 @@ function LevelPage(props) {
 		props.setAllLevels(newLevelList)
 	}
 
-	function replaceAllLevels(appliedLevels, fieldData, enabledData) {
+	function replaceAllLevels(appliedLevels, fieldData, enabledData, expModifyMethod) {
 		let prevLevel = level0
 		if (appliedLevels.includes('All')) {
 			appliedLevels = []
@@ -70,6 +70,10 @@ function LevelPage(props) {
 		let newLevelList = props.levelData.map(level => {
 			let newLevel = level
 			if (appliedLevels.includes(newLevel.level)) {
+				let newExp = expModifyMethod === 0
+					? Math.max(1, Math.floor((2 * newLevel.replacementEXP) / (fieldData.currentEXPMultiplierValue + 1)))
+					: fieldData.replacementEXP
+
 				let newFieldData = {
 					sword: enabledData.sword ? { ...fieldData.sword } : { ...newLevel.replacementSwordReward },
 					shield: enabledData.shield ? { ...fieldData.shield } : { ...newLevel.replacementShieldReward },
@@ -78,7 +82,7 @@ function LevelPage(props) {
 					defense: enabledData.defense ? fieldData.defense : newLevel.defense - prevLevel.defense,
 					magic: enabledData.magic ? fieldData.magic : newLevel.magic - prevLevel.magic,
 					strength: enabledData.strength ? fieldData.strength : newLevel.strength - prevLevel.strength,
-					replacementEXP: enabledData.replacementEXP ? fieldData.replacementEXP : newLevel.replacementEXP
+					replacementEXP: enabledData.replacementEXP ? newExp : newLevel.replacementEXP
 				}
 				newLevel = level.replace(prevLevel, newFieldData)
 			}
