@@ -84,11 +84,6 @@ function BonusForm(props) {
 			<h1>SLOT {props.currentSlotNumber + 1}:</h1>
 			<CloseButton className='close' onClick={() => props.closeFormCard(-1)} />
 			<div className='bonusCardContent'>
-				<div className='bonusFormRewards'>
-					{createBonusRewardFormRow('A', currentFieldData.rewardA)}
-					{createBonusRewardFormRow('B', currentFieldData.rewardB)}
-				</div>
-				<hr />
 				<div className='bonusCharacterSelectorGroup'>
 					<label>Character:</label>
 					<GenericSelect
@@ -99,6 +94,11 @@ function BonusForm(props) {
 						currentItem={currentFieldData.currentCharacter}
 						onChange={(e) => setCurrentFieldData({ ...currentFieldData, currentCharacter: e.target.value })}
 					/>
+				</div>
+				<hr />
+				<div className='bonusFormRewards'>
+					{createBonusRewardFormRow('A', currentFieldData.rewardA)}
+					{createBonusRewardFormRow('B', currentFieldData.rewardB)}
 				</div>
 				<hr />
 				<div className='bonusFormStats'>
