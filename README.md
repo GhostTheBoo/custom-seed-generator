@@ -1,7 +1,7 @@
 # Custom Seed Generator
 
 Site link:
-https://ghosttheboo.github.io/custom-seed-generator/
+[https://ghosttheboo.github.io/custom-seed-generator/](https://custom-seed-generator.web.app/)
 
 ## Description
 
