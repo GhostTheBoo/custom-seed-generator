@@ -90,10 +90,6 @@ span.specificAbilityCost:hover {
     width: 3rem;
 }
 
-.costEditIcon.isHidden {
-    visibility: hidden;
-}
-
 @media(max-width: 90rem) {
     .costCardImage {
         border-radius: .75rem;

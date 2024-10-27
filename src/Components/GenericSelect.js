@@ -10,7 +10,7 @@ function GenericSelect(props) {
 	})
 	return (
 		<Form.Select
-			className='genericSelect'
+			className={`genericSelect${props.class === undefined ? '' : props.class}`}
 			value={props.currentItem}
 			disabled={isDisabled}
 			name={props.name}

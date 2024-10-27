@@ -38,8 +38,6 @@ body {
 
 .fullPageContent {
 	position: relative;
-	overflow-y: auto;
-	overflow-x: hidden;
 	height: 98vh;
 	padding: 0 .5rem .5rem .5rem;
 }

@@ -34,22 +34,28 @@ function Icon(props) {
 
 	return (
 		<>
-			<img
-				className={'icon' + classNameSuffix}
-				src={icon}
-				alt={props.fileName.toLowerCase()}
-				onError={handleError}
-				width={iconSize}
-				style={{ verticalAlign: 'middle' }}
-			/>
-			{text.length !== 0
-				? <span
-					className={'iconDescription' + classNameSuffix}
-					style={{ verticalAlign: 'middle' }}
-				>
-					{text}
-				</span>
-				: <></>
+			{
+				iconPath !== 'empty'
+					?
+					<img
+						className={'icon' + classNameSuffix}
+						src={icon}
+						alt={props.fileName.toLowerCase()}
+						onError={handleError}
+						width={iconSize}
+						style={{ verticalAlign: 'middle' }}
+					/>
+					: <></>
+			}
+			{
+				text.length !== 0
+					? <span
+						className={'iconDescription' + classNameSuffix}
+						style={{ verticalAlign: 'middle' }}
+					>
+						{text}
+					</span>
+					: <></>
 			}
 		</>
 	)
