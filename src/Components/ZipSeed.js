@@ -183,7 +183,7 @@ export class ZipSeed {
         }
       }
       ret += 'title: ' + fileName + '\n'
-      ret += 'description: ' + seedDescription + '\n'
+      ret += 'description: ' + seedDescription.replace(/\n/g, "\n") + '\n'
       this.mod = ret
       return this.mod
     }

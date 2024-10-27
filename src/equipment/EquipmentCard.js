@@ -1,31 +1,20 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Icon from '../Components/Icon'
 import EditStatusPopover from '../Components/EditStatusPopover/EditStatusPopover'
 
+import RewardSelectorButton from '../rewards/RewardSelectorButton'
+
 function EquipmentCard(props) {
-    function createStatRow(fileName, label, stat, shouldDisplay) {
-        let isRes = label.slice(-3) === 'Res' ? '%' : ''
-        let className = `equipmentStatIcon${isRes ? ' resistance' : ''}${!shouldDisplay && stat === 0 ? ' opaque' : ''}`
-        return (
-            <Icon
-                key={`${props.equipment.name}${label}`}
-                fileName={fileName}
-                type={'row'}
-                className={className}
-            >
-                {stat}
-            </Icon>
-        )
-    }
+    const [currentFieldData, setCurrentFieldData] = useState(props.equipment.defaultFieldData)
 
-    function handleMouseEnter() {
-        if (props.isFormOpen && !props.isEditing) props.setCurrentEquipment(props.id)
-    }
+    useEffect(() => {
+        setCurrentFieldData(props.equipment.defaultFieldData)
+    }, [props.equipment])
 
-    function handleEditOnClick() {
-        props.setCurrentEquipment(props.id)
-        props.setIsEditing(true)
-    }
+    let equipmentImage = './images/equipmentImages/' + props.currentFolderName + '/' + props.equipment.baseAddress.toString(16).toUpperCase() + '.png'
+    let currentCardState = ''
+    if (props.isSelected)
+        currentCardState = props.currentFocus !== '' ? ' selected' : ' hovered'
 
     let overlayPopover = <EditStatusPopover
         text={!props.equipment.isValidEquipment() ? 'WARNING!' : 'NEW!'}
@@ -33,63 +22,147 @@ function EquipmentCard(props) {
         type='equipment'
     />
 
-    let currentState = ''
-    if (props.isSelected)
-        currentState = props.isEditing ? 'selected' : 'hovered'
+    function handleMouseEnter() {
+        if (!props.isSelected) {
+            props.setCurrentEquipment(props.id)
+            props.updateFocus('')
+        }
+    }
 
-    let fileNameList = [
-        'keyblade',
-        'donald',
-        'goofy',
-        'ally',
-        'armor',
-        'accessory'
-    ]
+    function handleFocusChange() {
+        props.handleReplace(props.equipment, currentFieldData)
+        props.updateFocus('')
+    }
+
+    function isRes(fieldName) {
+        switch (fieldName) {
+            case 'Fire':
+            case 'Blizzard':
+            case 'Thunder':
+            case 'Dark':
+            case 'Physical':
+            case 'Light':
+            case 'Universal':
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    function createStatRow(fileName, fieldName) {
+        let isOpaque = !props.equipment.shouldShowStat(fieldName) && props.equipment[fieldName.toLowerCase()] === 0
+        let className = `equipmentCardStat${isOpaque ? ' opaque' : ''}`
+        let percentClassName = props.isSelected && props.currentFocus === fieldName ? ' invis' : ''
+        percentClassName += props.equipment[fieldName.toLowerCase()] !== props.equipment['vanilla' + fieldName] ? ' new' : ''
+        let min = 0
+        let max = 255
+        if (isRes(fieldName)) {
+            min = -100
+            max = 150
+        }
+
+        function setFieldData(newValue) {
+            let newStat = Math.max(min, Math.min(max, Number(parseInt(newValue))))
+            props.handleReplace(props.equipment, { ...currentFieldData, ['current' + fieldName]: newStat })
+        }
+
+        return (
+            <div className='statRow'>
+                <Icon
+                    key={`${props.equipment.name}${fieldName}`}
+                    fileName={fileName}
+                    type={'row'}
+                    className={className}
+                >
+                    {fieldName}
+                </Icon>
+                {
+                    props.isSelected && props.currentFocus === fieldName
+                        ? <input
+                            name={props.equipment[fieldName.toLowerCase()]}
+                            className='specificEquipmentValue equipmentValueInputField'
+                            type='number'
+                            value={isNaN(currentFieldData['current' + fieldName]) ? '' : currentFieldData['current' + fieldName]}
+                            onChange={(e) => setFieldData(e.target.value)}
+                            autoFocus
+                            onBlur={() => handleFocusChange()}
+                            onKeyDown={(e) => { if (e.key === 'Enter') handleFocusChange() }}
+                            min={min}
+                            max={max}
+                            size={4}
+                        />
+                        : <span
+                            className={`specificEquipmentValue editable${' ' + className}${props.equipment[fieldName.toLowerCase()] !== props.equipment['vanilla' + fieldName] ? ' new' : ''}`}
+                            onClick={() => props.updateFocus(fieldName)}
+                        >
+                            {props.equipment[fieldName.toLowerCase()]}
+                        </span>
+                }
+                <span
+                    className={`specificEquipmentPercent${' ' + className}${' ' + percentClassName}`}
+                >
+                    {isRes(fieldName) ? '%' : ''}
+                </span>
+            </div>
+        )
+    }
 
     return (
         <div
-            className={`equipmentCard ${currentState}`}
+            className={`equipmentCard${currentCardState}`}
             onMouseEnter={handleMouseEnter}
         >
             {props.equipment.isReplaced() ? overlayPopover : <></>}
-            <div className='equipmentCardName'>
-                <Icon
-                    fileName={fileNameList[props.equipment.equipmentType]}
-                    type={'form'}
-                    className={'equipmentTypeIcon'}
-                >
-                    {props.equipment.name}
-                </Icon>
-            </div>
-            <div className='equipmentCardDetails'>
-                <Icon
-                    fileName={props.equipment.replacementAbility.iconType}
-                    type={'form'}
-                    className={'equipmentAbilityIcon'}
-                >
-                    {props.equipment.replacementAbility.reward}
-                </Icon>
+            <div className='equipmentCardImageColumn'>
+                <img
+                    className='equipmentCardImage'
+                    key={equipmentImage}
+                    src={equipmentImage}
+                    alt={props.equipment.name + ' Card'}
+                />
+                <div className='equipmentCardName'>
+                    <span
+                        className={'iconDescription equipmentTypeIcon'}
+                        style={{ verticalAlign: 'middle' }}
+                    >
+                        {props.equipment.name}
+                    </span>
+                </div>
             </div>
             <div className='equipmentCardStats'>
-                {createStatRow('tent', 'AP', props.equipment.ap, props.equipment.isAccessory())}
-                {createStatRow('keyblade', 'Strength', props.equipment.strength, props.equipment.isWeapon() || props.equipment.isAllyWeapon() || props.equipment.isAccessory())}
-                {createStatRow('spell', 'Magic', props.equipment.magic, props.equipment.isWeapon() || props.equipment.isAllyWeapon() || props.equipment.isAccessory())}
-                {createStatRow('armor', 'Defense', props.equipment.defense, props.equipment.isArmor())}
-                {createStatRow('fire', 'Fire Res', props.equipment.fire, props.equipment.isArmor())}
-                {createStatRow('blizzard', 'Blizzard Res', props.equipment.blizzard, props.equipment.isArmor())}
-                {createStatRow('thunder', 'Thunder Res', props.equipment.thunder, props.equipment.isArmor())}
-                {createStatRow('critical', 'Dark Res', props.equipment.dark, props.equipment.isArmor())}
-                {createStatRow('sword', 'Physical Res', props.equipment.physical, props.equipment.isArmor())}
-                {createStatRow('finalD', 'Light Res', props.equipment.light, props.equipment.isArmor())}
-                {createStatRow('shield', 'Universal Res', props.equipment.universal, props.equipment.isArmor())}
+                <div>
+                    {createStatRow('tent', 'AP')}
+                    {createStatRow('keyblade', 'Strength')}
+                    {createStatRow('spell', 'Magic')}
+                    {createStatRow('armor', 'Defense')}
+                </div>
+                <div>
+                    {createStatRow('fire', 'Fire')}
+                    {createStatRow('blizzard', 'Blizzard')}
+                    {createStatRow('thunder', 'Thunder')}
+                    {createStatRow('critical', 'Dark')}
+                </div>
+                <div>
+                    {createStatRow('sword', 'Physical')}
+                    {createStatRow('finalD', 'Light')}
+                    {createStatRow('shield', 'Universal')}
+                    <div>
+                        <RewardSelectorButton
+                            className='equipmentFormAbility'
+                            onReplace={(newReward) => props.handleReplace(props.equipment, { ...currentFieldData, ability: { ...newReward } })}
+                        >
+                            <Icon fileName={props.equipment.replacementAbility.iconType} type={'card'}>{props.equipment.replacementAbility.reward}</Icon>
+                        </RewardSelectorButton>
+                    </div>
+                </div>
             </div>
             <img
-                className='cardEditIcon btn btn-primary'
-                src='./images/extra/edit.svg'
-                alt='edit'
+                className={`cardEditIcon${props.equipment.isReplaced() ? '' : ' invis'} btn btn-secondary`}
+                src='./images/extra/undo.svg'
+                alt='vanilla'
                 width='100%'
                 height='auto'
-                onClick={handleEditOnClick}
+                onClick={() => props.handleVanilla(props.equipment)}
             />
         </div>
     )

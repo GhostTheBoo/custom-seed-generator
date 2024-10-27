@@ -33,7 +33,9 @@ function CostPage(props) {
 			}
 		})
 		updateAllCosts(newCategoryAbilities)
+		setCurrentFocus(-1)
 	}
+	
 	function updateAllCosts(newAbilityTypes) {
 		let newCostData = props.costData.map((abilityType, abilityTypeIndex) => {
 			if (currentAbilityType === abilityTypeIndex)

@@ -8,7 +8,7 @@ function PopupImageCard(props) {
     let isAll = true
 
     if (props.currentPopup !== undefined) {
-        popupImage = './images/PopupImages/' + props.currentFolderName + '/' + props.currentPopup.vanillaAddress.toString(16).toUpperCase() + '.png'
+        popupImage = './images/popupImages/' + props.currentFolderName + '/' + props.currentPopup.vanillaAddress.toString(16).toUpperCase() + '.png'
         popupAltText = props.currentPopup.popup + ' ' + props.currentPopup.replacementReward.reward
         popupName = <div className='popupCardName'>{props.currentPopup.popup}</div>
         isAll = false
