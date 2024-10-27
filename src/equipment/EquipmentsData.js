@@ -31,6 +31,22 @@ export class Equipment {
 		this.zipID = zipID
 		this.baseAddress = address
 
+		this.defaultFieldData = () => {
+			return {
+				ability: { ...this.replacementAbility },
+				currentAP: this.ap,
+				currentStrength: this.strength,
+				currentMagic: this.magic,
+				currentDefense: this.defense,
+				currentFire: this.fire,
+				currentBlizzard: this.blizzard,
+				currentThunder: this.thunder,
+				currentDark: this.dark,
+				currentPhysical: this.physical,
+				currentLight: this.light,
+				currentUniversal: this.universal
+			}
+		}
 		this.isAbilityReplaced = () => {
 			return this.vanillaAbility.index !== this.replacementAbility.index
 		}
@@ -47,9 +63,8 @@ export class Equipment {
 		this.isReplaced = () => {
 			return this.isAbilityReplaced() || this.isStatsReplaced() || this.isElementalResistanceChanged() || this.isOtherResistanceChanged()
 		}
-		this.shouldShowStat = (statName, stat) => {
-			if (stat !== 0) return true
-			else if (statName === 'AP')
+		this.shouldShowStat = (statName) => {
+			if (statName === 'AP')
 				return this.isAccessory()
 			else if (statName === 'Strength' || statName === 'Magic')
 				return this.isWeapon() || this.isAllyWeapon() || this.isAccessory()
@@ -104,9 +119,16 @@ export class Equipment {
 			return ret
 		}
 		this.vanilla = () => {
-			return new Equipment(this.name, new Reward(this.vanillaAbility.reward, this.vanillaAbility.index, this.vanillaAbility.iconType), this.equipmentType, this.vanillaStrength, this.vanillaMagic,
-				this.vanillaAP, this.vanillaDefense, this.vanillaFire, this.vanillaBlizzard, this.vanillaThunder, this.vanillaDark,
-				this.vanillaPhysical, this.vanillaLight, this.vanillaUniversal, this.baseAddress, this.zipID)
+			return new Equipment(
+				this.name,
+				new Reward(this.vanillaAbility.reward, this.vanillaAbility.index, this.vanillaAbility.iconType),
+				this.equipmentType,
+				this.vanillaStrength, this.vanillaMagic, this.vanillaAP, this.vanillaDefense,
+				this.vanillaFire, this.vanillaBlizzard, this.vanillaThunder, this.vanillaDark,
+				this.vanillaPhysical, this.vanillaLight, this.vanillaUniversal,
+				this.baseAddress,
+				this.zipID
+			)
 		}
 		this.replace = (newEquipmentData) => {
 			let ret = this.copy()

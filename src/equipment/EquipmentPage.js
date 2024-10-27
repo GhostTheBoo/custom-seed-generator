@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './EquipmentStyles.css'
 
 import { AnimatePresence, motion } from 'framer-motion'
@@ -6,14 +6,17 @@ import { AnimatePresence, motion } from 'framer-motion'
 import GenericSelect from '../Components/GenericSelect'
 import EquipmentCard from './EquipmentCard'
 import AllEquipmentCard from './AllEquipmentCard'
-import EquipmentForm from './EquipmentForm'
-import AllEquipmentForm from './AllEquipmentForm'
 
 function EquipmentPage(props) {
 	const [currentEquipmentType, setCurrentEquipmentType] = useState(0)
 	const [currentEquipment, setCurrentEquipment] = useState(0)
 	const [isFormOpen, setIsFormOpen] = useState(true)
 	const [isEditing, setIsEditing] = useState(false)
+	const [currentFocus, setCurrentFocus] = useState('')
+	const equipmentCardList = useRef(null)
+	useEffect(() => {
+		equipmentCardList.current.scrollTo({ top: 0, behavior: 'smooth' })
+	}, [currentEquipment])
 
 	function handleCurrentEquipmentTypeChange(newEquipmentType) {
 		setCurrentEquipmentType(newEquipmentType)
@@ -68,6 +71,7 @@ function EquipmentPage(props) {
 		})
 		updateAllEquipment(newEquipmentList)
 	}
+
 	function vanillaAllEquipment(enabledData) {
 		let newEquipmentList = props.equipmentData[currentEquipmentType].equipments.map((equipment) => {
 			let newEquipmentData = {
@@ -111,9 +115,10 @@ function EquipmentPage(props) {
 					currentFolderName={equipmentFolderNames[currentEquipmentType]}
 					setCurrentEquipment={handleCurrentEquipmentChange}
 					isSelected={equipmentIndex === currentEquipment}
-					isFormOpen={isFormOpen}
-					isEditing={isEditing}
-					setIsEditing={setIsEditing}
+					currentFocus={currentFocus}
+					updateFocus={setCurrentFocus}
+					handleVanilla={(replacedEquipment) => { updateEquipment(replacedEquipment.vanilla()) }}
+					handleReplace={(replacedEquipment, currentEquipmentFieldData) => { updateEquipment(replacedEquipment.replace(currentEquipmentFieldData)) }}
 				/>
 			</li>
 		)
@@ -130,13 +135,17 @@ function EquipmentPage(props) {
 				isFormOpen={isFormOpen}
 				isEditing={isEditing}
 				setIsEditing={setIsEditing}
+				currentFocus={currentFocus}
+				updateFocus={setCurrentFocus}
+				handleVanilla={vanillaAllEquipment}
+				handleReplace={replaceAllEquipment}
 			/>
 		</li>
 	)
 
 
 	return (
-		<div className='equipmentPageContent fullPageContent'>
+		<div className='equipmentPageContent fullPageContent' ref={equipmentCardList}>
 			<motion.div
 				initial={{ opacity: .25, x: 100 }}
 				animate={{ opacity: 1, x: 0 }}
@@ -172,27 +181,9 @@ function EquipmentPage(props) {
 				>
 					{equipmentRowList}
 				</motion.ul>
-				{currentEquipment >= 0
-					? currentEquipment >= props.equipmentData[currentEquipmentType].equipments.length
+				{/* {
+					currentEquipment >= 0
 						? <motion.div
-							initial={{ opacity: .25, x: 100 }}
-							animate={{ opacity: 1, x: 0 }}
-							exit={{ opacity: 0, y: 100 }}
-							transition={{ type: 'spring', duration: .5 }}
-							key={currentEquipmentType}
-							className={`equipmentFormCard all${isEditing ? ' editing' : ''}`}
-						>
-							<AllEquipmentForm
-								currentEquipment={props.equipmentData[currentEquipmentType].equipments}
-								currentFolderName={equipmentFolderNames[currentEquipmentType]}
-								closeFormCard={handleCurrentEquipmentChange}
-								isEditing={isEditing}
-								setIsEditing={setIsEditing}
-								handleVanilla={vanillaAllEquipment}
-								handleReplace={replaceAllEquipment}
-							/>
-						</motion.div>
-						: <motion.div
 							initial={{ opacity: .25, x: 100 }}
 							animate={{ opacity: 1, x: 0 }}
 							exit={{ opacity: 0, y: 100 }}
@@ -200,18 +191,30 @@ function EquipmentPage(props) {
 							key={currentEquipmentType}
 							className={`equipmentFormCard${isEditing ? ' editing' : ''}`}
 						>
-							<EquipmentForm
-								equipment={props.equipmentData[currentEquipmentType].equipments[currentEquipment]}
-								currentFolderName={equipmentFolderNames[currentEquipmentType]}
-								isEditing={isEditing}
-								setIsEditing={setIsEditing}
-								closeFormCard={handleCurrentEquipmentChange}
-								handleVanilla={(replacedEquipment) => { updateEquipment(replacedEquipment.vanilla()) }}
-								handleReplace={(replacedEquipment, currentEquipmentFieldData) => { updateEquipment(replacedEquipment.replace(currentEquipmentFieldData)) }}
-							/>
+							{
+								currentEquipment >= props.equipmentData[currentEquipmentType].equipments.length
+									? <AllEquipmentForm
+										currentEquipment={props.equipmentData[currentEquipmentType].equipments}
+										currentFolderName={equipmentFolderNames[currentEquipmentType]}
+										closeFormCard={handleCurrentEquipmentChange}
+										isEditing={isEditing}
+										setIsEditing={setIsEditing}
+										handleVanilla={vanillaAllEquipment}
+										handleReplace={replaceAllEquipment}
+									/>
+									: <EquipmentForm
+										equipment={props.equipmentData[currentEquipmentType].equipments[currentEquipment]}
+										currentFolderName={equipmentFolderNames[currentEquipmentType]}
+										isEditing={isEditing}
+										setIsEditing={setIsEditing}
+										closeFormCard={handleCurrentEquipmentChange}
+										handleVanilla={(replacedEquipment) => { updateEquipment(replacedEquipment.vanilla()) }}
+										handleReplace={(replacedEquipment, currentEquipmentFieldData) => { updateEquipment(replacedEquipment.replace(currentEquipmentFieldData)) }}
+									/>
+							}
 						</motion.div>
-					: <></>
-				}
+						: <></>
+				} */}
 			</AnimatePresence>
 		</div>
 	)
