@@ -94,6 +94,8 @@ export class ZipSeed {
     }
     this.generateMod = (fileName, seedDescription) => {
       let ret =
+        'title: ' + fileName + '\n' +
+        'description: ' + seedDescription.replace(/\n/g, " ") + '\n' + 
         'assets:\n' +
         '- method: binarc\n' +
         '  multi:\n' +
@@ -182,8 +184,6 @@ export class ZipSeed {
             '    type: List\n'
         }
       }
-      ret += 'title: ' + fileName + '\n'
-      ret += 'description: ' + seedDescription.replace(/\n/g, "\n") + '\n'
       this.mod = ret
       return this.mod
     }
