@@ -11,7 +11,7 @@ function EquipmentCard(props) {
         setCurrentFieldData(props.equipment.defaultFieldData)
     }, [props.equipment])
 
-    let equipmentImage = './images/equipmentImages/' + props.currentFolderName + '/' + props.equipment.baseAddress.toString(16).toUpperCase() + '.png'
+    let equipmentImage = './images/equipmentImages/' + props.currentFolderName + '/' + props.equipment.zipID + '.png'
     let currentCardState = ''
     if (props.isSelected)
         currentCardState = props.currentFocus !== '' ? ' selected' : ' hovered'
