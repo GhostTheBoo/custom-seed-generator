@@ -241,41 +241,41 @@ export class Equipment {
 		}
 		this.saveToLua = (isCommented) => {
 			let ret = ''
-			let newBase = this.baseAddress - 0x1CCB300
-			let abilityAddress = newBase
-			let statAddress = newBase + 2
-			let elementalAddress = newBase + 6
-			let otherAddress = newBase + 10
+			let base = this.baseAddress
+
+			let abilityAddress = "0x" + base.toString(16).toUpperCase()
+			let statAddress = "0x" + (base + 2).toString(16).toUpperCase()
+			let elementalAddress = "0x" + (base + 6).toString(16).toUpperCase()
+			let otherAddress = "0x" + (base + 10).toString(16).toUpperCase()
 
 			if (this.isAbilityReplaced()) {
-				ret += '\tWriteShort(Sys3+0x' + abilityAddress.toString(16).toUpperCase() + ',0x'
-				ret += this.replacementAbility.index.toString(16).toUpperCase().padStart(4, '0') + ')'
-				if (isCommented) ret += ' -- Ability: ' + this.replacementAbility.reward
-				ret += '\n'
+				let rewardString = "0x" + this.replacementAbility.index.toString(16).toUpperCase().padStart(4, '0')
+				ret += "\tWriteShort(BAR(Sys3, 0x6, " + abilityAddress +"), " + rewardString + ", OnPC)"
+				if (isCommented) ret += " -- Ability: " + this.replacementAbility.reward
+				ret += "\n"
 			}
 			if (this.isStatsReplaced()) {
-				ret += '\tWriteInt(Sys3+0x' + statAddress.toString(16).toUpperCase() + ',0x'
-				ret += ((this.ap << 24) + (this.defense << 16) + (this.magic << 8) + this.strength).toString(16).toUpperCase().padStart(8, '0') + ')'
-				if (isCommented) ret += ' -- AP:' + this.ap + ' Defense:' + this.defense + ' Magic:' + this.magic + ' Strength:' + this.strength
-				ret += '\n'
+				let stats = "0x" + ((this.ap << 24) + (this.defense << 16) + (this.magic << 8) + this.strength).toString(16).toUpperCase().padStart(8, '0')
+				ret += "\tWriteInt(BAR(Sys3, 0x6, " + statAddress + "), " + stats + ", OnPC)"
+				if (isCommented) ret += " -- AP:" + this.ap + " Defense:" + this.defense + " Magic:" + this.magic + " Strength:" + this.strength
+				ret += "\n"
 			}
 			if (this.isElementalResistanceChanged()) {
-				let temp = (100 - this.thunder << 24) + (100 - this.blizzard << 16) + (100 - this.fire << 8) + (100 - this.physical)
-				ret += '\tWriteInt(Sys3+0x' + elementalAddress.toString(16).toUpperCase() + ',0x'
-				ret += temp.toString(16).toUpperCase().padStart(8, '0') + ')'
+				let elementalResistances = "0x" + ((100 - this.thunder << 24) + (100 - this.blizzard << 16) + (100 - this.fire << 8) + (100 - this.physical)).toString(16).toUpperCase().padStart(8, '0')
+				ret += "\tWriteInt(BAR(Sys3, 0x6, " + elementalAddress + "), " + elementalResistances + ", OnPC)"
 				if (isCommented)
-					ret += ' -- Thunder:' + this.thunder + '% Blizzard:' + this.blizzard + '% Fire:' + this.fire + '% Physical:' + this.physical + '%'
-				ret += '\n'
+					ret += " -- Thunder:" + this.thunder + "% Blizzard:" + this.blizzard + "% Fire:" + this.fire + "% Physical:" + this.physical + "%"
+				ret += "\n"
 			}
 			if (this.isOtherResistanceChanged()) {
-				ret += '\tWriteInt(Sys3+0x' + otherAddress.toString(16).toUpperCase() + ',0x0'
-				ret += ((100 - this.universal << 16) + (100 - this.light << 8) + (100 - this.dark)).toString(16).toUpperCase().padStart(8, '0') + ')'
-				if (isCommented) ret += ' -- Universal:' + this.universal + '% Light:' + this.light + '% Dark:' + this.dark + '%'
-				ret += '\n'
+				let otherResistances = "0x" + ((100 - this.universal << 16) + (100 - this.light << 8) + (100 - this.dark)).toString(16).toUpperCase().padStart(8, '0')
+				ret += "\tWriteInt(BAR(Sys3, 0x6, " + otherAddress + "), " + otherResistances + ", OnPC)"
+				if (isCommented) ret += " -- Universal:" + this.universal + "% Light:" + this.light + "% Dark:" + this.dark + "%"
+				ret += "\n"
 			}
-			if (ret === '') return ret
+			if (ret === "") return ret
 			return isCommented
-				? '\t-- ' + this.name + '\n' + ret
+				? "\t-- " + this.name + "\n" + ret
 				: ret
 		}
 		this.saveToYml = (isCommented) => {
@@ -355,176 +355,182 @@ export class Equipment {
 	}
 }
 
-export const equipmentsData = [{
-	equipmentType: 'Keyblade',
-	equipments: [
-		new Equipment('Kingdom Key', new Reward('Damage Control', 0x21E, 'Ability'), 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF1D6, 80),
-		// new Equipment('Kingdom Key', new Reward('Damage Control', 0x21E, 'Ability'), 0, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 0x1CDF1D6, 80),
-		new Equipment('Oathkeeper', new Reward('Form Boost', 0x18E, 'Ability'), 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF1E6, 81),
-		new Equipment('Oblivion', new Reward('Drive Boost', 0x18D, 'Ability'), 0, 6, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF1F6, 82),
-		new Equipment('Star Seeker', new Reward('Air Combo Plus', 0x0A3, 'Ability'), 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF466, 123),
-		new Equipment('Hidden Dragon', new Reward('MP Rage', 0x19C, 'Ability'), 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF476, 124),
-		new Equipment('Hero\'s Crest', new Reward('Air Combo Boost', 0x187, 'Ability'), 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF4A6, 127),
-		new Equipment('Monochrome', new Reward('Item Boost', 0x19B, 'Ability'), 0, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF4B6, 128),
-		new Equipment('Follow the Wind', new Reward('Draw', 0x195, 'Ability'), 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF4C6, 129),
-		new Equipment('Circle of Life', new Reward('MP Haste', 0x19D, 'Ability'), 0, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF4D6, 130),
-		new Equipment('Photon Debugger', new Reward('Thunder Boost', 0x19A, 'Ability'), 0, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF4E6, 131),
-		new Equipment('Gull Wing', new Reward('Experience Boost', 0x191, 'Ability'), 0, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF4F6, 132),
-		new Equipment('Rumbling Rose', new Reward('Finishing Plus', 0x189, 'Ability'), 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF506, 133),
-		new Equipment('Guardian Soul', new Reward('Reaction Boost', 0x188, 'Ability'), 0, 5, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF516, 134),
-		new Equipment('Wishing Lamp', new Reward('Jackpot', 0x196, 'Ability'), 0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF526, 135),
-		new Equipment('Decisive Pumpkin', new Reward('Combo Boost', 0x186, 'Ability'), 0, 6, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF536, 136),
-		new Equipment('Sweet Memories', new Reward('Drive Converter', 0x21C, 'Ability'), 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF556, 138),
-		new Equipment('Mysterious Abyss', new Reward('Blizzard Boost', 0x199, 'Ability'), 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF566, 139),
-		new Equipment('Sleeping Lion', new Reward('Combo Plus', 0x0A2, 'Ability'), 0, 5, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF546, 137),
-		new Equipment('Bond of Flame', new Reward('Fire Boost', 0x198, 'Ability'), 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF586, 141),
-		new Equipment('Fatal Crest', new Reward('Berserk Charge', 0x18B, 'Ability'), 0, 3, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF576, 140),
-		new Equipment('Two Become One', new Reward('Light & Darkness', 0x21D, 'Ability'), 0, 5, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF5F6, 148),
-		new Equipment('Fenrir', new Reward('Negative Combo', 0x18A, 'Ability'), 0, 7, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF596, 142),
-		new Equipment('Ultima Weapon', new Reward('MP Hastega', 0x1A6, 'Ability'), 0, 6, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF5A6, 143),
-		new Equipment('Winner\'s Proof', new Reward('No Experience', 0x194, 'Ability'), 0, 5, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF606, 149),
-		new Equipment('Kingdom Key D', new Reward('Defender', 0x19E, 'Ability'), 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF3F6, 116),
-		new Equipment('Alpha Weapon', new Reward('MP Hastera', 0x1A5, 'Ability'), 0, 4, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF206, 83),
-		new Equipment('Omega Weapon', new Reward('Air Combo Boost', 0x187, 'Ability'), 0, 3, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF216, 84),
-		new Equipment('Pureblood', new Reward('Damage Drive', 0x18C, 'Ability'), 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF226, 85),
-		new Equipment('Struggle Sword', new Reward('Draw', 0x195, 'Ability'), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF416, 122),
-		new Equipment('Struggle Wand', new Reward('Draw', 0x195, 'Ability'), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF42E, 144),
-		new Equipment('Struggle Hammer', new Reward('Draw', 0x195, 'Ability'), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF446, 145),
-	]
-}, {
-	equipmentType: 'Donald Staff',
-	equipments: [
-		new Equipment('Mage\'s Staff', new Reward('EMPTY', 0x000, 'EMPTY'), 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF236, 86),
-		new Equipment('Hammer Staff', new Reward('EMPTY', 0x000, 'EMPTY'), 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF246, 87),
-		new Equipment('Victory Bell', new Reward('EMPTY', 0x000, 'EMPTY'), 1, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF256, 88),
-		new Equipment('Comet Staff', new Reward('EMPTY', 0x000, 'EMPTY'), 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF276, 90),
-		new Equipment('Lord\'s Broom', new Reward('EMPTY', 0x000, 'EMPTY'), 1, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF286, 91),
-		new Equipment('Wisdom Wand', new Reward('EMPTY', 0x000, 'EMPTY'), 1, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF296, 92),
-		new Equipment('Meteor Staff', new Reward('Thunder Boost', 0x19A, 'Ability'), 1, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF266, 89),
-		new Equipment('Rising Dragon', new Reward('Fire Boost', 0x198, 'Ability'), 1, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF2A6, 93),
-		new Equipment('Shaman\'s Relic', new Reward('Blizzard Boost', 0x199, 'Ability'), 1, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF2C6, 95),
-		new Equipment('Shaman\'s Relic+', new Reward('Defender', 0x19E, 'Ability'), 1, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF706, 165),
-		new Equipment('Nobody Lance', new Reward('Item Boost', 0x19B, 'Ability'), 1, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF2B6, 94),
-		new Equipment('Centurion', new Reward('EMPTY', 0x000, 'EMPTY'), 1, 13, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF616, 150),
-		new Equipment('Centurion+', new Reward('Damage Control', 0x21E, 'Ability'), 1, 13, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF626, 151),
-		new Equipment('Save the Queen', new Reward('Hyper Healing', 0x1A3, 'Ability'), 1, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF486, 125),
-		new Equipment('Save the Queen+', new Reward('MP Rage', 0x19C, 'Ability'), 1, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF5D6, 146),
-		new Equipment('Plain Mushroom', new Reward('EMPTY', 0x000, 'EMPTY'), 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF636, 152),
-		new Equipment('Plain Mushroom+', new Reward('EMPTY', 0x000, 'EMPTY'), 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF646, 153),
-		new Equipment('Precious Mushroom', new Reward('MP Haste', 0x19D, 'Ability'), 1, 1, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF656, 154),
-		new Equipment('Precious Mushroom+', new Reward('MP Hastera', 0x1A5, 'Ability'), 1, 2, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF666, 155),
-		new Equipment('Premium Mushroom', new Reward('MP Hastega', 0x1A6, 'Ability'), 1, 3, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF676, 156),
-	]
-}, {
-	equipmentType: 'Goofy Shield',
-	equipments: [
-		new Equipment('Knight\'s Shield', new Reward('EMPTY', 0x000, 'EMPTY'), 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF2E6, 99),
-		new Equipment('Adamant Shield', new Reward('EMPTY', 0x000, 'EMPTY'), 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF2F6, 100),
-		new Equipment('Chain Gear', new Reward('EMPTY', 0x000, 'EMPTY'), 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF306, 101),
-		new Equipment('Falling Star', new Reward('EMPTY', 0x000, 'EMPTY'), 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF326, 103),
-		new Equipment('Dream Cloud', new Reward('EMPTY', 0x000, 'EMPTY'), 2, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF336, 104),
-		new Equipment('Knight Defender', new Reward('EMPTY', 0x000, 'EMPTY'), 2, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF346, 105),
-		new Equipment('Ogre Shield', new Reward('Defender', 0x19E, 'Ability'), 2, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF316, 102),
-		new Equipment('Genji Shield', new Reward('Hyper Healing', 0x1A3, 'Ability'), 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF356, 106),
-		new Equipment('Akashic Record', new Reward('MP Haste', 0x19D, 'Ability'), 2, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF366, 107),
-		new Equipment('Akashic Record+', new Reward('MP Hastera', 0x1A5, 'Ability'), 2, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF716, 166),
-		new Equipment('Nobody Guard', new Reward('MP Rage', 0x19C, 'Ability'), 2, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF376, 108),
-		new Equipment('Frozen Pride', new Reward('EMPTY', 0x000, 'EMPTY'), 2, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF686, 157),
-		new Equipment('Frozen Pride+', new Reward('MP Hastega', 0x1A6, 'Ability'), 2, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF696, 158),
-		new Equipment('Save the King', new Reward('Item Boost', 0x19B, 'Ability'), 2, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF496, 126),
-		new Equipment('Save the King+', new Reward('Damage Control', 0x21E, 'Ability'), 2, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF5E6, 147),
-		new Equipment('Joyous Mushroom', new Reward('EMPTY', 0x000, 'EMPTY'), 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF6A6, 159),
-		new Equipment('Joyous Mushroom+', new Reward('EMPTY', 0x000, 'EMPTY'), 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF6B6, 160),
-		new Equipment('Majestic Mushroom', new Reward('Protect', 0x254, 'Ability'), 2, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF6C6, 161),
-		new Equipment('Majestic Mushroom+', new Reward('Protectra', 0x255, 'Ability'), 2, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF6D6, 162),
-		new Equipment('Ultimate Mushroom', new Reward('Protectga', 0x256, 'Ability'), 2, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF6E6, 163),
-	]
-}, {
-	equipmentType: 'Ally Weapon',
-	equipments: [
-		new Equipment('Sword of Ancestor', new Reward('EMPTY', 0x000, 'EMPTY'), 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF3C6, 113),
-		new Equipment('Beast\'s Claw', new Reward('EMPTY', 0x000, 'EMPTY'), 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF406, 114),
-		new Equipment('Battlefields of War', new Reward('EMPTY', 0x000, 'EMPTY'), 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF3B6, 112),
-		new Equipment('Skill and Crossbones', new Reward('EMPTY', 0x000, 'EMPTY'), 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF436, 120),
-		new Equipment('Scimitar', new Reward('EMPTY', 0x000, 'EMPTY'), 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF3A6, 111),
-		new Equipment('Bone Fist', new Reward('EMPTY', 0x000, 'EMPTY'), 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF416, 118),
-		new Equipment('Proud Fang', new Reward('EMPTY', 0x000, 'EMPTY'), 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF426, 119),
-		new Equipment('Identity Disk', new Reward('EMPTY', 0x000, 'EMPTY'), 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF3E6, 115),
-		new Equipment('Way to the Dawn', new Reward('EMPTY', 0x000, 'EMPTY'), 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF446, 121),
-	]
-}, {
-	equipmentType: 'Armor',
-	equipments: [
-		new Equipment('Elven Bandana', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0x1CDEDB6, 0),
-		new Equipment('Divine Bandana', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0x1CDEDC6, 1),
-		new Equipment('Champion Belt', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 20, 20, 20, 0, 0, 0, 0, 0x1CDEF96, 36),
-		new Equipment('Protect Belt', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0x1CDEDF6, 4),
-		new Equipment('Gaia Belt', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 3, 0, 0, 20, 20, 0, 0, 0, 0x1CDEE06, 5),
-		new Equipment('Power Band', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0x1CDEDD6, 2),
-		new Equipment('Buster Band', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0x1CDEDE6, 3),
-		new Equipment('Cosmic Belt', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0x1CDEE16, 6),
-		new Equipment('Fire Bangle', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 1, 20, 0, 0, 0, 0, 0, 0, 0x1CDEE56, 12),
-		new Equipment('Fira Bangle', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 2, 20, 0, 0, 0, 0, 0, 0, 0x1CDEE66, 13),
-		new Equipment('Firaga Bangle', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 3, 20, 0, 0, 0, 0, 0, 0, 0x1CDEE76, 14),
-		new Equipment('Firagun Bangle', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 3, 25, 0, 0, 0, 0, 0, 0, 0x1CDEE86, 15),
-		new Equipment('Blizzard Armlet', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 1, 0, 20, 0, 0, 0, 0, 0, 0x1CDEE96, 17),
-		new Equipment('Blizzara Armlet', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 2, 0, 20, 0, 0, 0, 0, 0, 0x1CDEEA6, 18),
-		new Equipment('Blizzaga Armlet', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 3, 0, 20, 0, 0, 0, 0, 0, 0x1CDEEB6, 19),
-		new Equipment('Blizzagun Armlet', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 3, 0, 25, 0, 0, 0, 0, 0, 0x1CDEEC6, 20),
-		new Equipment('Thunder Trinket', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 1, 0, 0, 20, 0, 0, 0, 0, 0x1CDEED6, 22),
-		new Equipment('Thundara Trinket', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 2, 0, 0, 20, 0, 0, 0, 0, 0x1CDEEE6, 23),
-		new Equipment('Thundaga Trinket', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 3, 0, 0, 20, 0, 0, 0, 0, 0x1CDEEF6, 24),
-		new Equipment('Thundagun Trinket', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 3, 0, 0, 25, 0, 0, 0, 0, 0x1CDEF06, 25),
-		new Equipment('Shock Charm', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 3, 0, 0, 40, 0, 0, 0, 0, 0x1CDEE26, 7),
-		new Equipment('Shock Charm+', new Reward('Thunder Boost', 0x19A, 'Ability'), 4, 0, 0, 0, 3, 0, 0, 40, 0, 0, 0, 0, 0x1CDEE36, 8),
-		new Equipment('Shadow Anklet', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0, 0x1CDEF16, 27),
-		new Equipment('Dark Anklet', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 2, 0, 0, 0, 20, 0, 0, 0, 0x1CDEF26, 28),
-		new Equipment('Midnight Anklet', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 3, 0, 0, 0, 20, 0, 0, 0, 0x1CDEF36, 29),
-		new Equipment('Chaos Anklet', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 3, 0, 0, 0, 25, 0, 0, 0, 0x1CDEF46, 30),
-		new Equipment('Abas Chain', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 1, 20, 20, 20, 0, 0, 0, 0, 0x1CDEF56, 32),
-		new Equipment('Aegis Chain', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 2, 20, 20, 20, 0, 0, 0, 0, 0x1CDEF66, 33),
-		new Equipment('Acrisius', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 3, 20, 20, 20, 0, 0, 0, 0, 0x1CDEF76, 34),
-		new Equipment('Acrisius+', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 3, 25, 25, 25, 0, 0, 0, 0, 0x1CDEFB6, 38),
-		new Equipment('Cosmic Chain', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 3, 30, 30, 30, 0, 0, 0, 0, 0x1CDEFC6, 39),
-		new Equipment('Petit Ribbon', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 4, 10, 10, 10, 10, 0, 0, 10, 0x1CDEFA6, 37),
-		new Equipment('Ribbon', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 4, 15, 15, 15, 15, 0, 0, 15, 0x1CDEF86, 35),
-		new Equipment('Grand Ribbon', new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 4, 25, 25, 25, 25, 0, 0, 25, 0x1CDEE46, 9),
-	]
-}, {
-	equipmentType: 'Accessory',
-	equipments: [
-		new Equipment('Ability Ring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDEFD6, 48),
-		new Equipment('Engineer\'s Ring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDEFE6, 49),
-		new Equipment('Technician\'s Ring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDEFF6, 50),
-		new Equipment('Skill Ring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF0E6, 65),
-		new Equipment('Skillful Ring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF0F6, 66),
-		new Equipment('Expert\'s Ring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF006, 51),
-		new Equipment('Master\'s Ring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF0B6, 62),
-		new Equipment('Cosmic Ring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF146, 71),
-		new Equipment('Executive\'s Ring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF6F6, 164),
-		new Equipment('Sardonyx Ring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF016, 52),
-		new Equipment('Tourmaline Ring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF026, 53),
-		new Equipment('Aquamarine Ring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF036, 54),
-		new Equipment('Garnet Ring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 1, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF046, 55),
-		new Equipment('Diamond Ring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 1, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF056, 56),
-		new Equipment('Silver Ring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF066, 57),
-		new Equipment('Gold Ring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF076, 58),
-		new Equipment('Platinum Ring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF086, 59),
-		new Equipment('Mythril Ring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF096, 60),
-		new Equipment('Orichalcum Ring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 1, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF0A6, 61),
-		new Equipment('Soldier Earring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 2, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF106, 67),
-		new Equipment('Fencer Earring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 2, 1, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF116, 68),
-		new Equipment('Mage Earring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 2, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF126, 69),
-		new Equipment('Slayer Earring', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 1, 2, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF136, 70),
-		new Equipment('Medal', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF156, 72),
-		new Equipment('Moon Amulet', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF0C6, 63),
-		new Equipment('Star Charm', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 2, 2, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF0D6, 64),
-		new Equipment('Cosmic Arts', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 2, 2, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF166, 73),
-		new Equipment('Shadow Archive', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 3, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF176, 74),
-		new Equipment('Shadow Archive+', new Reward('MP Rage', 0x19C, 'Ability'), 5, 0, 3, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF186, 75),
-		new Equipment('Full Bloom', new Reward('EMPTY', 0x000, 'EMPTY'), 5, 3, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF1A6, 77),
-		new Equipment('Full Bloom+', new Reward('MP Haste', 0x19D, 'Ability'), 5, 3, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF1C6, 79),
-		new Equipment('Draw Ring', new Reward('Draw', 0x195, 'Ability'), 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF1B6, 78),
-		new Equipment('Lucky Ring', new Reward('Lucky Lucky', 0x197, 'Ability'), 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1CDF196, 76),
-	],
-}]
+export const equipmentsData = [
+	{
+		equipmentType: "Keyblade",
+		equipments: [
+			new Equipment("Kingdom Key", new Reward("Damage Control", 0x21E, "Ability"), 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x365A, 80),
+			new Equipment("Oathkeeper", new Reward("Form Boost", 0x18E, "Ability"), 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x366A, 81),
+			new Equipment("Oblivion", new Reward("Drive Boost", 0x18D, "Ability"), 0, 6, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x367A, 82),
+			new Equipment("Star Seeker", new Reward("Air Combo Plus", 0x0A3, "Ability"), 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x38EA, 123),
+			new Equipment("Hidden Dragon", new Reward("MP Rage", 0x19C, "Ability"), 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x38FA, 124),
+			new Equipment("Hero's Crest", new Reward("Air Combo Boost", 0x187, "Ability"), 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x392A, 127),
+			new Equipment("Monochrome", new Reward("Item Boost", 0x19B, "Ability"), 0, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x393A, 128),
+			new Equipment("Follow the Wind", new Reward("Draw", 0x195, "Ability"), 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x394A, 129),
+			new Equipment("Circle of Life", new Reward("MP Haste", 0x19D, "Ability"), 0, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x395A, 130),
+			new Equipment("Photon Debugger", new Reward("Thunder Boost", 0x19A, "Ability"), 0, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x396A, 131),
+			new Equipment("Gull Wing", new Reward("Experience Boost", 0x191, "Ability"), 0, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x397A, 132),
+			new Equipment("Rumbling Rose", new Reward("Finishing Plus", 0x189, "Ability"), 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x398A, 133),
+			new Equipment("Guardian Soul", new Reward("Reaction Boost", 0x188, "Ability"), 0, 5, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x399A, 134),
+			new Equipment("Wishing Lamp", new Reward("Jackpot", 0x196, "Ability"), 0, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x39AA, 135),
+			new Equipment("Decisive Pumpkin", new Reward("Combo Boost", 0x186, "Ability"), 0, 6, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x39BA, 136),
+			new Equipment("Sweet Memories", new Reward("Drive Converter", 0x21C, "Ability"), 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x39DA, 138),
+			new Equipment("Mysterious Abyss", new Reward("Blizzard Boost", 0x199, "Ability"), 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x39EA, 139),
+			new Equipment("Sleeping Lion", new Reward("Combo Plus", 0x0A2, "Ability"), 0, 5, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x39CA, 137),
+			new Equipment("Bond of Flame", new Reward("Fire Boost", 0x198, "Ability"), 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3A0A, 141),
+			new Equipment("Fatal Crest", new Reward("Berserk Charge", 0x18B, "Ability"), 0, 3, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x39FA, 140),
+			new Equipment("Two Become One", new Reward("Light & Darkness", 0x21D, "Ability"), 0, 5, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3A7A, 148),
+			new Equipment("Fenrir", new Reward("Negative Combo", 0x18A, "Ability"), 0, 7, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3A1A, 142),
+			new Equipment("Ultima Weapon", new Reward("MP Hastega", 0x1A6, "Ability"), 0, 6, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3A2A, 143),
+			new Equipment("Winner's Proof", new Reward("No Experience", 0x194, "Ability"), 0, 5, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3A8A, 149),
+			new Equipment("Kingdom Key D", new Reward("Defender", 0x19E, "Ability"), 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x387A, 116),
+			new Equipment("Alpha Weapon", new Reward("MP Hastera", 0x1A5, "Ability"), 0, 4, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x368A, 83),
+			new Equipment("Omega Weapon", new Reward("Air Combo Boost", 0x187, "Ability"), 0, 3, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x369A, 84),
+			new Equipment("Pureblood", new Reward("Damage Drive", 0x18C, "Ability"), 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x36AA, 85),
+			new Equipment("Struggle Sword", new Reward("Draw", 0x195, "Ability"), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x389A, 122),
+			new Equipment("Struggle Wand", new Reward("Draw", 0x195, "Ability"), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x38B2, 144),
+			new Equipment("Struggle Hammer", new Reward("Draw", 0x195, "Ability"), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x38CA, 145)
+		]
+	},
+	{
+		equipmentType: "Donald Staff",
+		equipments: [
+			new Equipment("Mage's Staff", new Reward("EMPTY", 0x000, "EMPTY"), 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x36BA, 86),
+			new Equipment("Hammer Staff", new Reward("EMPTY", 0x000, "EMPTY"), 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x36CA, 87),
+			new Equipment("Victory Bell", new Reward("EMPTY", 0x000, "EMPTY"), 1, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x36DA, 88),
+			new Equipment("Comet Staff", new Reward("EMPTY", 0x000, "EMPTY"), 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x36FA, 90),
+			new Equipment("Lord's Broom", new Reward("EMPTY", 0x000, "EMPTY"), 1, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x370A, 91),
+			new Equipment("Wisdom Wand", new Reward("EMPTY", 0x000, "EMPTY"), 1, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x371A, 92),
+			new Equipment("Meteor Staff", new Reward("Thunder Boost", 0x19A, "Ability"), 1, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x36EA, 89),
+			new Equipment("Rising Dragon", new Reward("Fire Boost", 0x198, "Ability"), 1, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x372A, 93),
+			new Equipment("Shaman's Relic", new Reward("Blizzard Boost", 0x199, "Ability"), 1, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x374A, 95),
+			new Equipment("Shaman's Relic+", new Reward("Defender", 0x19E, "Ability"), 1, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3B8A, 165),
+			new Equipment("Nobody Lance", new Reward("Item Boost", 0x19B, "Ability"), 1, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x373A, 94),
+			new Equipment("Centurion", new Reward("EMPTY", 0x000, "EMPTY"), 1, 13, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3A9A, 150),
+			new Equipment("Centurion+", new Reward("Damage Control", 0x21E, "Ability"), 1, 13, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3AAA, 151),
+			new Equipment("Save the Queen", new Reward("Hyper Healing", 0x1A3, "Ability"), 1, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x390A, 125),
+			new Equipment("Save the Queen+", new Reward("MP Rage", 0x19C, "Ability"), 1, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3A5A, 146),
+			new Equipment("Plain Mushroom", new Reward("EMPTY", 0x000, "EMPTY"), 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3ABA, 152),
+			new Equipment("Plain Mushroom+", new Reward("EMPTY", 0x000, "EMPTY"), 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3ACA, 153),
+			new Equipment("Precious Mushroom", new Reward("MP Haste", 0x19D, "Ability"), 1, 1, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3ADA, 154),
+			new Equipment("Precious Mushroom+", new Reward("MP Hastera", 0x1A5, "Ability"), 1, 2, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3AEA, 155),
+			new Equipment("Premium Mushroom", new Reward("MP Hastega", 0x1A6, "Ability"), 1, 3, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3AFA, 156)
+		]
+	},
+	{
+		equipmentType: "Goofy Shield",
+		equipments: [
+			new Equipment("Knight's Shield", new Reward("EMPTY", 0x000, "EMPTY"), 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x376A, 99),
+			new Equipment("Adamant Shield", new Reward("EMPTY", 0x000, "EMPTY"), 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x377A, 100),
+			new Equipment("Chain Gear", new Reward("EMPTY", 0x000, "EMPTY"), 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x378A, 101),
+			new Equipment("Falling Star", new Reward("EMPTY", 0x000, "EMPTY"), 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x37AA, 103),
+			new Equipment("Dream Cloud", new Reward("EMPTY", 0x000, "EMPTY"), 2, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x37BA, 104),
+			new Equipment("Knight Defender", new Reward("EMPTY", 0x000, "EMPTY"), 2, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x37CA, 105),
+			new Equipment("Ogre Shield", new Reward("Defender", 0x19E, "Ability"), 2, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x379A, 102),
+			new Equipment("Genji Shield", new Reward("Hyper Healing", 0x1A3, "Ability"), 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x37DA, 106),
+			new Equipment("Akashic Record", new Reward("MP Haste", 0x19D, "Ability"), 2, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x37EA, 107),
+			new Equipment("Akashic Record+", new Reward("MP Hastera", 0x1A5, "Ability"), 2, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3B9A, 166),
+			new Equipment("Nobody Guard", new Reward("MP Rage", 0x19C, "Ability"), 2, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x37FA, 108),
+			new Equipment("Frozen Pride", new Reward("EMPTY", 0x000, "EMPTY"), 2, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3B0A, 157),
+			new Equipment("Frozen Pride+", new Reward("MP Hastega", 0x1A6, "Ability"), 2, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3B1A, 158),
+			new Equipment("Save the King", new Reward("Item Boost", 0x19B, "Ability"), 2, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x391A, 126),
+			new Equipment("Save the King+", new Reward("Damage Control", 0x21E, "Ability"), 2, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3A6A, 147),
+			new Equipment("Joyous Mushroom", new Reward("EMPTY", 0x000, "EMPTY"), 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3B2A, 159),
+			new Equipment("Joyous Mushroom+", new Reward("EMPTY", 0x000, "EMPTY"), 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3B3A, 160),
+			new Equipment("Majestic Mushroom", new Reward("Protect", 0x254, "Ability"), 2, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3B4A, 161),
+			new Equipment("Majestic Mushroom+", new Reward("Protectra", 0x255, "Ability"), 2, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3B5A, 162),
+			new Equipment("Ultimate Mushroom", new Reward("Protectga", 0x256, "Ability"), 2, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3B6A, 163)
+		]
+	},
+	{
+		equipmentType: "Ally Weapon",
+		equipments: [
+			new Equipment("Sword of Ancestor", new Reward("EMPTY", 0x000, "EMPTY"), 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x384A, 113),
+			new Equipment("Beast's Claw", new Reward("EMPTY", 0x000, "EMPTY"), 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x388A, 114),
+			new Equipment("Battlefields of War", new Reward("EMPTY", 0x000, "EMPTY"), 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x383A, 112),
+			new Equipment("Skill and Crossbones", new Reward("EMPTY", 0x000, "EMPTY"), 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x38BA, 120),
+			new Equipment("Scimitar", new Reward("EMPTY", 0x000, "EMPTY"), 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x382A, 111),
+			new Equipment("Bone Fist", new Reward("EMPTY", 0x000, "EMPTY"), 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x389A, 118),
+			new Equipment("Proud Fang", new Reward("EMPTY", 0x000, "EMPTY"), 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x38AA, 119),
+			new Equipment("Identity Disk", new Reward("EMPTY", 0x000, "EMPTY"), 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x386A, 115),
+			new Equipment("Way to the Dawn", new Reward("EMPTY", 0x000, "EMPTY"), 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x38CA, 121)
+		]
+	},
+	{
+		equipmentType: "Armor",
+		equipments: [
+			new Equipment("Elven Bandana", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0x323A, 0),
+			new Equipment("Divine Bandana", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0x324A, 1),
+			new Equipment("Champion Belt", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 20, 20, 20, 0, 0, 0, 0, 0x341A, 36),
+			new Equipment("Protect Belt", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0x327A, 4),
+			new Equipment("Gaia Belt", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 3, 0, 0, 20, 20, 0, 0, 0, 0x328A, 5),
+			new Equipment("Power Band", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0x325A, 2),
+			new Equipment("Buster Band", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0x326A, 3),
+			new Equipment("Cosmic Belt", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0x329A, 6),
+			new Equipment("Fire Bangle", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 1, 20, 0, 0, 0, 0, 0, 0, 0x32DA, 12),
+			new Equipment("Fira Bangle", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 2, 20, 0, 0, 0, 0, 0, 0, 0x32EA, 13),
+			new Equipment("Firaga Bangle", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 3, 20, 0, 0, 0, 0, 0, 0, 0x32FA, 14),
+			new Equipment("Firagun Bangle", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 3, 25, 0, 0, 0, 0, 0, 0, 0x330A, 15),
+			new Equipment("Blizzard Armlet", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 1, 0, 20, 0, 0, 0, 0, 0, 0x331A, 17),
+			new Equipment("Blizzara Armlet", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 2, 0, 20, 0, 0, 0, 0, 0, 0x332A, 18),
+			new Equipment("Blizzaga Armlet", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 3, 0, 20, 0, 0, 0, 0, 0, 0x333A, 19),
+			new Equipment("Blizzagun Armlet", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 3, 0, 25, 0, 0, 0, 0, 0, 0x334A, 20),
+			new Equipment("Thunder Trinket", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 1, 0, 0, 20, 0, 0, 0, 0, 0x335A, 22),
+			new Equipment("Thundara Trinket", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 2, 0, 0, 20, 0, 0, 0, 0, 0x336A, 23),
+			new Equipment("Thundaga Trinket", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 3, 0, 0, 20, 0, 0, 0, 0, 0x337A, 24),
+			new Equipment("Thundagun Trinket", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 3, 0, 0, 25, 0, 0, 0, 0, 0x338A, 25),
+			new Equipment("Shock Charm", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 3, 0, 0, 40, 0, 0, 0, 0, 0x32AA, 7),
+			new Equipment("Shock Charm+", new Reward("Thunder Boost", 0x19A, "Ability"), 4, 0, 0, 0, 3, 0, 0, 40, 0, 0, 0, 0, 0x32BA, 8),
+			new Equipment("Shadow Anklet", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0, 0x339A, 27),
+			new Equipment("Dark Anklet", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 2, 0, 0, 0, 20, 0, 0, 0, 0x33AA, 28),
+			new Equipment("Midnight Anklet", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 3, 0, 0, 0, 20, 0, 0, 0, 0x33BA, 29),
+			new Equipment("Chaos Anklet", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 3, 0, 0, 0, 25, 0, 0, 0, 0x33CA, 30),
+			new Equipment("Abas Chain", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 1, 20, 20, 20, 0, 0, 0, 0, 0x33DA, 32),
+			new Equipment("Aegis Chain", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 2, 20, 20, 20, 0, 0, 0, 0, 0x33EA, 33),
+			new Equipment("Acrisius", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 3, 20, 20, 20, 0, 0, 0, 0, 0x33FA, 34),
+			new Equipment("Acrisius+", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 3, 25, 25, 25, 0, 0, 0, 0, 0x343A, 38),
+			new Equipment("Cosmic Chain", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 3, 30, 30, 30, 0, 0, 0, 0, 0x344A, 39),
+			new Equipment("Petit Ribbon", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 4, 10, 10, 10, 10, 0, 0, 10, 0x342A, 37),
+			new Equipment("Ribbon", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 4, 15, 15, 15, 15, 0, 0, 15, 0x340A, 35),
+			new Equipment("Grand Ribbon", new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 4, 25, 25, 25, 25, 0, 0, 25, 0x32CA, 9)
+		]
+	},
+	{
+		equipmentType: "Accessory",
+		equipments: [
+			new Equipment("Ability Ring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0x345A, 48),
+			new Equipment("Engineer's Ring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0x346A, 49),
+			new Equipment("Technician's Ring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0x347A, 50),
+			new Equipment("Skill Ring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0x356A, 65),
+			new Equipment("Skillful Ring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0x357A, 66),
+			new Equipment("Expert's Ring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0x348A, 51),
+			new Equipment("Master's Ring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0x353A, 62),
+			new Equipment("Cosmic Ring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0x35CA, 71),
+			new Equipment("Executive's Ring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0x3B7A, 164),
+			new Equipment("Sardonyx Ring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0x349A, 52),
+			new Equipment("Tourmaline Ring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0x34AA, 53),
+			new Equipment("Aquamarine Ring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0x34BA, 54),
+			new Equipment("Garnet Ring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 1, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0x34CA, 55),
+			new Equipment("Diamond Ring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 1, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0x34DA, 56),
+			new Equipment("Silver Ring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0x34EA, 57),
+			new Equipment("Gold Ring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0x34FA, 58),
+			new Equipment("Platinum Ring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0x350A, 59),
+			new Equipment("Mythril Ring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0x351A, 60),
+			new Equipment("Orichalcum Ring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 1, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0x352A, 61),
+			new Equipment("Soldier Earring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 2, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0x358A, 67),
+			new Equipment("Fencer Earring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 2, 1, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0x359A, 68),
+			new Equipment("Mage Earring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 2, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0x35AA, 69),
+			new Equipment("Slayer Earring", new Reward("EMPTY", 0x000, "EMPTY"), 5, 1, 2, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0x35BA, 70),
+			new Equipment("Medal", new Reward("EMPTY", 0x000, "EMPTY"), 5, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x35DA, 72),
+			new Equipment("Moon Amulet", new Reward("EMPTY", 0x000, "EMPTY"), 5, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0x354A, 63),
+			new Equipment("Star Charm", new Reward("EMPTY", 0x000, "EMPTY"), 5, 2, 2, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0x355A, 64),
+			new Equipment("Cosmic Arts", new Reward("EMPTY", 0x000, "EMPTY"), 5, 2, 2, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0x35EA, 73),
+			new Equipment("Shadow Archive", new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 3, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0x35FA, 74),
+			new Equipment("Shadow Archive+", new Reward("MP Rage", 0x19C, "Ability"), 5, 0, 3, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0x360A, 75),
+			new Equipment("Full Bloom", new Reward("EMPTY", 0x000, "EMPTY"), 5, 3, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0x362A, 77),
+			new Equipment("Full Bloom+", new Reward("MP Haste", 0x19D, "Ability"), 5, 3, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0x364A, 79),
+			new Equipment("Draw Ring", new Reward("Draw", 0x195, "Ability"), 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x363A, 78),
+			new Equipment("Lucky Ring", new Reward("Lucky Lucky", 0x197, "Ability"), 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x361A, 76)
+		]
+	}
+]
