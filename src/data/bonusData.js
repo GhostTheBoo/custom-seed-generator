@@ -160,25 +160,26 @@ export class BonusReward {
 		}
 		this.saveToLua = (isCommented) => {
 			let ret = ''
-			let newBase = this.baseAddress - 0x1CE5D80
-			let characterAddress = newBase
-			let statAddress = newBase + 1
-			let slotAddress = newBase + 3
-			let rewardAddress = newBase + 7
+			let base = this.baseAddress
+			let characterAddress = "0x" + base.toString(16).toUpperCase()
+			let statAddress = "0x" + (base + 1).toString(16).toUpperCase()
+			let slotAddress = "0x" + (base + 3).toString(16).toUpperCase()
+			let rewardAddress = "0x" + (base + 7).toString(16).toUpperCase()
+
 			if (this.isCharacterReplaced()) {
-				ret += '\tWriteByte(Btl0+0x' + characterAddress.toString(16).toUpperCase() + ',0x0' + this.replacementCharacter.toString(16).toUpperCase() + ')'
+				ret += "\tWriteByte(BAR(Btl0, 0x6, " + characterAddress + "), 0x" + this.replacementCharacter.toString(16).toUpperCase().padStart(2, "0") + ", OnPC)"
 				if (isCommented) ret += ' -- Bonus reward is now given to ' + this.getCharacter(this.replacementCharacter)
 				ret += '\n'
 			}
 			if (this.isStatsReplaced()) {
-				ret += '\tWriteShort(Btl0+0x' + statAddress.toString(16).toUpperCase() + ',0x'
-				ret += ((this.mpIncrease << 8) + (this.hpIncrease)).toString(16).toUpperCase().padStart(4, '0') + ')'
+				let stats = "0x" + ((this.mpIncrease << 8) + (this.hpIncrease)).toString(16).toUpperCase().padStart(4, '0')
+				ret += "\tWriteShort(BAR(Btl0, 0x6, " + statAddress + "), " + stats + ", OnPC)"
 				if (isCommented) ret += ' -- MP:' + this.mpIncrease + ' HP:' + this.hpIncrease
 				ret += '\n'
 			}
 			if (this.isSlotsReplaced()) {
-				let temp = ((this.armorSlotIncrease << 24) + (this.accessorySlotIncrease << 16) + (this.itemSlotIncrease << 8) + this.driveGaugeIncrease).toString(16).toUpperCase()
-				ret += '\tWriteInt(Btl0+0x' + slotAddress.toString(16).toUpperCase() + ',0x' + temp.padStart(8, '0') + ')'
+				let slots = ((this.armorSlotIncrease << 24) + (this.accessorySlotIncrease << 16) + (this.itemSlotIncrease << 8) + this.driveGaugeIncrease).toString(16).toUpperCase().padStart(8, "0")
+				ret += "\tWriteInt(BAR(Btl0, 0x6, " + slotAddress + "), " + slots + ", OnPC)"
 				if (isCommented) {
 					ret += ' -- Armor Slot:+' + this.armorSlotIncrease + ' Accessory Slot:+' + this.accessorySlotIncrease
 					ret += ' Item Slot:+' + this.itemSlotIncrease + ' Drive Gauge:+' + this.driveGaugeIncrease
@@ -186,8 +187,8 @@ export class BonusReward {
 				ret += '\n'
 			}
 			if (this.isRewardsReplaced()) {
-				ret += '\tWriteInt(Btl0+0x' + rewardAddress.toString(16).toUpperCase() + ',0x'
-				ret += ((this.replacementRewardB.index << 16) + this.replacementRewardA.index).toString(16).toUpperCase().padStart(8, '0') + ')'
+				let rewards = ((this.replacementRewardB.index << 16) + this.replacementRewardA.index).toString(16).toUpperCase().padStart(8, '0') + ')'
+				ret += "\tWriteInt(BAR(Btl0, 0x6, " + rewardAddress + "), " + rewards + ", OnPC)"
 				if (isCommented) ret += ' -- Replacement Reward #2:' + this.replacementRewardB.reward + ', Replacement Reward #1:' + this.replacementRewardA.reward
 				ret += '\n'
 			}
@@ -370,411 +371,488 @@ export class BonusFight {
 
 export const bonusData = [
 	{
-		world: 'Agrabah',
+		world: "Agrabah",
 		bonusFights: [
-			new BonusFight('Escort Abu', 42, 'Escort Abu',
+			new BonusFight("Escort Abu", 42, "Escort Abu",
 				[
-					new BonusReward(0x1D10DB1, 1, new Reward('Summon Boost', 0x18F, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10DC1, 2, new Reward('Donald Blizzard', 0x0A6, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10DD1, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10DE1, 7, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 15, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Treasure Room Heartless', 46, 'Treasure Room Heartless',
+					new BonusReward(0x669, 1, new Reward("Summon Boost", 0x18F, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x679, 2, new Reward("Donald Blizzard", 0x0A6, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x689, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x699, 7, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 15, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Treasure Room Heartless", 46, "Treasure Room Heartless",
 				[
-					new BonusReward(0x1D10E51, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10E61, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10E71, 3, new Reward('Auto Healing', 0x1A4, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10E81, 7, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 15, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Volcanic Lord & Blizzard Lord', 37, 'Elemental Lords',
+					new BonusReward(0x709, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x719, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0),
+					new BonusReward(0x729, 3, new Reward("Auto Healing", 0x1A4, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x739, 7, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 15, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Volcanic Lord & Blizzard Lord", 37, "Elemental Lords",
 				[
-					new BonusReward(0x1D10CE1, 1, new Reward('Finishing Leap', 0x10B, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10CF1, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10D01, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 1, 0, 0, 0),
-					new BonusReward(0x1D10D11, 7, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 15, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Genie Jafar', 15, 'Genie Jafar',
+					new BonusReward(0x599, 1, new Reward("Finishing Leap", 0x10B, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x5A9, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0),
+					new BonusReward(0x5B9, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 1, 0, 0, 0),
+					new BonusReward(0x5C9, 7, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 15, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Genie Jafar", 15, "Genie Jafar",
 				[
-					new BonusReward(0x1D10971, 1, new Reward('Fire', 0x015, 'Spell'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Lexaeus (Absent Silhouette)', 65, 'Lexaeus (AS)',
+					new BonusReward(0x229, 1, new Reward("Fire", 0x015, "Spell"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Lexaeus (Absent Silhouette)", 65, "Lexaeus (AS)",
 				[
-					new BonusReward(0x1D11121, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 1, 0, 0),
-					new BonusReward(0x1D11131, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 3, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D11141, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 1, 0)
-				])
+					new BonusReward(0x9D9, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 1, 0, 0),
+					new BonusReward(0x9E9, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 3, 0, 0, 0, 0, 0),
+					new BonusReward(0x9F9, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 1, 0)
+				]
+			)
 		]
-	}, {
-		world: 'Beast\'s Castle',
+	},
+	{
+		world: "Beast's Castle",
 		bonusFights: [
-			new BonusFight('Thresholder', 2, 'Thresholder',
+			new BonusFight("Thresholder", 2, "Thresholder",
 				[
-					new BonusReward(0x1D10751, 1, new Reward('Upper Slash', 0x089, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10761, 2, new Reward('Donald Fire', 0x0A5, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10771, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('The Beast', 12, 'The Beast',
+					new BonusReward(0x009, 1, new Reward("Upper Slash", 0x089, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x019, 2, new Reward("Donald Fire", 0x0A5, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x029, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("The Beast", 12, "The Beast",
 				[
-					new BonusReward(0x1D10941, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 1, 0, 0, 0),
-					new BonusReward(0x1D10951, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10961, 3, new Reward('Defender', 0x19E, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Dark Thorn', 3, 'Dark Thorn',
+					new BonusReward(0x1F9, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 1, 0, 0, 0),
+					new BonusReward(0x209, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0),
+					new BonusReward(0x219, 3, new Reward("Defender", 0x19E, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Dark Thorn", 3, "Dark Thorn",
 				[
-					new BonusReward(0x1D10781, 1, new Reward('Retaliating Slash', 0x111, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10791, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D107A1, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 1, 0),
-					new BonusReward(0x1D107B1, 9, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 35, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Xaldin', 4, 'Xaldin',
+					new BonusReward(0x039, 1, new Reward("Retaliating Slash", 0x111, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x049, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0),
+					new BonusReward(0x059, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 1, 0),
+					new BonusReward(0x069, 9, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 35, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Xaldin", 4, "Xaldin",
 				[
-					new BonusReward(0x1D107C1, 1, new Reward('Reflect', 0x058, 'Spell'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D107D1, 2, new Reward('Auto Healing', 0x1A4, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D107E1, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D107F1, 9, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 25, 0, 0, 0, 0, 0)
-				])
+					new BonusReward(0x079, 1, new Reward("Reflect", 0x058, "Spell"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x089, 2, new Reward("Auto Healing", 0x1A4, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x099, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x0A9, 9, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 25, 0, 0, 0, 0, 0)
+				]
+			)
 		]
-	}, {
-		world: 'Cavern of Remembrance',
+	},
+	{
+		world: "Cavern of Remembrance",
 		bonusFights: [
-			new BonusFight('Transport to Remembrance Nobodies III', 72, 'Transport to Remembrance',
+			new BonusFight("Transport to Remembrance Nobodies III", 72, "Transport to Remembrance",
 				[
-					new BonusReward(0x1D11241, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 1, 0),
-					new BonusReward(0x1D11251, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 3, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D11261, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0)
-				])
+					new BonusReward(0xAF9, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 1, 0),
+					new BonusReward(0xB09, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 3, 0, 0, 0, 0, 0),
+					new BonusReward(0xB19, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0)
+				]
+			)
 		]
-	}, {
-		world: 'Disney Castle',
+	},
+	{
+		world: "Disney Castle",
 		bonusFights: [
-			new BonusFight('Escort Queen Minnie', 38, 'Queen Minne Escort',
+			new BonusFight("Escort Queen Minnie", 38, "Queen Minne Escort",
 				[
-					new BonusReward(0x1D10D21, 1, new Reward('Auto Summon', 0x185, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 1, 0, 0)
-				]),
-			new BonusFight('Marluxia (Absent Silhouette)', 67, 'Marluxia (AS)',
+					new BonusReward(0x5D9, 1, new Reward("Auto Summon", 0x185, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 1, 0, 0)
+				]
+			),
+			new BonusFight("Marluxia (Absent Silhouette)", 67, "Marluxia (AS)",
 				[
-					new BonusReward(0x1D11181, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 1),
-					new BonusReward(0x1D11191, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 3, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D111A1, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Lingering Will', 70, 'Lingering Will',
+					new BonusReward(0xA39, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 1),
+					new BonusReward(0xA49, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 3, 0, 0, 0, 0, 0),
+					new BonusReward(0xA59, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Lingering Will", 70, "Lingering Will",
 				[
-					new BonusReward(0x1D111F1, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 1),
-					new BonusReward(0x1D11201, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 3, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D11211, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0)
-				])
+					new BonusReward(0xAA9, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 1),
+					new BonusReward(0xAB9, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 3, 0, 0, 0, 0, 0),
+					new BonusReward(0xAC9, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0)
+				]
+			)
 		]
-	}, {
-		world: 'Halloween Town',
+	},
+	{
+		world: "Halloween Town",
 		bonusFights: [
-			new BonusFight('Prison Keeper', 18, 'Prison Keeper',
+			new BonusFight("Prison Keeper", 18, "Prison Keeper",
 				[
-					new BonusReward(0x1D109E1, 1, new Reward('Flash Step', 0x22F, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D109F1, 2, new Reward('Hyper Healing', 0x1A3, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10A01, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10A11, 10, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 15, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Oogie Boogie', 19, 'Oogie Boogie',
+					new BonusReward(0x299, 1, new Reward("Flash Step", 0x22F, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x2A9, 2, new Reward("Hyper Healing", 0x1A3, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x2B9, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x2C9, 10, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 15, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Oogie Boogie", 19, "Oogie Boogie",
 				[
-					new BonusReward(0x1D10A21, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 1, 0),
-					new BonusReward(0x1D10A31, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10A41, 3, new Reward('Once More', 0x1A0, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10A51, 10, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 15, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Lock/Shock/Barrel', 40, 'Lock, Shock, and Barrel',
+					new BonusReward(0x2D9, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 1, 0),
+					new BonusReward(0x2E9, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0),
+					new BonusReward(0x2F9, 3, new Reward("Once More", 0x1A0, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x309, 10, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 15, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Lock/Shock/Barrel", 40, "Lock, Shock, and Barrel",
 				[
-					new BonusReward(0x1D10D71, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 1, 0),
-					new BonusReward(0x1D10D81, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10D91, 3, new Reward('Auto Change', 0x1A2, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10DA1, 10, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('The Experiment', 20, 'The Experiment',
+					new BonusReward(0x629, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 1, 0),
+					new BonusReward(0x639, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0),
+					new BonusReward(0x649, 3, new Reward("Auto Change", 0x1A2, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x659, 10, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("The Experiment", 20, "The Experiment",
 				[
-					new BonusReward(0x1D10A61, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10A71, 2, new Reward('Jackpot', 0x196, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10A81, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10A91, 10, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 10, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Vexen (Absent Silhouette)', 64, 'Vexen (AS)',
+					new BonusReward(0x319, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x329, 2, new Reward("Jackpot", 0x196, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x339, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x349, 10, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 10, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Vexen (Absent Silhouette)", 64, "Vexen (AS)",
 				[
-					new BonusReward(0x1D110F1, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 1, 0, 0, 0),
-					new BonusReward(0x1D11101, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 3, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D11111, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0)
-				])
+					new BonusReward(0x9A9, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 1, 0, 0, 0),
+					new BonusReward(0x9B9, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 3, 0, 0, 0, 0, 0),
+					new BonusReward(0x9C9, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0)
+				]
+			)
 		]
-	}, {
-		world: 'Hollow Bastion',
+	},
+	{
+		world: "Hollow Bastion",
 		bonusFights: [
-			new BonusFight('Bailey Nobodies', 47, 'The Bailey',
+			new BonusFight("Bailey Nobodies", 47, "The Bailey",
 				[
-					new BonusReward(0x1D10E91, 1, new Reward('Fire', 0x015, 'Spell'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Demyx (Hollow Bastion)', 28, 'Demyx',
+					new BonusReward(0x749, 1, new Reward("Fire", 0x015, "Spell"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Demyx (Hollow Bastion)", 28, "Demyx",
 				[
-					new BonusReward(0x1D10BA1, 1, new Reward('Blizzard', 0x016, 'Spell'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 1, 0, 0, 0),
-					new BonusReward(0x1D10BB1, 2, new Reward('Blizzard Boost', 0x199, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10BC1, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('1,000 Heartless', 60, '1,000 Heartless',
+					new BonusReward(0x459, 1, new Reward("Blizzard", 0x016, "Spell"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 1, 0, 0, 0),
+					new BonusReward(0x469, 2, new Reward("Blizzard Boost", 0x199, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x479, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("1,000 Heartless", 60, "1,000 Heartless",
 				[
-					new BonusReward(0x1D11061, 1, new Reward('Guard Break', 0x109, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Sephiroth', 35, 'Sephiroth',
+					new BonusReward(0x919, 1, new Reward("Guard Break", 0x109, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Sephiroth", 35, "Sephiroth",
 				[
-					new BonusReward(0x1D10CD1, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 1)
-				])
+					new BonusReward(0x589, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 1)
+				]
+			)
 		]
-	}, {
-		world: 'Land of Dragons',
+	},
+	{
+		world: "Land of Dragons",
 		bonusFights: [
-			new BonusFight('Village Cave Heartless', 43, 'Village Cave',
+			new BonusFight("Village Cave Heartless", 43, "Village Cave",
 				[
-					new BonusReward(0x1D10DF1, 1, new Reward('Slide Dash', 0x108, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10E01, 6, new Reward('Hyper Healing', 0x1A3, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 15, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Shan-Yu', 9, 'Shan-Yu',
+					new BonusReward(0x6A9, 1, new Reward("Slide Dash", 0x108, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x6B9, 6, new Reward("Hyper Healing", 0x1A3, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 15, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Shan-Yu", 9, "Shan-Yu",
 				[
-					new BonusReward(0x1D108C1, 1, new Reward('Aerial Sweep', 0x10D, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D108D1, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D108E1, 3, new Reward('Goofy Turbo', 0x1A9, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D108F1, 6, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 20, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Storm Rider', 10, 'Storm Rider',
+					new BonusReward(0x179, 1, new Reward("Aerial Sweep", 0x10D, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x189, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0),
+					new BonusReward(0x199, 3, new Reward("Goofy Turbo", 0x1A9, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x1A9, 6, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 20, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Storm Rider", 10, "Storm Rider",
 				[
-					new BonusReward(0x1D10901, 1, new Reward('Thunder', 0x017, 'Spell'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10911, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10921, 3, new Reward('Tornado Fusion (Whirli-Goof)', 0x0C9, 'Limit'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10931, 6, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 25, 0, 0, 0, 0, 0)
-				])
+					new BonusReward(0x1B9, 1, new Reward("Thunder", 0x017, "Spell"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x1C9, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0),
+					new BonusReward(0x1D9, 3, new Reward("Tornado Fusion (Whirli-Goof)", 0x0C9, "Limit"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x1E9, 6, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 25, 0, 0, 0, 0, 0)
+				]
+			)
 		]
-	}, {
-		world: 'Olympus Coliseum',
+	},
+	{
+		world: "Olympus Coliseum",
 		bonusFights: [
-			new BonusFight('Cerberus', 5, 'Cerberus',
+			new BonusFight("Cerberus", 5, "Cerberus",
 				[
-					new BonusReward(0x1D10801, 1, new Reward('Counterguard', 0x10C, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10811, 5, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 40, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Phil\'s Training(Story)', 57, 'Phil\'s Training',
+					new BonusReward(0x0B9, 1, new Reward("Counterguard", 0x10C, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x0C9, 5, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 40, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Phil's Training(Story)", 57, "Phil's Training",
 				[
-					new BonusReward(0x1D10FE1, 1, new Reward('Aerial Dive', 0x230, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Demyx (Olympus Coliseum)', 58, 'Demyx',
+					new BonusReward(0x899, 1, new Reward("Aerial Dive", 0x230, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Demyx (Olympus Coliseum)", 58, "Demyx",
 				[
-					new BonusReward(0x1D10FF1, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D11001, 2, new Reward('MP Rage', 0x19C, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D11011, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Pete (Olympus Coliseum)', 6, 'Pete',
+					new BonusReward(0x8A9, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x8B9, 2, new Reward("MP Rage", 0x19C, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x8C9, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Pete (Olympus Coliseum)", 6, "Pete",
 				[
-					new BonusReward(0x1D10821, 1, new Reward('Trinity Limit', 0x0C6, 'Limit'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10831, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10841, 3, new Reward('Hyper Healing', 0x1A3, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('The Hydra', 7, 'The Hydra',
+					new BonusReward(0x0D9, 1, new Reward("Trinity Limit", 0x0C6, "Limit"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x0E9, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0),
+					new BonusReward(0x0F9, 3, new Reward("Hyper Healing", 0x1A3, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("The Hydra", 7, "The Hydra",
 				[
-					new BonusReward(0x1D10851, 1, new Reward('Thunder', 0x017, 'Spell'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10861, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 1, 0, 0, 0),
-					new BonusReward(0x1D10871, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Hades', 8, 'Hades',
+					new BonusReward(0x109, 1, new Reward("Thunder", 0x017, "Spell"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x119, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 1, 0, 0, 0),
+					new BonusReward(0x129, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Hades", 8, "Hades",
 				[
-					new BonusReward(0x1D10881, 1, new Reward('Magnet Burst', 0x231, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10891, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 1, 0, 0),
-					new BonusReward(0x1D108A1, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D108B1, 5, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 15, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Zexion (Absent Silhouette)', 66, 'Zexion (AS)',
+					new BonusReward(0x139, 1, new Reward("Magnet Burst", 0x231, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x149, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 1, 0, 0),
+					new BonusReward(0x159, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x169, 5, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 15, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Zexion (Absent Silhouette)", 66, "Zexion (AS)",
 				[
-					new BonusReward(0x1D11151, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 1, 0),
-					new BonusReward(0x1D11161, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 3, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D11171, 3, new Reward('Damage Control', 0x21E, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0)])
+					new BonusReward(0xA09, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 1, 0),
+					new BonusReward(0xA19, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 3, 0, 0, 0, 0, 0),
+					new BonusReward(0xA29, 3, new Reward("Damage Control", 0x21E, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0)
+				]
+			)
 		]
-	}, {
-		world: 'Port Royal',
+	},
+	{
+		world: "Port Royal",
 		bonusFights: [
-			new BonusFight('The Interceptor Pirates', 62, 'The Interceptor Pirates',
+			new BonusFight("The Interceptor Pirates", 62, "The Interceptor Pirates",
 				[
-					new BonusReward(0x1D110B1, 1, new Reward('Aerial Spiral', 0x10E, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D110C1, 2, new Reward('Draw', 0x195, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D110D1, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('The Interceptor Barrels', 39, 'The Interceptor Barrels',
+					new BonusReward(0x969, 1, new Reward("Aerial Spiral", 0x10E, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x979, 2, new Reward("Draw", 0x195, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x989, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("The Interceptor Barrels", 39, "The Interceptor Barrels",
 				[
-					new BonusReward(0x1D10D31, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 1, 0),
-					new BonusReward(0x1D10D41, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10D51, 3, new Reward('Second Chance', 0x19F, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10D61, 8, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 10, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Captain Barbossa', 21, 'Captain Barbossa',
+					new BonusReward(0x5E9, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 1, 0),
+					new BonusReward(0x5F9, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0),
+					new BonusReward(0x609, 3, new Reward("Second Chance", 0x19F, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x619, 8, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 10, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Captain Barbossa", 21, "Captain Barbossa",
 				[
-					new BonusReward(0x1D10AA1, 1, new Reward('Aerial Finish', 0x110, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 1),
-					new BonusReward(0x1D10AB1, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10AC1, 3, new Reward('Teamwork (Knocksmash)', 0x0CA, 'Limit'), new Reward('Auto Limit', 0x1A1, 'Ability'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10AD1, 8, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 15, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Grim Reaper I', 59, 'Grim Reaper I',
+					new BonusReward(0x359, 1, new Reward("Aerial Finish", 0x110, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 1),
+					new BonusReward(0x369, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0),
+					new BonusReward(0x379, 3, new Reward("Teamwork (Knocksmash)", 0x0CA, "Limit"), new Reward("Auto Limit", 0x1A1, "Ability"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x389, 8, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 15, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Grim Reaper I", 59, "Grim Reaper I",
 				[
-					new BonusReward(0x1D11021, 1, new Reward('Horizontal Slash', 0x10F, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D11031, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D11041, 3, new Reward('Draw', 0x195, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D11051, 8, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 10, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Grim Reaper II', 22, 'Grim Reaper II',
+					new BonusReward(0x8D9, 1, new Reward("Horizontal Slash", 0x10F, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x8E9, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0),
+					new BonusReward(0x8F9, 3, new Reward("Draw", 0x195, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x909, 8, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 10, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Grim Reaper II", 22, "Grim Reaper II",
 				[
-					new BonusReward(0x1D10AE1, 1, new Reward('Magnet', 0x057, 'Spell'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10AF1, 2, new Reward('Flare Force (Duck Flare)', 0x0C8, 'Limit'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10B01, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10B11, 8, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 15, 0, 0, 0, 0, 0)
-				])
+					new BonusReward(0x399, 1, new Reward("Magnet", 0x057, "Spell"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x3A9, 2, new Reward("Flare Force (Duck Flare)", 0x0C8, "Limit"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x3B9, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x3C9, 8, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 15, 0, 0, 0, 0, 0)
+				]
+			)
 		]
-	}, {
-		world: 'Pride Lands',
+	},
+	{
+		world: "Pride Lands",
 		bonusFights: [
-			new BonusFight('Hyenas I', 49, 'Protect Timon & Pumbaa',
+			new BonusFight("Hyenas I", 49, "Protect Timon & Pumbaa",
 				[
-					new BonusReward(0x1D10EA1, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10EB1, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10EC1, 3, new Reward('Lucky Lucky', 0x197, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Scar', 29, 'Scar',
+					new BonusReward(0x759, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x769, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0),
+					new BonusReward(0x779, 3, new Reward("Lucky Lucky", 0x197, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Scar", 29, "Scar",
 				[
-					new BonusReward(0x1D10BD1, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 10, 0, 0, 0, 0),
-					new BonusReward(0x1D10BE1, 2, new Reward('Fire Boost', 0x198, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10BF1, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10C01, 11, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 30, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Hyenas II', 50, 'Hyenas',
+					new BonusReward(0x489, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 10, 0, 0, 0, 0),
+					new BonusReward(0x499, 2, new Reward("Fire Boost", 0x198, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x4A9, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x4B9, 11, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 30, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Hyenas II", 50, "Hyenas",
 				[
-					new BonusReward(0x1D10ED1, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 1, 0, 0),
-					new BonusReward(0x1D10EE1, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10EF1, 3, new Reward('MP Rage', 0x19C, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10D01, 11, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Groundshaker', 30, 'Groundshaker',
+					new BonusReward(0x789, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 1, 0, 0),
+					new BonusReward(0x799, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0),
+					new BonusReward(0x7A9, 3, new Reward("MP Rage", 0x19C, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x5B9, 11, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Groundshaker", 30, "Groundshaker",
 				[
-					new BonusReward(0x1D10C11, 1, new Reward('Thunder', 0x017, 'Spell'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10C21, 11, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0)
-				])
+					new BonusReward(0x4C9, 1, new Reward("Thunder", 0x017, "Spell"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x4D9, 11, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0)
+				]
+			)
 		]
-	}, {
-		world: 'Simulated Twilight Town',
+	},
+	{
+		world: "Simulated Twilight Town",
 		bonusFights: [
-			new BonusFight('Station of Serenity Nobodies', 54, 'Station of Serenity',
+			new BonusFight("Station of Serenity Nobodies", 54, "Station of Serenity",
 				[
-					new BonusReward(0x1D10FA1, 14, new Reward('Aerial Recovery', 0x09E, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Twilight Thorn', 33, 'Twilight Thorn',
+					new BonusReward(0x859, 14, new Reward("Aerial Recovery", 0x09E, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Twilight Thorn", 33, "Twilight Thorn",
 				[
-					new BonusReward(0x1D10CB1, 14, new Reward('Guard', 0x052, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Axel I', 73, 'Axel I',
+					new BonusReward(0x569, 14, new Reward("Guard", 0x052, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Axel I", 73, "Axel I",
 				[
-					new BonusReward(0x1D11271, 14, new Reward('Scan', 0x08A, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Axel II', 34, 'Axel II',
+					new BonusReward(0xB29, 14, new Reward("Scan", 0x08A, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Axel II", 34, "Axel II",
 				[
-					new BonusReward(0x1D10CC1, 14, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0)
-				])
+					new BonusReward(0x579, 14, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0)
+				]
+			)
 		]
-	}, {
-		world: 'Space Paranoids',
+	},
+	{
+		world: "Space Paranoids",
 		bonusFights: [
-			new BonusFight('Dataspace Computers', 45, 'Dataspace Computers',
+			new BonusFight("Dataspace Computers", 45, "Dataspace Computers",
 				[
-					new BonusReward(0x1D10E11, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10E21, 2, new Reward('Thunder Boost', 0x19A, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10E31, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10E41, 12, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 10, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Hostile Program', 31, 'Hostile Program',
+					new BonusReward(0x6C9, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x6D9, 2, new Reward("Thunder Boost", 0x19A, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x6E9, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x6F9, 12, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 10, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Hostile Program", 31, "Hostile Program",
 				[
-					new BonusReward(0x1D10C31, 1, new Reward('Vicinity Break', 0x232, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 1),
-					new BonusReward(0x1D10C41, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10C51, 3, new Reward('Jackpot', 0x196, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10C61, 12, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 15, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Solar Sailor Heartless', 61, 'Solar Sailor',
+					new BonusReward(0x4E9, 1, new Reward("Vicinity Break", 0x232, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 1),
+					new BonusReward(0x4F9, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0),
+					new BonusReward(0x509, 3, new Reward("Jackpot", 0x196, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x519, 12, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 15, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Solar Sailor Heartless", 61, "Solar Sailor",
 				[
-					new BonusReward(0x1D11071, 1, new Reward('Explosion', 0x10A, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D11081, 2, new Reward('MP Hastera', 0x1A5, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D11091, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D110A1, 12, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('MCP', 32, 'MCP',
+					new BonusReward(0x929, 1, new Reward("Explosion", 0x10A, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x939, 2, new Reward("MP Hastera", 0x1A5, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x949, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x959, 12, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("MCP", 32, "MCP",
 				[
-					new BonusReward(0x1D10C71, 1, new Reward('Reflect', 0x058, 'Spell'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10C81, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10C91, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 1, 0, 0),
-					new BonusReward(0x1D10CA1, 12, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Larxene (Absent Silhouette)', 68, 'Larxene (AS)',
+					new BonusReward(0x529, 1, new Reward("Reflect", 0x058, "Spell"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x539, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0),
+					new BonusReward(0x549, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 1, 0, 0),
+					new BonusReward(0x559, 12, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Larxene (Absent Silhouette)", 68, "Larxene (AS)",
 				[
-					new BonusReward(0x1D111B1, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 10, 0, 0, 0, 0),
-					new BonusReward(0x1D111C1, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 1, 0),
-					new BonusReward(0x1D111D1, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0)])
+					new BonusReward(0xA69, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 10, 0, 0, 0, 0),
+					new BonusReward(0xA79, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 1, 0),
+					new BonusReward(0xA89, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0)
+				]
+			)
 		]
-	}, {
-		world: 'Timeless River',
+	},
+	{
+		world: "Timeless River",
 		bonusFights: [
-			new BonusFight('Pete (Steamboat Fight)', 16, 'Pete (Steamboat Fight)',
+			new BonusFight("Pete (Steamboat Fight)", 16, "Pete (Steamboat Fight)",
 				[
-					new BonusReward(0x1D10981, 1, new Reward('Dodge Slash', 0x107, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10991, 2, new Reward('Fantasia (Comet)', 0x0C7, 'Limit'), new Reward('Auto Limit', 0x1A1, 'Ability'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D109A1, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Pete (Timeless River)', 17, 'Pete',
+					new BonusReward(0x239, 1, new Reward("Dodge Slash", 0x107, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x249, 2, new Reward("Fantasia (Comet)", 0x0C7, "Limit"), new Reward("Auto Limit", 0x1A1, "Ability"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x259, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Pete (Timeless River)", 17, "Pete",
 				[
-					new BonusReward(0x1D109B1, 1, new Reward('Reflect', 0x058, 'Spell'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D109C1, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D109D1, 3, new Reward('Goofy Tornado', 0x1A9, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0)])
+					new BonusReward(0x269, 1, new Reward("Reflect", 0x058, "Spell"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x279, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0),
+					new BonusReward(0x289, 3, new Reward("Goofy Tornado", 0x1A9, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0)
+				]
+			)
 		]
-	}, {
-		world: 'Twilight Town',
+	},
+	{
+		world: "Twilight Town",
 		bonusFights: [
-			new BonusFight('The Old Mansion Nobodies', 56, 'The Old Mansion',
+			new BonusFight("The Old Mansion Nobodies", 56, "The Old Mansion",
 				[
-					new BonusReward(0x1D10FB1, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10FC1, 2, new Reward('Lucky Lucky', 0x197, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10FD1, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Betwixt & Between Nobodies', 63, 'Betwixt & Between',
+					new BonusReward(0x869, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x879, 2, new Reward("Lucky Lucky", 0x197, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0),
+					new BonusReward(0x889, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Betwixt & Between Nobodies", 63, "Betwixt & Between",
 				[
-					new BonusReward(0x1D110E1, 1, new Reward('Slapshot', 0x106, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 0)
-				])
+					new BonusReward(0x999, 1, new Reward("Slapshot", 0x106, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 0)
+				]
+			)
 		]
-	}, {
-		world: 'The World That Never Was',
+	},
+	{
+		world: "The World That Never Was",
 		bonusFights: [
-			new BonusFight('Roxas', 69, 'Roxas',
+			new BonusFight("Roxas", 69, "Roxas",
 				[
-					new BonusReward(0x1D111E1, 1, new Reward('Combo Master', 0x21B, 'Ability'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Xigbar', 23, 'Xigbar',
+					new BonusReward(0xA99, 1, new Reward("Combo Master", 0x21B, "Ability"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Xigbar", 23, "Xigbar",
 				[
-					new BonusReward(0x1D10B21, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 10, 0, 0, 0, 0),
-					new BonusReward(0x1D10B31, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 1, 0),
-					new BonusReward(0x1D10B41, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Luxord', 24, 'Luxord',
+					new BonusReward(0x3D9, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 10, 0, 0, 0, 0),
+					new BonusReward(0x3E9, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 1, 0),
+					new BonusReward(0x3F9, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Luxord", 24, "Luxord",
 				[
-					new BonusReward(0x1D10B51, 1, new Reward('Magnet', 0x057, 'Spell'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0)
-				]),
-			new BonusFight('Saix', 25, 'Saix',
+					new BonusReward(0x409, 1, new Reward("Magnet", 0x057, "Spell"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Saix", 25, "Saix",
 				[
-					new BonusReward(0x1D10B61, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10B71, 2, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 4, 0, 0, 0, 0, 0),
-					new BonusReward(0x1D10B81, 3, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 1, 0)
-				]),
-			new BonusFight('Xemnas', 26, 'Xemnas',
+					new BonusReward(0x419, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 0, 0, 0, 0, 0),
+					new BonusReward(0x429, 2, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 4, 0, 0, 0, 0, 0),
+					new BonusReward(0x439, 3, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 1, 0)
+				]
+			),
+			new BonusFight("Xemnas", 26, "Xemnas",
 				[
-					new BonusReward(0x1D10B91, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 5, 10, 0, 0, 0, 0)
-				]),
-			new BonusFight('Final Xemnas', 71, 'Final Xemnas',
+					new BonusReward(0x449, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 5, 10, 0, 0, 0, 0)
+				]
+			),
+			new BonusFight("Final Xemnas", 71, "Final Xemnas",
 				[
-					new BonusReward(0x1D11221, 1, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 0, 0, 0, 0, 0, 1),
-					new BonusReward(0x1D11231, 13, new Reward('EMPTY', 0x000, 'EMPTY'), new Reward('EMPTY', 0x000, 'EMPTY'), 25, 0, 0, 0, 0, 0)
-				])
+					new BonusReward(0xAD9, 1, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 0, 0, 0, 0, 0, 1),
+					new BonusReward(0xAE9, 13, new Reward("EMPTY", 0x000, "EMPTY"), new Reward("EMPTY", 0x000, "EMPTY"), 25, 0, 0, 0, 0, 0)
+				]
+			)
 		]
 	}
 ]

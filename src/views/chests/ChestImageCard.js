@@ -8,7 +8,7 @@ function ChestImageCard(props) {
     let isAll = true
 
     if (props.currentChest !== undefined) {
-        chestImage = './images/chestImages/' + props.currentFolderName + '/' + props.currentChest.vanillaAddress.toString(16).toUpperCase() + '.png'
+        chestImage = './images/chestImages/' + props.currentFolderName + '/' + props.currentChest.zipID + '.png'
         chestAltText = props.currentChest.room + ' ' + props.currentChest.replacementReward.reward
         chestRoom = <div className='chestCardRoom'>{props.currentChest.room !== props.prevChestRoom ? props.currentChest.room : ''}</div>
         isAll = false
