@@ -1,76 +1,41 @@
 {
-	"homepage": "https://custom-seed-generator.web.app/",
-	"name": "custom-seed-generator",
-	"version": "0.1.0",
-	"private": true,
-	"dependencies": {
-		"@emotion/react": "^11.11.0",
-		"@emotion/styled": "^11.11.0",
-		"@mui/material": "^5.13.2",
-		"@testing-library/jest-dom": "^5.11.5",
-		"@testing-library/react": "^11.1.2",
-		"@testing-library/user-event": "^12.2.2",
-		"animate.css": "^4.1.1",
-		"apexcharts": "^3.37.3",
-		"bootstrap": "^5.2.2",
-		"chart.js": "^4.2.1",
-		"chokidar": "^3.5.3",
-		"file-saver": "^2.0.5",
-		"framer-motion": "^10.12.7",
-		"jszip": "^3.10.0",
-		"jszip-utils": "^0.1.0",
-		"lodash": "^4.17.20",
-		"nth-check": ">=2.0.1",
-		"react": "^18.2.0",
-		"react-apexcharts": "^1.4.0",
-		"react-beforeunload": "^2.4.0",
-		"react-bootstrap": "^2.5.0",
-		"react-chartjs-2": "^5.2.0",
-		"react-dom": "^18.2.0",
-		"react-fast-marquee": "^1.3.5",
-		"react-intersection-observer": "^9.4.0",
-		"react-kofi-button": "^0.7.1",
-		"react-paginate": "^8.2.0",
-		"react-router": "^5.2.0",
-		"react-router-dom": "^5.2.0",
-		"react-select": "^5.7.3",
-		"react-widgets": "^5.8.4",
-		"recharts": "^2.5.0",
-		"sass": "^1.62.1",
-		"sass-loader": "^13.3.1",
-		"styled-components": "^5.3.5",
-		"web-vitals": "^0.2.4"
-	},
-	"scripts": {
-		"predeploy": "npm run build",
-		"deploy": "gh-pages -d build",
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject"
-	},
-	"eslintConfig": {
-		"extends": [
-			"react-app",
-			"react-app/jest"
-		]
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	},
-	"devDependencies": {
-		"gh-pages": "^3.1.0",
-		"react-scripts": "^5.0.1",
-		"source-map-loader": "^4.0.1",
-		"webpack": "^5.84.1"
-	}
+  "name": "vite-project",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "deploy": "firebase deploy",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "animate.css": "^4.1.1",
+    "bootstrap": "^5.3.5",
+    "file-saver": "^2.0.5",
+    "firebase": "^11.6.0",
+    "framer-motion": "^12.7.4",
+    "jszip": "^3.10.1",
+    "jszip-utils": "^0.1.0",
+    "react": "^19.0.0",
+    "react-bootstrap": "^2.10.9",
+    "react-dom": "^19.0.0",
+    "react-fast-marquee": "^1.6.5",
+    "react-widgets": "^5.8.6",
+    "recharts": "^2.15.3",
+    "sass-embedded": "^1.86.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.22.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.22.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^16.0.0",
+    "vite": "^6.3.1"
+  }
 }

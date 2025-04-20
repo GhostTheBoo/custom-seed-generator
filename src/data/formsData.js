@@ -213,12 +213,12 @@ export const formsData = [
 			'\telseif ValorLv == 7 then WriteShort(Save+0x32FC,0x8061, OnPC) end\n'
 		],
 		driveLevels: [
-			new FormLevel("Valor LV2", new Reward("Auto Valor", 0x181, "Ability"), 0x0044, 80),
-			new FormLevel("Valor LV3", new Reward("High Jump LV 1", 0x05E, "HighJump"), 0x004C, 160),
-			new FormLevel("Valor LV4", new Reward("Combo Plus", 0x0A2, "Ability"), 0x0054, 280),
-			new FormLevel("Valor LV5", new Reward("High Jump LV 2", 0x05F, "HighJump"), 0x005C, 448),
-			new FormLevel("Valor LV6", new Reward("Combo Plus", 0x0A2, "Ability"), 0x0064, 560),
-			new FormLevel("Valor LV7", new Reward("High Jump LV 3", 0x060, "HighJump"), 0x006C, 672)
+			new FormLevel("Valor LV2", new Reward("Auto Valor", 0x181, "ability"), 0x0044, 80),
+			new FormLevel("Valor LV3", new Reward("High Jump LV 1", 0x05E, "highjump"), 0x004C, 160),
+			new FormLevel("Valor LV4", new Reward("Combo Plus", 0x0A2, "ability"), 0x0054, 280),
+			new FormLevel("Valor LV5", new Reward("High Jump LV 2", 0x05F, "highjump"), 0x005C, 448),
+			new FormLevel("Valor LV6", new Reward("Combo Plus", 0x0A2, "ability"), 0x0064, 560),
+			new FormLevel("Valor LV7", new Reward("High Jump LV 3", 0x060, "highjump"), 0x006C, 672)
 		]
 	},
 	{
@@ -268,12 +268,12 @@ export const formsData = [
 			'\telseif WisdmLv == 7 then WriteShort(Save+0x3334,0x8065, OnPC) end\n'
 		],
 		driveLevels: [
-			new FormLevel("Wisdom LV2", new Reward("Auto Wisdom", 0x182, "Ability"), 0x007C, 20),
-			new FormLevel("Wisdom LV3", new Reward("Quick Run LV 1", 0x062, "QuickRun"), 0x0084, 60),
-			new FormLevel("Wisdom LV4", new Reward("MP Rage", 0x19C, "Ability"), 0x008C, 72),
-			new FormLevel("Wisdom LV5", new Reward("Quick Run LV 2", 0x063, "QuickRun"), 0x0094, 90),
-			new FormLevel("Wisdom LV6", new Reward("MP Haste", 0x19D, "Ability"), 0x009C, 108),
-			new FormLevel("Wisdom LV7", new Reward("Quick Run LV 3", 0x064, "QuickRun"), 0x00A4, 150)
+			new FormLevel("Wisdom LV2", new Reward("Auto Wisdom", 0x182, "ability"), 0x007C, 20),
+			new FormLevel("Wisdom LV3", new Reward("Quick Run LV 1", 0x062, "quickrun"), 0x0084, 60),
+			new FormLevel("Wisdom LV4", new Reward("MP Rage", 0x19C, "ability"), 0x008C, 72),
+			new FormLevel("Wisdom LV5", new Reward("Quick Run LV 2", 0x063, "quickrun"), 0x0094, 90),
+			new FormLevel("Wisdom LV6", new Reward("MP Haste", 0x19D, "ability"), 0x009C, 108),
+			new FormLevel("Wisdom LV7", new Reward("Quick Run LV 3", 0x064, "quickrun"), 0x00A4, 150)
 		]
 	},
 	{
@@ -323,12 +323,12 @@ export const formsData = [
 			'\telseif LimitLv == 7 then WriteShort(Save+0x336C,0x8237, OnPC) end\n'
 		],
 		driveLevels: [
-			new FormLevel("Limit LV2", new Reward("Auto Limit", 0x238, "Ability"), 0x00B4, 3),
-			new FormLevel("Limit LV3", new Reward("Dodge Roll LV 1", 0x234, "DodgeRoll"), 0x00BC, 6),
-			new FormLevel("Limit LV4", new Reward("Draw", 0x195, "Ability"), 0x00C4, 12),
-			new FormLevel("Limit LV5", new Reward("Dodge Roll LV 2", 0x235, "DodgeRoll"), 0x00CC, 19),
-			new FormLevel("Limit LV6", new Reward("Lucky Lucky", 0x197, "Ability"), 0x00D4, 23),
-			new FormLevel("Limit LV7", new Reward("Dodge Roll LV 3", 0x236, "DodgeRoll"), 0x00DC, 36)
+			new FormLevel("Limit LV2", new Reward("Auto Limit", 0x238, "ability"), 0x00B4, 3),
+			new FormLevel("Limit LV3", new Reward("Dodge Roll LV 1", 0x234, "dodgeroll"), 0x00BC, 6),
+			new FormLevel("Limit LV4", new Reward("Draw", 0x195, "ability"), 0x00C4, 12),
+			new FormLevel("Limit LV5", new Reward("Dodge Roll LV 2", 0x235, "dodgeroll"), 0x00CC, 19),
+			new FormLevel("Limit LV6", new Reward("Lucky Lucky", 0x197, "ability"), 0x00D4, 23),
+			new FormLevel("Limit LV7", new Reward("Dodge Roll LV 3", 0x236, "dodgeroll"), 0x00DC, 36)
 		]
 	},
 	{
@@ -378,12 +378,12 @@ export const formsData = [
 			'\telseif MastrLv == 7 then WriteShort(Save+0x33A4,0x8069, OnPC) end\n'
 		],
 		driveLevels: [
-			new FormLevel("Master LV2", new Reward("Auto Master", 0x183, "Ability"), 0x00EC, 60),
-			new FormLevel("Master LV3", new Reward("Aerial Dodge LV 1", 0x066, "AerialDodge"), 0x00F4, 180),
-			new FormLevel("Master LV4", new Reward("Air Combo Plus", 0x0A3, "Ability"), 0x00FC, 216),
-			new FormLevel("Master LV5", new Reward("Aerial Dodge LV 2", 0x067, "AerialDodge"), 0x0104, 270),
-			new FormLevel("Master LV6", new Reward("Air Combo Plus", 0x0A3, "Ability"), 0x010C, 324),
-			new FormLevel("Master LV7", new Reward("Aerial Dodge LV 3", 0x068, "AerialDodge"), 0x0114, 450)
+			new FormLevel("Master LV2", new Reward("Auto Master", 0x183, "ability"), 0x00EC, 60),
+			new FormLevel("Master LV3", new Reward("Aerial Dodge LV 1", 0x066, "aerialdodge"), 0x00F4, 180),
+			new FormLevel("Master LV4", new Reward("Air Combo Plus", 0x0A3, "ability"), 0x00FC, 216),
+			new FormLevel("Master LV5", new Reward("Aerial Dodge LV 2", 0x067, "aerialdodge"), 0x0104, 270),
+			new FormLevel("Master LV6", new Reward("Air Combo Plus", 0x0A3, "ability"), 0x010C, 324),
+			new FormLevel("Master LV7", new Reward("Aerial Dodge LV 3", 0x068, "aerialdodge"), 0x0114, 450)
 		]
 	},
 	{
@@ -433,12 +433,12 @@ export const formsData = [
 			'\telseif FinalLv == 7 then WriteShort(Save+0x33DC,0x806D, OnPC) end\n\n'
 		],
 		driveLevels: [
-			new FormLevel("Final LV2", new Reward("Auto Final", 0x184, "Ability"), 0x0124, 12),
-			new FormLevel("Final LV3", new Reward("Glide LV 1", 0x06A, "Glide"), 0x012C, 24),
-			new FormLevel("Final LV4", new Reward("Form Boost", 0x18E, "Ability"), 0x0134, 48),
-			new FormLevel("Final LV5", new Reward("Glide LV 2", 0x06B, "Glide"), 0x013C, 76),
-			new FormLevel("Final LV6", new Reward("Form Boost", 0x18E, "Ability"), 0x0144, 133),
-			new FormLevel("Final LV7", new Reward("Glide LV 3", 0x06C, "Glide"), 0x014C, 157)
+			new FormLevel("Final LV2", new Reward("Auto Final", 0x184, "ability"), 0x0124, 12),
+			new FormLevel("Final LV3", new Reward("Glide LV 1", 0x06A, "glide"), 0x012C, 24),
+			new FormLevel("Final LV4", new Reward("Form Boost", 0x18E, "ability"), 0x0134, 48),
+			new FormLevel("Final LV5", new Reward("Glide LV 2", 0x06B, "glide"), 0x013C, 76),
+			new FormLevel("Final LV6", new Reward("Form Boost", 0x18E, "ability"), 0x0144, 133),
+			new FormLevel("Final LV7", new Reward("Glide LV 3", 0x06C, "glide"), 0x014C, 157)
 		]
 	},
 	{
@@ -446,12 +446,12 @@ export const formsData = [
 		removeGrowthJankPnachCodes: [],
 		removeGrowthJankLuaCodes: [],
 		driveLevels: [
-			new FormLevel("Summon LV2", new Reward("EMPTY", 0x000, "EMPTY"), 0x000C, 6),
-			new FormLevel("Summon LV3", new Reward("EMPTY", 0x000, "EMPTY"), 0x0014, 16),
-			new FormLevel("Summon LV4", new Reward("EMPTY", 0x000, "EMPTY"), 0x001C, 25),
-			new FormLevel("Summon LV5", new Reward("EMPTY", 0x000, "EMPTY"), 0x0024, 42),
-			new FormLevel("Summon LV6", new Reward("EMPTY", 0x000, "EMPTY"), 0x002C, 63),
-			new FormLevel("Summon LV7", new Reward("EMPTY", 0x000, "EMPTY"), 0x0034, 98)
+			new FormLevel("Summon LV2", new Reward("EMPTY", 0x000, "empty"), 0x000C, 6),
+			new FormLevel("Summon LV3", new Reward("EMPTY", 0x000, "empty"), 0x0014, 16),
+			new FormLevel("Summon LV4", new Reward("EMPTY", 0x000, "empty"), 0x001C, 25),
+			new FormLevel("Summon LV5", new Reward("EMPTY", 0x000, "empty"), 0x0024, 42),
+			new FormLevel("Summon LV6", new Reward("EMPTY", 0x000, "empty"), 0x002C, 63),
+			new FormLevel("Summon LV7", new Reward("EMPTY", 0x000, "empty"), 0x0034, 98)
 		]
 	}
 ]
