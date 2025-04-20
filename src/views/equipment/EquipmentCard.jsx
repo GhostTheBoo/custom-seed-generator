@@ -34,32 +34,15 @@ function EquipmentCard(props) {
         props.updateFocus('')
     }
 
-    function isRes(fieldName) {
-        switch (fieldName) {
-            case 'Fire':
-            case 'Blizzard':
-            case 'Thunder':
-            case 'Dark':
-            case 'Physical':
-            case 'Light':
-            case 'Universal':
-                return true;
-            default:
-                return false;
-        }
-    }
-
-    function createStatRow(fileName, fieldName) {
+    function createStatRow(fileName, fieldName, min, max) {
+        let inFocus = props.isSelected && props.currentFocus === fieldName
+        let isEdited = props.equipment[fieldName.toLowerCase()] !== props.equipment['vanilla' + fieldName]
         let isOpaque = !props.equipment.shouldShowStat(fieldName) && props.equipment[fieldName.toLowerCase()] === 0
         let className = `equipmentCardStat${isOpaque ? ' opaque' : ''}`
-        let percentClassName = props.isSelected && props.currentFocus === fieldName ? ' invis' : ''
-        percentClassName += props.equipment[fieldName.toLowerCase()] !== props.equipment['vanilla' + fieldName] ? ' new' : ''
-        let min = 0
-        let max = 255
-        if (isRes(fieldName)) {
-            min = -100
-            max = 150
-        }
+        let percentClassName = ''
+
+        if (inFocus) percentClassName += ' invis'
+        if (isEdited) percentClassName += ' new'
 
         function setFieldData(newValue) {
             let newStat = Math.max(min, Math.min(max, Number(parseInt(newValue))))
@@ -77,9 +60,8 @@ function EquipmentCard(props) {
                     {fieldName}
                 </Icon>
                 {
-                    props.isSelected && props.currentFocus === fieldName
+                    inFocus
                         ? <input
-                            name={props.equipment[fieldName.toLowerCase()]}
                             className='specificEquipmentValue equipmentValueInputField'
                             type='number'
                             value={isNaN(currentFieldData['current' + fieldName]) ? '' : currentFieldData['current' + fieldName]}
@@ -92,16 +74,16 @@ function EquipmentCard(props) {
                             size={4}
                         />
                         : <span
-                            className={`specificEquipmentValue editable${' ' + className}${props.equipment[fieldName.toLowerCase()] !== props.equipment['vanilla' + fieldName] ? ' new' : ''}`}
+                            className={`specificEquipmentValue editable ${className}${isEdited ? ' new' : ''}`}
                             onClick={() => props.updateFocus(fieldName)}
                         >
                             {props.equipment[fieldName.toLowerCase()]}
                         </span>
                 }
                 <span
-                    className={`specificEquipmentPercent${' ' + className}${' ' + percentClassName}`}
+                    className={`specificEquipmentPercent ${className} ${percentClassName}`}
                 >
-                    {isRes(fieldName) ? '%' : ''}
+                    {min < 0 && '%'}
                 </span>
             </div>
         )
@@ -131,21 +113,21 @@ function EquipmentCard(props) {
             </div>
             <div className='equipmentCardStats'>
                 <div>
-                    {createStatRow('tent', 'AP')}
-                    {createStatRow('keyblade', 'Strength')}
-                    {createStatRow('spell', 'Magic')}
-                    {createStatRow('armor', 'Defense')}
+                    {createStatRow('tent', 'AP', 0, 255)}
+                    {createStatRow('keyblade', 'Strength', 0, 255)}
+                    {createStatRow('spell', 'Magic', 0, 255)}
+                    {createStatRow('armor', 'Defense', 0, 255)}
                 </div>
                 <div>
-                    {createStatRow('fire', 'Fire')}
-                    {createStatRow('blizzard', 'Blizzard')}
-                    {createStatRow('thunder', 'Thunder')}
-                    {createStatRow('critical', 'Dark')}
+                    {createStatRow('fire', 'Fire', -100, 150)}
+                    {createStatRow('blizzard', 'Blizzard', -100, 150)}
+                    {createStatRow('thunder', 'Thunder', -100, 150)}
+                    {createStatRow('critical', 'Dark', -100, 150)}
                 </div>
                 <div>
-                    {createStatRow('sword', 'Physical')}
-                    {createStatRow('finalD', 'Light')}
-                    {createStatRow('shield', 'Universal')}
+                    {createStatRow('sword', 'Physical', -100, 150)}
+                    {createStatRow('finalD', 'Light', -100, 150)}
+                    {createStatRow('shield', 'Universal', -100, 150)}
                     <div>
                         <RewardSelectorButton
                             className='equipmentFormAbility'

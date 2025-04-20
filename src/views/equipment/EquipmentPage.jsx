@@ -182,40 +182,6 @@ function EquipmentPage(props) {
 				>
 					{equipmentRowList}
 				</motion.ul>
-				{/* {
-					currentEquipment >= 0
-						? <motion.div
-							initial={{ opacity: .25, x: 100 }}
-							animate={{ opacity: 1, x: 0 }}
-							exit={{ opacity: 0, y: 100 }}
-							transition={{ type: 'spring', duration: .5 }}
-							key={currentEquipmentType}
-							className={`equipmentFormCard${isEditing ? ' editing' : ''}`}
-						>
-							{
-								currentEquipment >= props.equipmentData[currentEquipmentType].equipments.length
-									? <AllEquipmentForm
-										currentEquipment={props.equipmentData[currentEquipmentType].equipments}
-										currentFolderName={equipmentFolderNames[currentEquipmentType]}
-										closeFormCard={handleCurrentEquipmentChange}
-										isEditing={isEditing}
-										setIsEditing={setIsEditing}
-										handleVanilla={vanillaAllEquipment}
-										handleReplace={replaceAllEquipment}
-									/>
-									: <EquipmentForm
-										equipment={props.equipmentData[currentEquipmentType].equipments[currentEquipment]}
-										currentFolderName={equipmentFolderNames[currentEquipmentType]}
-										isEditing={isEditing}
-										setIsEditing={setIsEditing}
-										closeFormCard={handleCurrentEquipmentChange}
-										handleVanilla={(replacedEquipment) => { updateEquipment(replacedEquipment.vanilla()) }}
-										handleReplace={(replacedEquipment, currentEquipmentFieldData) => { updateEquipment(replacedEquipment.replace(currentEquipmentFieldData)) }}
-									/>
-							}
-						</motion.div>
-						: <></>
-				} */}
 			</AnimatePresence>
 		</div>
 	)
