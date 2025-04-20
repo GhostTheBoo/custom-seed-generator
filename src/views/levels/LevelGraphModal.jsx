@@ -62,6 +62,16 @@ function LevelGraphModal(props) {
         type='level'
     />
     
+    function renderCustomTooltipContent(e){
+        if (e.active && e.payload!=null && e.payload[0]!=null)
+            return (
+                <div className='custom-tooltip'>
+                    <p>{e.payload[0].payload['Column Name']}</p>
+                </div>
+            )
+        return '';
+    }
+    
     return (
         <Modal
             dialogClassName='levelGraphModal'
@@ -88,7 +98,7 @@ function LevelGraphModal(props) {
                         <XAxis allowDecimals={false} type='number' dataKey='level' />
                         <YAxis yAxisId='exp' orientation='right' domain={[0, 'dataMax + 1']} />
                         <YAxis yAxisId='stats' domain={[0, 'dataMax + 1']} />
-                        <Tooltip content={<></>} />
+                        <Tooltip content={renderCustomTooltipContent} />
                         <Legend formatter={formatStatNames} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
                         <Line yAxisId='stats' dot={false} type='monotone' dataKey='strength' strokeOpacity={lineOpacity.strength} stroke='#FF8080' strokeWidth={5} />
                         <Line yAxisId='stats' dot={false} type='monotone' dataKey='magic' strokeOpacity={lineOpacity.magic} stroke='#C080FF' strokeWidth={5} />
