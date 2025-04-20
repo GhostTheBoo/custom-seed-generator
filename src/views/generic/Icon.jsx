@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
 function Icon(props) {
-	const [iconPath, setIconPath] = useState(props.fileName.toLowerCase())
+	const [iconPath, setIconPath] = useState(props.fileName)
 	useEffect(() => {
-		setIconPath(props.fileName.toLowerCase())
+		setIconPath(props.fileName)
 	}, [props.fileName])
 	function handleError() {
 		setIconPath('empty')
@@ -40,7 +40,7 @@ function Icon(props) {
 					<img
 						className={'icon' + classNameSuffix}
 						src={icon}
-						alt={props.fileName.toLowerCase()}
+						alt={props.fileName}
 						onError={handleError}
 						width={iconSize}
 						style={{ verticalAlign: 'middle' }}
